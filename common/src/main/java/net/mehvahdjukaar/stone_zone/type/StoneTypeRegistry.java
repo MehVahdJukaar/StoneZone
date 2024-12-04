@@ -6,6 +6,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
@@ -16,15 +17,6 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
     public static final StoneTypeRegistry INSTANCE = new StoneTypeRegistry();
 
     public static final StoneType STONE_TYPE = new StoneType(new ResourceLocation("stone"), Blocks.STONE);
-
-    public static Collection<StoneType> getTypes() {
-        return INSTANCE.getValues();
-    }
-
-    @Nullable
-    public static StoneType getValue(ResourceLocation name) {
-        return INSTANCE.get(name);
-    }
 
     public StoneTypeRegistry() {
         super(StoneType.class, "stone_type");
@@ -44,7 +36,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
     @Override
     public Optional<StoneType> detectTypeFromBlock(Block block, ResourceLocation blockId) {
         String path = blockId.getPath();
-        if (path.endsWith("_bricks")) {
+        if (path.endsWith("_bricks") && block.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM) {
             String stoneName = path.substring(0, path.length() - 7);
             var opt = BuiltInRegistries.BLOCK.getOptional(blockId.withPath(stoneName));
             if (opt.isPresent()) {
@@ -55,7 +47,4 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
     }
 
 
-    public static void init() {
-        BlockSetAPI.registerBlockSetDefinition(INSTANCE);
-    }
 }
