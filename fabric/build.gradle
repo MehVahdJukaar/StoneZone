@@ -30,11 +30,24 @@ dependencies {
         exclude group: 'net.fabricmc.fabric-api'
     }
 
-//!! MOONLIGHT LIB -------------------------------------------------------------------------------------------------- \\
+//!! MOONLIGHT LIB (REQUIRED) --------------------------------------------------------------------------------------- \\
 
 //    modImplementation("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") // LOCAL
     modImplementation("curse.maven:selene-499980:5942982") // v2.13.33
-    modImplementation("curse.maven:every-compat-628539:5946422")
+
+//!! EVERY COMPAT (REQUIRED)
+    modImplementation("curse.maven:every-compat-628539:5946422") // v2.6.94
+
+//!! TOOLS
+    modRuntimeOnly("curse.maven:jei-238222:5846809")
+    modRuntimeOnly("curse.maven:worldedit-225608:4586218")
+    modRuntimeOnly("curse.maven:emi-580555:5872525")
+    modRuntimeOnly("curse.maven:jade-324717:5666690")
+
+//!! ================================================= DEPENDENCIES ================================================= \\
+
+
+//!! =================================================== IMPORTS ==================================================== \\
 
 }
 
