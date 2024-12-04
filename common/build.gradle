@@ -1,0 +1,37 @@
+architectury {
+    common(rootProject.enabled_platforms.split(","))
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/stonezone.accesswidener")
+}
+
+dependencies {
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
+
+
+    annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
+
+//!! MOONLIGHT LIB -------------------------------------------------------------------------------------------------- \\
+
+//    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_version}")
+    modImplementation("curse.maven:selene-499980:5942982") // v2.13.33
+
+    // add EC
+
+    modImplementation("curse.maven:every-compat-628539:5946422")
+}
+
+publishing {
+    publications {
+        mavenCommon(MavenPublication) {
+            artifactId = rootProject.mod_id
+            from components.java
+        }
+    }
+
+    repositories {
+        // Add repositories to publish to here.
+    }
+}

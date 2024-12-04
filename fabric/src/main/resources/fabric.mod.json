@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "stonezone",
+  "version": "${version}",
+  "name": "Stone Zone",
+  "description": "Ultimate Stone Compat Mod",
+  "authors": [
+    "MehVahdJukaar, Xel'Bayria"
+  ],
+  "contact": {
+    "homepage": "https://github.com/MehVahdJukaar/stone_zone",
+    "sources": "https://github.com/MehVahdJukaar/StoneZone"
+  },
+  "license": "Supplementaries Team License v1.1",
+  "icon": "logo.png",
+  "environment": "*",
+  "mixins": [
+    "${mod_id}-common.mixins.json"
+  ],
+  "entrypoints": {
+    "main": [
+      "net.mehvahdjukaar.stone_zone.fabric.StoneZoneFabric"
+    ],
+    "modmenu": [
+      "net.mehvahdjukaar.stone_zone.modmenu.ModMenuCompat"
+    ]
+  },
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.20",
+    "moonlight": ">=1.20-2.8.4",
+    "everycomp": "*"
+  }
+}
