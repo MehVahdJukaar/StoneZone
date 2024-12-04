@@ -109,13 +109,21 @@ dependencies {
     implementation(include("io.github.llamalad7:mixinextras-forge:${mixin_extras_version}"))
     annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
 
-//!! MOONLIGHT LIB -------------------------------------------------------------------------------------------------- \\
+//!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
 
 //    modImplementation("net.mehvahdjukaar:moonlight:${project.moonlight_version}-forge") // LOCAL
     modImplementation("curse.maven:selene-499980:5942980") // v2.13.33
 
-//!! EVERY COMPAT
+//!! EVERY COMPAT (REQUIRED)
     modImplementation("curse.maven:every-compat-628539:5946421") // v2.6.94
+
+//!! TOOLS
+    modRuntimeOnly("curse.maven:jei-238222:5846810")
+    modRuntimeOnly("curse.maven:worldedit-225608:4586218")
+    modRuntimeOnly("curse.maven:jade-324717:5672013")
+    modRuntimeOnly("curse.maven:emi-580555:5872526")
+
+//!! ================================================= DEPENDENCIES ================================================= \\
 
 //!! =================================================== IMPORTS ==================================================== \\
 
