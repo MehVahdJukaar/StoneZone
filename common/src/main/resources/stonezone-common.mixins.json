@@ -6,7 +6,6 @@
   "client": [
   ],
   "mixins": [
-    "LootTablesHackMixin"
   ],
   "injectors": {
     "defaultRequire": 1

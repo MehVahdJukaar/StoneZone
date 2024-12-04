@@ -5,7 +5,7 @@ loaderVersion="[40,)" #mandatory This is typically bumped every Minecraft versio
 
 license="Supplementaries Team License v1.1"
 
-issueTrackerURL="https://github.com/MehVahdJukaar/WoodGood/issues" #optional
+issueTrackerURL="https://github.com/MehVahdJukaar/StoneZone/issues" #optional
 
 [[mods]] #mandatory
 
@@ -23,40 +23,40 @@ credits="" #optional
 
 authors="MehVahdJukaar, Xel'Bayria" #optional
 
-description='''Ultimate Wood Compat Mod'''
+description='''Ultimate Stone Compat Mod'''
 
 itemIcon="stonezone:all_stones" #catalogue icon
 
 
 [[dependencies.stonezone]] #optional
 
-modId="forge" #mandatory
-mandatory=true #mandatory
-versionRange="[41.0.100,)" #mandatory
-ordering="NONE"
-side="BOTH"
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="[41.0.100,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
 
 [[dependencies.stonezone]]
 
-modId="minecraft"
-mandatory=true
-versionRange="[1.20,1.21]"
-ordering="NONE"
-side="BOTH"
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20,1.21]"
+    ordering="NONE"
+    side="BOTH"
 
 [[dependencies.stonezone]]
 
-modId="moonlight"
-mandatory=true
-versionRange="[1.20-2.12.0,]"
-ordering="NONE"
-side="BOTH"
+    modId="moonlight"
+    mandatory=true
+    versionRange="[1.20-2.12.0,]"
+    ordering="NONE"
+    side="BOTH"
 
 [[dependencies.stonezone]]
 
-modId="everycomp"
-mandatory=true
-versionRange="(,]"
-ordering="AFTER"
-side="BOTH"
+    modId="everycomp"
+    mandatory=true
+    versionRange="(,]"
+    ordering="AFTER"
+    side="BOTH"
 
