@@ -34,7 +34,11 @@ dependencies {
 
 //    modImplementation("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") // LOCAL
     modImplementation("curse.maven:selene-499980:5942982") // v2.13.33
-    modImplementation("curse.maven:every-compat-628539:5946422")
+
+//!! EVERY COMPAT
+    modImplementation("curse.maven:every-compat-628539:5946422") // v2.6.94
+
+//!! =================================================== IMPORTS ==================================================== \\
 
 }
 

@@ -113,4 +113,10 @@ dependencies {
 
 //    modImplementation("net.mehvahdjukaar:moonlight:${project.moonlight_version}-forge") // LOCAL
     modImplementation("curse.maven:selene-499980:5942980") // v2.13.33
+
+//!! EVERY COMPAT
+    modImplementation("curse.maven:every-compat-628539:5946421") // v2.6.94
+
+//!! =================================================== IMPORTS ==================================================== \\
+
 }
