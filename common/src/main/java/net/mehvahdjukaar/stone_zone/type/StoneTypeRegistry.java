@@ -1,15 +1,12 @@
 package net.mehvahdjukaar.stone_zone.type;
 
-import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.Collection;
 import java.util.Optional;
 
 public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
