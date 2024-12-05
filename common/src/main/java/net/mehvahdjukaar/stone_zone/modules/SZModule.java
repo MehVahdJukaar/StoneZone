@@ -11,8 +11,9 @@ public class SZModule extends SimpleModule {
         super(modId, shortId);
     }
 
+    @Override
     @SuppressWarnings("DataFlowIssue")
-    public ResourceKey<CreativeModeTab> getUniqueTab() {
+    public ResourceKey<CreativeModeTab> getDedicatedTab() {
         return SZRegistry.MOD_TAB.getKey();
     }
 }
