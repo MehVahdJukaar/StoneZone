@@ -50,12 +50,6 @@ public class StoneZone {
         }
     }
 
-    public static final Supplier<AllStonesItem> ALL_STONES = RegHelper.registerItem(res("all_stones"),
-            AllStonesItem::new);
-
-    public static final Supplier<CreativeModeTab> TAB = SZConfigs.TAB_ENABLED.get() ? RegHelper.registerCreativeModeTab(res("stonezone"), true, (builder) -> {
-        builder.icon(() -> ALL_STONES.get().getDefaultInstance()).backgroundSuffix("item_search.png").title(Component.translatable("itemGroup.stonezone.stonezone")).build();
-    }) : null;
 
     public static Collection<String> getDependencies() {
         return DEPENDENCIES;
