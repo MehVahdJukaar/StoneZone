@@ -2,9 +2,10 @@ package net.mehvahdjukaar.stone_zone.modules;
 
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
-import net.mehvahdjukaar.stone_zone.StoneZone;
+import net.mehvahdjukaar.stone_zone.SZRegistry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
+
 
 public class SZModule extends SimpleModule {
     public SZModule(String modId, String shortId) {
@@ -12,8 +13,9 @@ public class SZModule extends SimpleModule {
     }
 
     @Override
-    public ResourceKey<CreativeModeTab> getUniqueTab(){
-        return StoneZone.TAB.key();
+    @SuppressWarnings("DataFlowIssue")
+    public ResourceKey<CreativeModeTab> getDedicatedTab() {
+        return SZRegistry.MOD_TAB.getKey();
     }
 
     @Override

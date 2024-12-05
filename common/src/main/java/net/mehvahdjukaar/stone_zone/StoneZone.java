@@ -2,10 +2,10 @@ package net.mehvahdjukaar.stone_zone;
 
 import net.mehvahdjukaar.every_compat.api.CompatModule;
 import net.mehvahdjukaar.every_compat.api.EveryCompatAPI;
-import net.mehvahdjukaar.every_compat.configs.ModConfigs;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
+import net.mehvahdjukaar.stone_zone.configs.SZConfigs;
 import net.mehvahdjukaar.stone_zone.misc.AllStonesItem;
 import net.mehvahdjukaar.stone_zone.type.StoneTypeRegistry;
 import net.minecraft.network.chat.Component;
@@ -14,6 +14,9 @@ import net.minecraft.world.item.CreativeModeTab;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -26,8 +29,14 @@ public class StoneZone {
 
     public static final Logger LOGGER = LogManager.getLogger("Stone Zone");
 
+    // all mod that EC directly or indirectly depends on
+    private static final Set<String> DEPENDENCIES = new HashSet<>();
+
 
     public static void init() {
+        SZConfigs.init();
+        SZRegistry.init();
+
         BlockSetAPI.registerBlockSetDefinition(StoneTypeRegistry.INSTANCE);
 
 
@@ -41,11 +50,9 @@ public class StoneZone {
         }
     }
 
-    public static final Supplier<AllStonesItem> ALL_STONES = RegHelper.registerItem(res("all_stones"),
-            AllStonesItem::new);
+    public static Collection<String> getDependencies() {
+        return DEPENDENCIES;
+    }
 
-    public static final Supplier<CreativeModeTab> TAB = ModConfigs.TAB_ENABLED.get() ? RegHelper.registerCreativeModeTab(res("everycomp"), true, (builder) -> {
-        builder.icon(() -> ALL_STONES.get().getDefaultInstance()).backgroundSuffix("item_search.png").title(Component.translatable("itemGroup.stonezone.stonezone")).build();
-    }) : null;
 
 }

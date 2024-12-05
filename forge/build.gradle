@@ -115,7 +115,7 @@ dependencies {
     modImplementation("curse.maven:selene-499980:5942980") // v2.13.33
 
 //!! EVERY COMPAT (REQUIRED)
-    modImplementation("curse.maven:every-compat-628539:5946421") // v2.6.94
+    modImplementation("curse.maven:every-compat-628539:5963965") // v2.7.0
 
 //!! TOOLS
     modRuntimeOnly("curse.maven:jei-238222:5846810")
@@ -125,6 +125,15 @@ dependencies {
 
 //!! ================================================= DEPENDENCIES ================================================= \\
 
+//    modRuntimeOnly("curse.maven:patchouli-306770:4636277") // v81 | TFC
+
 //!! =================================================== IMPORTS ==================================================== \\
 
+//    modCompileOnly("curse.maven:create-328085:5838779")
+    modCompileOnly("curse.maven:twigs-496913:4605097")
+
+//!! ================================================= FOR TESTING ================================================== \\
+
+//    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643") // STONE-TYPES
+//    modRuntimeOnly("curse.maven:terrafirmacraft-302973:4862659") // patchouli
 }

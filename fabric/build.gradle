@@ -30,13 +30,15 @@ dependencies {
         exclude group: 'net.fabricmc.fabric-api'
     }
 
+    modImplementation("com.terraformersmc:modmenu:7.2.2")
+
 //!! MOONLIGHT LIB (REQUIRED) --------------------------------------------------------------------------------------- \\
 
 //    modImplementation("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") // LOCAL
     modImplementation("curse.maven:selene-499980:5942982") // v2.13.33
 
 //!! EVERY COMPAT (REQUIRED)
-    modImplementation("curse.maven:every-compat-628539:5946422") // v2.6.94
+    modImplementation("curse.maven:every-compat-628539:5963967") // v2.7.0
 
 //!! TOOLS
     modRuntimeOnly("curse.maven:jei-238222:5846809")
@@ -48,6 +50,9 @@ dependencies {
 
 
 //!! =================================================== IMPORTS ==================================================== \\
+
+//    modRuntimeOnly("curse.maven:create-fabric-624165:5958511")
+    modCompileOnly("curse.maven:twigs-496913:4603805")
 
 }
 

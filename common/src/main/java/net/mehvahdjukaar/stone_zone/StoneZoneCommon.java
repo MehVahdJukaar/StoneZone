@@ -1,21 +1,12 @@
-package net.mehvahdjukaar.stone_zone.forge;
+package net.mehvahdjukaar.stone_zone;
 
-import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
-import net.minecraftforge.fml.common.Mod;
+public class StoneZoneCommon {
 
-/**
- * Author: MehVahdJukaar
- */
-@Mod(StoneZone.MOD_ID)
-public class StoneZoneForge extends StoneZoneCommon {
-
-    public StoneZoneForge() {
+    protected void initialize() {
         StoneZone.init();
 
     }
 
-    @Override
     protected void addModules() {
 
 
@@ -28,5 +19,4 @@ public class StoneZoneForge extends StoneZoneCommon {
 //!! ====================================================== OTHERS ================================================== \\
 
     }
-
 }
