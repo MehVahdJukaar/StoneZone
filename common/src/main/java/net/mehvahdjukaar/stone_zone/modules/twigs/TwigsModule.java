@@ -10,6 +10,7 @@ import net.mehvahdjukaar.stone_zone.type.StoneTypeRegistry;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
+//SUPPORT: v3.1.0+
 public class TwigsModule extends SimpleModule {
 
     public final SimpleEntrySet<StoneType, Block> columns;
