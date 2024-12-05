@@ -4,6 +4,7 @@ import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
+import net.mehvahdjukaar.stone_zone.modules.SZModule;
 import net.mehvahdjukaar.stone_zone.type.StoneType;
 import net.mehvahdjukaar.stone_zone.type.StoneTypeRegistry;
 import net.minecraft.resources.ResourceKey;
@@ -15,7 +16,7 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 
 //SUPPORT: v0.5.1+
-public class CreateModule extends SimpleModule {
+public class CreateModule extends SZModule {
 
     public final SimpleEntrySet<StoneType, Block> cut_andesite;
     public final SimpleEntrySet<StoneType, Block> cut_andesite_stairs;
