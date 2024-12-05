@@ -17,6 +17,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
     public static final StoneTypeRegistry INSTANCE = new StoneTypeRegistry();
 
     public static final StoneType STONE_TYPE = new StoneType(new ResourceLocation("stone"), Blocks.STONE);
+    public static final StoneType ANDESITE_TYPE = new StoneType(new ResourceLocation("andesite"), Blocks.ANDESITE);
 
     public StoneTypeRegistry() {
         super(StoneType.class, "stone_type");
