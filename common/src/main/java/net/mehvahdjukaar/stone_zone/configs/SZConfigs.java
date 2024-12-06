@@ -1,9 +1,9 @@
 package net.mehvahdjukaar.stone_zone.configs;
 
-import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigBuilder;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigSpec;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigType;
+import net.mehvahdjukaar.stone_zone.StoneZone;
 
 import java.util.function.Supplier;
 
@@ -14,7 +14,7 @@ public class SZConfigs {
     public static final Supplier<Boolean> TAB_ENABLED;
 
     static {
-        ConfigBuilder builder = ConfigBuilder.create(EveryCompat.MOD_ID, ConfigType.COMMON);
+        ConfigBuilder builder = ConfigBuilder.create(StoneZone.MOD_ID, ConfigType.COMMON);
 
         builder.push("general");
 

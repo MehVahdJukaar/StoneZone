@@ -118,7 +118,7 @@ dependencies {
     modImplementation("curse.maven:every-compat-628539:5963965") // v2.7.0
 
 //!! TOOLS
-    modRuntimeOnly("curse.maven:jei-238222:5846810")
+    modImplementation("curse.maven:jei-238222:5846810")
     modRuntimeOnly("curse.maven:worldedit-225608:4586218")
     modRuntimeOnly("curse.maven:jade-324717:5672013")
     modRuntimeOnly("curse.maven:emi-580555:5872526")
@@ -130,10 +130,10 @@ dependencies {
 //!! =================================================== IMPORTS ==================================================== \\
 
 //    modCompileOnly("curse.maven:create-328085:5838779")
-    modCompileOnly("curse.maven:twigs-496913:4605097")
+    modImplementation("curse.maven:twigs-496913:4605097")
 
 //!! ================================================= FOR TESTING ================================================== \\
 
-//    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643") // STONE-TYPES
+    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643") // STONE-TYPES
 //    modRuntimeOnly("curse.maven:terrafirmacraft-302973:4862659") // patchouli
 }
