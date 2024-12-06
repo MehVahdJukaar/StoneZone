@@ -24,11 +24,6 @@ import java.util.function.Supplier;
 
 public class StoneZone {
     public static final String MOD_ID = "stonezone";
-
-    public static ResourceLocation res(String name) {
-        return new ResourceLocation(MOD_ID, name);
-    }
-
     public static final Logger LOGGER = LogManager.getLogger("Stone Zone");
 
     public static void init() {
@@ -36,11 +31,13 @@ public class StoneZone {
         SZRegistry.init();
 
         BlockSetAPI.registerBlockSetDefinition(StoneTypeRegistry.INSTANCE);
-
-        addIfLoaded("twigs",()-> TwigsModule::new);
     }
 
-    private static void addIfLoaded(String modId, Supplier<Function<String, CompatModule>> moduleFactory) {
+    public static ResourceLocation res(String name) {
+        return new ResourceLocation(MOD_ID, name);
+    }
+
+    public static void addIfLoaded(String modId, Supplier<Function<String, CompatModule>> moduleFactory) {
         if (PlatHelper.isModLoaded(modId)) {
             CompatModule module = moduleFactory.get().apply(modId);
             EveryCompatAPI.registerModule(module);
