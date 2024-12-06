@@ -16,7 +16,7 @@ dependencies {
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
 
 //    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_version}")
-    modImplementation("curse.maven:selene-499980:5942982") // v2.13.33
+    modImplementation("curse.maven:selene-499980:5968826") // v2.13.34
 
 //!! EVERY COMPAT (REQUIRED)
     modImplementation("curse.maven:every-compat-628539:5963967") // v2.7.0
