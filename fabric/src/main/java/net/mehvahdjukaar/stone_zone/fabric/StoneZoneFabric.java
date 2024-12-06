@@ -8,11 +8,12 @@ public class StoneZoneFabric extends StoneZoneCommon implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        StoneZone.init();
+        this.initialize();
     }
 
     @Override
     protected void addModules() {
+        super.addModules();
 
 
 //!! =============================================== Add Other Compat Mods ========================================== \\

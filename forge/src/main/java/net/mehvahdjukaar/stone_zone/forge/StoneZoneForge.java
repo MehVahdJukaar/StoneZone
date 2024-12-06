@@ -11,12 +11,13 @@ import net.minecraftforge.fml.common.Mod;
 public class StoneZoneForge extends StoneZoneCommon {
 
     public StoneZoneForge() {
-        StoneZone.init();
+        this.initialize();
 
     }
 
     @Override
     protected void addModules() {
+        super.addModules();
 
 
 //!! =============================================== Add Other Compat Mods ========================================== \\
