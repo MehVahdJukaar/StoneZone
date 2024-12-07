@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.Collection;
+import java.util.Objects;
 
 //SUPPORT: v3.1.0+
 public class TwigsModule extends SZModule {
@@ -23,17 +24,15 @@ public class TwigsModule extends SZModule {
     public TwigsModule(String modId) {
         super(modId, "tw");
 
-        //noinspection DataFlowIssue
         columns = addEntry(SimpleEntrySet.builder(StoneType.class, "column",
                         getModBlock("stone_column"), () -> StoneTypeRegistry.STONE_TYPE,
                         stoneType -> new ColumnBlock(Utils.copyPropertySafe(
-                                        (stoneType.getBlockOfThis("bricks") != null)
-                                        ? stoneType.getBlockOfThis("bricks")
+                                        (Objects.nonNull(stoneType.getBlockOfThis("bricks")))
+                                        ? Objects.requireNonNull(stoneType.getBlockOfThis("bricks"))
                                         : Blocks.STONE_BRICKS)
                                 )
                         )
-                .addCustomItem((a,b,c)->
-                        new BlockItem(b, c))
+                .addCustomItem((s,b,p)-> new BlockItem(b, p))
                 .createPaletteFromChild("bricks")
                 .addTexture(modRes("block/stone_column"))
                 .addTexture(modRes("block/stone_column_bottom"))
