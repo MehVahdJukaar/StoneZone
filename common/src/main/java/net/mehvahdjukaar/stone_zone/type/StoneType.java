@@ -18,10 +18,12 @@ import java.util.function.Supplier;
 public class StoneType extends BlockType {
 
     public final Block stone;
+    public final Block bricks;
 
-    protected StoneType(ResourceLocation id, Block stone) {
+    protected StoneType(ResourceLocation id, Block stone, Block bricks) {
         super(id);
         this.stone = stone;
+        this.bricks = bricks;
     }
 
     @Override
@@ -32,21 +34,18 @@ public class StoneType extends BlockType {
     @Override
     protected void initializeChildrenBlocks() {
         this.addChild("stone", this.stone);
+        this.addChild("bricks", this.bricks);
         this.addChild("stairs", this.findRelatedEntry("stairs", BuiltInRegistries.BLOCK));
         this.addChild("slab", this.findRelatedEntry("slab", BuiltInRegistries.BLOCK));
         this.addChild("wall", this.findRelatedEntry("wall", BuiltInRegistries.BLOCK));
         this.addChild("button", this.findRelatedEntry("button", BuiltInRegistries.BLOCK));
         this.addChild("pressure_plate", this.findRelatedEntry("pressure_plate", BuiltInRegistries.BLOCK));
 
-        Block bricks = this.findRelatedEntry("bricks", BuiltInRegistries.BLOCK);
-        this.addChild("bricks", bricks);
-        if (bricks != null) {
-            this.addChild("brick_stairs", findBrickEntry("stairs"));
-            this.addChild("brick_slab", findBrickEntry("slab"));
-            this.addChild("brick_wall", findBrickEntry("wall"));
-            this.addChild("cracked_bricks", findBrickEntry("cracked","bricks"));
-            this.addChild("brick_tiles", findBrickEntry("brick_tiles"));
-        }
+        this.addChild("brick_stairs", findBrickEntry("stairs"));
+        this.addChild("brick_slab", findBrickEntry("slab"));
+        this.addChild("brick_wall", findBrickEntry("wall"));
+        this.addChild("cracked_bricks", findBrickEntry("cracked", "bricks"));
+        this.addChild("brick_tiles", findBrickEntry("brick_tiles"));
     }
 
     private @Nullable Block findBrickEntry(String name) {
@@ -56,9 +55,9 @@ public class StoneType extends BlockType {
     }
 
     private @Nullable Block findBrickEntry(String pre, String post) {
-        var first = this.findRelatedEntry(pre,"brick_" + post, BuiltInRegistries.BLOCK);
+        var first = this.findRelatedEntry(pre, "brick_" + post, BuiltInRegistries.BLOCK);
         if (first != null) return first;
-        return this.findRelatedEntry(pre,"bricks_" + post, BuiltInRegistries.BLOCK);
+        return this.findRelatedEntry(pre, "bricks_" + post, BuiltInRegistries.BLOCK);
     }
 
     @Override
@@ -75,24 +74,27 @@ public class StoneType extends BlockType {
 
         private final Map<String, ResourceLocation> childNames = new HashMap<>();
         private final Supplier<Block> planksFinder;
+        private final Supplier<Block> bricksFindeer;
         private final ResourceLocation id;
 
-        public Finder(ResourceLocation id, Supplier<Block> planks) {
+        public Finder(ResourceLocation id, Supplier<Block> planks, Supplier<Block> bricks) {
             this.id = id;
             this.planksFinder = planks;
+            this.bricksFindeer = bricks;
         }
 
-        static StoneType.Finder vanilla(String stoneName){
-            return simple("minecraft", stoneName, stoneName);
+        static StoneType.Finder vanilla(String stoneName, String bricksName) {
+            return simple("minecraft", stoneName, stoneName, bricksName);
         }
 
-        public static StoneType.Finder simple(String modId, String woodTypeName, String planksName) {
-            return simple(new ResourceLocation(modId, woodTypeName), new ResourceLocation(modId, planksName));
+        public static StoneType.Finder simple(String modId, String stoneTypeName, String stoneName, String bricksName) {
+            return simple(new ResourceLocation(modId, stoneTypeName), new ResourceLocation(modId, stoneName), new ResourceLocation(modId, bricksName));
         }
 
-        public static StoneType.Finder simple(ResourceLocation woodTypeName, ResourceLocation planksName) {
-            return new StoneType.Finder(woodTypeName,
-                    () -> BuiltInRegistries.BLOCK.get(planksName));
+        public static StoneType.Finder simple(ResourceLocation stoneTypeName, ResourceLocation stoneName, ResourceLocation bricksName) {
+            return new StoneType.Finder(stoneTypeName,
+                    () -> BuiltInRegistries.BLOCK.get(stoneName),
+                    () -> BuiltInRegistries.BLOCK.get(bricksName));
         }
 
         public void addChild(String childType, String childName) {
@@ -108,10 +110,11 @@ public class StoneType extends BlockType {
         public Optional<StoneType> get() {
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
-                    Block plank = planksFinder.get();
+                    Block stone = planksFinder.get();
+                    Block bricks = bricksFindeer.get();
                     var d = BuiltInRegistries.BLOCK.get(BuiltInRegistries.BLOCK.getDefaultKey());
-                    if (plank != d && plank != null) {
-                        var w = new StoneType(id, plank);
+                    if (stone != d && stone != null && bricks != d && bricks != null) {
+                        var w = new StoneType(id, stone, bricks);
                         childNames.forEach((key, value) -> w.addChild(key, BuiltInRegistries.BLOCK.get(value)));
                         return Optional.of(w);
                     }

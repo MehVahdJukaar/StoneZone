@@ -53,6 +53,7 @@ dependencies {
 
 //    modRuntimeOnly("curse.maven:create-fabric-624165:5958511") // Only for testing
     modCompileOnly("curse.maven:twigs-496913:4603805")
+    modImplementation("curse.maven:building-but-better-989479:5382599")
 
 }
 

@@ -111,7 +111,7 @@ dependencies {
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
 
-//    modImplementation("net.mehvahdjukaar:moonlight:${project.moonlight_version}-forge") // LOCAL
+//   modImplementation("net.mehvahdjukaar:moonlight:${project.moonlight_version}-forge") // LOCAL
     modImplementation("curse.maven:selene-499980:5968828") // v2.13.34
 
 //!! EVERY COMPAT (REQUIRED)

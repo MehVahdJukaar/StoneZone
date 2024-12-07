@@ -9,12 +9,9 @@ import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.modules.SZModule;
 import net.mehvahdjukaar.stone_zone.type.StoneType;
 import net.mehvahdjukaar.stone_zone.type.StoneTypeRegistry;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 
 import java.util.Collection;
-import java.util.Objects;
 
 //SUPPORT: v3.1.0+
 public class TwigsModule extends SZModule {
@@ -26,13 +23,7 @@ public class TwigsModule extends SZModule {
 
         columns = addEntry(SimpleEntrySet.builder(StoneType.class, "column",
                         getModBlock("stone_column"), () -> StoneTypeRegistry.STONE_TYPE,
-                        stoneType -> new ColumnBlock(Utils.copyPropertySafe(
-                                        (Objects.nonNull(stoneType.getBlockOfThis("bricks")))
-                                        ? Objects.requireNonNull(stoneType.getBlockOfThis("bricks"))
-                                        : Blocks.STONE_BRICKS)
-                                )
-                        )
-                .addCustomItem((s,b,p)-> new BlockItem(b, p))
+                        stoneType -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricks)))
                 .createPaletteFromChild("bricks")
                 .addTexture(modRes("block/stone_column"))
                 .addTexture(modRes("block/stone_column_bottom"))

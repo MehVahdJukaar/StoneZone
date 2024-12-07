@@ -22,6 +22,7 @@ public class CreateModule extends SZModule {
     public final SimpleEntrySet<StoneType, Block> cut_andesite_stairs;
     public final SimpleEntrySet<StoneType, Block> cut_andesite_slab;
 
+    // why ae they called andesite? you sure these are stone variants?
     public CreateModule(String modId) {
         super(modId, "");
         ResourceKey<CreativeModeTab> tab = CreativeModeTabs.BUILDING_BLOCKS;

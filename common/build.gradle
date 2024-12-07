@@ -28,6 +28,7 @@ dependencies {
 
 //    modCompileOnly("curse.maven:create-fabric-624165:5958511") // It's fine to ignore this
     modCompileOnly("curse.maven:twigs-496913:4603805")
+    modCompileOnly("curse.maven:building-but-better-989479:5382599")
 
 }
 
