@@ -22,4 +22,6 @@ public class SZModule extends SimpleModule {
     public String toString() {
         return "StoneZone " + LangBuilder.getReadableName(modId) + " Module";
     }
+
+    
 }
