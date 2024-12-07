@@ -3,6 +3,8 @@ package net.mehvahdjukaar.stone_zone.modules.create;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
+import net.mehvahdjukaar.moonlight.api.misc.Registrator;
+import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.modules.SZModule;
 import net.mehvahdjukaar.stone_zone.type.StoneType;
@@ -14,6 +16,8 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
+
+import java.util.Collection;
 
 //SUPPORT: v0.5.1+
 public class CreateModule extends SZModule {

@@ -3,15 +3,11 @@ package net.mehvahdjukaar.stone_zone.modules.twigs;
 import com.ninni.twigs.block.ColumnBlock;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.moonlight.api.misc.Registrator;
-import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.modules.SZModule;
 import net.mehvahdjukaar.stone_zone.type.StoneType;
 import net.mehvahdjukaar.stone_zone.type.StoneTypeRegistry;
 import net.minecraft.world.level.block.Block;
-
-import java.util.Collection;
 
 //SUPPORT: v3.1.0+
 public class TwigsModule extends SZModule {
@@ -38,8 +34,4 @@ public class TwigsModule extends SZModule {
 
     }
 
-    @Override
-    public <T extends BlockType> void registerBlocks(Class<T> typeClass, Registrator<Block> registry, Collection<T> types) {
-        super.registerBlocks(typeClass, registry, types);
-    }
 }

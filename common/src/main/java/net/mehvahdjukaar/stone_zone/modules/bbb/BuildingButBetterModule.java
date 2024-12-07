@@ -1,19 +1,12 @@
 package net.mehvahdjukaar.stone_zone.modules.bbb;
 
 import com.starfish_studios.bbb.block.ColumnBlock;
-import com.starfish_studios.bbb.registry.BBBCreativeModeTab;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.moonlight.api.misc.Registrator;
-import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.modules.SZModule;
 import net.mehvahdjukaar.stone_zone.type.StoneType;
 import net.mehvahdjukaar.stone_zone.type.StoneTypeRegistry;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-
-import java.util.Collection;
-import java.util.Objects;
 
 //SUPPORT: v3.1.0+
 public class BuildingButBetterModule extends SZModule {
@@ -40,8 +33,4 @@ public class BuildingButBetterModule extends SZModule {
 
     }
 
-    @Override
-    public <T extends BlockType> void registerBlocks(Class<T> typeClass, Registrator<Block> registry, Collection<T> types) {
-        super.registerBlocks(typeClass, registry, types);
-    }
 }
