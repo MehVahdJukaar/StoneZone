@@ -23,7 +23,7 @@ public class TwigsModule extends SZModule {
 
         columns = addEntry(SimpleEntrySet.builder(StoneType.class, "column",
                         getModBlock("stone_column"), () -> StoneTypeRegistry.STONE_TYPE,
-                        stoneType -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricks)))
+                        stoneType -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone())))
                 .createPaletteFromChild("bricks")
                 .addTexture(modRes("block/stone_column"))
                 .addTexture(modRes("block/stone_column_bottom"))

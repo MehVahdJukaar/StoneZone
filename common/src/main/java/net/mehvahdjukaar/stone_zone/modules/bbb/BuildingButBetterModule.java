@@ -25,8 +25,7 @@ public class BuildingButBetterModule extends SZModule {
 
         columns = addEntry(SimpleEntrySet.builder(StoneType.class, "block",
                         getModBlock("stone_block"), () -> StoneTypeRegistry.STONE_TYPE,
-                        stoneType -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricks))
-                        )
+                        stoneType -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone())))
                 .createPaletteFromChild("bricks")
                 .addTexture(modRes("block/column/stone_lower"))
                 .addTexture(modRes("block/column/stone_upper"))
