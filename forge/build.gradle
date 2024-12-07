@@ -115,7 +115,7 @@ dependencies {
     modImplementation("curse.maven:selene-499980:5968828") // v2.13.34
 
 //!! EVERY COMPAT (REQUIRED)
-    modImplementation("curse.maven:every-compat-628539:5963965") // v2.7.0
+    modImplementation("curse.maven:every-compat-628539:5967267") // v2.7.1
 
 //!! TOOLS
     modImplementation("curse.maven:jei-238222:5846810")
@@ -129,7 +129,7 @@ dependencies {
 
 //!! =================================================== IMPORTS ==================================================== \\
 
-//    modCompileOnly("curse.maven:create-328085:5838779")
+//    modRuntimeOnly("curse.maven:create-328085:5838779") // Only for testing
     modImplementation("curse.maven:twigs-496913:4605097")
 
 //!! ================================================= FOR TESTING ================================================== \\
