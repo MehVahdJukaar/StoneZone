@@ -19,7 +19,7 @@ dependencies {
 //    modImplementation(files(path)) // Importing compiled mod from Moonlight's Repository
 
 //    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_version}-fabric") // LOCAL
-    modImplementation("curse.maven:selene-499980:5968826") // v2.13.34
+    modImplementation("curse.maven:selene-499980:5973714") // v2.13.36
 
 //!! EVERY COMPAT (REQUIRED)
     modImplementation("curse.maven:every-compat-628539:5967268") // v2.7.1
