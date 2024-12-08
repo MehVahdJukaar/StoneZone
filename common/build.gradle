@@ -15,7 +15,10 @@ dependencies {
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
 
-//    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_version}")
+//    def path = System.getenv('REPOS20_1') + "\\Moonlight\\fabric\\build\\libs\\moonlight-${moonlight_version}-fabric.jar"
+//    modImplementation(files(path)) // Importing compiled mod from Moonlight's Repository
+
+//    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_version}-fabric") // LOCAL
     modImplementation("curse.maven:selene-499980:5968826") // v2.13.34
 
 //!! EVERY COMPAT (REQUIRED)
@@ -26,9 +29,13 @@ dependencies {
 
 //!! =================================================== IMPORTS ==================================================== \\
 
-//    modCompileOnly("curse.maven:create-fabric-624165:5958511") // It's fine to ignore this
+    //!! The module really don't need library from the mod, so it's fine to ignore
+//    modCompileOnly("curse.maven:create-fabric-624165:5958511")
+
+    //!! REQUIRED - The module need libaries from the mod
     modCompileOnly("curse.maven:twigs-496913:4603805")
     modCompileOnly("curse.maven:building-but-better-989479:5382599")
+    modCompileOnly("curse.maven:stoneworks-852663:4611947")
 
 }
 

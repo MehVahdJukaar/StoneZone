@@ -34,7 +34,10 @@ dependencies {
 
 //!! MOONLIGHT LIB (REQUIRED) --------------------------------------------------------------------------------------- \\
 
-//    modImplementation("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") // LOCAL
+//    def path = System.getenv('REPOS20_1') + "\\Moonlight\\fabric\\build\\libs\\moonlight-${moonlight_version}-fabric.jar"
+//    modImplementation(files(path)) // Importing compiled mod from Moonlight's Repository
+
+//    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_version}-fabric") // LOCAL
     modImplementation("curse.maven:selene-499980:5968826") // v2.13.34
 
 //!! EVERY COMPAT (REQUIRED)
@@ -47,13 +50,19 @@ dependencies {
     modRuntimeOnly("curse.maven:jade-324717:5666690")
 
 //!! ================================================= DEPENDENCIES ================================================= \\
-
+    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904751") // v8.1.25 | Stoneworks
+    modRuntimeOnly("curse.maven:forge-config-api-port-fabric-547434:5902421") // v8.1.25 | Stoneworks
 
 //!! =================================================== IMPORTS ==================================================== \\
 
-//    modRuntimeOnly("curse.maven:create-fabric-624165:5958511") // Only for testing
-    modCompileOnly("curse.maven:twigs-496913:4603805")
-    modImplementation("curse.maven:building-but-better-989479:5382599")
+
+    //!! ONLY FOR TESTING - These modules are in COMMON
+//    modRuntimeOnly("curse.maven:create-fabric-624165:5958511")
+//    modRuntimeOnly("curse.maven:building-but-better-989479:5382599")
+//    modRuntimeOnly("curse.maven:twigs-496913:4603805")
+//    modRuntimeOnly("curse.maven:stoneworks-852663:4611948") // puzzles-lib, forge-config-api-port
+
+    //!! REQUIRED - Only in FABRIC
 
 }
 

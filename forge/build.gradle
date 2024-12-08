@@ -111,8 +111,11 @@ dependencies {
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
 
+//    def path = System.getenv('REPOS20_1') + "\\Moonlight\\forge\\build\\libs\\moonlight-${moonlight_version}-forge.jar"
+//    modImplementation(files(path)) // Importing compiled mod from Moonlight's Repository
+
 //   modImplementation("net.mehvahdjukaar:moonlight:${project.moonlight_version}-forge") // LOCAL
-    modImplementation("curse.maven:selene-499980:5968828") // v2.13.34
+   modImplementation("curse.maven:selene-499980:5968828") // v2.13.34
 
 //!! EVERY COMPAT (REQUIRED)
     modImplementation("curse.maven:every-compat-628539:5967267") // v2.7.1
@@ -126,11 +129,16 @@ dependencies {
 //!! ================================================= DEPENDENCIES ================================================= \\
 
 //    modRuntimeOnly("curse.maven:patchouli-306770:4636277") // v81 | TFC
+    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904750") // v8.1.25 | Stoneworks
 
 //!! =================================================== IMPORTS ==================================================== \\
 
-//    modRuntimeOnly("curse.maven:create-328085:5838779") // Only for testing
-    modImplementation("curse.maven:twigs-496913:4605097")
+    //!! ONLY FOR TESTING - These modules are in COMMON
+//    modRuntimeOnly("curse.maven:create-328085:5838779")
+//    modRuntimeOnly("curse.maven:twigs-496913:4605097")
+    modRuntimeOnly("curse.maven:stoneworks-852663:4611947") // puzzles-lib
+
+    //!! REQUIRED
 
 //!! ================================================= FOR TESTING ================================================== \\
 
