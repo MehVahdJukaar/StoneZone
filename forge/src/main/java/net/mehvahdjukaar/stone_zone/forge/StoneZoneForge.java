@@ -1,6 +1,5 @@
 package net.mehvahdjukaar.stone_zone.forge;
 
-import net.mehvahdjukaar.moonlight.core.set.forge.BlockSetInternalImpl;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
 import net.minecraftforge.fml.common.Mod;
@@ -13,7 +12,6 @@ public class StoneZoneForge extends StoneZoneCommon {
 
     public StoneZoneForge() {
         this.initialize();
-        BlockSetInternalImpl
     }
 
     @Override
