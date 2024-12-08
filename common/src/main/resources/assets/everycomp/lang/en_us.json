@@ -1,7 +1,31 @@
 {
   "stone_type.twigs.column": "%s Column",
 
+  "stone_type.bbb.block": "%s Block",
+
   "stone_type.create.cut": "Cut %s",
   "stone_type.create.cut_slab": "Cut %s Slab",
-  "stone_type.create.cut_stairs": "Cut %s Stairs"
+  "stone_type.create.cut_stairs": "Cut %s Stairs",
+
+  "stone_type.stoneworks.cracked_tiles": "Cracked %s Tiles",
+  "stone_type.stoneworks.pillar": "%s Pillar",
+  "stone_type.stoneworks.tiles": "%s Tiles",
+  "stone_type.stoneworks.tile_stairs": "%s Tile Stairs",
+  "stone_type.stoneworks.tile_slab": "%s Tile Slab",
+  "stone_type.stoneworks.tile_wall": "%s Tile Wall",
+  "stone_type.stoneworks.plates": "%s Plates",
+  "stone_type.stoneworks.plate_stairs": "%s Plate Stairs",
+  "stone_type.stoneworks.plate_slab": "%s Plate Slab",
+  "stone_type.stoneworks.plate_wall": "%s Plate Wall",
+  "stone_type.stoneworks.cracked_plates": "Cracked %s Plates",
+  "stone_type.stoneworks.pavers": "%s Pavers",
+  "stone_type.stoneworks.paver_stairs": "%s Paver Stairs",
+  "stone_type.stoneworks.paver_slab": "%s Paver Slab",
+  "stone_type.stoneworks.paver_wall": "%s Paver Wall",
+  "stone_type.stoneworks.cracked_pavers": "Cracked %s Pavers",
+  "stone_type.stoneworks.shingles": "%s Shingles",
+  "stone_type.stoneworks.shingle_stairs": "%s Shingle Stairs",
+  "stone_type.stoneworks.shingle_slab": "%s Shingle Slab",
+  "stone_type.stoneworks.shingle_wall": "%s Shingle Wall",
+  "stone_type.stoneworks.cracked_shingles": "Cracked %s Shingles"
 }
