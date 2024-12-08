@@ -85,7 +85,7 @@ public class StoneworksModule extends SZModule {
                         s -> new WallBlock(Utils.copyPropertySafe(
                                 (Objects.nonNull(s.getBlockOfThis("wall")))
                                         ? Objects.requireNonNull(s.getBlockOfThis("wall"))
-                                        : Blocks.STONE_BRICK_WALL
+                                        : getModBlock("stone_tile_wall").get()
                         ))
                 )
                 //TEXTURES: stone_tiles
@@ -141,7 +141,7 @@ public class StoneworksModule extends SZModule {
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .setTabKey(tab)
                 .addRecipe(modRes("stone_plate_stairs_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_plate_stairs_from_stone_plate_stonecutting"))
+                .addRecipe(modRes("stone_plate_stairs_from_stone_plates_stonecutting"))
                 .build();
         this.addEntry(plate_stairs);
 
@@ -154,7 +154,7 @@ public class StoneworksModule extends SZModule {
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .setTabKey(tab)
                 .addRecipe(modRes("stone_plate_slab_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_plate_slab_from_stone_plate_stonecutting"))
+                .addRecipe(modRes("stone_plate_slab_from_stone_plates_stonecutting"))
                 .build();
         this.addEntry(plate_slabs);
 
@@ -163,7 +163,7 @@ public class StoneworksModule extends SZModule {
                         s -> new WallBlock(Utils.copyPropertySafe(
                                 (Objects.nonNull(s.getBlockOfThis("wall")))
                                         ? Objects.requireNonNull(s.getBlockOfThis("wall"))
-                                        : Blocks.STONE_BRICK_WALL
+                                        : getModBlock("stone_plate_wall").get()
                         ))
                 )
                 //TEXTURES: stone_plates
@@ -171,7 +171,7 @@ public class StoneworksModule extends SZModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .setTabKey(tab)
                 .addRecipe(modRes("stone_plate_wall_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_plate_wall_from_stone_plate_stonecutting"))
+                .addRecipe(modRes("stone_plate_wall_from_stone_plates_stonecutting"))
                 .build();
         this.addEntry(plate_walls);
 
@@ -217,7 +217,7 @@ public class StoneworksModule extends SZModule {
                         s -> new WallBlock(Utils.copyPropertySafe(
                                 (Objects.nonNull(s.getBlockOfThis("wall")))
                                         ? Objects.requireNonNull(s.getBlockOfThis("wall"))
-                                        : Blocks.STONE_BRICK_WALL
+                                        : getModBlock("stone_paver_wall").get()
                         ))
                 )
                 //TEXTURES: stone_pavers
@@ -269,11 +269,12 @@ public class StoneworksModule extends SZModule {
                         s -> new WallBlock(Utils.copyPropertySafe(
                                 (Objects.nonNull(s.getBlockOfThis("wall")))
                                         ? Objects.requireNonNull(s.getBlockOfThis("wall"))
-                                        : Blocks.STONE_BRICK_WALL
+                                        : getModBlock("stone_shingle_wall").get()
                         ))
                 )
                 //TEXTURES: stone_shingles
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .setTabKey(tab)
                 .addRecipe(modRes("stone_shingle_stairs_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_shingle_stairs_from_stone_shingles_stonecutting"))
