@@ -41,7 +41,7 @@ dependencies {
     modImplementation("curse.maven:selene-499980:5975796") // v2.13.37
 
 //!! EVERY COMPAT (REQUIRED)
-    modImplementation("curse.maven:every-compat-628539:5967268") // v2.7.1
+    modImplementation("curse.maven:every-compat-628539:5975781") // v2.7.2
 
 //!! TOOLS
     modRuntimeOnly("curse.maven:jei-238222:5846809")
