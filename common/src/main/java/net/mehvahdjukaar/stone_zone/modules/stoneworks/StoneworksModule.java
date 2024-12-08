@@ -104,7 +104,6 @@ public class StoneworksModule extends SZModule {
                 .addTexture(modRes("block/cracked_stone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
-                .defaultRecipe()
                 .addRecipe(modRes("cracked_stone_tiles_from_stone_stonecutting"))
                 .build();
         this.addEntry(cracked_tiles);
