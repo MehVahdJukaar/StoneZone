@@ -1,5 +1,6 @@
 package net.mehvahdjukaar.stone_zone.type;
 
+import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -44,5 +45,11 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
         return Optional.empty();
     }
 
+    @Override
+    public void addTypeTranslations(AfterLanguageLoadEvent language) {
+        this.getValues().forEach((w) -> {
+            if (language.isDefault()) language.addEntry(w.getTranslationKey(), w.getReadableName());
+        });
+    }
 
 }
