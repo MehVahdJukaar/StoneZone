@@ -15,6 +15,6 @@ public class AllStonesItem extends Item implements ICustomItemRendererProvider {
     }
 
     public Supplier<ItemStackRenderer> getRendererFactory() {
-        return () -> new BlockTypeCycleItemRenderer<>(StoneType.class);
+        return () -> new A<>(StoneType.class){};
     }
 }
