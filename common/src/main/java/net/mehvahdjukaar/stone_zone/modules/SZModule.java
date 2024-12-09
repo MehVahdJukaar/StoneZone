@@ -1,15 +1,18 @@
 package net.mehvahdjukaar.stone_zone.modules;
 
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
+import net.mehvahdjukaar.every_compat.misc.BlockTypeCycleItemRenderer;
 import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
 import net.mehvahdjukaar.stone_zone.SZRegistry;
+import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 
 
 public class SZModule extends SimpleModule {
     public SZModule(String modId, String shortId) {
-        super(modId, shortId);
+        super(modId, shortId, StoneZone.MOD_ID);
     }
 
     @Override
@@ -23,5 +26,4 @@ public class SZModule extends SimpleModule {
         return "StoneZone " + LangBuilder.getReadableName(modId) + " Module";
     }
 
-    
 }

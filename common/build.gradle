@@ -18,8 +18,8 @@ dependencies {
 //    def path = System.getenv('REPOS20_1') + "\\Moonlight\\fabric\\build\\libs\\moonlight-${moonlight_version}-fabric.jar"
 //    modImplementation(files(path)) // Importing compiled mod from Moonlight's Repository
 
-//    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_version}-fabric") // LOCAL
-    modImplementation("curse.maven:selene-499980:5975796") // v2.13.37
+    modImplementation("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") // LOCAL
+//    modImplementation("curse.maven:selene-499980:5975796") // v2.13.37
 
 //!! EVERY COMPAT (REQUIRED)
     modImplementation("curse.maven:every-compat-628539:5975781") // v2.7.2

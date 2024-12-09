@@ -114,8 +114,8 @@ dependencies {
 //    def path = System.getenv('REPOS20_1') + "\\Moonlight\\forge\\build\\libs\\moonlight-${moonlight_version}-forge.jar"
 //    modImplementation(files(path)) // Importing compiled mod from Moonlight's Repository
 
-//   modImplementation("net.mehvahdjukaar:moonlight:${project.moonlight_version}-forge") // LOCAL
-   modImplementation("curse.maven:selene-499980:5975794") // v2.13.37
+   modImplementation("net.mehvahdjukaar:moonlight-forge:${project.moonlight_version}") // LOCAL
+//   modImplementation("curse.maven:selene-499980:5975794") // v2.13.37
 
 //!! EVERY COMPAT (REQUIRED)
     modImplementation("curse.maven:every-compat-628539:5975779") // v2.7.2
@@ -138,8 +138,8 @@ dependencies {
 
     //!! ONLY FOR TESTING - These modules are in COMMON
 //    modRuntimeOnly("curse.maven:create-328085:5838779")
-//    modRuntimeOnly("curse.maven:twigs-496913:4605097")
-    modRuntimeOnly("curse.maven:stoneworks-852663:4611947") // puzzles-lib
+    modRuntimeOnly("curse.maven:twigs-496913:4605097")
+//    modRuntimeOnly("curse.maven:stoneworks-852663:4611947") // puzzles-lib
 
     //!! REQUIRED
 
