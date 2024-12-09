@@ -40,7 +40,7 @@ subprojects {
 
     if (env.MODRINTH_TOKEN) {
         modrinth {
-            projectId = "every-compat"
+            projectId = "stone-zone"
             uploadFile = tasks.remapJar
             gameVersions = [rootProject.minecraft_version]
             loaders = [modLoader]
@@ -50,10 +50,12 @@ subprojects {
                 dependencies {
                     required.project "fabric-api"
                     required.project "moonlight"
+                    required.project "every-compat"
                 }
             } else {
                 dependencies {
                     required.project "moonlight"
+                    required.project "every-compat"
                 }
             }
         }
