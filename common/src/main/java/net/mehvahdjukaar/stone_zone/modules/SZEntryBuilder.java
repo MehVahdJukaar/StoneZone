@@ -27,6 +27,7 @@ public class SZEntryBuilder<T extends BlockType, B extends Block> extends Simple
         return createPaletteFromChild("stone");
     }
 
+
     // remember to add a condition for bricks. Alternatively one could create a brick palette from stone here via palette modification
     public SimpleEntrySet.Builder<T, B> createPaletteFromBricks() {
         return createPaletteFromChild("bricks");
