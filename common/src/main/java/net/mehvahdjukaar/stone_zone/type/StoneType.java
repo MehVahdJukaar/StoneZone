@@ -91,13 +91,13 @@ public class StoneType extends BlockType {
             return simple("minecraft", stoneName, stoneName);
         }
 
-        public static StoneType.Finder simple(String modId, String woodTypeName, String planksName) {
-            return simple(new ResourceLocation(modId, woodTypeName), new ResourceLocation(modId, planksName));
+        public static StoneType.Finder simple(String modId, String stoneTypeName, String stoneName) {
+            return simple(new ResourceLocation(modId, stoneTypeName), new ResourceLocation(modId, stoneName));
         }
 
-        public static StoneType.Finder simple(ResourceLocation woodTypeName, ResourceLocation planksName) {
-            return new StoneType.Finder(woodTypeName,
-                    () -> BuiltInRegistries.BLOCK.get(planksName));
+        public static StoneType.Finder simple(ResourceLocation stoneTypeName, ResourceLocation stoneName) {
+            return new StoneType.Finder(stoneTypeName,
+                    () -> BuiltInRegistries.BLOCK.get(stoneName));
         }
 
         public void addChild(String childType, String childName) {

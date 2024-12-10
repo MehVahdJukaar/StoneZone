@@ -14,15 +14,22 @@ dependencies {
     annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
+    //!! Repository LOCAL
+    String path = System.getenv('REPOS20_1')
+//    modImplementation(files(path  + "\\Moonlight\\fabric\\build\\libs\\moonlight-${moonlight_testVersion}-fabric.jar"))
 
-//    def path = System.getenv('REPOS20_1') + "\\Moonlight\\fabric\\build\\libs\\moonlight-${moonlight_version}-fabric.jar"
-//    modImplementation(files(path)) // Importing compiled mod from Moonlight's Repository
+    //!! ~/fabric/mods LOCAL
+//    modImplementation("net.mehvahdjukaar:moonlight-fabric:${moonlight_testVersion}")
 
-    modImplementation("net.mehvahdjukaar:moonlight-fabric:${moonlight_version}") // LOCAL
-//    modImplementation("curse.maven:selene-499980:5975796") // v2.13.37
+    //!! MAVEN
+    modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.37
 
-//!! EVERY COMPAT (REQUIRED)
-    modImplementation("curse.maven:every-compat-628539:5975781") // v2.7.2
+//!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
+    //!! Repository LOCAL
+//    modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
+
+    //!! MAVEN
+    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.7.3
 
 //!! ================================================= DEPENDENCIES ================================================= \\
 

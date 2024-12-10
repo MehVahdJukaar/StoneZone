@@ -33,17 +33,24 @@ dependencies {
     modImplementation("com.terraformersmc:modmenu:7.2.2")
 
 //!! MOONLIGHT LIB (REQUIRED) --------------------------------------------------------------------------------------- \\
+    //!! Repository LOCAL
+    String path = System.getenv('REPOS20_1')
+//    modImplementation(files(path  + "\\Moonlight\\fabric\\build\\libs\\moonlight-${moonlight_version}-fabric.jar"))
 
-//    def path = System.getenv('REPOS20_1') + "\\Moonlight\\fabric\\build\\libs\\moonlight-${moonlight_version}-fabric.jar"
-//    modImplementation(files(path)) // Importing compiled mod from Moonlight's Repository
+    //!! ~/fabric/mods LOCAL
+//    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_version}-fabric")
 
-//    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_version}-fabric") // LOCAL
-    modImplementation("curse.maven:selene-499980:5975796") // v2.13.37
+    //!! MAVEN
+    modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.37
 
-//!! EVERY COMPAT (REQUIRED)
-    modImplementation("curse.maven:every-compat-628539:5975781") // v2.7.2
+//!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
+    //!! Repository LOCAL
+//    modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
 
-//!! TOOLS
+    //!! MAVEN
+    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.7.3
+
+//!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
     modRuntimeOnly("curse.maven:jei-238222:5846809")
     modRuntimeOnly("curse.maven:worldedit-225608:4586218")
     modRuntimeOnly("curse.maven:emi-580555:5872525")

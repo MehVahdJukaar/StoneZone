@@ -1,6 +1,5 @@
 package net.mehvahdjukaar.stone_zone.misc;
 
-import net.mehvahdjukaar.every_compat.misc.BlockTypeCycleItemRenderer;
 import net.mehvahdjukaar.moonlight.api.client.ICustomItemRendererProvider;
 import net.mehvahdjukaar.moonlight.api.client.ItemStackRenderer;
 import net.mehvahdjukaar.stone_zone.type.StoneType;
@@ -15,6 +14,6 @@ public class AllStonesItem extends Item implements ICustomItemRendererProvider {
     }
 
     public Supplier<ItemStackRenderer> getRendererFactory() {
-        return () -> new A<>(StoneType.class){};
+        return StoneTypeCycleItemRenderer::new;
     }
 }

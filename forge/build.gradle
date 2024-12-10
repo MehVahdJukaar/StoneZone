@@ -110,17 +110,24 @@ dependencies {
     annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
+    //!! Repository LOCAL
+    String path = System.getenv('REPOS20_1')
+//    modImplementation(files(path + "\\Moonlight\\forge\\build\\libs\\moonlight-${moonlight_testVersion}-forge.jar"))
 
-//    def path = System.getenv('REPOS20_1') + "\\Moonlight\\forge\\build\\libs\\moonlight-${moonlight_version}-forge.jar"
-//    modImplementation(files(path)) // Importing compiled mod from Moonlight's Repository
+    //!! ~/forge/mods LOCAL
+//   modImplementation("net.mehvahdjukaar:moonlight-forge:${project.moonlight_testVersion}") // LOCAL
 
-   modImplementation("net.mehvahdjukaar:moonlight-forge:${project.moonlight_version}") // LOCAL
-//   modImplementation("curse.maven:selene-499980:5975794") // v2.13.37
+    //!! MAVEN
+    modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.37
 
-//!! EVERY COMPAT (REQUIRED)
-    modImplementation("curse.maven:every-compat-628539:5975779") // v2.7.2
+//!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
+    //!! Repository LOCAL
+//    modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
 
-//!! TOOLS
+    //!! MAVEN
+    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.3
+
+//!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
     modImplementation("curse.maven:jei-238222:5846810")
     modRuntimeOnly("curse.maven:worldedit-225608:4586218")
     modRuntimeOnly("curse.maven:jade-324717:5672013")
@@ -130,7 +137,7 @@ dependencies {
 
     //!! ONLY FOR TESTING
 //    modRuntimeOnly("curse.maven:patchouli-306770:4636277") // v81 | TFC
-    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904750") // v8.1.25 | Stoneworks
+//    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904750") // v8.1.25 | Stoneworks
 
     //!! REQUIRED - Only in FORGE
 
@@ -138,8 +145,9 @@ dependencies {
 
     //!! ONLY FOR TESTING - These modules are in COMMON
 //    modRuntimeOnly("curse.maven:create-328085:5838779")
-    modRuntimeOnly("curse.maven:twigs-496913:4605097")
+//    modRuntimeOnly("curse.maven:twigs-496913:4605097")
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611947") // puzzles-lib
+    modRuntimeOnly("curse.maven:building-but-better-989479:5362380")
 
     //!! REQUIRED
 
