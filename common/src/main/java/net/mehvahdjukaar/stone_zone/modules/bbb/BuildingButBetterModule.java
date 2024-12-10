@@ -3,6 +3,7 @@ package net.mehvahdjukaar.stone_zone.modules.bbb;
 import com.starfish_studios.bbb.block.ColumnBlock;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
+import net.mehvahdjukaar.stone_zone.modules.SZEntryBuilder;
 import net.mehvahdjukaar.stone_zone.modules.SZModule;
 import net.mehvahdjukaar.stone_zone.type.StoneType;
 import net.mehvahdjukaar.stone_zone.type.StoneTypeRegistry;
@@ -16,10 +17,10 @@ public class BuildingButBetterModule extends SZModule {
     public BuildingButBetterModule(String modId) {
         super(modId, "bbb");
 
-        columns = addEntry(SimpleEntrySet.builder(StoneType.class, "block",
+        columns = addEntry(SZEntryBuilder.of(StoneType.class, "block",
                         getModBlock("stone_block"), () -> StoneTypeRegistry.STONE_TYPE,
                         stoneType -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone())))
-                .createPaletteFromChild("bricks")
+                .createPaletteFromStone()
                 .addTexture(modRes("block/column/stone_lower"))
                 .addTexture(modRes("block/column/stone_upper"))
                 .addTexture(modRes("block/column/stone_top"))
