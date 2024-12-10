@@ -3,7 +3,9 @@ package net.mehvahdjukaar.stone_zone.modules.twigs;
 import com.ninni.twigs.block.ColumnBlock;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
+import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
+import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.modules.SZModule;
 import net.mehvahdjukaar.stone_zone.type.StoneType;
 import net.mehvahdjukaar.stone_zone.type.StoneTypeRegistry;
@@ -20,7 +22,11 @@ public class TwigsModule extends SZModule {
         columns = addEntry(SimpleEntrySet.builder(StoneType.class, "column",
                         getModBlock("stone_column"), () -> StoneTypeRegistry.STONE_TYPE,
                         stoneType -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone())))
-                .createPaletteFromChild("bricks")
+                .createPaletteFromChild(p -> {
+                    p.matchSize(7);
+                    p.reduceUp();
+                    p.reduceUp();
+                }, "stone")
                 .addTexture(modRes("block/stone_column"))
                 .addTexture(modRes("block/stone_column_bottom"))
                 .addTexture(modRes("block/stone_column_tip"))
