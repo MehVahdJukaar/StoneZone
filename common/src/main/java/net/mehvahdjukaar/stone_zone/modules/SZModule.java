@@ -11,7 +11,7 @@ import net.minecraft.world.item.CreativeModeTab;
 
 public class SZModule extends SimpleModule {
     public SZModule(String modId, String shortId) {
-        super(modId, shortId);
+        super(modId, shortId, StoneZone.MOD_ID);
     }
 
     @Override
