@@ -19,6 +19,10 @@ public class SZEntryBuilder<T extends BlockType, B extends Block> extends Simple
         super(type, name, prefix, baseType, baseBlock, blockFactory);
     }
 
+    public static <T extends BlockType, B extends Block> SZEntryBuilder<T, B> of(Class<T> type, String name, String prefix, Supplier<B> baseBlock, Supplier<T> baseType, Function<T, B> blockSupplier) {
+        return new SZEntryBuilder<>(type, name, prefix, baseType, baseBlock, blockSupplier);
+    }
+
     public static <T extends BlockType, B extends Block> SZEntryBuilder<T, B> of(Class<T> type, String name, Supplier<B> baseBlock, Supplier<T> baseType, Function<T, B> blockSupplier) {
         return new SZEntryBuilder<>(type, name, null, baseType, baseBlock, blockSupplier);
     }
