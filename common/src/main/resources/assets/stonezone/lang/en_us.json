@@ -2,7 +2,16 @@
   "itemGroup.stonezone.stonezone": "Stone Zone",
   "block_type.twigs.column": "%s Column",
 
-  "block_type.bbb.block": "%s Block",
+  "block_type.bbb.layer": "%s Layer",
+  "block_type.bbb.smooth_layer": "Smooth %s Layer",
+  "block_type.bbb.brick_layer": "%s Brick Layer",
+  "block_type.bbb.tiles": "%s Tiles",
+  "block_type.bbb.tile_stairs": "%s Tile Stairs",
+  "block_type.bbb.tile_slab": "%s Tile Slab",
+  "block_type.bbb.column": "%s Column",
+  "block_type.bbb.urn": "%s Urn",
+  "block_type.bbb.fence": "%s Fence",
+  "block_type.bbb.moulding": "%s Moulding",
 
   "block_type.create.cut": "Cut %s",
   "block_type.create.cut_slab": "Cut %s Slab",
