@@ -256,7 +256,6 @@ public class CreateModule extends SZModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 //TAGS: create:stone_types/andesite - manually created
                 .setTabKey(tab)
-                .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(small_andesite_bricks);
