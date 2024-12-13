@@ -145,7 +145,7 @@ public class BuildingButBetterModule extends SZModule {
                 .build();
         this.addEntry(tile_slabs);
 
-        layers = SimpleEntrySet.builder(StoneType.class, "layer",
+        layers = SZEntryBuilder.of(StoneType.class, "layer",
                         getModBlock("stone_layer"), () -> StoneTypeRegistry.STONE_TYPE,
                         stoneType -> new LayerBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
