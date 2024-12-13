@@ -39,12 +39,14 @@ public class StoneType extends BlockType {
         this.addChild("wall", this.findRelatedEntry("wall", BuiltInRegistries.BLOCK));
         this.addChild("button", this.findRelatedEntry("button", BuiltInRegistries.BLOCK));
         this.addChild("pressure_plate", this.findRelatedEntry("pressure_plate", BuiltInRegistries.BLOCK));
+        this.addChild("smooth_stone", this.findRelatedEntry("smooth", "stone", BuiltInRegistries.BLOCK));
 
-        Block smooth = this.findRelatedEntry("smooth", "stone", BuiltInRegistries.BLOCK);
-        this.addChild("smooth_stone", smooth);
-//        if (Objects.nonNull(smooth)) {
-//
-//        }
+        Block polished = this.findRelatedEntry("polished", BuiltInRegistries.BLOCK);
+        this.addChild("polished", polished);
+        if (Objects.nonNull(polished)) {
+            this.addChild("polished_stairs", findRelatedEntry("polished", "stairs", BuiltInRegistries.BLOCK));
+            this.addChild("polished_slab", findRelatedEntry("polished", "slab", BuiltInRegistries.BLOCK));
+        }
 
         Block bricks = this.findRelatedEntry("bricks", BuiltInRegistries.BLOCK);
         this.addChild("bricks", bricks);
@@ -116,8 +118,8 @@ public class StoneType extends BlockType {
         return found;
     }
 
-    protected <V> V findRelatedEntry(String before, Registry<V> reg) {
-        return findRelatedEntry(before, "", reg);
+    protected <V> V findRelatedEntry(String prefix, Registry<V> reg) {
+        return findRelatedEntry(prefix, "", reg);
     }
 
     @Override
