@@ -35,10 +35,10 @@ dependencies {
 //!! MOONLIGHT LIB (REQUIRED) --------------------------------------------------------------------------------------- \\
     //!! Repository LOCAL
     String path = System.getenv('REPOS20_1')
-//    modImplementation(files(path  + "\\Moonlight\\fabric\\build\\libs\\moonlight-${moonlight_version}-fabric.jar"))
+    modImplementation(files(path  + "\\Moonlight\\fabric\\build\\libs\\moonlight-${moonlight_testVersion}-fabric.jar"))
 
     //!! ~/fabric/mods LOCAL
-//    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_version}-fabric")
+//    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_testVersion}-fabric")
 
     //!! MAVEN
     modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.37
