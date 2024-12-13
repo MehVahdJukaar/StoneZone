@@ -4,9 +4,8 @@ import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
-import net.mehvahdjukaar.every_compat.misc.ResourcesUtils;
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
-import net.mehvahdjukaar.moonlight.api.resources.pack.DynClientResourcesGenerator;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.type.StoneType;
@@ -33,7 +32,7 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
                                 @Nullable TriFunction<T, B, Item.Properties, Item> itemFactory,
                                 @Nullable ITileHolder tileFactory, @Nullable Object renderType,
                                 @Nullable BiFunction<T, ResourceManager, Pair<List<Palette>,
-                                @Nullable AnimationMetadataSection>> paletteSupplier,
+                                        @Nullable AnimationMetadataSection>> paletteSupplier,
                                 @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
                                 boolean mergedPalette, boolean copyTint, Predicate<T> condition) {
 
@@ -51,18 +50,11 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
 
     @Override
     protected BlockTypeResTransformer<T> makeModelTransformer(SimpleModule module, ResourceManager manager) {
-        var original = super.makeModelTransformer(module, manager);
-        BlockTypeResTransformer<T> transformer = BlockTypeResTransformer.create(module.getModId(), manager);
-        var stoneType = baseType.get();
+//since these are just for models, techincally we could have just put this stuff in the build() method of the builde and not subclass the entry set at all
 
-        replaceStoneTextures((StoneType) stoneType, transformer);
-
-        return original;
-    }
-
-    public BlockTypeResTransformer<T> replaceStoneTextures(StoneType stoneType, BlockTypeResTransformer<T> m) {
-        String n = stoneType.getTypeName();
-        return m.replaceWithTextureFromChild("minecraft:block/" + n, "stone")
+        String n = baseType.get().getTypeName();
+        return super.makeModelTransformer(module, manager)
+                .replaceWithTextureFromChild("minecraft:block/" + n, "stone")
                 .replaceWithTextureFromChild("minecraft:block/" + n + "_bricks", "bricks")
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + n, "smooth_stone")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + n, "polished");
@@ -75,25 +67,37 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
             super(type, name, prefix, baseType, baseBlock, blockFactory);
         }
 
-        public SimpleEntrySet.Builder<T, B> createPaletteFromStone() {
-            return createPaletteFromChild("stone");
+        public StonezoneEntrySet.Builder<T, B> createPaletteFromStone() {
+            return (Builder<T, B>) createPaletteFromChild("stone");
         }
 
-        public SimpleEntrySet.Builder<T, B> createPaletteFromBricks() {
+        public StonezoneEntrySet.Builder<T, B> createPaletteFromBricks() {
             StoneType stoneType = (StoneType) baseType.get();
             if (Objects.nonNull(stoneType.getBlockOfThis("bricks")))
-                return createPaletteFromChild("bricks");
+                return (Builder<T, B>) createPaletteFromChild("bricks");
             else
                 return createPaletteFromStone();
         }
 
-        public SimpleEntrySet.Builder<T, B> createPaletteFromStoneChild(String blockType) {
+        public StonezoneEntrySet.Builder<T, B> createPaletteFromStoneChild(String blockType) {
             StoneType stoneType = (StoneType) baseType.get();
             if (Objects.nonNull(stoneType.getBlockOfThis(blockType)))
-                return createPaletteFromChild(blockType);
+                return (Builder<T, B>) createPaletteFromChild(blockType);
             else
                 return createPaletteFromStone();
         }
 
+        @Override
+        public StonezoneEntrySet<T, B> build() {
+            if (this.tab == null && PlatHelper.isDev()) {
+                throw new IllegalStateException("Tab for module " + this.name + " was null!");
+            } else {
+                StonezoneEntrySet<T, B> e = new StonezoneEntrySet<>(this.type, this.name, this.prefix, this.blockFactory, this.baseBlock, this.baseType, this.tab, this.tabMode, this.lootMode, this.itemFactory, this.tileHolder, this.renderType, this.palette, this.extraModelTransform, this.useMergedPalette, this.copyTint, this.condition);
+                e.recipeLocations.addAll(this.recipes);
+                e.tags.putAll(this.tags);
+                e.textures.addAll(this.textures);
+                return e;
+            }
+        }
     }
 }
