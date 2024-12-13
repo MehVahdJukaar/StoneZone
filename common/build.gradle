@@ -32,14 +32,13 @@ dependencies {
     modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.7.3
 
 //!! ================================================= DEPENDENCIES ================================================= \\
-
+    modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
 
 //!! =================================================== IMPORTS ==================================================== \\
+    //!! MODULES - don't need library from the mod, so it's fine to ignore
 
-    //!! The module really don't need library from the mod, so it's fine to ignore
-//    modCompileOnly("curse.maven:create-fabric-624165:5958511")
-
-    //!! REQUIRED - The module need libaries from the mod
+    //!! REQUIRED - The modules access libaries from the mod
+    modCompileOnly("curse.maven:create-fabric-624165:5982726")
     modCompileOnly("curse.maven:twigs-496913:4603805")
     modCompileOnly("curse.maven:building-but-better-989479:5382599")
     modCompileOnly("curse.maven:stoneworks-852663:4611947")

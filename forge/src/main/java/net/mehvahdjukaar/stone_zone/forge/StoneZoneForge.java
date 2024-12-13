@@ -4,6 +4,8 @@ import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
 import net.minecraftforge.fml.common.Mod;
 
+import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
+
 /**
  * Author: MehVahdJukaar
  */

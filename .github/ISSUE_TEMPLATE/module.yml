@@ -13,7 +13,7 @@ body:
     attributes:
       label: "Code Of Conduct"
       options:
-        - label: "See [EC Backlog](https://github.com/users/MehVahdJukaar/projects/1/views/1) if someone already suggested a mod that you are going to suggest."
+        - label: "See (LINK WILL BE ADDED IN FUTURE) if someone already suggested a mod that you are going to suggest. \nFOR NOW check out the issues"
           required: true
         - label: "The mod MUST contain variant StoneType: STONE or other vanilla StoneTypes for ITEM or BLOCK"
           required: true

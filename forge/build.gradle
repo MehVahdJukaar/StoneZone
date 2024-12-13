@@ -128,7 +128,7 @@ dependencies {
     modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.3
 
 //!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
-    modImplementation("curse.maven:jei-238222:5846810")
+    modRuntimeOnly("curse.maven:jei-238222:5846810")
     modRuntimeOnly("curse.maven:worldedit-225608:4586218")
     modRuntimeOnly("curse.maven:jade-324717:5672013")
     modRuntimeOnly("curse.maven:emi-580555:5872526")
@@ -136,23 +136,22 @@ dependencies {
 //!! ================================================= DEPENDENCIES ================================================= \\
 
     //!! ONLY FOR TESTING
-//    modRuntimeOnly("curse.maven:patchouli-306770:4636277") // v81 | TFC
+//    modRuntimeOnly("curse.maven:patchouli-306770:4966125") // v84 | TFC
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904750") // v8.1.25 | Stoneworks
 
     //!! REQUIRED - Only in FORGE
 
 //!! =================================================== IMPORTS ==================================================== \\
-
     //!! ONLY FOR TESTING - These modules are in COMMON
 //    modRuntimeOnly("curse.maven:create-328085:5838779")
 //    modRuntimeOnly("curse.maven:twigs-496913:4605097")
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611947") // puzzles-lib
-    modRuntimeOnly("curse.maven:building-but-better-989479:5362380")
+//    modRuntimeOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1
 
-    //!! REQUIRED
+    //!! REQUIRED - The modules access libaries from the mod - ONLY IN FORGE
 
 //!! ================================================= FOR TESTING ================================================== \\
 
     modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643") // STONE-TYPES
-//    modRuntimeOnly("curse.maven:terrafirmacraft-302973:4862659") // patchouli
+//    modRuntimeOnly("curse.maven:terrafirmacraft-302973:5943050") // patchouli
 }

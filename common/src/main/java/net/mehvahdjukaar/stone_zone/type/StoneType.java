@@ -2,7 +2,8 @@ package net.mehvahdjukaar.stone_zone.type;
 
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.stone_zone.StoneZone;
+import net.mehvahdjukaar.moonlight.core.Moonlight;
+import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
@@ -12,6 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -37,16 +39,47 @@ public class StoneType extends BlockType {
         this.addChild("wall", this.findRelatedEntry("wall", BuiltInRegistries.BLOCK));
         this.addChild("button", this.findRelatedEntry("button", BuiltInRegistries.BLOCK));
         this.addChild("pressure_plate", this.findRelatedEntry("pressure_plate", BuiltInRegistries.BLOCK));
+        this.addChild("smooth_stone", this.findRelatedEntry("smooth", "stone", BuiltInRegistries.BLOCK));
+
+        Block polished = this.findRelatedEntry("polished", BuiltInRegistries.BLOCK);
+        this.addChild("polished", polished);
+        if (Objects.nonNull(polished)) {
+            this.addChild("polished_stairs", findRelatedEntry("polished", "stairs", BuiltInRegistries.BLOCK));
+            this.addChild("polished_slab", findRelatedEntry("polished", "slab", BuiltInRegistries.BLOCK));
+        }
 
         Block bricks = this.findRelatedEntry("bricks", BuiltInRegistries.BLOCK);
         this.addChild("bricks", bricks);
         if (bricks != null) {
-            this.addChild("brick_stairs", findBrickEntry("stairs"));
-            this.addChild("brick_slab", findBrickEntry("slab"));
-            this.addChild("brick_wall", findBrickEntry("wall"));
-            this.addChild("cracked_bricks", findBrickEntry("cracked","bricks"));
-            this.addChild("brick_tiles", findBrickEntry("brick_tiles"));
+            // Support TFC & AFC
+            if (this.id.getNamespace().matches("tfc|afc")) {
+                this.addChild("brick_stairs", findRelatedEntry("bricks", "stairs", BuiltInRegistries.BLOCK));
+                this.addChild("brick_slab", findRelatedEntry("bricks", "slab", BuiltInRegistries.BLOCK));
+                this.addChild("brick_wall", findRelatedEntry("bricks", "wall", BuiltInRegistries.BLOCK));
+                this.addChild("cracked_bricks", findRelatedEntry("cracked_bricks",  BuiltInRegistries.BLOCK));
+            }
+            else {
+                this.addChild("brick_stairs", findBrickEntry("stairs"));
+                this.addChild("brick_slab", findBrickEntry("slab"));
+                this.addChild("brick_wall", findBrickEntry("wall"));
+                this.addChild("cracked_bricks", findBrickEntry("cracked", "bricks"));
+                this.addChild("brick_tiles", findBrickEntry("brick_tiles"));
+            }
         }
+
+        // Support TFC & AFC
+        Block smoothTFC = findRelatedEntry("smooth", BuiltInRegistries.BLOCK);
+        this.addChild("smooth_stone", smoothTFC);
+        if (Objects.nonNull(smoothTFC)) {
+            this.addChild("smooth_stairs", findRelatedEntry("smooth", "stairs", BuiltInRegistries.BLOCK));
+            this.addChild("smooth_slab", findRelatedEntry("smooth", "slab", BuiltInRegistries.BLOCK));
+            this.addChild("smooth_wall", findRelatedEntry("smooth", "wall", BuiltInRegistries.BLOCK));
+        }
+    }
+
+    @Override
+    protected void initializeChildrenItems() {
+        this.addChild("brick", this.findRelatedEntry("brick", BuiltInRegistries.ITEM));
     }
 
     private @Nullable Block findBrickEntry(String name) {
@@ -55,15 +88,38 @@ public class StoneType extends BlockType {
         return this.findRelatedEntry("bricks_" + name, BuiltInRegistries.BLOCK);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private @Nullable Block findBrickEntry(String pre, String post) {
         var first = this.findRelatedEntry(pre,"brick_" + post, BuiltInRegistries.BLOCK);
         if (first != null) return first;
         return this.findRelatedEntry(pre,"bricks_" + post, BuiltInRegistries.BLOCK);
     }
 
-    @Override
-    protected void initializeChildrenItems() {
-        this.addChild("brick", this.findRelatedEntry("brick", BuiltInRegistries.ITEM));
+    @Nullable
+    protected <V> V findRelatedEntry(String prefix, String suffix, Registry<V> reg) {
+        if (!suffix.isEmpty()) suffix = "_" + suffix;
+        ResourceLocation[] targets = {
+                new ResourceLocation(id.getNamespace(), id.getPath() + "_" + prefix + suffix),
+                new ResourceLocation(id.getNamespace(), prefix + "_" + id.getPath() + suffix),
+                // TFC & AFC: Include children of stone_type: stairs, slab...
+                new ResourceLocation(id.getNamespace(), "rock/raw/" + id.getPath() + "_" + prefix),
+                // TFC & AFC: Include children of smooth, cobblestone, button, pressure_plate, bricks, cracked_bricks
+                new ResourceLocation(id.getNamespace(), "rock/" + prefix + suffix + "/" + id.getPath()),
+                // TFC & AFC: Include children of brick_slab, smooth_slab, brick_stairs, smooth_stairs
+                new ResourceLocation(id.getNamespace(), "rock/"+ prefix +"/" + id.getPath() + suffix)
+        };
+        V found = null;
+        for (var r : targets) {
+            if (reg.containsKey(r)) {
+                found = reg.get(r);
+                break;
+            }
+        }
+        return found;
+    }
+
+    protected <V> V findRelatedEntry(String prefix, Registry<V> reg) {
+        return findRelatedEntry(prefix, "", reg);
     }
 
     @Override
@@ -87,16 +143,16 @@ public class StoneType extends BlockType {
             this.planksFinder = planks;
         }
 
-        static StoneType.Finder vanilla(String stoneName){
+        static Finder vanilla(String stoneName){
             return simple("minecraft", stoneName, stoneName);
         }
 
-        public static StoneType.Finder simple(String modId, String stoneTypeName, String stoneName) {
+        public static Finder simple(String modId, String stoneTypeName, String stoneName) {
             return simple(new ResourceLocation(modId, stoneTypeName), new ResourceLocation(modId, stoneName));
         }
 
-        public static StoneType.Finder simple(ResourceLocation stoneTypeName, ResourceLocation stoneName) {
-            return new StoneType.Finder(stoneTypeName,
+        public static Finder simple(ResourceLocation stoneTypeName, ResourceLocation stoneName) {
+            return new Finder(stoneTypeName,
                     () -> BuiltInRegistries.BLOCK.get(stoneName));
         }
 
@@ -108,8 +164,8 @@ public class StoneType extends BlockType {
             this.childNames.put(childType, childName);
         }
 
-        @ApiStatus.Internal
         @Override
+        @ApiStatus.Internal
         public Optional<StoneType> get() {
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
@@ -122,7 +178,7 @@ public class StoneType extends BlockType {
                     }
                 } catch (Exception ignored) {
                 }
-                StoneZone.LOGGER.warn("Failed to find custom stone type {}", id);
+                Moonlight.LOGGER.warn("Failed to find custom stone type {}", id);
             }
             return Optional.empty();
         }

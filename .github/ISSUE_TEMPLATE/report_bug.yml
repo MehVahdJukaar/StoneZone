@@ -40,11 +40,11 @@ body:
       required: true
 
   - type: input
-    id: everycompat
+    id: stonezone
     attributes:
-      label: EveryCompat Version
-      description: The current version of EveryCompat
-      placeholder: ex. everycompat-1.20-2.6.7
+      label: StoneZone Version
+      description: The current version of StoneZone
+      placeholder: ex. stonezone-1.20-2.7.0
     validations:
       required: true
      
@@ -62,7 +62,7 @@ body:
     attributes:
       label: "Issue with mods"
       description: "Which mods does Every Compat have an issue with?"
-      placeholder: "ex. - Biomes O' Plenty <version> \nex. - Chipped <version> \n\nBiomes O' Plenty has Wood_type & Chipped has Furniture"
+      placeholder: "ex. - Strata <version> \nex. - Chipped <version> \n\nStrata is StoneTypes Mod & Create is a Furniture Mod"
     validations:
       required: true
 
@@ -71,7 +71,7 @@ body:
     attributes:
       label: "Issue Detail"
       description: "A clear and concise description of what the bug is."
-      placeholder: "ATTENTION: DO NOT put log files here. The next area (below) is for attaching the log files\nHere is for detailing the bug you encountered."
+      placeholder: "ATTENTION: DO NOT put log files here. The next area (below) is for attaching the log files\nHere is for describing the bug you encountered.\nYou can attach images here."
     validations:
         required: true
 
