@@ -32,6 +32,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import static net.mehvahdjukaar.stone_zone.modules.SZEntryBuilder.copyChildrenProperties;
+
 //SUPPORT: v0.5.1+
 public class CreateModule extends SZModule {
 
@@ -338,20 +340,6 @@ public class CreateModule extends SZModule {
                 .build();
         this.addEntry(layereds);
 
-    }
-
-    // brick_stairs, brick_slab, slab, stairs
-    public BlockBehaviour.Properties copyChildrenProperties(String blockType, StoneType stoneType) {
-        Block block = stoneType.getBlockOfThis(blockType);
-        Block blockAlt = null;
-        if (blockType.contains("_")) {
-            String[] split = blockType.split("_");
-            blockAlt = stoneType.getBlockOfThis(split[1]);
-        }
-
-        if (Objects.nonNull(block)) return Utils.copyPropertySafe(block);
-        else if (Objects.nonNull(blockAlt)) return Utils.copyPropertySafe(blockAlt);
-        else return Utils.copyPropertySafe(stoneType.stone);
     }
 
     @Override
