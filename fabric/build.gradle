@@ -66,15 +66,13 @@ dependencies {
     //!! REQUIRED - Only in FABRIC
 
 //!! =================================================== IMPORTS ==================================================== \\
-
-
     //!! ONLY FOR TESTING - These modules are in COMMON
-//    modRuntimeOnly("curse.maven:create-fabric-624165:5958511")
+//    modRuntimeOnly("curse.maven:create-fabric-624165:5982726")
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5382599")
 //    modRuntimeOnly("curse.maven:twigs-496913:4603805")
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611948") // puzzles-lib, forge-config-api-port
 
-    //!! REQUIRED - Only in FABRIC
+    //!! REQUIRED - The modules access libaries from the mod - ONLY IN FABRIC
 
 //!! ================================================= FOR TESTING ================================================== \\
 
