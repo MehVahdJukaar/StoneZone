@@ -52,4 +52,8 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
         });
     }
 
+    @Override
+    public int priority() {
+        return 110;
+    }
 }
