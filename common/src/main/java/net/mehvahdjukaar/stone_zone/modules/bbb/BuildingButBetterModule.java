@@ -3,8 +3,8 @@ package net.mehvahdjukaar.stone_zone.modules.bbb;
 import com.starfish_studios.bbb.block.*;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.modules.SZEntryBuilder;
 import net.mehvahdjukaar.stone_zone.modules.SZModule;
+import net.mehvahdjukaar.stone_zone.modules.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.type.StoneType;
 import net.mehvahdjukaar.stone_zone.type.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -36,7 +36,7 @@ public class BuildingButBetterModule extends SZModule {
         super(modId, "bbb");
         ResourceLocation tab = modRes("item_group");
 
-        columns = SZEntryBuilder.of(StoneType.class, "column",
+        columns = StonezoneEntrySet.of(StoneType.class, "column",
                         getModBlock("stone_column"), () -> StoneTypeRegistry.STONE_TYPE,
                         stoneType -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
@@ -57,7 +57,7 @@ public class BuildingButBetterModule extends SZModule {
                 .build();
         this.addEntry(columns);
 
-        fences = SZEntryBuilder.of(StoneType.class, "fence",
+        fences = StonezoneEntrySet.of(StoneType.class, "fence",
                         getModBlock("stone_fence"), () -> StoneTypeRegistry.STONE_TYPE,
                         stoneType -> new StoneFenceBlock(Utils.copyPropertySafe(stoneType.bricksOrStone())
                                 .noOcclusion()
@@ -76,7 +76,7 @@ public class BuildingButBetterModule extends SZModule {
                 .build();
         this.addEntry(fences);
 
-        urns = SZEntryBuilder.of(StoneType.class, "urn",
+        urns = StonezoneEntrySet.of(StoneType.class, "urn",
                         getModBlock("stone_urn"), () -> StoneTypeRegistry.STONE_TYPE,
                         stoneType -> new UrnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone())
                                 .noOcclusion()
@@ -94,7 +94,7 @@ public class BuildingButBetterModule extends SZModule {
                 .build();
         this.addEntry(urns);
 
-        tiles = SZEntryBuilder.of(StoneType.class, "tiles",
+        tiles = StonezoneEntrySet.of(StoneType.class, "tiles",
                         getModBlock("stone_tiles"), () -> StoneTypeRegistry.STONE_TYPE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
@@ -110,7 +110,7 @@ public class BuildingButBetterModule extends SZModule {
                 .build();
         this.addEntry(tiles);
 
-        tile_stairs = SZEntryBuilder.of(StoneType.class, "tile_stairs",
+        tile_stairs = StonezoneEntrySet.of(StoneType.class, "tile_stairs",
                         getModBlock("stone_tile_stairs"), () -> StoneTypeRegistry.STONE_TYPE,
                         stoneType -> new StairBlock(stoneType.bricksOrStone().defaultBlockState(),
                                 Utils.copyPropertySafe(stoneType.bricksOrStone()))
@@ -128,7 +128,7 @@ public class BuildingButBetterModule extends SZModule {
                 .build();
         this.addEntry(tile_stairs);
 
-        tile_slabs = SZEntryBuilder.of(StoneType.class, "tile_slab",
+        tile_slabs = StonezoneEntrySet.of(StoneType.class, "tile_slab",
                         getModBlock("stone_tile_slab"), () -> StoneTypeRegistry.STONE_TYPE,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -145,7 +145,7 @@ public class BuildingButBetterModule extends SZModule {
                 .build();
         this.addEntry(tile_slabs);
 
-        layers = SZEntryBuilder.of(StoneType.class, "layer",
+        layers = StonezoneEntrySet.of(StoneType.class, "layer",
                         getModBlock("stone_layer"), () -> StoneTypeRegistry.STONE_TYPE,
                         stoneType -> new LayerBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -162,7 +162,7 @@ public class BuildingButBetterModule extends SZModule {
                 .build();
         this.addEntry(layers);
 
-        brick_layers = SZEntryBuilder.of(StoneType.class, "brick_layer",
+        brick_layers = StonezoneEntrySet.of(StoneType.class, "brick_layer",
                         getModBlock("stone_brick_layer"), () -> StoneTypeRegistry.STONE_TYPE,
                         stoneType -> new LayerBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
@@ -179,7 +179,7 @@ public class BuildingButBetterModule extends SZModule {
                 .build();
         this.addEntry(brick_layers);
 
-        smooth_layers = SZEntryBuilder.of(StoneType.class, "layer", "smooth",
+        smooth_layers = StonezoneEntrySet.of(StoneType.class, "layer", "smooth",
                         getModBlock("smooth_stone_layer"), () -> StoneTypeRegistry.STONE_TYPE,
                         stoneType -> new LayerBlock(Utils.copyPropertySafe(
                                 (Objects.nonNull(stoneType.getBlockOfThis("smooth_stone")))
@@ -196,7 +196,7 @@ public class BuildingButBetterModule extends SZModule {
                 .build();
         this.addEntry(smooth_layers);
 
-        mouldings = SZEntryBuilder.of(StoneType.class, "moulding",
+        mouldings = StonezoneEntrySet.of(StoneType.class, "moulding",
                         getModBlock("stone_moulding"), () -> StoneTypeRegistry.STONE_TYPE,
                         stoneType -> new MouldingBlock(
                                 stoneType.bricksOrStone().defaultBlockState(),
@@ -217,7 +217,7 @@ public class BuildingButBetterModule extends SZModule {
         this.addEntry(mouldings);
 
         //!! The ENUM via BlockBlock.Types is not useful but it has an interface, idk a way to solve it.
-//        blocks = SZEntryBuilder.of(StoneType.class, "block",
+//        blocks = StonezoneEntrySet.of(StoneType.class, "block",
 //                        getModBlock("stone_block"), () -> StoneTypeRegistry.STONE_TYPE,
 //                        stoneType -> new BlockBlock(BlockBlock.Types.STONE, Utils.copyPropertySafe(stoneType.stone))
 //                )

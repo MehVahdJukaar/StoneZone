@@ -4,6 +4,7 @@ import fuzs.stoneworks.Stoneworks;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.modules.SZModule;
+import net.mehvahdjukaar.stone_zone.modules.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.type.StoneType;
 import net.mehvahdjukaar.stone_zone.type.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -45,7 +46,7 @@ public class StoneworksModule extends SZModule {
         super(modId, "sw");
         ResourceLocation tab = modRes(Stoneworks.MOD_ID);
 
-        tiles = SimpleEntrySet.builder(StoneType.class, "tiles",
+        tiles = StonezoneEntrySet.of(StoneType.class, "tiles",
                         getModBlock("stone_tiles"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new Block(Utils.copyPropertySafe(s.stone))
                 )
@@ -56,7 +57,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(tiles);
 
-        tile_stairs = SimpleEntrySet.builder(StoneType.class, "tile_stairs",
+        tile_stairs = StonezoneEntrySet.of(StoneType.class, "tile_stairs",
                         getModBlock("stone_tile_stairs"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new StairBlock(s.stone.defaultBlockState(),
                                 copyChildrenProperties("stairs", s)
@@ -71,7 +72,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(tile_stairs);
 
-        tile_slabs = SimpleEntrySet.builder(StoneType.class, "tile_slab",
+        tile_slabs = StonezoneEntrySet.of(StoneType.class, "tile_slab",
                         getModBlock("stone_tile_slab"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new SlabBlock(copyChildrenProperties("slab", s))
                 )
@@ -84,7 +85,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(tile_slabs);
 
-        tile_walls = SimpleEntrySet.builder(StoneType.class, "tile_wall",
+        tile_walls = StonezoneEntrySet.of(StoneType.class, "tile_wall",
                         getModBlock("stone_tile_wall"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new WallBlock(Utils.copyPropertySafe(
                                 (Objects.nonNull(s.getBlockOfThis("wall")))
@@ -101,7 +102,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(tile_walls);
 
-        cracked_tiles = SimpleEntrySet.builder(StoneType.class, "tiles", "cracked",
+        cracked_tiles = StonezoneEntrySet.of(StoneType.class, "tiles", "cracked",
                         getModBlock("cracked_stone_tiles"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new Block(Utils.copyPropertySafe(s.stone))
                 )
@@ -112,7 +113,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(cracked_tiles);
 
-        pillars = SimpleEntrySet.builder(StoneType.class, "pillar",
+        pillars = StonezoneEntrySet.of(StoneType.class, "pillar",
                         getModBlock("stone_pillar"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new Block(Utils.copyPropertySafe(s.stone))
                 )
@@ -124,7 +125,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(pillars);
 
-        plates = SimpleEntrySet.builder(StoneType.class, "plates",
+        plates = StonezoneEntrySet.of(StoneType.class, "plates",
                         getModBlock("stone_plates"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new Block(Utils.copyPropertySafe(s.stone))
                 )
@@ -135,7 +136,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(plates);
 
-        plate_stairs = SimpleEntrySet.builder(StoneType.class, "plate_stairs",
+        plate_stairs = StonezoneEntrySet.of(StoneType.class, "plate_stairs",
                         getModBlock("stone_plate_stairs"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new StairBlock(s.stone.defaultBlockState(),
                                 copyChildrenProperties("stairs", s)
@@ -150,7 +151,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(plate_stairs);
 
-        plate_slabs = SimpleEntrySet.builder(StoneType.class, "plate_slab",
+        plate_slabs = StonezoneEntrySet.of(StoneType.class, "plate_slab",
                         getModBlock("stone_plate_slab"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new SlabBlock(copyChildrenProperties("slab", s))
                 )
@@ -163,7 +164,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(plate_slabs);
 
-        plate_walls = SimpleEntrySet.builder(StoneType.class, "plate_wall",
+        plate_walls = StonezoneEntrySet.of(StoneType.class, "plate_wall",
                         getModBlock("stone_plate_wall"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new WallBlock(Utils.copyPropertySafe(
                                 (Objects.nonNull(s.getBlockOfThis("wall")))
@@ -180,7 +181,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(plate_walls);
 
-        pavers = SimpleEntrySet.builder(StoneType.class, "pavers",
+        pavers = StonezoneEntrySet.of(StoneType.class, "pavers",
                         getModBlock("stone_pavers"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new Block(Utils.copyPropertySafe(s.stone))
                 )
@@ -191,7 +192,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(pavers);
 
-        paver_stairs = SimpleEntrySet.builder(StoneType.class, "paver_stairs",
+        paver_stairs = StonezoneEntrySet.of(StoneType.class, "paver_stairs",
                         getModBlock("stone_paver_stairs"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new StairBlock(s.stone.defaultBlockState(),
                                 copyChildrenProperties("stairs", s)
@@ -206,7 +207,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(paver_stairs);
 
-        paver_slabs = SimpleEntrySet.builder(StoneType.class, "paver_slab",
+        paver_slabs = StonezoneEntrySet.of(StoneType.class, "paver_slab",
                         getModBlock("stone_paver_slab"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new SlabBlock(copyChildrenProperties("slab", s))
                 )
@@ -219,7 +220,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(paver_slabs);
 
-        paver_walls = SimpleEntrySet.builder(StoneType.class, "paver_wall",
+        paver_walls = StonezoneEntrySet.of(StoneType.class, "paver_wall",
                         getModBlock("stone_paver_wall"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new WallBlock(Utils.copyPropertySafe(
                                 (Objects.nonNull(s.getBlockOfThis("wall")))
@@ -236,7 +237,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(paver_walls);
 
-        shingles = SimpleEntrySet.builder(StoneType.class, "shingles",
+        shingles = StonezoneEntrySet.of(StoneType.class, "shingles",
                         getModBlock("stone_shingles"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new Block(Utils.copyPropertySafe(s.stone))
                 )
@@ -247,7 +248,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(shingles);
 
-        shingle_stairs = SimpleEntrySet.builder(StoneType.class, "shingle_stairs",
+        shingle_stairs = StonezoneEntrySet.of(StoneType.class, "shingle_stairs",
                         getModBlock("stone_shingle_stairs"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new StairBlock(s.stone.defaultBlockState(),
                                 copyChildrenProperties("stairs", s)
@@ -261,7 +262,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(shingle_stairs);
 
-        shingle_slabs = SimpleEntrySet.builder(StoneType.class, "shingle_slab",
+        shingle_slabs = StonezoneEntrySet.of(StoneType.class, "shingle_slab",
                         getModBlock("stone_shingle_slab"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new SlabBlock(copyChildrenProperties("slab", s))
                 )
@@ -273,7 +274,7 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(shingle_slabs);
 
-        shingle_walls = SimpleEntrySet.builder(StoneType.class, "shingle_wall",
+        shingle_walls = StonezoneEntrySet.of(StoneType.class, "shingle_wall",
                         getModBlock("stone_shingle_wall"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new WallBlock(Utils.copyPropertySafe(
                                 (Objects.nonNull(s.getBlockOfThis("wall")))
