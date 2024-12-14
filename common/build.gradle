@@ -32,12 +32,15 @@ dependencies {
     modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.7.3
 
 //!! ================================================= DEPENDENCIES ================================================= \\
+
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
+    modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
 
 //!! =================================================== IMPORTS ==================================================== \\
     //!! MODULES - don't need library from the mod, so it's fine to ignore
 
     //!! REQUIRED - The modules access libaries from the mod
+    modCompileOnly("curse.maven:quark-243121:5594847")
     modCompileOnly("curse.maven:create-fabric-624165:5982726")
     modCompileOnly("curse.maven:twigs-496913:4603805")
     modCompileOnly("curse.maven:building-but-better-989479:5382599")
