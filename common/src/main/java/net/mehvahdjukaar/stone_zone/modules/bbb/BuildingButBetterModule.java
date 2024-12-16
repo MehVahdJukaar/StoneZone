@@ -3,8 +3,8 @@ package net.mehvahdjukaar.stone_zone.modules.bbb;
 import com.starfish_studios.bbb.block.*;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.modules.SZModule;
-import net.mehvahdjukaar.stone_zone.modules.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.SZModule;
+import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.type.StoneType;
 import net.mehvahdjukaar.stone_zone.type.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -16,6 +16,8 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.material.PushReaction;
 
 import java.util.Objects;
+
+import static net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet.copyChildrenProperties;
 
 //SUPPORT: v1.0.1+
 public class BuildingButBetterModule extends SZModule {
@@ -181,12 +183,7 @@ public class BuildingButBetterModule extends SZModule {
 
         smooth_layers = StonezoneEntrySet.of(StoneType.class, "layer", "smooth",
                         getModBlock("smooth_stone_layer"), () -> StoneTypeRegistry.STONE_TYPE,
-                        stoneType -> new LayerBlock(Utils.copyPropertySafe(
-                                (Objects.nonNull(stoneType.getBlockOfThis("smooth_stone")))
-                                        ? Objects.requireNonNull(stoneType.getBlockOfThis("smooth_stone"))
-                                        : stoneType.stone
-                                )
-                        )
+                        stoneType -> new LayerBlock(copyChildrenProperties("smooth_stone", stoneType))
                 )
                 .requiresChildren("smooth_slab", "smooth_stone") //REASON: recipes & textures
                 //TEXTURES: smooth_stones

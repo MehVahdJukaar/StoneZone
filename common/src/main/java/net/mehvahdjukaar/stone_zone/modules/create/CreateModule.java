@@ -14,8 +14,8 @@ import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.modules.SZModule;
-import net.mehvahdjukaar.stone_zone.modules.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.SZModule;
+import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.type.StoneType;
 import net.mehvahdjukaar.stone_zone.type.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -31,7 +31,7 @@ import net.minecraft.world.level.block.WallBlock;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static net.mehvahdjukaar.stone_zone.modules.SZEntryBuilder.copyChildrenProperties;
+import static net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet.copyChildrenProperties;
 
 //SUPPORT: v0.5.1+
 public class CreateModule extends SZModule {
