@@ -118,14 +118,14 @@ dependencies {
 //   modImplementation("net.mehvahdjukaar:moonlight-forge:${project.moonlight_testVersion}") // LOCAL
 
     //!! MAVEN
-    modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.37
+    modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.39
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     //!! Repository LOCAL
 //    modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
 
     //!! MAVEN
-    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.3
+    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.4
 
 //!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
     modRuntimeOnly("curse.maven:jei-238222:5846810")
@@ -153,6 +153,11 @@ dependencies {
 
 //!! ================================================= FOR TESTING ================================================== \\
 
-    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643") // STONE-TYPES
+    // STONETYPE ONLY
+    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643")
+//    modRuntimeOnly("curse.maven:spelunkery-790530:5727135") // Moonlight-Lib
+
+    // STONETYPE & WOODTYPE
 //    modRuntimeOnly("curse.maven:terrafirmacraft-302973:5943050") // patchouli
+
 }

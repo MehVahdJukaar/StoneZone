@@ -41,14 +41,14 @@ dependencies {
 //    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_testVersion}-fabric")
 
     //!! MAVEN
-    modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.37
+//    modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.39
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     //!! Repository LOCAL
 //    modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
 
     //!! MAVEN
-    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.7.3
+    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.7.4
 
 //!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
     modRuntimeOnly("curse.maven:jei-238222:5846809")
