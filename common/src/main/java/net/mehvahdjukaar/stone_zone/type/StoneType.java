@@ -2,7 +2,7 @@ package net.mehvahdjukaar.stone_zone.type;
 
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.moonlight.core.Moonlight;
+import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -18,6 +18,13 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 public class StoneType extends BlockType {
+
+    /**
+     * Childkey Availability:
+     * stone, stairs, slab, wall, button, pressure_plate, smooth_stone
+     * polished, polished_stairs, polished_slab
+     * bricks, brick_stairs, brick_slab, brick_wall, cracked_bricks, brick_tiles
+    **/
 
     public final Block stone;
 
@@ -178,7 +185,7 @@ public class StoneType extends BlockType {
                     }
                 } catch (Exception ignored) {
                 }
-                Moonlight.LOGGER.warn("Failed to find custom stone type {}", id);
+                StoneZone.LOGGER.warn("Failed to find custom stone type {}", id);
             }
             return Optional.empty();
         }
