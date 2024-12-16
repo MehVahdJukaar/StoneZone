@@ -3,8 +3,8 @@ package net.mehvahdjukaar.stone_zone.modules.stoneworks;
 import fuzs.stoneworks.Stoneworks;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.modules.SZModule;
-import net.mehvahdjukaar.stone_zone.modules.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.SZModule;
+import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.type.StoneType;
 import net.mehvahdjukaar.stone_zone.type.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -14,7 +14,8 @@ import net.minecraft.world.level.block.*;
 
 import java.util.Objects;
 
-import static net.mehvahdjukaar.stone_zone.modules.SZEntryBuilder.copyChildrenProperties;
+import static net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet.copyChildrenProperties;
+
 
 //SUPPORT: v8.0.0+
 public class StoneworksModule extends SZModule {
@@ -115,7 +116,7 @@ public class StoneworksModule extends SZModule {
 
         pillars = StonezoneEntrySet.of(StoneType.class, "pillar",
                         getModBlock("stone_pillar"), () -> StoneTypeRegistry.STONE_TYPE,
-                        s -> new Block(Utils.copyPropertySafe(s.stone))
+                        s -> new RotatedPillarBlock(Utils.copyPropertySafe(s.stone))
                 )
                 .addTexture(modRes("block/stone_pillar_top"))
                 .addTexture(modRes("block/stone_pillar_side"))
