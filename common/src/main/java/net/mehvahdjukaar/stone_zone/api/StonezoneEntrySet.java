@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules;
+package net.mehvahdjukaar.stone_zone.api;
 
 import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
@@ -8,6 +8,7 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.type.StoneType;
 import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.resources.ResourceKey;
@@ -15,6 +16,7 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -50,14 +52,40 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
 
     @Override
     protected BlockTypeResTransformer<T> makeModelTransformer(SimpleModule module, ResourceManager manager) {
-//since these are just for models, techincally we could have just put this stuff in the build() method of the builde and not subclass the entry set at all
 
-        String n = baseType.get().getTypeName();
+        String originalStoneName = baseType.get().getTypeName();
         return super.makeModelTransformer(module, manager)
-                .replaceWithTextureFromChild("minecraft:block/" + n, "stone")
-                .replaceWithTextureFromChild("minecraft:block/" + n + "_bricks", "bricks")
-                .replaceWithTextureFromChild("minecraft:block/smooth_" + n, "smooth_stone")
-                .replaceWithTextureFromChild("minecraft:block/polished_" + n, "polished");
+                .replaceWithTextureFromChild("minecraft:block/" + originalStoneName, "stone")
+                .replaceWithTextureFromChild("minecraft:block/" + originalStoneName + "_bricks", "bricks")
+                .replaceWithTextureFromChild("minecraft:block/smooth_" + originalStoneName, "smooth_stone")
+                .replaceWithTextureFromChild("minecraft:block/polished_" + originalStoneName, "polished");
+    }
+
+    @Override
+    protected BlockTypeResTransformer<T> makeBlockStateTransformer(SimpleModule module, ResourceManager manager) {
+        String originalStoneName = baseType.get().getTypeName();
+//        return super.makeBlockStateTransformer(module, manager).addModifier((s, id, stoneType) ->
+//                s.replace(
+//                        "minecraft:block/" + originalStoneName,
+//                        stoneType.getNamespace() + ":block/" + stoneType.getTypeName()
+//                )
+//        );
+        return super.makeBlockStateTransformer(module, manager).addModifier((s, id, stoneType) ->
+                BlockTypeResTransformer.replaceFullGenericType(s, stoneType, stoneType.getId(), originalStoneName, "minecraft", "block"));
+    }
+
+    //!! Utilities
+    public static BlockBehaviour.Properties copyChildrenProperties(String blockType, StoneType stoneType) {
+        Block block = stoneType.getBlockOfThis(blockType);
+        Block blockAlt = null;
+        if (blockType.contains("_")) {
+            String[] split = blockType.split("_");
+            blockAlt = stoneType.getBlockOfThis(split[1]);
+        }
+
+        if (Objects.nonNull(block)) return Utils.copyPropertySafe(block);
+        else if (Objects.nonNull(blockAlt)) return Utils.copyPropertySafe(blockAlt);
+        else return Utils.copyPropertySafe(stoneType.stone);
     }
 
     //!! SUB-CLASS

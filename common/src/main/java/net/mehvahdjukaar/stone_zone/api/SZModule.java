@@ -1,9 +1,11 @@
-package net.mehvahdjukaar.stone_zone.modules;
+package net.mehvahdjukaar.stone_zone.api;
 
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
+import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.SZRegistry;
 import net.mehvahdjukaar.stone_zone.StoneZone;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -29,4 +31,15 @@ public class SZModule extends SimpleModule {
     public ResourceLocation makeMyRes(String name) {
         return super.makeMyRes(name);
     }
+
+    @Override
+    public boolean isEntryAlreadyRegistered(String name, BlockType stoneType, Registry<?> registry, boolean shouldBeRegistered) {
+        String fromWoodMod = stoneType.getNamespace();
+        String stoneID = stoneType.getId().toString();
+
+        if (modId.equals("quark")) shouldBeRegistered = true;
+
+        return super.isEntryAlreadyRegistered(name, stoneType, registry, stoneType.isVanilla(), shouldBeRegistered);
+    }
+
 }
