@@ -4,11 +4,14 @@ import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
+import net.mehvahdjukaar.moonlight.api.item.BlockTypeBasedBlockItem;
+import net.mehvahdjukaar.moonlight.api.misc.Registrator;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
+import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.type.StoneType;
 import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.resources.ResourceKey;
@@ -48,6 +51,29 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
 
     public static <T extends BlockType, B extends Block> Builder<T, B> of(Class<T> type, String name, Supplier<B> baseBlock, Supplier<T> baseType, Function<T, B> blockSupplier) {
         return new Builder<>(type, name, null, baseType, baseBlock, blockSupplier);
+    }
+
+    //TODO: delete
+    @Override
+    public void registerItems(SimpleModule module, Registrator<Item> registry) {
+        this.blocks.forEach((w, value) -> {
+            Item i;
+            if (this.itemFactory != null) {
+                i = this.itemFactory.apply(w, value, new Item.Properties());
+            } else {
+                i = new BlockTypeBasedBlockItem(value, new Item.Properties(), w);
+            }
+
+            if (i != null) {
+                this.items.put(w, i);
+                try {
+                    registry.register(Utils.getID(value), i);
+                }catch (Exception e){
+                    StoneZone.LOGGER.error("FAILED TO REGISTER ITEM WITH BLOCK: {}", value);
+                }
+            }
+
+        });
     }
 
     @Override
