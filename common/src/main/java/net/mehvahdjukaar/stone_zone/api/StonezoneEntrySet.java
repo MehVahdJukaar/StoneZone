@@ -19,14 +19,13 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
 import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.*;
 
@@ -55,6 +54,16 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
         return new Builder<>(type, name, null, baseType, baseBlock, blockSupplier);
     }
 
+    @Override
+    public void registerBlocks(SimpleModule module, Registrator<Block> registry, Collection<T> types) {
+        super.registerBlocks(module, registry, types);
+        for (var type : this.blocks.values()) {
+            if (type == Blocks.AIR || type == null || Utils.getID(type).equals(Utils.getID(Blocks.AIR))) {
+                int aa = 1;
+            }
+        }
+    }
+
     //TODO: delete
     @Override
     public void registerItems(SimpleModule module, Registrator<Item> registry) {
@@ -70,8 +79,8 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 this.items.put(w, i);
                 try {
                     registry.register(Utils.getID(value), i);
-                }catch (Exception e){
-                    StoneZone.LOGGER.error("FAILED TO REGISTER ITEM WITH BLOCK: {} - {}", w, value);
+                } catch (Exception e) {
+                    StoneZone.LOGGER.error("FAILED TO REGISTER ITEM WITH StoneType: {} - {}", w, value);
                 }
             }
 
