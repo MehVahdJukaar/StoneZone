@@ -82,7 +82,7 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
     public void registerBlocks(SimpleModule module, Registrator<Block> registry, Collection<T> types) {
         super.registerBlocks(module, registry, types);
         for (var type : this.blocks.values()){
-            if(type == Blocks.AIR || type == null){
+            if(type == Blocks.AIR || type == null || Utils.getID(type).equals(Utils.getID(Blocks.AIR))){
                 int aa = 1;
             }
         }

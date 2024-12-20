@@ -71,7 +71,7 @@ public class StoneworksModule extends SZModule {
                 .addRecipe(modRes("stone_tile_stairs_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_tile_stairs_from_stone_tiles_stonecutting"))
                 .build();
-        this.addEntry(tile_stairs);
+        //this.addEntry(tile_stairs);
 
         tile_slabs = StonezoneEntrySet.of(StoneType.class, "tile_slab",
                         getModBlock("stone_tile_slab"), () -> StoneTypeRegistry.STONE_TYPE,
@@ -84,7 +84,7 @@ public class StoneworksModule extends SZModule {
                 .addRecipe(modRes("stone_tile_slab_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_tile_slab_from_stone_tiles_stonecutting"))
                 .build();
-        this.addEntry(tile_slabs);
+        //this.addEntry(tile_slabs);
 
         tile_walls = StonezoneEntrySet.of(StoneType.class, "tile_wall",
                         getModBlock("stone_tile_wall"), () -> StoneTypeRegistry.STONE_TYPE,
@@ -101,7 +101,7 @@ public class StoneworksModule extends SZModule {
                 .addRecipe(modRes("stone_tile_wall_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_tile_wall_from_stone_tiles_stonecutting"))
                 .build();
-        this.addEntry(tile_walls);
+        //this.addEntry(tile_walls);
 
         cracked_tiles = StonezoneEntrySet.of(StoneType.class, "tiles", "cracked",
                         getModBlock("cracked_stone_tiles"), () -> StoneTypeRegistry.STONE_TYPE,
@@ -124,7 +124,7 @@ public class StoneworksModule extends SZModule {
                 .setTabKey(tab)
                 .addRecipe(modRes("stone_pillar_from_stone_stonecutting"))
                 .build();
-        this.addEntry(pillars);
+        //this.addEntry(pillars);
 
         plates = StonezoneEntrySet.of(StoneType.class, "plates",
                         getModBlock("stone_plates"), () -> StoneTypeRegistry.STONE_TYPE,
@@ -135,7 +135,7 @@ public class StoneworksModule extends SZModule {
                 .setTabKey(tab)
                 .addRecipe(modRes("stone_plates_from_stone_stonecutting"))
                 .build();
-        this.addEntry(plates);
+        //this.addEntry(plates);
 
         plate_stairs = StonezoneEntrySet.of(StoneType.class, "plate_stairs",
                         getModBlock("stone_plate_stairs"), () -> StoneTypeRegistry.STONE_TYPE,
@@ -150,7 +150,7 @@ public class StoneworksModule extends SZModule {
                 .addRecipe(modRes("stone_plate_stairs_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_plate_stairs_from_stone_plates_stonecutting"))
                 .build();
-        this.addEntry(plate_stairs);
+        //this.addEntry(plate_stairs);
 
         plate_slabs = StonezoneEntrySet.of(StoneType.class, "plate_slab",
                         getModBlock("stone_plate_slab"), () -> StoneTypeRegistry.STONE_TYPE,
@@ -163,7 +163,7 @@ public class StoneworksModule extends SZModule {
                 .addRecipe(modRes("stone_plate_slab_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_plate_slab_from_stone_plates_stonecutting"))
                 .build();
-        this.addEntry(plate_slabs);
+        //this.addEntry(plate_slabs);
 
         plate_walls = StonezoneEntrySet.of(StoneType.class, "plate_wall",
                         getModBlock("stone_plate_wall"), () -> StoneTypeRegistry.STONE_TYPE,
@@ -180,7 +180,7 @@ public class StoneworksModule extends SZModule {
                 .addRecipe(modRes("stone_plate_wall_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_plate_wall_from_stone_plates_stonecutting"))
                 .build();
-        this.addEntry(plate_walls);
+        //this.addEntry(plate_walls);
 
         pavers = StonezoneEntrySet.of(StoneType.class, "pavers",
                         getModBlock("stone_pavers"), () -> StoneTypeRegistry.STONE_TYPE,
@@ -191,7 +191,7 @@ public class StoneworksModule extends SZModule {
                 .setTabKey(tab)
                 .addRecipe(modRes("stone_pavers_from_stone_stonecutting"))
                 .build();
-        this.addEntry(pavers);
+        //this.addEntry(pavers);
 
         paver_stairs = StonezoneEntrySet.of(StoneType.class, "paver_stairs",
                         getModBlock("stone_paver_stairs"), () -> StoneTypeRegistry.STONE_TYPE,
@@ -206,7 +206,7 @@ public class StoneworksModule extends SZModule {
                 .addRecipe(modRes("stone_paver_stairs_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_paver_stairs_from_stone_pavers_stonecutting"))
                 .build();
-        this.addEntry(paver_stairs);
+        //this.addEntry(paver_stairs);
 
         paver_slabs = StonezoneEntrySet.of(StoneType.class, "paver_slab",
                         getModBlock("stone_paver_slab"), () -> StoneTypeRegistry.STONE_TYPE,
@@ -219,7 +219,7 @@ public class StoneworksModule extends SZModule {
                 .addRecipe(modRes("stone_paver_slab_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_paver_slab_from_stone_pavers_stonecutting"))
                 .build();
-        this.addEntry(paver_slabs);
+        //this.addEntry(paver_slabs);
 
         paver_walls = StonezoneEntrySet.of(StoneType.class, "paver_wall",
                         getModBlock("stone_paver_wall"), () -> StoneTypeRegistry.STONE_TYPE,
@@ -236,7 +236,7 @@ public class StoneworksModule extends SZModule {
                 .addRecipe(modRes("stone_paver_wall_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_paver_wall_from_stone_pavers_stonecutting"))
                 .build();
-        this.addEntry(paver_walls);
+        //this.addEntry(paver_walls);
 
         shingles = StonezoneEntrySet.of(StoneType.class, "shingles",
                         getModBlock("stone_shingles"), () -> StoneTypeRegistry.STONE_TYPE,
@@ -247,7 +247,7 @@ public class StoneworksModule extends SZModule {
                 .setTabKey(tab)
                 .addRecipe(modRes("stone_shingles_from_stone_stonecutting"))
                 .build();
-        this.addEntry(shingles);
+        //this.addEntry(shingles);
 
         shingle_stairs = StonezoneEntrySet.of(StoneType.class, "shingle_stairs",
                         getModBlock("stone_shingle_stairs"), () -> StoneTypeRegistry.STONE_TYPE,
@@ -261,7 +261,7 @@ public class StoneworksModule extends SZModule {
                 .addRecipe(modRes("stone_shingle_stairs_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_shingle_stairs_from_stone_shingles_stonecutting"))
                 .build();
-        this.addEntry(shingle_stairs);
+        //this.addEntry(shingle_stairs);
 
         shingle_slabs = StonezoneEntrySet.of(StoneType.class, "shingle_slab",
                         getModBlock("stone_shingle_slab"), () -> StoneTypeRegistry.STONE_TYPE,
@@ -273,7 +273,7 @@ public class StoneworksModule extends SZModule {
                 .addRecipe(modRes("stone_shingle_stairs_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_shingle_stairs_from_stone_shingles_stonecutting"))
                 .build();
-        this.addEntry(shingle_slabs);
+        //this.addEntry(shingle_slabs);
 
         shingle_walls = StonezoneEntrySet.of(StoneType.class, "shingle_wall",
                         getModBlock("stone_shingle_wall"), () -> StoneTypeRegistry.STONE_TYPE,
@@ -290,7 +290,7 @@ public class StoneworksModule extends SZModule {
                 .addRecipe(modRes("stone_shingle_stairs_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_shingle_stairs_from_stone_shingles_stonecutting"))
                 .build();
-        this.addEntry(shingle_walls);
+        //this.addEntry(shingle_walls);
 
     }
 }
