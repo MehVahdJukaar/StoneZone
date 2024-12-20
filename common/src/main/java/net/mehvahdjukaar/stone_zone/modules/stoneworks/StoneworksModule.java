@@ -11,10 +11,12 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.Objects;
 
-import static net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet.copyChildrenProperties;
+import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyBlockStateSafe;
+import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
 
 
 //SUPPORT: v8.0.0+
@@ -51,6 +53,7 @@ public class StoneworksModule extends SZModule {
                         getModBlock("stone_tiles"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new Block(Utils.copyPropertySafe(s.stone))
                 )
+                .requiresChildren("stone") //REASON: recipes
                 .addTexture(modRes("block/stone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -60,10 +63,11 @@ public class StoneworksModule extends SZModule {
 
         tile_stairs = StonezoneEntrySet.of(StoneType.class, "tile_stairs",
                         getModBlock("stone_tile_stairs"), () -> StoneTypeRegistry.STONE_TYPE,
-                        s -> new StairBlock(s.stone.defaultBlockState(),
-                                copyChildrenProperties("stairs", s)
+                        s -> new StairBlock(copyBlockStateSafe(tiles.blocks, s),
+                                copyChildrenPropertySafe("stairs", s)
                         )
                 )
+                .requiresFromMap(tiles.blocks) //REASON: recipes & textures
                 //TEXTURES: stone_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
@@ -75,8 +79,9 @@ public class StoneworksModule extends SZModule {
 
         tile_slabs = StonezoneEntrySet.of(StoneType.class, "tile_slab",
                         getModBlock("stone_tile_slab"), () -> StoneTypeRegistry.STONE_TYPE,
-                        s -> new SlabBlock(copyChildrenProperties("slab", s))
+                        s -> new SlabBlock(copyChildrenPropertySafe("slab", s))
                 )
+                .requiresFromMap(tiles.blocks) //REASON: recipes & textures
                 //TEXTURES: stone_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
@@ -88,12 +93,9 @@ public class StoneworksModule extends SZModule {
 
         tile_walls = StonezoneEntrySet.of(StoneType.class, "tile_wall",
                         getModBlock("stone_tile_wall"), () -> StoneTypeRegistry.STONE_TYPE,
-                        s -> new WallBlock(Utils.copyPropertySafe(
-                                (Objects.nonNull(s.getBlockOfThis("wall")))
-                                        ? Objects.requireNonNull(s.getBlockOfThis("wall"))
-                                        : getModBlock("stone_tile_wall").get()
-                        ))
+                        s -> new WallBlock(copyWallSafe("stone_tile_wall", s))
                 )
+                .requiresFromMap(tiles.blocks) //REASON: recipes & textures
                 //TEXTURES: stone_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
@@ -140,9 +142,10 @@ public class StoneworksModule extends SZModule {
         plate_stairs = StonezoneEntrySet.of(StoneType.class, "plate_stairs",
                         getModBlock("stone_plate_stairs"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new StairBlock(s.stone.defaultBlockState(),
-                                copyChildrenProperties("stairs", s)
+                                copyChildrenPropertySafe("stairs", s)
                         )
                 )
+                .requiresFromMap(plates.blocks) //REASON: recipes & textures
                 //TEXTURES: stone_plates (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
@@ -154,8 +157,9 @@ public class StoneworksModule extends SZModule {
 
         plate_slabs = StonezoneEntrySet.of(StoneType.class, "plate_slab",
                         getModBlock("stone_plate_slab"), () -> StoneTypeRegistry.STONE_TYPE,
-                        s -> new SlabBlock(copyChildrenProperties("slab", s))
+                        s -> new SlabBlock(copyChildrenPropertySafe("slab", s))
                 )
+                .requiresFromMap(plates.blocks) //REASON: recipes & textures
                 //TEXTURES: stone_plates (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
@@ -167,12 +171,9 @@ public class StoneworksModule extends SZModule {
 
         plate_walls = StonezoneEntrySet.of(StoneType.class, "plate_wall",
                         getModBlock("stone_plate_wall"), () -> StoneTypeRegistry.STONE_TYPE,
-                        s -> new WallBlock(Utils.copyPropertySafe(
-                                (Objects.nonNull(s.getBlockOfThis("wall")))
-                                        ? Objects.requireNonNull(s.getBlockOfThis("wall"))
-                                        : getModBlock("stone_plate_wall").get()
-                        ))
+                        s -> new WallBlock(copyWallSafe("stone_plate_wall", s))
                 )
+                .requiresFromMap(plates.blocks) //REASON: recipes & textures
                 //TEXTURES: stone_plates (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
@@ -196,9 +197,10 @@ public class StoneworksModule extends SZModule {
         paver_stairs = StonezoneEntrySet.of(StoneType.class, "paver_stairs",
                         getModBlock("stone_paver_stairs"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new StairBlock(s.stone.defaultBlockState(),
-                                copyChildrenProperties("stairs", s)
+                                copyChildrenPropertySafe("stairs", s)
                         )
                 )
+                .requiresFromMap(pavers.blocks) //REASON: recipes & textures
                 //TEXTURES: stone_pavers (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
@@ -210,8 +212,9 @@ public class StoneworksModule extends SZModule {
 
         paver_slabs = StonezoneEntrySet.of(StoneType.class, "paver_slab",
                         getModBlock("stone_paver_slab"), () -> StoneTypeRegistry.STONE_TYPE,
-                        s -> new SlabBlock(copyChildrenProperties("slab", s))
+                        s -> new SlabBlock(copyChildrenPropertySafe("slab", s))
                 )
+                .requiresFromMap(pavers.blocks) //REASON: recipes & textures
                 //TEXTURES: stone_pavers (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
@@ -223,12 +226,9 @@ public class StoneworksModule extends SZModule {
 
         paver_walls = StonezoneEntrySet.of(StoneType.class, "paver_wall",
                         getModBlock("stone_paver_wall"), () -> StoneTypeRegistry.STONE_TYPE,
-                        s -> new WallBlock(Utils.copyPropertySafe(
-                                (Objects.nonNull(s.getBlockOfThis("wall")))
-                                        ? Objects.requireNonNull(s.getBlockOfThis("wall"))
-                                        : getModBlock("stone_paver_wall").get()
-                        ))
+                        s -> new WallBlock(copyWallSafe("stone_paver_wall", s))
                 )
+                .requiresFromMap(pavers.blocks) //REASON: recipes & textures
                 //TEXTURES: stone_pavers (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
@@ -252,9 +252,10 @@ public class StoneworksModule extends SZModule {
         shingle_stairs = StonezoneEntrySet.of(StoneType.class, "shingle_stairs",
                         getModBlock("stone_shingle_stairs"), () -> StoneTypeRegistry.STONE_TYPE,
                         s -> new StairBlock(s.stone.defaultBlockState(),
-                                copyChildrenProperties("stairs", s)
+                                copyChildrenPropertySafe("stairs", s)
                         )
                 )
+                .requiresFromMap(shingles.blocks) //REASON: recipes & textures
                 //TEXTURES: stone_shingles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -265,8 +266,9 @@ public class StoneworksModule extends SZModule {
 
         shingle_slabs = StonezoneEntrySet.of(StoneType.class, "shingle_slab",
                         getModBlock("stone_shingle_slab"), () -> StoneTypeRegistry.STONE_TYPE,
-                        s -> new SlabBlock(copyChildrenProperties("slab", s))
+                        s -> new SlabBlock(copyChildrenPropertySafe("slab", s))
                 )
+                .requiresFromMap(shingles.blocks) //REASON: recipes & textures
                 //TEXTURES: stone_shingles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -277,12 +279,9 @@ public class StoneworksModule extends SZModule {
 
         shingle_walls = StonezoneEntrySet.of(StoneType.class, "shingle_wall",
                         getModBlock("stone_shingle_wall"), () -> StoneTypeRegistry.STONE_TYPE,
-                        s -> new WallBlock(Utils.copyPropertySafe(
-                                (Objects.nonNull(s.getBlockOfThis("wall")))
-                                        ? Objects.requireNonNull(s.getBlockOfThis("wall"))
-                                        : getModBlock("stone_shingle_wall").get()
-                        ))
-                )
+                        s -> new WallBlock(copyWallSafe("stone_shingle_wall", s)
+                ))
+                .requiresFromMap(shingles.blocks) //REASON: recipes & textures
                 //TEXTURES: stone_shingles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
@@ -292,5 +291,13 @@ public class StoneworksModule extends SZModule {
                 .build();
         this.addEntry(shingle_walls);
 
+    }
+
+    public BlockBehaviour.Properties copyWallSafe(String baseType, StoneType stoneType) {
+        return Utils.copyPropertySafe(
+                (Objects.nonNull(stoneType.getBlockOfThis("wall")))
+                ? Objects.requireNonNull(stoneType.getBlockOfThis("wall"))
+                : getModBlock(baseType).get()
+        );
     }
 }
