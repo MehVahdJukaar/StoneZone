@@ -31,7 +31,7 @@ import net.minecraft.world.level.block.WallBlock;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet.copyChildrenProperties;
+import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
 
 //SUPPORT: v0.5.1+
 public class CreateModule extends SZModule {
@@ -138,7 +138,7 @@ public class CreateModule extends SZModule {
 
         cut_andesite_brick_stairs = StonezoneEntrySet.of(StoneType.class, "brick_stairs", "cut",
                         getModBlock("cut_andesite_brick_stairs"), () -> StoneTypeRegistry.ANDESITE_TYPE,
-                        stoneType -> new StairBlock(stoneType.stone.defaultBlockState(), copyChildrenProperties("brick_stairs", stoneType))
+                        stoneType -> new StairBlock(stoneType.stone.defaultBlockState(), copyChildrenPropertySafe("brick_stairs", stoneType))
                 )
                 .addCondition(s -> Objects.nonNull(cut_andesite_bricks.blocks.get(s))) //REASON: recipes
                 //TEXTURES: cut_andesite_bricks (above)
@@ -154,7 +154,7 @@ public class CreateModule extends SZModule {
 
         cut_andesite_brick_slabs = StonezoneEntrySet.of(StoneType.class, "brick_slab", "cut",
                         getModBlock("cut_andesite_brick_slab"), () -> StoneTypeRegistry.ANDESITE_TYPE,
-                        stoneType -> new SlabBlock(copyChildrenProperties("brick_slab", stoneType))
+                        stoneType -> new SlabBlock(copyChildrenPropertySafe("brick_slab", stoneType))
                 )
                 .addCondition(s -> Objects.nonNull(cut_andesite_bricks.blocks.get(s))) //REASON: recipes
                 //TEXTURES: cut_andesite_bricks (above)
@@ -171,7 +171,7 @@ public class CreateModule extends SZModule {
 
         cut_andesite_brick_walls = StonezoneEntrySet.of(StoneType.class, "brick_wall", "cut",
                         getModBlock("cut_andesite_brick_wall"), () -> StoneTypeRegistry.ANDESITE_TYPE,
-                        stoneType -> new WallBlock(copyChildrenProperties("brick_wall", stoneType))
+                        stoneType -> new WallBlock(copyChildrenPropertySafe("brick_wall", stoneType))
                 )
                 .addCondition(s -> Objects.nonNull(cut_andesite_bricks.blocks.get(s))) //REASON: recipes
                 //TEXTURES: cut_andesite_bricks (above)
@@ -200,7 +200,7 @@ public class CreateModule extends SZModule {
         polished_cut_andesite_stairs = StonezoneEntrySet.of(StoneType.class, "stairs", "polished_cut",
                         getModBlock("polished_cut_andesite_stairs"), () -> StoneTypeRegistry.ANDESITE_TYPE,
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
-                                copyChildrenProperties("polished_stairs", stoneType))
+                                copyChildrenPropertySafe("polished_stairs", stoneType))
                 )
                 .addCondition(s -> Objects.nonNull(polished_cut_andesites.blocks.get(s))) //REASON: recipes
                 //TEXTURES: polished_cut_andesites (above)
@@ -216,7 +216,7 @@ public class CreateModule extends SZModule {
 
         polished_cut_andesite_slabs = StonezoneEntrySet.of(StoneType.class, "slab", "polished_cut",
                         getModBlock("polished_cut_andesite_slab"), () -> StoneTypeRegistry.ANDESITE_TYPE,
-                        stoneType -> new SlabBlock(copyChildrenProperties("polished_slab", stoneType))
+                        stoneType -> new SlabBlock(copyChildrenPropertySafe("polished_slab", stoneType))
                 )
                 .addCondition(s -> Objects.nonNull(polished_cut_andesites.blocks.get(s))) //REASON: recipes
                 //TEXTURES: polished_cut_andesites, andesite_cut_slabs (above)
@@ -233,7 +233,7 @@ public class CreateModule extends SZModule {
 
         polished_cut_andesite_walls = StonezoneEntrySet.of(StoneType.class, "wall", "polished_cut",
                         getModBlock("polished_cut_andesite_wall"), () -> StoneTypeRegistry.ANDESITE_TYPE,
-                        stoneType -> new WallBlock(copyChildrenProperties("polished_wall", stoneType))
+                        stoneType -> new WallBlock(copyChildrenPropertySafe("polished_wall", stoneType))
                 )
                 .addCondition(s -> Objects.nonNull(polished_cut_andesites.blocks.get(s))) //REASON: recipes
                 //TEXTURES: polished_cut_andesites (above)
@@ -262,7 +262,7 @@ public class CreateModule extends SZModule {
         small_andesite_brick_stairs = StonezoneEntrySet.of(StoneType.class, "brick_stairs", "small",
                         getModBlock("small_andesite_brick_stairs"), () -> StoneTypeRegistry.ANDESITE_TYPE,
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
-                                copyChildrenProperties("polished_stairs", stoneType))
+                                copyChildrenPropertySafe("polished_stairs", stoneType))
                 )
                 .addCondition(s -> Objects.nonNull(small_andesite_bricks.blocks.get(s))) //REASON: recipes
                 //TEXTURES: small_andesite_bricks (above)
@@ -278,7 +278,7 @@ public class CreateModule extends SZModule {
 
         small_andesite_brick_slabs = StonezoneEntrySet.of(StoneType.class, "brick_slab", "small",
                         getModBlock("small_andesite_brick_slab"), () -> StoneTypeRegistry.ANDESITE_TYPE,
-                        stoneType -> new SlabBlock(copyChildrenProperties("polished_slab", stoneType))
+                        stoneType -> new SlabBlock(copyChildrenPropertySafe("polished_slab", stoneType))
                 )
                 .addCondition(s -> Objects.nonNull(small_andesite_bricks.blocks.get(s))) //REASON: recipes
                 //TEXTURES: small_andesite_bricks, andesite_cut_slabs (above)
@@ -295,7 +295,7 @@ public class CreateModule extends SZModule {
 
         small_andesite_brick_walls = StonezoneEntrySet.of(StoneType.class, "brick_wall", "small",
                         getModBlock("small_andesite_brick_wall"), () -> StoneTypeRegistry.ANDESITE_TYPE,
-                        stoneType -> new WallBlock(copyChildrenProperties("polished_wall", stoneType))
+                        stoneType -> new WallBlock(copyChildrenPropertySafe("polished_wall", stoneType))
                 )
                 .addCondition(s -> Objects.nonNull(small_andesite_bricks.blocks.get(s))) //REASON: recipes
                 //TEXTURES: small_andesite_bricks (above)
