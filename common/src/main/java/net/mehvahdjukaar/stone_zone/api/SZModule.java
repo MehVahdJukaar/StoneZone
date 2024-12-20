@@ -37,7 +37,6 @@ public class SZModule extends SimpleModule {
         String fromWoodMod = stoneType.getNamespace();
         String stoneID = stoneType.getId().toString();
 
-
         return super.isEntryAlreadyRegistered(name, stoneType, registry);
     }
 
