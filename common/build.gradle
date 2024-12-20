@@ -39,7 +39,9 @@ dependencies {
 //!! =================================================== IMPORTS ==================================================== \\
     //!! MODULES - don't need library from the mod, so it's fine to ignore
 
-    //!! REQUIRED - The modules access libaries from the mod
+    // ~/common/mods LOCAL
+
+    //!! REQUIRED - The modules access libaries from below
     modCompileOnly("curse.maven:quark-243121:5594847")
     modCompileOnly("curse.maven:create-fabric-624165:5982726")
     modCompileOnly("curse.maven:twigs-496913:4603805")

@@ -57,22 +57,23 @@ dependencies {
     modRuntimeOnly("curse.maven:jade-324717:5666690")
 
 //!! ================================================= DEPENDENCIES ================================================= \\
-
-    //!! ONLY FOR TESTING
+    //!! ONLY FOR TESTING - can be commented out or enabled
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904751") // v8.1.25 | Stoneworks
 //    modRuntimeOnly("curse.maven:forge-config-api-port-fabric-547434:5902421") // v8.1.25 | Stoneworks
     modRuntimeOnly("com.terraformersmc.terraform-api:terraform-wood-api-v1:13.0.0-alpha.1") // Blockus
 
+        // ~/fabric/mods LOCAL
+
     //!! REQUIRED - Only in FABRIC
 
 //!! =================================================== IMPORTS ==================================================== \\
-    //!! ONLY FOR TESTING - These modules are in COMMON
+    //!! ONLY FOR TESTING - can be commented out or enabled
 //    modRuntimeOnly("curse.maven:create-fabric-624165:5982726")
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5382599")
 //    modRuntimeOnly("curse.maven:twigs-496913:4603805")
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611948") // puzzles-lib, forge-config-api-port
 
-    //!! REQUIRED - The modules access libaries from the mod - ONLY IN FABRIC
+    //!! REQUIRED - The modules access libaries from below - ONLY IN FABRIC
 
 //!! ================================================= FOR TESTING ================================================== \\
 
