@@ -34,6 +34,8 @@ public class SZModule extends SimpleModule {
 
     @Override
     public boolean isEntryAlreadyRegistered(String name, BlockType stoneType, Registry<?> registry) {
+        if (stoneType.isVanilla()) return true;
+
         name = name.substring(name.lastIndexOf("/") + 1);
         String fromWoodMod = stoneType.getNamespace();
         String stoneID = stoneType.getId().toString();
