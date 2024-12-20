@@ -66,11 +66,11 @@ public class StoneType extends BlockType {
                 this.addChild("cracked_bricks", findRelatedEntry("cracked_bricks",  BuiltInRegistries.BLOCK));
             }
             else {
-                this.addChild("brick_stairs", findBrickEntry("stairs"));
-                this.addChild("brick_slab", findBrickEntry("slab"));
-                this.addChild("brick_wall", findBrickEntry("wall"));
-                this.addChild("cracked_bricks", findBrickEntry("cracked", "bricks"));
-                this.addChild("brick_tiles", findBrickEntry("brick_tiles"));
+                this.addChild("brick_stairs", findChildBrickEntry("stairs"));
+                this.addChild("brick_slab", findChildBrickEntry("slab"));
+                this.addChild("brick_wall", findChildBrickEntry("wall"));
+                this.addChild("brick_tiles", findChildBrickEntry("tiles")); //brick_tiles
+                this.addChild("cracked_bricks", findBrickEntry("cracked", ""));
             }
         }
 
@@ -89,17 +89,22 @@ public class StoneType extends BlockType {
         this.addChild("brick", this.findRelatedEntry("brick", BuiltInRegistries.ITEM));
     }
 
-    private @Nullable Block findBrickEntry(String name) {
-        var first = this.findRelatedEntry("brick_" + name, BuiltInRegistries.BLOCK);
+    /**
+     * @param suffix concatenation of "brick_" + suffix
+    **/
+    private @Nullable Block findChildBrickEntry(String suffix) {
+        var first = this.findRelatedEntry("brick_" + suffix, BuiltInRegistries.BLOCK);
         if (first != null) return first;
-        return this.findRelatedEntry("bricks_" + name, BuiltInRegistries.BLOCK);
+        return this.findRelatedEntry("bricks_" + suffix, BuiltInRegistries.BLOCK);
     }
 
     @SuppressWarnings("SameParameterValue")
     private @Nullable Block findBrickEntry(String pre, String post) {
-        var first = this.findRelatedEntry(pre,"brick_" + post, BuiltInRegistries.BLOCK);
+        post = (post.isEmpty()) ? "" : "_" + post;
+
+        var first = this.findRelatedEntry(pre,"brick" + post, BuiltInRegistries.BLOCK);
         if (first != null) return first;
-        return this.findRelatedEntry(pre,"bricks_" + post, BuiltInRegistries.BLOCK);
+        return this.findRelatedEntry(pre,"bricks" + post, BuiltInRegistries.BLOCK);
     }
 
     @Nullable
