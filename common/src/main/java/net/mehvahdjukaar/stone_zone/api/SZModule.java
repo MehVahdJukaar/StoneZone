@@ -33,13 +33,12 @@ public class SZModule extends SimpleModule {
     }
 
     @Override
-    public boolean isEntryAlreadyRegistered(String name, BlockType stoneType, Registry<?> registry, boolean shouldBeRegistered) {
+    public boolean isEntryAlreadyRegistered(String name, BlockType stoneType, Registry<?> registry) {
+        name = name.substring(name.lastIndexOf("/") + 1);
         String fromWoodMod = stoneType.getNamespace();
         String stoneID = stoneType.getId().toString();
 
-        if (modId.equals("quark")) shouldBeRegistered = true;
-
-        return super.isEntryAlreadyRegistered(name, stoneType, registry, stoneType.isVanilla(), shouldBeRegistered);
+        return super.isEntryAlreadyRegistered(name, stoneType, registry);
     }
 
 }
