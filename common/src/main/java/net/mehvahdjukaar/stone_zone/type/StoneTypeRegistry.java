@@ -2,16 +2,12 @@ package net.mehvahdjukaar.stone_zone.type;
 
 import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
-import net.mehvahdjukaar.moonlight.core.Moonlight;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 @SuppressWarnings("unused")
@@ -45,12 +41,13 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
     public Optional<StoneType> detectTypeFromBlock(Block baseblock, ResourceLocation baseRes) {
         String path = baseRes.getPath();
         // Support TerraFirmaCraft (TFC) & ArborFirmaCraft (AFC)
-        if (baseRes.getNamespace().matches("tfc|afc")) {
+        String namespace = baseRes.getNamespace();
+        if (namespace.matches("tfc|afc")) {
             if (path.matches("rock/bricks/\\w+") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM) {
                 int index = path.lastIndexOf("/");
                 String stoneName = path.substring(index + 1); // Get granite from tfc:rock/bricks/granite
                 var opt = BuiltInRegistries.BLOCK.getOptional(
-                        new ResourceLocation(baseRes.getNamespace(), path.replace("bricks", "raw"))
+                        new ResourceLocation(namespace, path.replace("bricks", "raw"))
                 );
 //                Moonlight.LOGGER.warn("STONER: {} - {}", stoneName, baseRes);
                 if (opt.isPresent()) {
@@ -59,10 +56,15 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
             }
         }
 
+        if (namespace.equals("chipped")) return Optional.empty();
+
         if (path.endsWith("_bricks") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM) {
             String stoneName = path.substring(0, path.length() - 7);
             var opt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(stoneName));
             if (opt.isPresent()) {
+                if (baseRes.toString().contains("mud")) {
+                    int aa = 1;
+                }
                 return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));
             }
         }

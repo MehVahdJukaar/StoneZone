@@ -19,11 +19,13 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.*;
@@ -56,24 +58,34 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
     //TODO: delete
     @Override
     public void registerItems(SimpleModule module, Registrator<Item> registry) {
-        this.blocks.forEach((w, value) -> {
+        this.blocks.forEach((w, block) -> {
             Item i;
             if (this.itemFactory != null) {
-                i = this.itemFactory.apply(w, value, new Item.Properties());
+                i = this.itemFactory.apply(w, block, new Item.Properties());
             } else {
-                i = new BlockTypeBasedBlockItem(value, new Item.Properties(), w);
+                i = new BlockTypeBasedBlockItem(block, new Item.Properties(), w);
             }
 
             if (i != null) {
                 this.items.put(w, i);
                 try {
-                    registry.register(Utils.getID(value), i);
+                    registry.register(Utils.getID(block), i);
                 }catch (Exception e){
-                    StoneZone.LOGGER.error("FAILED TO REGISTER ITEM WITH BLOCK: {}", value);
+                    StoneZone.LOGGER.error("FAILED TO REGISTER ITEM WITH BLOCK: {}", block);
                 }
             }
 
         });
+    }
+
+    @Override
+    public void registerBlocks(SimpleModule module, Registrator<Block> registry, Collection<T> types) {
+        super.registerBlocks(module, registry, types);
+        for (var type : this.blocks.values()){
+            if(type == Blocks.AIR || type == null){
+                int aa = 1;
+            }
+        }
     }
 
     @Override
