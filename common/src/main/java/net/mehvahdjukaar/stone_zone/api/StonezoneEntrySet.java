@@ -20,11 +20,13 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.*;
 
@@ -69,7 +71,7 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 try {
                     registry.register(Utils.getID(value), i);
                 }catch (Exception e){
-                    StoneZone.LOGGER.error("FAILED TO REGISTER ITEM WITH BLOCK: {}", value);
+                    StoneZone.LOGGER.error("FAILED TO REGISTER ITEM WITH BLOCK: {} - {}", w, value);
                 }
             }
 
@@ -90,29 +92,10 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
     @Override
     protected BlockTypeResTransformer<T> makeBlockStateTransformer(SimpleModule module, ResourceManager manager) {
         String originalStoneName = baseType.get().getTypeName();
-//        return super.makeBlockStateTransformer(module, manager).addModifier((s, id, stoneType) ->
-//                s.replace(
-//                        "minecraft:block/" + originalStoneName,
-//                        stoneType.getNamespace() + ":block/" + stoneType.getTypeName()
-//                )
-//        );
         return super.makeBlockStateTransformer(module, manager).addModifier((s, id, stoneType) ->
                 BlockTypeResTransformer.replaceFullGenericType(s, stoneType, stoneType.getId(), originalStoneName, "minecraft", "block"));
     }
 
-    //!! Utilities
-    public static BlockBehaviour.Properties copyChildrenProperties(String blockType, StoneType stoneType) {
-        Block block = stoneType.getBlockOfThis(blockType);
-        Block blockAlt = null;
-        if (blockType.contains("_")) {
-            String[] split = blockType.split("_");
-            blockAlt = stoneType.getBlockOfThis(split[1]);
-        }
-
-        if (Objects.nonNull(block)) return Utils.copyPropertySafe(block);
-        else if (Objects.nonNull(blockAlt)) return Utils.copyPropertySafe(blockAlt);
-        else return Utils.copyPropertySafe(stoneType.stone);
-    }
 
     //!! SUB-CLASS
     public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {
