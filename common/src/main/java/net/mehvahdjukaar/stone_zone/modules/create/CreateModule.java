@@ -346,11 +346,12 @@ public class CreateModule extends SZModule {
 
         cut_andesites.blocks.forEach((stoneType, block) -> {
 
-            // Adding all blocks of a StoneType to Array to be tagged
+            // Adding all blocks of a StoneType except "slab" to Array to be tagged
             var BlockMap = new ArrayList<Block>();
 
             for (var entry : this.getEntries()) {
                 var currentBlock = ((SimpleEntrySet<?, ?>) entry).blocks.get(stoneType);
+                if (currentBlock.toString().contains("slab")) continue;
                 BlockMap.add(currentBlock);
             }
             BlockMap.add(stoneType.stone);
