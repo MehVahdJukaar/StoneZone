@@ -59,7 +59,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
             }
         }
 
-        if (path.endsWith("_bricks") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM) {
+        if (path.matches("[a-z]+_bricks") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM) {
             String stoneName = path.substring(0, path.length() - 7);
             var opt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(stoneName));
             if (opt.isPresent()) {
