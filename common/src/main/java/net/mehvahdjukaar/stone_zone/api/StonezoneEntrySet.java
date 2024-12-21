@@ -55,39 +55,6 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
     }
 
     @Override
-    public void registerBlocks(SimpleModule module, Registrator<Block> registry, Collection<T> types) {
-        super.registerBlocks(module, registry, types);
-        for (var type : this.blocks.values()) {
-            if (type == Blocks.AIR || type == null || Utils.getID(type).equals(Utils.getID(Blocks.AIR))) {
-                int aa = 1;
-            }
-        }
-    }
-
-    //TODO: delete
-    @Override
-    public void registerItems(SimpleModule module, Registrator<Item> registry) {
-        this.blocks.forEach((w, value) -> {
-            Item i;
-            if (this.itemFactory != null) {
-                i = this.itemFactory.apply(w, value, new Item.Properties());
-            } else {
-                i = new BlockTypeBasedBlockItem(value, new Item.Properties(), w);
-            }
-
-            if (i != null) {
-                this.items.put(w, i);
-                try {
-                    registry.register(Utils.getID(value), i);
-                } catch (Exception e) {
-                    StoneZone.LOGGER.error("FAILED TO REGISTER ITEM WITH StoneType: {} - {}", w, value);
-                }
-            }
-
-        });
-    }
-
-    @Override
     protected BlockTypeResTransformer<T> makeModelTransformer(SimpleModule module, ResourceManager manager) {
 
         String originalStoneName = baseType.get().getTypeName();
