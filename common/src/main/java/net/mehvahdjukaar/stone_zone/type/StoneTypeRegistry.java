@@ -2,16 +2,13 @@ package net.mehvahdjukaar.stone_zone.type;
 
 import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
-import net.mehvahdjukaar.moonlight.core.Moonlight;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 @SuppressWarnings("unused")
@@ -22,9 +19,13 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
     public static final StoneType STONE_TYPE = new StoneType(new ResourceLocation("stone"), Blocks.STONE);
     public static final StoneType ANDESITE_TYPE = new StoneType(new ResourceLocation("andesite"), Blocks.ANDESITE);
 
-//    public static Collection<StoneType> getType() {
-//        return INSTANCE.getValues();
-//    }
+    public static Collection<StoneType> getTypes() {
+        return INSTANCE.getValues();
+    }
+
+    public static StoneType getValue(ResourceLocation name) {
+        return INSTANCE.get(name);
+    }
 
     public StoneTypeRegistry() {
         super(StoneType.class, "stone_type");
