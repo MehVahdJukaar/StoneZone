@@ -147,12 +147,12 @@ public class StoneType extends BlockType {
     public static class Finder implements SetFinder<StoneType> {
 
         private final Map<String, ResourceLocation> childNames = new HashMap<>();
-        private final Supplier<Block> planksFinder;
+        private final Supplier<Block> stoneFinder;
         private final ResourceLocation id;
 
-        public Finder(ResourceLocation id, Supplier<Block> planks) {
+        public Finder(ResourceLocation id, Supplier<Block> stone) {
             this.id = id;
-            this.planksFinder = planks;
+            this.stoneFinder = stone;
         }
 
         static Finder vanilla(String stoneName){
@@ -181,7 +181,7 @@ public class StoneType extends BlockType {
         public Optional<StoneType> get() {
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
-                    Block plank = planksFinder.get();
+                    Block plank = stoneFinder.get();
                     var d = BuiltInRegistries.BLOCK.get(BuiltInRegistries.BLOCK.getDefaultKey());
                     if (plank != d && plank != null) {
                         var w = new StoneType(id, plank);
