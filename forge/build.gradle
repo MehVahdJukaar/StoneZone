@@ -118,14 +118,14 @@ dependencies {
 //   modImplementation("net.mehvahdjukaar:moonlight-forge:${project.moonlight_testVersion}") // LOCAL
 
     //!! MAVEN
-    modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.40
+    modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.41
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
-    //!! Repository LOCAL
+    //!! Repository LOCAL - can be commented out or enabled
 //    modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
 
     //!! MAVEN
-    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.4
+    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.6
 
 //!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
     modRuntimeOnly("curse.maven:jei-238222:5846810")
