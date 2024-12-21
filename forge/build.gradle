@@ -15,7 +15,7 @@ loom {
         convertAccessWideners = true
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
 
-        mixinConfig  "stonezone-common.mixins.json"
+//        mixinConfig  "stonezone-common.mixins.json" //NOT NEEDED FOR NOW
 
     }
 }
