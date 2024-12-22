@@ -1,5 +1,8 @@
 {
+  "itemGroup.stonezone": "Stone Zone",
   "itemGroup.stonezone.stonezone": "Stone Zone",
+  "item.stonezone.all_stones": "All Stones",
+
   "block_type.twigs.column": "%s Column",
 
   "block_type.bbb.layer": "%s Layer",
@@ -22,9 +25,9 @@
   "block_type.create.polished_cut_stairs": "Polished Cut %s Stairs",
   "block_type.create.polished_cut_wall": "Polished Cut %s Wall",
   "block_type.create.cut_bricks": "Cut %s Bricks",
-  "block_type.create.cut_bricks_slab": "Cut %s Brick Slab",
-  "block_type.create.cut_bricks_stairs": "Cut %s Brick Stairs",
-  "block_type.create.cut_bricks_wall": "Cut %s Brick Wall",
+  "block_type.create.cut_brick_slab": "Cut %s Brick Slab",
+  "block_type.create.cut_brick_stairs": "Cut %s Brick Stairs",
+  "block_type.create.cut_brick_wall": "Cut %s Brick Wall",
   "block_type.create.small_bricks": "Small %s Bricks",
   "block_type.create.small_brick_slab": "Small %s Brick Slab",
   "block_type.create.small_brick_stairs": "Small %s Brick Stairs",
