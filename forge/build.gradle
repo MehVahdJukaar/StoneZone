@@ -88,14 +88,10 @@ publishing {
 }
 
 
-repositories{
-    // Built mods
-    mavenCentral()
-    maven {
-        name "tterrag maven"
-        url "https://maven.tterrag.com/"
-    }
-}
+//repositories{
+//    // Built mods
+//    mavenCentral()
+//}
 
 dependencies {
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
@@ -121,7 +117,7 @@ dependencies {
     modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.41
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
-    //!! Repository LOCAL - can be commented out or enabled
+    //!! Repository LOCAL
 //    modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
 
     //!! MAVEN
@@ -143,15 +139,21 @@ dependencies {
 
         // ~/forge/mods LOCAL
 
-    //!! REQUIRED - Only in FORGE
+    //!! REQUIRED FOR TESTING - can be commented out or enabled
+//    modRuntimeOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create
+//    modRuntimeOnly("com.jozufozu.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}") // Create
+
+            //!! REQUIRED - The modules access libaries from below - Only in FORGE
 
 //!! =================================================== IMPORTS ==================================================== \\
     //!! ONLY FOR TESTING - can be commented out or enabled
-//    modRuntimeOnly("curse.maven:create-328085:5838779")
 //    modRuntimeOnly("curse.maven:twigs-496913:4605097")
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611947") // puzzles-lib
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1
 //    modRuntimeOnly("curse.maven:quark-243121:5594847")
+
+            //!! DIFFERENT MAVENs
+//    modRuntimeOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel
 
     //!! REQUIRED - The modules access libaries from below - ONLY IN FORGE
 

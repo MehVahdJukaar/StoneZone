@@ -26,11 +26,12 @@ dependencies {
     include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${mixin_extras_version}")))
     annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
 
-    modCompileOnly("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_version}") {
+    modCompileOnly("me.shedaniel.cloth:cloth-config-fabric:${cloth_version}") {
         exclude group: 'net.fabricmc.fabric-api'
     }
 
-    modImplementation("com.terraformersmc:modmenu:7.2.2")
+    // Development QOL
+    modImplementation("com.terraformersmc:modmenu:${modmenu_version}")
 
 //!! MOONLIGHT LIB (REQUIRED) --------------------------------------------------------------------------------------- \\
     //!! Repository LOCAL
@@ -64,14 +65,21 @@ dependencies {
 
         // ~/fabric/mods LOCAL
 
-    //!! REQUIRED - Only in FABRIC
+    //!! REQUIRED FOR TESTING - can be commented out or enabled
+//    modRuntimeOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
+//    modRuntimeOnly("com.jozufozu.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_version}") // Create
+
+            //!! REQUIRED - The modules access libaries from below - Only in FABRIC
 
 //!! =================================================== IMPORTS ==================================================== \\
     //!! ONLY FOR TESTING - can be commented out or enabled
-//    modRuntimeOnly("curse.maven:create-fabric-624165:5982726")
+//    modRuntimeOnly("com.simibubi.create:create-fabric-$minecraft_version:$create_fabric_version")
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5382599")
 //    modRuntimeOnly("curse.maven:twigs-496913:4603805")
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611948") // puzzles-lib, forge-config-api-port
+
+            //!! DIFFERENT MAVENs
+//    modRuntimeOnly("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}:slim") { transitive = false } // Registrate, Flywheel
 
     //!! REQUIRED - The modules access libaries from below - ONLY IN FABRIC
 
@@ -152,16 +160,18 @@ publishing {
     }
 }
 repositories {
-    maven { url "https://maven.shedaniel.me/" }
-    maven { url "https://maven.terraformersmc.com/releases" }
+    maven { url "https://maven.shedaniel.me/" } // Cloth Config API
+
+    maven { url "https://maven.terraformersmc.com/releases" } // Mod Menu
 
     maven {
         name = 'ModdingPlayground'
         url  = 'https://raw.githubusercontent.com/moddingplayground/maven/main/'
     }
-    maven { url = "https://mvn.devos.one/releases" } // Porting Lib Releases
     maven { // Reach Entity Attributes
         url = "https://maven.jamieswhiteshirt.com/libs-release"
         content { includeGroup("com.jamieswhiteshirt") }
     }
+    maven { url = "https://mvn.devos.one/releases" } // Porting Lib Releases
+    maven { url = "https://mvn.devos.one/snapshots" } // Create & Several Dependencies
 }
