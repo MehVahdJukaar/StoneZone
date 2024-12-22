@@ -6,8 +6,8 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.SZModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
-import net.mehvahdjukaar.stone_zone.type.StoneType;
-import net.mehvahdjukaar.stone_zone.type.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.world.level.block.Block;
 
 //SUPPORT: v3.1.0+

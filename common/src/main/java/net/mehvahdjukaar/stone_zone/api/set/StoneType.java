@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.type;
+package net.mehvahdjukaar.stone_zone.api.set;
 
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
@@ -155,7 +155,7 @@ public class StoneType extends BlockType {
             this.stoneFinder = stone;
         }
 
-        static Finder vanilla(String stoneName){
+        public static Finder vanilla(String stoneName){
             return simple("minecraft", stoneName, stoneName);
         }
 
@@ -179,12 +179,13 @@ public class StoneType extends BlockType {
         @Override
         @ApiStatus.Internal
         public Optional<StoneType> get() {
+            ResourceLocation valueName;
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
-                    Block plank = stoneFinder.get();
+                    Block stone = stoneFinder.get();
                     var d = BuiltInRegistries.BLOCK.get(BuiltInRegistries.BLOCK.getDefaultKey());
-                    if (plank != d && plank != null) {
-                        var w = new StoneType(id, plank);
+                    if (stone != d && stone != null) {
+                        var w = new StoneType(id, stone);
                         childNames.forEach((key, value) -> w.addChild(key, BuiltInRegistries.BLOCK.get(value)));
                         return Optional.of(w);
                     }
