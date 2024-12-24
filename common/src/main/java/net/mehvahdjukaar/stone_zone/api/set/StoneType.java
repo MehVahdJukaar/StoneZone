@@ -156,17 +156,17 @@ public class StoneType extends BlockType {
             this.stoneFinder = stone;
         }
 
-        public static Finder vanilla(String stoneName){
-            return simple("minecraft", stoneName, stoneName);
+        public static Finder vanilla(String nameStone){
+            return simple("minecraft", nameStone, nameStone);
         }
 
-        public static Finder simple(String modId, String stoneTypeName, String stoneName) {
-            return simple(new ResourceLocation(modId, stoneTypeName), new ResourceLocation(modId, stoneName));
+        public static Finder simple(String modId, String nameStoneType, String nameStone) {
+            return simple(new ResourceLocation(modId, nameStoneType), new ResourceLocation(modId, nameStone));
         }
 
-        public static Finder simple(ResourceLocation stoneTypeName, ResourceLocation stoneName) {
-            return new Finder(stoneTypeName,
-                    () -> BuiltInRegistries.BLOCK.get(stoneName));
+        public static Finder simple(ResourceLocation nameStoneTYpe, ResourceLocation nameStone) {
+            return new Finder(nameStoneTYpe,
+                    () -> BuiltInRegistries.BLOCK.get(nameStone));
         }
 
         public void addChild(String childType, String childName) {
