@@ -5,6 +5,10 @@
 
   "block_type.twigs.column": "%s Column",
 
+  "block_type.quark.vertical_slab": "%s Vertical Slab",
+  "block_type.quark.polished_vertical_slab": "Polished %s Vertical Slab",
+  "block_type.quark.pillar": "%s Pillar",
+
   "block_type.bbb.layer": "%s Layer",
   "block_type.bbb.smooth_layer": "Smooth %s Layer",
   "block_type.bbb.brick_layer": "%s Brick Layer",
