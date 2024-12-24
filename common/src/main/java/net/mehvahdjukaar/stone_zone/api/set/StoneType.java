@@ -2,6 +2,7 @@ package net.mehvahdjukaar.stone_zone.api.set;
 
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -179,7 +180,6 @@ public class StoneType extends BlockType {
         @Override
         @ApiStatus.Internal
         public Optional<StoneType> get() {
-            ResourceLocation valueName;
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
                     Block stone = stoneFinder.get();
