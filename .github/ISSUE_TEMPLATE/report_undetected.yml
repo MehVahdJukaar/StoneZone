@@ -43,8 +43,8 @@ body:
     id: nameStoneMod
     attributes:
       label: Name of Stone Mod
-      description: The current version of StoneZone
-      placeholder: ex. Alex's Cave
+      description: Name of Stone Mod & modID
+      placeholder: ex. Alex's Cave (alexscaves)
     validations:
       required: true
 
