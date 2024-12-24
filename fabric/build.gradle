@@ -62,6 +62,9 @@ dependencies {
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904751") // v8.1.25 | Stoneworks
 //    modRuntimeOnly("curse.maven:forge-config-api-port-fabric-547434:5902421") // v8.1.25 | Stoneworks
     modRuntimeOnly("com.terraformersmc.terraform-api:terraform-wood-api-v1:13.0.0-alpha.1") // Blockus
+//    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129312") // v1.1.1 | Rechiseled
+//    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4785838") // v1.1.8a | Rechiseled
+//    modRuntimeOnly("curse.maven:supermartijn642s-core-lib-454372:5668908") // v1.1.17a | Rechiseled
 
         // ~/fabric/mods LOCAL
 
@@ -77,6 +80,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5382599")
 //    modRuntimeOnly("curse.maven:twigs-496913:4603805")
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611948") // puzzles-lib, forge-config-api-port
+//    modRuntimeOnly("curse.maven:rechiseled-558998:5286340") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
 
             //!! DIFFERENT MAVENs
 //    modRuntimeOnly("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}:slim") { transitive = false } // Registrate, Flywheel
