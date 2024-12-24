@@ -37,8 +37,10 @@ public class SZModule extends SimpleModule {
         if (stoneType.isVanilla()) return true;
 
         name = name.substring(name.lastIndexOf("/") + 1);
-        String fromWoodMod = stoneType.getNamespace();
+        String fromStoneMod = stoneType.getNamespace();
         String stoneID = stoneType.getId().toString();
+
+        if (modId.equals(fromStoneMod)) return true;
 
         return false;
     }
