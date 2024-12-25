@@ -70,8 +70,9 @@ public class StoneType extends BlockType {
                 this.addChild("brick_stairs", findChildBrickEntry("stairs"));
                 this.addChild("brick_slab", findChildBrickEntry("slab"));
                 this.addChild("brick_wall", findChildBrickEntry("wall"));
-                this.addChild("brick_tiles", findChildBrickEntry("tiles")); //brick_tiles
+                this.addChild("brick_tiles", findChildBrickEntry("tiles"));
                 this.addChild("cracked_bricks", findBrickEntry("cracked", ""));
+                this.addChild("mossy_bricks", findBrickEntry("mossy", ""));
             }
         }
 
