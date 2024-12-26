@@ -341,6 +341,7 @@ public class CreateModule extends SZModule {
     }
 
     @Override
+    @SuppressWarnings("ConstantValue")
     public void addDynamicServerResources(ServerDynamicResourcesHandler handler, ResourceManager manager) {
         super.addDynamicServerResources(handler, manager);
 
@@ -351,8 +352,10 @@ public class CreateModule extends SZModule {
 
             for (var entry : this.getEntries()) {
                 var currentBlock = ((SimpleEntrySet<?, ?>) entry).blocks.get(stoneType);
-                if (currentBlock.toString().contains("slab")) continue;
-                BlockMap.add(currentBlock);
+                if (Objects.nonNull(currentBlock)) {
+                    if (currentBlock.toString().contains("slab")) continue;
+                    BlockMap.add(currentBlock);
+                }
             }
             BlockMap.add(stoneType.stone);
 
@@ -391,23 +394,27 @@ public class CreateModule extends SZModule {
     @Environment(EnvType.CLIENT)
     private static class CreateClientModule {
         private static void registerConnectedBlock(CreateModule module) {
-            module.pillars.blocks.forEach((stone, block) -> {
+            module.layereds.blocks.forEach((stone, block) -> {
                 String capPath = "block/" + module.shortenedId() + "/" + stone.getNamespace() + "/palettes/stone_types/cap/" + stone.getTypeName() + "_cut_cap";
-                String pillarPath = "block/" + module.shortenedId() + "/" + stone.getNamespace() + "/palettes/stone_types/pillar/" + stone.getTypeName() + "_cut_pillar";
                 String layeredPath = "block/" + module.shortenedId() + "/" + stone.getNamespace() + "/palettes/stone_types/layered/" + stone.getTypeName() + "_cut_layered";
 
                 CTSpriteShiftEntry capShift = CTSpriteShifter.getCT(AllCTTypes.OMNIDIRECTIONAL,
                         StoneZone.res(capPath), StoneZone.res(capPath + "_connected"));
-
-                CTSpriteShiftEntry pillarShift = CTSpriteShifter.getCT(AllCTTypes.RECTANGLE,
-                        StoneZone.res(pillarPath), StoneZone.res(pillarPath + "_connected"));
                 CTSpriteShiftEntry layeredShift = CTSpriteShifter.getCT(AllCTTypes.HORIZONTAL_KRYPPERS,
                         StoneZone.res(layeredPath), StoneZone.res(layeredPath + "_connected"));
 
-                CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(block),
-                        (model) -> new CTModel(model, new RotatedPillarCTBehaviour(pillarShift, capShift)));
+                Block pillarBlock = module.pillars.blocks.get(stone);
+                if (Objects.nonNull(pillarBlock)) {
+                    String pillarPath = "block/" + module.shortenedId() + "/" + stone.getNamespace() + "/palettes/stone_types/pillar/" + stone.getTypeName() + "_cut_pillar";
 
-                CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(module.layereds.blocks.get(stone)),
+                    CTSpriteShiftEntry pillarShift = CTSpriteShifter.getCT(AllCTTypes.RECTANGLE,
+                            StoneZone.res(pillarPath), StoneZone.res(pillarPath + "_connected"));
+
+                    CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(pillarBlock),
+                            (model) -> new CTModel(model, new RotatedPillarCTBehaviour(pillarShift, capShift)));
+                }
+
+                CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(block),
                         (model) -> new CTModel(model, new HorizontalCTBehaviour(layeredShift, capShift)));
 
             });
