@@ -3,12 +3,16 @@ package net.mehvahdjukaar.stone_zone.api;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.SZRegistry;
 import net.mehvahdjukaar.stone_zone.StoneZone;
+import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 
 public class SZModule extends SimpleModule {
@@ -41,6 +45,15 @@ public class SZModule extends SimpleModule {
         String stoneID = stoneType.getId().toString();
 
         return false;
+    }
+
+    public BlockBehaviour.Properties copyProperties(Block block) {
+        var p = Utils.copyPropertySafe(block);
+        var s = StoneTypeRegistry.INSTANCE.getBlockTypeOf(block);
+        if (s != null) {
+            //hardcoded stuff
+        }
+        return p;
     }
 
 }
