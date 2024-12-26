@@ -43,16 +43,18 @@ public class CompatStoneType {
         simpleFinder("alexscaves", "radrock");
         simpleFinder("alexscaves", "abyssmarine");
         simpleFinder("alexscaves", "guanostone");
+        simpleFinder("alexscaves", "limestone"); // - due to no BRICKS
 
         // Enlightened End - undetected due to 3 words (void_shale_bricks)
         simpleFinder("enlightened_end", "void_shale");
 
+        // Ars Nouveau
+        simpleFinder("ars_nouveau", "sourcestone");
 
     }
 
     public static void simpleFinder(String modId, String nameStoneType) {
         var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStoneType);
-        stonetypeFinder.addChild("bricks", nameStoneType + "_bricks");
 
         BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
 
