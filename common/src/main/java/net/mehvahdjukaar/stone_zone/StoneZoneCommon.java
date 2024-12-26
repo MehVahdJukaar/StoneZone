@@ -3,9 +3,11 @@ package net.mehvahdjukaar.stone_zone;
 import net.mehvahdjukaar.stone_zone.modules.bbb.BuildingButBetterModule;
 import net.mehvahdjukaar.stone_zone.modules.create.CreateModule;
 import net.mehvahdjukaar.stone_zone.modules.quark.QuarkModule;
+import net.mehvahdjukaar.stone_zone.modules.rechiseled.RechiseledModule;
 import net.mehvahdjukaar.stone_zone.modules.stoneworks.StoneworksModule;
 import net.mehvahdjukaar.stone_zone.modules.twigs.TwigsModule;
 
+import static net.mehvahdjukaar.every_compat.EveryCompat.addOtherCompatMod;
 import static net.mehvahdjukaar.stone_zone.StoneZone.addIfLoaded;
 
 public class StoneZoneCommon {
@@ -20,7 +22,8 @@ public class StoneZoneCommon {
 
 
 //!! =============================================== Add Other Compat Mods ========================================== \\
-
+        addOtherCompatMod("rechiseledcreate", "create", "rechiseled");
+        addOtherCompatMod("rechiseledae2", "ae2", "rechiseled");
 
 //!! =================================================== Add Modules ================================================ \\
 
@@ -29,6 +32,7 @@ public class StoneZoneCommon {
         addIfLoaded("bbb", () -> BuildingButBetterModule::new);
         addIfLoaded("stoneworks", () -> StoneworksModule::new);
         addIfLoaded("quark", () -> QuarkModule::new);
+        addIfLoaded("rechiseled", () -> RechiseledModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
 

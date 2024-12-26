@@ -128,6 +128,7 @@ dependencies {
     modRuntimeOnly("curse.maven:worldedit-225608:4586218")
     modRuntimeOnly("curse.maven:jade-324717:5672013")
     modRuntimeOnly("curse.maven:emi-580555:5872526")
+    modRuntimeOnly("curse.maven:crafttweaker-239197:5880672")
 
 //!! ================================================= DEPENDENCIES ================================================= \\
     //!! ONLY FOR TESTING - can be commented out or enabled
@@ -137,9 +138,9 @@ dependencies {
 //    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | ?
 //    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | ?
     modRuntimeOnly("curse.maven:citadel-331936:6002521") // v2.6.1 | Alexs-Caves
-    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled
-    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled
-    modRuntimeOnly("curse.maven:supermartijn642s-core-lib-454372:5668859") // v1.1.17a | Rechiseled
+//    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled
+//    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled
+//    modRuntimeOnly("curse.maven:supermartijn642s-core-lib-454372:5668859") // v1.1.17a | Rechiseled
 
         // ~/forge/mods LOCAL
 
@@ -155,7 +156,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611947") // puzzles-lib
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1
 //    modRuntimeOnly("curse.maven:quark-243121:5594847")
-    modRuntimeOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
+//    modRuntimeOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
 
             //!! DIFFERENT MAVENs
 //    modRuntimeOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel
