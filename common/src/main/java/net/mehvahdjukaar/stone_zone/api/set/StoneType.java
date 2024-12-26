@@ -2,6 +2,7 @@ package net.mehvahdjukaar.stone_zone.api.set;
 
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -69,8 +70,9 @@ public class StoneType extends BlockType {
                 this.addChild("brick_stairs", findChildBrickEntry("stairs"));
                 this.addChild("brick_slab", findChildBrickEntry("slab"));
                 this.addChild("brick_wall", findChildBrickEntry("wall"));
-                this.addChild("brick_tiles", findChildBrickEntry("tiles")); //brick_tiles
+                this.addChild("brick_tiles", findChildBrickEntry("tiles"));
                 this.addChild("cracked_bricks", findBrickEntry("cracked", ""));
+                this.addChild("mossy_bricks", findBrickEntry("mossy", ""));
             }
         }
 
@@ -155,17 +157,17 @@ public class StoneType extends BlockType {
             this.stoneFinder = stone;
         }
 
-        public static Finder vanilla(String stoneName){
-            return simple("minecraft", stoneName, stoneName);
+        public static Finder vanilla(String nameStone){
+            return simple("minecraft", nameStone, nameStone);
         }
 
-        public static Finder simple(String modId, String stoneTypeName, String stoneName) {
-            return simple(new ResourceLocation(modId, stoneTypeName), new ResourceLocation(modId, stoneName));
+        public static Finder simple(String modId, String nameStoneType, String nameStone) {
+            return simple(new ResourceLocation(modId, nameStoneType), new ResourceLocation(modId, nameStone));
         }
 
-        public static Finder simple(ResourceLocation stoneTypeName, ResourceLocation stoneName) {
-            return new Finder(stoneTypeName,
-                    () -> BuiltInRegistries.BLOCK.get(stoneName));
+        public static Finder simple(ResourceLocation nameStoneTYpe, ResourceLocation nameStone) {
+            return new Finder(nameStoneTYpe,
+                    () -> BuiltInRegistries.BLOCK.get(nameStone));
         }
 
         public void addChild(String childType, String childName) {
@@ -179,7 +181,6 @@ public class StoneType extends BlockType {
         @Override
         @ApiStatus.Internal
         public Optional<StoneType> get() {
-            ResourceLocation valueName;
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
                     Block stone = stoneFinder.get();

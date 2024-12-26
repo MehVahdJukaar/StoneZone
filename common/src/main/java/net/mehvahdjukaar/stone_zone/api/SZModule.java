@@ -37,12 +37,22 @@ public class SZModule extends SimpleModule {
     }
 
     @Override
-    public boolean isEntryAlreadyRegistered(String name, BlockType stoneType, Registry<?> registry) {
-        if (stoneType.isVanilla()) return true;
+    public boolean isEntryAlreadyRegistered(String blockId, BlockType blockType, Registry<?> registry) {
 
-        name = name.substring(name.lastIndexOf("/") + 1);
-        String fromWoodMod = stoneType.getNamespace();
-        String stoneID = stoneType.getId().toString();
+        var isAlreadyRegistered = super.isEntryAlreadyRegistered(blockId, blockType, registry);
+        if (isAlreadyRegistered) {
+            //noinspection ConstantValue
+            return isAlreadyRegistered;
+        }
+
+        // blockId: stonezone:twigs/strata/<stonetype>_column | blockName: <stonetype>_column
+        String blockName = blockId.substring(blockId.lastIndexOf("/") + 1);
+
+        /// DISABLED FOR NOW, There is no hardcoded Blocks yet
+//        if (blockType instanceof StoneType stoneType) {
+//            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(blockName, stoneType, compatModId, shortenedId());
+//            if (hardcoded != null) return hardcoded;
+//        }
 
         return false;
     }

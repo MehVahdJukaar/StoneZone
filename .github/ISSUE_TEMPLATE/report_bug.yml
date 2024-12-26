@@ -61,7 +61,7 @@ body:
     id: issue-with-mods
     attributes:
       label: "Issue with mods"
-      description: "Which mods does Every Compat have an issue with?"
+      description: "Which mods does Stone Zone have an issue with?"
       placeholder: "ex. - Strata <version> \nex. - Chipped <version> \n\nStrata is StoneTypes Mod & Create is a Furniture Mod"
     validations:
       required: true
