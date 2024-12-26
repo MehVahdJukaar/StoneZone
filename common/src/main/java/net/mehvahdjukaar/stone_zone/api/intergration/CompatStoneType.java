@@ -51,6 +51,9 @@ public class CompatStoneType {
         // Ars Nouveau
         simpleFinder("ars_nouveau", "sourcestone");
 
+        // Quark
+        simpleFinder("quark", "soul_sandstone");
+
     }
 
     public static void simpleFinder(String modId, String nameStoneType) {
