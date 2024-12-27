@@ -91,9 +91,9 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
                         childObject.addProperty("tintindex", tintIndex);
                     }
                 }
-            } else if (value instanceof JsonObject) {
+            } else if (value instanceof JsonObject jo) {
                 // Recursively process nested objects
-                addTintIndexToModels((JsonObject) value);
+                addTintIndexToModels(jo, tintIndex);
             }
         }
     }
