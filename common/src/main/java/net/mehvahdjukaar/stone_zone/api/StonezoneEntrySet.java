@@ -1,5 +1,6 @@
 package net.mehvahdjukaar.stone_zone.api;
 
+import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
@@ -12,6 +13,7 @@ import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -56,7 +58,8 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 .replaceWithTextureFromChild("minecraft:block/" + nameStoneType, "stone")
                 .replaceWithTextureFromChild("minecraft:block/" + nameStoneType + "_bricks", "bricks")
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + nameStoneType, "smooth_stone")
-                .replaceWithTextureFromChild("minecraft:block/polished_" + nameStoneType, "polished");
+                .replaceWithTextureFromChild("minecraft:block/polished_" + nameStoneType, "polished")
+                .addModifier((s, resourceLocation, t) -> forceSetTintIndex(s));
     }
 
     @Override
@@ -64,6 +67,35 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
         String originalStoneName = baseType.get().getTypeName();
         return super.makeBlockStateTransformer(module, manager).addModifier((s, id, stoneType) ->
                 BlockTypeResTransformer.replaceFullGenericType(s, stoneType, stoneType.getId(), originalStoneName, "minecraft", "block"));
+    }
+
+    // parsing and then unparsing. will be sub optimal
+    private static String forceSetTintIndex(String jsonText) {
+        JsonObject jsonObject = GsonHelper.parse(jsonText);
+        addTintIndexToModels(jsonObject);
+        return jsonObject.toString();
+    }
+
+    private static void addTintIndexToModels(JsonObject jsonObject) {
+        for (String key : jsonObject.keySet()) {
+            Object value = jsonObject.get(key);
+
+            if (key.equals("faces") && value instanceof JsonObject facesObject) {
+
+                // Process child objects within "faces"
+                for (String childKey : facesObject.keySet()) {
+                    JsonObject childObject = facesObject.getAsJsonObject(childKey);
+
+                    // Add "tintindex": 1 if not present
+                    if (childObject != null && !childObject.has("tintindex")) {
+                        childObject.addProperty("tintindex", 1);
+                    }
+                }
+            } else if (value instanceof JsonObject) {
+                // Recursively process nested objects
+                addTintIndexToModels((JsonObject) value);
+            }
+        }
     }
 
 
