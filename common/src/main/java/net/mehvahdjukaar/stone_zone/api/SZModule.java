@@ -18,6 +18,7 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -71,6 +72,7 @@ public class SZModule extends SimpleModule {
         var s = StoneTypeRegistry.INSTANCE.getBlockTypeOf(block);
         if (s != null) {
             //hardcoded stuff
+            //if(s == "some stone")p= p.mapColor(MapColor.COLOR_BLACK);
         }
         return p;
     }
