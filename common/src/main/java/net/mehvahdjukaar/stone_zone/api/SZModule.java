@@ -1,24 +1,33 @@
 package net.mehvahdjukaar.stone_zone.api;
 
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
+import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
+import net.mehvahdjukaar.moonlight.api.resources.ResType;
+import net.mehvahdjukaar.moonlight.api.resources.StaticResource;
 import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.SZRegistry;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class SZModule extends SimpleModule {
     public SZModule(String modId, String shortId) {
         super(modId, shortId, StoneZone.MOD_ID);
     }
+
 
     @Override
     @SuppressWarnings("DataFlowIssue")
@@ -64,6 +73,29 @@ public class SZModule extends SimpleModule {
             //hardcoded stuff
         }
         return p;
+    }
+
+    @Override
+    public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
+        super.addDynamicClientResources(handler, manager);
+
+        //add custom models
+        for (var r : parentsToReplace.entrySet()) {
+            StaticResource res = StaticResource.getOrLog(manager, r.getKey());
+            if (res != null) {
+                //read resource in string
+                String json = new String(res.data);
+                ModelUtils.forceSetTintIndex(json);
+                handler.dynamicPack.addBytes(r.getValue(), json.getBytes(), ResType.GENERIC);
+            }
+        }
+
+    }
+
+    private final Map<ResourceLocation, ResourceLocation> parentsToReplace = new HashMap<>();
+
+    public void hackAddParentModel(ResourceLocation old, ResourceLocation newRes) {
+        parentsToReplace.put(old, newRes);
     }
 
 }
