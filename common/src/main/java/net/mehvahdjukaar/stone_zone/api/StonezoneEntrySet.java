@@ -72,11 +72,11 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
     // parsing and then unparsing. will be sub optimal
     private static String forceSetTintIndex(String jsonText) {
         JsonObject jsonObject = GsonHelper.parse(jsonText);
-        addTintIndexToModels(jsonObject);
+        addTintIndexToModels(jsonObject, 0);
         return jsonObject.toString();
     }
 
-    private static void addTintIndexToModels(JsonObject jsonObject) {
+    private static void addTintIndexToModels(JsonObject jsonObject, int tintIndex) {
         for (String key : jsonObject.keySet()) {
             Object value = jsonObject.get(key);
 
@@ -88,7 +88,7 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
 
                     // Add "tintindex": 1 if not present
                     if (childObject != null && !childObject.has("tintindex")) {
-                        childObject.addProperty("tintindex", 1);
+                        childObject.addProperty("tintindex", tintIndex);
                     }
                 }
             } else if (value instanceof JsonObject) {
