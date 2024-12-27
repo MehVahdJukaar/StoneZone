@@ -99,10 +99,17 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
             if (this.tab == null && PlatHelper.isDev()) {
                 throw new IllegalStateException("Tab for module " + this.name + " was null!");
             } else {
-                StonezoneEntrySet<T, B> e = new StonezoneEntrySet<>(this.type, this.name, this.prefix, this.blockFactory, this.baseBlock, this.baseType, this.tab, this.tabMode, this.lootMode, this.itemFactory, this.tileHolder, this.renderType, this.palette, this.extraModelTransform, this.useMergedPalette, this.copyTint, this.condition);
+                // all blocks could have tint as stone could be tinted themselves
+                this.copyParentTint();
+
+                StonezoneEntrySet<T, B> e = new StonezoneEntrySet<>(this.type, this.name, this.prefix, this.blockFactory, this.baseBlock,
+                        this.baseType, this.tab, this.tabMode, this.lootMode, this.itemFactory,
+                        this.tileHolder, this.renderType, this.palette, this.extraModelTransform,
+                        this.useMergedPalette, this.copyTint, this.condition);
                 e.recipeLocations.addAll(this.recipes);
                 e.tags.putAll(this.tags);
                 e.textures.addAll(this.textures);
+
                 return e;
             }
         }
