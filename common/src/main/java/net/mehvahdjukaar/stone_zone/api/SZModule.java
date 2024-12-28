@@ -91,7 +91,6 @@ public class SZModule extends SimpleModule {
                 handler.dynamicPack.addBytes(r.getValue(), json.getBytes(), ResType.GENERIC);
             }
         }
-
     }
 
     private final Map<ResourceLocation, ResourceLocation> parentsToReplace = new HashMap<>();
