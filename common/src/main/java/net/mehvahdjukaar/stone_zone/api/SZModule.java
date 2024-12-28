@@ -83,7 +83,7 @@ public class SZModule extends SimpleModule {
 
         //add custom models
         for (var r : parentsToReplace.entrySet()) {
-            StaticResource res = StaticResource.getOrLog(manager, r.getKey());
+            StaticResource res = StaticResource.getOrLog(manager, ResType.MODELS.getPath(r.getKey()));
             if (res != null) {
                 //read resource in string
                 String json = new String(res.data);
