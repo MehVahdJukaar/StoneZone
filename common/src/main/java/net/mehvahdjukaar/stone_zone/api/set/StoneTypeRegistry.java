@@ -17,24 +17,24 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
     public static final StoneTypeRegistry INSTANCE = new StoneTypeRegistry();
 
     public static final StoneType STONE_TYPE = new StoneType(new ResourceLocation("stone"), Blocks.STONE);
-    public static StoneType ANDESITE_TYPE = StoneTypeRegistry.getValue(new ResourceLocation("andesite"));
+    public static final StoneType ANDESITE_TYPE = new StoneType(new ResourceLocation("andesite"), Blocks.ANDESITE);
 
     public static Collection<StoneType> getTypes() {
         return INSTANCE.getValues();
     }
 
-    public static StoneType getValue(ResourceLocation name) {
-        return INSTANCE.get(name);
+    public static StoneType getValue(String stoneTypeId) {
+        return INSTANCE.get(new ResourceLocation(stoneTypeId));
     }
 
     public static StoneType getAndesiteType() {
-        return StoneTypeRegistry.getValue(new ResourceLocation("andesite"));
+        return StoneTypeRegistry.getValue("andesite");
     }
 
     public StoneTypeRegistry() {
         super(StoneType.class, "stone_type");
 
-        this.addFinder(StoneType.Finder.vanilla("andesite"));
+//        this.addFinder(StoneType.Finder.vanilla("andesite"));
         this.addFinder(StoneType.Finder.vanilla("diorite"));
         this.addFinder(StoneType.Finder.vanilla("granite"));
         this.addFinder(StoneType.Finder.vanilla("tuff"));
