@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.*;
 
-import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.forceSetTintIndex;
 import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.replaceParent;
 
 public class StonezoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
@@ -53,15 +52,17 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
 
     @Override
     protected BlockTypeResTransformer<T> makeModelTransformer(SimpleModule module, ResourceManager manager) {
-
-        String nameStoneType = baseType.get().getTypeName();
+        String nameStoneType = getBaseType().getTypeName();
         return super.makeModelTransformer(module, manager)
                 .replaceWithTextureFromChild("minecraft:block/" + nameStoneType, "stone")
                 .replaceWithTextureFromChild("minecraft:block/" + nameStoneType + "_bricks", "bricks")
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + nameStoneType, "smooth_stone")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameStoneType, "polished")
-                .addModifier((s, resourceLocation, t) -> forceSetTintIndex(s))
-                .addModifier((a, b, c) -> replaceParent(a, module));
+                .addModifier((s, blockId, blockType) -> {
+                    if (blockType.getId().toString().equals("quark:myalite"))
+                        return replaceParent(s, module);
+                    return s;
+                });
     }
 
     @Override
