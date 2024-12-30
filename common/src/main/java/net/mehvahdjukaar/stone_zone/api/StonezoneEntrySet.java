@@ -52,17 +52,13 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
 
     @Override
     protected BlockTypeResTransformer<T> makeModelTransformer(SimpleModule module, ResourceManager manager) {
-        String nameStoneType = getBaseType().getTypeName();
+        String nameStoneType = baseType.get().getTypeName();
         return super.makeModelTransformer(module, manager)
                 .replaceWithTextureFromChild("minecraft:block/" + nameStoneType, "stone")
                 .replaceWithTextureFromChild("minecraft:block/" + nameStoneType + "_bricks", "bricks")
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + nameStoneType, "smooth_stone")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameStoneType, "polished")
-                .addModifier((s, blockId, blockType) -> {
-                    if (blockType.getId().toString().equals("quark:myalite"))
-                        return replaceParent(s, module);
-                    return s;
-                });
+                .addModifier((s, blockId, blockType) -> replaceParent(s, module));
     }
 
     @Override

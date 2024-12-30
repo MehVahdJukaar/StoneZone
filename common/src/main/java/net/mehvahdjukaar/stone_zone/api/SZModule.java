@@ -71,21 +71,19 @@ public class SZModule extends SimpleModule {
     public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
         super.addDynamicClientResources(handler, manager);
 
-        if (Objects.nonNull(StoneTypeRegistry.getValue("quark:myalite"))) {
-            // Creating custom models
-            for (var r : parentsToReplace.entrySet()) {
-                StaticResource res = StaticResource.getOrLog(manager, ResType.MODELS.getPath(r.getKey()));
-                if (res != null) {
-                    // Read resource in string
-                    String json = new String(res.data);
+        // Creating custom models
+        for (var r : parentsToReplace.entrySet()) {
+            StaticResource res = StaticResource.getOrLog(manager, ResType.MODELS.getPath(r.getKey()));
+            if (res != null) {
+                // Read resource in string
+                String json = new String(res.data);
 
-                    // Modifying the contents
-                    json = ModelUtils.forceSetTintIndex(json);
-                    if (json.contains("block/cube\"")) json = replaceCubePath(json, parentsToReplace.get(new ResourceLocation("minecraft:block/cube")));
+                // Modifying the contents
+                json = ModelUtils.forceSetTintIndex(json);
+                if (json.contains("block/cube\"")) json = replaceCubePath(json, parentsToReplace.get(new ResourceLocation("minecraft:block/cube")));
 
-                    // Add custom models to the resources
-                    handler.dynamicPack.addBytes(r.getValue(), json.getBytes(), ResType.MODELS);
-                }
+                // Add custom models to the resources
+                handler.dynamicPack.addBytes(r.getValue(), json.getBytes(), ResType.MODELS);
             }
         }
     }
