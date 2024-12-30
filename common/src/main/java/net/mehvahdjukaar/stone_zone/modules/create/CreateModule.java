@@ -78,7 +78,7 @@ public class CreateModule extends SZModule {
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
                                 Utils.copyPropertySafe(stoneType.stone))
                 )
-                .addCondition(s -> Objects.nonNull(cuts.blocks.get(s))) //REASON: recipes
+                .requiresFromMap(cuts.blocks) //REASON: recipes
                 //TEXTURES: cuts (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
@@ -94,8 +94,8 @@ public class CreateModule extends SZModule {
                         getModBlock("cut_andesite_slab"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .addCondition(s -> Objects.nonNull(cuts.blocks.get(s))) //REASON: recipes
-                //TEXTURES: cuts (above)
+                .requiresFromMap(cuts.blocks) //REASON: recipes
+                //TEXTURES: cuts (above), polished_cut_slabs' andesite_cut_slab (below)
                 .addTexture(modRes("block/palettes/stone_types/slab/andesite_cut_slab"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
@@ -112,7 +112,7 @@ public class CreateModule extends SZModule {
                         getModBlock("cut_andesite_wall"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new WallBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .addCondition(s -> Objects.nonNull(cuts.blocks.get(s))) //REASON: recipes
+                .requiresFromMap(cuts.blocks) //REASON: recipes
                 //TEXTURES: cuts (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
@@ -140,7 +140,7 @@ public class CreateModule extends SZModule {
                         getModBlock("cut_andesite_brick_stairs"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(), copyChildrenPropertySafe("brick_stairs", stoneType))
                 )
-                .addCondition(s -> Objects.nonNull(cut_bricks.blocks.get(s))) //REASON: recipes
+                .requiresFromMap(cut_bricks.blocks) //REASON: recipes
                 //TEXTURES: cut_bricks (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
@@ -156,7 +156,7 @@ public class CreateModule extends SZModule {
                         getModBlock("cut_andesite_brick_slab"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new SlabBlock(copyChildrenPropertySafe("brick_slab", stoneType))
                 )
-                .addCondition(s -> Objects.nonNull(cut_bricks.blocks.get(s))) //REASON: recipes
+                .requiresFromMap(cut_bricks.blocks) //REASON: recipes
                 //TEXTURES: cut_bricks (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
@@ -173,7 +173,7 @@ public class CreateModule extends SZModule {
                         getModBlock("cut_andesite_brick_wall"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new WallBlock(copyChildrenPropertySafe("brick_wall", stoneType))
                 )
-                .addCondition(s -> Objects.nonNull(cut_bricks.blocks.get(s))) //REASON: recipes
+                .requiresFromMap(cut_bricks.blocks) //REASON: recipes
                 //TEXTURES: cut_bricks (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
@@ -202,7 +202,7 @@ public class CreateModule extends SZModule {
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
                                 copyChildrenPropertySafe("polished_stairs", stoneType))
                 )
-                .addCondition(s -> Objects.nonNull(polished_cuts.blocks.get(s))) //REASON: recipes
+                .requiresFromMap(polished_cuts.blocks) //REASON: recipes
                 //TEXTURES: polished_cut (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
@@ -218,7 +218,9 @@ public class CreateModule extends SZModule {
                         getModBlock("polished_cut_andesite_slab"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new SlabBlock(copyChildrenPropertySafe("polished_slab", stoneType))
                 )
-                .addCondition(s -> Objects.nonNull(polished_cuts.blocks.get(s))) //REASON: recipes
+                .requiresFromMap(polished_cuts.blocks) //REASON: recipes
+                //REASON: below belong to cut_slabs but if it won't be generated, then the texture won't be, too
+                .addTexture(modRes("block/palettes/stone_types/slab/andesite_cut_slab"))
                 //TEXTURES: polished_cut, cut_slabs (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
@@ -235,7 +237,7 @@ public class CreateModule extends SZModule {
                         getModBlock("polished_cut_andesite_wall"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new WallBlock(copyChildrenPropertySafe("polished_wall", stoneType))
                 )
-                .addCondition(s -> Objects.nonNull(polished_cuts.blocks.get(s))) //REASON: recipes
+                .requiresFromMap(polished_cuts.blocks) //REASON: recipes
                 //TEXTURES: polished_cut (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
@@ -341,7 +343,6 @@ public class CreateModule extends SZModule {
     }
 
     @Override
-    @SuppressWarnings("ConstantValue")
     public void addDynamicServerResources(ServerDynamicResourcesHandler handler, ResourceManager manager) {
         super.addDynamicServerResources(handler, manager);
 
