@@ -9,6 +9,12 @@ import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 // Put all undetected StoneTypes (including hardcoded ones) from mods in here to be included
 public class CompatStoneType {
 
+    //!! Won't be used for now until more than 1 tinted_stoneType are added
+    /// Add tinted StoneType here, so there will a custom model created for them to have properly mapColor
+    String[] tintedStoneType = new String[] {
+            "quark:myalite"
+    };
+
     public static void init() {
 
         // Create - undetected due to no BRICKS
