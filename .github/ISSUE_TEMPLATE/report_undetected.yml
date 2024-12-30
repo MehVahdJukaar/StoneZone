@@ -56,3 +56,12 @@ body:
       placeholder: "- [ ] modID:nameStoneType (modID:nameStoneType_bricks)\n- [ ]  alexscaves:galena (alexscaves:galena_bricks)\n- [ ]  alexscaves:radrock (alexscaves:radrock_bricks)\n- [ ]  alexscaves:abyssmarine (alexscaves:abyssmarine_bricks)\n- [ ]  alexscaves:guanostone (alexscaves:guanostone_bricks)"
     validations:
       required: true
+
+  - type: textarea
+    id: other_details
+    attributes:
+      label: "Other Details"
+      description: "Other Detail I should be aware of?"
+      placeholder: "Bountiful Fares is a special case since it has a feldspar item (bountifulfares:feldspar) that isn't the stone block, but is used to make the stone block."
+    validations:
+      required: false
