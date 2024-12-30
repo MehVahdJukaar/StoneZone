@@ -1,6 +1,7 @@
 package net.mehvahdjukaar.stone_zone.api.intergration;
 
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
+import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 
     /// StoneType Detection detect a StoneType that met 2 requirements:
@@ -53,6 +54,19 @@ public class CompatStoneType {
 
         // Quark
         simpleFinder("quark", "soul_sandstone");
+
+        // MUD
+
+        // Deep Aether
+        // undetected due to block not instanceof MudBlock
+        var deep_aether = MudType.Finder.simple("deep_aether", "aether_mud", "aether_mud");
+        deep_aether.addChild("packed", "packed_aether_mud");
+        deep_aether.addChild("bricks", "aether_mud_bricks");
+        // and used bricks instead of brick
+        deep_aether.addChild("brick_stairs", "aether_mud_bricks_stairs");
+        deep_aether.addChild("brick_slab", "aether_mud_bricks_slab");
+        deep_aether.addChild("brick_wall", "aether_mud_bricks_wall");
+        BlockSetAPI.addBlockTypeFinder(MudType.class, deep_aether);
 
     }
 

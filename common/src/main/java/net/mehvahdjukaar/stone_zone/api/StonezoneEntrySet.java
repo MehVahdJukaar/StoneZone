@@ -8,6 +8,9 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
+import net.mehvahdjukaar.stone_zone.StoneZone;
+import net.mehvahdjukaar.stone_zone.api.set.MudType;
+import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.resources.ResourceKey;
@@ -79,20 +82,26 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
             return (Builder<T, B>) createPaletteFromChild("stone");
         }
 
+        public StonezoneEntrySet.Builder<T, B> createPaletteFromMud(){
+            return (Builder<T, B>) createPaletteFromChild("mud");
+        }
+
         public StonezoneEntrySet.Builder<T, B> createPaletteFromBricks() {
-            StoneType stoneType = (StoneType) baseType.get();
+            BlockType stoneType = baseType.get();
             if (Objects.nonNull(stoneType.getBlockOfThis("bricks")))
                 return (Builder<T, B>) createPaletteFromChild("bricks");
-            else
-                return createPaletteFromStone();
+            else if (stoneType instanceof MudType)
+                return createPaletteFromMud();
+            return createPaletteFromStone();
         }
 
         public StonezoneEntrySet.Builder<T, B> createPaletteFromStoneChild(String blockType) {
-            StoneType stoneType = (StoneType) baseType.get();
+            BlockType stoneType = baseType.get();
             if (Objects.nonNull(stoneType.getBlockOfThis(blockType)))
                 return (Builder<T, B>) createPaletteFromChild(blockType);
-            else
-                return createPaletteFromStone();
+            else if (stoneType instanceof MudType)
+                return createPaletteFromMud();
+            return createPaletteFromStone();
         }
 
         @Override
