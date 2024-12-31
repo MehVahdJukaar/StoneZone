@@ -97,5 +97,9 @@
   "block_type.rechiseled.tiles_connecting": "%s Tiles",
   "block_type.rechiseled.waves": "%s Waves",
   "block_type.rechiseled.waves_connecting": "%s Waves",
-  "block_type.rechiseled.slated": "Slated Stone"
+  "block_type.rechiseled.slated": "Slated Stone",
+
+  "block_type.betterarcheology.cracked_bricks": "Cracked %s Bricks",
+  "block_type.betterarcheology.cracked_brick_stairs": "Cracked %s Brick Stairs",
+  "block_type.betterarcheology.cracked_brick_slab": "Cracked %s Brick Slab"
 }

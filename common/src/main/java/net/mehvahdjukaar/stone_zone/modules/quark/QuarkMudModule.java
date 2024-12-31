@@ -6,7 +6,9 @@ import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.SZModule;
 import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Block;
@@ -41,6 +43,7 @@ public class QuarkMudModule extends SZModule {
                 .setTabKey(tab)
                 .addRecipe(modRes("building/crafting/carved_mud_bricks"))
                 .addRecipe(modRes("building/stonecutting/carved_mud_bricks_stonecutter"))
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .build();
         this.addEntry(carved_bricks);
 
@@ -58,6 +61,7 @@ public class QuarkMudModule extends SZModule {
                 .setTabKey(tab)
                 .addRecipe(modRes("building/crafting/mud_pillar"))
                 .addRecipe(modRes("building/stonecutting/mud_pillar_stonecutter"))
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .build();
         this.addEntry(pillars);
 
@@ -74,6 +78,7 @@ public class QuarkMudModule extends SZModule {
                 .setTabKey(tab)
                 .addRecipe(modRes("building/crafting/mud_brick_lattice"))
                 .addRecipe(modRes("building/stonecutting/mud_brick_lattice_stonecutter"))
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setRenderType(RenderLayer.CUTOUT)
                 .build();
         this.addEntry(brick_lattices);
