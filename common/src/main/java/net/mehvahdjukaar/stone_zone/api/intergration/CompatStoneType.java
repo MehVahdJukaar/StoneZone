@@ -60,7 +60,11 @@ public class CompatStoneType {
         var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStoneType);
 
         BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
-
     }
 
+    public static void stoneBlockFinder(String modId, String nameStoneType) {
+        var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStoneType +"_block");
+
+        BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
+    }
 }
