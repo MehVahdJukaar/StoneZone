@@ -34,7 +34,7 @@ public final class ModelUtils {
             return matcher.replaceAll(m -> {
                 ResourceLocation oldRes = new ResourceLocation(matcher.group(1));
                 ResourceLocation newRes = StoneZone.res(m.group(3) + "/" + m.group(2) + m.group(4));
-                if (module instanceof SZModule szModule && !modifiedParent.containsKey(oldRes) && !oldRes.getPath().contains("snow")) {
+                if (module instanceof SZModule szModule && !modifiedParent.containsKey(oldRes)) {
                     szModule.addParentModelToMap(oldRes, newRes);
                 }
                 return "\"parent\": \"" + newRes + "\"";
@@ -63,35 +63,28 @@ public final class ModelUtils {
     }
 
     public static void addTintIndexToModels(JsonObject jsonObject, int tintIndex) {
-        for (String mainKey : jsonObject.keySet()) {
-            JsonElement value = jsonObject.get(mainKey);
+        if (jsonObject.has("elements")) {
+            JsonElement underElements = jsonObject.get("elements");
+            // Some model files (walls or stairs) have more than one array under Elements
+            for (int idx = 0; idx < underElements.getAsJsonArray().size(); idx++) {
+                if (underElements.getAsJsonArray().get(idx) instanceof JsonObject underArray) {
 
-            if (mainKey.equals("elements") && value.getAsJsonArray().isJsonArray()) {
-                // Some model files (walls or stairs) have more than one array under Elements
-                for (int idx = 0; idx < value.getAsJsonArray().size(); idx++) {
-                    if (value.getAsJsonArray().get(idx) instanceof JsonObject underElements) {
+                    if (underArray.has("faces")) {
+                        JsonObject underFaces = underArray.getAsJsonObject("faces");
+                        // Process child objects under "faces"
+                        for (String subKeys : underFaces.keySet()) {
+                            JsonObject childObject = underFaces.getAsJsonObject(subKeys);
 
-                        // Process child objects under "elements"
-                        for (String childKey : underElements.keySet()) {
-                            if (childKey.equals("faces")) {
-                                for (String subKeys : underElements.getAsJsonObject(childKey).keySet()) {
-                                    JsonObject childObject = underElements.getAsJsonObject(childKey).getAsJsonObject(subKeys);
-
-                                    // Add "tintindex": 0 if not present
-                                    if (childObject != null && !childObject.has("tintindex")) {
-                                        childObject.addProperty("tintindex", tintIndex);
-                                    }
-                                }
+                            // Add "tintindex": 0 if not present
+                            if (childObject != null && !childObject.has("tintindex")) {
+                                childObject.addProperty("tintindex", tintIndex);
                             }
                         }
                     }
                 }
             }
-            else if (value instanceof JsonObject jo) {
-                // Recursively process nested objects
-                addTintIndexToModels(jo, tintIndex);
-            }
         }
+
     }
 
 
