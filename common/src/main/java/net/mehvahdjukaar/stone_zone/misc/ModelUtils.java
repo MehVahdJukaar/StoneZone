@@ -8,6 +8,8 @@ import net.mehvahdjukaar.stone_zone.api.SZModule;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,26 +18,24 @@ public final class ModelUtils {
 
     private static String RegEx = "\"parent\"\\s*:\\s*\"((.*?):(block.*?)(\\/\\w+))\"";
     private static final Pattern PARENT_PATTERN = Pattern.compile(RegEx);
-    private static boolean isCubeIncluded = false;
+
+    /// Modified model files won't be put in parentsToReplace
+    public static final Map<ResourceLocation, ResourceLocation> modifiedParent = new HashMap<>();
 
     public static String replaceParent(String input, SimpleModule module) {
         Matcher matcher = PARENT_PATTERN.matcher(input);
         String RegExALT = RegEx; // prevent the incrementing
         RegExALT = ".*" + RegExALT + ",.*";
 
-        // RegEx Alt - skip the files from models/item
+        // RegExALT - skip the files from models/item
         if (matcher.find() && Pattern.compile(RegExALT).matcher(input).find()) {
 
-            // minecraft:block/aa -> stonezone:block/minecraft/aa
+            // oldRes: minecraft:block/aa -> newRes: stonezone:block/minecraft/aa
             return matcher.replaceAll(m -> {
+                ResourceLocation oldRes = new ResourceLocation(matcher.group(1));
                 ResourceLocation newRes = StoneZone.res(m.group(3) + "/" + m.group(2) + m.group(4));
-                if (module instanceof SZModule szModule) {
-                    szModule.addParentModelToMap(new ResourceLocation(matcher.group(1)), newRes);
-                    if (!isCubeIncluded) {
-                        szModule.addParentModelToMap(new ResourceLocation("block/cube"),
-                                StoneZone.res("block/minecraft/cube"));
-                        isCubeIncluded = true;
-                    }
+                if (module instanceof SZModule szModule && !modifiedParent.containsKey(oldRes) && !oldRes.getPath().contains("snow")) {
+                    szModule.addParentModelToMap(oldRes, newRes);
                 }
                 return "\"parent\": \"" + newRes + "\"";
             });

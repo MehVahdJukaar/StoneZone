@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.modifiedParent;
 import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.replaceCubePath;
 
 
@@ -70,7 +71,6 @@ public class SZModule extends SimpleModule {
     @Override
     public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
         super.addDynamicClientResources(handler, manager);
-
         // Creating custom models
         for (var r : parentsToReplace.entrySet()) {
             StaticResource res = StaticResource.getOrLog(manager, ResType.MODELS.getPath(r.getKey()));
@@ -80,18 +80,24 @@ public class SZModule extends SimpleModule {
 
                 // Modifying the contents
                 json = ModelUtils.forceSetTintIndex(json);
-                if (json.contains("block/cube\"")) json = replaceCubePath(json, parentsToReplace.get(new ResourceLocation("minecraft:block/cube")));
+                if (json.contains("block/cube\"")) json = replaceCubePath(json, modifiedParent.get(new ResourceLocation("minecraft:block/cube")));
 
                 // Add custom models to the resources
                 handler.dynamicPack.addBytes(r.getValue(), json.getBytes(), ResType.MODELS);
+                modifiedParent.put(r.getKey(), r.getValue());
             }
         }
     }
 
     private final Map<ResourceLocation, ResourceLocation> parentsToReplace = new HashMap<>();
 
-    public void addParentModelToMap(ResourceLocation old, ResourceLocation newRes) {
-        parentsToReplace.put(old, newRes);
+    public void addParentModelToMap(ResourceLocation oldRes, ResourceLocation newRes) {
+        if (!modifiedParent.containsKey(new ResourceLocation("block/cube"))) {
+            parentsToReplace.put(new ResourceLocation("block/cube"), StoneZone.res("block/minecraft/cube"));
+            modifiedParent.put(new ResourceLocation("block/cube"), StoneZone.res("block/minecraft/cube"));
+        }
+
+        if (!modifiedParent.containsKey(oldRes)) parentsToReplace.put(oldRes, newRes);
     }
 
 }
