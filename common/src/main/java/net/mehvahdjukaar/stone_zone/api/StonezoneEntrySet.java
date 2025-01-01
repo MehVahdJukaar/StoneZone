@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.*;
 
+import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.forceSetTintIndex;
 import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.replaceParent;
 
 public class StonezoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
@@ -58,7 +59,11 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 .replaceWithTextureFromChild("minecraft:block/" + nameStoneType + "_bricks", "bricks")
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + nameStoneType, "smooth_stone")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameStoneType, "polished")
-                .addModifier((s, blockId, blockType) -> replaceParent(s, module));
+                // Modifying models' parent & "elements"
+                .addModifier((s, blockId, blockType) -> {
+                    if (s.contains("elements")) s = forceSetTintIndex(s);
+                    return replaceParent(s, module);
+                });
     }
 
     @Override
