@@ -1,10 +1,13 @@
 package net.mehvahdjukaar.stone_zone.modules.quark;
 
+import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.modules.quark.QuarkSimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.SZModule;
+import net.mehvahdjukaar.stone_zone.api.set.MudType;
+import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -17,8 +20,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.WallBlock;
+import org.violetmoon.quark.content.building.block.MudBrickLatticeBlock;
 import org.violetmoon.quark.content.building.block.VerticalSlabBlock;
 import org.violetmoon.quark.content.building.module.MoreBrickTypesModule;
+import org.violetmoon.quark.content.building.module.MoreMudBlocksModule;
 import org.violetmoon.quark.content.building.module.MoreStoneVariantsModule;
 import org.violetmoon.quark.content.building.module.VerticalSlabsModule;
 import org.violetmoon.zeta.block.ZetaBlock;
@@ -87,6 +92,5 @@ public class QuarkModule extends SZModule {
                 .addRecipe(modRes("building/stonecutting/stonevariants/andesite_pillar_stonecutter"))
                 .build();
         this.addEntry(pillars);
-
     }
 }

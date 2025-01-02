@@ -100,7 +100,7 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends Stonezo
         return new Builder<>(type, name, prefix, quarkModule, baseType, baseBlock, factory);
     }
 
-    public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {
+    public static class Builder<T extends BlockType, B extends Block> extends StonezoneEntrySet.Builder<T, B> {
 
         private final Function<T, B> blockSupplier;
         private final Class<? extends ZetaModule> quarkModule;

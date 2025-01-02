@@ -3,6 +3,7 @@ package net.mehvahdjukaar.stone_zone;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.stone_zone.api.intergration.CompatStoneType;
+import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
 import net.mehvahdjukaar.stone_zone.configs.SZConfigs;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.resources.ResourceLocation;
@@ -18,6 +19,7 @@ public class StoneZone extends EveryCompat {
         SZRegistry.init();
 
         BlockSetAPI.registerBlockSetDefinition(StoneTypeRegistry.INSTANCE);
+        BlockSetAPI.registerBlockSetDefinition(MudTypeRegistry.INSTANCE);
         CompatStoneType.init();
     }
 
