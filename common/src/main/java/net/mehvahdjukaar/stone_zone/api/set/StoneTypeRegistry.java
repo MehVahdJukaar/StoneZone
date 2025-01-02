@@ -34,7 +34,6 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
     public StoneTypeRegistry() {
         super(StoneType.class, "stone_type");
 
-//        this.addFinder(StoneType.Finder.vanilla("andesite"));
         this.addFinder(StoneType.Finder.vanilla("diorite"));
         this.addFinder(StoneType.Finder.vanilla("granite"));
         this.addFinder(StoneType.Finder.vanilla("tuff"));
@@ -57,19 +56,20 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
                 var opt = BuiltInRegistries.BLOCK.getOptional(
                         new ResourceLocation(baseRes.getNamespace(), path.replace("bricks", "raw"))
                 );
-//                Moonlight.LOGGER.warn("STONER: {} - {}", stoneName, baseRes);
                 if (opt.isPresent()) {
                     return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));
                 }
             }
         }
 
-        if (path.matches("[a-z]+_bricks") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM) {
-            String stoneName = path.substring(0, path.length() - 7);
+        if (path.matches("[a-z]+(_bricks|_stone_bricks)") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM) {
+            String stoneName = path.substring(0, path.length() - 7); // get stoneName from namespace:stoneName_bricks
+            String stoneAlt = stoneName + "_stone"; // Some mods included "_stone" as the suffix
             var opt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(stoneName));
-            if (opt.isPresent()) {
-                return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));
-            }
+            var alt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(stoneAlt));
+            if (opt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));
+            else if (alt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneAlt), alt.get()));
+
         }
         return Optional.empty();
     }
