@@ -22,11 +22,14 @@ public class HardcodedBlockType {
 
             /// ========== EXCLUDE ========== \\\
         // EXAMPLE
-        if (isStoneRegistryOf("", "", "", "", "")) return true;
+//        if (isStoneRegistryOf("create", "c", "create", "create:limestone", "limestone_pillar")) return true;
+
+        // Create: Dreams & Desires' cut_stone_bricks shouldn't be detected but was
+        if (isStoneRegistryOf("", "", "", "create_dd:cut_stone", "")) return true;
 
             /// ========== INCLUDE ========== \\\
         // EXAMPLE
-        if (isStoneRegistryOf("", "", "", "", "")) return false;
+//        if (isStoneRegistryOf("", "", "", "", "")) return false;
 
 
         return null;

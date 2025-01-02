@@ -8,7 +8,9 @@ import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.SZRegistry;
 import net.mehvahdjukaar.stone_zone.StoneZone;
+import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
@@ -59,10 +61,10 @@ public class SZModule extends SimpleModule {
         String blockName = blockId.substring(blockId.lastIndexOf("/") + 1);
 
         /// DISABLED FOR NOW, There is no hardcoded Blocks yet
-//        if (blockType instanceof StoneType stoneType) {
-//            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(blockName, stoneType, compatModId, shortenedId());
-//            if (hardcoded != null) return hardcoded;
-//        }
+        if (blockType instanceof StoneType stoneType) {
+            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(blockName, stoneType, modId, shortenedId());
+            if (hardcoded != null) return hardcoded;
+        }
 
         return false;
     }
