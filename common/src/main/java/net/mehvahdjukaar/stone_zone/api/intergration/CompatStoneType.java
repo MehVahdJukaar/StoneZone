@@ -20,6 +20,15 @@ public class CompatStoneType {
         simpleFinder("create", "scoria");
         simpleFinder("create", "scorchia");
 
+        // Create Dreams & Desires
+        simpleFinder("create_dd", "gabbro");
+        simpleFinder("create_dd", "weathered_limestone");
+        simpleFinder("create_dd", "aethersite");
+        simpleFinder("create_dd", "potassic");
+
+        // Bountiful Fares - nameStone of feldspar is feldspar_block
+        stoneBlockFinder("bountifulfares", "feldspar");
+
         // Aether Redux - undetected due to HARP sound
         simpleFinder("aether_redux", "sentrite");
         simpleFinder("aether_redux", "divinite");
@@ -62,6 +71,7 @@ public class CompatStoneType {
         BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
     }
 
+    /// nameStone has "_block" as suffix
     public static void stoneBlockFinder(String modId, String nameStoneType) {
         var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStoneType +"_block");
 
