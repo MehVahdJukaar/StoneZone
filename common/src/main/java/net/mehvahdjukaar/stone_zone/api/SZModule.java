@@ -1,15 +1,14 @@
 package net.mehvahdjukaar.stone_zone.api;
 
+import com.google.gson.JsonObject;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
-import net.mehvahdjukaar.moonlight.api.resources.StaticResource;
 import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.SZRegistry;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
 import net.minecraft.core.Registry;
@@ -18,12 +17,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.CreativeModeTab;
 
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.Objects;
-
-import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.modifiedParent;
-import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.replaceCubePath;
+import java.util.Set;
 
 
 public class SZModule extends SimpleModule {
@@ -74,32 +70,22 @@ public class SZModule extends SimpleModule {
     public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
         super.addDynamicClientResources(handler, manager);
         // Creating custom models
-        for (var r : parentsToReplace.entrySet()) {
-            StaticResource res = StaticResource.getOrLog(manager, ResType.MODELS.getPath(r.getKey()));
-            if (res != null) {
-                // Read resource in string
-                String json = new String(res.data);
+        Map<ResourceLocation, JsonObject> models = ModelUtils.readAllModelsAndParents(manager, modelsToModify);
+        for (var e : models.entrySet()) {
+            // Modifying the contents
+            JsonObject json = e.getValue();
+            ModelUtils.addTintIndexToModel(json, 0);
+            ResourceLocation newId = ModelUtils.transformModelID(e.getKey());
 
-                // Modifying the contents
-                json = ModelUtils.forceSetTintIndex(json);
-                if (json.contains("block/cube\"")) json = replaceCubePath(json, modifiedParent.get(new ResourceLocation("minecraft:block/cube")));
-
-                // Add custom models to the resources
-                handler.dynamicPack.addBytes(r.getValue(), json.getBytes(), ResType.MODELS);
-                modifiedParent.put(r.getKey(), r.getValue());
-            }
+            // Add custom models to the resources
+            handler.dynamicPack.addJson(newId, json, ResType.MODELS);
         }
     }
 
-    private final Map<ResourceLocation, ResourceLocation> parentsToReplace = new HashMap<>();
+    private final Set<ResourceLocation> modelsToModify = new HashSet<>();
 
-    public void addParentModelToMap(ResourceLocation oldRes, ResourceLocation newRes) {
-        if (!modifiedParent.containsKey(new ResourceLocation("block/cube"))) {
-            parentsToReplace.put(new ResourceLocation("block/cube"), StoneZone.res("block/minecraft/cube"));
-            modifiedParent.put(new ResourceLocation("block/cube"), StoneZone.res("block/minecraft/cube"));
-        }
-
-        if (!modifiedParent.containsKey(oldRes)) parentsToReplace.put(oldRes, newRes);
+    public void markModelForModification(ResourceLocation oldRes) {
+        modelsToModify.add(oldRes);
     }
 
 }
