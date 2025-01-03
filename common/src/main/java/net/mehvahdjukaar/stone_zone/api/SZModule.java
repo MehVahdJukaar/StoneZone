@@ -74,7 +74,7 @@ public class SZModule extends SimpleModule {
         for (var e : models.entrySet()) {
             // Modifying the contents
             JsonObject json = e.getValue();
-            ModelUtils.addTintIndexToModel(json, 0);
+            ModelUtils.addTintIndexToModelAndReplaceParent(json, null);
             ResourceLocation newId = ModelUtils.transformModelID(e.getKey());
 
             // Add custom models to the resources
