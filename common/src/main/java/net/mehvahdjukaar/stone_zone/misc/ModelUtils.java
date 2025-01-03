@@ -32,7 +32,7 @@ public final class ModelUtils {
     public static ResourceLocation transformModelID(ResourceLocation id) {
         Matcher matcher = PATH_PATTERN.matcher(id.getPath());
 
-        if (!matcher.find()) {
+        if (!matcher.find() || id.getNamespace().contains("stonezone")) {
             //error
             return id;
         }
