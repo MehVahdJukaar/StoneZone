@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 //!! Tools to create a custom model for StoneZone's blocks to have tinted color
 public final class ModelUtils {
     // dont skip any arbitrary parent
-    private static final Pattern PATH_PATTERN = Pattern.compile("(.*?)(\\/.*?)");
+    private static final Pattern PATH_PATTERN = Pattern.compile("(.*?)(\\/.*$)");
     // just replace models once
     private static final Set<ResourceLocation> RESOLVED_PARENTS = new HashSet<>();
 
