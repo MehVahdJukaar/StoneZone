@@ -18,6 +18,9 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
     public static final StoneType STONE_TYPE = new StoneType(new ResourceLocation("stone"), Blocks.STONE);
     public static final StoneType ANDESITE_TYPE = new StoneType(new ResourceLocation("andesite"), Blocks.ANDESITE);
+    public static final StoneType BLACKSTONE_TYPE = new StoneType(new ResourceLocation("blackstone"), Blocks.ANDESITE);
+    public static final StoneType MUD_TYPE = new StoneType(new ResourceLocation("mud"), Blocks.ANDESITE);
+
 
     public static Collection<StoneType> getTypes() {
         return INSTANCE.getValues();
@@ -25,10 +28,6 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
     public static StoneType getValue(String stoneTypeId) {
         return INSTANCE.get(new ResourceLocation(stoneTypeId));
-    }
-
-    public static StoneType getAndesiteType() {
-        return StoneTypeRegistry.getValue("andesite");
     }
 
     public StoneTypeRegistry() {
@@ -62,9 +61,10 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
             }
         }
 
-        if (path.matches("[a-z]+(_bricks|_stone_bricks)") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM) {
+        // Check for <type>_bricks | <type>_stone_bricks | <type>_mud_bricks
+        if (path.matches("[a-z]+(_bricks|_(stone|mud)_bricks)") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM) {
             String stoneName = path.substring(0, path.length() - 7); // get stoneName from namespace:stoneName_bricks
-            String stoneAlt = stoneName + "_stone"; // Some mods included "_stone" as the suffix
+            String stoneAlt = (path.contains("mud")) ? stoneName + "_mud" : stoneName + "_stone"; // Some mods included "_stone" as the suffix
             var opt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(stoneName));
             var alt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(stoneAlt));
             if (opt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));
