@@ -12,6 +12,7 @@ import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.api.SZModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -100,6 +101,7 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends Stonezo
         return new Builder<>(type, name, prefix, quarkModule, baseType, baseBlock, factory);
     }
 
+    //!! SUBCLASS
     public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {
 
         private final Function<T, B> blockSupplier;
@@ -111,6 +113,18 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends Stonezo
             super(type, name, prefix, baseType, baseBlock, null);
             this.quarkModule = quarkModule;
             this.blockSupplier = factory;
+        }
+
+        public QuarkEntrySet.Builder<T, B> createPaletteFromStone() {
+            return (QuarkEntrySet.Builder<T, B>) createPaletteFromChild("stone");
+        }
+
+        public QuarkEntrySet.Builder<T, B> createPaletteFromBricks() {
+            StoneType stoneType = (StoneType) baseType.get();
+            if (Objects.nonNull(stoneType.getBlockOfThis("bricks")))
+                return (QuarkEntrySet.Builder<T, B>) createPaletteFromChild("bricks");
+            else
+                return createPaletteFromStone();
         }
 
         @Override
