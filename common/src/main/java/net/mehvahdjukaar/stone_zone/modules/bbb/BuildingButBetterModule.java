@@ -1,6 +1,7 @@
 package net.mehvahdjukaar.stone_zone.modules.bbb;
 
 import com.starfish_studios.bbb.block.*;
+import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.SZModule;
@@ -56,6 +57,7 @@ public class BuildingButBetterModule extends SZModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_column_from_stonecutting"))
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(columns);
 
@@ -93,6 +95,7 @@ public class BuildingButBetterModule extends SZModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_urn_from_stonecutting"))
+                .setRenderType(RenderLayer.CUTOUT)
                 .build();
         this.addEntry(urns);
 
@@ -109,6 +112,7 @@ public class BuildingButBetterModule extends SZModule {
                 .defaultRecipe()
                 .addRecipe(modRes("stone_tiles_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_tiles_from_bricks_stonecutting"))
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(tiles);
 
@@ -127,6 +131,7 @@ public class BuildingButBetterModule extends SZModule {
                 .addRecipe(modRes("stone_tile_stairs_from_stonecutting"))
                 .addRecipe(modRes("stone_tile_stairs_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_tile_stairs_from_bricks_stonecutting"))
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(tile_stairs);
 
@@ -144,6 +149,7 @@ public class BuildingButBetterModule extends SZModule {
                 .addRecipe(modRes("stone_tile_slab_from_stonecutting"))
                 .addRecipe(modRes("stone_tile_slab_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_tile_slab_from_bricks_stonecutting"))
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(tile_slabs);
 
@@ -161,6 +167,7 @@ public class BuildingButBetterModule extends SZModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_layer_from_stonecutting"))
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(layers);
 
@@ -178,6 +185,7 @@ public class BuildingButBetterModule extends SZModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_brick_layer_from_stonecutting"))
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(brick_layers);
 
@@ -190,6 +198,7 @@ public class BuildingButBetterModule extends SZModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("smooth_stone_layer_from_stonecutting"))
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(smooth_layers);
 
@@ -210,6 +219,7 @@ public class BuildingButBetterModule extends SZModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_moulding_from_stonecutting"))
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(mouldings);
 
@@ -230,5 +240,6 @@ public class BuildingButBetterModule extends SZModule {
 //        this.addEntry(blocks);
 
     }
+
 
 }

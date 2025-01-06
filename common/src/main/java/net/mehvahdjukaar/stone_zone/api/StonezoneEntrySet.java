@@ -1,5 +1,6 @@
 package net.mehvahdjukaar.stone_zone.api;
 
+import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
@@ -9,9 +10,11 @@ import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
+import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
 import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -22,9 +25,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.*;
-
-import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.forceSetTintIndex;
-import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.replaceParent;
 
 public class StonezoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
 
@@ -53,15 +53,18 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
 
     @Override
     protected BlockTypeResTransformer<T> makeModelTransformer(SimpleModule module, ResourceManager manager) {
-
         String nameStoneType = baseType.get().getTypeName();
         return super.makeModelTransformer(module, manager)
                 .replaceWithTextureFromChild("minecraft:block/" + nameStoneType, "stone")
                 .replaceWithTextureFromChild("minecraft:block/" + nameStoneType + "_bricks", "bricks")
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + nameStoneType, "smooth_stone")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameStoneType, "polished")
-                .addModifier((s, resourceLocation, t) -> forceSetTintIndex(s))
-                .addModifier((a, b, c) -> replaceParent(a, module));
+                // Modifying models' parent & "elements"
+                .addModifier((s, blockId, blockType) -> {
+                    JsonObject jsonObject = GsonHelper.parse(s);
+                    ModelUtils.addTintIndexToModelAndReplaceParent(jsonObject, module);
+                    return jsonObject.toString();
+                });
     }
 
     @Override

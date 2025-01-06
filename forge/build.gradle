@@ -121,7 +121,7 @@ dependencies {
 //    modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
 
     //!! MAVEN
-    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.8
+    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.10
 
 //!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
     modRuntimeOnly("curse.maven:jei-238222:5846810")
@@ -137,10 +137,11 @@ dependencies {
 //    modRuntimeOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
 //    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | ?
 //    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | ?
-    modRuntimeOnly("curse.maven:citadel-331936:6002521") // v2.6.1 | Alexs-Caves
+//    modRuntimeOnly("curse.maven:citadel-331936:6002521") // v2.6.1 | Alexs-Caves
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled
 //    modRuntimeOnly("curse.maven:supermartijn642s-core-lib-454372:5668859") // v1.1.17a | Rechiseled
+    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct
 
         // ~/forge/mods LOCAL
 
@@ -169,7 +170,9 @@ dependencies {
 //    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643")
 //    modRuntimeOnly("curse.maven:spelunkery-790530:5727135") // Moonlight-Lib
 //    modRuntimeOnly("curse.maven:deeperdarker-659011:5906086")
-    modRuntimeOnly("curse.maven:alexs-caves-924854:5848216") // Citadel
+//    modRuntimeOnly("curse.maven:alexs-caves-924854:5848216") // Citadel
+    modRuntimeOnly("curse.maven:tinkers-construct-74072:6041763") // Mantle
+    modRuntimeOnly("curse.maven:thaumon-926511:5492065")
 
     // STONETYPE & WOODTYPE
 //    modRuntimeOnly("curse.maven:terrafirmacraft-302973:5943050") // patchouli
