@@ -17,7 +17,7 @@ body:
           required: true
         - label: "The undetected StoneType must have 3 unique wordings as a name. Example: enlightened_end:void_shale_bricks"
           required: true
-        - label: "Check the undetected StoneType for the sound, if it's not BRASS_DRUM, then it's an issue on the StoneType's mod. Report it to the DEV"
+        - label: "Check the undetected StoneType for the sound, if it's not BASE_DRUM, then it's an issue on the StoneType's mod. Report it to the DEV"
           required: true
         - label: "Check whether there are a similar issue listed or not."
           required: true
