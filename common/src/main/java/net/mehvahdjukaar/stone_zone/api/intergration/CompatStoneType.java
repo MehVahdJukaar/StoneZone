@@ -11,6 +11,12 @@ public class CompatStoneType {
 
     public static void init() {
 
+        // BetterEnd
+        simpleFinder("betterend", "azure_jadestone");
+        simpleFinder("betterend", "sandy_jadestone");
+        simpleFinder("betterend", "virid_jadestone");
+        simpleFinder("betterend", "sulphuric_rock");
+
         // Create - undetected due to no BRICKS
         simpleFinder("create", "limestone");
         simpleFinder("create", "asurine");
