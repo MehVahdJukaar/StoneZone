@@ -69,6 +69,7 @@ public class CreateModule extends SZModule {
                 .addTexture(modRes("block/palettes/stone_types/cut/andesite_cut"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
@@ -85,6 +86,7 @@ public class CreateModule extends SZModule {
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .addTag(ItemTags.STAIRS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -102,6 +104,7 @@ public class CreateModule extends SZModule {
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(ItemTags.SLABS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("cut_andesite_slab_recycling")) //Crafts cut_andesite
@@ -119,6 +122,7 @@ public class CreateModule extends SZModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(ItemTags.WALLS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -132,6 +136,7 @@ public class CreateModule extends SZModule {
                 .addTexture(modRes("block/palettes/stone_types/brick/andesite_cut_brick"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
@@ -147,6 +152,7 @@ public class CreateModule extends SZModule {
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .addTag(ItemTags.STAIRS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -163,6 +169,7 @@ public class CreateModule extends SZModule {
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(ItemTags.SLABS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("cut_andesite_slab_recycling")) //Crafts cut_andesite_bricks
@@ -180,6 +187,7 @@ public class CreateModule extends SZModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(ItemTags.WALLS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -193,6 +201,7 @@ public class CreateModule extends SZModule {
                 .addTexture(modRes("block/palettes/stone_types/polished/andesite_cut_polished"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
@@ -209,6 +218,7 @@ public class CreateModule extends SZModule {
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .addTag(ItemTags.STAIRS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -227,6 +237,7 @@ public class CreateModule extends SZModule {
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(ItemTags.SLABS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("polished_cut_andesite_slab_recycling")) //Crafts polished_cut_andesite
@@ -244,6 +255,7 @@ public class CreateModule extends SZModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(ItemTags.WALLS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -257,6 +269,7 @@ public class CreateModule extends SZModule {
                 .addTexture(modRes("block/palettes/stone_types/small_brick/andesite_cut_small_brick"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
@@ -273,6 +286,7 @@ public class CreateModule extends SZModule {
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .addTag(ItemTags.STAIRS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -289,6 +303,7 @@ public class CreateModule extends SZModule {
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(ItemTags.SLABS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("small_andesite_brick_slab_recycling")) //Crafts small_andesite_bricks
@@ -306,6 +321,7 @@ public class CreateModule extends SZModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(ItemTags.WALLS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -321,6 +337,7 @@ public class CreateModule extends SZModule {
                 .addTexture(modRes("block/palettes/stone_types/pillar/andesite_cut_pillar_connected"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
@@ -336,6 +353,7 @@ public class CreateModule extends SZModule {
                 .addTexture(modRes("block/palettes/stone_types/layered/andesite_cut_layered_connected"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 //TAGS: create:stone_types/andesite - manually created
+                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
