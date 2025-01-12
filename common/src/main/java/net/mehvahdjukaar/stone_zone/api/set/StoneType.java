@@ -2,7 +2,6 @@ package net.mehvahdjukaar.stone_zone.api.set;
 
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -91,9 +90,7 @@ public class StoneType extends BlockType {
         this.addChild("brick", this.findRelatedEntry("brick", BuiltInRegistries.ITEM));
     }
 
-    /**
-     * @param suffix concatenation of "brick_" + suffix
-    **/
+    /// @param suffix concatenation of "brick_" + suffix
     private @Nullable Block findChildBrickEntry(String suffix) {
         var first = this.findRelatedEntry("brick_" + suffix, BuiltInRegistries.BLOCK);
         if (first != null) return first;

@@ -63,7 +63,7 @@ public class CreateModule extends SZModule {
         ResourceLocation tab = modRes("palettes");
 
         cuts = StonezoneEntrySet.of(StoneType.class, "", "cut",
-                        getModBlock("cut_andesite"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("cut_andesite"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/palettes/stone_types/cut/andesite_cut"))
@@ -76,7 +76,7 @@ public class CreateModule extends SZModule {
         this.addEntry(cuts);
 
         cut_stairs = StonezoneEntrySet.of(StoneType.class, "stairs", "cut",
-                        getModBlock("cut_andesite_stairs"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("cut_andesite_stairs"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
                                 Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -94,7 +94,7 @@ public class CreateModule extends SZModule {
         this.addEntry(cut_stairs);
 
         cut_slabs = StonezoneEntrySet.of(StoneType.class, "slab", "cut",
-                        getModBlock("cut_andesite_slab"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("cut_andesite_slab"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .requiresFromMap(cuts.blocks) //REASON: recipes
@@ -113,7 +113,7 @@ public class CreateModule extends SZModule {
         this.addEntry(cut_slabs);
 
         cut_walls = StonezoneEntrySet.of(StoneType.class, "wall", "cut",
-                        getModBlock("cut_andesite_wall"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("cut_andesite_wall"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new WallBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .requiresFromMap(cuts.blocks) //REASON: recipes
@@ -130,7 +130,7 @@ public class CreateModule extends SZModule {
         this.addEntry(cut_walls);
 
         cut_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "cut",
-                        getModBlock("cut_andesite_bricks"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("cut_andesite_bricks"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/palettes/stone_types/brick/andesite_cut_brick"))
@@ -143,7 +143,7 @@ public class CreateModule extends SZModule {
         this.addEntry(cut_bricks);
 
         cut_brick_stairs = StonezoneEntrySet.of(StoneType.class, "brick_stairs", "cut",
-                        getModBlock("cut_andesite_brick_stairs"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("cut_andesite_brick_stairs"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(), copyChildrenPropertySafe("brick_stairs", stoneType))
                 )
                 .requiresFromMap(cut_bricks.blocks) //REASON: recipes
@@ -160,7 +160,7 @@ public class CreateModule extends SZModule {
         this.addEntry(cut_brick_stairs);
 
         cut_brick_slabs = StonezoneEntrySet.of(StoneType.class, "brick_slab", "cut",
-                        getModBlock("cut_andesite_brick_slab"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("cut_andesite_brick_slab"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new SlabBlock(copyChildrenPropertySafe("brick_slab", stoneType))
                 )
                 .requiresFromMap(cut_bricks.blocks) //REASON: recipes
@@ -178,7 +178,7 @@ public class CreateModule extends SZModule {
         this.addEntry(cut_brick_slabs);
 
         cut_brick_walls = StonezoneEntrySet.of(StoneType.class, "brick_wall", "cut",
-                        getModBlock("cut_andesite_brick_wall"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("cut_andesite_brick_wall"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new WallBlock(copyChildrenPropertySafe("brick_wall", stoneType))
                 )
                 .requiresFromMap(cut_bricks.blocks) //REASON: recipes
@@ -195,7 +195,7 @@ public class CreateModule extends SZModule {
         this.addEntry(cut_brick_walls);
 
         polished_cuts = StonezoneEntrySet.of(StoneType.class, "", "polished_cut",
-                        getModBlock("polished_cut_andesite"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("polished_cut_andesite"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/palettes/stone_types/polished/andesite_cut_polished"))
@@ -208,7 +208,7 @@ public class CreateModule extends SZModule {
         this.addEntry(polished_cuts);
 
         polished_cut_stairs = StonezoneEntrySet.of(StoneType.class, "stairs", "polished_cut",
-                        getModBlock("polished_cut_andesite_stairs"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("polished_cut_andesite_stairs"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
                                 copyChildrenPropertySafe("polished_stairs", stoneType))
                 )
@@ -226,7 +226,7 @@ public class CreateModule extends SZModule {
         this.addEntry(polished_cut_stairs);
 
         polished_cut_slabs = StonezoneEntrySet.of(StoneType.class, "slab", "polished_cut",
-                        getModBlock("polished_cut_andesite_slab"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("polished_cut_andesite_slab"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new SlabBlock(copyChildrenPropertySafe("polished_slab", stoneType))
                 )
                 .requiresFromMap(polished_cuts.blocks) //REASON: recipes
@@ -246,7 +246,7 @@ public class CreateModule extends SZModule {
         this.addEntry(polished_cut_slabs);
 
         polished_cut_walls = StonezoneEntrySet.of(StoneType.class, "wall", "polished_cut",
-                        getModBlock("polished_cut_andesite_wall"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("polished_cut_andesite_wall"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new WallBlock(copyChildrenPropertySafe("polished_wall", stoneType))
                 )
                 .requiresFromMap(polished_cuts.blocks) //REASON: recipes
@@ -263,7 +263,7 @@ public class CreateModule extends SZModule {
         this.addEntry(polished_cut_walls);
 
         small_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "small",
-                        getModBlock("small_andesite_bricks"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("small_andesite_bricks"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/palettes/stone_types/small_brick/andesite_cut_small_brick"))
@@ -276,7 +276,7 @@ public class CreateModule extends SZModule {
         this.addEntry(small_bricks);
 
         small_brick_stairs = StonezoneEntrySet.of(StoneType.class, "brick_stairs", "small",
-                        getModBlock("small_andesite_brick_stairs"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("small_andesite_brick_stairs"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
                                 copyChildrenPropertySafe("polished_stairs", stoneType))
                 )
@@ -294,7 +294,7 @@ public class CreateModule extends SZModule {
         this.addEntry(small_brick_stairs);
 
         small_brick_slabs = StonezoneEntrySet.of(StoneType.class, "brick_slab", "small",
-                        getModBlock("small_andesite_brick_slab"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("small_andesite_brick_slab"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new SlabBlock(copyChildrenPropertySafe("polished_slab", stoneType))
                 )
                 .addCondition(s -> Objects.nonNull(small_bricks.blocks.get(s))) //REASON: recipes
@@ -312,7 +312,7 @@ public class CreateModule extends SZModule {
         this.addEntry(small_brick_slabs);
 
         small_brick_walls = StonezoneEntrySet.of(StoneType.class, "brick_wall", "small",
-                        getModBlock("small_andesite_brick_wall"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("small_andesite_brick_wall"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new WallBlock(copyChildrenPropertySafe("polished_wall", stoneType))
                 )
                 .addCondition(s -> Objects.nonNull(small_bricks.blocks.get(s))) //REASON: recipes
@@ -329,7 +329,7 @@ public class CreateModule extends SZModule {
         this.addEntry(small_brick_walls);
 
         pillars = StonezoneEntrySet.of(StoneType.class, "pillar",
-                        getModBlock("andesite_pillar"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("andesite_pillar"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new ConnectedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 //TEXTURES: layereds' andesite_cut_cap & andesite_cut_cap_connected (below)
@@ -344,7 +344,7 @@ public class CreateModule extends SZModule {
         this.addEntry(pillars);
 
         layereds = StonezoneEntrySet.of(StoneType.class, "", "layered",
-                        getModBlock("layered_andesite"), () -> StoneTypeRegistry.ANDESITE_TYPE,
+                        getModBlock("layered_andesite"), StoneTypeRegistry::ANDESITE_TYPE,
                         stoneType -> new LayeredBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/palettes/stone_types/cap/andesite_cut_cap")) // andesite_cut_cap
@@ -362,6 +362,7 @@ public class CreateModule extends SZModule {
     }
 
     @Override
+    // RECIPES & TAGS
     public void addDynamicServerResources(ServerDynamicResourcesHandler handler, ResourceManager manager) {
         super.addDynamicServerResources(handler, manager);
 
@@ -399,7 +400,6 @@ public class CreateModule extends SZModule {
 
                     RecipeUtility.stonecuttingWithTagRecipe(output, recipeResLoc, tagResLoc, newRecipeLoc, handler, manager);
                 }
-
             }
         });
     }

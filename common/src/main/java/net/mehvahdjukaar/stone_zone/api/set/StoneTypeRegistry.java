@@ -17,10 +17,21 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
     public static final StoneTypeRegistry INSTANCE = new StoneTypeRegistry();
 
     public static final StoneType STONE_TYPE = new StoneType(new ResourceLocation("stone"), Blocks.STONE);
-    public static final StoneType ANDESITE_TYPE = new StoneType(new ResourceLocation("andesite"), Blocks.ANDESITE);
-    public static final StoneType BLACKSTONE_TYPE = new StoneType(new ResourceLocation("blackstone"), Blocks.ANDESITE);
-    public static final StoneType MUD_TYPE = new StoneType(new ResourceLocation("mud"), Blocks.ANDESITE);
 
+    public StoneTypeRegistry() {
+        super(StoneType.class, "stone_type");
+
+        this.addFinder(StoneType.Finder.vanilla("andesite"));
+        this.addFinder(StoneType.Finder.vanilla("diorite"));
+        this.addFinder(StoneType.Finder.vanilla("granite"));
+        this.addFinder(StoneType.Finder.vanilla("tuff"));
+        this.addFinder(StoneType.Finder.vanilla("calcite"));
+        this.addFinder(StoneType.Finder.vanilla("blackstone"));
+    }
+
+    public static StoneType ANDESITE_TYPE() {
+        return getValue("andesite");
+    }
 
     public static Collection<StoneType> getTypes() {
         return INSTANCE.getValues();
@@ -28,15 +39,6 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
     public static StoneType getValue(String stoneTypeId) {
         return INSTANCE.get(new ResourceLocation(stoneTypeId));
-    }
-
-    public StoneTypeRegistry() {
-        super(StoneType.class, "stone_type");
-
-        this.addFinder(StoneType.Finder.vanilla("diorite"));
-        this.addFinder(StoneType.Finder.vanilla("granite"));
-        this.addFinder(StoneType.Finder.vanilla("tuff"));
-        this.addFinder(StoneType.Finder.vanilla("calcite"));
     }
 
     @Override
@@ -77,8 +79,8 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
     @Override
     public void addTypeTranslations(AfterLanguageLoadEvent language) {
-        this.getValues().forEach((w) -> {
-            if (language.isDefault()) language.addEntry(w.getTranslationKey(), w.getReadableName());
+        this.getValues().forEach((stoneType) -> {
+            if (language.isDefault()) language.addEntry(stoneType.getTranslationKey(), stoneType.getReadableName());
         });
     }
 
