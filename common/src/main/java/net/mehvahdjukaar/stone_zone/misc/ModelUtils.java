@@ -51,13 +51,14 @@ public final class ModelUtils {
             ResourceLocation newRes = transformModelID(oldRes);
             jsonObject.addProperty("parent", newRes.toString());
 
-            if (module instanceof SZModule szModule && !RESOLVED_PARENTS.contains(oldRes)) {
+            if (module instanceof SZModule szModule && !(RESOLVED_PARENTS.contains(oldRes) && oldRes.getNamespace().matches("stonezone"))) {
                 szModule.markModelForModification(oldRes);
                 RESOLVED_PARENTS.add(oldRes);
             }
         }
     }
 
+    @SuppressWarnings("SameParameterValue")
     private static void addTintIndexToModel(JsonObject jsonObject, int tintIndex) {
         JsonElement elements = jsonObject.get("elements");
         if (elements != null) {
@@ -84,7 +85,9 @@ public final class ModelUtils {
     public static Map<ResourceLocation, JsonObject> readAllModelsAndParents(ResourceManager manager, Collection<ResourceLocation> models) {
         Map<ResourceLocation, JsonObject> jsonObjects = new HashMap<>();
         for (ResourceLocation res : models) {
-            readJsonsRecursive(manager, res, jsonObjects);
+            if (!res.getNamespace().matches("stonezone")) {
+                readJsonsRecursive(manager, res, jsonObjects);
+            }
         }
         return jsonObjects;
     }
