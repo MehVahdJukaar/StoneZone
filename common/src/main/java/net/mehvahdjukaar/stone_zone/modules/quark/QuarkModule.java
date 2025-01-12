@@ -41,7 +41,7 @@ public class QuarkModule extends SZModule {
 
         vertical_slabs = QuarkEntrySet.of(StoneType.class, "vertical_slab",
                         VerticalSlabsModule.class,
-                        getModBlock("andesite_vertical_slab"), StoneTypeRegistry::ANDESITE_TYPE,
+                        getModBlock("andesite_vertical_slab"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis("slab"),
                                 copyChildrenPropertySafe("slab", stoneType))
                 )
@@ -59,7 +59,7 @@ public class QuarkModule extends SZModule {
 
         polished_vertical_slabs = QuarkEntrySet.of(StoneType.class, "vertical_slab", "polished",
                         VerticalSlabsModule.class,
-                        getModBlock("polished_andesite_vertical_slab"), StoneTypeRegistry::ANDESITE_TYPE,
+                        getModBlock("polished_andesite_vertical_slab"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis("polished_slab"),
                                 copyChildrenPropertySafe("polished_slab", stoneType))
                 )
@@ -76,7 +76,7 @@ public class QuarkModule extends SZModule {
         this.addEntry(polished_vertical_slabs);
 
         pillars = QuarkEntrySet.of(StoneType.class, "pillar", MoreStoneVariantsModule.class,
-                        getModBlock("andesite_pillar"), StoneTypeRegistry::ANDESITE_TYPE,
+                        getModBlock("andesite_pillar"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> {
                             String name = shortenedId() + "/" + stoneType.getAppendableIdWith("pillar");
                             return new ZetaPillarBlock(name, null, Utils.copyPropertySafe(stoneType.stone));

@@ -62,7 +62,7 @@ public class RechiseledModule extends SZModule {
         ResourceLocation tab = modRes(modId);
 
         big_tiles = StonezoneEntrySet.of(StoneType.class, "big_tiles",
-                        getModBlock("stone_big_tiles"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_big_tiles"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_big_tiles")).copyMCMETA())
@@ -73,7 +73,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(big_tiles);
 
         big_tiles_connecting = StonezoneEntrySet.of(StoneType.class, "big_tiles_connecting",
-                        getModBlock("stone_big_tiles_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_big_tiles_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -84,7 +84,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(big_tiles_connecting);
 
         bordered = StonezoneEntrySet.of(StoneType.class, "bordered",
-                        getModBlock("stone_bordered"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_bordered"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_bordered")).copyMCMETA())
@@ -95,7 +95,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(bordered);
 
         bordered_connecting = StonezoneEntrySet.of(StoneType.class, "bordered_connecting",
-                        getModBlock("stone_bordered_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_bordered_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -106,7 +106,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(bordered_connecting);
 
         brick_pattern = StonezoneEntrySet.of(StoneType.class, "brick_pattern",
-                        getModBlock("stone_brick_pattern"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_brick_pattern"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_brick_pattern")).copyMCMETA())
@@ -117,7 +117,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(brick_pattern);
 
         brick_pattern_connecting = StonezoneEntrySet.of(StoneType.class, "brick_pattern_connecting",
-                        getModBlock("stone_brick_pattern_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_brick_pattern_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -128,7 +128,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(brick_pattern_connecting);
 
         brick_paving = StonezoneEntrySet.of(StoneType.class, "brick_paving",
-                        getModBlock("stone_brick_paving"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_brick_paving"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_brick_paving")).copyMCMETA())
@@ -139,7 +139,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(brick_paving);
 
         brick_paving_connecting = StonezoneEntrySet.of(StoneType.class, "brick_paving_connecting",
-                        getModBlock("stone_brick_paving_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_brick_paving_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -150,7 +150,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(brick_paving_connecting);
 
         crushed = StonezoneEntrySet.of(StoneType.class, "crushed",
-                        getModBlock("stone_crushed"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_crushed"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_crushed")).copyMCMETA())
@@ -161,7 +161,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(crushed);
 
         crushed_connecting = StonezoneEntrySet.of(StoneType.class, "crushed_connecting",
-                        getModBlock("stone_crushed_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_crushed_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -172,7 +172,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(crushed_connecting);
 
         diagonal_bricks = StonezoneEntrySet.of(StoneType.class, "diagonal_bricks",
-                        getModBlock("stone_diagonal_bricks"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_diagonal_bricks"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_diagonal_bricks")).copyMCMETA())
@@ -183,7 +183,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(diagonal_bricks);
 
         diagonal_bricks_connecting = StonezoneEntrySet.of(StoneType.class, "diagonal_bricks_connecting",
-                        getModBlock("stone_diagonal_bricks_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_diagonal_bricks_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -194,7 +194,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(diagonal_bricks_connecting);
 
         path = StonezoneEntrySet.of(StoneType.class, "path",
-                        getModBlock("stone_path"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_path"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_path")).copyMCMETA())
@@ -205,7 +205,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(path);
 
         path_connecting = StonezoneEntrySet.of(StoneType.class, "path_connecting",
-                        getModBlock("stone_path_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_path_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -216,7 +216,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(path_connecting);
 
         rotated_bricks = StonezoneEntrySet.of(StoneType.class, "rotated_bricks",
-                        getModBlock("stone_rotated_bricks"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_rotated_bricks"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_rotated_bricks")).copyMCMETA())
@@ -227,7 +227,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(rotated_bricks);
 
         rotated_bricks_connecting = StonezoneEntrySet.of(StoneType.class, "rotated_bricks_connecting",
-                        getModBlock("stone_rotated_bricks_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_rotated_bricks_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -238,7 +238,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(rotated_bricks_connecting);
 
         small_bricks = StonezoneEntrySet.of(StoneType.class, "small_bricks",
-                        getModBlock("stone_small_bricks"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_small_bricks"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_small_bricks")).copyMCMETA())
@@ -249,7 +249,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(small_bricks);
 
         small_bricks_connecting = StonezoneEntrySet.of(StoneType.class, "small_bricks_connecting",
-                        getModBlock("stone_small_bricks_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_small_bricks_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -260,7 +260,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(small_bricks_connecting);
 
         small_tiles = StonezoneEntrySet.of(StoneType.class, "small_tiles",
-                        getModBlock("stone_small_tiles"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_small_tiles"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_small_tiles")).copyMCMETA())
@@ -271,7 +271,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(small_tiles);
 
         small_tiles_connecting = StonezoneEntrySet.of(StoneType.class, "small_tiles_connecting",
-                        getModBlock("stone_small_tiles_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_small_tiles_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -282,7 +282,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(small_tiles_connecting);
 
         smooth_brick_paving = StonezoneEntrySet.of(StoneType.class, "smooth_brick_paving",
-                        getModBlock("stone_smooth_brick_paving"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_smooth_brick_paving"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_smooth_brick_paving")).copyMCMETA())
@@ -293,7 +293,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(smooth_brick_paving);
 
         smooth_brick_paving_connecting = StonezoneEntrySet.of(StoneType.class, "smooth_brick_paving_connecting",
-                        getModBlock("stone_smooth_brick_paving_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_smooth_brick_paving_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -304,7 +304,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(smooth_brick_paving_connecting);
 
         smooth_large_tiles = StonezoneEntrySet.of(StoneType.class, "smooth_large_tiles",
-                        getModBlock("stone_smooth_large_tiles"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_smooth_large_tiles"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_smooth_large_tiles")).copyMCMETA())
@@ -315,7 +315,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(smooth_large_tiles);
 
         smooth_large_tiles_connecting = StonezoneEntrySet.of(StoneType.class, "smooth_large_tiles_connecting",
-                        getModBlock("stone_smooth_large_tiles_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_smooth_large_tiles_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -326,7 +326,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(smooth_large_tiles_connecting);
 
         smooth_rotated_bricks = StonezoneEntrySet.of(StoneType.class, "smooth_rotated_bricks",
-                        getModBlock("stone_smooth_rotated_bricks"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_smooth_rotated_bricks"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_smooth_rotated_bricks")).copyMCMETA())
@@ -337,7 +337,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(smooth_rotated_bricks);
 
         smooth_rotated_bricks_connecting = StonezoneEntrySet.of(StoneType.class, "smooth_rotated_bricks_connecting",
-                        getModBlock("stone_smooth_rotated_bricks_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_smooth_rotated_bricks_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -348,7 +348,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(smooth_rotated_bricks_connecting);
 
         smooth_tiles = StonezoneEntrySet.of(StoneType.class, "smooth_tiles",
-                        getModBlock("stone_smooth_tiles"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_smooth_tiles"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_smooth_tiles")).copyMCMETA())
@@ -359,7 +359,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(smooth_tiles);
 
         smooth_tiles_connecting = StonezoneEntrySet.of(StoneType.class, "smooth_tiles_connecting",
-                        getModBlock("stone_smooth_tiles_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_smooth_tiles_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -370,7 +370,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(smooth_tiles_connecting);
 
         squares = StonezoneEntrySet.of(StoneType.class, "squares",
-                        getModBlock("stone_squares"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_squares"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_squares")).copyMCMETA())
@@ -381,7 +381,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(squares);
 
         squares_connecting = StonezoneEntrySet.of(StoneType.class, "squares_connecting",
-                        getModBlock("stone_squares_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_squares_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -392,7 +392,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(squares_connecting);
 
         waves = StonezoneEntrySet.of(StoneType.class, "waves",
-                        getModBlock("stone_waves"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_waves"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_waves")).copyMCMETA())
@@ -403,7 +403,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(waves);
 
         waves_connecting = StonezoneEntrySet.of(StoneType.class, "waves_connecting",
-                        getModBlock("stone_waves_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_waves_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -413,7 +413,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(waves_connecting);
 
         tiles = StonezoneEntrySet.of(StoneType.class, "tiles",
-                        getModBlock("stone_tiles"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_tiles"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_tiles")).copyMCMETA())
@@ -424,7 +424,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(tiles);
 
         tiles_connecting = StonezoneEntrySet.of(StoneType.class, "tiles_connecting",
-                        getModBlock("stone_tiles_connecting"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_tiles_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 .requiresFromMap(tiles.blocks)
@@ -435,7 +435,7 @@ public class RechiseledModule extends SZModule {
         this.addEntry(tiles_connecting);
 
         slated = StonezoneEntrySet.of(StoneType.class, "slated",
-                        getModBlock("stone_slated"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_slated"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(modRes("block/stone_slated_end"))

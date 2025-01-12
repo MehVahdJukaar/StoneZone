@@ -5,7 +5,6 @@ import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
 import java.util.Collection;
@@ -16,11 +15,10 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
     public static final StoneTypeRegistry INSTANCE = new StoneTypeRegistry();
 
-    public static final StoneType STONE_TYPE = new StoneType(new ResourceLocation("stone"), Blocks.STONE);
-
     public StoneTypeRegistry() {
         super(StoneType.class, "stone_type");
 
+        this.addFinder(StoneType.Finder.vanilla("stone"));
         this.addFinder(StoneType.Finder.vanilla("andesite"));
         this.addFinder(StoneType.Finder.vanilla("diorite"));
         this.addFinder(StoneType.Finder.vanilla("granite"));
@@ -29,8 +27,12 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
         this.addFinder(StoneType.Finder.vanilla("blackstone"));
     }
 
-    public static StoneType ANDESITE_TYPE() {
+    public static StoneType getAndesiteType() {
         return getValue("andesite");
+    }
+
+    public static StoneType getStoneType() {
+        return getValue("stone");
     }
 
     public static Collection<StoneType> getTypes() {
@@ -43,7 +45,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
     @Override
     public StoneType getDefaultType() {
-        return STONE_TYPE;
+        return this.get(new ResourceLocation("stone"));
     }
 
     @Override

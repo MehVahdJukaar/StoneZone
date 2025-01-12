@@ -22,7 +22,7 @@ public class TwigsModule extends SZModule {
         super(modId, "tw");
 
         columns = addEntry(StonezoneEntrySet.of(StoneType.class, "column",
-                        getModBlock("stone_column"), () -> StoneTypeRegistry.STONE_TYPE,
+                        getModBlock("stone_column"), StoneTypeRegistry::getStoneType,
                         stoneType -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                         )
                 .createPaletteFromChild(p -> {
