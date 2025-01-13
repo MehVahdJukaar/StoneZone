@@ -14,9 +14,6 @@
   "license": "Supplementaries Team License v1.1",
   "icon": "logo.png",
   "environment": "*",
-  "mixins": [
-    "${mod_id}-common.mixins.json"
-  ],
   "entrypoints": {
     "main": [
       "net.mehvahdjukaar.stone_zone.fabric.StoneZoneFabric"

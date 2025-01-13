@@ -3,6 +3,7 @@ package net.mehvahdjukaar.stone_zone.modules.quark;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Suppliers;
 import com.mojang.datafixers.util.Pair;
+import net.mehvahdjukaar.every_compat.api.AbstractSimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
@@ -10,9 +11,7 @@ import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.stone_zone.api.SZModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -120,11 +119,16 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends Stonezo
         }
 
         public QuarkEntrySet.Builder<T, B> createPaletteFromBricks() {
-            StoneType stoneType = (StoneType) baseType.get();
-            if (Objects.nonNull(stoneType.getBlockOfThis("bricks")))
-                return (QuarkEntrySet.Builder<T, B>) createPaletteFromChild("bricks");
-            else
-                return createPaletteFromStone();
+            this.setPalette(new BiFunction<T, ResourceManager, Pair<List<Palette>, AnimationMetadataSection>>() {
+                @Override
+                public Pair<List<Palette>, AnimationMetadataSection> apply(T t, ResourceManager resourceManager) {
+                    if(t.getChild("bricks") != null){
+                        return AbstractSimpleEntrySet.makePaletteFromChild(t, resourceManager, "bricks");
+                    }
+                    return AbstractSimpleEntrySet.makePaletteFromChild(t, resourceManager, "stone");
+                }
+            });
+            return this;
         }
 
         @Override

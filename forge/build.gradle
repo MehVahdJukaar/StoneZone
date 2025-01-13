@@ -15,8 +15,6 @@ loom {
         convertAccessWideners = true
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
 
-//        mixinConfig  "stonezone-common.mixins.json" //NOT NEEDED FOR NOW
-
     }
 }
 
@@ -111,10 +109,10 @@ dependencies {
 //    modImplementation(files(path + "\\Moonlight\\forge\\build\\libs\\moonlight-${moonlight_testVersion}-forge.jar"))
 
     //!! ~/forge/mods LOCAL
-//   modImplementation("net.mehvahdjukaar:moonlight-forge:${project.moonlight_testVersion}") // LOCAL
+   modImplementation("net.mehvahdjukaar:moonlight-forge:${project.moonlight_testVersion}") // LOCAL
 
     //!! MAVEN
-    modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.42
+    //modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.42
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     //!! Repository LOCAL
@@ -133,8 +131,8 @@ dependencies {
 //!! ================================================= DEPENDENCIES ================================================= \\
     //!! ONLY FOR TESTING - can be commented out or enabled
 //    modRuntimeOnly("curse.maven:patchouli-306770:4966125") // v84 | TFC
-//    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904750") // v8.1.25 | Stoneworks
-//    modRuntimeOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
+    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904750") // v8.1.25 | Stoneworks
+    modRuntimeOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
 //    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | ?
 //    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | ?
 //    modRuntimeOnly("curse.maven:citadel-331936:6002521") // v2.6.1 | Alexs-Caves
@@ -153,10 +151,10 @@ dependencies {
 
 //!! =================================================== IMPORTS ==================================================== \\
     //!! ONLY FOR TESTING - can be commented out or enabled
-//    modRuntimeOnly("curse.maven:twigs-496913:4605097")
-//    modRuntimeOnly("curse.maven:stoneworks-852663:4611947") // puzzles-lib
-//    modRuntimeOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1
-//    modRuntimeOnly("curse.maven:quark-243121:5594847")
+    modRuntimeOnly("curse.maven:twigs-496913:4605097")
+    modRuntimeOnly("curse.maven:stoneworks-852663:4611947") // puzzles-lib
+    modRuntimeOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1
+    modRuntimeOnly("curse.maven:quark-243121:5594847")
 //    modRuntimeOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
 
             //!! DIFFERENT MAVENs
