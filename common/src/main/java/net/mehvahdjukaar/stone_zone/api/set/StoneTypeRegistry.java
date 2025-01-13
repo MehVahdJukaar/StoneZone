@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
 
 @SuppressWarnings("unused")
@@ -27,12 +28,12 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
         this.addFinder(StoneType.Finder.vanilla("blackstone"));
     }
 
-    public static StoneType getAndesiteType() {
-        return getValue("andesite");
-    }
-
     public static StoneType getStoneType() {
         return getValue("stone");
+    }
+
+    public static StoneType getAndesiteType() {
+        return getValue("andesite");
     }
 
     public static Collection<StoneType> getTypes() {
@@ -69,12 +70,32 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
         if (path.matches("[a-z]+(_bricks|_stone_bricks)") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM) {
             String stoneName = path.substring(0, path.length() - 7); // get stoneName from namespace:stoneName_bricks
             String stoneAlt = stoneName + "_stone"; // Some mods included "_stone" as the suffix
+            ResourceLocation idBlockType = baseRes.withPath(stoneName);
+            ResourceLocation idBlockTypeAlt = baseRes.withPath(stoneAlt);
 
-            var opt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(stoneName));
-            var alt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(stoneAlt));
-            if (opt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));
-            else if (alt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneAlt), alt.get()));
+            // Check if a BlockType is already added
+            if (Objects.isNull(get(idBlockType)) || Objects.isNull(get(idBlockTypeAlt))) {
+                var opt = BuiltInRegistries.BLOCK.getOptional(idBlockType);
+                var alt = BuiltInRegistries.BLOCK.getOptional(idBlockTypeAlt);
+                if (opt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));
+                else if (alt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneAlt), alt.get()));
+            }
 
+        }
+        // Check for polished_<type> | polished_<type>_stone
+        else if (path.matches("(polished_)[a-z]+(_stone)?") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM) {
+            String stoneName = path.replace("polished_", ""); // get stoneName from namespace:polished_stoneName
+            String stoneAlt = stoneName + "_stone"; // Some mods included "_stone" as the suffix
+            ResourceLocation idBlockType = baseRes.withPath(stoneName);
+            ResourceLocation idBlockTypeAlt = baseRes.withPath(stoneAlt);
+
+            // Check if a BlockType is already added
+            if (Objects.isNull(get(idBlockType)) || Objects.isNull(get(idBlockTypeAlt))) {
+                var opt = BuiltInRegistries.BLOCK.getOptional(idBlockType);
+                var alt = BuiltInRegistries.BLOCK.getOptional(idBlockTypeAlt);
+                if (opt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));
+                else if (alt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneAlt), alt.get()));
+            }
         }
         return Optional.empty();
     }
