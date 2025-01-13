@@ -12,6 +12,9 @@ public class CompatStoneType {
 
     public static void init() {
 
+        // Outer End
+        stoneBlockFinder("outer_end", "himmel");
+
         // Deeper And Darker
         simpleMudFinder("deeperdarker", "sculk_grime");
 
@@ -73,6 +76,8 @@ public class CompatStoneType {
 
         // Quark
         simpleStoneFinder("quark", "soul_sandstone");
+        stoneBlockFinder("quark", "midori", true, true);
+        stoneBlockFinder("quark", "duskbound", true, true);
 
     }
 
@@ -84,10 +89,18 @@ public class CompatStoneType {
     }
 
     /// nameStone has "_block" as suffix
-    public static void stoneBlockFinder(String modId, String nameStoneType) {
-        var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStoneType +"_block");
+    public static void stoneBlockFinder(String modId, String nameStoneType, boolean includeSlab, boolean includeStairs) {
+        String baseName = nameStoneType + "_block";
+
+        var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, baseName);
+        if (includeSlab) stonetypeFinder.addChild("slab", baseName +"slab");
+        if (includeStairs) stonetypeFinder.addChild("slab", baseName +"stairs");
 
         BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
+    }
+    /// default
+    public static void stoneBlockFinder(String modId, String nameStoneType) {
+        stoneBlockFinder(modId, nameStoneType, false, false);
     }
 
 //!! MudType
