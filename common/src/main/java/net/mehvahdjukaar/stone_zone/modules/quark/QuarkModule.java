@@ -74,7 +74,6 @@ public class QuarkModule extends SZModule {
                             return new ZetaPillarBlock(name, null, Utils.copyPropertySafe(stoneType.stone));
                         }
                 )
-                .createPaletteFromBricks()
                 .requiresChildren("polished_slab") //REASON: recipes
                 .addTexture(modRes("block/andesite_pillar"))
                 .addTexture(modRes("block/andesite_pillar_top"))
