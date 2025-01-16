@@ -1,6 +1,5 @@
 package net.mehvahdjukaar.stone_zone.misc;
 
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import org.jetbrains.annotations.Nullable;
 
@@ -23,6 +22,9 @@ public class HardcodedBlockType {
             /// ========== EXCLUDE ========== \\\
         // EXAMPLE
 //        if (isStoneRegistryOf("create", "c", "create", "create:limestone", "limestone_pillar")) return true;
+
+        // The StoneType's texture is only white and no way for blocks to copy its color behavior
+        if (isStoneRegistryOf("", "", "", "rgbblocks:prismarine", "")) return true;
 
         // Create: Dreams & Desires' cut_stone_bricks shouldn't be detected but was
         if (isStoneRegistryOf("", "", "", "create_dd:cut_stone", "")) return true;
