@@ -88,6 +88,12 @@ public class CompatStoneType {
         BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
     }
 
+    public static void stoneFinder(String modId, String nameStoneType, String nameStone) {
+        var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStone);
+
+        BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
+    }
+
     /// nameStone has "_block" as suffix
     public static void stoneBlockFinder(String modId, String nameStoneType, boolean includeSlab, boolean includeStairs) {
         String baseName = nameStoneType + "_block";
