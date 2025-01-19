@@ -43,6 +43,7 @@ dependencies {
     // ~/common/mods LOCAL
 
     //!! REQUIRED - The modules access libaries from below
+    modCompileOnly("curse.maven:better-archeology-835687:5704094") // supermartijn642s' Config-Lib
     modCompileOnly("curse.maven:quark-243121:5594847")
     modCompileOnly("curse.maven:create-fabric-624165:5982726")
     modCompileOnly("curse.maven:twigs-496913:4603805")

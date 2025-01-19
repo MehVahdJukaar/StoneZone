@@ -5,6 +5,10 @@
 
   "block_type.twigs.column": "%s Column",
 
+  "block_type.betterarcheology.cracked_bricks": "Cracked %s Bricks",
+  "block_type.betterarcheology.cracked_brick_stairs": "Cracked %s Brick Stairs",
+  "block_type.betterarcheology.cracked_brick_slab": "Cracked %s Brick Slab",
+
   "block_type.quark.vertical_slab": "%s Vertical Slab",
   "block_type.quark.polished_vertical_slab": "Polished %s Vertical Slab",
   "block_type.quark.pillar": "%s Pillar",
