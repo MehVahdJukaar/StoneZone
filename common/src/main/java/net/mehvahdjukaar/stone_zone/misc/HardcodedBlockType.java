@@ -29,6 +29,9 @@ public class HardcodedBlockType {
         // Create: Dreams & Desires' cut_stone_bricks shouldn't be detected but was
         if (isStoneRegistryOf("", "", "", "create_dd:cut_stone", "")) return true;
 
+        // Stone Expansion's stone is based on Minecraft's stone and shouldn't be included
+        if (isStoneRegistryOf("", "", "", "stoneexpansion:(cut|mossy|smooth|polished)_stone", "")) return true;
+
             /// ========== INCLUDE ========== \\\
         // EXAMPLE
 //        if (isStoneRegistryOf("", "", "", "", "")) return false;
