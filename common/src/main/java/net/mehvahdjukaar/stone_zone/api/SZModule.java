@@ -56,7 +56,6 @@ public class SZModule extends SimpleModule {
         // blockId: stonezone:twigs/strata/<stonetype>_column | blockName: <stonetype>_column
         String blockName = blockId.substring(blockId.lastIndexOf("/") + 1);
 
-        /// DISABLED FOR NOW, There is no hardcoded Blocks yet
         if (blockType instanceof StoneType stoneType) {
             Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(blockName, stoneType, modId, shortenedId());
             if (hardcoded != null) return hardcoded;
