@@ -61,7 +61,7 @@ dependencies {
     //!! ONLY FOR TESTING - can be commented out or enabled
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904751") // v8.1.25 | Stoneworks
 //    modRuntimeOnly("curse.maven:forge-config-api-port-fabric-547434:5902421") // v8.1.25 | Stoneworks
-    modRuntimeOnly("com.terraformersmc.terraform-api:terraform-wood-api-v1:13.0.0-alpha.1") // Blockus
+    modRuntimeOnly("com.terraformersmc.terraform-api:terraform-wood-api-v1:7.0.3") // Blockus
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129312") // v1.1.1 | Rechiseled
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4785838") // v1.1.8a | Rechiseled
 //    modRuntimeOnly("curse.maven:supermartijn642s-core-lib-454372:5668908") // v1.1.17a | Rechiseled
