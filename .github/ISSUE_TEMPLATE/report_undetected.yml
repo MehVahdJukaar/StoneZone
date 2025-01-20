@@ -1,7 +1,7 @@
 name: Undetected StoneType
 description: Did StoneZone fails to detect StoneType? Report it.
 title: "[🗃]: "
-labels: "enhancement"
+labels: ["enhancement", "undetection"]
 body:
   - type: markdown
     attributes:
