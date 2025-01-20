@@ -33,6 +33,7 @@ public class StoneZoneCommon {
         addIfLoaded("twigs", () -> TwigsModule::new);
         addIfLoaded("create", () -> CreateModule::new);
         addIfLoaded("bbb", () -> BuildingButBetterModule::new);
+        addIfLoaded("blockus", () -> BlockusModule::new);
         addIfLoaded("stoneworks", () -> StoneworksModule::new);
         addIfLoaded("quark", () -> QuarkModule::new);
         addIfLoaded("quark", () -> QuarkMudModule::new);

@@ -101,5 +101,16 @@
   "block_type.rechiseled.tiles_connecting": "%s Tiles",
   "block_type.rechiseled.waves": "%s Waves",
   "block_type.rechiseled.waves_connecting": "%s Waves",
-  "block_type.rechiseled.slated": "Slated Stone"
+  "block_type.rechiseled.slated": "Slated Stone",
+
+  "block_type.blockus.herringbone_bricks": "Herringbone %s Bricks",
+  "block_type.blockus.smooth_stairs": "Smooth %s Stairs",
+  "block_type.blockus.brick_pillar": "%s Brick Pillar",
+  "block_type.blockus.circular_paving": "%s Circular Paving",
+  "block_type.blockus.door": "%s Door",
+  "block_type.blockus.tile_slab": "%s Tile Slab",
+  "block_type.blockus.tile_stairs": "%s Tile Stairs",
+  "block_type.blockus.tile_wall": "%s Tile Wall",
+  "block_type.blockus.tiles": "%s Tiles",
+  "block_type.blockus.trapdoor": "%s Trapdoor"
 }
