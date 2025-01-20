@@ -18,6 +18,15 @@ public class CompatStoneType {
         // Deeper And Darker
         simpleMudFinder("deeperdarker", "sculk_grime");
 
+        // Oh The Biomes We've Gone
+        simpleStoneFinder("biomeswevegone", "white_sandstone");
+        simpleStoneFinder("biomeswevegone", "blue_sandstone");
+        simpleStoneFinder("biomeswevegone", "black_sandstone");
+        simpleStoneFinder("biomeswevegone", "purple_sandstone");
+        simpleStoneFinder("biomeswevegone", "pink_sandstone");
+        simpleStoneFinder("biomeswevegone", "windswept_sandstone");
+        simpleStoneFinder("biomeswevegone", "red_rock");
+
         // What Is Stone
         simpleStoneFinder("what_is_stone", "anthracite");
         simpleStoneFinder("what_is_stone", "breccia");
