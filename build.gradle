@@ -150,6 +150,8 @@ allprojects {
             allowInsecureProtocol = true
         }
 
+        maven { url 'https://jitpack.io' } // BCLib
+
         maven { url = "https://api.modrinth.com/maven" }
 
         maven { url = "https://mvn.devos.one/snapshots/" }
