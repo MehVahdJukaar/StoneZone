@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.mehvahdjukaar.stone_zone.fabric.StoneZoneFabric"
+      "net.mehvahdjukaar.stone_zone.StoneZoneFabric"
     ],
     "modmenu": [
       "net.mehvahdjukaar.stone_zone.modmenu.ModMenuCompat"
