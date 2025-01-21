@@ -131,16 +131,15 @@ dependencies {
 //!! ================================================= DEPENDENCIES ================================================= \\
         //!! ONLY FOR TESTING - can be commented out or enabled
     modRuntimeOnly("curse.maven:terrablender-563928:5378180") // v3.0.1.7 |
-//    modRuntimeOnly("curse.maven:citadel-331936:6002521") // v2.6.1 | Alexs-Caves
+    modRuntimeOnly("curse.maven:citadel-331936:6002521") // v2.6.1 | Alexs-Caves
 //    modRuntimeOnly("curse.maven:yungs-api-421850:5769971") // v4.0.6 | Better-Archeology
 //    modRuntimeOnly("curse.maven:patchouli-306770:4966125") // v84 | TFC
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904750") // v8.1.25 | Stoneworks
 //    modRuntimeOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
 //    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | ?
 //    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | ?
-//    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled
-//    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled, Better-Archeology
-//    modRuntimeOnly("curse.maven:supermartijn642s-core-lib-454372:5668859") // v1.1.17a | Rechiseled
+    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled
+    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled, Better-Archeology
 //    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct
 
         // ~/forge/mods LOCAL
@@ -149,7 +148,8 @@ dependencies {
 //    modRuntimeOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create
 //    modRuntimeOnly("com.jozufozu.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}") // Create
 
-            // REQUIRED - The modules access libaries from below - Only in FORGE
+            //!! REQUIRED - The modules access libaries from below - Only in FORGE
+    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:5668859") // v1.1.17a | Rechiseled
 
 //!! =============W====================================== IMPORTS ==================================================== \\
         //!! ONLY FOR TESTING - can be commented out or enabled
@@ -158,26 +158,28 @@ dependencies {
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611947") // puzzles-lib
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1
 //    modRuntimeOnly("curse.maven:quark-243121:5594847") // Zeta //TODO: test the updated models/item stuff
-//    modRuntimeOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
 
-            // Macaw's
+
+            // OTHER MAVENs
+//    modRuntimeOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel
+
+        //!! REQUIRED - The modules access libaries from below - ONLY IN FORGE
+            // MACAW's
     modCompileOnly("curse.maven:macaws-bridges-351725:5240518") //v3.0.0
     modCompileOnly("curse.maven:macaws-paths-and-pavings-629153:5341126") //v1.0.5
     modCompileOnly("curse.maven:macaws-windows-363569:5589363") //v2.3.0
     modCompileOnly("curse.maven:macaws-roofs-352039:5554957") //v2.3.1
     modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442217") //v1.1.2
 
-            // OTHER MAVENs
-//    modRuntimeOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel
-
-        //!! REQUIRED - The modules access libaries from below - ONLY IN FORGE
+            // OTHERS
+    modCompileOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
 
 //!! ================================================= FOR TESTING ================================================== \\
 
     // STONETYPE ONLY
 //    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643")
 //    modRuntimeOnly("curse.maven:spelunkery-790530:5727135") // Moonlight-Lib
-//    modRuntimeOnly("curse.maven:alexs-caves-924854:5848216") // Citadel
+    modRuntimeOnly("curse.maven:alexs-caves-924854:5848216") // Citadel
 //    modRuntimeOnly("curse.maven:tinkers-construct-74072:6041763") // Mantle
 //    modRuntimeOnly("curse.maven:thaumon-926511:5492065")
 //    modRuntimeOnly("curse.maven:gaia-dimension-302529:4794552")

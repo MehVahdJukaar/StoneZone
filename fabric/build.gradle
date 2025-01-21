@@ -65,7 +65,6 @@ dependencies {
     modRuntimeOnly("com.terraformersmc.terraform-api:terraform-wood-api-v1:7.0.3") // Blockus
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129312") // v1.1.1 | Rechiseled
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4785838") // v1.1.8a | Rechiseled
-//    modRuntimeOnly("curse.maven:supermartijn642s-core-lib-454372:5668908") // v1.1.17a | Rechiseled
 //    modRuntimeOnly("curse.maven:bclib-495191:4971470") // v3.0.14 | BetterEnd
 //    modRuntimeOnly("com.github.quiqueck:BCLib:3.0.14") // BetterEnd
 //    modRuntimeOnly("com.github.quiqueck:WunderLib:1.1.5") // BetterEnd
@@ -76,28 +75,31 @@ dependencies {
 //    modRuntimeOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
 //    modRuntimeOnly("com.jozufozu.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_version}") // Create
 
-            // REQUIRED - The modules access libaries from below - Only in FABRIC
+            //!! REQUIRED - The modules access libaries from below - Only in FABRIC
+    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:5668908") // v1.1.17a | Rechiseled
 
 //!! =================================================== IMPORTS ==================================================== \\
-    //!! ONLY FOR TESTING - can be commented out or enabled
+        //!! ONLY FOR TESTING - can be commented out or enabled
 //    modRuntimeOnly("curse.maven:better-archeology-835687:5704094") // supermartijn642s' Config-Lib, Yung's API
 //    modRuntimeOnly("curse.maven:blockus-312289:5896309") // Terraformersmc's terraform-wood-api
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5382599")
 //    modRuntimeOnly("curse.maven:twigs-496913:4603805")
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611948") // puzzles-lib, forge-config-api-port
-//    modRuntimeOnly("curse.maven:rechiseled-558998:5286340") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
 
             // OTHER MAVENs
 //    modRuntimeOnly("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}:slim") { transitive = false } // Registrate, Flywheel
 
-    //!! REQUIRED - The modules access libaries from below - ONLY IN FABRIC
-
-            // Macaw's
+        //!! REQUIRED - The modules access libaries from below - ONLY IN FABRIC
+            // MACAW's
     modCompileOnly("curse.maven:macaws-bridges-351725:5240495")
     modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442191")
     modCompileOnly("curse.maven:macaws-windows-363569:5589335")
     modCompileOnly("curse.maven:macaws-roofs-352039:5554929")
     modCompileOnly("curse.maven:macaws-paths-and-pavings-629153:5341073")
+
+            // OTHERS
+    modCompileOnly("curse.maven:rechiseled-558998:5286340") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
+
 
 //!! ================================================= FOR TESTING ================================================== \\
 
