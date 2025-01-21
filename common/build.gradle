@@ -35,7 +35,6 @@ dependencies {
     //!! REQUIRED - The modules access libaries from below
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
     modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
-    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:5668908") // v1.1.17a | Rechiseled
 
 //!! =================================================== IMPORTS ==================================================== \\
     //!! MODULES - don't need library from the mod, so it's fine to ignore
@@ -50,20 +49,6 @@ dependencies {
     modCompileOnly("curse.maven:twigs-496913:4603805")
     modCompileOnly("curse.maven:building-but-better-989479:5382599")
     modCompileOnly("curse.maven:stoneworks-852663:4611947")
-    modCompileOnly("curse.maven:rechiseled-558998:5286340") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
 
         //!! DIFFERENT MAVENs
-}
-
-publishing {
-    publications {
-        mavenCommon(MavenPublication) {
-            artifactId = rootProject.mod_id
-            from components.java
-        }
-    }
-
-    repositories {
-        // Add repositories to publish to here.
-    }
 }
