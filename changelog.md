@@ -8,6 +8,10 @@
   - **Undetected StoneType**: 
     - Added **Outer End**'s _himmel_
     - Added **Quark**'s _duskbound_ & _midori_
+    - Added **Oh The Biomes We've Gone**'s 7 StoneType - see [details for a list of stoneType](https://github.com/MehVahdJukaar/StoneZone/issues/12)
+  - **Blacklisted Stone mod** (COMMON): 
+    - **Immersive Weathering** [Related to issue#36](https://github.com/MehVahdJukaar/StoneZone/issues/36)
+    - **Chipped** - not really have any unique stoneType [Related to issue#40](https://github.com/MehVahdJukaar/StoneZone/issues/40)
 - **LANG**: zh_ch - @ChuijkYahus
   - **Deep Aether**
   - **Create: Dreams & Desires**
@@ -19,7 +23,8 @@
   - Corrected the class for _slanted_ (is now a pillar block)
   
 #### NEW
-- Better Archeology (COMMON)
+- **Better Archeology** (COMMON)
+- **Blockus** (COMMON)
 
 # Enjoy the 2 new supported mods, MERRY CHRISTMAS 
 
