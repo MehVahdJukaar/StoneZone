@@ -1,8 +1,9 @@
-package net.mehvahdjukaar.stone_zone.fabric;
+package net.mehvahdjukaar.stone_zone;
 
 import net.fabricmc.api.ModInitializer;
-import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
+import net.mehvahdjukaar.stone_zone.fabric.modules.rechiseled.RechiseledModule;
+
+import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
 
 public class StoneZoneFabric extends StoneZoneCommon implements ModInitializer {
 
@@ -21,6 +22,9 @@ public class StoneZoneFabric extends StoneZoneCommon implements ModInitializer {
 
 //!! =================================================== Add Modules ================================================ \\
 
+        //!! Macaw's
+//        addIfLoaded("mcwbridges", () -> MacawBridgesModule::new);
+        addIfLoaded("rechiseled", () -> RechiseledModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
 

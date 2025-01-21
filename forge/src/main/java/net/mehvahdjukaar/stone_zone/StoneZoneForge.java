@@ -1,7 +1,7 @@
-package net.mehvahdjukaar.stone_zone.forge;
+package net.mehvahdjukaar.stone_zone;
 
-import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
+import net.mehvahdjukaar.stone_zone.forge.modules.macaws.MacawBridgesModule;
+import net.mehvahdjukaar.stone_zone.forge.modules.rechiseled.RechiseledModule;
 import net.minecraftforge.fml.common.Mod;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
@@ -26,6 +26,9 @@ public class StoneZoneForge extends StoneZoneCommon {
 
 //!! =================================================== Add Modules ================================================ \\
 
+        // Macaw's
+//        addIfLoaded("mcwbridges", () -> MacawBridgesModule::new);
+        addIfLoaded("rechiseled", () -> RechiseledModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
 
