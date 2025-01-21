@@ -1,11 +1,9 @@
-package net.mehvahdjukaar.stone_zone.modules.rechiseled;
+package net.mehvahdjukaar.stone_zone.forge.modules.rechiseled;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.supermartijn642.core.TextComponents;
 import com.supermartijn642.core.block.BaseBlock;
-import com.supermartijn642.rechiseled.blocks.RechiseledBlock;
-import com.supermartijn642.rechiseled.blocks.RechiseledPillarBlock;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.TextureInfo;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
@@ -28,6 +26,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import org.jetbrains.annotations.NotNull;
@@ -39,6 +38,7 @@ import java.util.function.Consumer;
 import static com.supermartijn642.rechiseled.blocks.RechiseledPillarBlock.AXIS_PROPERTY;
 
 //SUPPORT: v1.1.6+
+//NOTE: There is a difference between FORGE & FABRIC - the key class is BlockState via RechiseledPillarBlock
 public class RechiseledModule extends SZModule {
 
     public final SimpleEntrySet<StoneType, Block> big_tiles, big_tiles_connecting;
@@ -462,7 +462,7 @@ public class RechiseledModule extends SZModule {
     public static class CompatRechiseledBlock extends BaseBlock {
         public final boolean connecting;
 
-        public CompatRechiseledBlock(boolean connecting, Properties properties) {
+        public CompatRechiseledBlock(boolean connecting, BlockBehaviour.Properties properties) {
             super(false, properties);
             this.connecting = connecting;
         }
@@ -476,7 +476,7 @@ public class RechiseledModule extends SZModule {
     }
 
     public static class CompatRechiseledPillarBlock extends CompatRechiseledBlock {
-        public CompatRechiseledPillarBlock(boolean connecting, Properties properties) {
+        public CompatRechiseledPillarBlock(boolean connecting, BlockBehaviour.Properties properties) {
             super(connecting, properties);
             this.registerDefaultState(this.defaultBlockState().setValue(AXIS_PROPERTY, Direction.Axis.Y));
         }

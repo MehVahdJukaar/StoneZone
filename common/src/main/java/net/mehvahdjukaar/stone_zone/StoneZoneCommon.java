@@ -6,7 +6,6 @@ import net.mehvahdjukaar.stone_zone.modules.blockus.BlockusModule;
 import net.mehvahdjukaar.stone_zone.modules.create.CreateModule;
 import net.mehvahdjukaar.stone_zone.modules.quark.QuarkModule;
 import net.mehvahdjukaar.stone_zone.modules.quark.QuarkMudModule;
-import net.mehvahdjukaar.stone_zone.modules.rechiseled.RechiseledModule;
 import net.mehvahdjukaar.stone_zone.modules.stoneworks.StoneworksModule;
 import net.mehvahdjukaar.stone_zone.modules.twigs.TwigsModule;
 
@@ -37,7 +36,6 @@ public class StoneZoneCommon {
         addIfLoaded("stoneworks", () -> StoneworksModule::new);
         addIfLoaded("quark", () -> QuarkModule::new);
         addIfLoaded("quark", () -> QuarkMudModule::new);
-        addIfLoaded("rechiseled", () -> RechiseledModule::new);
         addIfLoaded("betterarcheology", () -> BetterArcheologyModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
