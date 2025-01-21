@@ -1,15 +1,12 @@
 package net.mehvahdjukaar.stone_zone.modules.blockus;
 
 import com.brand.blockus.blocks.base.OrientableBlockBase;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.SZModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.set.PurpurType;
-import net.mehvahdjukaar.stone_zone.api.set.PurpurTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
-import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -110,7 +107,7 @@ public class BlockusModule extends SZModule {
         doors = StonezoneEntrySet.of(StoneType.class, "door",
                         getModBlock("stone_door"), StoneTypeRegistry::getStoneType,
                         stoneType -> new DoorBlock(
-                                FabricBlockSettings.create()
+                                BlockBehaviour.Properties.of()
                                         .mapColor(stoneType.bricksOrStone().defaultMapColor())
                                         .sound(stoneType.getSound())
                                         .strength(1.5F, 20.0F)
@@ -206,7 +203,7 @@ public class BlockusModule extends SZModule {
         trapdoors = StonezoneEntrySet.of(StoneType.class, "trapdoor",
                         getModBlock("stone_trapdoor"), StoneTypeRegistry::getStoneType,
                         stoneType -> new TrapDoorBlock(
-                                FabricBlockSettings.create()
+                                BlockBehaviour.Properties.of()
                                         .mapColor(stoneType.bricksOrStone().defaultMapColor())
                                         .sound(stoneType.getSound())
                                         .strength(1.5F, 20.0F)
