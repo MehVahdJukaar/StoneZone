@@ -42,7 +42,7 @@ dependencies {
 //    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_testVersion}-fabric")
 
     //!! MAVEN
-    modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.49
+    modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.52
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     //!! Repository LOCAL

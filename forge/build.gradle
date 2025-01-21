@@ -112,7 +112,7 @@ dependencies {
 //   modImplementation("net.mehvahdjukaar:moonlight-forge:${project.moonlight_testVersion}") // LOCAL
 
     //!! MAVEN
-    modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.49
+    modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.52
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     //!! Repository LOCAL
