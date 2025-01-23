@@ -3,6 +3,9 @@ package net.mehvahdjukaar.stone_zone.misc;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class HardcodedBlockType {
 
     public static String stoneidentify;
@@ -10,6 +13,10 @@ public class HardcodedBlockType {
     public static String modId;
     public static String supportedBlockName;
     public static String shortenedIdenfity;
+
+    public static Set<String> BLACKLISTED_MODS = new HashSet<>(Set.of(
+            "immersive_weathering", "chipped", "create_confectionery"
+    ));
 
     @Nullable
     public static Boolean isStoneBlockAlreadyRegistered(String blockName, StoneType stoneType, String ModId, String shortenedId) {

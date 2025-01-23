@@ -11,6 +11,8 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import java.util.Collection;
 import java.util.Optional;
 
+import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_MODS;
+
 public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
 
     public static final MudTypeRegistry INSTANCE = new MudTypeRegistry();
@@ -38,7 +40,11 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
     public Optional<MudType> detectTypeFromBlock(Block baseblock, ResourceLocation baseRes) {
         String path = baseRes.getPath();
 
-        if (path.matches("[a-z]+_mud_bricks") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM) {
+        if (
+                path.matches("[a-z]+_mud_bricks")
+                && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM
+                && !BLACKLISTED_MODS.contains(baseRes.getNamespace())
+        ) {
             String mudName = path.substring(0, path.length() - 7); // get mudName from namespace:mudName_bricks
             String mudAlt = mudName + "_mud"; // Some mods included "_mud" as the suffix
             var opt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(mudName));

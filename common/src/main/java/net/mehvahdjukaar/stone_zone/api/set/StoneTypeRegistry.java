@@ -9,15 +9,13 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
 import java.util.*;
 
+import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_MODS;
+
 
 @SuppressWarnings("unused")
 public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
     public static final StoneTypeRegistry INSTANCE = new StoneTypeRegistry();
-
-    public static Set<String> BLACKLISTED_MODS = new HashSet<>(Set.of(
-            "immersive_weathering", "chipped", "create_confectionery"
-    ));
 
     public StoneTypeRegistry() {
         super(StoneType.class, "stone_type");
