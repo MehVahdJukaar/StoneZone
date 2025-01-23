@@ -16,7 +16,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
     public static final StoneTypeRegistry INSTANCE = new StoneTypeRegistry();
 
     public static Set<String> BLACKLISTED_MODS = new HashSet<>(Set.of(
-            "immersive_weathering", "chipped"
+            "immersive_weathering", "chipped", "create_confectionery"
     ));
 
     public StoneTypeRegistry() {
