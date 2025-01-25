@@ -43,6 +43,9 @@ public class HardcodedBlockType {
         // EXAMPLE
 //        if (isStoneRegistryOf("", "", "", "", "")) return false;
 
+        // The stone_squares block from Blockus is why stone_squares from Rechiseled got skipped
+        if (isStoneRegistryOf("rechiseled", "", "blockus", "", "\\w+_squares")) return false;
+
 
         return null;
     }
