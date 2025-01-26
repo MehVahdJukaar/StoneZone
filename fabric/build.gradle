@@ -41,8 +41,8 @@ dependencies {
     //!! ~/fabric/mods LOCAL
 //    modImplementation("net.mehvahdjukaar:moonlight:${moonlight_testVersion}-fabric")
 
-    //!! MAVEN
-    modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.52
+    //+ MAVEN
+    modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.53
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     //!! Repository LOCAL
