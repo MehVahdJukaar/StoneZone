@@ -1,7 +1,7 @@
 package net.mehvahdjukaar.stone_zone;
 
 import net.fabricmc.api.ModInitializer;
-import net.mehvahdjukaar.stone_zone.fabric.modules.rechiseled.RechiseledModule;
+import net.mehvahdjukaar.stone_zone.modules.fabric.rechiseled.RechiseledModule;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
 

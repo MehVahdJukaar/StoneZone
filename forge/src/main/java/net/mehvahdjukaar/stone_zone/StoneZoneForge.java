@@ -1,7 +1,6 @@
 package net.mehvahdjukaar.stone_zone;
 
-import net.mehvahdjukaar.stone_zone.forge.modules.macaws.MacawBridgesModule;
-import net.mehvahdjukaar.stone_zone.forge.modules.rechiseled.RechiseledModule;
+import net.mehvahdjukaar.stone_zone.modules.forge.rechiseled.RechiseledModule;
 import net.minecraftforge.fml.common.Mod;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
