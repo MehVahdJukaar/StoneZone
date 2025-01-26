@@ -1,17 +1,15 @@
-package net.mehvahdjukaar.stone_zone;
+package net.mehvahdjukaar.stone_zone.fabric;
 
-import net.mehvahdjukaar.stone_zone.modules.forge.rechiseled.RechiseledModule;
-import net.minecraftforge.fml.common.Mod;
+import net.fabricmc.api.ModInitializer;
+import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
+import net.mehvahdjukaar.stone_zone.modules.fabric.rechiseled.RechiseledModule;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
 
-/**
- * Author: MehVahdJukaar
- */
-@Mod(StoneZone.MOD_ID)
-public class StoneZoneForge extends StoneZoneCommon {
+public class StoneZoneFabric extends StoneZoneCommon implements ModInitializer {
 
-    public StoneZoneForge() {
+    @Override
+    public void onInitialize() {
         this.initialize();
     }
 
@@ -25,12 +23,11 @@ public class StoneZoneForge extends StoneZoneCommon {
 
 //!! =================================================== Add Modules ================================================ \\
 
-        // Macaw's
+        //!! Macaw's
 //        addIfLoaded("mcwbridges", () -> MacawBridgesModule::new);
         addIfLoaded("rechiseled", () -> RechiseledModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
 
     }
-
 }
