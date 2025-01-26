@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.fabric.modules.rechiseled;
+package net.mehvahdjukaar.stone_zone.modules.fabric.rechiseled;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
