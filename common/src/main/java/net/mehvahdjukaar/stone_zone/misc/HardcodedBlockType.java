@@ -14,7 +14,7 @@ public class HardcodedBlockType {
     public static String supportedBlockName;
     public static String shortenedIdenfity;
 
-    public static Set<String> BLACKLISTED_MODS = new HashSet<>(Set.of(
+    public static final Set<String> BLACKLISTED_MODS = new HashSet<>(Set.of(
             "immersive_weathering", "chipped", "create_confectionery"
     ));
 
