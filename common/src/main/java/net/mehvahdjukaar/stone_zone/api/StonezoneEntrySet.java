@@ -70,8 +70,11 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
     @Override
     protected BlockTypeResTransformer<T> makeBlockStateTransformer(SimpleModule module, ResourceManager manager) {
         String originalStoneName = baseType.get().getTypeName();
-        return super.makeBlockStateTransformer(module, manager).addModifier((s, id, stoneType) ->
-                BlockTypeResTransformer.replaceFullGenericType(s, stoneType, stoneType.getId(), originalStoneName, "minecraft", "block"));
+        return BlockTypeResTransformer.<T>create(module.getModId(), manager)
+                .addModifier((s, id, stoneType) -> something)
+                .andThen(super.makeBlockStateTransformer(module, manager))
+                .addModifier((s, id, stoneType) ->
+                        BlockTypeResTransformer.replaceFullGenericType(s, stoneType, stoneType.getId(), originalStoneName, "minecraft", "block"));
     }
 
     //!! SUB-CLASS
@@ -121,4 +124,6 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
             }
         }
     }
+
+
 }
