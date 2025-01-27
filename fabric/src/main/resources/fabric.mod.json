@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.mehvahdjukaar.stone_zone.fabric.StoneZoneFabric"
+      "net.mehvahdjukaar.stone_zone.StoneZoneFabric"
     ],
     "modmenu": [
       "net.mehvahdjukaar.stone_zone.modmenu.ModMenuCompat"
@@ -25,7 +25,7 @@
   "depends": {
     "fabric": "*",
     "minecraft": ">=1.20",
-    "moonlight": ">=1.20-2.13.40",
-    "everycomp": ">=1.20-2.7.8"
+    "moonlight": ">=1.20-2.13.50",
+    "everycomp": ">=1.20-2.7.12"
   }
 }

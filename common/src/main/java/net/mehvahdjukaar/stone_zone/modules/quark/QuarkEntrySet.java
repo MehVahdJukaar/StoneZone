@@ -119,14 +119,13 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends Stonezo
         }
 
         public QuarkEntrySet.Builder<T, B> createPaletteFromBricks() {
-            this.setPalette(new BiFunction<T, ResourceManager, Pair<List<Palette>, AnimationMetadataSection>>() {
-                @Override
-                public Pair<List<Palette>, AnimationMetadataSection> apply(T t, ResourceManager resourceManager) {
-                    if(t.getChild("bricks") != null){
-                        return AbstractSimpleEntrySet.makePaletteFromChild(t, resourceManager, "bricks");
-                    }
-                    return AbstractSimpleEntrySet.makePaletteFromChild(t, resourceManager, "stone");
+            this.setPalette((blockType, manager) -> {
+                if (blockType.getChild("bricks") != null) {
+                    return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
+                    }, "bricks", null, blockType, manager);
                 }
+                return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
+                }, "stone", null, blockType, manager);
             });
             return this;
         }

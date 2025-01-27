@@ -47,12 +47,14 @@ subprojects {
             changelog = changelogText
 
             if (modLoader == "fabric") {
+                versionName = mod_id +"-"+ mod_version + "-fabric"
                 dependencies {
                     required.project "fabric-api"
                     required.project "moonlight"
                     required.project "every-compat"
                 }
             } else {
+                versionName = mod_id +"-"+ mod_version
                 dependencies {
                     required.project "moonlight"
                     required.project "every-compat"
@@ -72,7 +74,11 @@ subprojects {
                 addGameVersion rootProject.minecraft_version
                 addGameVersion modLoader.capitalize()
 
-                mainArtifact(tasks.remapJar)
+                mainArtifact(tasks.remapJar) {
+                    if (modLoader == "fabric") {
+                        displayName = mod_id +"-"+ mod_version + "-fabric"
+                    }
+                }
 
                 if (modLoader == "fabric") {
                     relations {
@@ -149,6 +155,8 @@ allprojects {
             url = "https://www.cursemaven.com"
             allowInsecureProtocol = true
         }
+
+        maven { url 'https://jitpack.io' } // BCLib
 
         maven { url = "https://api.modrinth.com/maven" }
 

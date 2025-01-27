@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 
 public class SZConfigs {
 
-    public static ConfigSpec SPEC;
+    public static final ConfigSpec SPEC;
 
     public static final Supplier<Boolean> TAB_ENABLED;
 

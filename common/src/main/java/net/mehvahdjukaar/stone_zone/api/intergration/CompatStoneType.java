@@ -18,6 +18,15 @@ public class CompatStoneType {
         // Deeper And Darker
         simpleMudFinder("deeperdarker", "sculk_grime");
 
+        // Oh The Biomes We've Gone
+        simpleStoneFinder("biomeswevegone", "white_sandstone");
+        simpleStoneFinder("biomeswevegone", "blue_sandstone");
+        simpleStoneFinder("biomeswevegone", "black_sandstone");
+        simpleStoneFinder("biomeswevegone", "purple_sandstone");
+        simpleStoneFinder("biomeswevegone", "pink_sandstone");
+        simpleStoneFinder("biomeswevegone", "windswept_sandstone");
+        simpleStoneFinder("biomeswevegone", "red_rock");
+
         // What Is Stone
         simpleStoneFinder("what_is_stone", "anthracite");
         simpleStoneFinder("what_is_stone", "breccia");
@@ -84,6 +93,12 @@ public class CompatStoneType {
 //!! StoneType
     public static void simpleStoneFinder(String modId, String nameStoneType) {
         var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStoneType);
+
+        BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
+    }
+
+    public static void stoneFinder(String modId, String nameStoneType, String nameStone) {
+        var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStone);
 
         BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
     }

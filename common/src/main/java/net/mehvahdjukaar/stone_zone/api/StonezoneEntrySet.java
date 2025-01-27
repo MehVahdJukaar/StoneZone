@@ -2,6 +2,7 @@ package net.mehvahdjukaar.stone_zone.api;
 
 import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
+import net.mehvahdjukaar.every_compat.api.AbstractSimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
@@ -9,7 +10,6 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
 import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.resources.ResourceKey;
@@ -23,7 +23,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.function.*;
 
 public class StonezoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
@@ -89,19 +88,27 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
         }
 
         public StonezoneEntrySet.Builder<T, B> createPaletteFromBricks() {
-            StoneType stoneType = (StoneType) baseType.get();
-            if (Objects.nonNull(stoneType.getBlockOfThis("bricks")))
-                return (Builder<T, B>) createPaletteFromChild("bricks");
-            else
-                return createPaletteFromStone();
+            this.setPalette((blockType, manager) -> {
+                if (blockType.getChild("bricks") != null) {
+                    return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
+                    }, "bricks", null, blockType, manager);
+                }
+                return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
+                }, "stone", null, blockType, manager);
+            });
+            return this;
         }
 
-        public StonezoneEntrySet.Builder<T, B> createPaletteFromStoneChild(String blockType) {
-            StoneType stoneType = (StoneType) baseType.get();
-            if (Objects.nonNull(stoneType.getBlockOfThis(blockType)))
-                return (Builder<T, B>) createPaletteFromChild(blockType);
-            else
-                return createPaletteFromStone();
+        public StonezoneEntrySet.Builder<T, B> createPaletteFromStoneChild(String childKey) {
+            this.setPalette((blockType, manager) -> {
+                if (blockType.getChild(childKey) != null) {
+                    return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
+                    }, childKey, null, blockType, manager);
+                }
+                return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
+                }, "stone", null, blockType, manager);
+            });
+            return this;
         }
 
         @Override

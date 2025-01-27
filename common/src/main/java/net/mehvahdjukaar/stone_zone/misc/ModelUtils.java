@@ -32,8 +32,8 @@ public final class ModelUtils {
     public static ResourceLocation transformModelID(ResourceLocation id) {
         Matcher matcher = PATH_PATTERN.matcher(id.getPath());
 
-        if (!matcher.find() || id.getNamespace().contains("stonezone")) {
-            //error
+        // Skip the ResourceLocation/Id's modification
+        if ( !matcher.find() || id.getNamespace().contains("stonezone") ) {
             return id;
         }
         return StoneZone.res(matcher.group(1) + "/" + id.getNamespace() + matcher.group(2));
@@ -46,14 +46,22 @@ public final class ModelUtils {
 
     //same as above but with JsonObject. we could merge these 2 eventually. Just done this way so we dont have to parse those top layer models twice
     private static void replaceParent(JsonObject jsonObject, @Nullable SimpleModule module) {
+        // Modify the value of parent's
         if (jsonObject.has("parent")) {
             ResourceLocation oldRes = new ResourceLocation(jsonObject.get("parent").getAsString());
-            ResourceLocation newRes = transformModelID(oldRes);
-            jsonObject.addProperty("parent", newRes.toString());
 
-            if (module instanceof SZModule szModule && !(RESOLVED_PARENTS.contains(oldRes) && oldRes.getNamespace().matches("stonezone"))) {
-                szModule.markModelForModification(oldRes);
-                RESOLVED_PARENTS.add(oldRes);
+            // Skip these models/item file
+            if (!oldRes.toString().matches("minecraft:(item/generated|builtin/generated)")) {
+                ResourceLocation newRes = transformModelID(oldRes);
+                jsonObject.addProperty("parent", newRes.toString());
+
+                if (module instanceof SZModule szModule && !(
+                        RESOLVED_PARENTS.contains(oldRes) &&
+                                oldRes.getNamespace().matches("stonezone")
+                )) {
+                    szModule.markModelForModification(oldRes);
+                    RESOLVED_PARENTS.add(oldRes);
+                }
             }
         }
     }

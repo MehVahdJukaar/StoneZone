@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules.rechiseled;
+package net.mehvahdjukaar.stone_zone.modules.fabric.rechiseled;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -15,20 +15,29 @@ import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 import java.util.function.Consumer;
 
+import static com.supermartijn642.rechiseled.blocks.RechiseledPillarBlock.AXIS_PROPERTY;
+
 //SUPPORT: v1.1.6+
+//NOTE: There is a difference between FORGE & FABRIC - the key class is BlockState via RechiseledPillarBlock
 public class RechiseledModule extends SZModule {
 
     public final SimpleEntrySet<StoneType, Block> big_tiles, big_tiles_connecting;
@@ -436,7 +445,7 @@ public class RechiseledModule extends SZModule {
 
         slated = StonezoneEntrySet.of(StoneType.class, "slated",
                         getModBlock("stone_slated"), StoneTypeRegistry::getStoneType,
-                        type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
+                        type -> new CompatRechiseledPillarBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(modRes("block/stone_slated_end"))
                 .addTexture(modRes("block/stone_slated_side"))
@@ -462,6 +471,35 @@ public class RechiseledModule extends SZModule {
                 info.accept(TextComponents.translation("rechiseled.tooltip.connecting").color(ChatFormatting.GRAY).get());
             }
 
+        }
+    }
+
+    public static class CompatRechiseledPillarBlock extends CompatRechiseledBlock {
+        public CompatRechiseledPillarBlock(boolean connecting, Properties properties) {
+            super(connecting, properties);
+            this.registerDefaultState(this.defaultBlockState().setValue(AXIS_PROPERTY, Direction.Axis.Y));
+        }
+
+        @Nullable
+        @Override
+        public BlockState getStateForPlacement(BlockPlaceContext context){
+            return this.defaultBlockState().setValue(AXIS_PROPERTY, context.getClickedFace().getAxis());
+        }
+
+        @Override
+        @SuppressWarnings("deprecation")
+        public @NotNull BlockState rotate(@NotNull BlockState state, @NotNull Rotation rotation){
+            if(rotation == Rotation.CLOCKWISE_90 || rotation == Rotation.COUNTERCLOCKWISE_90){
+                Direction.Axis axis = state.getValue(AXIS_PROPERTY);
+                if(axis != Direction.Axis.Y)
+                    return state.setValue(AXIS_PROPERTY, axis == Direction.Axis.X ? Direction.Axis.Z : Direction.Axis.X);
+            }
+            return state;
+        }
+
+        @Override
+        protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder){
+            builder.add(AXIS_PROPERTY);
         }
     }
 

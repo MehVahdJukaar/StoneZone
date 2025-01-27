@@ -47,6 +47,7 @@ public class StoneType extends BlockType {
         this.addChild("button", this.findRelatedEntry("button", BuiltInRegistries.BLOCK));
         this.addChild("pressure_plate", this.findRelatedEntry("pressure_plate", BuiltInRegistries.BLOCK));
         this.addChild("smooth_stone", this.findRelatedEntry("smooth", "stone", BuiltInRegistries.BLOCK));
+        this.addChild("cobblestone", this.findRelatedEntry("", "cobblestone", BuiltInRegistries.BLOCK));
 
         Block polished = this.findRelatedEntry("polished", BuiltInRegistries.BLOCK);
         this.addChild("polished", polished);
