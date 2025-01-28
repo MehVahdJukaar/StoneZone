@@ -2,12 +2,14 @@ package net.mehvahdjukaar.stone_zone;
 
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.stone_zone.api.intergration.CompatStoneType;
 import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.configs.SZConfigs;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
+import net.mehvahdjukaar.stone_zone.misc.SpriteHelper;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,11 +28,15 @@ public class StoneZone extends EveryCompat {
         BlockSetAPI.registerBlockSetDefinition(MudTypeRegistry.INSTANCE);
         CompatStoneType.init();
 
-        ClientHelper.addClientReloadListener(() -> (preparationBarrier, resourceManager, preparationsProfiler, reloadProfiler, backgroundExecutor, gameExecutor) ->
-                        CompletableFuture.completedFuture(null)
-                                .thenCompose(preparationBarrier::wait)
-                                .thenAcceptAsync((object) -> ModelUtils.reset(), gameExecutor),
-                res("stonezone_reloader"));
+        PlatHelper.addCommonSetup(SpriteHelper::addHardcodedSprites);
+
+        if (PlatHelper.getPhysicalSide().isClient()) {
+            ClientHelper.addClientReloadListener(() -> (preparationBarrier, resourceManager, preparationsProfiler, reloadProfiler, backgroundExecutor, gameExecutor) ->
+                            CompletableFuture.completedFuture(null)
+                                    .thenCompose(preparationBarrier::wait)
+                                    .thenAcceptAsync((object) -> ModelUtils.reset(), gameExecutor),
+                    res("stonezone_reloader"));
+        }
     }
 
     public static ResourceLocation res(String name) {
