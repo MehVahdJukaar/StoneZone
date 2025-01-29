@@ -10,6 +10,7 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
 import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.resources.ResourceKey;
@@ -52,12 +53,12 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
 
     @Override
     protected BlockTypeResTransformer<T> makeModelTransformer(SimpleModule module, ResourceManager manager) {
-        String nameStoneType = baseType.get().getTypeName();
+        String nameBaseStone = baseType.get().getTypeName();
         return super.makeModelTransformer(module, manager)
-                .replaceWithTextureFromChild("minecraft:block/" + nameStoneType, "stone")
-                .replaceWithTextureFromChild("minecraft:block/" + nameStoneType + "_bricks", "bricks")
-                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameStoneType, "smooth_stone")
-                .replaceWithTextureFromChild("minecraft:block/polished_" + nameStoneType, "polished")
+                .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone, "stone")
+                .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", "bricks")
+                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth_stone")
+                .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, "polished")
                 // Modifying models' parent & "elements"
                 .addModifier((s, blockId, blockType) -> {
                     JsonObject jsonObject = GsonHelper.parse(s);
@@ -68,12 +69,15 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
 
     @Override
     protected BlockTypeResTransformer<T> makeBlockStateTransformer(SimpleModule module, ResourceManager manager) {
-        String originalStoneName = baseType.get().getTypeName();
+        String nameBaseStone = baseType.get().getTypeName();
         return BlockTypeResTransformer.<T>create(module.getModId(), manager)
-                .addModifier((s, id, stoneType) -> something)
-                .andThen(super.makeBlockStateTransformer(module, manager))
-                .addModifier((s, id, stoneType) ->
-                        BlockTypeResTransformer.replaceFullGenericType(s, stoneType, stoneType.getId(), originalStoneName, "minecraft", "block"));
+                .addModifier((s, blockId, stoneType) -> s.replace("minecraft:block/" + nameBaseStone, getChildModelId("stone", stoneType)))
+                .addModifier((s, blockId, stoneType) -> s.replace("minecraft:block/smooth_" + nameBaseStone, getChildModelId("smooth_stone", stoneType)))
+                .andThen(super.makeBlockStateTransformer(module, manager));
+    }
+
+    private String getChildModelId(String childkey, T stoneType) {
+        return Utils.getID(stoneType.getBlockOfThis(childkey)).withPrefix("block/").toString();
     }
 
     //!! SUB-CLASS
