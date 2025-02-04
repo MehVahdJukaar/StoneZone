@@ -35,7 +35,7 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
                                 @Nullable TriFunction<T, B, Item.Properties, Item> itemFactory,
                                 @Nullable ITileHolder tileFactory, @Nullable Object renderType,
                                 @Nullable BiFunction<T, ResourceManager, Pair<List<Palette>,
-                                        @Nullable AnimationMetadataSection>> paletteSupplier,
+                                        @Nullable McMetaFile>> paletteSupplier,
                                 @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
                                 boolean mergedPalette, boolean copyTint, Predicate<T> condition) {
 
