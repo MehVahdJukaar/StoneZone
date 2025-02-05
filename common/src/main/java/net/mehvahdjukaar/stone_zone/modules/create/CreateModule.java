@@ -397,6 +397,7 @@ public class CreateModule extends SZModule {
                     ResourceLocation recipeFileLoc = modRes(prefix + "_from_stone_types_andesite_stonecutting");
                     ResourceLocation recipeResLoc = ResType.RECIPES.getPath(recipeFileLoc);
                     ResourceLocation newRecipeLoc = StoneZone.res(recipeFileLoc.getPath().replace("andesite", stoneType.getTypeName()));
+                    newRecipeLoc.withPrefix(shortenedId() +"/" + stoneType.getNamespace() + "/");
 
                     RecipeUtility.stonecuttingWithTagRecipe(output, recipeResLoc, tagResLoc, newRecipeLoc, handler, manager);
                 }
