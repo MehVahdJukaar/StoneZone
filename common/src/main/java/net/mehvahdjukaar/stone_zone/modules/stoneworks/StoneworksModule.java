@@ -289,8 +289,8 @@ public class StoneworksModule extends SZModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("stone_shingle_stairs_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_shingle_stairs_from_stone_shingles_stonecutting"))
+                .addRecipe(modRes("stone_shingle_slab_from_stone_stonecutting"))
+                .addRecipe(modRes("stone_shingle_slab_from_stone_shingles_stonecutting"))
                 .build();
         this.addEntry(shingle_slabs);
 
@@ -304,8 +304,8 @@ public class StoneworksModule extends SZModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("stone_shingle_stairs_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_shingle_stairs_from_stone_shingles_stonecutting"))
+                .addRecipe(modRes("stone_shingle_wall_from_stone_stonecutting"))
+                .addRecipe(modRes("stone_shingle_wall_from_stone_shingles_stonecutting"))
                 .build();
         this.addEntry(shingle_walls);
 
