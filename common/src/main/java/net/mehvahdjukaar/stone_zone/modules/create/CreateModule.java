@@ -6,6 +6,7 @@ import com.simibubi.create.content.decoration.palettes.LayeredBlock;
 import com.simibubi.create.foundation.block.connected.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.mehvahdjukaar.every_compat.api.EntrySet;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.common_classes.RecipeUtility;
@@ -366,40 +367,44 @@ public class CreateModule extends SZModule {
     public void addDynamicServerResources(ServerDynamicResourcesHandler handler, ResourceManager manager) {
         super.addDynamicServerResources(handler, manager);
 
-        cuts.blocks.forEach((stoneType, block) -> {
+        StoneTypeRegistry.getTypes().forEach(stoneType -> {
 
-            // Adding all blocks of a StoneType except "slab" to Array to be tagged
-            var BlockMap = new ArrayList<Block>();
+            if (!stoneType.isVanilla() && !stoneType.getNamespace().equals("create")) {
 
-            for (var entry : this.getEntries()) {
-                var currentBlock = ((SimpleEntrySet<?, ?>) entry).blocks.get(stoneType);
-                if (Objects.nonNull(currentBlock)) {
-                    if (currentBlock.toString().contains("slab")) continue;
-                    BlockMap.add(currentBlock);
+                // Adding all blocks of a StoneType except "slab" to Array to be tagged
+                ArrayList<Block> BlockMap = new ArrayList<>();
+
+                for (EntrySet<?> entry : this.getEntries()) {
+                    Block currentBlock = stoneType.getBlockOfThis(this.modId +":"+ entry.getName());
+                    if (Objects.nonNull(currentBlock) && !currentBlock.toString().contains("slab")) {
+                        BlockMap.add(currentBlock);
+                    }
                 }
-            }
-            BlockMap.add(stoneType.stone);
+                BlockMap.add(stoneType.stone);
 
-            Block[] blocks = new Block[BlockMap.size()];
-            BlockMap.toArray(blocks);
+                Block[] blocks = new Block[BlockMap.size()];
+                BlockMap.toArray(blocks);
 
-            // Tags
-            ResourceLocation tagResLoc = StoneZone.res(stoneType.getNamespace() +"/"+ stoneType.getTypeName());
-            boolean isTagCreated = TagUtility.createAndAddCustomTags(tagResLoc, handler, blocks);
+                // Tags
+                ResourceLocation tagResLoc = StoneZone.res(stoneType.getNamespace() + "/" + stoneType.getTypeName());
+                boolean isTagCreated = TagUtility.createAndAddCustomTags(tagResLoc, handler, blocks);
 
-            // Recipes
-            if (isTagCreated) {
-                for (var entry : this.getEntries()) {
-                    var blockId = Utils.getID(((SimpleEntrySet<?, ?>)entry).getBaseBlock());
-                    String prefix = blockId.getPath();
-                    var output = ((SimpleEntrySet<?,?>) entry).blocks.get(stoneType);
+                // Recipes
+                if (isTagCreated) {
+                    for (EntrySet<?> entry : this.getEntries()) {
+                        ResourceLocation blockId = Utils.getID(((SimpleEntrySet<?, ?>) entry).getBaseBlock());
+                        String prefix = blockId.getPath();
+                        Block output = stoneType.getBlockOfThis(this.modId +":"+ entry.getName());
 
-                    ResourceLocation recipeFileLoc = modRes(prefix + "_from_stone_types_andesite_stonecutting");
-                    ResourceLocation recipeResLoc = ResType.RECIPES.getPath(recipeFileLoc);
-                    ResourceLocation newRecipeLoc = StoneZone.res(recipeFileLoc.getPath().replace("andesite", stoneType.getTypeName()));
-                    newRecipeLoc.withPrefix(shortenedId() +"/" + stoneType.getNamespace() + "/");
+                        ResourceLocation recipeFileLoc = modRes(prefix + "_from_stone_types_andesite_stonecutting");
+                        ResourceLocation recipeResLoc = ResType.RECIPES.getPath(recipeFileLoc);
+                        ResourceLocation newRecipeLoc = StoneZone.res(recipeFileLoc.getPath()
+                                        .replace("andesite", stoneType.getTypeName())
+                                        .replace("_stonecutting", ""))
+                                .withPrefix(shortenedId() + "/" + stoneType.getNamespace() + "/stonecutting/");
 
-                    RecipeUtility.stonecuttingWithTagRecipe(output, recipeResLoc, tagResLoc, newRecipeLoc, handler, manager);
+                        RecipeUtility.stonecuttingWithTagRecipe(output, recipeResLoc, tagResLoc, newRecipeLoc, handler, manager);
+                    }
                 }
             }
         });
