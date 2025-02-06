@@ -11,9 +11,11 @@ import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
+import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
-import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
+import net.mehvahdjukaar.stone_zone.misc.SpriteHelper;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.CreativeModeTab;
@@ -71,12 +73,16 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
     protected BlockTypeResTransformer<T> makeBlockStateTransformer(SimpleModule module, ResourceManager manager) {
         String nameBaseStone = baseType.get().getTypeName();
         return BlockTypeResTransformer.<T>create(module.getModId(), manager)
-                .addModifier((s, blockId, stoneType) -> s.replace("minecraft:block/" + nameBaseStone, getChildModelId("stone", stoneType)))
-                .addModifier((s, blockId, stoneType) -> s.replace("minecraft:block/smooth_" + nameBaseStone, getChildModelId("smooth_stone", stoneType)))
+                .addModifier((s, blockId, stoneType) ->
+                        s.replace("minecraft:block/" + nameBaseStone, getChildModelId("stone", stoneType, blockId)))
+                .addModifier((s, blockId, stoneType) ->
+                        s.replace("minecraft:block/smooth_" + nameBaseStone, getChildModelId("smooth_stone", stoneType, blockId)))
                 .andThen(super.makeBlockStateTransformer(module, manager));
     }
 
-    private String getChildModelId(String childkey, T stoneType) {
+    private String getChildModelId(String childkey, T stoneType, ResourceLocation blockId) {
+        if (SpriteHelper.modelID.containsKey(blockId)) return SpriteHelper.modelID.get(blockId);
+
         return Utils.getID(stoneType.getBlockOfThis(childkey)).withPrefix("block/").toString();
     }
 
