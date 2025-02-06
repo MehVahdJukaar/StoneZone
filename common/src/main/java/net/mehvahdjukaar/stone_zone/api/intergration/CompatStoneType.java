@@ -108,8 +108,8 @@ public class CompatStoneType {
         String baseName = nameStoneType + "_block";
 
         var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, baseName);
-        if (includeSlab) stonetypeFinder.addChild("slab", baseName +"slab");
-        if (includeStairs) stonetypeFinder.addChild("slab", baseName +"stairs");
+        if (includeSlab) stonetypeFinder.addChild("slab", baseName +"_slab");
+        if (includeStairs) stonetypeFinder.addChild("slab", baseName +"_stairs");
 
         BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
     }
