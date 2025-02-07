@@ -92,7 +92,7 @@ publishing {
 //}
 
 dependencies {
-    forge "net.minecraftforge:forge:${rootProject.forge_version}"
+    forge "net.minecraftforge:forge:${forge_version}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
@@ -104,24 +104,24 @@ dependencies {
     annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
-    //!! Repository LOCAL
+    //- Repository LOCAL
     String path = System.getenv('REPOS20_1')
 //    modImplementation(files(path + "\\Moonlight\\forge\\build\\libs\\moonlight-${moonlight_testVersion}-forge.jar"))
 
-    //!! ~/forge/mods LOCAL
+    //- ~/forge/mods LOCAL
 //   modImplementation("net.mehvahdjukaar:moonlight-forge:${project.moonlight_testVersion}") // LOCAL
 
     //+ MAVEN
     modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.58
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
-    //!! Repository LOCAL
+    //- Repository LOCAL
 //    modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
 
     //+ MAVEN
     modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.15
 
-//!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
+//!! TOOLS ---------------------------------------------------------------------------------------------------------- \\
     modRuntimeOnly("curse.maven:jei-238222:5846810")
     modRuntimeOnly("curse.maven:worldedit-225608:4586218")
     modRuntimeOnly("curse.maven:jade-324717:5672013")
@@ -129,30 +129,31 @@ dependencies {
     modRuntimeOnly("curse.maven:crafttweaker-239197:5880672")
 
 //!! ================================================= DEPENDENCIES ================================================= \\
-        //!! ONLY FOR TESTING - can be commented out or enabled
+        //- ONLY FOR TESTING - can be commented out or enabled
     modRuntimeOnly("curse.maven:terrablender-563928:5378180") // v3.0.1.7 |
-    modRuntimeOnly("curse.maven:citadel-331936:6002521") // v2.6.1 | Alexs-Caves
+//    modRuntimeOnly("curse.maven:citadel-331936:6002521") // v2.6.1 | Alexs-Caves
 //    modRuntimeOnly("curse.maven:yungs-api-421850:5769971") // v4.0.6 | Better-Archeology
 //    modRuntimeOnly("curse.maven:patchouli-306770:4966125") // v84 | TFC
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904750") // v8.1.25 | Stoneworks
 //    modRuntimeOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
-//    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | ?
+//    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | Chipped
 //    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | ?
-    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled
-    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled, Better-Archeology
+//    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled
+//    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled, Better-Archeology
 //    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct
+//    modRuntimeOnly("curse.maven:blueprint-382216:5292242") // v7.1.0 | The-Outer-End
 
-        // ~/forge/mods LOCAL
+        //- ~/forge/mods LOCAL
 
-        //!! REQUIRED FOR TESTING - can be commented out or enabled
+        //- OTHER MAVENs - can be commented out or enabled
 //    modRuntimeOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create
 //    modRuntimeOnly("com.jozufozu.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}") // Create
 
-            //!! REQUIRED - The modules access libaries from below - Only in FORGE
+            //+ REQUIRED - The modules access libaries from below - Only in FORGE
     modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:5668859") // v1.1.17a | Rechiseled
 
-//!! =============W====================================== IMPORTS ==================================================== \\
-        //!! ONLY FOR TESTING - can be commented out or enabled
+//!! =================================================== IMPORTS ==================================================== \\
+        //- ONLY FOR TESTING - can be commented out or enabled
 //    modRuntimeOnly("curse.maven:better-archeology-835687:5693368") // supermartijn642s' Config-Lib, Yung's API
 //    modRuntimeOnly("curse.maven:twigs-496913:4605097")
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611947") // puzzles-lib
@@ -160,10 +161,10 @@ dependencies {
 //    modRuntimeOnly("curse.maven:quark-243121:5594847") // Zeta //TODO: test the updated models/item stuff
 
 
-            // OTHER MAVENs
+            //- OTHER MAVENs
 //    modRuntimeOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel
 
-        //!! REQUIRED - The modules access libaries from below - ONLY IN FORGE
+        //+ REQUIRED - The modules access libaries from below - ONLY IN FORGE
             // MACAW's
     modCompileOnly("curse.maven:macaws-bridges-351725:5240518") //v3.0.0
     modCompileOnly("curse.maven:macaws-paths-and-pavings-629153:5341126") //v1.0.5
@@ -185,6 +186,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:gaia-dimension-302529:4794552")
 //    modRuntimeOnly("curse.maven:what-is-stone-colorful-caves-853161:5175855")
 //    modRuntimeOnly("curse.maven:artsandcrafts-1034791:5992027")
+//    modRuntimeOnly("curse.maven:the-outer-end-430404:5812948") // Blueprint
 
     // MUDTYPE ONLY
     modRuntimeOnly("curse.maven:deeperdarker-659011:5906086")
