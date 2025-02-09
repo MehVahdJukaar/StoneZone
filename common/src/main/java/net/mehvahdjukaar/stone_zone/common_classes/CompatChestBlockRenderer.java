@@ -103,27 +103,29 @@ public class CompatChestBlockRenderer extends ChestRenderer<CompatChestBlockEnti
             int i = neighborcombineresult.apply(new BrightnessCombiner<>()).applyAsInt(packedLight);
             Material material = this.getMaterial(blockEntity, chesttype);
             VertexConsumer vertexconsumer = material.buffer(buffer, RenderType::entityCutout);
+            var color = blockEntity.getTint();
             if (flag1x) {
                 if (chesttype == ChestType.LEFT) {
-                    this.render(poseStack, vertexconsumer, this.doubleLeftLid, this.doubleLeftLock, this.doubleLeftBottom, f1, i, packedOverlay);
+                    this.render(poseStack, vertexconsumer, this.doubleLeftLid, this.doubleLeftLock, this.doubleLeftBottom, f1, i, packedOverlay, color);
                 } else {
-                    this.render(poseStack, vertexconsumer, this.doubleRightLid, this.doubleRightLock, this.doubleRightBottom, f1, i, packedOverlay);
+                    this.render(poseStack, vertexconsumer, this.doubleRightLid, this.doubleRightLock, this.doubleRightBottom, f1, i, packedOverlay, color);
                 }
             } else {
-                this.render(poseStack, vertexconsumer, this.lid, this.lock, this.bottom, f1, i, packedOverlay);
+                this.render(poseStack, vertexconsumer, this.lid, this.lock, this.bottom, f1, i, packedOverlay, color);
             }
 
             poseStack.popPose();
         }
     }
 
-    private void render(PoseStack poseStack, VertexConsumer consumer, ModelPart lidPart, ModelPart lockPart, ModelPart bottomPart, float lidAngle, int packedLight, int packedOverlay) {
+    private void render(PoseStack poseStack, VertexConsumer consumer, ModelPart lidPart, ModelPart lockPart, ModelPart bottomPart,
+                        float lidAngle, int packedLight, int packedOverlay, float[] color) {
         lidPart.xRot = -(lidAngle * 1.5707964F);
         lockPart.xRot = lidPart.xRot;
 
-        lidPart.render(poseStack, consumer, packedLight, packedOverlay);
-        lockPart.render(poseStack, consumer, packedLight, packedOverlay);
-        bottomPart.render(poseStack, consumer, packedLight, packedOverlay);
+        lidPart.render(poseStack, consumer, packedLight, packedOverlay, color[0], color[1], color[2], color[3]);
+        lockPart.render(poseStack, consumer, packedLight, packedOverlay, color[0], color[1], color[2], color[3]);
+        bottomPart.render(poseStack, consumer, packedLight, packedOverlay, color[0], color[1], color[2], color[3]);
     }
 
     public static void register(ClientHelper.BlockEntityRendererEvent event, BlockEntityType<CompatChestBlockEntity> tile, String s) {

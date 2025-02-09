@@ -2,6 +2,7 @@ package net.mehvahdjukaar.stone_zone.common_classes;
 
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -13,12 +14,21 @@ import org.jetbrains.annotations.NotNull;
 public class CompatChestBlockEntity extends ChestBlockEntity {
     private final StoneType stoneType;
     private final boolean trapped;
+    private float[] tint = null;
 
     public CompatChestBlockEntity(BlockEntityType<?> arg, BlockPos pos, BlockState state) {
         super(arg, pos, state);
         StoneType stone = StoneTypeRegistry.INSTANCE.getBlockTypeOf(state.getBlock());
         this.stoneType = stone == null ? StoneTypeRegistry.getStoneType() : stone;
         this.trapped = state.getBlock() instanceof CompatTrappedChestBlock;
+    }
+
+    public float[] getTint() {
+        if (this.tint == null) {
+            int color = Minecraft.getInstance().getBlockColors().getColor(stoneType.stone.defaultBlockState(), level, worldPosition, 0);
+            this.tint = new float[]{(color >> 16 & 255) / 255f, (color >> 8 & 255) / 255f, (color & 255) / 255f};
+        }
+        return this.tint;
     }
 
     public StoneType getStoneType() {
