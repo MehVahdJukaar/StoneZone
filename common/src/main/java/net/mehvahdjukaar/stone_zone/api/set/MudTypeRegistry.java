@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_MODS;
@@ -23,6 +24,10 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
 
     public static MudType getMudType() {
         return getValue("mud");
+    }
+
+    public static Collection<MudType> getTypes() {
+        return INSTANCE.getValues();
     }
 
     public static MudType getValue(String mudTypeId) {
