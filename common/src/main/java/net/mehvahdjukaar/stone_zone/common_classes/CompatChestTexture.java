@@ -101,7 +101,7 @@ public class CompatChestTexture {
                         ResourceLocation trappedRes = StoneZone.res(trapped_path);
 
                         createChestTextures(handler, respriterNormal, respriterOverlay, plankMeta,
-                                plankPalette, overlayPalette, res, trappedRes, trapOverlay, stoneType);
+                                plankPalette, overlayPalette, res, trappedRes, trapOverlay);
                     }
 
                 } catch (Exception ex) {
@@ -116,8 +116,7 @@ public class CompatChestTexture {
                                             Respriter respriter, Respriter respriterO,
                                             AnimationMetadataSection baseMeta, List<Palette> basePalette,
                                             List<Palette> overlayPalette, ResourceLocation normalRLoc,
-                                            ResourceLocation trappedRLoc, TextureImage trappedOverlay,
-                                            StoneType wood) {
+                                            ResourceLocation trappedRLoc, TextureImage trappedOverlay) {
 
         TextureImage recoloredBase = respriter.recolorWithAnimation(basePalette, baseMeta);
         TextureImage recoloredOverlay = respriterO.recolorWithAnimation(overlayPalette, baseMeta);
@@ -129,9 +128,7 @@ public class CompatChestTexture {
             handler.dynamicPack.addAndCloseTexture(trappedRLoc, trapped);
         }
 
-        //???????
-        if (!wood.getNamespace().equals("blue_skies") || (wood.getNamespace().equals("blue_skies") && wood.getTypeName().equals("crystallized")))
-            handler.dynamicPack.addAndCloseTexture(normalRLoc, recoloredBase);
+        handler.dynamicPack.addAndCloseTexture(normalRLoc, recoloredBase);
     }
 
 }
