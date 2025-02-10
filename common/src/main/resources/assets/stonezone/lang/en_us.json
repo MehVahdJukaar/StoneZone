@@ -112,5 +112,8 @@
   "block_type.blockus.tile_stairs": "%s Tile Stairs",
   "block_type.blockus.tile_wall": "%s Tile Wall",
   "block_type.blockus.tiles": "%s Tiles",
-  "block_type.blockus.trapdoor": "%s Trapdoor"
+  "block_type.blockus.trapdoor": "%s Trapdoor",
+
+  "block_type.stonechest.chest": "%s Chest",
+  "item_type.stonechest.part": "%s Part"
 }

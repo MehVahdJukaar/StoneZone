@@ -3,6 +3,7 @@ package net.mehvahdjukaar.stone_zone.forge;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
 import net.mehvahdjukaar.stone_zone.modules.forge.rechiseled.RechiseledModule;
+import net.mehvahdjukaar.stone_zone.modules.forge.stone_chest.StoneChestModule;
 import net.minecraftforge.fml.common.Mod;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
@@ -30,6 +31,7 @@ public class StoneZoneForge extends StoneZoneCommon {
         // Macaw's
 //        addIfLoaded("mcwbridges", () -> MacawBridgesModule::new);
         addIfLoaded("rechiseled", () -> RechiseledModule::new);
+        addIfLoaded("stonechest", () -> StoneChestModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
 
