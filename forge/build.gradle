@@ -119,7 +119,7 @@ dependencies {
 //    modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
 
     //+ MAVEN
-    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.15
+    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.16
 
 //!! TOOLS ---------------------------------------------------------------------------------------------------------- \\
     modRuntimeOnly("curse.maven:jei-238222:5846810")
@@ -158,7 +158,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:twigs-496913:4605097")
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611947") // puzzles-lib
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1
-    modRuntimeOnly("curse.maven:quark-243121:5594847") // Zeta
+//    modRuntimeOnly("curse.maven:quark-243121:5594847") // Zeta
 
 
             //- OTHER MAVENs
