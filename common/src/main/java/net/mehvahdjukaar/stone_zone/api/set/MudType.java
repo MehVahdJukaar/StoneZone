@@ -4,6 +4,7 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.ApiStatus;
 
@@ -12,7 +13,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public class MudType extends StoneType {
+public class MudType extends RockType {
 
     public final Block mud;
 
@@ -30,6 +31,11 @@ public class MudType extends StoneType {
     protected void initializeChildrenBlocks() {
         super.initializeChildrenBlocks();
         this.addChild("packed", this.findRelatedEntry("packed", BuiltInRegistries.BLOCK));
+    }
+
+    @Override
+    public ItemLike mainChild() {
+        return this.mud;
     }
 
     public static class Finder implements SetFinder<MudType> {
@@ -72,9 +78,10 @@ public class MudType extends StoneType {
                     Block mud = mudFinder.get();
                     var d = BuiltInRegistries.BLOCK.get(BuiltInRegistries.BLOCK.getDefaultKey());
                     if (mud != d && mud != null) {
-                        var w = new MudType(id, mud);
-                        childNames.forEach((key, value) -> w.addChild(key, BuiltInRegistries.BLOCK.get(value)));
-                        return Optional.of(w);
+                        var newMud = new MudType(id, mud);
+                        childNames.forEach((key, value) ->
+                                newMud.addChild(key, BuiltInRegistries.BLOCK.get(value)));
+                        return Optional.of(newMud);
                     }
                 } catch (Exception ignored) {
                 }
