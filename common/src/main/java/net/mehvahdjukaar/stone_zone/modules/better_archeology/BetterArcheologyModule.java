@@ -34,7 +34,6 @@ public class BetterArcheologyModule extends SZModule {
                 .requiresChildren("bricks") //REASON: recipes & palettes
                 .addTexture(modRes("block/cracked_mud_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .build();
@@ -49,7 +48,6 @@ public class BetterArcheologyModule extends SZModule {
                 .requiresFromMap(cracked_bricks.blocks) //REASON: recipes & textures
                 //TEXTURES: cracked_bricks (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .addRecipe(modRes("cracked_mud_brick_stairs"))
                 .addRecipe(modRes("cracked_mud_brick_stairs_stonecutting"))
@@ -64,7 +62,6 @@ public class BetterArcheologyModule extends SZModule {
                 .requiresFromMap(cracked_bricks.blocks) //REASON: recipes & textures
                 //TEXTURES: cracked_bricks (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .addRecipe(modRes("cracked_mud_brick_slabs"))
                 .addRecipe(modRes("cracked_mud_brick_slabs_stonecutting"))

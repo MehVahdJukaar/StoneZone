@@ -35,7 +35,6 @@ public class TwigsModule extends SZModule {
                 .addTexture(modRes("block/stone_column_tip"))
                 .addTexture(modRes("block/stone_column_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(modRes("twig"))
                 .defaultRecipe()
                 .addRecipe(modRes("stone_column_stonecutting"))

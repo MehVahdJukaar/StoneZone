@@ -76,7 +76,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_big_tiles")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(big_tiles);
@@ -87,7 +86,6 @@ public class RechiseledModule extends SZModule {
                 )
                 //TEXTURES: big_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(big_tiles_connecting);
@@ -98,7 +96,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_bordered")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(bordered);
@@ -109,7 +106,6 @@ public class RechiseledModule extends SZModule {
                 )
                 //TEXTURES: big_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(bordered_connecting);
@@ -120,7 +116,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_brick_pattern")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(brick_pattern);
@@ -131,7 +126,6 @@ public class RechiseledModule extends SZModule {
                 )
                 //TEXTURES: big_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(brick_pattern_connecting);
@@ -142,7 +136,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_brick_paving")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(brick_paving);
@@ -153,7 +146,6 @@ public class RechiseledModule extends SZModule {
                 )
                 //TEXTURES: big_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(brick_paving_connecting);
@@ -164,7 +156,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_crushed")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(crushed);
@@ -175,7 +166,6 @@ public class RechiseledModule extends SZModule {
                 )
                 //TEXTURES: big_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(crushed_connecting);
@@ -186,7 +176,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_diagonal_bricks")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(diagonal_bricks);
@@ -197,7 +186,6 @@ public class RechiseledModule extends SZModule {
                 )
                 //TEXTURES: big_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(diagonal_bricks_connecting);
@@ -208,7 +196,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_path")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(path);
@@ -219,7 +206,6 @@ public class RechiseledModule extends SZModule {
                 )
                 //TEXTURES: big_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(path_connecting);
@@ -230,7 +216,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_rotated_bricks")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(rotated_bricks);
@@ -241,7 +226,6 @@ public class RechiseledModule extends SZModule {
                 )
                 //TEXTURES: big_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(rotated_bricks_connecting);
@@ -252,7 +236,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_small_bricks")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(small_bricks);
@@ -263,7 +246,6 @@ public class RechiseledModule extends SZModule {
                 )
                 //TEXTURES: big_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(small_bricks_connecting);
@@ -274,7 +256,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_small_tiles")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(small_tiles);
@@ -285,7 +266,6 @@ public class RechiseledModule extends SZModule {
                 )
                 //TEXTURES: big_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(small_tiles_connecting);
@@ -296,7 +276,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_smooth_brick_paving")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(smooth_brick_paving);
@@ -307,7 +286,6 @@ public class RechiseledModule extends SZModule {
                 )
                 //TEXTURES: big_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(smooth_brick_paving_connecting);
@@ -318,7 +296,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_smooth_large_tiles")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(smooth_large_tiles);
@@ -329,7 +306,6 @@ public class RechiseledModule extends SZModule {
                 )
                 //TEXTURES: big_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(smooth_large_tiles_connecting);
@@ -340,7 +316,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_smooth_rotated_bricks")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(smooth_rotated_bricks);
@@ -351,7 +326,6 @@ public class RechiseledModule extends SZModule {
                 )
                 //TEXTURES: big_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(smooth_rotated_bricks_connecting);
@@ -362,7 +336,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_smooth_tiles")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(smooth_tiles);
@@ -373,7 +346,6 @@ public class RechiseledModule extends SZModule {
                 )
                 //TEXTURES: big_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(smooth_tiles_connecting);
@@ -384,7 +356,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_squares")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(squares);
@@ -395,7 +366,6 @@ public class RechiseledModule extends SZModule {
                 )
                 //TEXTURES: big_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(squares_connecting);
@@ -406,7 +376,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_waves")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(waves);
@@ -416,7 +385,6 @@ public class RechiseledModule extends SZModule {
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(waves_connecting);
@@ -427,7 +395,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .addTexture(TextureInfo.of(modRes("block/stone_tiles")).copyMCMETA())
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(tiles);

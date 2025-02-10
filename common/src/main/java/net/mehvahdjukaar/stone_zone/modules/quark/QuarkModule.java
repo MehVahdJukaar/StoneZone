@@ -40,7 +40,6 @@ public class QuarkModule extends SZModule {
                 .requiresChildren("slab") //REASON: recipes
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .addRecipe(modRes("building/stonecutting/vertslabs/andesite_vertical_slab_stonecutter"))
                 .addRecipe(modRes("building/crafting/vertslabs/andesite_vertical_slab"))
@@ -58,7 +57,6 @@ public class QuarkModule extends SZModule {
                 .requiresChildren("polished_slab", "polished") //REASON: recipes & textures
                 //TEXTURES: polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .addRecipe(modRes("building/stonecutting/vertslabs/polished_andesite_vertical_slab_stonecutter"))
                 .addRecipe(modRes("building/crafting/vertslabs/polished_andesite_vertical_slab"))
@@ -78,7 +76,6 @@ public class QuarkModule extends SZModule {
                 .addTexture(modRes("block/andesite_pillar"))
                 .addTexture(modRes("block/andesite_pillar_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .addRecipe(modRes("building/crafting/stonevariants/andesite_pillar"))
                 .addRecipe(modRes("building/stonecutting/stonevariants/andesite_pillar_stonecutter"))

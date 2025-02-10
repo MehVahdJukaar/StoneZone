@@ -59,7 +59,6 @@ public class QuarkMudModule extends SZModule {
                 //TEXTURES: bricks
                 .addTexture(modRes("block/carved_mud_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .addRecipe(modRes("building/stonecutting/carved_mud_bricks_stonecutter"))
                 .addRecipe(modRes("building/crafting/carved_mud_bricks"))
@@ -78,7 +77,6 @@ public class QuarkMudModule extends SZModule {
                 .addTexture(modRes("block/mud_pillar"))
                 .addTexture(modRes("block/mud_pillar_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .addRecipe(modRes("building/crafting/mud_pillar"))
                 .addRecipe(modRes("building/stonecutting/mud_pillar_stonecutter"))
