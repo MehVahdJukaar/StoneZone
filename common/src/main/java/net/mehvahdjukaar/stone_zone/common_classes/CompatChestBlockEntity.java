@@ -26,7 +26,12 @@ public class CompatChestBlockEntity extends ChestBlockEntity {
     public float[] getTint() {
         if (this.tint == null) {
             int color = Minecraft.getInstance().getBlockColors().getColor(stoneType.stone.defaultBlockState(), level, worldPosition, 0);
-            this.tint = new float[]{(color >> 16 & 255) / 255f, (color >> 8 & 255) / 255f, (color & 255) / 255f};
+            this.tint = new float[]{
+                    (color >> 16 & 255) / 255F,
+                    (color >> 8 & 255) / 255F,
+                    (color & 255) / 255F,
+                    1.0F
+            };
         }
         return this.tint;
     }
