@@ -64,7 +64,9 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 // Modifying models' parent & "elements"
                 .addModifier((s, blockId, blockType) -> {
                     JsonObject jsonObject = GsonHelper.parse(s);
-                    ModelUtils.addTintIndexToModelAndReplaceParent(jsonObject, module);
+                    if (!blockId.getPath().contains("chest"))
+                        ModelUtils.addTintIndexToModelAndReplaceParent(jsonObject, module);
+
                     return jsonObject.toString();
                 });
     }
