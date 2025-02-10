@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 //!! Tools to create a custom model for StoneZone's blocks to have tinted color
 public final class ModelUtils {
     // dont skip any arbitrary parent
-    private static final Pattern PATH_PATTERN = Pattern.compile("(.*?)(\\/.*$)");
+    private static final Pattern PATH_PATTERN = Pattern.compile("(?<folder>.*?)(?<path>/.*$)");
     // just replace models once
     private static final Set<ResourceLocation> RESOLVED_PARENTS = new HashSet<>();
 
@@ -36,7 +36,7 @@ public final class ModelUtils {
         if ( !matcher.find() || id.getNamespace().contains("stonezone") ) {
             return id;
         }
-        return StoneZone.res(matcher.group(1) + "/" + id.getNamespace() + matcher.group(2));
+        return StoneZone.res(matcher.group("folder") + "/" + id.getNamespace() + matcher.group("path"));
     }
 
     public static void addTintIndexToModelAndReplaceParent(JsonObject jsonObject, @Nullable SimpleModule module) {
@@ -51,7 +51,7 @@ public final class ModelUtils {
             ResourceLocation oldRes = new ResourceLocation(jsonObject.get("parent").getAsString());
 
             // Skip these models/item file
-            if (!oldRes.toString().matches("minecraft:(item/generated|builtin/generated)")) {
+            if (!oldRes.toString().matches("minecraft:(?:item/generated|builtin/generated)")) {
                 ResourceLocation newRes = transformModelID(oldRes);
                 jsonObject.addProperty("parent", newRes.toString());
 
