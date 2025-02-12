@@ -8,12 +8,15 @@ import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
+import net.mehvahdjukaar.moonlight.api.resources.SimpleTagBuilder;
+import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
 import net.mehvahdjukaar.stone_zone.misc.SpriteHelper;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -26,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.*;
 
 public class StonezoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
@@ -56,7 +60,7 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
     @Override
     protected BlockTypeResTransformer<T> makeModelTransformer(SimpleModule module, ResourceManager manager) {
         String nameBaseStone = baseType.get().getTypeName();
-        return super.makeModelTransformer(module, manager)
+        return BlockTypeResTransformer.<T>create(module.getModId(), manager)
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone, "stone")
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", "bricks")
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth_stone")
@@ -68,7 +72,8 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
                         ModelUtils.addTintIndexToModelAndReplaceParent(jsonObject, module);
 
                     return jsonObject.toString();
-                });
+                })
+                .andThen(super.makeModelTransformer(module, manager));
     }
 
     @Override
