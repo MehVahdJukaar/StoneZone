@@ -3,6 +3,7 @@ package net.mehvahdjukaar.stone_zone;
 import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
+import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.stone_zone.api.intergration.CompatStoneType;
 import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
