@@ -78,6 +78,8 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 .addModifier((s, blockId, stoneType) ->
                         s.replace("minecraft:block/" + nameBaseStone, getChildModelId("stone", stoneType, blockId)))
                 .addModifier((s, blockId, stoneType) ->
+                        s.replace("minecraft:block/" + nameBaseStone + "_bricks", getChildModelId("bricks", stoneType, blockId)))
+                .addModifier((s, blockId, stoneType) ->
                         s.replace("minecraft:block/smooth_" + nameBaseStone, getChildModelId("smooth_stone", stoneType, blockId)))
                 .andThen(super.makeBlockStateTransformer(module, manager));
     }
