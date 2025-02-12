@@ -39,16 +39,24 @@ public final class ModelUtils {
         return StoneZone.res(matcher.group("folder") + "/" + id.getNamespace() + matcher.group("path"));
     }
 
-    public static void addTintIndexToModelAndReplaceParent(JsonObject jsonObject, @Nullable SimpleModule module) {
-        replaceParent(jsonObject, module);
+    public static void addTintIndexToModelAndReplaceParent(JsonObject jsonObject, @Nullable SimpleModule module,
+                                                       @Nullable    String ignoreIfFromStone) {
+        replaceParent(jsonObject, module, ignoreIfFromStone);
         addTintIndexToModel(jsonObject, 0);
     }
 
     //same as above but with JsonObject. we could merge these 2 eventually. Just done this way so we dont have to parse those top layer models twice
-    private static void replaceParent(JsonObject jsonObject, @Nullable SimpleModule module) {
+    private static void replaceParent(JsonObject jsonObject, @Nullable SimpleModule module,
+                                       @Nullable String ignoreIfFromStone) {
         // Modify the value of parent's
         if (jsonObject.has("parent")) {
             ResourceLocation oldRes = new ResourceLocation(jsonObject.get("parent").getAsString());
+            String path = oldRes.getPath();
+            int i = path.lastIndexOf("/");
+            //this parent was already added as a block. This is very brittle ans should be done a better way by keeping track of the block we visited
+            if(ignoreIfFromStone != null &&i != -1 && path.substring(i + 1).contains(ignoreIfFromStone)) {
+                return;
+            }
 
             // Skip these models/item file
             if (!oldRes.toString().matches("minecraft:(?:item/generated|builtin/generated)")) {

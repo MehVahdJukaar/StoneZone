@@ -57,21 +57,22 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
     protected BlockTypeResTransformer<T> makeModelTransformer(SimpleModule module, ResourceManager manager) {
         String nameBaseStone = baseType.get().getTypeName();
         return BlockTypeResTransformer.<T>create(module.getModId(), manager)
+                //these need to be run first. idk why but its like that
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone, "stone")
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", "bricks")
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth_stone")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, "polished")
                 // Modifying models' parent & "elements"
-                .andThen(super.makeModelTransformer(module, manager))
                 .addModifier((s, blockId, blockType) -> {
                     if (!blockId.getPath().contains("chest")) {
-                        //hijack chest models to use our chest model so they can have tint index.I think
                         JsonObject jsonObject = GsonHelper.parse(s);
-                        ModelUtils.addTintIndexToModelAndReplaceParent(jsonObject, module);
+                        ModelUtils.addTintIndexToModelAndReplaceParent(jsonObject, module, nameBaseStone);
                         return jsonObject.toString();
                     }
                     return s;
-                });
+                })
+                .andThen(super.makeModelTransformer(module, manager));
+
     }
 
     @Override
