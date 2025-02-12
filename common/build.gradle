@@ -21,7 +21,7 @@ dependencies {
 //    modImplementation("net.mehvahdjukaar:moonlight-fabric:${moonlight_testVersion}")
 
     //+ MAVEN
-    modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.58
+    modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.61
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     //- Repository LOCAL
@@ -37,11 +37,11 @@ dependencies {
     modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
 
 //!! =================================================== IMPORTS ==================================================== \\
-    //!! MODULES - don't need library from the mod, so it's fine to ignore
+    //- MODULES - don't need library from the mod, so it's fine to ignore
 
     // ~/common/mods LOCAL
 
-    //!! REQUIRED - The modules access libaries from below
+    //+ REQUIRED - The modules access libaries from below
     modCompileOnly("curse.maven:better-archeology-835687:5704094") // supermartijn642s' Config-Lib
     modCompileOnly("curse.maven:blockus-312289:5896309")
     modCompileOnly("curse.maven:quark-243121:5594847")
@@ -50,5 +50,5 @@ dependencies {
     modCompileOnly("curse.maven:building-but-better-989479:5382599")
     modCompileOnly("curse.maven:stoneworks-852663:4611947")
 
-        //!! DIFFERENT MAVENs
+        //+ OTHER MAVENs
 }
