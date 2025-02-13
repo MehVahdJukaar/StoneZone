@@ -15,7 +15,8 @@ public abstract class RockType extends BlockType{
      * Childkey Availability:
      * stone, stairs, slab, wall, button, pressure_plate, smooth_stone
      * polished, polished_stairs, polished_slab
-     * bricks, brick_stairs, brick_slab, brick_wall, cracked_bricks, brick_tiles
+     * bricks, brick_stairs, brick_slab, brick_wall, cracked_bricks, brick_tiles,
+     * mossy_bricks, mossy_brick_slab, mossy_brick_stairs, mossy_brick_wall
      **/
 
     public final Block block;
@@ -67,6 +68,9 @@ public abstract class RockType extends BlockType{
                 this.addChild("brick_tiles", findChildBrickEntry("tiles"));
                 this.addChild("cracked_bricks", findBrickEntry("cracked", ""));
                 this.addChild("mossy_bricks", findBrickEntry("mossy", ""));
+                this.addChild("mossy_brick_slab", findBrickEntry("mossy", "slab"));
+                this.addChild("mossy_brick_stairs", findBrickEntry("mossy", "stairs"));
+                this.addChild("mossy_brick_wall", findBrickEntry("mossy", "wall"));
             }
         }
 
