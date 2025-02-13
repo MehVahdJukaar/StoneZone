@@ -1,32 +1,45 @@
 package net.mehvahdjukaar.stone_zone.modules.forge.macaws;
 
+import com.google.gson.JsonObject;
 import com.mcwbridges.kikoz.objects.Bridge_Block;
 import com.mcwbridges.kikoz.objects.Bridge_Stairs;
 import com.mcwbridges.kikoz.objects.Bridge_Support;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
+import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
+import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
+import net.mehvahdjukaar.moonlight.api.resources.ResType;
+import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.SZModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromModel;
 
 
 //SUPPORT: v3.0.0+
 public class MacawBridgesModule extends SZModule {
 
     public final SimpleEntrySet<StoneType, Block> brick_bridges;
-//    public final SimpleEntrySet<StoneType, Block> mossy_brick_bridges;
-//    public final SimpleEntrySet<StoneType, Block> balustrade_bricks_bridges;
-//    public final SimpleEntrySet<StoneType, Block> balustrade_mossy_bricks_bridges;
-//    public final SimpleEntrySet<StoneType, Block> bridge_piers;
-//    public final SimpleEntrySet<StoneType, Block> mossy_bridge_piers;
-//    public final SimpleEntrySet<StoneType, Block> brick_bridge_stairs;
-//    public final SimpleEntrySet<StoneType, Block> mossy_bridge_stairs;
+    public final SimpleEntrySet<StoneType, Block> mossy_brick_bridges;
+    public final SimpleEntrySet<StoneType, Block> balustrade_bricks_bridges;
+    public final SimpleEntrySet<StoneType, Block> balustrade_mossy_bricks_bridges;
+    public final SimpleEntrySet<StoneType, Block> bridge_piers;
+    public final SimpleEntrySet<StoneType, Block> mossy_bridge_piers;
+    public final SimpleEntrySet<StoneType, Block> brick_bridge_stairs;
+    public final SimpleEntrySet<StoneType, Block> mossy_bridge_stairs;
+    public final SimpleEntrySet<StoneType, Block> bridges;
 
     public MacawBridgesModule(String modId) {
         super(modId, "mcb");
@@ -36,21 +49,27 @@ public class MacawBridgesModule extends SZModule {
                         getModBlock("stone_brick_bridge"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Block(standardProperties(stoneType))
                 )
-//                .requiresChildren("bricks")
-                //TEXTURES: bricks,
+                .requiresChildren("bricks", "brick_slab", "brick_wall") //REASON: textures, recipes
+                //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(modRes("stone_bridges"), Registries.BLOCK)
                 .setTabKey(tab)
+                .defaultRecipe()
+                .addRecipe(modRes("stonecutter_stone_brick_bridge"))
                 .build();
         this.addEntry(brick_bridges);
-/*
 
         mossy_brick_bridges = StonezoneEntrySet.of(StoneType.class, "brick_bridge", "mossy",
                         getModBlock("mossy_stone_brick_bridge"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Block(standardProperties(stoneType))
                 )
-                //TEXTURES:
+                .requiresChildren("mossy_bricks", "mossy_brick_slab", "mossy_brick_wall") //REASON: textures, recipes
+                //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(modRes("stone_bridges"), Registries.BLOCK)
                 .setTabKey(tab)
+                .defaultRecipe()
+                .addRecipe(modRes("stonecutter_mossy_stone_brick_bridge"))
                 .build();
         this.addEntry(mossy_brick_bridges);
 
@@ -58,9 +77,13 @@ public class MacawBridgesModule extends SZModule {
                         getModBlock("balustrade_stone_bricks_bridge"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Block(balustradeProperties(stoneType))
                 )
-                //TEXTURES:
+                .requiresChildren("bricks", "brick_slab", "brick_wall") //REASON: textures, recipes
+                //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(modRes("stone_bridges"), Registries.BLOCK)
                 .setTabKey(tab)
+                .defaultRecipe()
+                .addRecipe(modRes("stonecutter_balustrade_mossy_stone_bricks_bridge"))
                 .build();
         this.addEntry(balustrade_bricks_bridges);
 
@@ -68,8 +91,10 @@ public class MacawBridgesModule extends SZModule {
                         getModBlock("balustrade_mossy_stone_bricks_bridge"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Block(balustradeProperties(stoneType))
                 )
-                //TEXTURES:
+                .requiresChildren("mossy_bricks", "mossy_brick_slab", "mossy_brick_wall") //REASON: textures, recipes
+                //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(modRes("stone_bridges"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(balustrade_mossy_bricks_bridges);
@@ -78,9 +103,13 @@ public class MacawBridgesModule extends SZModule {
                         getModBlock("stone_bridge_pier"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Support(standardProperties(stoneType))
                 )
-                //TEXTURES:
+                .requiresChildren("bricks") //REASON: textures, recipes
+                //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(modRes("stone_piers"), Registries.BLOCK)
                 .setTabKey(tab)
+                .defaultRecipe()
+                .addRecipe(modRes("stonecutter_stone_bridge_pier"))
                 .build();
         this.addEntry(bridge_piers);
 
@@ -88,9 +117,13 @@ public class MacawBridgesModule extends SZModule {
                         getModBlock("mossy_stone_bridge_pier"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Support(standardProperties(stoneType))
                 )
-                //TEXTURES:
+                .requiresChildren("mossy_bricks") //REASON: textures, recipes
+                //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(modRes("stone_piers"), Registries.BLOCK)
                 .setTabKey(tab)
+                .defaultRecipe()
+                .addRecipe(modRes("stonecutter_mossy_stone_bridge_pier"))
                 .build();
         this.addEntry(mossy_bridge_piers);
 
@@ -98,9 +131,15 @@ public class MacawBridgesModule extends SZModule {
                         getModBlock("stone_brick_bridge_stair"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Stairs(standardProperties(stoneType))
                 )
-                //TEXTURES:
+                .requiresChildren("bricks") //REASON: textures, recipes
+                .requiresFromMap(brick_bridges.blocks) //REASON: recipes
+                //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(modRes("stone_stairs"), Registries.BLOCK)
                 .setTabKey(tab)
+                .defaultRecipe()
+                .addRecipe(modRes("stone_brick_bridge_stair_recycle"))
+                .addRecipe(modRes("stonecutter_stone_brick_bridge_stair"))
                 .build();
         this.addEntry(brick_bridge_stairs);
 
@@ -108,12 +147,33 @@ public class MacawBridgesModule extends SZModule {
                         getModBlock("mossy_stone_bridge_stair"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Stairs(standardProperties(stoneType))
                 )
-                //TEXTURES:
+                .requiresChildren("mossy_bricks") //REASON: textures, recipes
+                .requiresFromMap(mossy_brick_bridges.blocks) //REASON: recipes
+                //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(modRes("stone_stairs"), Registries.BLOCK)
                 .setTabKey(tab)
+                .defaultRecipe()
+                .addRecipe(modRes("mossy_stone_bridge_stair_recycle"))
+                .addRecipe(modRes("stonecutter_mossy_stone_bridge_stair"))
                 .build();
         this.addEntry(mossy_bridge_stairs);
-*/
+
+//!! ANDESITE
+        bridges = StonezoneEntrySet.of(StoneType.class, "bridge",
+                        getModBlock("andesite_bridge"), StoneTypeRegistry::getAndesiteType,
+                        stoneType -> new Bridge_Block(standardProperties(stoneType))
+                )
+                .requiresChildren("polished_stone", "slab", "wall") //REASON: textures, recipes
+                //TEXTURES: stone, polished_stone
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(modRes("stone_bridges"), Registries.BLOCK)
+                .setTabKey(tab)
+                .defaultRecipe()
+                .addRecipe(modRes("stonecutter_andesite_bridge"))
+                .build();
+        this.addEntry(bridges);
+
 
     }
 
@@ -131,6 +191,53 @@ public class MacawBridgesModule extends SZModule {
                 .strength(1.0F, 6.0F)
                 .requiresCorrectToolForDrops()
                 .sound(stoneType.getSound());
+    }
+
+    @Override
+    // Models
+    public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
+        super.addDynamicClientResources(handler, manager);
+
+// Bridge Model
+        String pathBridge = "mcwbridges/bridge/bridge_stone/parent/";
+
+        modifyParentModel(pathBridge + "base", "#2", handler, manager);
+        modifyParentModel(pathBridge + "corner", "#5", handler, manager);
+        modifyParentModel(pathBridge + "middle", "#5", handler, manager);
+        modifyParentModel(pathBridge + "side", "#5", handler, manager);
+
+// Balustrade Model
+        String pathBalustrade = "mcwbridges/bridge/balustrade/parent/";
+
+        modifyParentModel(pathBalustrade + "base", "#2", handler, manager);
+        modifyParentModel(pathBalustrade + "middle", "#1", handler, manager);
+        modifyParentModel(pathBalustrade + "corner", "#5", handler, manager);
+        modifyParentModel(pathBalustrade + "side", "#5", handler, manager);
+
+// Stair Model
+        String pathStair = "mcwbridges/stair/stone/parent/";
+
+        modifyParentModel(pathStair + "base", "#1", handler, manager);
+        modifyParentModel(pathStair + "double", "#1", handler, manager);
+        modifyParentModel(pathStair + "left", "#1", handler, manager);
+        modifyParentModel(pathStair + "right", "#1", handler, manager);
+    }
+
+    public void modifyParentModel(String pathModel, String excludeGravel, ClientDynamicResourcesHandler handler, ResourceManager manager) {
+        ResourceLocation modelResLoc = ResType.BLOCK_MODELS.getPath(StoneZone.res(pathModel));
+
+        try (InputStream modelStream = manager.getResource(modelResLoc)
+                .orElseThrow(FileNotFoundException::new).open()) {
+            JsonObject model = RPUtils.deserializeJson(modelStream);
+
+            removeTintIndexFromModel(model, excludeGravel);
+
+            handler.dynamicPack.addJson(StoneZone.res(pathModel), model, ResType.BLOCK_MODELS);
+
+        }
+        catch (IOException e) {
+            handler.getLogger().error("Failed to modify parent model @ {} : {}", modelResLoc, e);
+        }
     }
 
 

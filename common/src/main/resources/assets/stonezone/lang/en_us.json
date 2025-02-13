@@ -115,5 +115,14 @@
   "block_type.blockus.trapdoor": "%s Trapdoor",
 
   "block_type.stonechest.chest": "%s Chest",
-  "item_type.stonechest.part": "%s Part"
+  "item_type.stonechest.part": "%s Part",
+
+  "block_type.mcwbridges.brick_bridge":"%s Brick Bridge",
+  "block_type.mcwbridges.mossy_brick_bridge":"Mossy %s Brick Bridge",
+  "block_type.mcwbridges.bridge_pier":"%s Bridge Support",
+  "block_type.mcwbridges.mossy_bridge_pier":"Mossy %s Bridge Support",
+  "block_type.mcwbridges.brick_bridge_stair":"%s Brick Bridge Stair",
+  "block_type.mcwbridges.mossy_bridge_stair":"Mossy %s Bridge Stair",
+  "block_type.mcwbridges.balustrade_bricks_bridge":"Balustrade %s Bricks Bridge",
+  "block_type.mcwbridges.balustrade_mossy_bricks_bridge":"Balustrade Mossy %s Bricks Bridge"
 }

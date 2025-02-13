@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
 
 /**
- * Author: MehVahdJukaar
+ * Author: Xel'Bayria
  */
 @Mod(StoneZone.MOD_ID)
 public class StoneZoneForge extends StoneZoneCommon {
@@ -23,14 +23,12 @@ public class StoneZoneForge extends StoneZoneCommon {
     protected void addModules() {
         super.addModules();
 
-
-//!! =============================================== Add Other Compat Mods ========================================== \\
-
-
 //!! =================================================== Add Modules ================================================ \\
 
         // Macaw's
         addIfLoaded("mcwbridges", () -> MacawBridgesModule::new);
+
+        // General
         addIfLoaded("rechiseled", () -> RechiseledModule::new);
         addIfLoaded("stonechest", () -> StoneChestModule::new);
 
