@@ -62,6 +62,7 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", "bricks")
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth_stone")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, "polished")
+                .replaceWithTextureFromChild("minecraft:block/mossy_" + nameBaseStone + "_bricks", "mossy_bricks")
                 // Modifying models' parent & "elements"
                 .addModifier((s, blockId, blockType) -> {
                     if (!blockId.getPath().contains("chest")) {
