@@ -59,6 +59,7 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
         return BlockTypeResTransformer.<T>create(module.getModId(), manager)
                 //these need to be run first. idk why but its like that
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone, "stone")
+                .replaceWithTextureFromChild("minecraft:block/cobblestone", "cobblestone")
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", "bricks")
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth_stone")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, "polished")
