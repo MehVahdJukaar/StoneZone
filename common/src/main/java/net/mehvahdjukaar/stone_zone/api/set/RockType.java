@@ -13,7 +13,7 @@ import java.util.Objects;
 public abstract class RockType extends BlockType{
     /**
      * Childkey Availability:
-     * stone, stairs, slab, wall, button, pressure_plate, smooth_stone
+     * stone, cobblestone, stairs, slab, wall, button, pressure_plate, smooth_stone
      * polished, polished_stairs, polished_slab
      * bricks, brick_stairs, brick_slab, brick_wall, cracked_bricks, brick_tiles,
      * mossy_bricks, mossy_brick_slab, mossy_brick_stairs, mossy_brick_wall
@@ -42,7 +42,7 @@ public abstract class RockType extends BlockType{
         this.addChild("button", this.findRelatedEntry("button", BuiltInRegistries.BLOCK));
         this.addChild("pressure_plate", this.findRelatedEntry("pressure_plate", BuiltInRegistries.BLOCK));
         this.addChild("smooth_stone", this.findRelatedEntry("smooth", "stone", BuiltInRegistries.BLOCK));
-        this.addChild("cobblestone", this.findRelatedEntry("", "cobblestone", BuiltInRegistries.BLOCK));
+        this.addChild("cobblestone", this.findRelatedEntry("cobblestone", BuiltInRegistries.BLOCK));
 
         Block polished = this.findRelatedEntry("polished", BuiltInRegistries.BLOCK);
         this.addChild("polished", polished);
@@ -106,17 +106,21 @@ public abstract class RockType extends BlockType{
     }
 
     @Override
-    protected @Nullable <V> V findRelatedEntry(String prefix, String suffix, Registry<V> reg) {
+    protected @Nullable <V> V findRelatedEntry(String prefixOrInfix, String suffix, Registry<V> reg) {
+        if (id.toString().equals("minecraft:stone") && prefixOrInfix.equals("cobblestone")) {
+            return reg.get(new ResourceLocation("cobblestone"));
+        }
+
         if (!suffix.isEmpty()) suffix = "_" + suffix;
         ResourceLocation[] targets = {
-                new ResourceLocation(id.getNamespace(), id.getPath() + "_" + prefix + suffix),
-                new ResourceLocation(id.getNamespace(), prefix + "_" + id.getPath() + suffix),
+                new ResourceLocation(id.getNamespace(), id.getPath() +"_"+ prefixOrInfix + suffix),
+                new ResourceLocation(id.getNamespace(), prefixOrInfix +"_"+ id.getPath() + suffix),
                 // TFC & AFC: Include children of stone_type: stairs, slab...
-                new ResourceLocation(id.getNamespace(), "rock/raw/" + id.getPath() + "_" + prefix),
+                new ResourceLocation(id.getNamespace(), "rock/raw/" + id.getPath() +"_"+ prefixOrInfix),
                 // TFC & AFC: Include children of smooth, cobblestone, button, pressure_plate, bricks, cracked_bricks
-                new ResourceLocation(id.getNamespace(), "rock/" + prefix + suffix + "/" + id.getPath()),
+                new ResourceLocation(id.getNamespace(), "rock/" + prefixOrInfix + suffix +"/"+ id.getPath()),
                 // TFC & AFC: Include children of brick_slab, smooth_slab, brick_stairs, smooth_stairs
-                new ResourceLocation(id.getNamespace(), "rock/"+ prefix +"/" + id.getPath() + suffix)
+                new ResourceLocation(id.getNamespace(), "rock/"+ prefixOrInfix +"/"+ id.getPath() + suffix)
         };
         V found = null;
         for (var r : targets) {
@@ -129,8 +133,8 @@ public abstract class RockType extends BlockType{
     }
 
     @Override
-    protected <V> V findRelatedEntry(String prefix, Registry<V> reg) {
-        return findRelatedEntry(prefix, "", reg);
+    protected <V> V findRelatedEntry(String prefixOrInfix, Registry<V> reg) {
+        return findRelatedEntry(prefixOrInfix, "", reg);
     }
 
     @Override
