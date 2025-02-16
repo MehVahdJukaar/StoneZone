@@ -3,6 +3,8 @@ package net.mehvahdjukaar.stone_zone.misc;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
+import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
+import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.StaticResource;
 import net.mehvahdjukaar.stone_zone.StoneZone;
@@ -12,6 +14,9 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.GsonHelper;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -143,6 +148,23 @@ public final class ModelUtils {
                 RESOLVED_PARENTS.add(parent);
                 readJsonsRecursive(manager, parent, jsonObjects);
             }
+        }
+    }
+
+    public static void removeTintIndexFromParentModel(String pathModel, String excludeTexture, ClientDynamicResourcesHandler handler, ResourceManager manager) {
+        ResourceLocation modelResLoc = ResType.BLOCK_MODELS.getPath(StoneZone.res(pathModel));
+
+        try (InputStream modelStream = manager.getResource(modelResLoc)
+                .orElseThrow(FileNotFoundException::new).open()) {
+            JsonObject model = RPUtils.deserializeJson(modelStream);
+
+            removeTintIndexFromModel(model, excludeTexture);
+
+            handler.dynamicPack.addJson(StoneZone.res(pathModel), model, ResType.BLOCK_MODELS);
+
+        }
+        catch (IOException e) {
+            handler.getLogger().error("Failed to modify parent model @ {} : {}", modelResLoc, e);
         }
     }
 }
