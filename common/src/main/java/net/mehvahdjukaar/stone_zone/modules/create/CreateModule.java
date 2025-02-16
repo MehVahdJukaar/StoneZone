@@ -378,7 +378,7 @@ public class CreateModule extends SZModule {
                         String prefix = blockId.getPath();
                         Block output = stoneType.getBlockOfThis(this.modId +":"+ entry.getName());
 
-                        ResourceLocation recipeFileLoc = modRes(prefix + "_from_stone_types_andesite_stonecutting");
+                        ResourceLocation recipeFileLoc = modRes(prefix + "_from_" + stoneType.getTypeName() + "_stonecutting");
                         ResourceLocation recipeResLoc = ResType.RECIPES.getPath(recipeFileLoc);
                         ResourceLocation newRecipeLoc = StoneZone.res(recipeFileLoc.getPath()
                                         .replace("andesite", stoneType.getTypeName())
