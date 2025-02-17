@@ -124,5 +124,14 @@
   "block_type.mcwbridges.brick_bridge_stair":"%s Brick Bridge Stair",
   "block_type.mcwbridges.mossy_bridge_stair":"Mossy %s Bridge Stair",
   "block_type.mcwbridges.balustrade_bricks_bridge":"Balustrade %s Bricks Bridge",
-  "block_type.mcwbridges.balustrade_mossy_bricks_bridge":"Balustrade Mossy %s Bricks Bridge"
+  "block_type.mcwbridges.balustrade_mossy_bricks_bridge":"Balustrade Mossy %s Bricks Bridge",
+
+  "block_type.mcwfences.modern_brick_wall": "Modern %s Brick Wall",
+  "block_type.mcwfences.brick_railing_gate": "%s Brick Railing Gate",
+  "block_type.mcwfences.railing_brick_wall": "Railing %s Brick Wall",
+  "block_type.mcwfences.grass_topped_wall": "%s Grass Topped Wall",
+  "block_type.mcwfences.pillar_wall": "%s Pillar Wall",
+  "block_type.mcwfences.railing_gate": "%s Railing Gate",
+  "block_type.mcwfences.railing_wall": "Railing %s Wall",
+  "block_type.mcwfences.modern_wall": "Modern %s Wall"
 }
