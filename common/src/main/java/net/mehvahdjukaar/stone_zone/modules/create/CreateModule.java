@@ -378,11 +378,12 @@ public class CreateModule extends SZModule {
                         String prefix = blockId.getPath();
                         Block output = stoneType.getBlockOfThis(this.modId +":"+ entry.getName());
 
-                        ResourceLocation recipeFileLoc = modRes(prefix + "_from_" + stoneType.getTypeName() + "_stonecutting");
+                        ResourceLocation recipeFileLoc = modRes(prefix + "_from_stone_types_andesite_stonecutting");
                         ResourceLocation recipeResLoc = ResType.RECIPES.getPath(recipeFileLoc);
                         ResourceLocation newRecipeLoc = StoneZone.res(recipeFileLoc.getPath()
                                         .replace("andesite", stoneType.getTypeName())
-                                        .replace("_stonecutting", ""))
+                                        .replace("_stonecutting", "")
+                                        .replace("_stone_types", ""))
                                 .withPrefix(shortenedId() + "/" + stoneType.getNamespace() + "/stonecutting/");
 
                         RecipeUtility.stonecuttingWithTagRecipe(output, recipeResLoc, tagResLoc, newRecipeLoc, handler, manager);
