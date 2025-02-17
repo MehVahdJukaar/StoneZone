@@ -46,8 +46,8 @@ public class HardcodedBlockType {
         // The stone_squares block from Blockus is why stone_squares from Rechiseled got skipped
         if (isStoneRegistryOf("rechiseled", "", "blockus", "", "\\w+_squares")) return false;
 
-        // Create's blocks aren't generated for Quark & Wetland-Whimsy because they both have LIMESTONE & Also fix the tag issue (#64)
-        if (isStoneRegistryOf("create", "", "", "quark:limestone|wetland_whimsy:limestone", "")) return false;
+        // Create's blocks aren't generated for Quark, Wetland-Whimsy, Geologic-Expansion because they both have LIMESTONE & Also fix the tag issue (#64)
+        if (isStoneRegistryOf("create", "", "", "quark:limestone|wetland_whimsy:limestone|geologicexpansion:limestone", "")) return false;
 
 
         return null;
