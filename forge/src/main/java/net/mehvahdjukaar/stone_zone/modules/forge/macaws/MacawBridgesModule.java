@@ -1,14 +1,10 @@
 package net.mehvahdjukaar.stone_zone.modules.forge.macaws;
 
-import com.google.gson.JsonObject;
 import com.mcwbridges.kikoz.objects.Bridge_Block;
 import com.mcwbridges.kikoz.objects.Bridge_Stairs;
 import com.mcwbridges.kikoz.objects.Bridge_Support;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
-import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
-import net.mehvahdjukaar.moonlight.api.resources.ResType;
-import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.SZModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
@@ -21,11 +17,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-
-import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromModel;
+import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromParentModel;
 
 
 //SUPPORT: v3.0.0+
@@ -194,51 +186,33 @@ public class MacawBridgesModule extends SZModule {
     }
 
     @Override
-    // Models
+    // MODELS
     public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
         super.addDynamicClientResources(handler, manager);
 
 // Bridge Model
         String pathBridge = "mcwbridges/bridge/bridge_stone/parent/";
 
-        modifyParentModel(pathBridge + "base", "#2", handler, manager);
-        modifyParentModel(pathBridge + "corner", "#5", handler, manager);
-        modifyParentModel(pathBridge + "middle", "#5", handler, manager);
-        modifyParentModel(pathBridge + "side", "#5", handler, manager);
+        removeTintIndexFromParentModel(pathBridge + "base", "#2", handler, manager);
+        removeTintIndexFromParentModel(pathBridge + "corner", "#5", handler, manager);
+        removeTintIndexFromParentModel(pathBridge + "middle", "#5", handler, manager);
+        removeTintIndexFromParentModel(pathBridge + "side", "#5", handler, manager);
 
 // Balustrade Model
         String pathBalustrade = "mcwbridges/bridge/balustrade/parent/";
 
-        modifyParentModel(pathBalustrade + "base", "#2", handler, manager);
-        modifyParentModel(pathBalustrade + "middle", "#1", handler, manager);
-        modifyParentModel(pathBalustrade + "corner", "#5", handler, manager);
-        modifyParentModel(pathBalustrade + "side", "#5", handler, manager);
+        removeTintIndexFromParentModel(pathBalustrade + "base", "#2", handler, manager);
+        removeTintIndexFromParentModel(pathBalustrade + "middle", "#1", handler, manager);
+        removeTintIndexFromParentModel(pathBalustrade + "corner", "#5", handler, manager);
+        removeTintIndexFromParentModel(pathBalustrade + "side", "#5", handler, manager);
 
 // Stair Model
         String pathStair = "mcwbridges/stair/stone/parent/";
 
-        modifyParentModel(pathStair + "base", "#1", handler, manager);
-        modifyParentModel(pathStair + "double", "#1", handler, manager);
-        modifyParentModel(pathStair + "left", "#1", handler, manager);
-        modifyParentModel(pathStair + "right", "#1", handler, manager);
+        removeTintIndexFromParentModel(pathStair + "base", "#1", handler, manager);
+        removeTintIndexFromParentModel(pathStair + "double", "#1", handler, manager);
+        removeTintIndexFromParentModel(pathStair + "left", "#1", handler, manager);
+        removeTintIndexFromParentModel(pathStair + "right", "#1", handler, manager);
     }
-
-    public void modifyParentModel(String pathModel, String excludeGravel, ClientDynamicResourcesHandler handler, ResourceManager manager) {
-        ResourceLocation modelResLoc = ResType.BLOCK_MODELS.getPath(StoneZone.res(pathModel));
-
-        try (InputStream modelStream = manager.getResource(modelResLoc)
-                .orElseThrow(FileNotFoundException::new).open()) {
-            JsonObject model = RPUtils.deserializeJson(modelStream);
-
-            removeTintIndexFromModel(model, excludeGravel);
-
-            handler.dynamicPack.addJson(StoneZone.res(pathModel), model, ResType.BLOCK_MODELS);
-
-        }
-        catch (IOException e) {
-            handler.getLogger().error("Failed to modify parent model @ {} : {}", modelResLoc, e);
-        }
-    }
-
 
 }
