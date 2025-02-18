@@ -12,6 +12,9 @@ public class CompatStoneType {
 
     public static void init() {
 
+        // DivineRPG
+        simpleStoneFinder("divinerpg", "twilight_stone");
+
         // Outer End
         stoneBlockFinder("outer_end", "himmel");
 
