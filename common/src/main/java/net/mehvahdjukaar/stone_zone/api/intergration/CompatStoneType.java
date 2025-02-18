@@ -116,7 +116,11 @@ public class CompatStoneType {
 
         BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
     }
-    /// default
+    /** nameStone has "_block" as suffix
+     * default parameter
+     * includeSlab: false
+     * includeStairs: false
+    */
     public static void stoneBlockFinder(String modId, String nameStoneType) {
         stoneBlockFinder(modId, nameStoneType, false, false);
     }
