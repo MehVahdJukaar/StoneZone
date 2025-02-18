@@ -49,7 +49,7 @@ dependencies {
 //    modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
 
     //+ MAVEN
-    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.7.16
+    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.7.17
 
 //!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
     modRuntimeOnly("curse.maven:jei-238222:5846809")
