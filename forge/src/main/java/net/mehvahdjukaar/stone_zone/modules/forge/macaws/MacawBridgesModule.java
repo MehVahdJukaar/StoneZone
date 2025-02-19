@@ -35,7 +35,7 @@ public class MacawBridgesModule extends SZModule {
 
     public MacawBridgesModule(String modId) {
         super(modId, "mcb");
-        ResourceLocation tab = modRes("bridges");
+        ResourceLocation tab = modRes(modId);
 
         brick_bridges = StonezoneEntrySet.of(StoneType.class, "brick_bridge",
                         getModBlock("stone_brick_bridge"), StoneTypeRegistry::getStoneType,
