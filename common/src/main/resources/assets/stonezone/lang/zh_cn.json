@@ -294,6 +294,12 @@
   "stone_type.malum.tainted_rock": "污秽石",
   "stone_type.malum.twisted_rock": "扭曲石",
 
+  "stone_type.naturalist.shellstone": "蜗牛壳石",
+
+  "stone_type.natures_spirit.chert": "黑硅岩",
+  "stone_type.natures_spirit.kaolin": "高岭土",
+  "stone_type.natures_spirit.travertine": "洞石",
+
   "stone_type.netherexp.soul_slate": "魂板岩",
 
   "stone_type.quark.limestone": "石灰石",
@@ -317,6 +323,9 @@
 
   "stone_type.tconstruct.seared_stone": "焦黑石",
   "stone_type.tconstruct.scorched_stone": "焦褐石",
+
+  "stone_type.traverse.blue_rock": "峭壁岩",
+  "stone_type.traverse.red_rock": "红岩",
 
   "stone_type.twigs.polished_tuff": "磨制凝灰岩",
   "stone_type.twigs.polished_calcite": "磨制方解石",
