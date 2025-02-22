@@ -30,6 +30,9 @@ public class HardcodedBlockType {
         // EXAMPLE
 //        if (isStoneRegistryOf("create", "c", "create", "create:limestone", "limestone_pillar")) return true;
 
+        // Exclude all of Vanilla Types
+        if (stoneType.isVanilla()) return true;
+
         // The StoneType's texture is only white and no way for blocks to copy its color behavior
         if (isStoneRegistryOf("", "", "", "rgbblocks:prismarine", "")) return true;
 
@@ -41,10 +44,10 @@ public class HardcodedBlockType {
 
             /// ========== INCLUDE ========== \\\
         // EXAMPLE
-//        if (isStoneRegistryOf("", "", "", "", "")) return false;
+//        if (isStoneRegistryOf("create", "c", "create", "create:limestone", "limestone_pillar")) return false;
 
         // The stone_squares block from Blockus is why stone_squares from Rechiseled got skipped
-        if (isStoneRegistryOf("rechiseled", "", "blockus", "", "\\w+_squares")) return false;
+        if (isStoneRegistryOf("rechiseled", "", "blockus", "", "squares")) return false;
 
         // Create's blocks aren't generated for Quark, Wetland-Whimsy, Geologic-Expansion because they both have LIMESTONE & Also fix the tag issue (#64)
         if (isStoneRegistryOf("create", "", "", "quark:limestone|wetland_whimsy:limestone|geologicexpansion:limestone", "")) return false;
@@ -74,7 +77,7 @@ public class HardcodedBlockType {
         for (int idx = 0; idx < values.length; idx++ ) {
 
             if (!expressions[idx].isEmpty()) { // Skip the blank expressions
-                boolean isNotMatched = !values[idx].matches(expressions[idx]);
+                boolean isNotMatched = !(values[idx].matches(expressions[idx])|values[idx].contains(expressions[idx]));
                 if (isNotMatched) return false;
             }
         }
