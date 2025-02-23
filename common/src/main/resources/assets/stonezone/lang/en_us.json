@@ -133,5 +133,12 @@
   "block_type.mcwfences.pillar_wall": "%s Pillar Wall",
   "block_type.mcwfences.railing_gate": "%s Railing Gate",
   "block_type.mcwfences.railing_wall": "Railing %s Wall",
-  "block_type.mcwfences.modern_wall": "Modern %s Wall"
+  "block_type.mcwfences.modern_wall": "Modern %s Wall",
+
+  "block_type.mcwwindows.window":"Resizeable %s Window",
+  "block_type.mcwwindows.window2":"Rectangle %s Window",
+  "block_type.mcwwindows.four_window":"%s Four Pane Window",
+  "block_type.mcwwindows.brick_gothic":"%s Brick Gothic Window",
+  "block_type.mcwwindows.brick_arrow_slit":"%s Brick Arrow Slit",
+  "block_type.mcwwindows.pane_window":"%s Pane Window"
 }
