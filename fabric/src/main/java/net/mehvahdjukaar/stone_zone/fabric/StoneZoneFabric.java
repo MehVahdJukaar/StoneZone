@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
 import net.mehvahdjukaar.stone_zone.modules.fabric.macaws.MacawBridgesModule;
 import net.mehvahdjukaar.stone_zone.modules.fabric.macaws.MacawFencesModule;
+import net.mehvahdjukaar.stone_zone.modules.fabric.macaws.MacawRoofsModule;
 import net.mehvahdjukaar.stone_zone.modules.fabric.macaws.MacawWindowsModule;
 import net.mehvahdjukaar.stone_zone.modules.fabric.rechiseled.RechiseledModule;
 
@@ -26,6 +27,7 @@ public class StoneZoneFabric extends StoneZoneCommon implements ModInitializer {
         addIfLoaded("mcwbridges", () -> MacawBridgesModule::new);
         addIfLoaded("mcwfences", () -> MacawFencesModule::new);
         addIfLoaded("mcwwindows", () -> MacawWindowsModule::new);
+        addIfLoaded("mcwroofs", () -> MacawRoofsModule::new);
 
         // General
         addIfLoaded("rechiseled", () -> RechiseledModule::new);

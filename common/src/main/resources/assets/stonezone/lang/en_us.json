@@ -140,5 +140,21 @@
   "block_type.mcwwindows.four_window":"%s Four Pane Window",
   "block_type.mcwwindows.brick_gothic":"%s Brick Gothic Window",
   "block_type.mcwwindows.brick_arrow_slit":"%s Brick Arrow Slit",
-  "block_type.mcwwindows.pane_window":"%s Pane Window"
+  "block_type.mcwwindows.pane_window":"%s Pane Window",
+
+  "block_type.mcwroofs.roof":"%s Roof",
+  "block_type.mcwroofs.attic_roof":"%s Attic Roof",
+  "block_type.mcwroofs.top_roof":"%s Top Roof",
+  "block_type.mcwroofs.lower_roof":"%s Lower Base Roof",
+  "block_type.mcwroofs.steep_roof":"%s Steep Base Roof",
+  "block_type.mcwroofs.upper_lower_roof":"%s Lower Top Roof",
+  "block_type.mcwroofs.upper_steep_roof":"%s Steep Top Roof",
+
+  "block_type.mcwroofs.bricks_roof":"%s Bricks Roof",
+  "block_type.mcwroofs.bricks_attic_roof":"%s Bricks Attic Roof",
+  "block_type.mcwroofs.bricks_top_roof":"%s Bricks Top Roof",
+  "block_type.mcwroofs.bricks_lower_roof":"%s Bricks Lower Base Roof",
+  "block_type.mcwroofs.bricks_steep_roof":"%s Bricks Steep Base Roof",
+  "block_type.mcwroofs.bricks_upper_lower_roof":"%s Bricks Lower Top Roof",
+  "block_type.mcwroofs.bricks_upper_steep_roof":"%s Bricks Steep Top Roof"
 }

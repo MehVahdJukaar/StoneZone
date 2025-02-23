@@ -32,6 +32,7 @@ public class StoneZoneForge extends StoneZoneCommon {
         addIfLoaded("mcwbridges", () -> MacawBridgesModule::new);
         addIfLoaded("mcwfences", () -> MacawFencesModule::new);
         addIfLoaded("mcwwindows", () -> MacawWindowsModule::new);
+        addIfLoaded("mcwroofs", () -> MacawRoofsModule::new);
 
         // General
         addIfLoaded("rechiseled", () -> RechiseledModule::new);
