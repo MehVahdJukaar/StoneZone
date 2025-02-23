@@ -8,12 +8,15 @@ import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
+import net.mehvahdjukaar.moonlight.api.resources.SimpleTagBuilder;
+import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
 import net.mehvahdjukaar.stone_zone.misc.SpriteHelper;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -26,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.*;
 
 public class StonezoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
@@ -95,6 +99,28 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
 
         return Utils.getID(stoneType.getBlockOfThis(childkey)).withPrefix("block/").toString();
     }
+
+    @Override
+    public void generateTags(SimpleModule module, DynamicDataPack pack, ResourceManager manager) {
+        super.generateTags(module, pack, manager);
+
+        // Adding tag to a specific StoneType of all generated blocks
+        if (PlatHelper.isModLoaded("architects_palette")) {
+            SimpleTagBuilder tagBuilder = SimpleTagBuilder.of(new ResourceLocation("architects_palette:wizard_blocks"));
+            for (Map.Entry<T, B> e : blocks.entrySet()) {
+                T stoneType = e.getKey();
+                B block = e.getValue();
+                if (stoneType.getTypeName().equals("wardstone")) {
+                    tagBuilder.addEntry(block);
+                }
+            }
+
+            pack.addTag(tagBuilder, Registries.BLOCK);
+        }
+
+    }
+
+
 
     //!! SUB-CLASS
     public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {
