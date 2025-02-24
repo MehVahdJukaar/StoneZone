@@ -119,7 +119,7 @@ dependencies {
 //    modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
 
     //+ MAVEN
-    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.17
+    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.19
 
 //!! TOOLS ---------------------------------------------------------------------------------------------------------- \\
     modRuntimeOnly("curse.maven:jei-238222:5846810")
