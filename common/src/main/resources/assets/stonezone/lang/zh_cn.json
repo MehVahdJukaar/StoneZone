@@ -133,9 +133,30 @@
   "block_type.mcwfences.pillar_wall": "%s砖柱墙",
   "block_type.mcwfences.railing_gate": "%s铁栅栏门",
   "block_type.mcwfences.railing_wall": "%s铁栅栏墙",
-  "block_type.mcwfences.modern_wall": "现代%s墙"
+  "block_type.mcwfences.modern_wall": "现代%s墙",
 
+  "block_type.mcwwindows.window":"%s可调窗户",
+  "block_type.mcwwindows.window2":"%s长方格窗户",
+  "block_type.mcwwindows.four_window":"%s四格窗户",
+  "block_type.mcwwindows.brick_gothic":"%s砖哥特式窗户",
+  "block_type.mcwwindows.brick_arrow_slit":"%s砖箭缝",
+  "block_type.mcwwindows.pane_window":"%s嵌板窗户",
 
+  "block_type.mcwroofs.roof":"%s屋顶",
+  "block_type.mcwroofs.attic_roof":"%s天窗屋顶",
+  "block_type.mcwroofs.top_roof":"%s屋顶顶端",
+  "block_type.mcwroofs.lower_roof":"%s平缓屋顶底端",
+  "block_type.mcwroofs.steep_roof":"%s陡峭屋顶底端",
+  "block_type.mcwroofs.upper_lower_roof":"%s平缓屋顶顶端",
+  "block_type.mcwroofs.upper_steep_roof":"%s陡峭屋顶顶端",
+
+  "block_type.mcwroofs.bricks_roof":"%s砖屋顶",
+  "block_type.mcwroofs.bricks_attic_roof":"%s砖天窗屋顶",
+  "block_type.mcwroofs.bricks_top_roof":"%s砖屋顶顶端",
+  "block_type.mcwroofs.bricks_lower_roof":"%s砖平缓屋顶底端",
+  "block_type.mcwroofs.bricks_steep_roof":"%s砖陡峭屋顶底端",
+  "block_type.mcwroofs.bricks_upper_lower_roof":"%s砖平缓屋顶顶端",
+  "block_type.mcwroofs.bricks_upper_steep_roof":"%s砖陡峭屋顶顶端",
 
   "stone_type.minecraft.stone": "石头",
   "stone_type.minecraft.cobblestone": "圆石",
