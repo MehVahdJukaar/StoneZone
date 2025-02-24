@@ -1,15 +1,12 @@
 #### UPDATED: 
-- **LANG**: zn_ch - @ChuijkYahus
+- **LANG**: zn_ch - @22858
   
 #### ADDED:
-- **StoneZone** (COMMON): An exception for Create's blocks not generated with limestone from **Quark**, **Wetland-Whimsy**, **Geologic-Expansion**
-  - Also fixed the tag issue of **Create**'s limestone with both mods above - [#64](https://github.com/MehVahdJukaar/StoneZone/issues/64)
-- **Undetected Stone** (COMMON): DivineRPG's _twilight_stone_
+- **StoneZone** (COMMON): Added a tag, #architects_palette:wizard_blocks to only WARDSTONE of any generated blocks
 
-#### NEW:
-- **Macaw's Bridges** (COMMON)
-- **Macaw's Fences & Wall** (COMMON)
-
+#### NEW SUPPORTED MOD:
+- **Macaw's Windows** (COMMON)
+- **Macaw's Roofs** (COMMON)
 
 **LEGENDS:**
 - (COMMON) : FABRIC & FORGE
