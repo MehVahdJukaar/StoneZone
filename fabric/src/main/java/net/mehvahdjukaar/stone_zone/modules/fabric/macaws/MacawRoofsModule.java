@@ -40,7 +40,7 @@ public class MacawRoofsModule extends SZModule {
 
     public MacawRoofsModule(String modId) {
         super(modId, "mcr");
-        ResourceLocation tab = modRes(modId);
+        ResourceLocation tab = modRes("roofs");
 
         roofs = StonezoneEntrySet.of(StoneType.class, "roof",
                         getModBlock("stone_roof"), StoneTypeRegistry::getStoneType,
