@@ -2,10 +2,7 @@ package net.mehvahdjukaar.stone_zone.forge;
 
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
-import net.mehvahdjukaar.stone_zone.modules.forge.macaws.MacawBridgesModule;
-import net.mehvahdjukaar.stone_zone.modules.forge.macaws.MacawFencesModule;
-import net.mehvahdjukaar.stone_zone.modules.forge.macaws.MacawRoofsModule;
-import net.mehvahdjukaar.stone_zone.modules.forge.macaws.MacawWindowsModule;
+import net.mehvahdjukaar.stone_zone.modules.forge.macaws.*;
 import net.mehvahdjukaar.stone_zone.modules.forge.rechiseled.RechiseledModule;
 import net.mehvahdjukaar.stone_zone.modules.forge.stone_chest.StoneChestModule;
 import net.minecraftforge.fml.common.Mod;
@@ -33,6 +30,7 @@ public class StoneZoneForge extends StoneZoneCommon {
         addIfLoaded("mcwfences", () -> MacawFencesModule::new);
         addIfLoaded("mcwwindows", () -> MacawWindowsModule::new);
         addIfLoaded("mcwroofs", () -> MacawRoofsModule::new);
+        addIfLoaded("mcwstairs", () -> MacawStairsModule::new);
 
         // General
         addIfLoaded("rechiseled", () -> RechiseledModule::new);

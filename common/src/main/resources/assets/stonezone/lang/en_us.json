@@ -156,5 +156,22 @@
   "block_type.mcwroofs.bricks_lower_roof":"%s Bricks Lower Base Roof",
   "block_type.mcwroofs.bricks_steep_roof":"%s Bricks Steep Base Roof",
   "block_type.mcwroofs.bricks_upper_lower_roof":"%s Bricks Lower Top Roof",
-  "block_type.mcwroofs.bricks_upper_steep_roof":"%s Bricks Steep Top Roof"
+  "block_type.mcwroofs.bricks_upper_steep_roof":"%s Bricks Steep Top Roof",
+
+  "block_type.mcwstairs.brick_terrace_stairs": "%s Brick Terrace Stairs",
+  "block_type.mcwstairs.brick_skyline_stairs": "%s Brick Skyline Stairs",
+  "block_type.mcwstairs.brick_compact_stairs": "%s Brick Compact Stairs",
+  "block_type.mcwstairs.brick_bulk_stairs": "%s Brick Bulk Stairs",
+  "block_type.mcwstairs.brick_loft_stairs": "%s Brick Loft Stairs",
+  "block_type.mcwstairs.brick_railing": "%s Brick Railing",
+  "block_type.mcwstairs.brick_balcony": "%s Brick Balcony",
+  "block_type.mcwstairs.brick_platform": "%s Brick Platform",
+  "block_type.mcwstairs.mossy_brick_terrace_stairs": "Mossy %s Brick Terrace Stairs",
+  "block_type.mcwstairs.mossy_brick_skyline_stairs": "Mossy %s Brick Skyline Stairs",
+  "block_type.mcwstairs.mossy_brick_compact_stairs": "Mossy %s Brick Compact Stairs",
+  "block_type.mcwstairs.mossy_brick_bulk_stairs": "Mossy %s Brick Bulk Stairs",
+  "block_type.mcwstairs.mossy_brick_loft_stairs": "Mossy %s Brick Loft Stairs",
+  "block_type.mcwstairs.mossy_brick_railing": "Mossy %s Brick Railing",
+  "block_type.mcwstairs.mossy_brick_balcony": "Mossy %s Brick Balcony",
+  "block_type.mcwstairs.mossy_brick_platform": "Mossy %s Brick Platform"
 }

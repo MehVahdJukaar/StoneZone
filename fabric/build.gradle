@@ -96,6 +96,7 @@ dependencies {
     modCompileOnly("curse.maven:macaws-windows-363569:5589335") //v2.3.0
     modCompileOnly("curse.maven:macaws-roofs-352039:5554929") //v2.3.1
     modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442191") //v1.1.2
+    modCompileOnly("curse.maven:macaws-stairs-1119394:6155218") //v1.0.1
 
             // OTHERS
     modCompileOnly("curse.maven:rechiseled-558998:5286340") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
