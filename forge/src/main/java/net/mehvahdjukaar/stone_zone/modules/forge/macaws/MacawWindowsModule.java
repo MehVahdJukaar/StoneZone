@@ -38,6 +38,7 @@ public class MacawWindowsModule extends SZModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
@@ -54,6 +55,7 @@ public class MacawWindowsModule extends SZModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
@@ -70,6 +72,7 @@ public class MacawWindowsModule extends SZModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
@@ -105,6 +108,7 @@ public class MacawWindowsModule extends SZModule {
 
                 )
                 .requiresChildren("bricks", "brick_slab") //REASON: textures, recipes
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
@@ -121,6 +125,7 @@ public class MacawWindowsModule extends SZModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)

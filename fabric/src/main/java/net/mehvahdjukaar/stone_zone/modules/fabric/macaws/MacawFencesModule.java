@@ -61,6 +61,7 @@ public class MacawFencesModule extends SZModule{
                         stoneType -> new FenceGateBlock(standardCopyProperies(stoneType), WoodType.OAK)
                 )
                 .requiresChildren("bricks") //REASON: textures, recipes
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.UNSTABLE_BOTTOM_CENTER, Registries.BLOCK)
@@ -77,6 +78,7 @@ public class MacawFencesModule extends SZModule{
                         stoneType -> new FenceBlock(standardCopyProperies(stoneType))
                 )
                 .requiresChildren("bricks") //REASON: textures, recipes
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
@@ -93,6 +95,7 @@ public class MacawFencesModule extends SZModule{
                         stoneType -> new FenceHitbox(standardCopyProperies(stoneType))
                 )
                 .requiresChildren("bricks", "cobblestone") //REASON: textures, recipes
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks, cobblestone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
@@ -125,6 +128,7 @@ public class MacawFencesModule extends SZModule{
                         stoneType -> new FenceGateBlock(standardCopyProperies(stoneType), WoodType.OAK)
                 )
                 .requiresChildren("polished") //REASON: textures, recipes
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.UNSTABLE_BOTTOM_CENTER, Registries.BLOCK)
@@ -141,6 +145,7 @@ public class MacawFencesModule extends SZModule{
                         stoneType -> new FenceBlock(standardCopyProperies(stoneType))
                 )
                 .requiresChildren("polished") //REASON: textures, recipes
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
