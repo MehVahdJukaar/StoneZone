@@ -32,10 +32,11 @@ public class CompatStoneType {
 
         // What Is Stone
         simpleStoneFinder("what_is_stone", "anthracite");
-        simpleStoneFinder("what_is_stone", "breccia");
-        simpleStoneFinder("what_is_stone", "conglomerate");
-        simpleStoneFinder("what_is_stone", "pegmatite");
-        simpleStoneFinder("what_is_stone", "scoria");
+        simpleStoneFinder("what_is_stone", "white_granite");
+        simpleStoneFinder("what_is_stone", "white_limestone");
+        simpleStoneFinder("what_is_stone", "arkosic_sandstone");
+        simpleStoneFinder("what_is_stone", "black_marble");
+        simpleStoneFinder("what_is_stone", "grey_limestone");
 
         // BetterEnd
         simpleStoneFinder("betterend", "azure_jadestone");
