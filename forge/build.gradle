@@ -104,22 +104,31 @@ dependencies {
     annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
-    //- Repository LOCAL
     String path = System.getenv('REPOS20_1')
-//    modImplementation(files(path + "\\Moonlight\\forge\\build\\libs\\moonlight-${moonlight_testVersion}-forge.jar"))
+    boolean usesMavenLocalML =  System.getenv().MY_PC == "1"
+    print "isMyPc: $usesMavenLocalML"
 
-    //- ~/forge/mods LOCAL
-//   modImplementation("net.mehvahdjukaar:moonlight-forge:${project.moonlight_testVersion}") // LOCAL
-
-    //+ MAVEN
-    modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.61
+        //- Repository LOCAL
+    if (enable_moonlight_test.toBoolean()) {
+        if (usesMavenLocalML) {
+            //- ~/forge/mods LOCAL
+            modImplementation("net.mehvahdjukaar:moonlight-forge:${project.moonlight_testVersion}") // LOCAL
+        } else {
+            modImplementation(files(path + "\\Moonlight\\forge\\build\\libs\\moonlight-${moonlight_testVersion}-forge.jar"))
+        }
+    } else {
+        //+ MAVEN
+        modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.70
+    }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
-    //- Repository LOCAL
-//    modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
-
-    //+ MAVEN
-    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.19
+    if (enable_everycomp_test.toBoolean()) {
+        //- Repository LOCAL
+        modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
+    } else {
+        //+ MAVEN
+        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.19
+    }
 
 //!! TOOLS ---------------------------------------------------------------------------------------------------------- \\
     modRuntimeOnly("curse.maven:jei-238222:5846810")
