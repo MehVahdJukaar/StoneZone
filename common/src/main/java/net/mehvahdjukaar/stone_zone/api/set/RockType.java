@@ -42,7 +42,12 @@ public abstract class RockType extends BlockType{
         this.addChild("button", this.findRelatedEntry("button", BuiltInRegistries.BLOCK));
         this.addChild("pressure_plate", this.findRelatedEntry("pressure_plate", BuiltInRegistries.BLOCK));
         this.addChild("smooth_stone", this.findRelatedEntry("smooth", "stone", BuiltInRegistries.BLOCK));
-        this.addChild("cobblestone", this.findRelatedEntry("cobblestone", BuiltInRegistries.BLOCK));
+
+        Block cobblestone = this.findRelatedEntry("cobblestone", BuiltInRegistries.BLOCK);
+        this.addChild("cobblestone", cobblestone);
+        if (Objects.nonNull(cobblestone)) {
+            this.addChild("mossy_cobblestone", this.findRelatedEntry("mossy","cobblestone", BuiltInRegistries.BLOCK));
+        }
 
         Block polished = this.findRelatedEntry("polished", BuiltInRegistries.BLOCK);
         this.addChild("polished", polished);
