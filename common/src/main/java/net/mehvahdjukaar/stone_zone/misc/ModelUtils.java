@@ -45,7 +45,7 @@ public final class ModelUtils {
     }
 
     public static void addTintIndexToModelAndReplaceParent(JsonObject jsonObject, @Nullable SimpleModule module,
-                                                       @Nullable    String ignoreIfFromStone) {
+                                                       @Nullable String ignoreIfFromStone) {
         replaceParent(jsonObject, module, ignoreIfFromStone);
         addTintIndexToModel(jsonObject, 0);
     }
