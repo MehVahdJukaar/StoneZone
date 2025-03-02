@@ -2,6 +2,7 @@ package net.mehvahdjukaar.stone_zone.forge;
 
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
+import net.mehvahdjukaar.stone_zone.modules.forge.create.CreateModule;
 import net.mehvahdjukaar.stone_zone.modules.forge.macaws.*;
 import net.mehvahdjukaar.stone_zone.modules.forge.rechiseled.RechiseledModule;
 import net.mehvahdjukaar.stone_zone.modules.forge.stone_chest.StoneChestModule;
@@ -36,6 +37,9 @@ public class StoneZoneForge extends StoneZoneCommon {
         // General
         addIfLoaded("rechiseled", () -> RechiseledModule::new);
         addIfLoaded("stonechest", () -> StoneChestModule::new);
+
+        //!! TEMP - Until Fabric version is updated to v6.0.0
+        addIfLoaded("create", () -> CreateModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
 

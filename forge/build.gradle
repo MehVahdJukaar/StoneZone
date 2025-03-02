@@ -155,7 +155,7 @@ dependencies {
         //- ~/forge/mods LOCAL
 
         //- OTHER MAVENs - can be commented out or enabled
-//    modRuntimeOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create
+    modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create //!! TEMP
 //    modRuntimeOnly("com.jozufozu.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}") // Create
 
         //+ REQUIRED - The modules access libaries from below - Only in FORGE
@@ -171,7 +171,7 @@ dependencies {
 
 
             //- OTHER MAVENs
-//    modRuntimeOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel
+    modCompileOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel //!! TEMP
 
         //+ REQUIRED - The modules access libaries from below - ONLY IN FORGE
             // MACAW's
@@ -190,7 +190,7 @@ dependencies {
 
     // STONETYPE ONLY
     modRuntimeOnly("curse.maven:alexs-caves-924854:5848216") // Citadel
-    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643")
+//    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643")
 //    modRuntimeOnly("curse.maven:spelunkery-790530:5727135") // Moonlight-Lib
 //    modRuntimeOnly("curse.maven:tinkers-construct-74072:6041763") // Mantle
 //    modRuntimeOnly("curse.maven:thaumon-926511:5492065")
