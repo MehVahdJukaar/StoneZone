@@ -405,7 +405,6 @@ public class RechiseledModule extends SZModule {
                 )
                 .requiresFromMap(tiles.blocks)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(tiles_connecting);
@@ -417,7 +416,6 @@ public class RechiseledModule extends SZModule {
                 .addTexture(modRes("block/stone_slated_end"))
                 .addTexture(modRes("block/stone_slated_side"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(new ResourceLocation("architects_palette:wizard_blocks"), Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(slated);
