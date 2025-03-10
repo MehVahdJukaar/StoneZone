@@ -12,6 +12,12 @@ public class CompatStoneType {
 
     public static void init() {
 
+        // Atmospheric
+        simpleStoneFinder("atmospheric", "ivory_travertine");
+        simpleStoneFinder("atmospheric", "peach_travertine");
+        simpleStoneFinder("atmospheric", "persimmon_travertine");
+        simpleStoneFinder("atmospheric", "saffron_travertine");
+
         // DivineRPG
         simpleStoneFinder("divinerpg", "twilight_stone");
 
@@ -31,7 +37,7 @@ public class CompatStoneType {
         simpleStoneFinder("biomeswevegone", "red_rock");
 
         // What Is Stone
-        simpleStoneFinder("what_is_stone", "anthracite");
+        simpleStoneFinder("what_is_stone", "anthracite"); // No other children
         simpleStoneFinder("what_is_stone", "white_granite");
         simpleStoneFinder("what_is_stone", "white_limestone");
         simpleStoneFinder("what_is_stone", "arkosic_sandstone");
@@ -44,7 +50,7 @@ public class CompatStoneType {
         simpleStoneFinder("betterend", "virid_jadestone");
         simpleStoneFinder("betterend", "sulphuric_rock");
 
-        // Create - undetected due to no BRICKS
+        // Create - undetected due to no BRICKS or POLISHED
         simpleStoneFinder("create", "limestone");
         simpleStoneFinder("create", "asurine");
         simpleStoneFinder("create", "crimsite");
@@ -53,7 +59,7 @@ public class CompatStoneType {
         simpleStoneFinder("create", "scoria");
         simpleStoneFinder("create", "scorchia");
 
-        // Create Dreams & Desires
+            // Create Dreams & Desires
         simpleStoneFinder("create_dd", "gabbro");
         simpleStoneFinder("create_dd", "weathered_limestone");
         simpleStoneFinder("create_dd", "aethersite");
@@ -62,30 +68,12 @@ public class CompatStoneType {
         // Bountiful Fares - nameStone of feldspar is feldspar_block
         stoneBlockFinder("bountifulfares", "feldspar");
 
-        // Aether Redux - undetected due to HARP sound
-        simpleStoneFinder("aether_redux", "sentrite");
-        simpleStoneFinder("aether_redux", "divinite");
-        simpleStoneFinder("aether_redux", "driftshale"); // - due to no BRICKS
-
-        // Aether Works - undetected due to HARP sound
-        simpleStoneFinder("aetherworks", "suevite");
-
-        // Deep Aether - undetected due to no BRICKS
-        simpleStoneFinder("deep_aether", "clorite");
+        // Deep Aether
         simpleStoneFinder("deep_aether", "raw_clorite");
-
-        // Alex's Caves - undetected due to HARP sound
-        simpleStoneFinder("alexscaves", "galena");
-        simpleStoneFinder("alexscaves", "radrock");
-        simpleStoneFinder("alexscaves", "abyssmarine");
-        simpleStoneFinder("alexscaves", "guanostone");
-        simpleStoneFinder("alexscaves", "limestone"); // - due to no BRICKS
 
         // Enlightened End - undetected due to 3 words (void_shale_bricks)
         simpleStoneFinder("enlightened_end", "void_shale");
 
-        // Ars Nouveau
-        simpleStoneFinder("ars_nouveau", "sourcestone");
 
         // Quark
         simpleStoneFinder("quark", "soul_sandstone");
