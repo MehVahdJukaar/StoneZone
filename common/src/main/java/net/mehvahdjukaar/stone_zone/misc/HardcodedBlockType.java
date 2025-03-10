@@ -46,6 +46,9 @@ public class HardcodedBlockType {
         // EXAMPLE
 //        if (isStoneRegistryOf("create", "c", "create", "create:limestone", "limestone_pillar")) return false;
 
+        // Create's cut wasn't generated due to Quark's cut_soul_sandstone
+        if (isStoneRegistryOf("create", "", "quark", "", "cut_soul_sandstone")) return false;
+
         // The stone_squares block from Blockus is why stone_squares from Rechiseled got skipped
         if (isStoneRegistryOf("rechiseled", "", "blockus", "", "squares")) return false;
 
