@@ -3,7 +3,6 @@ package net.mehvahdjukaar.stone_zone;
 import net.mehvahdjukaar.stone_zone.modules.bbb.BuildingButBetterModule;
 import net.mehvahdjukaar.stone_zone.modules.better_archeology.BetterArcheologyModule;
 import net.mehvahdjukaar.stone_zone.modules.blockus.BlockusModule;
-import net.mehvahdjukaar.stone_zone.modules.create.CreateModule;
 import net.mehvahdjukaar.stone_zone.modules.quark.QuarkModule;
 import net.mehvahdjukaar.stone_zone.modules.quark.QuarkMudModule;
 import net.mehvahdjukaar.stone_zone.modules.stoneworks.StoneworksModule;
