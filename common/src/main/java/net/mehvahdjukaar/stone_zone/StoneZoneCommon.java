@@ -30,7 +30,6 @@ public class StoneZoneCommon {
 //!! =================================================== Add Modules ================================================ \\
 
         addIfLoaded("twigs", () -> TwigsModule::new);
-//        addIfLoaded("create", () -> CreateModule::new); //!! TEMP until FABRIC version is updated to v6.0.0
         addIfLoaded("bbb", () -> BuildingButBetterModule::new);
         addIfLoaded("blockus", () -> BlockusModule::new);
         addIfLoaded("stoneworks", () -> StoneworksModule::new);

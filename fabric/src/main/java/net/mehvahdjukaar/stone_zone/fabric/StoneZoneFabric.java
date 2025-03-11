@@ -2,7 +2,7 @@ package net.mehvahdjukaar.stone_zone.fabric;
 
 import net.fabricmc.api.ModInitializer;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
-import net.mehvahdjukaar.stone_zone.modules.create.CreateModule;
+import net.mehvahdjukaar.stone_zone.modules.fabric.create.CreateModule;
 import net.mehvahdjukaar.stone_zone.modules.fabric.macaws.*;
 import net.mehvahdjukaar.stone_zone.modules.fabric.rechiseled.RechiseledModule;
 
@@ -30,10 +30,9 @@ public class StoneZoneFabric extends StoneZoneCommon implements ModInitializer {
         addIfLoaded("mcwpaths", () -> MacawPathsModule::new);
 
         // General
+        addIfLoaded("create", () -> CreateModule::new);
         addIfLoaded("rechiseled", () -> RechiseledModule::new);
 
-        //!! TEMP - Until Fabric version is updated to v6.0.0
-        addIfLoaded("create", () -> CreateModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
 

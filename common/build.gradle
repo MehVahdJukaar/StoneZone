@@ -42,7 +42,6 @@ dependencies {
 //!! ================================================= DEPENDENCIES ================================================= \\
 
     //!! REQUIRED - The modules access libaries from below
-    modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
     modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
 
 //!! =================================================== IMPORTS ==================================================== \\
