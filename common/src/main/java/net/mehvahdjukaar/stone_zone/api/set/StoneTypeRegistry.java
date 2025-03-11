@@ -69,7 +69,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
         if (!BLACKLISTED_MODS.contains(baseRes.getNamespace())) {
             // Check for <type>_bricks | <type>_stone_bricks
-            if (path.matches("[a-z]+(?:_(bricks|stairs)|_stone_(bricks|stairs))") && (baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM || baseblock.defaultBlockState().instrument() == NoteBlockInstrument.HARP)) {
+            if (path.matches("[a-z]+(?:_(bricks|stairs)|_stone_(bricks|stairs))") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM ) {
                 String stoneName = path.substring(0, path.length() - 7); // get stoneName from namespace:stoneName_bricks
                 String stoneAlt = stoneName + "_stone"; // Some mods included "_stone" as the suffix
                 ResourceLocation idBlockType = baseRes.withPath(stoneName);
@@ -85,7 +85,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
             }
             // Check for polished_<type> | polished_<type>_stone
-            else if (path.matches("polished_[a-z]+(?:_stone)?") && (baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM || baseblock.defaultBlockState().instrument() == NoteBlockInstrument.HARP)) {
+            else if (path.matches("polished_[a-z]+(?:_stone)?") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM ) {
                 String stoneName = path.replace("polished_", ""); // get stoneName from namespace:polished_stoneName
                 String stoneAlt = stoneName + "_stone"; // Some mods included "_stone" as the suffix
                 ResourceLocation idBlockType = baseRes.withPath(stoneName);
