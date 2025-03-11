@@ -12,11 +12,23 @@ public class CompatStoneType {
 
     public static void init() {
 
+        // Twigs
+        simpleStoneFinder("twigs", "rhyolite"); // HARP
+        simpleStoneFinder("twigs", "schist"); // HARP
+        simpleStoneFinder("twigs", "bloodstone"); // HARP
+
         // Atmospheric
+        simpleStoneFinder("atmospheric", "dolerite"); // HARP
         simpleStoneFinder("atmospheric", "ivory_travertine");
         simpleStoneFinder("atmospheric", "peach_travertine");
         simpleStoneFinder("atmospheric", "persimmon_travertine");
         simpleStoneFinder("atmospheric", "saffron_travertine");
+
+        // Arts-And-Crafts
+        simpleStoneFinder("arts_and_crafts", "gypsum"); // HARP
+
+        // Caverns-And-Chasms
+        simpleStoneFinder("caverns_and_chasms", "sugilite"); // HARP
 
         // DivineRPG
         simpleStoneFinder("divinerpg", "twilight_stone");
@@ -50,30 +62,48 @@ public class CompatStoneType {
         simpleStoneFinder("betterend", "virid_jadestone");
         simpleStoneFinder("betterend", "sulphuric_rock");
 
-        // Create - undetected due to no BRICKS or POLISHED
-        simpleStoneFinder("create", "limestone");
-        simpleStoneFinder("create", "asurine");
-        simpleStoneFinder("create", "crimsite");
-        simpleStoneFinder("create", "ochrum");
-        simpleStoneFinder("create", "veridium");
-        simpleStoneFinder("create", "scoria");
-        simpleStoneFinder("create", "scorchia");
+        // Create
+        simpleStoneFinder("create", "limestone"); // NO BRICKS or POLISHED
+        simpleStoneFinder("create", "asurine"); // NO BRICKS or POLISHED
+        simpleStoneFinder("create", "crimsite"); // NO BRICKS or POLISHED
+        simpleStoneFinder("create", "ochrum"); // NO BRICKS or POLISHED
+        simpleStoneFinder("create", "veridium"); // NO BRICKS or POLISHED
+        simpleStoneFinder("create", "scoria"); // NO BRICKS or POLISHED
+        simpleStoneFinder("create", "scorchia"); // NO BRICKS or POLISHED
 
             // Create Dreams & Desires
-        simpleStoneFinder("create_dd", "gabbro");
-        simpleStoneFinder("create_dd", "weathered_limestone");
-        simpleStoneFinder("create_dd", "aethersite");
-        simpleStoneFinder("create_dd", "potassic");
+        simpleStoneFinder("create_dd", "gabbro"); // NO BRICKS or POLISHED
+        simpleStoneFinder("create_dd", "weathered_limestone"); // NO BRICKS or POLISHED
+        simpleStoneFinder("create_dd", "aethersite"); // NO BRICKS or POLISHED
+        simpleStoneFinder("create_dd", "potassic"); // NO BRICKS or POLISHED
 
         // Bountiful Fares - nameStone of feldspar is feldspar_block
         stoneBlockFinder("bountifulfares", "feldspar");
 
-        // Deep Aether
+        // Aether Redux - undetected due to HARP sound
+        simpleStoneFinder("aether_redux", "sentrite");
+        simpleStoneFinder("aether_redux", "divinite");
+        simpleStoneFinder("aether_redux", "driftshale"); // NO BRICKS
+
+        // Aether Works - undetected due to HARP sound
+        simpleStoneFinder("aetherworks", "suevite");
+
+        // Deep Aether - undetected due to no BRICKS
+        simpleStoneFinder("deep_aether", "clorite");
         simpleStoneFinder("deep_aether", "raw_clorite");
 
-        // Enlightened End - undetected due to 3 words (void_shale_bricks)
+        // Alex's Caves
+        simpleStoneFinder("alexscaves", "galena"); // HARP
+        simpleStoneFinder("alexscaves", "radrock"); // HARP
+        simpleStoneFinder("alexscaves", "abyssmarine"); // HARP
+        simpleStoneFinder("alexscaves", "guanostone"); // HARP
+        simpleStoneFinder("alexscaves", "limestone"); // NO BRICKS
+
+        // Enlightened End
         simpleStoneFinder("enlightened_end", "void_shale");
 
+        // Ars Nouveau
+        simpleStoneFinder("ars_nouveau", "sourcestone");
 
         // Quark
         simpleStoneFinder("quark", "soul_sandstone");
