@@ -166,7 +166,7 @@ public class CreateModule extends SZModule {
                 //TAGS: create:stone_types/andesite - manually created
                 .setTabKey(tab)
                 .defaultRecipe()
-                .addRecipe(modRes("cut_andesite_slab_recycling")) //Crafts cut_andesite_bricks
+                .addRecipe(modRes("cut_andesite_brick_slab_recycling")) //Crafts cut_andesite_bricks
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(cut_brick_slabs);
