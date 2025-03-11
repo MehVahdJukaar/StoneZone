@@ -34,7 +34,7 @@ public class CompatStoneType {
         simpleStoneFinder("divinerpg", "twilight_stone");
 
         // Outer End
-        stoneBlockFinder("outer_end", "himmel");
+        stoneBlockFinder("outer_end", "himmel"); // STONE: himmel_block
 
         // Deeper And Darker
         simpleMudFinder("deeperdarker", "sculk_grime");
@@ -73,23 +73,23 @@ public class CompatStoneType {
 
             // Create Dreams & Desires
         simpleStoneFinder("create_dd", "gabbro"); // NO BRICKS or POLISHED
-        simpleStoneFinder("create_dd", "weathered_limestone"); // NO BRICKS or POLISHED
         simpleStoneFinder("create_dd", "aethersite"); // NO BRICKS or POLISHED
         simpleStoneFinder("create_dd", "potassic"); // NO BRICKS or POLISHED
+        simpleStoneFinder("create_dd", "weathered_limestone");
 
         // Bountiful Fares - nameStone of feldspar is feldspar_block
         stoneBlockFinder("bountifulfares", "feldspar");
 
-        // Aether Redux - undetected due to HARP sound
-        simpleStoneFinder("aether_redux", "sentrite");
-        simpleStoneFinder("aether_redux", "divinite");
+        // Aether Redux
+        simpleStoneFinder("aether_redux", "sentrite"); // HARP
+        simpleStoneFinder("aether_redux", "divinite"); // HARP
         simpleStoneFinder("aether_redux", "driftshale"); // NO BRICKS
 
-        // Aether Works - undetected due to HARP sound
-        simpleStoneFinder("aetherworks", "suevite");
+        // Aether Works
+        simpleStoneFinder("aetherworks", "suevite"); // HARP
 
-        // Deep Aether - undetected due to no BRICKS
-        simpleStoneFinder("deep_aether", "clorite");
+        // Deep Aether
+        simpleStoneFinder("deep_aether", "clorite"); // NO BRICKS
         simpleStoneFinder("deep_aether", "raw_clorite");
 
         // Alex's Caves
@@ -103,12 +103,12 @@ public class CompatStoneType {
         simpleStoneFinder("enlightened_end", "void_shale");
 
         // Ars Nouveau
-        simpleStoneFinder("ars_nouveau", "sourcestone");
+        simpleStoneFinder("ars_nouveau", "sourcestone"); // HARP
 
         // Quark
         simpleStoneFinder("quark", "soul_sandstone");
-        stoneBlockFinder("quark", "midori", true, true);
-        stoneBlockFinder("quark", "duskbound", true, true);
+        stoneBlockFinder("quark", "midori", true, true); // STONE: midori_block
+        stoneBlockFinder("quark", "duskbound", true, true); // STONE: duskbound_block
 
     }
 
