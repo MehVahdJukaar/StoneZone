@@ -226,7 +226,7 @@ public class MacawPathsModule extends SZModule {
         this.addEntry(mossy_windmill_weaves);
 
         flagstone_paths = StonezoneEntrySet.of(StoneType.class, "flagstone_path",
-                        getModBlock("andesite_flagstone_path"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("stone_flagstone_path"), StoneTypeRegistry::getStoneType,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -240,7 +240,7 @@ public class MacawPathsModule extends SZModule {
         this.addEntry(flagstone_paths);
 
         flagstone_slabs = StonezoneEntrySet.of(StoneType.class, "flagstone_slab",
-                        getModBlock("andesite_flagstone_slab"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("stone_flagstone_slab"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -252,7 +252,6 @@ public class MacawPathsModule extends SZModule {
                 .defaultRecipe()
                 .build();
         this.addEntry(flagstone_slabs);
-
 
         flagstones = StonezoneEntrySet.of(StoneType.class, "flagstone",
                         getModBlock("stone_flagstone"), StoneTypeRegistry::getStoneType,
@@ -267,7 +266,6 @@ public class MacawPathsModule extends SZModule {
                 .defaultRecipe()
                 .build();
         this.addEntry(flagstones);
-
 
         mossy_flagstone_paths = StonezoneEntrySet.of(StoneType.class, "flagstone_path", "mossy",
                         getModBlock("mossy_stone_flagstone_path"), StoneTypeRegistry::getStoneType,
