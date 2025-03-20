@@ -3,7 +3,6 @@ package net.mehvahdjukaar.stone_zone.misc;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public class HardcodedBlockType {
@@ -34,32 +33,32 @@ public class HardcodedBlockType {
         if (stoneType.isVanilla()) return true;
 
         // The StoneType's texture is only white and no way for blocks to copy its color behavior
-        if (isStoneRegistryOf("", "", "", "rgbblocks:prismarine", "")) return true;
+        if (isStoneFrom("", "", "", "rgbblocks:prismarine", "")) return true;
 
         // Create: Dreams & Desires' cut_stone_bricks shouldn't be detected but was
-        if (isStoneRegistryOf("", "", "", "create_dd:cut_stone", "")) return true;
+        if (isStoneFrom("", "", "", "create_dd:cut_stone", "")) return true;
 
         // Stone Expansion's stone is based on Minecraft's stone and shouldn't be included
-        if (isStoneRegistryOf("", "", "", "stoneexpansion:(cut|mossy|smooth|polished)_stone", "")) return true;
+        if (isStoneFrom("", "", "", "stoneexpansion:(cut|mossy|smooth|polished)_stone", "")) return true;
 
             /// ========== INCLUDE ========== \\\
         // EXAMPLE
 //        if (isStoneRegistryOf("create", "c", "create", "create:limestone", "limestone_pillar")) return false;
 
         // Create's cut wasn't generated due to Quark's cut_soul_sandstone
-        if (isStoneRegistryOf("create", "", "quark", "", "cut_soul_sandstone")) return false;
+        if (isStoneFrom("create", "", "quark", "", "cut_soul_sandstone")) return false;
 
         // The stone_squares block from Blockus is why stone_squares from Rechiseled got skipped
-        if (isStoneRegistryOf("rechiseled", "", "blockus", "", "squares")) return false;
+        if (isStoneFrom("rechiseled", "", "blockus", "", "squares")) return false;
 
         // Create's blocks aren't generated for Quark, Wetland-Whimsy, Geologic-Expansion because they both have LIMESTONE & Also fix the tag issue (#64)
-        if (isStoneRegistryOf("create", "", "", "quark:limestone|wetland_whimsy:limestone|geologicexpansion:limestone", "")) return false;
+        if (isStoneFrom("create", "", "", "quark:limestone|wetland_whimsy:limestone|geologicexpansion:limestone", "")) return false;
 
 
         return null;
     }
 
-    public static Boolean isStoneRegistryOf(String whichSupportedModId, String shortenedId, String stonetypeFromMod, String stoneTypeId, String whichSupportedBlockName) {
+    public static Boolean isStoneFrom(String whichSupportedModId, String shortenedId, String stonetypeFromMod, String stoneTypeId, String whichSupportedBlockName) {
 
         String[] expressions = {
                 whichSupportedModId,
@@ -80,7 +79,7 @@ public class HardcodedBlockType {
         for (int idx = 0; idx < values.length; idx++ ) {
 
             if (!expressions[idx].isEmpty()) { // Skip the blank expressions
-                boolean isNotMatched = !(values[idx].matches(expressions[idx])|values[idx].contains(expressions[idx]));
+                boolean isNotMatched = !(values[idx].matches(expressions[idx]) | values[idx].contains(expressions[idx]));
                 if (isNotMatched) return false;
             }
         }
