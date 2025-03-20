@@ -105,6 +105,7 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
         super.generateTags(module, pack, manager);
 
         // Adding tag to a specific StoneType of all generated blocks
+            // Architect's Palette
         if (PlatHelper.isModLoaded("architects_palette")) {
             SimpleTagBuilder tagBuilder = SimpleTagBuilder.of(new ResourceLocation("architects_palette:wizard_blocks"));
             for (Map.Entry<T, B> e : blocks.entrySet()) {
@@ -116,6 +117,30 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
             }
 
             pack.addTag(tagBuilder, Registries.BLOCK);
+        }
+            // Tinker's Construct
+        if (PlatHelper.isModLoaded("tconstruct")) {
+            SimpleTagBuilder tagBuilder = SimpleTagBuilder.of(new ResourceLocation("tconstruct:seared_blocks"));
+            for (Map.Entry<T, B> e : blocks.entrySet()) {
+                T stoneType = e.getKey();
+                B block = e.getValue();
+                if (stoneType.getTypeName().equals("seared_stone")) {
+                    tagBuilder.addEntry(block);
+                }
+            }
+            pack.addTag(tagBuilder, Registries.BLOCK);
+            pack.addTag(tagBuilder, Registries.ITEM);
+
+            SimpleTagBuilder tagBuilder2 = SimpleTagBuilder.of(new ResourceLocation("tconstruct:scorched_blocks"));
+            for (Map.Entry<T, B> e : blocks.entrySet()) {
+                T stoneType = e.getKey();
+                B block = e.getValue();
+                if (stoneType.getTypeName().equals("scorched_stone")) {
+                    tagBuilder2.addEntry(block);
+                }
+            }
+            pack.addTag(tagBuilder2, Registries.BLOCK);
+            pack.addTag(tagBuilder2, Registries.ITEM);
         }
 
     }
