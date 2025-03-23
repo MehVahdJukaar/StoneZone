@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import java.util.*;
 
 import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_MODS;
+import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_STONETYPES;
 
 
 @SuppressWarnings("unused")
@@ -75,8 +76,10 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
                 ResourceLocation idBlockType = baseRes.withPath(stoneName);
                 ResourceLocation idBlockTypeAlt = baseRes.withPath(stoneAlt);
 
+                boolean isStoneTypeBlacklisted = !(BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneName).toString()) || BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneAlt).toString()));
+
                 // Check if a BlockType is already added
-                if ( Objects.isNull(get(idBlockType)) || Objects.isNull(get(idBlockTypeAlt)) ) {
+                if (( Objects.isNull(get(idBlockType)) || Objects.isNull(get(idBlockTypeAlt)) ) && isStoneTypeBlacklisted ) {
                     var opt = BuiltInRegistries.BLOCK.getOptional(idBlockType);
                     var alt = BuiltInRegistries.BLOCK.getOptional(idBlockTypeAlt);
                     if (opt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));
@@ -91,8 +94,10 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
                 ResourceLocation idBlockType = baseRes.withPath(stoneName);
                 ResourceLocation idBlockTypeAlt = baseRes.withPath(stoneAlt);
 
+                boolean isStoneTypeBlacklisted = !(BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneName).toString()) || BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneAlt).toString()));
+
                 // Check if a BlockType is already added
-                if (Objects.isNull(get(idBlockType)) || Objects.isNull(get(idBlockTypeAlt))) {
+                if (( Objects.isNull(get(idBlockType)) || Objects.isNull(get(idBlockTypeAlt)) ) && isStoneTypeBlacklisted ) {
                     var opt = BuiltInRegistries.BLOCK.getOptional(idBlockType);
                     var alt = BuiltInRegistries.BLOCK.getOptional(idBlockTypeAlt);
                     if (opt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));

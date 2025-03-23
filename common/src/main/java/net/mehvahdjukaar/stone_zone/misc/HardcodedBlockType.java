@@ -17,6 +17,12 @@ public class HardcodedBlockType {
             "immersive_weathering", "chipped", "create_confectionery"
     );
 
+    public static final Set<String> BLACKLISTED_STONETYPES = Set.of(
+            "quark:shingles", //REASON: is a terracotta
+            //REASON: not a stonetype
+            "outer_end:himmel", "quark:midori", "twigs:silt", "supplementaries:ash"
+    );
+
     @Nullable
     public static Boolean isStoneBlockAlreadyRegistered(String blockName, StoneType stoneType, String ModId, String shortenedId) {
         stoneidentify = stoneType.getId().toString();
