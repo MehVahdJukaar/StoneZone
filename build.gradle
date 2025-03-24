@@ -156,31 +156,29 @@ allprojects {
             allowInsecureProtocol = true
         }
 
-        maven { url 'https://jitpack.io' } // BCLib
+        maven { url = 'https://jitpack.io' } // BCLib
 
         maven { url = "https://api.modrinth.com/maven" }
 
-        maven { url = "https://mvn.devos.one/snapshots/" }
+        maven { url = "https://mvn.devos.one/snapshots/" } // registrate_fabric & registrate
 
         maven { url = "https://mvn.devos.one/releases" } // Porting Lib Releases
 
-        maven { url "https://maven.shedaniel.me/" } // Cloth Config
+        maven { url = "https://maven.shedaniel.me/" } // Cloth Config
 
         // Required for Create
-        maven {
-            name "tterrag maven"
-            url "https://maven.tterrag.com/" // Create & Several Dependencies
-        }
-        maven { // Forge Config API Port
-            name = "Fuzs Mod Resources"
-            url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
-        }
+        maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
+
+        maven { url = "https://maven.tterrag.com" } // Registrate
+
+        maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" } // Forge Config API Port
+
         maven { // Reach Entity Attributes
             url = "https://maven.jamieswhiteshirt.com/libs-release"
             content { includeGroup("com.jamieswhiteshirt") }
         }
         maven { // CC: Tweaked
-            url "https://squiddev.cc/maven"
+            url = "https://squiddev.cc/maven"
         }
         maven { // Unknown
             name = 'Ladysnake Mods'
@@ -194,7 +192,6 @@ allprojects {
             name = "ModMaven"
             url = "https://modmaven.dev"
         }
-        // END -------------
     }
 
     tasks.withType(JavaCompile).configureEach {
