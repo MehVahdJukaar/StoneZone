@@ -178,7 +178,7 @@ dependencies {
         //+ REQUIRED - The modules access libaries from below - ONLY IN FORGE
             // MACAW's
     modCompileOnly("curse.maven:macaws-bridges-351725:5240518") //v3.0.0
-    modImplementation("curse.maven:macaws-paths-and-pavings-629153:5341126") //v1.0.5
+    modCompileOnly("curse.maven:macaws-paths-and-pavings-629153:5341126") //v1.0.5
     modCompileOnly("curse.maven:macaws-windows-363569:5589363") //v2.3.0
     modCompileOnly("curse.maven:macaws-roofs-352039:5554957") //v2.3.1
     modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442217") //v1.1.2
