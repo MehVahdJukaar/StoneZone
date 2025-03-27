@@ -58,5 +58,6 @@ dependencies {
     modCompileOnly("curse.maven:building-but-better-989479:5382599")
     modCompileOnly("curse.maven:stoneworks-852663:4611947")
 
-        //+ OTHER MAVENs
+        //+ OTHER MAVENS
+    modCompileOnly("earth.terrarium.chipped:chipped-fabric-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib
 }

@@ -77,11 +77,14 @@ dependencies {
 //    modRuntimeOnly("curse.maven:bclib-495191:4971470") // v3.0.14 | BetterEnd
 //    modRuntimeOnly("com.github.quiqueck:BCLib:3.0.14") // BetterEnd
 //    modRuntimeOnly("com.github.quiqueck:WunderLib:1.1.5") // BetterEnd
+//    modRuntimeOnly("curse.maven:athena-841890:5176880") // Chipped
+//    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659872")  // v2.1.29 | Chipped
 
         //- ~/fabric/mods LOCAL@
 
         //- OTHER MAVENs - can be commented out or enabled
 //    modRuntimeOnly("com.jozufozu.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_version}") // Create
+//    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
 
         //+ REQUIRED - The modules access libaries from below - Only in FABRIC
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
@@ -96,6 +99,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611948") // puzzles-lib, forge-config-api-port
 
             //- OTHER MAVENS
+//    modRuntimeOnly("earth.terrarium.chipped:chipped-fabric-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib
 
         //+ REQUIRED - The modules access libaries from below - ONLY IN FABRIC
             // MACAW's
@@ -106,7 +110,7 @@ dependencies {
     modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442191") //v1.1.2
     modCompileOnly("curse.maven:macaws-stairs-1119394:6155218") //v1.0.1
 
-            // OTHERS
+            //+ GENERAL
     modCompileOnly("curse.maven:create-fabric-624165:5982726") // Do not use for RunTime
     modCompileOnly("curse.maven:rechiseled-558998:5286340") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
 

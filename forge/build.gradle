@@ -146,16 +146,17 @@ dependencies {
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904750") // v8.1.25 | Stoneworks
 //    modRuntimeOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
 //    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | Chipped
-//    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | ?
+//    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | Chipped
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled, Better-Archeology
 //    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct
-//    modRuntimeOnly("curse.maven:blueprint-382216:5292242") // v7.1.0 | The-Outer-End
+//    modRuntimeOnly("curse.maven:blueprint-382216:5292242") // v7.1.0 | The-Outer-End, Caverns-And-Chasms
 
         //- ~/forge/mods LOCAL
 
         //- OTHER MAVENs - can be commented out or enabled
 //    modRuntimeOnly("com.jozufozu.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}") // Create
+//    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
 
         //+ REQUIRED - The modules access libaries from below - Only in FORGE
     modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:5668859") // v1.1.17a | Rechiseled
@@ -171,9 +172,8 @@ dependencies {
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1
 //    modRuntimeOnly("curse.maven:quark-243121:5594847") // Zeta
 
-
-            //- OTHER MAVENs
-    modCompileOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel
+            //- OTHER MAVENS
+//    modRuntimeOnly("earth.terrarium.chipped:chipped-forge-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib
 
         //+ REQUIRED - The modules access libaries from below - ONLY IN FORGE
             // MACAW's
@@ -184,9 +184,12 @@ dependencies {
     modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442217") //v1.1.2
     modCompileOnly("curse.maven:macaws-stairs-1119394:6155181") //v1.0.1
 
-            // OTHERS
+            //+ GENERAL
     modCompileOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
     modCompileOnly("curse.maven:stone-chest-307052:5389562")
+
+            // OTHER MAVENS
+    modCompileOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel
 
 //!! ================================================= FOR TESTING ================================================== \\
 
