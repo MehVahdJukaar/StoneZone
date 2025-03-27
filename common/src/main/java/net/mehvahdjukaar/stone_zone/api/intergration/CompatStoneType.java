@@ -12,6 +12,9 @@ public class CompatStoneType {
 
     public static void init() {
 
+        // Project-Reds-Exploration
+        simpleStoneFinder("projectred_exploration", "marble"); // HARP
+
         // Twigs
         simpleStoneFinder("twigs", "rhyolite"); // HARP
         simpleStoneFinder("twigs", "schist"); // HARP
@@ -29,12 +32,13 @@ public class CompatStoneType {
 
         // Caverns-And-Chasms
         simpleStoneFinder("caverns_and_chasms", "sugilite"); // HARP
+        simpleStoneFinder("caverns_and_chasms", "cassiterite"); // HARP
 
         // DivineRPG
         simpleStoneFinder("divinerpg", "twilight_stone");
 
         // Outer End
-        stoneBlockFinder("outer_end", "himmel"); // STONE: himmel_block
+        stoneBlockFinder("outer_end", "violite"); // HARP
 
         // Deeper And Darker
         simpleMudFinder("deeperdarker", "sculk_grime");
@@ -107,7 +111,6 @@ public class CompatStoneType {
 
         // Quark
         simpleStoneFinder("quark", "soul_sandstone");
-        stoneBlockFinder("quark", "midori", true, true); // STONE: midori_block
         stoneBlockFinder("quark", "duskbound", true, true); // STONE: duskbound_block
 
     }
