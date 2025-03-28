@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import earth.terrarium.chipped.common.blocks.DirectionBlock;
 import earth.terrarium.chipped.common.blocks.SpecialPointedDripstoneBlock;
 import net.mehvahdjukaar.every_compat.api.EntrySet;
+import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
@@ -27,7 +28,6 @@ import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.createAnd
 //SUPPORT: v3.0.7+
 public class ChippedModule extends SZModule {
 
-//    public final SimpleEntrySet<StoneType, Block> gravel;
     public final SimpleEntrySet<StoneType, Block> bricks;
     public final SimpleEntrySet<StoneType, Block> mini_tiles;
     public final SimpleEntrySet<StoneType, Block> pillars;
@@ -100,15 +100,6 @@ public class ChippedModule extends SZModule {
         super(modId, "ch");
         ResourceLocation tab = modRes("main");
 
-//        gravel = StonezoneEntrySet.of(StoneType.class, "gravel",
-//                        getModBlock("andesite_gravel"), StoneTypeRegistry::getAndesiteType,
-//                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
-//                )
-//                .addTexture(modRes("block/gravel/andesite_gravel"))
-//                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-//                .setTabKey(tab)
-//                .build();
-//        this.addEntry(gravel);
 
         bricks = StonezoneEntrySet.of(StoneType.class, "bricks",
                         getModBlock("andesite_bricks"), StoneTypeRegistry::getAndesiteType,
@@ -137,10 +128,6 @@ public class ChippedModule extends SZModule {
                 )
                 .createPaletteFromBricks()
                 .addTexture(modRes("block/andesite/andesite_pillar"))
-                .addTexture(modRes("block/andesite/ctm/common_textures/0"))
-                .addTexture(modRes("block/andesite/ctm/common_textures/1"))
-                .addTexture(modRes("block/andesite/ctm/common_textures/2"))
-                .addTexture(modRes("block/andesite/ctm/common_textures/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -152,6 +139,10 @@ public class ChippedModule extends SZModule {
                 )
                 .createPaletteFromBricks()
                 .addTexture(modRes("block/andesite/andesite_pillar_top"))
+                .addTexture(modRes("block/andesite/ctm/common_textures/0")) //REQUIRED BY: Other Blocks, BlockType-pillar
+                .addTexture(modRes("block/andesite/ctm/common_textures/1")) //REQUIRED BY: Other Blocks, BlockType-pillar
+                .addTexture(modRes("block/andesite/ctm/common_textures/2")) //REQUIRED BY: Other Blocks, BlockType-pillar
+                .addTexture(modRes("block/andesite/ctm/common_textures/3")) //REQUIRED BY: Other Blocks, BlockType-pillar
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -162,6 +153,10 @@ public class ChippedModule extends SZModule {
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/andesite_scales"))
+                .addTexture(modRes("block/andesite/polished_andesite")) //REQUIRED BY: Other blocks
+                .addTexture(modRes("block/andesite/ctm/polished_andesite_ctm/1")) //REQUIRED BY: polished blocks
+                .addTexture(modRes("block/andesite/ctm/polished_andesite_ctm/2")) //REQUIRED BY: polished blocks
+                .addTexture(modRes("block/andesite/ctm/polished_andesite_ctm/3")) //REQUIRED BY: polished blocks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -381,6 +376,7 @@ public class ChippedModule extends SZModule {
                         getModBlock("offset_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
+                .createPaletteFromBricks()
                 .addTexture(modRes("block/andesite/offset_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -391,6 +387,7 @@ public class ChippedModule extends SZModule {
                         getModBlock("pillar_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
+                .createPaletteFromBricks()
                 .addTexture(modRes("block/andesite/pillar_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -511,18 +508,18 @@ public class ChippedModule extends SZModule {
                         getModBlock("andesite_pointed_dripstone"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new SpecialPointedDripstoneBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                //TEXTURE
-                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone"))
-                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_down_base"))
-                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_down_frustum"))
-                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_down_middle"))
-                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_down_tip"))
-                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_down_tip_merge"))
-                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_up_base"))
-                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_up_frustum"))
-                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_up_middle"))
-                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_up_tip"))
-                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_up_tip_merge"))
+                .setRenderType(RenderLayer.TRANSLUCENT)
+                .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone"))
+                .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_down_base"))
+                .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_down_frustum"))
+                .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_down_middle"))
+                .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_down_tip"))
+                .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_down_tip_merge"))
+                .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_up_base"))
+                .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_up_frustum"))
+                .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_up_middle"))
+                .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_up_tip"))
+                .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_up_tip_merge"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -688,7 +685,7 @@ public class ChippedModule extends SZModule {
                         getModBlock("overlapping_andesite_tiles"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                //TEXTURES: common_textures/0 (generated via brick_bordered)
+                //TEXTURES: common_textures/0 (generated via pillar_top)
                 .addTexture(modRes("block/andesite/overlapping_andesite_tiles"))
                 .addTexture(modRes("block/andesite/ctm/overlapping_andesite_tiles_ctm/1"))
                 .addTexture(modRes("block/andesite/ctm/overlapping_andesite_tiles_ctm/2"))
@@ -702,11 +699,8 @@ public class ChippedModule extends SZModule {
                         getModBlock("polished_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                //TEXTURES: common_textures/0 (generated via brick_bordered)
-                .addTexture(modRes("block/andesite/polished_andesite"))
-                .addTexture(modRes("block/andesite/ctm/polished_andesite_ctm/1"))
-                .addTexture(modRes("block/andesite/ctm/polished_andesite_ctm/2"))
-                .addTexture(modRes("block/andesite/ctm/polished_andesite_ctm/3"))
+                //TEXTURES: common_textures/0 (generated via pillar_top), polished (generated via scaled)
+                //TEXTURES: polished_andesite_ctm/1, polished_andesite_ctm/2, polished_andesite_ctm/3 (generated via scaled)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -730,7 +724,7 @@ public class ChippedModule extends SZModule {
                         getModBlock("thick_inlayed_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                //TEXTURES: common_textures/1, common_textures/2 (generated via tiny_brick_bordered)
+                //TEXTURES: common_textures/1, common_textures/2 (generated via pillar_top)
                 .addTexture(modRes("block/andesite/thick_inlayed_andesite"))
                 .addTexture(modRes("block/andesite/ctm/thick_inlayed_andesite_ctm/1"))
                 .addTexture(modRes("block/andesite/ctm/thick_inlayed_andesite_ctm/2"))
@@ -757,7 +751,7 @@ public class ChippedModule extends SZModule {
                         getModBlock("tiled_bordered_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                //TEXTURES: common_textures/0 (generated via thick_inlayed)
+                //TEXTURES: common_textures/0 (generated via pillar_top)
                 .addTexture(modRes("block/andesite/tiled_bordered_andesite"))
                 .addTexture(modRes("block/andesite/ctm/tiled_bordered_andesite_ctm/1"))
                 .addTexture(modRes("block/andesite/ctm/tiled_bordered_andesite_ctm/2"))
@@ -771,7 +765,7 @@ public class ChippedModule extends SZModule {
                         getModBlock("tiny_brick_bordered_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                //TEXTURES: common_textures/0, common_textures/1, common_textures/2 (generated via thick_inlayed)
+                //TEXTURES: common_textures/0, common_textures/1, common_textures/2 (generated via pillar_top)
                 .addTexture(modRes("block/andesite/tiny_brick_bordered_andesite"))
                 .addTexture(modRes("block/andesite/ctm/tiny_brick_bordered_andesite_ctm/1"))
                 .addTexture(modRes("block/andesite/ctm/tiny_brick_bordered_andesite_ctm/2"))
@@ -785,7 +779,6 @@ public class ChippedModule extends SZModule {
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
-                .addTexture(modRes("block/andesite/common_textures/3"))
                 .addTexture(modRes("block/andesite/curly_andesite_pillar"))
                 .addTexture(modRes("block/andesite/ctm/curly_andesite_pillar/0"))
                 .addTexture(modRes("block/andesite/ctm/curly_andesite_pillar/1"))
@@ -800,7 +793,7 @@ public class ChippedModule extends SZModule {
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
-                //TEXTURES: polished (generated via polished), common_textures/3 (generated via thick_inlayed)
+                //TEXTURES: polished (generated via scaled), common_textures/3 (generated via pillar_top)
                 .addTexture(modRes("block/andesite/fine_andesite_pillar"))
                 .addTexture(modRes("block/andesite/ctm/fine_andesite_pillar/0"))
                 .addTexture(modRes("block/andesite/ctm/fine_andesite_pillar/1"))
@@ -815,7 +808,7 @@ public class ChippedModule extends SZModule {
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
-                //TEXTURES: polished (generated via polished), common_textures/3 (generated via thick_inlayed)
+                //TEXTURES: polished (generated via scaled), common_textures/3 (generated via pillar_top)
                 .addTexture(modRes("block/andesite/ornate_andesite_pillar"))
                 .addTexture(modRes("block/andesite/ctm/ornate_andesite_pillar/0"))
                 .addTexture(modRes("block/andesite/ctm/ornate_andesite_pillar/1"))
@@ -830,8 +823,7 @@ public class ChippedModule extends SZModule {
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
-                //TEXTURES: polished (generated via polished), common_textures/2, common_textures/3 (generated via thick_inlayed)
-//                .addTexture(modRes("block/andesite/polished_andesite")) //TODO: TESTING
+                //TEXTURES: polished (generated via scaled), common_textures/2, common_textures/3 (generated via pillar_top)
                 .addTexture(modRes("block/andesite/simple_andesite_pillar"))
                 .addTexture(modRes("block/andesite/ctm/simple_andesite_pillar/0"))
                 .addTexture(modRes("block/andesite/ctm/simple_andesite_pillar/1"))
@@ -860,7 +852,6 @@ public class ChippedModule extends SZModule {
                         getModBlock("spiraled_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .createPaletteFromStone()
                 .addTexture(modRes("block/andesite/spiraled_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
