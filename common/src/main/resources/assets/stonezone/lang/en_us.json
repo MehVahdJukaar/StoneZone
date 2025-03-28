@@ -1,7 +1,7 @@
 {
-  "itemGroup.stonezone": "Stone Zone",
-  "itemGroup.stonezone.stonezone": "Stone Zone",
-  "item.stonezone.all_stones": "All Stones",
+  "itemGroup.stonezone": "%s Zone",
+  "itemGroup.stonezone.stonezone": "%s Zone",
+  "item.stonezone.all_stones": "All %ss",
 
   "stone_type:what_is_stone.limestone": "Beige Limestone",
   "stone_type:what_is_stone.marble": "White Marble",
@@ -72,14 +72,14 @@
 
   "block_type.rechiseled.big_tiles": "Large %s Tiles",
   "block_type.rechiseled.big_tiles_connecting": "Large %s Tiles",
-  "block_type.rechiseled.bordered": "Bordered Stone",
-  "block_type.rechiseled.bordered_connecting": "Bordered Stone",
+  "block_type.rechiseled.bordered": "Bordered %s",
+  "block_type.rechiseled.bordered_connecting": "Bordered %s",
   "block_type.rechiseled.brick_pattern": "%s Brick Pattern",
   "block_type.rechiseled.brick_pattern_connecting": "%s Brick Pattern",
   "block_type.rechiseled.brick_paving": "%s Brick Paving",
   "block_type.rechiseled.brick_paving_connecting": "%s Brick Paving",
-  "block_type.rechiseled.crushed": "Crushed Stone",
-  "block_type.rechiseled.crushed_connecting": "Crushed Stone",
+  "block_type.rechiseled.crushed": "Crushed %s",
+  "block_type.rechiseled.crushed_connecting": "Crushed %s",
   "block_type.rechiseled.diagonal_bricks": "Diagonal %s Bricks",
   "block_type.rechiseled.diagonal_bricks_connecting": "Diagonal %s Bricks",
   "block_type.rechiseled.path": "%s Path",
@@ -104,7 +104,7 @@
   "block_type.rechiseled.tiles_connecting": "%s Tiles",
   "block_type.rechiseled.waves": "%s Waves",
   "block_type.rechiseled.waves_connecting": "%s Waves",
-  "block_type.rechiseled.slated": "Slated Stone",
+  "block_type.rechiseled.slated": "Slated %s",
 
   "block_type.blockus.herringbone_bricks": "Herringbone %s Bricks",
   "block_type.blockus.smooth_stairs": "Smooth %s Stairs",
