@@ -38,6 +38,7 @@ public class StoneZone extends EveryCompat {
                                     .thenAcceptAsync((object) -> ModelUtils.reset(), gameExecutor),
                     res("stonezone_reloader"));
         }
+
         //dumb
         if (!EveryCompat.getModulesOfMod("caverns_and_chasms").isEmpty()) { //for a tag that all they stones need
             ServerDynamicResourcesHandler.INSTANCE.dynamicPack.addNamespaces("caverns_and_chasms");
