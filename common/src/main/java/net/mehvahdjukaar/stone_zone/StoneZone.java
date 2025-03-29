@@ -1,9 +1,9 @@
 package net.mehvahdjukaar.stone_zone;
 
 import net.mehvahdjukaar.every_compat.EveryCompat;
+import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
-import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.stone_zone.api.intergration.CompatStoneType;
 import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
@@ -37,6 +37,10 @@ public class StoneZone extends EveryCompat {
                                     .thenCompose(preparationBarrier::wait)
                                     .thenAcceptAsync((object) -> ModelUtils.reset(), gameExecutor),
                     res("stonezone_reloader"));
+        }
+        //dumb
+        if (!EveryCompat.getModulesOfMod("caverns_and_chasms").isEmpty()) { //for a tag that all they stones need
+            ServerDynamicResourcesHandler.INSTANCE.dynamicPack.addNamespaces("caverns_and_chasms");
         }
     }
 
