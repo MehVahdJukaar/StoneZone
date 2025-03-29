@@ -1,7 +1,5 @@
 package net.mehvahdjukaar.stone_zone;
 
-import net.mehvahdjukaar.every_compat.configs.ModEntriesConfigs;
-import net.mehvahdjukaar.every_compat.misc.ResourcesUtils;
 import net.mehvahdjukaar.stone_zone.modules.bbb.BuildingButBetterModule;
 import net.mehvahdjukaar.stone_zone.modules.better_archeology.BetterArcheologyModule;
 import net.mehvahdjukaar.stone_zone.modules.blockus.BlockusModule;
