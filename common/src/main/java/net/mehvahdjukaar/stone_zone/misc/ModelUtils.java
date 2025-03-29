@@ -3,6 +3,8 @@ package net.mehvahdjukaar.stone_zone.misc;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
+import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
+import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.StaticResource;
 import net.mehvahdjukaar.stone_zone.StoneZone;
@@ -12,6 +14,9 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.GsonHelper;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,7 +45,7 @@ public final class ModelUtils {
     }
 
     public static void addTintIndexToModelAndReplaceParent(JsonObject jsonObject, @Nullable SimpleModule module,
-                                                       @Nullable    String ignoreIfFromStone) {
+                                                       @Nullable String ignoreIfFromStone) {
         replaceParent(jsonObject, module, ignoreIfFromStone);
         addTintIndexToModel(jsonObject, 0);
     }
@@ -52,9 +57,9 @@ public final class ModelUtils {
         if (jsonObject.has("parent")) {
             ResourceLocation oldRes = new ResourceLocation(jsonObject.get("parent").getAsString());
             String path = oldRes.getPath();
-            int i = path.lastIndexOf("/");
+            int idx = path.lastIndexOf("/");
             //this parent was already added as a block. This is very brittle ans should be done a better way by keeping track of the block we visited
-            if(ignoreIfFromStone != null &&i != -1 && path.substring(i + 1).contains(ignoreIfFromStone)) {
+            if (ignoreIfFromStone != null && (idx != -1) && path.substring(idx + 1).contains(ignoreIfFromStone) && !path.contains("/parent/") ) {
                 return;
             }
 
@@ -97,6 +102,29 @@ public final class ModelUtils {
     }
 
 
+    @SuppressWarnings("SameParameterValue")
+    public static void removeTintIndexFromModel(JsonObject jsonObject, String target) {
+        JsonElement elements = jsonObject.get("elements");
+        if (elements != null) {
+            // Some model files (walls or stairs) have more than one array under Elements
+            for (JsonElement element : elements.getAsJsonArray()) {
+                if (element instanceof JsonObject elementObject) {
+                    // Process child objects under "faces"
+                    JsonObject faces = elementObject.getAsJsonObject("faces");
+                    if (faces != null) {
+                        for (String key : faces.keySet()) {
+                            JsonObject face = faces.getAsJsonObject(key);
+                            // remove tintIndex
+                            if (Objects.equals(face.get("texture").getAsString(), target)) {
+                                face.remove("tintindex");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public static Map<ResourceLocation, JsonObject> readAllModelsAndParents(ResourceManager manager, Collection<ResourceLocation> models) {
         Map<ResourceLocation, JsonObject> jsonObjects = new HashMap<>();
         for (ResourceLocation res : models) {
@@ -120,6 +148,23 @@ public final class ModelUtils {
                 RESOLVED_PARENTS.add(parent);
                 readJsonsRecursive(manager, parent, jsonObjects);
             }
+        }
+    }
+
+    public static void removeTintIndexFromParentModel(String pathModel, String excludeTexture, ClientDynamicResourcesHandler handler, ResourceManager manager) {
+        ResourceLocation modelResLoc = ResType.BLOCK_MODELS.getPath(StoneZone.res(pathModel));
+
+        try (InputStream modelStream = manager.getResource(modelResLoc)
+                .orElseThrow(FileNotFoundException::new).open()) {
+            JsonObject model = RPUtils.deserializeJson(modelStream);
+
+            removeTintIndexFromModel(model, excludeTexture);
+
+            handler.dynamicPack.addJson(StoneZone.res(pathModel), model, ResType.BLOCK_MODELS);
+
+        }
+        catch (IOException e) {
+            handler.getLogger().error("Failed to modify parent model @ {} : {}", modelResLoc, e);
         }
     }
 }

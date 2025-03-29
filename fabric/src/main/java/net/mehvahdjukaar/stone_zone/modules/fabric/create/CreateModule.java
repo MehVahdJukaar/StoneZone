@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules.create;
+package net.mehvahdjukaar.stone_zone.modules.fabric.create;
 
 import com.simibubi.create.CreateClient;
 import com.simibubi.create.content.decoration.palettes.ConnectedPillarBlock;
@@ -166,7 +166,7 @@ public class CreateModule extends SZModule {
                 //TAGS: create:stone_types/andesite - manually created
                 .setTabKey(tab)
                 .defaultRecipe()
-                .addRecipe(modRes("cut_andesite_slab_recycling")) //Crafts cut_andesite_bricks
+                .addRecipe(modRes("cut_andesite_brick_slab_recycling")) //Crafts cut_andesite_bricks
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(cut_brick_slabs);
@@ -382,7 +382,8 @@ public class CreateModule extends SZModule {
                         ResourceLocation recipeResLoc = ResType.RECIPES.getPath(recipeFileLoc);
                         ResourceLocation newRecipeLoc = StoneZone.res(recipeFileLoc.getPath()
                                         .replace("andesite", stoneType.getTypeName())
-                                        .replace("_stonecutting", ""))
+                                        .replace("_stonecutting", "")
+                                        .replace("_stone_types", ""))
                                 .withPrefix(shortenedId() + "/" + stoneType.getNamespace() + "/stonecutting/");
 
                         RecipeUtility.stonecuttingWithTagRecipe(output, recipeResLoc, tagResLoc, newRecipeLoc, handler, manager);

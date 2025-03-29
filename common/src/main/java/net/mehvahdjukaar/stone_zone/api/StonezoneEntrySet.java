@@ -8,12 +8,15 @@ import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
+import net.mehvahdjukaar.moonlight.api.resources.SimpleTagBuilder;
+import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
 import net.mehvahdjukaar.stone_zone.misc.SpriteHelper;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -26,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.*;
 
 public class StonezoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
@@ -59,9 +63,11 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
         return BlockTypeResTransformer.<T>create(module.getModId(), manager)
                 //these need to be run first. idk why but its like that
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone, "stone")
+                .replaceWithTextureFromChild("minecraft:block/cobblestone", "cobblestone")
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", "bricks")
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth_stone")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, "polished")
+                .replaceWithTextureFromChild("minecraft:block/mossy_" + nameBaseStone + "_bricks", "mossy_bricks")
                 // Modifying models' parent & "elements"
                 .addModifier((s, blockId, blockType) -> {
                     if (!blockId.getPath().contains("chest")) {
@@ -93,6 +99,53 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
 
         return Utils.getID(stoneType.getBlockOfThis(childkey)).withPrefix("block/").toString();
     }
+
+    @Override
+    public void generateTags(SimpleModule module, DynamicDataPack pack, ResourceManager manager) {
+        super.generateTags(module, pack, manager);
+
+        // Adding tag to a specific StoneType of all generated blocks
+            // Architect's Palette
+        if (PlatHelper.isModLoaded("architects_palette")) {
+            SimpleTagBuilder tagBuilder = SimpleTagBuilder.of(new ResourceLocation("architects_palette:wizard_blocks"));
+            for (Map.Entry<T, B> e : blocks.entrySet()) {
+                T stoneType = e.getKey();
+                B block = e.getValue();
+                if (stoneType.getTypeName().equals("wardstone")) {
+                    tagBuilder.addEntry(block);
+                }
+            }
+
+            pack.addTag(tagBuilder, Registries.BLOCK);
+        }
+            // Tinker's Construct
+        if (PlatHelper.isModLoaded("tconstruct")) {
+            SimpleTagBuilder tagBuilder = SimpleTagBuilder.of(new ResourceLocation("tconstruct:seared_blocks"));
+            for (Map.Entry<T, B> e : blocks.entrySet()) {
+                T stoneType = e.getKey();
+                B block = e.getValue();
+                if (stoneType.getTypeName().equals("seared_stone")) {
+                    tagBuilder.addEntry(block);
+                }
+            }
+            pack.addTag(tagBuilder, Registries.BLOCK);
+            pack.addTag(tagBuilder, Registries.ITEM);
+
+            SimpleTagBuilder tagBuilder2 = SimpleTagBuilder.of(new ResourceLocation("tconstruct:scorched_blocks"));
+            for (Map.Entry<T, B> e : blocks.entrySet()) {
+                T stoneType = e.getKey();
+                B block = e.getValue();
+                if (stoneType.getTypeName().equals("scorched_stone")) {
+                    tagBuilder2.addEntry(block);
+                }
+            }
+            pack.addTag(tagBuilder2, Registries.BLOCK);
+            pack.addTag(tagBuilder2, Registries.ITEM);
+        }
+
+    }
+
+
 
     //!! SUB-CLASS
     public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {

@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import java.util.*;
 
 import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_MODS;
+import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_STONETYPES;
 
 
 @SuppressWarnings("unused")
@@ -69,14 +70,16 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
         if (!BLACKLISTED_MODS.contains(baseRes.getNamespace())) {
             // Check for <type>_bricks | <type>_stone_bricks
-            if (path.matches("[a-z]+(?:_bricks|_stone_bricks)") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM) {
+            if (path.matches("[a-z]+(?:_(bricks|stairs)|_stone_(bricks|stairs))") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM ) {
                 String stoneName = path.substring(0, path.length() - 7); // get stoneName from namespace:stoneName_bricks
                 String stoneAlt = stoneName + "_stone"; // Some mods included "_stone" as the suffix
                 ResourceLocation idBlockType = baseRes.withPath(stoneName);
                 ResourceLocation idBlockTypeAlt = baseRes.withPath(stoneAlt);
 
+                boolean isStoneTypeBlacklisted = !(BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneName).toString()) || BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneAlt).toString()));
+
                 // Check if a BlockType is already added
-                if ( Objects.isNull(get(idBlockType)) || Objects.isNull(get(idBlockTypeAlt)) ) {
+                if (( Objects.isNull(get(idBlockType)) || Objects.isNull(get(idBlockTypeAlt)) ) && isStoneTypeBlacklisted ) {
                     var opt = BuiltInRegistries.BLOCK.getOptional(idBlockType);
                     var alt = BuiltInRegistries.BLOCK.getOptional(idBlockTypeAlt);
                     if (opt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));
@@ -85,14 +88,16 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
             }
             // Check for polished_<type> | polished_<type>_stone
-            else if (path.matches("polished_[a-z]+(?:_stone)?") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM) {
+            else if (path.matches("polished_[a-z]+(?:_stone)?") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM ) {
                 String stoneName = path.replace("polished_", ""); // get stoneName from namespace:polished_stoneName
                 String stoneAlt = stoneName + "_stone"; // Some mods included "_stone" as the suffix
                 ResourceLocation idBlockType = baseRes.withPath(stoneName);
                 ResourceLocation idBlockTypeAlt = baseRes.withPath(stoneAlt);
 
+                boolean isStoneTypeBlacklisted = !(BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneName).toString()) || BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneAlt).toString()));
+
                 // Check if a BlockType is already added
-                if (Objects.isNull(get(idBlockType)) || Objects.isNull(get(idBlockTypeAlt))) {
+                if (( Objects.isNull(get(idBlockType)) || Objects.isNull(get(idBlockTypeAlt)) ) && isStoneTypeBlacklisted ) {
                     var opt = BuiltInRegistries.BLOCK.getOptional(idBlockType);
                     var alt = BuiltInRegistries.BLOCK.getOptional(idBlockTypeAlt);
                     if (opt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));

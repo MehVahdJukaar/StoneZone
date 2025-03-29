@@ -16,7 +16,12 @@ public class SpriteHelper {
     public static void addHardcodedSprites() {
 
                 //!! MODELS !!\\
-/// NOTE: Used to identify StoneTypes' model only based off their name
+/// NOTE: Used to identify StoneTypes' model only based off their name or path
+        // Naturalist
+        addToModelId("bbb/naturalist/shellstone_layer", "naturalist:block/shellstone/shellstone");
+        addToModelId("bbb/naturalist/shellstone_brick_layer", "naturalist:block/shellstone/shellstone_bricks");
+        addToModelId("bbb/naturalist/smooth_shellstone_layer", "naturalist:block/shellstone/smooth_shellstone");
+
         // BetterEnd
         addToModelId("bbb/betterend/umbralith_layer", "betterend:block/umbralith_1");
 

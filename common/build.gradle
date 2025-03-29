@@ -13,35 +13,43 @@ dependencies {
     annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
-    //- Repository LOCAL
     String path = System.getenv('REPOS20_1')
-//    modImplementation(files(path  + "\\Moonlight\\fabric\\build\\libs\\moonlight-${moonlight_testVersion}-fabric.jar"))
+    boolean usesMavenLocalML =  System.getenv().MY_PC == "1"
+    print "isMyPc: $usesMavenLocalML"
 
-    //- ~/fabric/mods LOCAL
-//    modImplementation("net.mehvahdjukaar:moonlight-fabric:${moonlight_testVersion}")
-
-    //+ MAVEN
-    modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.58
+        //- Repository LOCAL
+    if (enable_moonlight_test.toBoolean()) {
+        if (usesMavenLocalML) {
+            //- ~/fabric/mods LOCAL
+            modImplementation("net.mehvahdjukaar:moonlight-fabric:${project.moonlight_testVersion}") // LOCAL
+        } else {
+            modImplementation(files(path + "\\Moonlight\\fabric\\build\\libs\\moonlight-${moonlight_testVersion}-fabric.jar"))
+        }
+    } else {
+        //+ MAVEN
+        modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.79
+    }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
-    //- Repository LOCAL
-//    modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
-
-    //+ MAVEN
-    modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.7.16
+    if (enable_everycomp_test.toBoolean()) {
+        //- Repository LOCAL
+        modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
+    } else {
+        //+ MAVEN
+        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.7.24
+    }
 
 //!! ================================================= DEPENDENCIES ================================================= \\
 
     //!! REQUIRED - The modules access libaries from below
-    modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
     modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
 
 //!! =================================================== IMPORTS ==================================================== \\
-    //!! MODULES - don't need library from the mod, so it's fine to ignore
+    //- MODULES - don't need library from the mod, so it's fine to ignore
 
     // ~/common/mods LOCAL
 
-    //!! REQUIRED - The modules access libaries from below
+    //+ REQUIRED - The modules access libaries from below
     modCompileOnly("curse.maven:better-archeology-835687:5704094") // supermartijn642s' Config-Lib
     modCompileOnly("curse.maven:blockus-312289:5896309")
     modCompileOnly("curse.maven:quark-243121:5594847")
@@ -50,5 +58,6 @@ dependencies {
     modCompileOnly("curse.maven:building-but-better-989479:5382599")
     modCompileOnly("curse.maven:stoneworks-852663:4611947")
 
-        //!! DIFFERENT MAVENs
+        //+ OTHER MAVENS
+    modCompileOnly("earth.terrarium.chipped:chipped-fabric-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib
 }

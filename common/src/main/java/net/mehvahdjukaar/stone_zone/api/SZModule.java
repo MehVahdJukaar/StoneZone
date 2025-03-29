@@ -47,18 +47,18 @@ public class SZModule extends SimpleModule {
     @Override
     public boolean isEntryAlreadyRegistered(String blockId, BlockType blockType, Registry<?> registry) {
 
-        var isAlreadyRegistered = super.isEntryAlreadyRegistered(blockId, blockType, registry);
-        if (isAlreadyRegistered) {
-            //noinspection ConstantValue
-            return isAlreadyRegistered;
-        }
-
         // blockId: stonezone:twigs/strata/<stonetype>_column | blockName: <stonetype>_column
         String blockName = blockId.substring(blockId.lastIndexOf("/") + 1);
 
         if (blockType instanceof StoneType stoneType) {
             Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(blockName, stoneType, modId, shortenedId());
             if (hardcoded != null) return hardcoded;
+        }
+
+        var isAlreadyRegistered = super.isEntryAlreadyRegistered(blockId, blockType, registry);
+        if (isAlreadyRegistered) {
+            //noinspection ConstantValue
+            return isAlreadyRegistered;
         }
 
         return false;

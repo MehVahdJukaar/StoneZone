@@ -9,7 +9,6 @@ import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 
@@ -26,7 +25,9 @@ public class TwigsModule extends SZModule {
                         stoneType -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                         )
                 .createPaletteFromChild(p -> {
-                    p.matchSize(7);
+                    while (p.size() > 7) {
+                        p.reduce();
+                    }
                     p.reduceUp();
                     p.reduceUp();
                 }, "stone")

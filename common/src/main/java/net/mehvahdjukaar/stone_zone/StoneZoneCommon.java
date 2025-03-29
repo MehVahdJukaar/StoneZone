@@ -5,7 +5,7 @@ import net.mehvahdjukaar.every_compat.misc.ResourcesUtils;
 import net.mehvahdjukaar.stone_zone.modules.bbb.BuildingButBetterModule;
 import net.mehvahdjukaar.stone_zone.modules.better_archeology.BetterArcheologyModule;
 import net.mehvahdjukaar.stone_zone.modules.blockus.BlockusModule;
-import net.mehvahdjukaar.stone_zone.modules.create.CreateModule;
+import net.mehvahdjukaar.stone_zone.modules.chipped.ChippedModule;
 import net.mehvahdjukaar.stone_zone.modules.quark.QuarkModule;
 import net.mehvahdjukaar.stone_zone.modules.quark.QuarkMudModule;
 import net.mehvahdjukaar.stone_zone.modules.stoneworks.StoneworksModule;
@@ -32,8 +32,8 @@ public class StoneZoneCommon {
 //!! =================================================== Add Modules ================================================ \\
 
         addIfLoaded("twigs", () -> TwigsModule::new);
-        addIfLoaded("create", () -> CreateModule::new);
         addIfLoaded("bbb", () -> BuildingButBetterModule::new);
+        addIfLoaded("chipped", () -> ChippedModule::new);
         addIfLoaded("blockus", () -> BlockusModule::new);
         addIfLoaded("stoneworks", () -> StoneworksModule::new);
         addIfLoaded("quark", () -> QuarkModule::new);

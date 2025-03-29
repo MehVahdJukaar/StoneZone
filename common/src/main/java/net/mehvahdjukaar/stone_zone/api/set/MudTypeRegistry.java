@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
 
 import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_MODS;
@@ -50,10 +51,15 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
         ) {
             String mudName = path.substring(0, path.length() - 7); // get mudName from namespace:mudName_bricks
             String mudAlt = mudName + "_mud"; // Some mods included "_mud" as the suffix
-            var opt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(mudName));
-            var alt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(mudAlt));
-            if (opt.isPresent()) return Optional.of(new MudType(baseRes.withPath(mudName), opt.get()));
-            else if (alt.isPresent()) return Optional.of(new MudType(baseRes.withPath(mudAlt), alt.get()));
+            ResourceLocation idBlockType = baseRes.withPath(mudName);
+            ResourceLocation idBlockTypeAlt = baseRes.withPath(mudAlt);
+
+            if (Objects.isNull(get(idBlockType)) || Objects.isNull(get(idBlockTypeAlt))) {
+                var opt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(mudName));
+                var alt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(mudAlt));
+                if (opt.isPresent()) return Optional.of(new MudType(baseRes.withPath(mudName), opt.get()));
+                else if (alt.isPresent()) return Optional.of(new MudType(baseRes.withPath(mudAlt), alt.get()));
+            }
 
         }
         return Optional.empty();
