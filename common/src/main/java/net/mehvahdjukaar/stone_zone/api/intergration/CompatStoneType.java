@@ -113,6 +113,17 @@ public class CompatStoneType {
         simpleStoneFinder("quark", "soul_sandstone");
         stoneBlockFinder("quark", "duskbound", true, true); // STONE: duskbound_block
 
+        // Nature's Spirit
+        simpleStoneFinder("natures_spirit", "pink_sandstone");
+
+        // Regions unexplored
+        simpleStoneFinder("regions_unexplored", "argillite");
+
+        // Biomes o'plenty
+        simpleStoneFinder("biomesoplenty", "black_sandstone");
+        simpleStoneFinder("biomesoplenty", "orange_sandstone");
+        simpleStoneFinder("biomesoplenty", "white_sandstone");
+
     }
 
 //!! StoneType
