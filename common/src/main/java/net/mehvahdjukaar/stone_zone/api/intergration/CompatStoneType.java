@@ -29,6 +29,7 @@ public class CompatStoneType {
 
         // Arts-And-Crafts
         simpleStoneFinder("arts_and_crafts", "gypsum"); // HARP
+        simpleStoneFinder("arts_and_crafts", "white_chalk");
 
         // Caverns-And-Chasms
         simpleStoneFinder("caverns_and_chasms", "sugilite"); // HARP
@@ -115,6 +116,24 @@ public class CompatStoneType {
 
         // Nature's Spirit
         simpleStoneFinder("natures_spirit", "pink_sandstone");
+        simpleStoneFinder("natures_spirit", "white_chalk");
+        simpleStoneFinder("natures_spirit", "light_gray_chalk");
+        simpleStoneFinder("natures_spirit", "gray_chalk");
+        simpleStoneFinder("natures_spirit", "black_chalk");
+        simpleStoneFinder("natures_spirit", "brown_chalk");
+        simpleStoneFinder("natures_spirit", "red_chalk");
+        simpleStoneFinder("natures_spirit", "orange_chalk");
+        simpleStoneFinder("natures_spirit", "yellow_chalk");
+        simpleStoneFinder("natures_spirit", "lime_chalk");
+        simpleStoneFinder("natures_spirit", "green_chalk");
+        simpleStoneFinder("natures_spirit", "cyan_chalk");
+        simpleStoneFinder("natures_spirit", "light_blue_chalk");
+        simpleStoneFinder("natures_spirit", "blue_chalk");
+        simpleStoneFinder("natures_spirit", "purple_chalk");
+        simpleStoneFinder("natures_spirit", "magenta_chalk");
+        simpleStoneFinder("natures_spirit", "pink_chalk");
+        // Added by Nature's Spirit Arts and Crafts Compatibility
+        simpleStoneFinder("natures_spirit", "bleached_chalk");
 
         // Regions unexplored
         simpleStoneFinder("regions_unexplored", "argillite");
