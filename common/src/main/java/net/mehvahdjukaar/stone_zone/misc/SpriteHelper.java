@@ -46,7 +46,5 @@ public class SpriteHelper {
 
     private static void addToModelId(String blockid, String pathModel) {
         modelID.put(StoneZone.res(blockid), pathModel);
-
-
     }
 }
