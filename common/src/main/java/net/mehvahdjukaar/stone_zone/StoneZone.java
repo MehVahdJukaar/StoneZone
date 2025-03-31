@@ -17,6 +17,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.CompletableFuture;
 
+import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.addtoMapTags;
+
 public class StoneZone extends EveryCompat {
     public static final String MOD_ID = "stonezone";
     public static final Logger LOGGER = LogManager.getLogger("Stone Zone");
@@ -39,15 +41,21 @@ public class StoneZone extends EveryCompat {
                     res("stonezone_reloader"));
         }
 
-        //dumb
-        if (!EveryCompat.getModulesOfMod("caverns_and_chasms").isEmpty()) { //for a tag that all they stones need
-            ServerDynamicResourcesHandler.INSTANCE.dynamicPack.addNamespaces("caverns_and_chasms");
-        }
+        // Add ModId to DynamicPack so the tags can be loaded into the world first time
+        addModToDynamicPack("caverns_and_chasms");
+        addModToDynamicPack("architects_palette");
+        addModToDynamicPack("tconstruct");
+
     }
 
     public static ResourceLocation res(String name) {
         return new ResourceLocation(MOD_ID, name);
     }
 
-
+    /// Will be added to DynamicPack if the mod is loaded
+    public static void addModToDynamicPack(String modId) {
+        if (PlatHelper.isModLoaded(modId)) {
+            ServerDynamicResourcesHandler.INSTANCE.dynamicPack.addNamespaces(modId);
+        }
+    }
 }
