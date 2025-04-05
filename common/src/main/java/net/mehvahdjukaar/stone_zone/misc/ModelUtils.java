@@ -59,7 +59,7 @@ public final class ModelUtils {
             String path = oldRes.getPath();
             int idx = path.lastIndexOf("/");
             //this parent was already added as a block. This is very brittle ans should be done a better way by keeping track of the block we visited
-            if (ignoreIfFromStone != null && (idx != -1) && path.substring(idx + 1).contains(ignoreIfFromStone) && !path.contains("/parent/") ) {
+            if (ignoreIfFromStone != null && (idx != -1) && path.substring(idx + 1).contains(ignoreIfFromStone) && !path.contains("/parent/") && !path.contains("template")) {
                 return;
             }
 
