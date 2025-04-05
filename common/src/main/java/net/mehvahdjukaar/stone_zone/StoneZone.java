@@ -17,8 +17,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.CompletableFuture;
 
-import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.addtoMapTags;
-
 public class StoneZone extends EveryCompat {
     public static final String MOD_ID = "stonezone";
     public static final Logger LOGGER = LogManager.getLogger("Stone Zone");
