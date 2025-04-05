@@ -22,8 +22,8 @@ import java.util.Map;
 import java.util.Set;
 
 
-public class SZModule extends SimpleModule {
-    public SZModule(String modId, String shortId) {
+public class StonezoneModule extends SimpleModule {
+    public StonezoneModule(String modId, String shortId) {
         super(modId, shortId, StoneZone.MOD_ID);
     }
 

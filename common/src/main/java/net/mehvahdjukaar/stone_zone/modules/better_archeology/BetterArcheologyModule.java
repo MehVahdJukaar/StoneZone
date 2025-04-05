@@ -2,7 +2,7 @@ package net.mehvahdjukaar.stone_zone.modules.better_archeology;
 
 import net.Pandarix.betterarcheology.BetterArcheology;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.stone_zone.api.SZModule;
+import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.StairBlock;
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyBlockStateSafe;
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
 
-public class BetterArcheologyModule extends SZModule {
+public class BetterArcheologyModule extends StonezoneModule {
 
     public final SimpleEntrySet<MudType, Block> cracked_bricks;
     public final SimpleEntrySet<MudType, Block> cracked_brick_stairs;

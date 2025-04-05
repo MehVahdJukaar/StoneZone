@@ -5,7 +5,7 @@ import com.mcwbridges.kikoz.objects.Bridge_Stairs;
 import com.mcwbridges.kikoz.objects.Bridge_Support;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
-import net.mehvahdjukaar.stone_zone.api.SZModule;
+import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -21,7 +21,7 @@ import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromPa
 
 
 //SUPPORT: v3.0.0+
-public class MacawBridgesModule extends SZModule {
+public class MacawBridgesModule extends StonezoneModule {
 
     public final SimpleEntrySet<StoneType, Block> brick_bridges;
     public final SimpleEntrySet<StoneType, Block> mossy_brick_bridges;

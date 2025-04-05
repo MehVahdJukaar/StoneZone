@@ -2,7 +2,7 @@ package net.mehvahdjukaar.stone_zone.modules.forge.additional_lights;
 
 import com.mgen256.al.blocks.*;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.stone_zone.api.SZModule;
+import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -15,7 +15,7 @@ import java.util.Objects;
 
 
 //SUPPORT: v
-public class AdditionalLightsModule extends SZModule {
+public class AdditionalLightsModule extends StonezoneModule {
 
     public final SimpleEntrySet<StoneType, Block> al_lamp;
 

@@ -3,12 +3,11 @@ package net.mehvahdjukaar.stone_zone.modules.quark;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.SZModule;
+import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -22,7 +21,7 @@ import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildr
 
 
 //SUPPORT: v4.0-4.6.0+
-public class QuarkMudModule extends SZModule {
+public class QuarkMudModule extends StonezoneModule {
 
     public final SimpleEntrySet<MudType, Block> brick_lattices;
     public final SimpleEntrySet<MudType, Block> carved_bricks;

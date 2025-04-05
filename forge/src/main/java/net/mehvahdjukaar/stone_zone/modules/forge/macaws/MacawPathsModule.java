@@ -3,12 +3,9 @@ package net.mehvahdjukaar.stone_zone.modules.forge.macaws;
 import com.mcwpaths.kikoz.objects.PathBlock;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
-import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
-import net.mehvahdjukaar.moonlight.api.resources.textures.PaletteColor;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.SZModule;
+import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -20,7 +17,7 @@ import net.minecraft.world.level.block.SlabBlock;
 
 
 //SUPPORT v1.0.4+
-public class MacawPathsModule extends SZModule {
+public class MacawPathsModule extends StonezoneModule {
 
     public final SimpleEntrySet<StoneType, Block> running_bond_paths;
     public final SimpleEntrySet<StoneType, Block> running_bond_slabs;

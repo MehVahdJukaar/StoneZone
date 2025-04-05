@@ -5,7 +5,7 @@ import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.SZModule;
+import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -21,7 +21,7 @@ import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromPa
 
 
 //SUPPORT: v2.3.0+
-public class MacawWindowsModule extends SZModule {
+public class MacawWindowsModule extends StonezoneModule {
 
     public final SimpleEntrySet<StoneType, Block> windows;
     public final SimpleEntrySet<StoneType, Block> window2s;

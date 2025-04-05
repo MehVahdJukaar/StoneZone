@@ -5,7 +5,7 @@ import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.SZModule;
+import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -25,7 +25,7 @@ import net.minecraft.world.level.material.MapColor;
 import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromParentModel;
 
 //SUPPORT: v1.1.2+
-public class MacawFencesModule extends SZModule{
+public class MacawFencesModule extends StonezoneModule {
 
     public final SimpleEntrySet<StoneType, Block> modern_brick_walls;
     public final SimpleEntrySet<StoneType, Block> railing_brick_gates;

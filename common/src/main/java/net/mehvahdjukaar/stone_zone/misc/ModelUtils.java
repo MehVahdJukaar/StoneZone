@@ -8,7 +8,7 @@ import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.StaticResource;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.SZModule;
+import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.GsonHelper;
@@ -68,10 +68,10 @@ public final class ModelUtils {
                 ResourceLocation newRes = transformModelID(oldRes);
                 jsonObject.addProperty("parent", newRes.toString());
 
-                if (module instanceof SZModule szModule &&
+                if (module instanceof StonezoneModule stonezoneModule &&
                         !(RESOLVED_PARENTS.contains(oldRes) && oldRes.getNamespace().matches("stonezone")
                 )) {
-                    szModule.markModelForModification(oldRes);
+                    stonezoneModule.markModelForModification(oldRes);
                     RESOLVED_PARENTS.add(oldRes);
                 }
             }

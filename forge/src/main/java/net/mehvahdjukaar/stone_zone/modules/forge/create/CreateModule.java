@@ -13,7 +13,7 @@ import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.SZModule;
+import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -35,7 +35,7 @@ import java.util.Objects;
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
 
 //SUPPORT: v0.5.1+
-public class CreateModule extends SZModule {
+public class CreateModule extends StonezoneModule {
 
     public final SimpleEntrySet<StoneType, Block> cuts;
     public final SimpleEntrySet<StoneType, Block> cut_stairs;

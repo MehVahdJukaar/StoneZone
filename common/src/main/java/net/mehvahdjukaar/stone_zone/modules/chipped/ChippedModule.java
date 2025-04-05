@@ -11,7 +11,7 @@ import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.SZModule;
+import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -26,7 +26,7 @@ import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.createAnd
 
 
 //SUPPORT: v3.0.7+
-public class ChippedModule extends SZModule {
+public class ChippedModule extends StonezoneModule {
 
     public final SimpleEntrySet<StoneType, Block> bricks;
     public final SimpleEntrySet<StoneType, Block> mini_tiles;
