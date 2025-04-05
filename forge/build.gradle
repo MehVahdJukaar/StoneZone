@@ -127,7 +127,7 @@ dependencies {
         modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.24
+        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.25
     }
 
 //!! TOOLS ---------------------------------------------------------------------------------------------------------- \\
@@ -173,7 +173,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:quark-243121:5594847") // Zeta
 
             //- OTHER MAVENS
-//    modRuntimeOnly("earth.terrarium.chipped:chipped-forge-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib
+//    modRuntimeOnly("earth.terrarium.chipped:chipped-forge-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib, REQUIRE: Bytecodecs
 
         //+ REQUIRED - The modules access libaries from below - ONLY IN FORGE
             // MACAW's
