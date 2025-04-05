@@ -28,6 +28,7 @@ import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.*;
@@ -104,47 +105,41 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
     public void generateTags(SimpleModule module, DynamicDataPack pack, ResourceManager manager) {
         super.generateTags(module, pack, manager);
 
+    /// IMPORTANT: modId must be included in StoneZone's addModToDynamicPack() so the tags will be loaded into world first time
         // Adding tag to a specific StoneType of all generated blocks
             // Architect's Palette
-        if (PlatHelper.isModLoaded("architects_palette")) {
-            SimpleTagBuilder tagBuilder = SimpleTagBuilder.of(new ResourceLocation("architects_palette:wizard_blocks"));
-            for (Map.Entry<T, B> e : blocks.entrySet()) {
-                T stoneType = e.getKey();
-                B block = e.getValue();
-                if (stoneType.getTypeName().equals("wardstone")) {
-                    tagBuilder.addEntry(block);
-                }
-            }
+        addTagToAllBlocks("wardstone", "architects_palette", "wizard_blocks", true, false, pack);
 
-            pack.addTag(tagBuilder, Registries.BLOCK);
-        }
             // Tinker's Construct
-        if (PlatHelper.isModLoaded("tconstruct")) {
-            SimpleTagBuilder tagBuilder = SimpleTagBuilder.of(new ResourceLocation("tconstruct:seared_blocks"));
-            for (Map.Entry<T, B> e : blocks.entrySet()) {
-                T stoneType = e.getKey();
-                B block = e.getValue();
-                if (stoneType.getTypeName().equals("seared_stone")) {
-                    tagBuilder.addEntry(block);
-                }
-            }
-            pack.addTag(tagBuilder, Registries.BLOCK);
-            pack.addTag(tagBuilder, Registries.ITEM);
+        addTagToAllBlocks("seared_stone", "tconstruct", "seared_blocks", true, true, pack);
+        addTagToAllBlocks("scorched_stone", "tconstruct", "scorched_blocks", true, true, pack);
 
-            SimpleTagBuilder tagBuilder2 = SimpleTagBuilder.of(new ResourceLocation("tconstruct:scorched_blocks"));
-            for (Map.Entry<T, B> e : blocks.entrySet()) {
-                T stoneType = e.getKey();
-                B block = e.getValue();
-                if (stoneType.getTypeName().equals("scorched_stone")) {
-                    tagBuilder2.addEntry(block);
-                }
-            }
-            pack.addTag(tagBuilder2, Registries.BLOCK);
-            pack.addTag(tagBuilder2, Registries.ITEM);
-        }
+            // Caverns And Chasms
+        addTagToAllBlocks("sugilite", "caverns_and_chasms", "static_note_blocks", true, true, pack);
+        addTagToAllBlocks("cassiterite", "caverns_and_chasms", "deflects_projectiles", true, false, pack);
+        addTagToAllBlocks("cassiterite", "caverns_and_chasms", "weaker_deflect_velocity", true, false, pack);
 
     }
 
+    /// The tag will be added if the mod is loaded
+    public void addTagToAllBlocks(String nameStone, String modId, String tag, boolean includeBlock, boolean includeItem, DynamicDataPack pack) {
+        if (PlatHelper.isModLoaded(modId)) {
+            boolean isTagCreated = false;
+            SimpleTagBuilder tagBuilder = SimpleTagBuilder.of(new ResourceLocation(modId, tag));
+            for (Map.Entry<T, B> e : blocks.entrySet()) {
+                T stoneType = e.getKey();
+                B block = e.getValue();
+                if (stoneType.getTypeName().equals(nameStone)) {
+                    tagBuilder.addEntry(block);
+                    isTagCreated = true;
+                }
+            }
+            if (isTagCreated) {
+                if (includeBlock) pack.addTag(tagBuilder, Registries.BLOCK);
+                if (includeItem) pack.addTag(tagBuilder, Registries.ITEM);
+            }
+        }
+    }
 
 
     //!! SUB-CLASS
