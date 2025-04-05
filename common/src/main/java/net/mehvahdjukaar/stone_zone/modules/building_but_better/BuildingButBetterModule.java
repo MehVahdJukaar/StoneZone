@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules.bbb;
+package net.mehvahdjukaar.stone_zone.modules.building_but_better;
 
 import com.starfish_studios.bbb.block.*;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
@@ -36,7 +36,7 @@ public class BuildingButBetterModule extends StonezoneModule {
 //    public final SimpleEntrySet<StoneType, Block> blocks;
 
     public BuildingButBetterModule(String modId) {
-        super(modId, "bbb");
+        super(modId, "building_but_better");
         ResourceLocation tab = modRes("item_group");
 
         columns = StonezoneEntrySet.of(StoneType.class, "column",
