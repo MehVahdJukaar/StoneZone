@@ -29,14 +29,14 @@ public class StoneZoneCommon {
 
 //!! =================================================== Add Modules ================================================ \\
 
-        addIfLoaded("twigs", () -> TwigsModule::new);
+        addIfLoaded("betterarcheology", () -> BetterArcheologyModule::new);
+        addIfLoaded("blockus", () -> BlockusModule::new);
         addIfLoaded("building_but_better", () -> BuildingButBetterModule::new);
         addIfLoaded("chipped", () -> ChippedModule::new);
-        addIfLoaded("blockus", () -> BlockusModule::new);
-        addIfLoaded("stoneworks", () -> StoneworksModule::new);
         addIfLoaded("quark", () -> QuarkModule::new);
         addIfLoaded("quark", () -> QuarkMudModule::new);
-        addIfLoaded("betterarcheology", () -> BetterArcheologyModule::new);
+        addIfLoaded("stoneworks", () -> StoneworksModule::new);
+        addIfLoaded("twigs", () -> TwigsModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
 
