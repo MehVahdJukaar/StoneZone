@@ -52,11 +52,11 @@ dependencies {
     //+ REQUIRED - The modules access libaries from below
     modCompileOnly("curse.maven:better-archeology-835687:5704094") // supermartijn642s' Config-Lib
     modCompileOnly("curse.maven:blockus-312289:5896309")
-    modCompileOnly("curse.maven:quark-243121:5594847")
-    modCompileOnly("curse.maven:create-fabric-624165:5982726")
-    modCompileOnly("curse.maven:twigs-496913:4603805")
     modCompileOnly("curse.maven:building-but-better-989479:5382599")
+    modCompileOnly("curse.maven:create-fabric-624165:5982726")
+    modCompileOnly("curse.maven:quark-243121:5594847")
     modCompileOnly("curse.maven:stoneworks-852663:4611947")
+    modCompileOnly("curse.maven:twigs-496913:4603805")
 
         //+ OTHER MAVENS
     modCompileOnly("earth.terrarium.chipped:chipped-fabric-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib
