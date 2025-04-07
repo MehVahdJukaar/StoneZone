@@ -298,6 +298,19 @@
   "block_type.additional_lights.fire_pit_s_polished":  "Polished %s Fire Pit",
   "block_type.additional_lights.fire_pit_l_polished":  "Polished %s Fire Pit - L",
   "block_type.additional_lights.standing_torch_s_polished":  "Polished %s Standing Torch",
-  "block_type.additional_lights.standing_torch_l_polished":  "Polished %s Standing Torch - L"
+  "block_type.additional_lights.standing_torch_l_polished":  "Polished %s Standing Torch - L",
+
+  "block_type.more_beautiful_torches.torch": "%s Torch",
+  "block_type.more_beautiful_torches.soul_torch": "%s Soul Torch",
+  "block_type.more_beautiful_torches.redstone_torch": "%s Redstone Torch",
+  "block_type.more_beautiful_torches.bricks_torch": "%s Bricks Torch",
+  "block_type.more_beautiful_torches.bricks_soul_torch": "%s Bricks Soul Torch",
+  "block_type.more_beautiful_torches.bricks_redstone_torch": "%s Bricks Redstone Torch",
+  "block_type.more_beautiful_torches.smooth_torch": "Smooth %s Torch",
+  "block_type.more_beautiful_torches.smooth_soul_torch": "Smooth %s Soul Torch",
+  "block_type.more_beautiful_torches.smooth_redstone_torch": "Smooth %s Redstone Torch",
+  "block_type.more_beautiful_torches.polished_torch": "Polished %s Torch",
+  "block_type.more_beautiful_torches.polished_soul_torch": "Polished %s Soul Torch",
+  "block_type.more_beautiful_torches.polished_redstone_torch": "Polished %s Redstone Torch"
 
 }
