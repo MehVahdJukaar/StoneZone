@@ -293,7 +293,18 @@
   "block_type.additional_lights.standing_torch_l_smooth": "平滑%s高立式火把",
   "block_type.additional_lights.standing_torch_l": "%s高立式火把",
 
-
+  "block_type.more_beautiful_torches.torch": "%s火把",
+  "block_type.more_beautiful_torches.soul_torch": "%s灵魂火把",
+  "block_type.more_beautiful_torches.redstone_torch": "%s红石火把",
+  "block_type.more_beautiful_torches.bricks_torch": "%s砖火把",
+  "block_type.more_beautiful_torches.bricks_soul_torch": "%s砖灵魂火把",
+  "block_type.more_beautiful_torches.bricks_redstone_torch": "%s砖红石火把",
+  "block_type.more_beautiful_torches.smooth_torch": "平滑%s火把",
+  "block_type.more_beautiful_torches.smooth_soul_torch": "平滑%s灵魂火把",
+  "block_type.more_beautiful_torches.smooth_redstone_torch": "平滑%s红石火把",
+  "block_type.more_beautiful_torches.polished_torch": "磨制%s火把",
+  "block_type.more_beautiful_torches.polished_soul_torch": "磨制%s灵魂火把",
+  "block_type.more_beautiful_torches.polished_redstone_torch": "磨制%s红石火把",
 
   "stone_type.minecraft.stone": "石头",
   "stone_type.minecraft.andesite": "安山岩",
