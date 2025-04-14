@@ -1,6 +1,6 @@
 {
-  "itemGroup.stonezone": "%s Zone",
-  "itemGroup.stonezone.stonezone": "%s Zone",
+  "itemGroup.stonezone": "Stone Zone",
+  "itemGroup.stonezone.stonezone": "Stone Zone",
   "item.stonezone.all_stones": "All %ss",
 
   "stone_type:what_is_stone.limestone": "Beige Limestone",
