@@ -12,6 +12,12 @@ public class CompatStoneType {
 
     public static void init() {
 
+        // Prehistoric Fauna
+        simpleStoneFinder("prehistoricfauna", "chalk"); // HARP
+        simpleStoneFinder("prehistoricfauna", "henostone"); // HARP
+        simpleStoneFinder("prehistoricfauna", "sandstone"); // HARP
+        simpleStoneFinder("prehistoricfauna", "siltstone"); // HARP
+
         // Project-Reds-Exploration
         simpleStoneFinder("projectred_exploration", "marble"); // HARP
 
