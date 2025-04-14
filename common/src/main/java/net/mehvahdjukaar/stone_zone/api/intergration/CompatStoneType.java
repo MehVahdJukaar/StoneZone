@@ -12,6 +12,9 @@ public class CompatStoneType {
 
     public static void init() {
 
+        // Rocky Minerals
+        simpleStoneFinder("rockyminerals", "worn_granite");
+
         // Prehistoric Fauna
         simpleStoneFinder("prehistoricfauna", "chalk"); // HARP
         simpleStoneFinder("prehistoricfauna", "henostone"); // HARP
