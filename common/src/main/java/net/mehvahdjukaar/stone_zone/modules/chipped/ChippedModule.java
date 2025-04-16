@@ -11,8 +11,8 @@ import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -508,7 +508,7 @@ public class ChippedModule extends StonezoneModule {
                         getModBlock("andesite_pointed_dripstone"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new SpecialPointedDripstoneBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .setRenderType(RenderLayer.TRANSLUCENT)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone"))
                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_down_base"))
                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_down_frustum"))
