@@ -187,9 +187,9 @@ dependencies {
     modCompileOnly("curse.maven:macaws-stairs-1119394:6155181") //v1.0.1
 
             //+ GENERAL
+    modCompileOnly("curse.maven:additional-lights-384991:4596807")
     modCompileOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
     modCompileOnly("curse.maven:stone-chest-307052:5389562")
-    modCompileOnly("curse.maven:additional-lights-384991:4596807")
 
             // OTHER MAVENS
     modCompileOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel
