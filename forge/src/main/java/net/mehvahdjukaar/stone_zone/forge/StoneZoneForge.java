@@ -37,11 +37,9 @@ public class StoneZoneForge extends StoneZoneCommon {
 
         // General
         addIfLoaded("additional_lights", () -> AdditionalLightsModule::new);
+        addIfLoaded("create", () -> CreateModule::new);
         addIfLoaded("rechiseled", () -> RechiseledModule::new);
         addIfLoaded("stonechest", () -> StoneChestModule::new);
-
-        //!! TEMP - Until Fabric version is updated to v6.0.0
-        addIfLoaded("create", () -> CreateModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
 
