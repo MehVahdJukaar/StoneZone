@@ -1,25 +1,19 @@
 #### UPDATED: 
-- **LANG**: Added **Chipped** & **Additional Lights** to zh_cn - @ChuijkYahus
-- **Stonezone** (COMMON): Improved the tag system so the tag will be loaded first time into the world
+- **LANG**: Corrected `%s Zone` to `Stone Zone
+- **CompatStoneType**: Fixed **Outer End**'s violite not being included/detected
+- **Macaw's Fences & Walls** (COMMON): Corrected modern_walls' recipe filename - [#87](https://github.com/MehVahdJukaar/StoneZone/issues/87)
+- **Macaw's Bridge** (COMMON): Moved the recipe under the correct block - [#87](https://github.com/MehVahdJukaar/StoneZone/issues/87)
+
 ---
 
-#### ADDED:---
-- **UNDETECTED STONETYPE**:
-  - **The Outer End**'s _violite_
-
-#### REMOVED: 
-- **BLACKLISTED STONETYPE**: 
-  - **Quark**'s _midori_, REASON: it's not a StoneType
-  - **The Outer End**'s _himmel_, REASON: it's not a StoneType
-  - **Supplementaries**'s _ash_, REASON: it's not a StoneType
-  - **Twigs**'s silt, REASON: it's not a StoneType
+#### ADDED:
+- **CompatStoneType**: 4 StoneType from **Prehistoric Fauna** due to their Note Block Sounds - HARP  
+- **CompatStoneType**: 1 StoneType from **Rocky Minerals**  
 
 ---
 
 #### NEW SUPPORTED MOD:
-- **Chipped** (COMMON)
-  - <span style="color: yellow;">NOTE: 67 blocks is supported</span>
-- **Additional Lights** (FORGE)
+- **More Beautiful Torches** (COMMON)
 
 ---
 
