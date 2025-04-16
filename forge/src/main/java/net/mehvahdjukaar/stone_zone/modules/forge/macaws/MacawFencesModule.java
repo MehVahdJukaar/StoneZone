@@ -90,6 +90,7 @@ public class MacawFencesModule extends StonezoneModule {
                 .build();
         this.addEntry(railing_brick_walls);
 
+//!! ANDESITE
         grass_topped_walls = StonezoneEntrySet.of(StoneType.class, "grass_topped_wall",
                 getModBlock("stone_grass_topped_wall"), StoneTypeRegistry::getStoneType,
                 stoneType -> new FenceHitbox(standardCopyProperies(stoneType))
@@ -167,7 +168,7 @@ public class MacawFencesModule extends StonezoneModule {
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
-                .addRecipe(modRes("modern_stone_wall_stonecutter"))
+                .addRecipe(modRes("modern_andesite_wall_stonecutter"))
                 .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
         this.addEntry(modern_walls);
