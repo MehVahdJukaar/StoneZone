@@ -75,7 +75,7 @@ public class MacawBridgesModule extends StonezoneModule {
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
-                .addRecipe(modRes("stonecutter_balustrade_mossy_stone_bricks_bridge"))
+                .addRecipe(modRes("stonecutter_balustrade_stone_bricks_bridge"))
                 .build();
         this.addEntry(balustrade_bricks_bridges);
 
@@ -88,6 +88,8 @@ public class MacawBridgesModule extends StonezoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
                 .setTabKey(tab)
+                .defaultRecipe()
+                .addRecipe(modRes("stonecutter_balustrade_mossy_stone_bricks_bridge"))
                 .build();
         this.addEntry(balustrade_mossy_bricks_bridges);
 
