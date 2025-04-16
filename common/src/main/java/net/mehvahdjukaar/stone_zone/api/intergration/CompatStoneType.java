@@ -48,7 +48,7 @@ public class CompatStoneType {
         simpleStoneFinder("divinerpg", "twilight_stone");
 
         // Outer End
-        stoneBlockFinder("outer_end", "violite"); // HARP
+        simpleStoneFinder("outer_end", "violite"); // HARP
 
         // Deeper And Darker
         simpleMudFinder("deeperdarker", "sculk_grime");
