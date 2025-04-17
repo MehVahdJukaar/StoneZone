@@ -56,7 +56,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
         String path = baseRes.getPath();
         // Support TerraFirmaCraft (TFC) & ArborFirmaCraft (AFC)
         if (baseRes.getNamespace().matches("tfc|afc")) {
-            if (path.matches("rock/bricks/\\w+") && (baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM || baseblock.defaultBlockState().instrument() == NoteBlockInstrument.HARP)) {
+            if (path.matches("rock/bricks/\\w+") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM ) {
                 int index = path.lastIndexOf("/");
                 String stoneName = path.substring(index + 1); // Get granite from tfc:rock/bricks/granite
                 var opt = BuiltInRegistries.BLOCK.getOptional(
