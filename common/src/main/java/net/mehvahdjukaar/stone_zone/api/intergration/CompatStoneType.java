@@ -22,7 +22,7 @@ public class CompatStoneType {
         simpleStoneFinder("prehistoricfauna", "siltstone"); // HARP
 
         // Project-Reds-Exploration
-        simpleStoneFinder("projectred_exploration", "marble"); // HARP
+        advancedStoneFinder("projectred_exploration", "marble", "marble_brick"); // HARP
 
         // Twigs
         simpleStoneFinder("twigs", "rhyolite"); // HARP
@@ -161,6 +161,10 @@ public class CompatStoneType {
         BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
     }
 
+        /**
+         * @param nameStoneType name of StoneType
+         * @param nameStone name of StoneType with "_stone" or any words
+         */
     public static void stoneFinder(String modId, String nameStoneType, String nameStone) {
         var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStone);
 
@@ -186,11 +190,24 @@ public class CompatStoneType {
         stoneBlockFinder(modId, nameStoneType, false, false);
     }
 
+    public static void advancedStoneFinder(String modId, String nameStoneType, String... nameChildren) {
+        var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStoneType);
+
+        for (String currentChild : nameChildren) {
+            String childKey = "";
+            if (currentChild.contains("brick")) childKey = "bricks";
+
+            stonetypeFinder.addChild(childKey, currentChild);
+        }
+
+        BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
+    }
 //!! MudType
     public static void simpleMudFinder(String modId, String nameStoneType) {
         var stonetypeFinder = MudType.Finder.simple(modId, nameStoneType, nameStoneType);
 
         BlockSetAPI.addBlockTypeFinder(MudType.class, stonetypeFinder);
     }
+
 
 }
