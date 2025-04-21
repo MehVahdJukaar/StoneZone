@@ -18,9 +18,12 @@ public class HardcodedBlockType {
     );
 
     public static final Set<String> BLACKLISTED_STONETYPES = Set.of(
-            "quark:shingles", //REASON: is a terracotta
+            //REASON: is a terracotta
+            "quark:shingles",
             //REASON: not a stonetype
-            "outer_end:himmel", "quark:midori", "twigs:silt", "supplementaries:ash"
+            "outer_end:himmel", "quark:midori", "twigs:silt", "supplementaries:ash",
+            //REASON: shouldn't be detected
+            "desire:polished_stone", "desire:chiseled_stone"
     );
 
     @Nullable
