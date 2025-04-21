@@ -121,7 +121,7 @@ public class CompatStoneType {
 
         // Quark
         simpleStoneFinder("quark", "soul_sandstone");
-        stoneBlockFinder("quark", "duskbound", true, true); // STONE: duskbound_block
+//        stoneBlockFinder("quark", "duskbound", true, true); // STONE: duskbound_block
 
         // Nature's Spirit
         simpleStoneFinder("natures_spirit", "pink_sandstone");
