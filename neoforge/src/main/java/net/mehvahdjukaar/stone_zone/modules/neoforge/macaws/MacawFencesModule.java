@@ -58,7 +58,7 @@ public class MacawFencesModule extends StonezoneModule {
 
         railing_brick_gates = StonezoneEntrySet.of(StoneType.class, "brick_railing_gate",
                 getModBlock("stone_brick_railing_gate"), StoneTypeRegistry::getStoneType,
-                stoneType -> new FenceGateBlock(standardCopyProperies(stoneType), WoodType.OAK)
+                stoneType -> new FenceGateBlock(WoodType.OAK,standardCopyProperies(stoneType))
                 )
                 .requiresChildren("bricks") //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -126,7 +126,7 @@ public class MacawFencesModule extends StonezoneModule {
 
         railing_gates = StonezoneEntrySet.of(StoneType.class, "railing_gate",
                         getModBlock("andesite_railing_gate"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new FenceGateBlock(standardCopyProperies(stoneType), WoodType.OAK)
+                        stoneType -> new FenceGateBlock(WoodType.OAK,standardCopyProperies(stoneType))
                 )
                 .requiresChildren("polished") //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
