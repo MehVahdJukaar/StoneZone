@@ -105,7 +105,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:twigs-496913:4603805") //!! 1.20
 
     //- OTHER MAVENS
-//    modRuntimeOnly("earth.terrarium.chipped:chipped-fabric-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib
+//    modRuntimeOnly("earth.terrarium.chipped:chipped-fabric-${minecraft_version}:4.0.2") //INCLUDED: Athena, Resourceful-Lib
 
     //+ REQUIRED - The modules access libaries from below - ONLY IN FABRIC
         // MACAW's

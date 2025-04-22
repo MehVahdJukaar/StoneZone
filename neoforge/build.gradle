@@ -170,7 +170,7 @@ dependencies {neoForge "net.neoforged:neoforge:${neo_version}"
 //    modRuntimeOnly("curse.maven:more-beautiful-torches-860325:5263631") // Monolib //!! 1.20
 
         //- OTHER MAVENS
-//    modRuntimeOnly("earth.terrarium.chipped:chipped-forge-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib, REQUIRE: Bytecodecs
+//    modRuntimeOnly("earth.terrarium.chipped:chipped-neoforge-${minecraft_version}:4.0.2") //INCLUDED: Athena, Resourceful-Lib, REQUIRE: Bytecodecs
 
     //+ REQUIRED - The modules access libaries from below - ONLY IN FORGE
         // MACAW's
