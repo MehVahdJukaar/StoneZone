@@ -105,22 +105,22 @@ dependencies {neoForge "net.neoforged:neoforge:${neo_version}"
     if (enable_moonlight_test.toBoolean()) {
         if (usesMavenLocalML) {
             //- ~/forge/mods LOCAL
-            modImplementation("net.mehvahdjukaar:moonlight-forge:${project.moonlight_testVersion}") // LOCAL
+            modImplementation("net.mehvahdjukaar:moonlight-neoforge:${project.moonlight_testVersion}") // LOCAL
         } else {
-            modImplementation(files(path + "\\Moonlight\\forge\\build\\libs\\moonlight-${moonlight_testVersion}-forge.jar"))
+            modImplementation(files(path + "\\Moonlight\\neoforge\\build\\libs\\moonlight-${moonlight_testVersion}-neoforge.jar"))
         }
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.79
+        modImplementation("maven.modrinth:moonlight:neoforge_${moonlight_mavenVersion}") // v2.18.10
     }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     if (enable_everycomp_test.toBoolean()) {
         //- Repository LOCAL
-        modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
+        modImplementation(files(path + "\\WoodGood\\neoforge\\build\\libs\\everycomp-${everycomp_testVersion}-neoforge.jar"))
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.25
+        modImplementation("maven.modrinth:every-compat:neoforge_${everycomp_mavenVersion}") // v2.9.10
     }
 
 //!! TOOLS ---------------------------------------------------------------------------------------------------------- \\
