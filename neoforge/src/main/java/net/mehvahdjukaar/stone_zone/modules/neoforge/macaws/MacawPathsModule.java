@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules.forge.macaws;
+package net.mehvahdjukaar.stone_zone.modules.neoforge.macaws;
 
 import com.mcwpaths.kikoz.objects.PathBlock;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;

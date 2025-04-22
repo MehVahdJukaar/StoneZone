@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 
 public class SZConfigs {
 
-    public static final ConfigSpec SPEC;
+    public static final ModConfigHolder SPEC;
 
     public static final Supplier<Boolean> TAB_ENABLED;
 
@@ -23,7 +23,7 @@ public class SZConfigs {
 
         builder.pop();
 
-        SPEC = builder.buildAndRegister();
+        SPEC = builder.build();
 
         SPEC.loadFromFile(); //manually load early
     }

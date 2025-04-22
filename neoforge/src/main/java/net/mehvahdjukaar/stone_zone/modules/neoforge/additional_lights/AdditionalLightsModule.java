@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules.forge.additional_lights;
+package net.mehvahdjukaar.stone_zone.modules.neoforge.additional_lights;
 
 import com.mgen256.al.blocks.*;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;

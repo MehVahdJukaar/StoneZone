@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules.forge.macaws;
+package net.mehvahdjukaar.stone_zone.modules.neoforge.macaws;
 
 import com.mcwbridges.kikoz.objects.Bridge_Block;
 import com.mcwbridges.kikoz.objects.Bridge_Stairs;

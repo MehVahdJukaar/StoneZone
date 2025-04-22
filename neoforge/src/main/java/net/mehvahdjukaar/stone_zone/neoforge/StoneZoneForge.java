@@ -1,13 +1,12 @@
-package net.mehvahdjukaar.stone_zone.forge;
+package net.mehvahdjukaar.stone_zone.neoforge;
 
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
 import net.mehvahdjukaar.stone_zone.modules.forge.additional_lights.AdditionalLightsModule;
 import net.mehvahdjukaar.stone_zone.modules.forge.create.CreateModule;
-import net.mehvahdjukaar.stone_zone.modules.forge.macaws.*;
 import net.mehvahdjukaar.stone_zone.modules.forge.rechiseled.RechiseledModule;
 import net.mehvahdjukaar.stone_zone.modules.forge.stone_chest.StoneChestModule;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.fml.common.Mod;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
 

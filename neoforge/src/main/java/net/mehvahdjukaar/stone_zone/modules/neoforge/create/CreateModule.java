@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules.forge.create;
+package net.mehvahdjukaar.stone_zone.modules.neoforge.create;
 
 import com.simibubi.create.CreateClient;
 import com.simibubi.create.content.decoration.palettes.ConnectedPillarBlock;

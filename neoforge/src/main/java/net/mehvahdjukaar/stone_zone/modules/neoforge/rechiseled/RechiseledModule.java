@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules.forge.rechiseled;
+package net.mehvahdjukaar.stone_zone.modules.neoforge.rechiseled;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

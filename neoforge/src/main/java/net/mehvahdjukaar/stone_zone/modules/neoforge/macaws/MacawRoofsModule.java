@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules.forge.macaws;
+package net.mehvahdjukaar.stone_zone.modules.neoforge.macaws;
 
 import com.mcwroofs.kikoz.objects.roofs.*;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;

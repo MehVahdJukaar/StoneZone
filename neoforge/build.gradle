@@ -185,7 +185,7 @@ dependencies {neoForge "net.neoforged:neoforge:${neo_version}"
     modCompileOnly("curse.maven:stone-chest-307052:5389562")
 
     // OTHER MAVENS
-    modCompileOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel
+    modCompileOnly("com.simibubi.create:create-1.20.1:${create_version}:slim") { transitive = false } // Registrate, Flywheel
 
 //!! ================================================= FOR TESTING ================================================== \\
 

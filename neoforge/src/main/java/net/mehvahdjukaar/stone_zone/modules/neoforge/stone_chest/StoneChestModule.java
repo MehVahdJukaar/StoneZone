@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules.forge.stone_chest;
+package net.mehvahdjukaar.stone_zone.modules.neoforge.stone_chest;
 
 import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
@@ -26,9 +26,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.Tags;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.Tags;
 
 import static net.mehvahdjukaar.stone_zone.common_classes.CompatChestTexture.generateChestTexture;
 
