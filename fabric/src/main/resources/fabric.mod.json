@@ -1,31 +1,37 @@
 {
   "schemaVersion": 1,
-  "id": "stonezone",
-  "version": "${version}",
-  "name": "Stone Zone",
-  "description": "Ultimate Stone Compat Mod",
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
   "authors": [
-    "MehVahdJukaar, Xel'Bayria"
+    "${mod_authors}"
   ],
   "contact": {
-    "homepage": "https://github.com/MehVahdJukaar/stone_zone",
-    "sources": "https://github.com/MehVahdJukaar/StoneZone"
+    "homepage": "${mod_homepage}",
+    "sources": "${mod_github}"
   },
-  "license": "Supplementaries Team License v1.1",
-  "icon": "logo.png",
+  "license": "${mod_license}",
+  "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
       "net.mehvahdjukaar.stone_zone.fabric.StoneZoneFabric"
     ],
     "modmenu": [
-      "net.mehvahdjukaar.stone_zone.modmenu.ModMenuCompat"
+      "net.mehvahdjukaar.stone_zone.modmenu.ModMenuCompat",
     ]
   },
+  "mixins": [
+    "${mod_id}.mixins.json",
+    "${mod_id}-common.mixins.json"
+  ],
   "depends": {
-    "fabric": "*",
-    "minecraft": ">=1.20",
-    "moonlight": ">=1.20-2.13.50",
+    "fabricloader": ">=0.16.7",
+    "fabric": ">=0.92.0+1.20.1",
+    "minecraft": ">=${minecraft_min_version} <${minecraft_max_version}",
+    "moonlight": ">=${moonlight_version_range}",
     "everycomp": ">=1.20-2.7.19"
+
   }
 }
