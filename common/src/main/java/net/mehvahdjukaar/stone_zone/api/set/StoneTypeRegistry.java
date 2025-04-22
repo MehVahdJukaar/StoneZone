@@ -43,12 +43,12 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
     }
 
     public static StoneType getValue(String stoneTypeId) {
-        return INSTANCE.get(new ResourceLocation(stoneTypeId));
+        return INSTANCE.get(ResourceLocation.parse(stoneTypeId));
     }
 
     @Override
     public StoneType getDefaultType() {
-        return this.get(new ResourceLocation("stone"));
+        return this.get(ResourceLocation.withDefaultNamespace("stone"));
     }
 
     @Override
@@ -60,7 +60,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
                 int index = path.lastIndexOf("/");
                 String stoneName = path.substring(index + 1); // Get granite from tfc:rock/bricks/granite
                 var opt = BuiltInRegistries.BLOCK.getOptional(
-                        new ResourceLocation(baseRes.getNamespace(), path.replace("bricks", "raw"))
+                        baseRes.withPath(path.replace("bricks", "raw"))
                 );
                 if (opt.isPresent()) {
                     return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));

@@ -20,7 +20,7 @@ public class StoneType extends RockType {
      * stone, stairs, slab, wall, button, pressure_plate, smooth_stone
      * polished, polished_stairs, polished_slab
      * bricks, brick_stairs, brick_slab, brick_wall, cracked_bricks, brick_tiles
-    **/
+     **/
 
     public final Block stone;
 
@@ -40,7 +40,7 @@ public class StoneType extends RockType {
     }
 
     public Block bricksOrStone() {
-        Block bricks= this.getBlockOfThis("bricks");
+        Block bricks = this.getBlockOfThis("bricks");
         return bricks != null ? bricks : this.stone;
     }
 
@@ -55,12 +55,12 @@ public class StoneType extends RockType {
             this.stoneFinder = stone;
         }
 
-        public static Finder vanilla(String nameStone){
+        public static Finder vanilla(String nameStone) {
             return simple("minecraft", nameStone, nameStone);
         }
 
         public static Finder simple(String modId, String nameStoneType, String nameStone) {
-            return simple(new ResourceLocation(modId, nameStoneType), new ResourceLocation(modId, nameStone));
+            return simple(ResourceLocation.fromNamespaceAndPath(modId, nameStoneType), ResourceLocation.fromNamespaceAndPath(modId, nameStone));
         }
 
         public static Finder simple(ResourceLocation nameStoneTYpe, ResourceLocation nameStone) {
@@ -69,7 +69,7 @@ public class StoneType extends RockType {
         }
 
         public void addChild(String childType, String childName) {
-            addChild(childType, new ResourceLocation(id.getNamespace(), childName));
+            addChild(childType, id.withPath(childName));
         }
 
         public void addChild(String childType, ResourceLocation childName) {

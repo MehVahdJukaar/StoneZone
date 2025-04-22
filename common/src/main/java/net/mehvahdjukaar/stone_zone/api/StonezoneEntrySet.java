@@ -125,7 +125,7 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
     public void addTagToAllBlocks(String nameStone, String modId, String tag, boolean includeBlock, boolean includeItem, DynamicDataPack pack) {
         if (PlatHelper.isModLoaded(modId)) {
             boolean isTagCreated = false;
-            SimpleTagBuilder tagBuilder = SimpleTagBuilder.of(new ResourceLocation(modId, tag));
+            SimpleTagBuilder tagBuilder = SimpleTagBuilder.of(ResourceLocation.fromNamespaceAndPath(modId, tag));
             for (Map.Entry<T, B> e : blocks.entrySet()) {
                 T stoneType = e.getKey();
                 B block = e.getValue();

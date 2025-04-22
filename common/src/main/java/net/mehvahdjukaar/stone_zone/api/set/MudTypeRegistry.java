@@ -32,7 +32,7 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
     }
 
     public static MudType getValue(String mudTypeId) {
-        return INSTANCE.get(new ResourceLocation(mudTypeId));
+        return INSTANCE.get(ResourceLocation.parse(mudTypeId));
     }
 
     @Override
