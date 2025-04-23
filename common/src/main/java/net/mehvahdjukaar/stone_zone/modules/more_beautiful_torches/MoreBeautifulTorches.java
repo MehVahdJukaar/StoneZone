@@ -56,10 +56,10 @@ public class MoreBeautifulTorches extends StonezoneModule {
 
         wall_torch = StonezoneEntrySet.of(StoneType.class, "wall_torch",
                         getModBlock("stone_wall_torch"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.WALL_TORCH).noCollission().instabreak().lightLevel(l -> 14), ParticleTypes.FLAME)
+                        stoneType -> new WallTorchBlock(ParticleTypes.FLAME, Utils.copyPropertySafe(Blocks.WALL_TORCH).noCollission().instabreak().lightLevel(l -> 14))
                 )
                 .addTextureM(modRes("block/stone_torch"), StoneZone.res("block/common_torch_m"))
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
                 .noItem()
                 .setRenderType(RenderLayer.CUTOUT)
@@ -68,10 +68,10 @@ public class MoreBeautifulTorches extends StonezoneModule {
 
         torch = StonezoneEntrySet.of(StoneType.class, "torch",
                         getModBlock("stone_torch"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.TORCH).noCollission().instabreak().lightLevel(l -> 14), ParticleTypes.FLAME)
+                        stoneType -> new TorchBlock(ParticleTypes.FLAME, Utils.copyPropertySafe(Blocks.TORCH).noCollission().instabreak().lightLevel(l -> 14))
                 )
                 //TEXTURES: wall_torch
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, wall_torch.blocks.get(s), p, Direction.DOWN))
@@ -81,10 +81,10 @@ public class MoreBeautifulTorches extends StonezoneModule {
 
         soul_wall_torch = StonezoneEntrySet.of(StoneType.class, "soul_wall_torch",
                         getModBlock("stone_soul_wall_torch"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
+                        stoneType -> new WallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH))
                 )
                 .setRenderType(RenderLayer.CUTOUT)
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .addTextureM(modRes("block/stone_soul_torch"), StoneZone.res("block/common_torch_m"))
                 .noTab()
                 .noItem()
@@ -93,10 +93,10 @@ public class MoreBeautifulTorches extends StonezoneModule {
 
         soul_torch = StonezoneEntrySet.of(StoneType.class, "soul_torch",
                         getModBlock("stone_soul_torch"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.SOUL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
+                        stoneType -> new TorchBlock(ParticleTypes.SOUL_FIRE_FLAME, Utils.copyPropertySafe(Blocks.SOUL_TORCH))
                 )
                 //TEXTURES: soul_wall_torch
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, soul_wall_torch.blocks.get(s), p, Direction.DOWN))
@@ -131,12 +131,12 @@ public class MoreBeautifulTorches extends StonezoneModule {
 //!!--BRICKS--
         bricks_wall_torch = StonezoneEntrySet.of(StoneType.class, "bricks_wall_torch",
                         getModBlock("stone_bricks_wall_torch"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.WALL_TORCH), ParticleTypes.FLAME)
+                        stoneType -> new WallTorchBlock(ParticleTypes.FLAME, Utils.copyPropertySafe(Blocks.WALL_TORCH))
                 )
                 .createPaletteFromBricks()
                 .requiresChildren("bricks") //REASON: textures
                 .addTextureM(modRes("block/stone_bricks_torch"), StoneZone.res("block/common_torch_m"))
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
                 .noItem()
                 .setRenderType(RenderLayer.CUTOUT)
@@ -145,11 +145,11 @@ public class MoreBeautifulTorches extends StonezoneModule {
 
         bricks_torch = StonezoneEntrySet.of(StoneType.class, "bricks_torch",
                         getModBlock("stone_bricks_torch"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.TORCH), ParticleTypes.FLAME)
+                        stoneType -> new TorchBlock(ParticleTypes.FLAME, Utils.copyPropertySafe(Blocks.TORCH))
                 )
                 //TEXTURES: bricks_wall_torch
                 .requiresChildren("bricks") //REASON: recipes
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, bricks_wall_torch.blocks.get(s), p, Direction.DOWN))
@@ -159,12 +159,12 @@ public class MoreBeautifulTorches extends StonezoneModule {
 
         bricks_soul_wall_torch = StonezoneEntrySet.of(StoneType.class, "bricks_soul_wall_torch",
                         getModBlock("stone_bricks_soul_wall_torch"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
+                        stoneType -> new WallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH))
                 )
                 .createPaletteFromBricks()
                 .requiresChildren("bricks") //REASON: textures
                 .addTextureM(modRes("block/stone_bricks_soul_torch"), StoneZone.res("block/common_torch_m"))
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
                 .noItem()
                 .setRenderType(RenderLayer.CUTOUT)
@@ -173,11 +173,11 @@ public class MoreBeautifulTorches extends StonezoneModule {
 
         bricks_soul_torch = StonezoneEntrySet.of(StoneType.class, "bricks_soul_torch",
                         getModBlock("stone_bricks_soul_torch"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.SOUL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
+                        stoneType -> new TorchBlock(ParticleTypes.SOUL_FIRE_FLAME, Utils.copyPropertySafe(Blocks.SOUL_TORCH))
                 )
                 //TEXTURES: bricks_soul_wall_torch
                 .requiresChildren("bricks") //REASON: recipes
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, bricks_soul_wall_torch.blocks.get(s), p, Direction.DOWN))
@@ -215,12 +215,12 @@ public class MoreBeautifulTorches extends StonezoneModule {
 //!!--SMOOTH--
         smooth_wall_torch = StonezoneEntrySet.of(StoneType.class, "wall_torch", "smooth",
                         getModBlock("smooth_stone_wall_torch"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.WALL_TORCH), ParticleTypes.FLAME)
+                        stoneType -> new WallTorchBlock(ParticleTypes.FLAME, Utils.copyPropertySafe(Blocks.WALL_TORCH))
                 )
                 .createPaletteFromBricks()
                 .requiresChildren("smooth") //REASON: textures
                 .addTextureM(modRes("block/smooth_stone_torch"), StoneZone.res("block/common_torch_m"))
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
                 .noItem()
                 .setRenderType(RenderLayer.CUTOUT)
@@ -229,11 +229,11 @@ public class MoreBeautifulTorches extends StonezoneModule {
 
         smooth_torch = StonezoneEntrySet.of(StoneType.class, "torch", "smooth",
                         getModBlock("smooth_stone_torch"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.TORCH), ParticleTypes.FLAME)
+                        stoneType -> new TorchBlock(ParticleTypes.FLAME, Utils.copyPropertySafe(Blocks.TORCH))
                 )
                 //TEXTURES: smooth_wall_torch
                 .requiresChildren("smooth") //REASON: recipes
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, smooth_wall_torch.blocks.get(s), p, Direction.DOWN))
@@ -243,12 +243,12 @@ public class MoreBeautifulTorches extends StonezoneModule {
 
         smooth_soul_wall_torch = StonezoneEntrySet.of(StoneType.class, "soul_wall_torch", "smooth",
                         getModBlock("smooth_stone_soul_wall_torch"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
+                        stoneType -> new WallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH))
                 )
                 .createPaletteFromBricks()
                 .requiresChildren("smooth") //REASON: textures
                 .addTextureM(modRes("block/smooth_stone_soul_torch"), StoneZone.res("block/common_torch_m"))
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
                 .noItem()
                 .setRenderType(RenderLayer.CUTOUT)
@@ -257,11 +257,11 @@ public class MoreBeautifulTorches extends StonezoneModule {
 
         smooth_soul_torch = StonezoneEntrySet.of(StoneType.class, "soul_torch", "smooth",
                         getModBlock("smooth_stone_soul_torch"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.SOUL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
+                        stoneType -> new TorchBlock(ParticleTypes.SOUL_FIRE_FLAME, Utils.copyPropertySafe(Blocks.SOUL_TORCH))
                 )
                 //TEXTURES: smooth_soul_wall_torch
                 .requiresChildren("smooth") //REASON: recipes
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, smooth_soul_wall_torch.blocks.get(s), p, Direction.DOWN))
@@ -299,12 +299,12 @@ public class MoreBeautifulTorches extends StonezoneModule {
 //!!--POLISHED--
         polished_wall_torch = StonezoneEntrySet.of(StoneType.class, "wall_torch", "polished",
                         getModBlock("polished_andesite_wall_torch"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.WALL_TORCH), ParticleTypes.FLAME)
+                        stoneType -> new WallTorchBlock(ParticleTypes.FLAME, Utils.copyPropertySafe(Blocks.WALL_TORCH))
                 )
                 .createPaletteFromBricks()
                 .requiresChildren("polished") //REASON: textures
                 .addTextureM(modRes("block/polished_andesite_torch"), StoneZone.res("block/common_torch_m"))
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
                 .noItem()
                 .setRenderType(RenderLayer.CUTOUT)
@@ -313,11 +313,11 @@ public class MoreBeautifulTorches extends StonezoneModule {
 
         polished_torch = StonezoneEntrySet.of(StoneType.class, "torch", "polished",
                         getModBlock("polished_andesite_torch"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.TORCH), ParticleTypes.FLAME)
+                        stoneType -> new TorchBlock(ParticleTypes.FLAME, Utils.copyPropertySafe(Blocks.TORCH))
                 )
                 //TEXTURES: polished_wall_torch
                 .requiresChildren("polished") //REASON: recipes
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, polished_wall_torch.blocks.get(s), p, Direction.DOWN))
@@ -327,12 +327,12 @@ public class MoreBeautifulTorches extends StonezoneModule {
 
         polished_soul_wall_torch = StonezoneEntrySet.of(StoneType.class, "soul_wall_torch", "polished",
                         getModBlock("polished_andesite_soul_wall_torch"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
+                        stoneType -> new WallTorchBlock(ParticleTypes.SOUL_FIRE_FLAME, Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH))
                 )
                 .createPaletteFromBricks()
                 .requiresChildren("polished") //REASON: textures
                 .addTextureM(modRes("block/polished_andesite_soul_torch"), StoneZone.res("block/common_torch_m"))
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
                 .noItem()
                 .setRenderType(RenderLayer.CUTOUT)
@@ -341,11 +341,11 @@ public class MoreBeautifulTorches extends StonezoneModule {
 
         polished_soul_torch = StonezoneEntrySet.of(StoneType.class, "soul_torch", "polished",
                         getModBlock("polished_andesite_soul_torch"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.SOUL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
+                        stoneType -> new TorchBlock(ParticleTypes.SOUL_FIRE_FLAME, Utils.copyPropertySafe(Blocks.SOUL_TORCH))
                 )
                 //TEXTURES: polished_soul_wall_torch
                 .requiresChildren("polished") //REASON: recipes
-                .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, polished_soul_wall_torch.blocks.get(s), p, Direction.DOWN))
