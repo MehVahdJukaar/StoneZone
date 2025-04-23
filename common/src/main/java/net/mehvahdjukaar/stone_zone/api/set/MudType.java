@@ -54,7 +54,7 @@ public class MudType extends RockType {
         }
 
         public static Finder simple(String modId, String nameMudType, String nameMud) {
-            return simple(new ResourceLocation(modId, nameMudType), new ResourceLocation(modId, nameMud));
+            return simple(ResourceLocation.fromNamespaceAndPath(modId, nameMudType), ResourceLocation.fromNamespaceAndPath(modId, nameMud));
         }
 
         public static Finder simple(ResourceLocation nameMudTYpe, ResourceLocation nameMud) {
@@ -63,7 +63,7 @@ public class MudType extends RockType {
         }
 
         public void addChild(String childType, String childName) {
-            addChild(childType, new ResourceLocation(id.getNamespace(), childName));
+            addChild(childType, ResourceLocation.fromNamespaceAndPath(id.getNamespace(), childName));
         }
 
         public void addChild(String childType, ResourceLocation childName) {

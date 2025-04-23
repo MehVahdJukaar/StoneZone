@@ -55,7 +55,7 @@ public final class ModelUtils {
                                        @Nullable String ignoreIfFromStone) {
         // Modify the value of parent's
         if (jsonObject.has("parent")) {
-            ResourceLocation oldRes = new ResourceLocation(jsonObject.get("parent").getAsString());
+            ResourceLocation oldRes = ResourceLocation.parse(jsonObject.get("parent").getAsString());
             String path = oldRes.getPath();
             int idx = path.lastIndexOf("/");
             //this parent was already added as a block. This is very brittle ans should be done a better way by keeping track of the block we visited
@@ -142,7 +142,7 @@ public final class ModelUtils {
             JsonObject json = GsonHelper.parse(new String(resource.data)).getAsJsonObject();
             jsonObjects.put(res, json);
             if (json.has("parent")) {
-                ResourceLocation parent = new ResourceLocation(json.get("parent").getAsString());
+                ResourceLocation parent = ResourceLocation.parse(json.get("parent").getAsString());
                 //ugly, eh
                 if (RESOLVED_PARENTS.contains(parent)) return;
                 RESOLVED_PARENTS.add(parent);
