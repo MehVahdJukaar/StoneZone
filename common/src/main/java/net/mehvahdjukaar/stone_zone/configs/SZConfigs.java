@@ -1,8 +1,8 @@
 package net.mehvahdjukaar.stone_zone.configs;
 
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigBuilder;
-import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigSpec;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigType;
+import net.mehvahdjukaar.moonlight.api.platform.configs.ModConfigHolder;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 
 import java.util.function.Supplier;
@@ -25,7 +25,7 @@ public class SZConfigs {
 
         SPEC = builder.build();
 
-        SPEC.loadFromFile(); //manually load early
+        SPEC.forceLoad(); //manually load early
     }
 
     public static void init() {
