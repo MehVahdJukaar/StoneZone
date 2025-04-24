@@ -1,5 +1,6 @@
 package net.mehvahdjukaar.stone_zone.api;
 
+import com.google.common.base.Preconditions;
 import com.google.gson.JsonObject;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
@@ -19,6 +20,7 @@ import net.minecraft.world.item.CreativeModeTab;
 
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -29,9 +31,9 @@ public class StonezoneModule extends SimpleModule {
 
 
     @Override
-    @SuppressWarnings("DataFlowIssue")
+    @SuppressWarnings({"unchecked", "DataFlowIssue"})
     public ResourceKey<CreativeModeTab> getDedicatedTab() {
-        return SZRegistry.MOD_TAB.getKey();
+        return (ResourceKey<CreativeModeTab>) SZRegistry.MOD_TAB.getKey();
     }
 
     @Override
