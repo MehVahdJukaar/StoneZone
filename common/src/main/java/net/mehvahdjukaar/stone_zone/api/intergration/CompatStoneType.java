@@ -3,8 +3,9 @@ package net.mehvahdjukaar.stone_zone.api.intergration;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
+import net.minecraft.tags.BlockTags;
 
-    /// StoneType Detection detect a StoneType that met 2 requirements:
+/// StoneType Detection detect a StoneType that met 2 requirements:
         /// BASS_DRUM (sound)
         /// blockID: nameStoneType_bricks - only 2 words
 // Put all undetected StoneTypes (including hardcoded ones) from mods in here to be included
