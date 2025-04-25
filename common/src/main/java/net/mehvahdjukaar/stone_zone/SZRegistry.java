@@ -23,7 +23,7 @@ public class SZRegistry {
             RegHelper.registerCreativeModeTab(StoneZone.res("stonezone"),
                     true,
                     builder -> builder.icon(() -> ALL_STONES.get().getDefaultInstance())
-                            .backgroundSuffix("item_search.png")
+                            .backgroundTexture(CreativeModeTab.createTextureLocation("item_search"))
                             .title(Component.translatable("itemGroup.stonezone.stonezone"))
                             .build())
             : null;

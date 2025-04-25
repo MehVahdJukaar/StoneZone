@@ -14,6 +14,7 @@ public class ModMenuCompat implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         return p -> new FabricConfigListScreen(StoneZone.MOD_ID, Items.STONE.getDefaultInstance(),
-                Component.literal("§6Stone Zone Configs"), p, SZConfigs.SPEC);
+                Component.literal("§6Stone Zone Configs"), ResourceLocation.parse("textures/block/stone.png"),
+                p, SZConfigs.SPEC);
     }
 }
