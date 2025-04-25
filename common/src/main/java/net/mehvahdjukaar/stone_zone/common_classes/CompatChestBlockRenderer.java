@@ -31,7 +31,7 @@ import java.util.Map;
 
 @Environment(EnvType.CLIENT)
 public class CompatChestBlockRenderer extends ChestRenderer<CompatChestBlockEntity> {
-    public static final ResourceLocation CHEST_SHEET = new ResourceLocation("textures/atlas/chest.png");
+    public static final ResourceLocation CHEST_SHEET = ResourceLocation.parse("textures/atlas/chest.png");
     private final Map<StoneType, Material> single = new HashMap<>();
     private final Map<StoneType, Material> left = new HashMap<>();
     private final Map<StoneType, Material> right = new HashMap<>();

@@ -107,7 +107,7 @@ public class BuildingButBetterModule extends StonezoneModule {
                 .addTexture(modRes("block/stone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_blocks"), Registries.BLOCK)
-                .addTag(new ResourceLocation("domum_ornamentum:default"), Registries.BLOCK)
+                .addTag(ResourceLocation.parse("domum_ornamentum:default"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_tiles_from_stone_stonecutting"))

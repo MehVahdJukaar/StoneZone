@@ -40,8 +40,8 @@ public class SpriteHelper {
 
     @SuppressWarnings("SameParameterValue")
     private static void addOptional(String blockId, String textureId, String texturePath) {
-        BuiltInRegistries.BLOCK.getOptional(new ResourceLocation(blockId))
-                .ifPresent(b -> TextureCache.registerSpecialTextureForBlock(b, textureId, new ResourceLocation(texturePath)));
+        BuiltInRegistries.BLOCK.getOptional(ResourceLocation.parse(blockId))
+                .ifPresent(b -> TextureCache.registerSpecialTextureForBlock(b, textureId, ResourceLocation.parse(texturePath)));
     }
 
     private static void addToModelId(String blockid, String pathModel) {

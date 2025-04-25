@@ -245,7 +245,7 @@ allprojects {
         }
     }
 
-    tasks.withType(JavaCompile) {
+    tasks.withType(JavaCompile).configureEach {
         options.encoding = "UTF-8"
         options.release = rootProject.java_version.toInteger()
     }
@@ -283,7 +283,7 @@ ext {
 }
 
 
-task buildAndPublishAll {
+tasks.register('buildAndPublishAll') {
     dependsOn ':clean'
     dependsOn ':build'
     dependsOn ':neoforge:curseforge'
@@ -295,7 +295,7 @@ task buildAndPublishAll {
 buildAndPublishAll.group = 'build'
 buildAndPublishAll.description = 'Runs clean, build, and publish forge and fabric'
 
-task buildAndPublishAllM {
+tasks.register('buildAndPublishAllM') {
     dependsOn buildAndPublishAll
     dependsOn ':publishToMavenLocal'
 }
