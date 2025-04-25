@@ -6,9 +6,9 @@ import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Respriter;
 import net.mehvahdjukaar.moonlight.api.resources.textures.TextureImage;
 import net.mehvahdjukaar.moonlight.api.util.math.colors.HCLColor;
+import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.level.block.Block;
@@ -72,7 +72,7 @@ public class CompatChestTexture {
                         });
                     }
 
-                    AnimationMetadataSection plankMeta = plankTexture.getMetadata();
+                    McMetaFile plankMeta = plankTexture.getMcMeta();
 
                     List<Palette> overlayPalette = new ArrayList<>();
                     for (var p : plankPalette) {
@@ -114,7 +114,7 @@ public class CompatChestTexture {
 
     private static void createChestTextures(ClientDynamicResourcesHandler handler,
                                             Respriter respriter, Respriter respriterO,
-                                            AnimationMetadataSection baseMeta, List<Palette> basePalette,
+                                            McMetaFile baseMeta, List<Palette> basePalette,
                                             List<Palette> overlayPalette, ResourceLocation normalRLoc,
                                             ResourceLocation trappedRLoc, TextureImage trappedOverlay) {
 

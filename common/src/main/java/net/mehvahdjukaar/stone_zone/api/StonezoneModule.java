@@ -29,9 +29,9 @@ public class StonezoneModule extends SimpleModule {
 
 
     @Override
-    @SuppressWarnings("DataFlowIssue")
+    @SuppressWarnings({"unchecked", "DataFlowIssue"})
     public ResourceKey<CreativeModeTab> getDedicatedTab() {
-        return SZRegistry.MOD_TAB.getKey();
+        return (ResourceKey<CreativeModeTab>) SZRegistry.MOD_TAB.getKey();
     }
 
     @Override

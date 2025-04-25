@@ -103,14 +103,14 @@ public class BlockusModule extends StonezoneModule {
         doors = StonezoneEntrySet.of(StoneType.class, "door",
                         getModBlock("stone_door"), StoneTypeRegistry::getStoneType,
                         stoneType -> new DoorBlock(
+                                BlockSetType.STONE,
                                 BlockBehaviour.Properties.of()
                                         .mapColor(stoneType.bricksOrStone().defaultMapColor())
                                         .sound(stoneType.getSound())
                                         .strength(1.5F, 20.0F)
                                         .noOcclusion()
-                                        .requiresCorrectToolForDrops(),
-                                BlockSetType.STONE
-                        )
+                                        .requiresCorrectToolForDrops()
+                                                )
                 )
                 .createPaletteFromBricks()
                 .addTexture(modRes("block/stone_door_bottom"))
@@ -194,14 +194,14 @@ public class BlockusModule extends StonezoneModule {
         trapdoors = StonezoneEntrySet.of(StoneType.class, "trapdoor",
                         getModBlock("stone_trapdoor"), StoneTypeRegistry::getStoneType,
                         stoneType -> new TrapDoorBlock(
+                                BlockSetType.STONE,
                                 BlockBehaviour.Properties.of()
                                         .mapColor(stoneType.bricksOrStone().defaultMapColor())
                                         .sound(stoneType.getSound())
                                         .strength(1.5F, 20.0F)
                                         .noOcclusion()
-                                        .requiresCorrectToolForDrops(),
-                                BlockSetType.STONE
-                        )
+                                        .requiresCorrectToolForDrops()
+                                                )
                 )
                 .createPaletteFromBricks()
                 .requiresChildren("slab") //REASON: recipes

@@ -111,7 +111,7 @@ dependencies {neoForge "net.neoforged:neoforge:${neo_version}"
         }
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:moonlight:neoforge_${moonlight_mavenVersion}") // v2.18.10
+        modImplementation("maven.modrinth:moonlight:${moonlight_mavenVersion}-neoforge") // v2.18.12
     }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
@@ -120,7 +120,7 @@ dependencies {neoForge "net.neoforged:neoforge:${neo_version}"
         modImplementation(files(path + "\\WoodGood\\neoforge\\build\\libs\\everycomp-${everycomp_testVersion}-neoforge.jar"))
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:neoforge_${everycomp_mavenVersion}") // v2.9.10
+        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-neoforge") // v2.10.0
     }
 
 //!! TOOLS ---------------------------------------------------------------------------------------------------------- \\
