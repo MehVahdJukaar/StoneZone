@@ -5,12 +5,6 @@ loaderVersion = "${loader_version_range}"
 license = "${mod_license}"
 issueTrackerURL = "${mod_github}/issues"
 
-
-[[mixins]]
-config = "${mod_id}.mixins.json"
-[[mixins]]
-config = "${mod_id}-common.mixins.json"
-
 [[mods]]
 modId = "${mod_id}"
 version = "${mod_version}"
@@ -20,11 +14,7 @@ authors = "${mod_authors}"
 credits = "${mod_credits}"
 description = '''${mod_description}'''
 modUrl = "${mod_homepage}"
-itemIcon = "stonezone:all_stones" #catalogue icon
-
-[modproperties.hauntedharvest]
-catalogueItemIcon="stonezone:all_stones" #catalogue icon
-
+itemIcon = "${mod_id}:all_stones" #catalogue icon
 
 [[dependencies.${mod_id}]]
 modId = "neoforge"
@@ -38,20 +28,20 @@ modId = "minecraft"
 type = "required"
 versionRange = "[${minecraft_min_version},${minecraft_max_version})"
 ordering = "NONE"
-side = "BOTH"
+side = "CLIENT"
 
 [[dependencies.${mod_id}]]
 modId = "moonlight"
 type = "required"
 referralUrl = "https://www.curseforge.com/minecraft/mc-mods/selene"
-versionRange = "[${moonlight_version_range},]"
+versionRange = "[1.21-2.18.13,]"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.stonezone]]
-
-modId="everycomp"
-type="required"
-versionRange="[1.20-2.7.19,]"
-ordering="AFTER"
-side="BOTH"
+[[dependencies.${mod_id}]]
+modId = "everycomp"
+type = "required"
+referralUrl = "https://www.curseforge.com/minecraft/mc-mods/selene"
+versionRange = "[1.21-2.10.1,]"
+ordering = "NONE"
+side = "BOTH"
