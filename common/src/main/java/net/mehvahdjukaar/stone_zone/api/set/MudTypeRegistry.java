@@ -5,6 +5,7 @@ import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
 import java.util.Collection;
@@ -16,11 +17,10 @@ import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_M
 public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
 
     public static final MudTypeRegistry INSTANCE = new MudTypeRegistry();
+    public static final MudType MUD_TYPE = new MudType(ResourceLocation.withDefaultNamespace("mud"), Blocks.MUD);
 
     public MudTypeRegistry() {
         super(MudType.class, "mud_type");
-
-        this.addFinder(MudType.Finder.vanilla("mud"));
     }
 
     public static MudType getMudType() {
@@ -37,7 +37,7 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
 
     @Override
     public MudType getDefaultType() {
-        return getMudType();
+        return MUD_TYPE;
     }
 
     @Override
