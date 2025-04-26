@@ -37,7 +37,7 @@ dependencies {
     modImplementation("com.terraformersmc:modmenu:${modmenu_version}")
 
 //!! MOONLIGHT LIB (REQUIRED) --------------------------------------------------------------------------------------- \\
-    String path = System.getenv('REPOS20_1')
+    String path = System.getenv('REPOS21_1')
     boolean usesMavenLocalML =  System.getenv().MY_PC == "1"
     print "isMyPc: $usesMavenLocalML"
 
