@@ -111,7 +111,7 @@ dependencies {neoForge "net.neoforged:neoforge:${neo_version}"
         }
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:moonlight:${moonlight_mavenVersion}-neoforge") // v2.18.12
+        modImplementation("maven.modrinth:moonlight:${moonlight_mavenVersion}-neoforge") // v2.18.13
     }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
@@ -120,7 +120,7 @@ dependencies {neoForge "net.neoforged:neoforge:${neo_version}"
         modImplementation(files(path + "\\WoodGood\\neoforge\\build\\libs\\everycomp-${everycomp_testVersion}-neoforge.jar"))
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-neoforge") // v2.10.0
+        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-neoforge") // v2.10.1
     }
 
 //!! TOOLS ---------------------------------------------------------------------------------------------------------- \\
@@ -151,14 +151,14 @@ dependencies {neoForge "net.neoforged:neoforge:${neo_version}"
 
     //- OTHER MAVENs - can be commented out or enabled
 //    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
-//    modRuntimeOnly("com.jozufozu.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}") // Create
-//    modRuntimeOnly("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}") // Create
+    modRuntimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}") // Create
+    modRuntimeOnly("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}") // Create
 
     //+ REQUIRED - The modules access libaries from below - Only in FORGE
     modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:6076757") // v1.1.18a | Rechiseled
 
         //+ OTHER MAVENS
-    modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create
+    modImplementation("com.tterrag.registrate:Registrate:${registrate_version}") // Create
 
 //!! =================================================== IMPORTS ==================================================== \\
     //- ONLY FOR TESTING - can be commented out or enabled
@@ -187,7 +187,7 @@ dependencies {neoForge "net.neoforged:neoforge:${neo_version}"
     modCompileOnly("curse.maven:stone-chest-307052:5931165")
 
         // OTHER MAVENS
-    modCompileOnly("com.simibubi.create:create-1.21.1:${create_version}:slim") { transitive = false } // Registrate, Flywheel, Ponder
+    modImplementation("com.simibubi.create:create-1.21.1:${create_version}:slim") { transitive = false } // Registrate, Flywheel, Ponder
 
 //!! ================================================= FOR TESTING ================================================== \\
 
