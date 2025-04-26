@@ -20,8 +20,8 @@ configurations {
 }
 
 dependencies {
-    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
-    modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    modApi "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}+${minecraft_version}"
 
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
@@ -67,11 +67,14 @@ dependencies {
     modRuntimeOnly("curse.maven:jei-238222:5846878")
     modRuntimeOnly("curse.maven:emi-580555:5872512") // v1.1.18
     modRuntimeOnly("curse.maven:jade-324717:5884237") // v15.8.3
-    modRuntimeOnly("curse.maven:crafttweaker-239197:6434160")
+    modRuntimeOnly("curse.maven:crafttweaker-239197:6434160") // Faux-Custom-Entity-Data
 //    modRuntimeOnly("curse.maven:worldedit-225608:5830452") // required loom 1.7.410
 
 //!! ================================================= DEPENDENCIES ================================================= \\
     //- ONLY FOR TESTING - can be commented out or enabled
+    modRuntimeOnly("curse.maven:faux-custom-entity-data-575305:5623810") // v13.0.1 | CraftTweaker
+//    modRuntimeOnly("curse.maven:terrablender-fabric-565956:6054948") // v4.1.0.8 | Biomes-O'-Plenty
+//    modRuntimeOnly("curse.maven:glitchcore-955399:5660741") // v2.1.0.0 | Biomes-O'-Plenty | required: Typetools, Night-Config
 //    modRuntimeOnly("curse.maven:yungs-api-421850:5769972") // v4.0.6 | Better-Archeology //!! 1.20
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904751") // v8.1.25 | Stoneworks //!! 1.20
 //    modRuntimeOnly("curse.maven:forge-config-api-port-fabric-547434:5902421") // v8.1.25 | Stoneworks //!! 1.20
@@ -90,6 +93,9 @@ dependencies {
     //- OTHER MAVENs - can be commented out or enabled
 //    modRuntimeOnly("com.jozufozu.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_version}") // Create
 //    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
+//    modRuntimeOnly('net.jodah:typetools:0.6.3') // GlitchCore
+//    modRuntimeOnly('com.electronwill.night-config:core:3.8.1') // GlitchCore
+//    modRuntimeOnly('com.electronwill.night-config:toml:3.8.1') // GlitchCore
 
     //+ REQUIRED - The modules access libaries from below - Only in FABRIC
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
@@ -125,8 +131,9 @@ dependencies {
 
 //!! ================================================= FOR TESTING ================================================== \\
 
-//    modRuntimeOnly("curse.maven:betterend-413596:4971487") // BCLib
-    modRuntimeOnly("curse.maven:mwtis-stone-expansion-907720:4767668") //!! 1.20
+//!! Need to find a stone mod, I cannot find a simple mod, ugh!
+//    modRuntimeOnly("curse.maven:betterend-413596:5680728") // BCLib, WunderLib, WorldWeaver  //!! ALPHA
+//    modRuntimeOnly("curse.maven:mwtis-stone-expansion-907720:4767668") //!! 1.20
 }
 
 
