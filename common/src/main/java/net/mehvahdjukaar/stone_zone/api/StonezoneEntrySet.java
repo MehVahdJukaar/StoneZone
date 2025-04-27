@@ -85,6 +85,8 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
     protected BlockTypeResTransformer<T> makeBlockStateTransformer(SimpleModule module, ResourceManager manager) {
         String nameBaseStone = baseType.get().getTypeName();
         return BlockTypeResTransformer.<T>create(module.getModId(), manager)
+                .replaceWithTextureFromChild("minecraft:block/"+nameBaseStone, "stone")
+                .replaceWithTextureFromChild("minecraft:block/polished_"+nameBaseStone, "polished")
                 .addModifier((s, blockId, stoneType) ->
                         s.replace("minecraft:block/" + nameBaseStone, getChildModelId("stone", stoneType, blockId)))
                 .addModifier((s, blockId, stoneType) ->
