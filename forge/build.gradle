@@ -194,6 +194,9 @@ dependencies {
             // OTHER MAVENS
     modCompileOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel
 
+            // ~/forge/mods LOCAL
+    modCompileOnly("blocks_plus:blocks+1.20.1-1.7")
+
 //!! ================================================= FOR TESTING ================================================== \\
 
     // STONETYPE ONLY
