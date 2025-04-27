@@ -1,5 +1,6 @@
 #### UPDATED: 
-- **Stone Zone** (COMMON): To 1.21
+- **Stone Zone** (NF): Fixed [#98](https://github.com/MehVahdJukaar/StoneZone/issues/98) - There is more details in here
+- **Stone Zone** (FB): Removed an extra comma from fabric.mod.json - Fixed [#99](https://github.com/MehVahdJukaar/StoneZone/issues/99)
 
 ---
 
