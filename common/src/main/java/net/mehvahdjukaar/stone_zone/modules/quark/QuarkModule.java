@@ -44,6 +44,7 @@ public class QuarkModule extends StonezoneModule {
                 .addRecipe(modRes("building/crafting/vertslabs/andesite_vertical_slab"))
                 .addRecipe(modRes("building/crafting/vertslabs/andesite_vertical_slab_revert"))
                 .addCondition(stoneType -> !PlatHelper.isModLoaded("v_slab_compat"))
+                .copyParentDrop()
                 .build();
         this.addEntry(vertical_slabs);
 
@@ -61,6 +62,7 @@ public class QuarkModule extends StonezoneModule {
                 .addRecipe(modRes("building/crafting/vertslabs/polished_andesite_vertical_slab"))
                 .addRecipe(modRes("building/crafting/vertslabs/polished_andesite_vertical_slab_revert"))
                 .addCondition(stoneType -> !PlatHelper.isModLoaded("v_slab_compat"))
+                .copyParentDrop()
                 .build();
         this.addEntry(polished_vertical_slabs);
 
