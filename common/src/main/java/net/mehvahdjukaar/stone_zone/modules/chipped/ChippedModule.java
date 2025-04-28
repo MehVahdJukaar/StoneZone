@@ -871,7 +871,7 @@ public class ChippedModule extends StonezoneModule {
     }
 
     private void addMasonTableRecipe(ServerDynamicResourcesHandler handler) {
-        JsonArray listTag = new JsonArray();
+        JsonArray listIngredients = new JsonArray();
 
         // Creating tag for every stonetype
         for (StoneType stoneType : StoneTypeRegistry.getTypes()) {
@@ -890,12 +890,16 @@ public class ChippedModule extends StonezoneModule {
 
             }
 
-            if (isTagCreated) listTag.add(tagResLoc.toString());
+            if (isTagCreated) {
+                JsonObject tagObject = new JsonObject();
+                tagObject.addProperty("tag", tagResLoc.toString());
+                listIngredients.add(tagObject);
+            }
         }
 
         JsonObject recipeJO = new JsonObject();
-        recipeJO.addProperty("type", "chipped:mason_table");
-        recipeJO.add("tags", listTag);
+        recipeJO.addProperty("type", "chipped:workbench");
+        recipeJO.add("ingredients", listIngredients);
         handler.dynamicPack.addJson(StoneZone.res(shortenedId() + "/mason_table"), recipeJO, ResType.RECIPES);
 
     }
