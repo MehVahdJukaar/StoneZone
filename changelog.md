@@ -1,22 +1,23 @@
 #### UPDATED: 
-- **LANG**: Corrected `%s Zone` to `Stone Zone
-- **CompatStoneType**: Fixed **Outer End**'s violite not being included/detected
-- **Macaw's Fences & Walls** (COMMON): Corrected modern_walls' recipe filename - [#87](https://github.com/MehVahdJukaar/StoneZone/issues/87)
-- **Macaw's Bridge** (COMMON): Moved the recipe under the correct block - [#87](https://github.com/MehVahdJukaar/StoneZone/issues/87)
+- **CompatStoneType**: Removed **Quark**'s duskbound blc it's more of PurpurType
+  - NOTE: PurpurType will be implemented in the future
+- **StoneZone** Fixed the blockstate generation not applying to "block/oak_planks" for other wood mods - Related to Quark 
+- **Quark** (FORGE): Fixed vertical_slabs not dropping 2 slabs when broken as double-slab
+
+## <span style="color: RED;">WARNING: If Quark is installed, then backup your world & change all of duskbound blocks to different stonetype</span>
 
 ---
 
 #### ADDED:
-- **CompatStoneType**: 4 StoneType from **Prehistoric Fauna** due to their Note Block Sounds - HARP  
-- **CompatStoneType**: 1 StoneType from **Rocky Minerals**  
+- **CompatStoneType**: Added children for **Project-Red-Exploration**'s marble
 
 ---
 
 #### NEW SUPPORTED MOD:
-- **More Beautiful Torches** (COMMON)
+- **Blocks+** (FORGE)
 
 ---
 
-**LEGENDS:**
+### **LEGENDS:**
 - (COMMON) : FABRIC & FORGE
 - (IT) : Included Texture - Added the ResourceLocation of the missing textures required for blocks or generating a new texture
