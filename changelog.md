@@ -1,6 +1,6 @@
 #### UPDATED: 
-- **Stone Zone** (NF): Fixed [#98](https://github.com/MehVahdJukaar/StoneZone/issues/98) - There is more details in here
-- **Stone Zone** (FB): Removed an extra comma from fabric.mod.json - Fixed [#99](https://github.com/MehVahdJukaar/StoneZone/issues/99)
+- **Chipped** (COMMON): Updated an outdated recipe system for 1.21
+- **FABRIC**: corrected the modID in fabric.mod.json for **fabric API**
 
 ---
 
