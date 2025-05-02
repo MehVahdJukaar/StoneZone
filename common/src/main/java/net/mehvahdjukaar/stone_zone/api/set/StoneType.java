@@ -13,14 +13,16 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+/**
+ * Childkey Availability:
+ * stone, stairs, slab, wall, button, pressure_plate, smooth_stone
+ * cobblestone, mossy_cobblestone
+ * polished, polished_stairs, polished_slab
+ * bricks, brick_stairs, brick_slab, brick_wall, cracked_bricks, brick_tiles,
+ * mossy_bricks, mossy_brick_slab, mossy_brick_stairs, mossy_brick_wall
+ **/
 public class StoneType extends RockType {
 
-    /**
-     * Childkey Availability:
-     * stone, stairs, slab, wall, button, pressure_plate, smooth_stone
-     * polished, polished_stairs, polished_slab
-     * bricks, brick_stairs, brick_slab, brick_wall, cracked_bricks, brick_tiles
-    **/
 
     public final Block stone;
 
