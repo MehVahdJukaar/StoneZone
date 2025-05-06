@@ -8,15 +8,13 @@ import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
-import net.mehvahdjukaar.moonlight.api.resources.SimpleTagBuilder;
-import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
 import net.mehvahdjukaar.stone_zone.misc.SpriteHelper;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -29,8 +27,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Map;
 import java.util.function.*;
+
+import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.addTagToAllBlocks;
 
 public class StonezoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
 
@@ -103,45 +102,24 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
     }
 
     @Override
-    public void generateTags(SimpleModule module, DynamicDataPack pack, ResourceManager manager) {
-        super.generateTags(module, pack, manager);
+    public void generateTags(SimpleModule module, ResourceManager manager, ResourceSink sink) {
+        super.generateTags(module, manager, sink);
 
     /// IMPORTANT: modId must be included in StoneZone's addModToDynamicPack() so the tags will be loaded into world first time
         // Adding tag to a specific StoneType of all generated blocks
             // Architect's Palette
-        addTagToAllBlocks("wardstone", "architects_palette", "wizard_blocks", true, false, pack);
+        addTagToAllBlocks(blocks, "wardstone", "architects_palette", "wizard_blocks", true, false, sink);
 
             // Tinker's Construct
-        addTagToAllBlocks("seared_stone", "tconstruct", "seared_blocks", true, true, pack);
-        addTagToAllBlocks("scorched_stone", "tconstruct", "scorched_blocks", true, true, pack);
+        addTagToAllBlocks(blocks, "seared_stone", "tconstruct", "seared_blocks", true, true, sink);
+        addTagToAllBlocks(blocks, "scorched_stone", "tconstruct", "scorched_blocks", true, true, sink);
 
             // Caverns And Chasms
-        addTagToAllBlocks("sugilite", "caverns_and_chasms", "static_note_blocks", true, true, pack);
-        addTagToAllBlocks("cassiterite", "caverns_and_chasms", "deflects_projectiles", true, false, pack);
-        addTagToAllBlocks("cassiterite", "caverns_and_chasms", "weaker_deflect_velocity", true, false, pack);
+        addTagToAllBlocks(blocks, "sugilite", "caverns_and_chasms", "static_note_blocks", true, true, sink);
+        addTagToAllBlocks(blocks, "cassiterite", "caverns_and_chasms", "deflects_projectiles", true, false, sink);
+        addTagToAllBlocks(blocks, "cassiterite", "caverns_and_chasms", "weaker_deflect_velocity", true, false, sink);
 
     }
-
-    /// The tag will be added if the mod is loaded
-    public void addTagToAllBlocks(String nameStone, String modId, String tag, boolean includeBlock, boolean includeItem, DynamicDataPack pack) {
-        if (PlatHelper.isModLoaded(modId)) {
-            boolean isTagCreated = false;
-            SimpleTagBuilder tagBuilder = SimpleTagBuilder.of(new ResourceLocation(modId, tag));
-            for (Map.Entry<T, B> e : blocks.entrySet()) {
-                T stoneType = e.getKey();
-                B block = e.getValue();
-                if (stoneType.getTypeName().equals(nameStone)) {
-                    tagBuilder.addEntry(block);
-                    isTagCreated = true;
-                }
-            }
-            if (isTagCreated) {
-                if (includeBlock) pack.addTag(tagBuilder, Registries.BLOCK);
-                if (includeItem) pack.addTag(tagBuilder, Registries.ITEM);
-            }
-        }
-    }
-
 
     //!! SUB-CLASS
     public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {

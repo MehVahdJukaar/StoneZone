@@ -2,19 +2,20 @@ package net.mehvahdjukaar.stone_zone.modules.forge.macaws;
 
 import com.mcwroofs.kikoz.objects.roofs.*;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+
+import java.util.function.Consumer;
 
 import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromParentModel;
 
@@ -220,14 +221,17 @@ public class MacawRoofsModule extends StonezoneModule {
 
     @Override
     // MODELS
-    public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
-        super.addDynamicClientResources(handler, manager);
+    public void addDynamicClientResources(Consumer<ResourceGenTask> executor) {
+        super.addDynamicClientResources(executor);
 
-// Attic-Roof Model
+        // Attic-Roof Model
         String pathAtticRoof = "mcwroofs/parent/attic_roof";
 
-        removeTintIndexFromParentModel(pathAtticRoof + "_closed", "#3", handler, manager);
-        removeTintIndexFromParentModel(pathAtticRoof + "_open", "#3", handler, manager);
+        executor.accept((manager, sink) -> {
 
+            removeTintIndexFromParentModel(pathAtticRoof + "_closed", "#3", sink, manager);
+            removeTintIndexFromParentModel(pathAtticRoof + "_open", "#3", sink, manager);
+
+        });
     }
 }

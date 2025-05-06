@@ -7,8 +7,9 @@ import earth.terrarium.chipped.common.blocks.SpecialPointedDripstoneBlock;
 import net.mehvahdjukaar.every_compat.api.EntrySet;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
@@ -17,10 +18,11 @@ import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+
+import java.util.function.Consumer;
 
 import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.createAndAddCustomTags;
 
@@ -863,14 +865,18 @@ public class ChippedModule extends StonezoneModule {
 
     @Override
     // RECIPES & TAGS
-    public void addDynamicServerResources(ServerDynamicResourcesHandler handler, ResourceManager manager) {
-        super.addDynamicServerResources(handler, manager);
+    public void addDynamicServerResources(Consumer<ResourceGenTask> executor) {
+        super.addDynamicServerResources(executor);
 
-        addMasonTableRecipe(handler);
+        executor.accept((manager, sink) -> {
+
+            addMasonTableRecipe(sink);
+
+        });
 
     }
 
-    private void addMasonTableRecipe(ServerDynamicResourcesHandler handler) {
+    private void addMasonTableRecipe(ResourceSink sink) {
         JsonArray listTag = new JsonArray();
 
         // Creating tag for every stonetype
@@ -880,13 +886,13 @@ public class ChippedModule extends StonezoneModule {
             if (stoneType.isVanilla()) continue;
 
             ResourceLocation tagResLoc = StoneZone.res(shortenedId() +"/"+ stoneType.getAppendableId());
-            createAndAddCustomTags(tagResLoc, handler, stoneType.stone);
+            createAndAddCustomTags(tagResLoc, sink, stoneType.stone);
 
             for (EntrySet<?> entry : this.getEntries()) {
 
                 SimpleEntrySet<?, ?> currentEntry = ((SimpleEntrySet<?, ?>) entry);
 
-                isTagCreated = createAndAddCustomTags(tagResLoc, handler, currentEntry.blocks.get(stoneType));
+                isTagCreated = createAndAddCustomTags(tagResLoc, sink, currentEntry.blocks.get(stoneType));
 
             }
 
@@ -896,7 +902,7 @@ public class ChippedModule extends StonezoneModule {
         JsonObject recipeJO = new JsonObject();
         recipeJO.addProperty("type", "chipped:mason_table");
         recipeJO.add("tags", listTag);
-        handler.dynamicPack.addJson(StoneZone.res(shortenedId() + "/mason_table"), recipeJO, ResType.RECIPES);
+        sink.addJson(StoneZone.res(shortenedId() + "/mason_table"), recipeJO, ResType.RECIPES);
 
     }
 

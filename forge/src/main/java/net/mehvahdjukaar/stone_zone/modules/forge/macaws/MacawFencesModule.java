@@ -3,15 +3,14 @@ package net.mehvahdjukaar.stone_zone.modules.forge.macaws;
 import com.mcwfences.kikoz.objects.FenceHitbox;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
@@ -21,6 +20,8 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
+
+import java.util.function.Consumer;
 
 import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromParentModel;
 
@@ -187,45 +188,49 @@ public class MacawFencesModule extends StonezoneModule {
 
     @Override
     // MODELS
-    public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
-        super.addDynamicClientResources(handler, manager);
+    public void addDynamicClientResources(Consumer<ResourceGenTask> executor) {
+        super.addDynamicClientResources(executor);
 
-        if (!grass_topped_walls.blocks.isEmpty()) {
-            String pathGrassToppedWall = "mcwfences/parent/inventory/grass_topped_wall";
-            removeTintIndexFromParentModel(pathGrassToppedWall, "#3", handler, manager);
-            removeTintIndexFromParentModel(pathGrassToppedWall, "#4", handler, manager);
+        executor.accept((manager, sink) -> {
 
-            String[] filenames = {
-                    "corner", "cross", "side",
-                    "triple", "middle", "post"
-            };
-            for (String filename : filenames) {
-                String pathGrassTopped = "mcwfences/parent/grass_topped_wall_";
-                String targetTexture = switch (filename) {
-                    case "middle" -> "#0";
-                    case "post" -> "#3";
-                    default -> "#2";
+            if (!grass_topped_walls.blocks.isEmpty()) {
+                String pathGrassToppedWall = "mcwfences/parent/inventory/grass_topped_wall";
+                removeTintIndexFromParentModel(pathGrassToppedWall, "#3", sink, manager);
+                removeTintIndexFromParentModel(pathGrassToppedWall, "#4", sink, manager);
+
+                String[] filenames = {
+                        "corner", "cross", "side",
+                        "triple", "middle", "post"
                 };
-                String target2ndTexture = switch (filename) {
-                    case "middle" -> "#1";
-                    case "post" -> "#4";
-                    default -> "#3"; // corner|cross|side|triple
-                };
-                removeTintIndexFromParentModel(pathGrassTopped + filename, targetTexture, handler, manager);
-                removeTintIndexFromParentModel(pathGrassTopped + filename, target2ndTexture, handler, manager);
+                for (String filename : filenames) {
+                    String pathGrassTopped = "mcwfences/parent/grass_topped_wall_";
+                    String targetTexture = switch (filename) {
+                        case "middle" -> "#0";
+                        case "post" -> "#3";
+                        default -> "#2";
+                    };
+                    String target2ndTexture = switch (filename) {
+                        case "middle" -> "#1";
+                        case "post" -> "#4";
+                        default -> "#3"; // corner|cross|side|triple
+                    };
+                    removeTintIndexFromParentModel(pathGrassTopped + filename, targetTexture, sink, manager);
+                    removeTintIndexFromParentModel(pathGrassTopped + filename, target2ndTexture, sink, manager);
+                }
             }
-        }
 
-        if (!railing_brick_walls.blocks.isEmpty()) {
-            String pathRailingWall = "mcwfences/parent/railing_wall";
-            removeTintIndexFromParentModel(pathRailingWall + "_post", "#2", handler, manager);
-            removeTintIndexFromParentModel(pathRailingWall + "_side", "#2", handler, manager);
-        }
+            if (!railing_brick_walls.blocks.isEmpty()) {
+                String pathRailingWall = "mcwfences/parent/railing_wall";
+                removeTintIndexFromParentModel(pathRailingWall + "_post", "#2", sink, manager);
+                removeTintIndexFromParentModel(pathRailingWall + "_side", "#2", sink, manager);
+            }
 
-        if (!railing_brick_gates.blocks.isEmpty()) {
-            String pathRailingGate = "mcwfences/parent/railing_gate";
-            removeTintIndexFromParentModel(pathRailingGate, "#4", handler, manager);
-            removeTintIndexFromParentModel(pathRailingGate + "_open", "#4", handler, manager);
-        }
+            if (!railing_brick_gates.blocks.isEmpty()) {
+                String pathRailingGate = "mcwfences/parent/railing_gate";
+                removeTintIndexFromParentModel(pathRailingGate, "#4", sink, manager);
+                removeTintIndexFromParentModel(pathRailingGate + "_open", "#4", sink, manager);
+            }
+
+        });
     }
 }

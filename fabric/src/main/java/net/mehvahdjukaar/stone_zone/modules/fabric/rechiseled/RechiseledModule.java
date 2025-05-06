@@ -6,12 +6,12 @@ import com.supermartijn642.core.TextComponents;
 import com.supermartijn642.core.block.BaseBlock;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.TextureInfo;
-import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.ChatFormatting;
@@ -19,7 +19,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -470,68 +469,71 @@ public class RechiseledModule extends StonezoneModule {
 
     @Override
     // RECIPES
-    public void addDynamicServerResources(ServerDynamicResourcesHandler handler, ResourceManager manager) {
-        super.addDynamicServerResources(handler, manager);
+    public void addDynamicServerResources(Consumer<ResourceGenTask> executor) {
+        super.addDynamicServerResources(executor);
 
-        big_tiles.blocks.forEach((stoneType, block) -> {
+        executor.accept((manager, sink) ->
 
-            // Adding all supported-blocks of a StoneType to Array
-            JsonArray entriesArray = new JsonArray();
+            big_tiles.blocks.forEach((stoneType, block) -> {
 
-            for (var entry : this.getEntries()) {
-                JsonObject entryObj = new JsonObject();
+                // Adding all supported-blocks of a StoneType to Array
+                JsonArray entriesArray = new JsonArray();
 
-                SimpleEntrySet<?, ?> currentEntry = ((SimpleEntrySet<?, ?>) entry);
-                String currentName = currentEntry.getName();
+                for (var entry : this.getEntries()) {
+                    JsonObject entryObj = new JsonObject();
 
-                // Get the other block with "_connecting"
-                String entryKey = currentName + "_connecting";
+                    SimpleEntrySet<?, ?> currentEntry = ((SimpleEntrySet<?, ?>) entry);
+                    String currentName = currentEntry.getName();
 
-                if (!currentName.contains("_connecting")) { // Skip the blocks with "_connecting"
-                    Block currentBlock = currentEntry.blocks.get(stoneType);
-                    if (Objects.nonNull(currentBlock)) {
-                        entryObj.addProperty("item", Utils.getID(currentBlock).toString());
+                    // Get the other block with "_connecting"
+                    String entryKey = currentName + "_connecting";
 
-                        if (!currentName.matches("slated")) { // Skip blc it don't have "_connecting" block
-                            StonezoneEntrySet<?, ?> otherEntry = (StonezoneEntrySet<?, ?>) this.getEntry(entryKey);
-                            Block otherBlock = otherEntry.blocks.get(stoneType);
-                            if (Objects.nonNull(otherBlock))
-                                entryObj.addProperty("connecting_item", Utils.getID(otherBlock).toString());
+                    if (!currentName.contains("_connecting")) { // Skip the blocks with "_connecting"
+                        Block currentBlock = currentEntry.blocks.get(stoneType);
+                        if (Objects.nonNull(currentBlock)) {
+                            entryObj.addProperty("item", Utils.getID(currentBlock).toString());
+
+                            if (!currentName.matches("slated")) { // Skip blc it don't have "_connecting" block
+                                StonezoneEntrySet<?, ?> otherEntry = (StonezoneEntrySet<?, ?>) this.getEntry(entryKey);
+                                Block otherBlock = otherEntry.blocks.get(stoneType);
+                                if (Objects.nonNull(otherBlock))
+                                    entryObj.addProperty("connecting_item", Utils.getID(otherBlock).toString());
+                            }
+
+                            entriesArray.add(entryObj);
                         }
+                    }
+                }
 
+                // Adding vanilla blocks to Array
+                String[] vanillaBlocks = {
+                        "stone",
+                        "bricks",
+                        "mossy_bricks",
+                        "cracked_bricks",
+                        "smooth"
+                };
+
+                for (var key : vanillaBlocks) {
+                    Block currentBlock = stoneType.getBlockOfThis(key);
+                    if (Objects.nonNull(currentBlock)) {
+                        JsonObject entryObj = new JsonObject();
+                        entryObj.addProperty("item", Utils.getID(currentBlock).toString());
                         entriesArray.add(entryObj);
                     }
                 }
-            }
 
-            // Adding vanilla blocks to Array
-            String[] vanillaBlocks = {
-                    "stone",
-                    "bricks",
-                    "mossy_bricks",
-                    "cracked_bricks",
-                    "smooth"
-            };
+                // Recipes
+                JsonObject chiseling_recipe = new JsonObject();
+                chiseling_recipe.addProperty("type", "rechiseled:chiseling");
+                chiseling_recipe.addProperty("overwrite", false);
+                chiseling_recipe.add("entries", entriesArray);
 
-            for (var key : vanillaBlocks) {
-                Block currentBlock = stoneType.getBlockOfThis(key);
-                if (Objects.nonNull(currentBlock)) {
-                    JsonObject entryObj = new JsonObject();
-                    entryObj.addProperty("item", Utils.getID(currentBlock).toString());
-                    entriesArray.add(entryObj);
-                }
-            }
+                // Adding to resources
+                ResourceLocation resLoc = StoneZone.res("chiseling_recipes/" + stoneType.getAppendableId());
+                sink.addJson(resLoc, chiseling_recipe, ResType.JSON);
 
-            // Recipes
-            JsonObject chiseling_recipe = new JsonObject();
-            chiseling_recipe.addProperty("type", "rechiseled:chiseling");
-            chiseling_recipe.addProperty("overwrite", false);
-            chiseling_recipe.add("entries", entriesArray);
-
-            // Adding to resources
-            ResourceLocation resLoc = StoneZone.res("chiseling_recipes/" + stoneType.getAppendableId());
-            handler.dynamicPack.addJson(resLoc, chiseling_recipe, ResType.JSON);
-
-        });
+            })
+        );
     }
 }

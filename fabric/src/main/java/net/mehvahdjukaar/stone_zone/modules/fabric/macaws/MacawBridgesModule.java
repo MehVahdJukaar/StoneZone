@@ -4,18 +4,19 @@ import net.kikoz.mcwbridges.objects.Bridge_Block;
 import net.kikoz.mcwbridges.objects.Bridge_Stairs;
 import net.kikoz.mcwbridges.objects.Bridge_Support;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+
+import java.util.function.Consumer;
 
 import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromParentModel;
 
@@ -189,32 +190,36 @@ public class MacawBridgesModule extends StonezoneModule {
 
     @Override
     // MODELS
-    public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
-        super.addDynamicClientResources(handler, manager);
+    public void addDynamicClientResources(Consumer<ResourceGenTask> executor) {
+        super.addDynamicClientResources(executor);
 
-// Bridge Model
-        String pathBridge = "mcwbridges/bridge/bridge_stone/parent/";
+        executor.accept((manager, sink) -> {
 
-        removeTintIndexFromParentModel(pathBridge + "base", "#2", handler, manager);
-        removeTintIndexFromParentModel(pathBridge + "corner", "#5", handler, manager);
-        removeTintIndexFromParentModel(pathBridge + "middle", "#5", handler, manager);
-        removeTintIndexFromParentModel(pathBridge + "side", "#5", handler, manager);
+            // Bridge Model
+            String pathBridge = "mcwbridges/bridge/bridge_stone/parent/";
 
-// Balustrade Model
-        String pathBalustrade = "mcwbridges/bridge/balustrade/parent/";
+            removeTintIndexFromParentModel(pathBridge + "base", "#2", sink, manager);
+            removeTintIndexFromParentModel(pathBridge + "corner", "#5", sink, manager);
+            removeTintIndexFromParentModel(pathBridge + "middle", "#5", sink, manager);
+            removeTintIndexFromParentModel(pathBridge + "side", "#5", sink, manager);
 
-        removeTintIndexFromParentModel(pathBalustrade + "base", "#2", handler, manager);
-        removeTintIndexFromParentModel(pathBalustrade + "middle", "#1", handler, manager);
-        removeTintIndexFromParentModel(pathBalustrade + "corner", "#5", handler, manager);
-        removeTintIndexFromParentModel(pathBalustrade + "side", "#5", handler, manager);
+            // Balustrade Model
+            String pathBalustrade = "mcwbridges/bridge/balustrade/parent/";
 
-// Stair Model
-        String pathStair = "mcwbridges/stair/stone/parent/";
+            removeTintIndexFromParentModel(pathBalustrade + "base", "#2", sink, manager);
+            removeTintIndexFromParentModel(pathBalustrade + "middle", "#1", sink, manager);
+            removeTintIndexFromParentModel(pathBalustrade + "corner", "#5", sink, manager);
+            removeTintIndexFromParentModel(pathBalustrade + "side", "#5", sink, manager);
 
-        removeTintIndexFromParentModel(pathStair + "base", "#1", handler, manager);
-        removeTintIndexFromParentModel(pathStair + "double", "#1", handler, manager);
-        removeTintIndexFromParentModel(pathStair + "left", "#1", handler, manager);
-        removeTintIndexFromParentModel(pathStair + "right", "#1", handler, manager);
+            // Stair Model
+            String pathStair = "mcwbridges/stair/stone/parent/";
+
+            removeTintIndexFromParentModel(pathStair + "base", "#1", sink, manager);
+            removeTintIndexFromParentModel(pathStair + "double", "#1", sink, manager);
+            removeTintIndexFromParentModel(pathStair + "left", "#1", sink, manager);
+            removeTintIndexFromParentModel(pathStair + "right", "#1", sink, manager);
+
+        });
     }
 
 
