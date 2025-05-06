@@ -118,7 +118,7 @@ dependencies {
         }
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.79
+        modImplementation("maven.modrinth:moonlight:${moonlight_mavenVersion}-forge") // v2.14.0
     }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\

@@ -48,7 +48,7 @@ itemIcon="stonezone:all_stones" #catalogue icon
 
     modId="moonlight"
     mandatory=true
-    versionRange="[1.20-2.13.50,]"
+    versionRange="[1.20-2.14.0,]"
     ordering="NONE"
     side="BOTH"
 
