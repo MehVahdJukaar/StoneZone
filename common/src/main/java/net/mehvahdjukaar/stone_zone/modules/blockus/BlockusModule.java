@@ -19,7 +19,7 @@ import java.util.Objects;
 
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
 
-
+//TODO: Add purpur
 //SUPPORT: v2.7.20+
 //NOTE: Can be supported via Sinytra-Connector
 public class BlockusModule extends StonezoneModule {
@@ -57,11 +57,11 @@ public class BlockusModule extends StonezoneModule {
         smooth_stairs = StonezoneEntrySet.of(StoneType.class, "stairs", "smooth",
                         getModBlock("smooth_stone_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StairBlock(
-                                Objects.requireNonNull(stoneType.getBlockOfThis("smooth_stone")).defaultBlockState(),
+                                Objects.requireNonNull(stoneType.getBlockOfThis("smooth")).defaultBlockState(),
                                 Utils.copyPropertySafe(stoneType.stone)
                         )
                 )
-                .requiresChildren("smooth_stone") //REASON: textures, recipes
+                .requiresChildren("smooth") //REASON: textures, recipes
                 //TEXTURES: smooth_stone, smooth_stone_slab_side
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)

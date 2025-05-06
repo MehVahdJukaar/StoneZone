@@ -65,7 +65,7 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone, "stone")
                 .replaceWithTextureFromChild("minecraft:block/cobblestone", "cobblestone")
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", "bricks")
-                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth_stone")
+                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, "polished")
                 .replaceWithTextureFromChild("minecraft:block/mossy_" + nameBaseStone + "_bricks", "mossy_bricks")
                 // Modifying models' parent & "elements"
@@ -92,7 +92,7 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 .addModifier((s, blockId, stoneType) ->
                         s.replace("minecraft:block/" + nameBaseStone + "_bricks", getChildModelId("bricks", stoneType, blockId)))
                 .addModifier((s, blockId, stoneType) ->
-                        s.replace("minecraft:block/smooth_" + nameBaseStone, getChildModelId("smooth_stone", stoneType, blockId)))
+                        s.replace("minecraft:block/smooth_" + nameBaseStone, getChildModelId("smooth", stoneType, blockId)))
                 .andThen(super.makeBlockStateTransformer(module, manager));
     }
 
