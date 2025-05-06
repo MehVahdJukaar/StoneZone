@@ -29,7 +29,6 @@ itemIcon="stonezone:all_stones" #catalogue icon
 
 
 [[dependencies.stonezone]] #optional
-
     modId="forge" #mandatory
     mandatory=true #mandatory
     versionRange="[41.0.100,)" #mandatory
@@ -37,7 +36,6 @@ itemIcon="stonezone:all_stones" #catalogue icon
     side="BOTH"
 
 [[dependencies.stonezone]]
-
     modId="minecraft"
     mandatory=true
     versionRange="[1.20,1.21]"
@@ -45,7 +43,6 @@ itemIcon="stonezone:all_stones" #catalogue icon
     side="BOTH"
 
 [[dependencies.stonezone]]
-
     modId="moonlight"
     mandatory=true
     versionRange="[1.20-2.14.0,]"
@@ -53,10 +50,9 @@ itemIcon="stonezone:all_stones" #catalogue icon
     side="BOTH"
 
 [[dependencies.stonezone]]
-
     modId="everycomp"
     mandatory=true
-    versionRange="[1.20-2.7.19,]"
+    versionRange="[1.20-2.8.1,]"
     ordering="AFTER"
     side="BOTH"
 

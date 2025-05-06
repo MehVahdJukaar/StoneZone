@@ -57,7 +57,7 @@ dependencies {
         modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.7.25
+        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.8.1
     }
 
 //!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
