@@ -11,12 +11,9 @@ import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
-import net.mehvahdjukaar.stone_zone.misc.SpriteHelper;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.CreativeModeTab;
@@ -30,6 +27,7 @@ import java.util.List;
 import java.util.function.*;
 
 import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.addTagToAllBlocks;
+import static net.mehvahdjukaar.stone_zone.misc.ResourceUtils.getChildModelId;
 
 public class StonezoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
 
@@ -95,10 +93,11 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 .andThen(super.makeBlockStateTransformer(module, manager));
     }
 
-    private String getChildModelId(String childkey, T stoneType, ResourceLocation blockId) {
-        if (SpriteHelper.modelID.containsKey(blockId)) return SpriteHelper.modelID.get(blockId);
-
-        return Utils.getID(stoneType.getBlockOfThis(childkey)).withPrefix("block/").toString();
+    @Override
+    public void generateModels(SimpleModule module, ResourceManager manager, ResourceSink sink) {
+        makeBlockStateTransformer(module, manager);
+        makeModelTransformer(module, manager);
+        super.generateModels(module, manager, sink);
     }
 
     @Override

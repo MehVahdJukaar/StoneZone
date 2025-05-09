@@ -68,9 +68,15 @@ public class StonezoneModule extends SimpleModule {
     @Override
     public void addDynamicClientResources(Consumer<ResourceGenTask> executor) {
         super.addDynamicClientResources(executor);
-        executor.accept((manager, sink) -> {
+        executor.accept((resourceManager, resourceSink) -> {
+            getEntries().forEach(entrySetParent -> {
+                if (entrySetParent instanceof StonezoneEntrySet<?,?> entrySet) {
+                    entrySet.generateModels(this, resourceManager, resourceSink);
+                }
+            });
+
             // Creating custom models
-            Map<ResourceLocation, JsonObject> models = ModelUtils.readAllModelsAndParents(manager, modelsToModify);
+            Map<ResourceLocation, JsonObject> models = ModelUtils.readAllModelsAndParents(resourceManager, modelsToModify);
             for (var e : models.entrySet()) {
                 // Modifying the contents
                 JsonObject json = e.getValue();
@@ -78,7 +84,7 @@ public class StonezoneModule extends SimpleModule {
                 ResourceLocation newId = ModelUtils.transformModelID(e.getKey());
 
                 // Add custom models to the resources
-                sink.addJson(newId, json, ResType.MODELS);
+                resourceSink.addJson(newId, json, ResType.MODELS);
             }
         });
     }
