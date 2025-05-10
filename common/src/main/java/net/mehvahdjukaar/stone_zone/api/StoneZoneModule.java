@@ -3,7 +3,6 @@ package net.mehvahdjukaar.stone_zone.api;
 import com.google.gson.JsonObject;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
-import net.mehvahdjukaar.moonlight.api.misc.Registrator;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
@@ -12,16 +11,15 @@ import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
-import net.mehvahdjukaar.stone_zone.misc.TintConfiguration;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 
 public class StoneZoneModule extends SimpleModule {
@@ -66,21 +64,16 @@ public class StoneZoneModule extends SimpleModule {
         return false;
     }
 
-    @Override
-    public void registerItems(Registrator<Item> registry) {
-        super.registerItems(registry);
-    }
 
     @Override
     public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
         super.addDynamicClientResources(handler, manager);
         // Creating custom models
-        Map<ResourceLocation, JsonObject> models = ModelUtils.readAllModelsAndParents(manager, modelsToModify.keySet());
+        Map<ResourceLocation, JsonObject> models = ModelUtils.readAllModelsAndParents(manager, modelsToModify);
         for (var e : models.entrySet()) {
             // Modifying the contents
             JsonObject json = e.getValue();
-            var config = modelsToModify.getOrDefault(e.getKey(), TintConfiguration.EMPTY);
-            ModelUtils.addTintIndexToModelAndReplaceParent(json, null, null, config);
+            ModelUtils.addTintIndexToModelAndReplaceParent(json, null, null);
             ResourceLocation newId = ModelUtils.transformModelID(e.getKey());
 
             // Add custom models to the resources
@@ -88,10 +81,10 @@ public class StoneZoneModule extends SimpleModule {
         }
     }
 
-    private final Map<ResourceLocation, TintConfiguration> modelsToModify = new HashMap<>();
+    private final Set<ResourceLocation> modelsToModify = new HashSet<>();
 
-    public void markModelForModification(ResourceLocation oldRes, TintConfiguration config) {
-        modelsToModify.put(oldRes, config);
+    public void markModelForModification(ResourceLocation oldRes) {
+        modelsToModify.add(oldRes);
     }
 
 }
