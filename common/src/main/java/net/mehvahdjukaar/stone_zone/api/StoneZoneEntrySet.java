@@ -11,13 +11,10 @@ import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
-import net.mehvahdjukaar.stone_zone.misc.SpriteHelper;
 import net.mehvahdjukaar.stone_zone.misc.TintConfiguration;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.CreativeModeTab;
@@ -31,6 +28,7 @@ import java.util.List;
 import java.util.function.*;
 
 import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.addTagToAllBlocks;
+import static net.mehvahdjukaar.stone_zone.misc.ResourceUtils.getChildModelId;
 
 public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
 
@@ -69,7 +67,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone, "stone")
                 .replaceWithTextureFromChild("minecraft:block/cobblestone", "cobblestone")
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", "bricks")
-                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth_stone")
+                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, "polished")
                 .replaceWithTextureFromChild("minecraft:block/mossy_" + nameBaseStone + "_bricks", "mossy_bricks")
                 // Modifying models' parent & "elements"
@@ -94,12 +92,6 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 .addModifier((s, blockId, stoneType) ->
                         s.replace("minecraft:block/smooth_" + nameBaseStone, getChildModelId("smooth_stone", stoneType, blockId)))
                 .andThen(super.makeBlockStateTransformer(module, manager));
-    }
-
-    private String getChildModelId(String childkey, T stoneType, ResourceLocation blockId) {
-        if (SpriteHelper.modelID.containsKey(blockId)) return SpriteHelper.modelID.get(blockId);
-
-        return Utils.getID(stoneType.getBlockOfThis(childkey)).withPrefix("block/").toString();
     }
 
     @Override
