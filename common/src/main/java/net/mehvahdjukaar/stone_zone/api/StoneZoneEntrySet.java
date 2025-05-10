@@ -128,7 +128,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
     //!! SUB-CLASS
     public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {
 
-        private TintConfiguration tintConfig = TintConfiguration.EMPTY;
+        protected TintConfiguration tintConfig = TintConfiguration.EMPTY;
 
         protected Builder(Class<T> type, String name, @Nullable String prefix, Supplier<T> baseType, Supplier<B> baseBlock, Function<T, B> blockFactory) {
             super(type, name, prefix, baseType, baseBlock, blockFactory);

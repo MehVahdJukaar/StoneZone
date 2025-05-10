@@ -13,6 +13,7 @@ import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
+import net.mehvahdjukaar.stone_zone.misc.TintConfiguration;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.BlockItem;
@@ -48,11 +49,11 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
                          @Nullable BiFunction<T, ResourceManager, Pair<List<Palette>, @Nullable McMetaFile>> paletteSupplier,
                          @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
                          boolean mergedPalette,
-                         boolean copyTint,
+                         TintConfiguration tintConfig, boolean copyTint,
                          Predicate<T> condition) {
 
         super(type, name, prefix, blockSupplier, baseBlock, baseType, Objects.requireNonNull(tab), tabMode, tableMode, itemFactory,
-                tileFactory, renderType, paletteSupplier, extraTransform, mergedPalette, copyTint, condition);
+                tileFactory, renderType, paletteSupplier, extraTransform, mergedPalette, tintConfig, copyTint, condition);
         var m = Preconditions.checkNotNull(module);
         this.zetaModule = Suppliers.memoize(() -> Quark.ZETA.modules.get(m));
     }
@@ -101,7 +102,7 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
     }
 
     //!! SUBCLASS
-    public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {
+    public static class Builder<T extends BlockType, B extends Block> extends StoneZoneEntrySet.Builder<T, B> {
 
         private final Function<T, B> blockSupplier;
         private final Class<? extends ZetaModule> quarkModule;
@@ -134,7 +135,8 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
         public QuarkEntrySet<T, B> build() {
             var e = new QuarkEntrySet<>(type, name, prefix, quarkModule,
                     baseBlock, baseType, blockSupplier, tab, tabMode, lootMode,
-                    itemFactory, tileHolder, renderType, palette, extraModelTransform, useMergedPalette, copyTint, condition);
+                    itemFactory, tileHolder, renderType, palette, extraModelTransform, useMergedPalette,
+                    tintConfig, copyTint,  condition);
 
             e.recipeLocations.addAll(this.recipes);
             e.tags.putAll(this.tags);
