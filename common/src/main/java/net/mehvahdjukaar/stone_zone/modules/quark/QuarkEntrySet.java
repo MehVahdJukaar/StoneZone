@@ -12,7 +12,7 @@ import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.BlockItem;
@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.*;
 
-public class QuarkEntrySet<T extends BlockType, B extends Block> extends StonezoneEntrySet<T, B> {
+public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZoneEntrySet<T, B> {
 
     private final Supplier<ZetaModule> zetaModule;
 

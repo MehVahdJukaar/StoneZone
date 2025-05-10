@@ -5,8 +5,8 @@ import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -21,7 +21,7 @@ import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromPa
 
 
 //SUPPORT: v2.3.0+
-public class MacawWindowsModule extends StonezoneModule {
+public class MacawWindowsModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> windows;
     public final SimpleEntrySet<StoneType, Block> window2s;
@@ -34,7 +34,7 @@ public class MacawWindowsModule extends StonezoneModule {
         super(modId, "mcw");
         ResourceLocation tab = modRes(modId);
 
-        windows = StonezoneEntrySet.of(StoneType.class, "window",
+        windows = StoneZoneEntrySet.of(StoneType.class, "window",
                         getModBlock("stone_window"), StoneTypeRegistry::getStoneType,
                         stoneType -> new ConnectedWindow(Utils.copyPropertySafe(stoneType.stone)
                                 .mapColor(MapColor.COLOR_GRAY)
@@ -53,7 +53,7 @@ public class MacawWindowsModule extends StonezoneModule {
                 .build();
         this.addEntry(windows);
 
-        window2s = StonezoneEntrySet.of(StoneType.class, "window2",
+        window2s = StoneZoneEntrySet.of(StoneType.class, "window2",
                         getModBlock("stone_window2"), StoneTypeRegistry::getStoneType,
                         stoneType -> new WindowBarred(Utils.copyPropertySafe(stoneType.stone)
                                 .mapColor(MapColor.COLOR_GRAY)
@@ -72,7 +72,7 @@ public class MacawWindowsModule extends StonezoneModule {
                 .build();
         this.addEntry(window2s);
 
-        four_windows = StonezoneEntrySet.of(StoneType.class, "four_window",
+        four_windows = StoneZoneEntrySet.of(StoneType.class, "four_window",
                         getModBlock("stone_four_window"), StoneTypeRegistry::getStoneType,
                         stoneType -> new WindowBarred(Utils.copyPropertySafe(stoneType.stone)
                                 .mapColor(MapColor.COLOR_GRAY)
@@ -91,7 +91,7 @@ public class MacawWindowsModule extends StonezoneModule {
                 .build();
         this.addEntry(four_windows);
 
-        brick_gothics = StonezoneEntrySet.of(StoneType.class, "brick_gothic",
+        brick_gothics = StoneZoneEntrySet.of(StoneType.class, "brick_gothic",
                         getModBlock("stone_brick_gothic"), StoneTypeRegistry::getStoneType,
                         stoneType -> new GothicWindow(Utils.copyPropertySafe(stoneType.stone)
                                 .mapColor(MapColor.COLOR_GRAY)
@@ -110,7 +110,7 @@ public class MacawWindowsModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_gothics);
 
-        brick_arrow_slits = StonezoneEntrySet.of(StoneType.class, "brick_arrow_slit",
+        brick_arrow_slits = StoneZoneEntrySet.of(StoneType.class, "brick_arrow_slit",
                         getModBlock("stone_brick_arrow_slit"), StoneTypeRegistry::getStoneType,
                         stoneType -> new ArrowSill(Utils.copyPropertySafe(stoneType.stone)
                                 .mapColor(MapColor.COLOR_GRAY)
@@ -131,7 +131,7 @@ public class MacawWindowsModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_arrow_slits);
 
-        pane_windows = StonezoneEntrySet.of(StoneType.class, "pane_window",
+        pane_windows = StoneZoneEntrySet.of(StoneType.class, "pane_window",
                         getModBlock("stone_pane_window"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Window(Utils.copyPropertySafe(stoneType.stone)
                                 .mapColor(MapColor.COLOR_GRAY)

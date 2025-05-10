@@ -4,8 +4,8 @@ import com.starfish_studios.bbb.block.*;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -21,7 +21,7 @@ import java.util.Objects;
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
 
 //SUPPORT: v1.0.1+
-public class BuildingButBetterModule extends StonezoneModule {
+public class BuildingButBetterModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> columns;
     public final SimpleEntrySet<StoneType, Block> fences;
@@ -39,7 +39,7 @@ public class BuildingButBetterModule extends StonezoneModule {
         super(modId, "building_but_better");
         ResourceLocation tab = modRes("item_group");
 
-        columns = StonezoneEntrySet.of(StoneType.class, "column",
+        columns = StoneZoneEntrySet.of(StoneType.class, "column",
                         getModBlock("stone_column"), StoneTypeRegistry::getStoneType,
                         stoneType -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
@@ -61,7 +61,7 @@ public class BuildingButBetterModule extends StonezoneModule {
                 .build();
         this.addEntry(columns);
 
-        fences = StonezoneEntrySet.of(StoneType.class, "fence",
+        fences = StoneZoneEntrySet.of(StoneType.class, "fence",
                         getModBlock("stone_fence"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StoneFenceBlock(Utils.copyPropertySafe(stoneType.bricksOrStone())
                                 .noOcclusion()
@@ -80,7 +80,7 @@ public class BuildingButBetterModule extends StonezoneModule {
                 .build();
         this.addEntry(fences);
 
-        urns = StonezoneEntrySet.of(StoneType.class, "urn",
+        urns = StoneZoneEntrySet.of(StoneType.class, "urn",
                         getModBlock("stone_urn"), StoneTypeRegistry::getStoneType,
                         stoneType -> new UrnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone())
                                 .noOcclusion()
@@ -99,7 +99,7 @@ public class BuildingButBetterModule extends StonezoneModule {
                 .build();
         this.addEntry(urns);
 
-        tiles = StonezoneEntrySet.of(StoneType.class, "tiles",
+        tiles = StoneZoneEntrySet.of(StoneType.class, "tiles",
                         getModBlock("stone_tiles"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
@@ -116,7 +116,7 @@ public class BuildingButBetterModule extends StonezoneModule {
                 .build();
         this.addEntry(tiles);
 
-        tile_stairs = StonezoneEntrySet.of(StoneType.class, "tile_stairs",
+        tile_stairs = StoneZoneEntrySet.of(StoneType.class, "tile_stairs",
                         getModBlock("stone_tile_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StairBlock(stoneType.bricksOrStone().defaultBlockState(),
                                 Utils.copyPropertySafe(stoneType.bricksOrStone()))
@@ -135,7 +135,7 @@ public class BuildingButBetterModule extends StonezoneModule {
                 .build();
         this.addEntry(tile_stairs);
 
-        tile_slabs = StonezoneEntrySet.of(StoneType.class, "tile_slab",
+        tile_slabs = StoneZoneEntrySet.of(StoneType.class, "tile_slab",
                         getModBlock("stone_tile_slab"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -153,7 +153,7 @@ public class BuildingButBetterModule extends StonezoneModule {
                 .build();
         this.addEntry(tile_slabs);
 
-        layers = StonezoneEntrySet.of(StoneType.class, "layer",
+        layers = StoneZoneEntrySet.of(StoneType.class, "layer",
                         getModBlock("stone_layer"), StoneTypeRegistry::getStoneType,
                         stoneType -> new LayerBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -171,7 +171,7 @@ public class BuildingButBetterModule extends StonezoneModule {
                 .build();
         this.addEntry(layers);
 
-        brick_layers = StonezoneEntrySet.of(StoneType.class, "brick_layer",
+        brick_layers = StoneZoneEntrySet.of(StoneType.class, "brick_layer",
                         getModBlock("stone_brick_layer"), StoneTypeRegistry::getStoneType,
                         stoneType -> new LayerBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
@@ -189,7 +189,7 @@ public class BuildingButBetterModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_layers);
 
-        smooth_layers = StonezoneEntrySet.of(StoneType.class, "layer", "smooth",
+        smooth_layers = StoneZoneEntrySet.of(StoneType.class, "layer", "smooth",
                         getModBlock("smooth_stone_layer"), StoneTypeRegistry::getStoneType,
                         stoneType -> new LayerBlock(copyChildrenPropertySafe("smooth_stone", stoneType))
                 )
@@ -202,7 +202,7 @@ public class BuildingButBetterModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_layers);
 
-        mouldings = StonezoneEntrySet.of(StoneType.class, "moulding",
+        mouldings = StoneZoneEntrySet.of(StoneType.class, "moulding",
                         getModBlock("stone_moulding"), StoneTypeRegistry::getStoneType,
                         stoneType -> new MouldingBlock(
                                 stoneType.bricksOrStone().defaultBlockState(),

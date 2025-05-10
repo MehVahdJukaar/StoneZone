@@ -3,8 +3,8 @@ package net.mehvahdjukaar.stone_zone.modules.blockus;
 import com.brand.blockus.blocks.base.OrientableBlockBase;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -22,7 +22,7 @@ import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildr
 
 //SUPPORT: v2.7.20+
 //NOTE: Can be supported via Sinytra-Connector
-public class BlockusModule extends StonezoneModule {
+public class BlockusModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> herringbone_bricks;
     public final SimpleEntrySet<StoneType, Block> smooth_stairs;
@@ -40,7 +40,7 @@ public class BlockusModule extends StonezoneModule {
         super(modId, "bus");
         ResourceLocation tab = modRes("blockus_building_blocks");
 
-        herringbone_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "herringbone",
+        herringbone_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "herringbone",
                         getModBlock("herringbone_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
@@ -54,7 +54,7 @@ public class BlockusModule extends StonezoneModule {
                 .build();
         this.addEntry(herringbone_bricks);
 
-        smooth_stairs = StonezoneEntrySet.of(StoneType.class, "stairs", "smooth",
+        smooth_stairs = StoneZoneEntrySet.of(StoneType.class, "stairs", "smooth",
                         getModBlock("smooth_stone_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StairBlock(
                                 Objects.requireNonNull(stoneType.getBlockOfThis("smooth_stone")).defaultBlockState(),
@@ -71,7 +71,7 @@ public class BlockusModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_stairs);
 
-        brick_pillars = StonezoneEntrySet.of(StoneType.class, "brick_pillar",
+        brick_pillars = StoneZoneEntrySet.of(StoneType.class, "brick_pillar",
                         getModBlock("stone_brick_pillar"), StoneTypeRegistry::getStoneType,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
@@ -86,7 +86,7 @@ public class BlockusModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_pillars);
 
-        circular_pavings = StonezoneEntrySet.of(StoneType.class, "circular_paving",
+        circular_pavings = StoneZoneEntrySet.of(StoneType.class, "circular_paving",
                         getModBlock("stone_circular_paving"), StoneTypeRegistry::getStoneType,
                         stoneType -> new OrientableBlockBase(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
@@ -100,7 +100,7 @@ public class BlockusModule extends StonezoneModule {
                 .build();
         this.addEntry(circular_pavings);
 
-        doors = StonezoneEntrySet.of(StoneType.class, "door",
+        doors = StoneZoneEntrySet.of(StoneType.class, "door",
                         getModBlock("stone_door"), StoneTypeRegistry::getStoneType,
                         stoneType -> new DoorBlock(
                                 BlockSetType.STONE,
@@ -125,7 +125,7 @@ public class BlockusModule extends StonezoneModule {
                 .build();
         this.addEntry(doors);
 
-        tiles = StonezoneEntrySet.of(StoneType.class, "tiles",
+        tiles = StoneZoneEntrySet.of(StoneType.class, "tiles",
                         getModBlock("stone_tiles"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
@@ -139,7 +139,7 @@ public class BlockusModule extends StonezoneModule {
                 .build();
         this.addEntry(tiles);
 
-        tile_slabs = StonezoneEntrySet.of(StoneType.class, "tile_slab",
+        tile_slabs = StoneZoneEntrySet.of(StoneType.class, "tile_slab",
                         getModBlock("stone_tile_slab"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SlabBlock(copyChildrenPropertySafe("slab", stoneType))
                 )
@@ -156,7 +156,7 @@ public class BlockusModule extends StonezoneModule {
                 .build();
         this.addEntry(tile_slabs);
 
-        tile_stairs = StonezoneEntrySet.of(StoneType.class, "tile_stairs",
+        tile_stairs = StoneZoneEntrySet.of(StoneType.class, "tile_stairs",
                         getModBlock("stone_tile_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
                                 copyChildrenPropertySafe("stairs", stoneType))
@@ -174,7 +174,7 @@ public class BlockusModule extends StonezoneModule {
                 .build();
         this.addEntry(tile_stairs);
 
-        tile_walls = StonezoneEntrySet.of(StoneType.class, "tile_wall",
+        tile_walls = StoneZoneEntrySet.of(StoneType.class, "tile_wall",
                         getModBlock("stone_tile_wall"), StoneTypeRegistry::getStoneType,
                         stoneType -> new WallBlock(copyWallSafe("stone_tile_wall", stoneType))
                 )
@@ -191,7 +191,7 @@ public class BlockusModule extends StonezoneModule {
                 .build();
         this.addEntry(tile_walls);
 
-        trapdoors = StonezoneEntrySet.of(StoneType.class, "trapdoor",
+        trapdoors = StoneZoneEntrySet.of(StoneType.class, "trapdoor",
                         getModBlock("stone_trapdoor"), StoneTypeRegistry::getStoneType,
                         stoneType -> new TrapDoorBlock(
                                 BlockSetType.STONE,

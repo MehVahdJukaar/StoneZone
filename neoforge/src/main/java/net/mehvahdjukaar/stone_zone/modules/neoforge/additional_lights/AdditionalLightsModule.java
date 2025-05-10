@@ -2,8 +2,8 @@ package net.mehvahdjukaar.stone_zone.modules.neoforge.additional_lights;
 
 import com.mgen256.al.blocks.*;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -15,7 +15,7 @@ import java.util.Objects;
 
 
 //SUPPORT: v
-public class AdditionalLightsModule extends StonezoneModule {
+public class AdditionalLightsModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> al_lamp;
 
@@ -61,7 +61,7 @@ public class AdditionalLightsModule extends StonezoneModule {
         super(modId, "al");
         ResourceLocation tab = modRes("creative_tab");
 
-        al_lamp = StonezoneEntrySet.of(StoneType.class, "","al_lamp",
+        al_lamp = StoneZoneEntrySet.of(StoneType.class, "","al_lamp",
                         getModBlock("al_lamp_stone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new ALLamp(stoneType.stone)
                 )
@@ -161,7 +161,7 @@ public class AdditionalLightsModule extends StonezoneModule {
         this.addEntry(al_wall_torch_smooth);
 */
 
-        standing_torch_s_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "standing_torch_s",
+        standing_torch_s_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "standing_torch_s",
                         getModBlock("standing_torch_s_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StandingTorch_S(stoneType.stone)
                 )
@@ -173,7 +173,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(standing_torch_s_bricks);
 
-        standing_torch_s_mossy_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "standing_torch_s_mossy",
+        standing_torch_s_mossy_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "standing_torch_s_mossy",
                         getModBlock("standing_torch_s_mossy_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StandingTorch_S(Objects.requireNonNull(stoneType.getBlockOfThis("mossy_bricks")))
                 )
@@ -185,7 +185,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(standing_torch_s_mossy_bricks);
 
-        standing_torch_s_smooth = StonezoneEntrySet.of(StoneType.class, "","standing_torch_s_smooth",
+        standing_torch_s_smooth = StoneZoneEntrySet.of(StoneType.class, "","standing_torch_s_smooth",
                         getModBlock("standing_torch_s_smooth_stone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StandingTorch_S(Objects.requireNonNull(stoneType.getBlockOfThis("smooth")))
                 )
@@ -197,7 +197,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(standing_torch_s_smooth);
 
-        standing_torch_s = StonezoneEntrySet.of(StoneType.class, "","standing_torch_s",
+        standing_torch_s = StoneZoneEntrySet.of(StoneType.class, "","standing_torch_s",
                         getModBlock("standing_torch_s_stone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StandingTorch_S(stoneType.stone)
                 )
@@ -208,7 +208,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(standing_torch_s);
 
-        stnading_torch_l_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "standing_torch_l",
+        stnading_torch_l_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "standing_torch_l",
                         getModBlock("standing_torch_l_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StandingTorch_L(Objects.requireNonNull(stoneType.getBlockOfThis("bricks")))
                 )
@@ -220,7 +220,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(stnading_torch_l_bricks);
 
-        standing_torch_l_mossy_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "standing_torch_l_mossy",
+        standing_torch_l_mossy_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "standing_torch_l_mossy",
                         getModBlock("standing_torch_l_mossy_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StandingTorch_L(Objects.requireNonNull(stoneType.getBlockOfThis("mossy_bricks")))
                 )
@@ -232,7 +232,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(standing_torch_l_mossy_bricks);
 
-        standing_torch_l_smooth = StonezoneEntrySet.of(StoneType.class, "","standing_torch_l_smooth",
+        standing_torch_l_smooth = StoneZoneEntrySet.of(StoneType.class, "","standing_torch_l_smooth",
                         getModBlock("standing_torch_l_smooth_stone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StandingTorch_L(Objects.requireNonNull(stoneType.getBlockOfThis("smooth")))
                 )
@@ -244,7 +244,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(standing_torch_l_smooth);
 
-        standing_torch_l = StonezoneEntrySet.of(StoneType.class,"","standing_torch_l",
+        standing_torch_l = StoneZoneEntrySet.of(StoneType.class,"","standing_torch_l",
                         getModBlock("standing_torch_l_stone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StandingTorch_L(stoneType.stone)
                 )
@@ -255,7 +255,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(standing_torch_l);
 
-        firepit_s_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "fire_pit_s",
+        firepit_s_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "fire_pit_s",
                         getModBlock("fire_pit_s_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FirePit_S(Objects.requireNonNull(stoneType.getBlockOfThis("bricks")))
                 )
@@ -267,7 +267,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(firepit_s_bricks);
 
-        firepit_s_mossy_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "fire_pit_s_mossy",
+        firepit_s_mossy_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "fire_pit_s_mossy",
                         getModBlock("fire_pit_s_mossy_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FirePit_S(Objects.requireNonNull(stoneType.getBlockOfThis("mossy_bricks")))
                 )
@@ -279,7 +279,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(firepit_s_mossy_bricks);
 
-        firepit_s_smooth = StonezoneEntrySet.of(StoneType.class,"","fire_pit_s_smooth",
+        firepit_s_smooth = StoneZoneEntrySet.of(StoneType.class,"","fire_pit_s_smooth",
                         getModBlock("fire_pit_s_smooth_stone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FirePit_S(Objects.requireNonNull(stoneType.getBlockOfThis("smooth")))
                 )
@@ -291,7 +291,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(firepit_s_smooth);
 
-        firepit_s = StonezoneEntrySet.of(StoneType.class,"","fire_pit_s",
+        firepit_s = StoneZoneEntrySet.of(StoneType.class,"","fire_pit_s",
                         getModBlock("fire_pit_s_stone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FirePit_S(stoneType.stone)
                 )
@@ -302,7 +302,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(firepit_s);
 
-        firepit_l_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "fire_pit_l",
+        firepit_l_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "fire_pit_l",
                         getModBlock("fire_pit_l_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FirePit_L(Objects.requireNonNull(stoneType.getBlockOfThis("bricks")))
                 )
@@ -314,7 +314,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(firepit_l_bricks);
 
-        firepit_l_mossy_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "fire_pit_l_mossy",
+        firepit_l_mossy_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "fire_pit_l_mossy",
                         getModBlock("fire_pit_l_mossy_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FirePit_L(Objects.requireNonNull(stoneType.getBlockOfThis("mossy_bricks")))
                 )
@@ -326,7 +326,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(firepit_l_mossy_bricks);
 
-        firepit_l_smooth = StonezoneEntrySet.of(StoneType.class,"","fire_pit_l_smooth",
+        firepit_l_smooth = StoneZoneEntrySet.of(StoneType.class,"","fire_pit_l_smooth",
                         getModBlock("fire_pit_l_smooth_stone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FirePit_L(Objects.requireNonNull(stoneType.getBlockOfThis("smooth")))
                 )
@@ -338,7 +338,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(firepit_l_smooth);
 
-        firepit_l = StonezoneEntrySet.of(StoneType.class,"","fire_pit_l",
+        firepit_l = StoneZoneEntrySet.of(StoneType.class,"","fire_pit_l",
                         getModBlock("fire_pit_l_stone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FirePit_L(stoneType.stone)
                 )
@@ -350,7 +350,7 @@ public class AdditionalLightsModule extends StonezoneModule {
         this.addEntry(firepit_l);
 
 //!! ANDESITE
-        polished_standing_torch = StonezoneEntrySet.of(StoneType.class,"","standing_torch_s_polished",
+        polished_standing_torch = StoneZoneEntrySet.of(StoneType.class,"","standing_torch_s_polished",
                         getModBlock("standing_torch_s_polished_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new StandingTorch_S(stoneType.stone)
                 )
@@ -362,7 +362,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(polished_standing_torch);
 
-        polished_standing_torch_l = StonezoneEntrySet.of(StoneType.class,"","standing_torch_l_polished",
+        polished_standing_torch_l = StoneZoneEntrySet.of(StoneType.class,"","standing_torch_l_polished",
                         getModBlock("standing_torch_l_polished_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new StandingTorch_L(stoneType.stone)
                 )
@@ -374,7 +374,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(polished_standing_torch_l);
 
-        polished_firepit = StonezoneEntrySet.of(StoneType.class,"","fire_pit_s_polished",
+        polished_firepit = StoneZoneEntrySet.of(StoneType.class,"","fire_pit_s_polished",
                         getModBlock("fire_pit_s_polished_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new FirePit_S(stoneType.stone)
                 )
@@ -386,7 +386,7 @@ public class AdditionalLightsModule extends StonezoneModule {
                 .build();
         this.addEntry(polished_firepit);
 
-        polished_firepit_l = StonezoneEntrySet.of(StoneType.class,"","fire_pit_l_polished",
+        polished_firepit_l = StoneZoneEntrySet.of(StoneType.class,"","fire_pit_l_polished",
                         getModBlock("fire_pit_l_polished_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new FirePit_L(stoneType.stone)
                 )

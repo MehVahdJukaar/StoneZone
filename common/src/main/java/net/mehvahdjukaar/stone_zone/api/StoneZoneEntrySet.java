@@ -15,6 +15,7 @@ import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
 import net.mehvahdjukaar.stone_zone.misc.SpriteHelper;
+import net.mehvahdjukaar.stone_zone.misc.TintConfiguration;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -31,9 +32,11 @@ import java.util.function.*;
 
 import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.addTagToAllBlocks;
 
-public class StonezoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
+public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
 
-    protected StonezoneEntrySet(Class<T> type, String name, @Nullable String prefix, Function<T, B> blockSupplier,
+    protected TintConfiguration tintConfiguration;
+
+    protected StoneZoneEntrySet(Class<T> type, String name, @Nullable String prefix, Function<T, B> blockSupplier,
                                 Supplier<B> baseBlock, Supplier<T> baseType,
                                 @NotNull Supplier<ResourceKey<CreativeModeTab>> tab,
                                 TabAddMode tabMode, LootTableMode lootMode,
@@ -42,10 +45,12 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
                                 @Nullable BiFunction<T, ResourceManager, Pair<List<Palette>,
                                         @Nullable McMetaFile>> paletteSupplier,
                                 @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
-                                boolean mergedPalette, boolean copyTint, Predicate<T> condition) {
+                                boolean mergedPalette, TintConfiguration tintConfig, boolean copyTint,
+                                Predicate<T> condition) {
 
         super(type, name, prefix, blockSupplier, baseBlock, baseType, tab, tabMode, lootMode, itemFactory, tileFactory,
                 renderType, paletteSupplier, extraTransform, mergedPalette, copyTint, condition);
+        this.tintConfiguration = tintConfig;
     }
 
     public static <T extends BlockType, B extends Block> Builder<T, B> of(Class<T> type, String name, String prefix, Supplier<B> baseBlock, Supplier<T> baseType, Function<T, B> blockSupplier) {
@@ -69,16 +74,14 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 .replaceWithTextureFromChild("minecraft:block/mossy_" + nameBaseStone + "_bricks", "mossy_bricks")
                 // Modifying models' parent & "elements"
                 .addModifier((s, blockId, blockType) -> {
-                    if (!blockId.getPath().contains("chest")) {
-                        JsonObject jsonObject = GsonHelper.parse(s);
-                        ModelUtils.addTintIndexToModelAndReplaceParent(jsonObject, module, nameBaseStone);
-                        return jsonObject.toString();
-                    }
-                    return s;
+                    JsonObject jsonObject = GsonHelper.parse(s);
+                    ModelUtils.addTintIndexToModelAndReplaceParent(jsonObject, module, nameBaseStone, tintConfiguration);
+                    return jsonObject.toString();
                 })
                 .andThen(super.makeModelTransformer(module, manager));
 
     }
+
 
     @Override
     protected BlockTypeResTransformer<T> makeBlockStateTransformer(SimpleModule module, ResourceManager manager) {
@@ -103,16 +106,16 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
     public void generateTags(SimpleModule module, DynamicDataPack pack, ResourceManager manager) {
         super.generateTags(module, pack, manager);
 
-    /// IMPORTANT: modId must be included in StoneZone's addModToDynamicPack() so the tags will be loaded into world first time
+        /// IMPORTANT: modId must be included in StoneZone's addModToDynamicPack() so the tags will be loaded into world first time
         // Adding tag to a specific StoneType of all generated blocks
-            // Architect's Palette
+        // Architect's Palette
         addTagToAllBlocks(blocks, "wardstone", "architects_palette", "wizard_blocks", true, false, pack);
 
-            // Tinker's Construct
+        // Tinker's Construct
         addTagToAllBlocks(blocks, "seared_stone", "tconstruct", "seared_blocks", true, true, pack);
         addTagToAllBlocks(blocks, "scorched_stone", "tconstruct", "scorched_blocks", true, true, pack);
 
-            // Caverns And Chasms
+        // Caverns And Chasms
         addTagToAllBlocks(blocks, "sugilite", "caverns_and_chasms", "static_note_blocks", true, true, pack);
         addTagToAllBlocks(blocks, "cassiterite", "caverns_and_chasms", "deflects_projectiles", true, false, pack);
         addTagToAllBlocks(blocks, "cassiterite", "caverns_and_chasms", "weaker_deflect_velocity", true, false, pack);
@@ -122,15 +125,17 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
     //!! SUB-CLASS
     public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {
 
+        private TintConfiguration tintConfig = TintConfiguration.EMPTY;
+
         protected Builder(Class<T> type, String name, @Nullable String prefix, Supplier<T> baseType, Supplier<B> baseBlock, Function<T, B> blockFactory) {
             super(type, name, prefix, baseType, baseBlock, blockFactory);
         }
 
-        public StonezoneEntrySet.Builder<T, B> createPaletteFromStone() {
+        public StoneZoneEntrySet.Builder<T, B> createPaletteFromStone() {
             return (Builder<T, B>) createPaletteFromChild("stone");
         }
 
-        public StonezoneEntrySet.Builder<T, B> createPaletteFromBricks() {
+        public StoneZoneEntrySet.Builder<T, B> createPaletteFromBricks() {
             this.setPalette((blockType, manager) -> {
                 if (blockType.getChild("bricks") != null) {
                     return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
@@ -142,7 +147,7 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
             return this;
         }
 
-        public StonezoneEntrySet.Builder<T, B> createPaletteFromStoneChild(String childKey) {
+        public StoneZoneEntrySet.Builder<T, B> createPaletteFromStoneChild(String childKey) {
             this.setPalette((blockType, manager) -> {
                 if (blockType.getChild(childKey) != null) {
                     return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
@@ -155,23 +160,40 @@ public class StonezoneEntrySet<T extends BlockType, B extends Block> extends Sim
         }
 
         @Override
-        public StonezoneEntrySet<T, B> build() {
+        public StoneZoneEntrySet<T, B> build() {
             if (this.tab == null && PlatHelper.isDev()) {
                 throw new IllegalStateException("Tab for module " + this.name + " was null!");
             } else {
                 // all blocks could have tint as stone could be tinted themselves
                 this.copyParentTint();
 
-                StonezoneEntrySet<T, B> e = new StonezoneEntrySet<>(this.type, this.name, this.prefix, this.blockFactory, this.baseBlock,
+                StoneZoneEntrySet<T, B> e = new StoneZoneEntrySet<>(this.type, this.name, this.prefix, this.blockFactory, this.baseBlock,
                         this.baseType, this.tab, this.tabMode, this.lootMode, this.itemFactory,
                         this.tileHolder, this.renderType, this.palette, this.extraModelTransform,
-                        this.useMergedPalette, this.copyTint, this.condition);
+                        this.useMergedPalette, this.tintConfig, this.copyTint,
+                        this.condition);
                 e.recipeLocations.addAll(this.recipes);
                 e.tags.putAll(this.tags);
                 e.textures.addAll(this.textures);
 
                 return e;
             }
+        }
+
+        public Builder<T, B> excludeTextureFromParentTinting(String... textureKeys) {
+            if (this.tintConfig == TintConfiguration.EMPTY) {
+                this.tintConfig = TintConfiguration.createNew();
+            }
+            this.tintConfig.addToParent(textureKeys);
+            return this;
+        }
+
+        public Builder<T, B> excludeTextureFromTinting(String... textureKeys) {
+            if (this.tintConfig == TintConfiguration.EMPTY) {
+                this.tintConfig = TintConfiguration.createNew();
+            }
+            this.tintConfig.add(textureKeys);
+            return this;
         }
     }
 
