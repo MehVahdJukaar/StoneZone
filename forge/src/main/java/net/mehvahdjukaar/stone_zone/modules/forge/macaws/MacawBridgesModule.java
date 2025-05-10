@@ -5,6 +5,8 @@ import com.mcwbridges.kikoz.objects.Bridge_Stairs;
 import com.mcwbridges.kikoz.objects.Bridge_Support;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
@@ -21,7 +23,7 @@ import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromPa
 
 
 //SUPPORT: v3.0.0+
-public class MacawBridgesModule extends StonezoneModule {
+public class MacawBridgesModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> brick_bridges;
     public final SimpleEntrySet<StoneType, Block> mossy_brick_bridges;
@@ -37,7 +39,7 @@ public class MacawBridgesModule extends StonezoneModule {
         super(modId, "mcb");
         ResourceLocation tab = modRes(modId);
 
-        brick_bridges = StonezoneEntrySet.of(StoneType.class, "brick_bridge",
+        brick_bridges = StoneZoneEntrySet.of(StoneType.class, "brick_bridge",
                         getModBlock("stone_brick_bridge"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Block(standardProperties(stoneType))
                 )
@@ -51,7 +53,7 @@ public class MacawBridgesModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_bridges);
 
-        mossy_brick_bridges = StonezoneEntrySet.of(StoneType.class, "brick_bridge", "mossy",
+        mossy_brick_bridges = StoneZoneEntrySet.of(StoneType.class, "brick_bridge", "mossy",
                         getModBlock("mossy_stone_brick_bridge"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Block(standardProperties(stoneType))
                 )
@@ -65,7 +67,7 @@ public class MacawBridgesModule extends StonezoneModule {
                 .build();
         this.addEntry(mossy_brick_bridges);
 
-        balustrade_bricks_bridges = StonezoneEntrySet.of(StoneType.class, "bricks_bridge", "balustrade",
+        balustrade_bricks_bridges = StoneZoneEntrySet.of(StoneType.class, "bricks_bridge", "balustrade",
                         getModBlock("balustrade_stone_bricks_bridge"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Block(balustradeProperties(stoneType))
                 )
@@ -79,7 +81,7 @@ public class MacawBridgesModule extends StonezoneModule {
                 .build();
         this.addEntry(balustrade_bricks_bridges);
 
-        balustrade_mossy_bricks_bridges = StonezoneEntrySet.of(StoneType.class, "bricks_bridge", "balustrade_mossy",
+        balustrade_mossy_bricks_bridges = StoneZoneEntrySet.of(StoneType.class, "bricks_bridge", "balustrade_mossy",
                         getModBlock("balustrade_mossy_stone_bricks_bridge"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Block(balustradeProperties(stoneType))
                 )
@@ -93,7 +95,7 @@ public class MacawBridgesModule extends StonezoneModule {
                 .build();
         this.addEntry(balustrade_mossy_bricks_bridges);
 
-        bridge_piers = StonezoneEntrySet.of(StoneType.class, "bridge_pier",
+        bridge_piers = StoneZoneEntrySet.of(StoneType.class, "bridge_pier",
                         getModBlock("stone_bridge_pier"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Support(standardProperties(stoneType))
                 )
@@ -107,7 +109,7 @@ public class MacawBridgesModule extends StonezoneModule {
                 .build();
         this.addEntry(bridge_piers);
 
-        mossy_bridge_piers = StonezoneEntrySet.of(StoneType.class, "bridge_pier", "mossy",
+        mossy_bridge_piers = StoneZoneEntrySet.of(StoneType.class, "bridge_pier", "mossy",
                         getModBlock("mossy_stone_bridge_pier"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Support(standardProperties(stoneType))
                 )
@@ -121,7 +123,7 @@ public class MacawBridgesModule extends StonezoneModule {
                 .build();
         this.addEntry(mossy_bridge_piers);
 
-        brick_bridge_stairs = StonezoneEntrySet.of(StoneType.class, "brick_bridge_stair",
+        brick_bridge_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_bridge_stair",
                         getModBlock("stone_brick_bridge_stair"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Stairs(standardProperties(stoneType))
                 )
@@ -137,7 +139,7 @@ public class MacawBridgesModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_bridge_stairs);
 
-        mossy_bridge_stairs = StonezoneEntrySet.of(StoneType.class, "bridge_stair", "mossy",
+        mossy_bridge_stairs = StoneZoneEntrySet.of(StoneType.class, "bridge_stair", "mossy",
                         getModBlock("mossy_stone_bridge_stair"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Stairs(standardProperties(stoneType))
                 )
@@ -154,7 +156,7 @@ public class MacawBridgesModule extends StonezoneModule {
         this.addEntry(mossy_bridge_stairs);
 
 //!! ANDESITE
-        bridges = StonezoneEntrySet.of(StoneType.class, "bridge",
+        bridges = StoneZoneEntrySet.of(StoneType.class, "bridge",
                         getModBlock("andesite_bridge"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new Bridge_Block(standardProperties(stoneType))
                 )

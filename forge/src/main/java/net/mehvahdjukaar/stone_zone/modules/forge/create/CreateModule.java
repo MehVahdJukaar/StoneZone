@@ -13,8 +13,8 @@ import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -35,7 +35,7 @@ import java.util.Objects;
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
 
 //SUPPORT: v0.5.1+
-public class CreateModule extends StonezoneModule {
+public class CreateModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> cuts;
     public final SimpleEntrySet<StoneType, Block> cut_stairs;
@@ -63,7 +63,7 @@ public class CreateModule extends StonezoneModule {
         super(modId, "c");
         ResourceLocation tab = modRes("palettes");
 
-        cuts = StonezoneEntrySet.of(StoneType.class, "", "cut",
+        cuts = StoneZoneEntrySet.of(StoneType.class, "", "cut",
                         getModBlock("cut_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -75,7 +75,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(cuts);
 
-        cut_stairs = StonezoneEntrySet.of(StoneType.class, "stairs", "cut",
+        cut_stairs = StoneZoneEntrySet.of(StoneType.class, "stairs", "cut",
                         getModBlock("cut_andesite_stairs"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
                                 Utils.copyPropertySafe(stoneType.stone))
@@ -92,7 +92,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(cut_stairs);
 
-        cut_slabs = StonezoneEntrySet.of(StoneType.class, "slab", "cut",
+        cut_slabs = StoneZoneEntrySet.of(StoneType.class, "slab", "cut",
                         getModBlock("cut_andesite_slab"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -110,7 +110,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(cut_slabs);
 
-        cut_walls = StonezoneEntrySet.of(StoneType.class, "wall", "cut",
+        cut_walls = StoneZoneEntrySet.of(StoneType.class, "wall", "cut",
                         getModBlock("cut_andesite_wall"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new WallBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -126,7 +126,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(cut_walls);
 
-        cut_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "cut",
+        cut_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "cut",
                         getModBlock("cut_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -138,7 +138,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(cut_bricks);
 
-        cut_brick_stairs = StonezoneEntrySet.of(StoneType.class, "brick_stairs", "cut",
+        cut_brick_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_stairs", "cut",
                         getModBlock("cut_andesite_brick_stairs"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(), copyChildrenPropertySafe("brick_stairs", stoneType))
                 )
@@ -154,7 +154,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(cut_brick_stairs);
 
-        cut_brick_slabs = StonezoneEntrySet.of(StoneType.class, "brick_slab", "cut",
+        cut_brick_slabs = StoneZoneEntrySet.of(StoneType.class, "brick_slab", "cut",
                         getModBlock("cut_andesite_brick_slab"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new SlabBlock(copyChildrenPropertySafe("brick_slab", stoneType))
                 )
@@ -171,7 +171,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(cut_brick_slabs);
 
-        cut_brick_walls = StonezoneEntrySet.of(StoneType.class, "brick_wall", "cut",
+        cut_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "cut",
                         getModBlock("cut_andesite_brick_wall"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new WallBlock(copyChildrenPropertySafe("brick_wall", stoneType))
                 )
@@ -187,7 +187,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(cut_brick_walls);
 
-        polished_cuts = StonezoneEntrySet.of(StoneType.class, "", "polished_cut",
+        polished_cuts = StoneZoneEntrySet.of(StoneType.class, "", "polished_cut",
                         getModBlock("polished_cut_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -199,7 +199,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(polished_cuts);
 
-        polished_cut_stairs = StonezoneEntrySet.of(StoneType.class, "stairs", "polished_cut",
+        polished_cut_stairs = StoneZoneEntrySet.of(StoneType.class, "stairs", "polished_cut",
                         getModBlock("polished_cut_andesite_stairs"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
                                 copyChildrenPropertySafe("polished_stairs", stoneType))
@@ -216,7 +216,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(polished_cut_stairs);
 
-        polished_cut_slabs = StonezoneEntrySet.of(StoneType.class, "slab", "polished_cut",
+        polished_cut_slabs = StoneZoneEntrySet.of(StoneType.class, "slab", "polished_cut",
                         getModBlock("polished_cut_andesite_slab"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new SlabBlock(copyChildrenPropertySafe("polished_slab", stoneType))
                 )
@@ -235,7 +235,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(polished_cut_slabs);
 
-        polished_cut_walls = StonezoneEntrySet.of(StoneType.class, "wall", "polished_cut",
+        polished_cut_walls = StoneZoneEntrySet.of(StoneType.class, "wall", "polished_cut",
                         getModBlock("polished_cut_andesite_wall"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new WallBlock(copyChildrenPropertySafe("polished_wall", stoneType))
                 )
@@ -251,7 +251,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(polished_cut_walls);
 
-        small_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "small",
+        small_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "small",
                         getModBlock("small_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -263,7 +263,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(small_bricks);
 
-        small_brick_stairs = StonezoneEntrySet.of(StoneType.class, "brick_stairs", "small",
+        small_brick_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_stairs", "small",
                         getModBlock("small_andesite_brick_stairs"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
                                 copyChildrenPropertySafe("polished_stairs", stoneType))
@@ -280,7 +280,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(small_brick_stairs);
 
-        small_brick_slabs = StonezoneEntrySet.of(StoneType.class, "brick_slab", "small",
+        small_brick_slabs = StoneZoneEntrySet.of(StoneType.class, "brick_slab", "small",
                         getModBlock("small_andesite_brick_slab"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new SlabBlock(copyChildrenPropertySafe("polished_slab", stoneType))
                 )
@@ -297,7 +297,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(small_brick_slabs);
 
-        small_brick_walls = StonezoneEntrySet.of(StoneType.class, "brick_wall", "small",
+        small_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "small",
                         getModBlock("small_andesite_brick_wall"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new WallBlock(copyChildrenPropertySafe("polished_wall", stoneType))
                 )
@@ -313,7 +313,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(small_brick_walls);
 
-        pillars = StonezoneEntrySet.of(StoneType.class, "pillar",
+        pillars = StoneZoneEntrySet.of(StoneType.class, "pillar",
                         getModBlock("andesite_pillar"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new ConnectedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -327,7 +327,7 @@ public class CreateModule extends StonezoneModule {
                 .build();
         this.addEntry(pillars);
 
-        layereds = StonezoneEntrySet.of(StoneType.class, "", "layered",
+        layereds = StoneZoneEntrySet.of(StoneType.class, "", "layered",
                         getModBlock("layered_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new LayeredBlock(Utils.copyPropertySafe(stoneType.stone))
                 )

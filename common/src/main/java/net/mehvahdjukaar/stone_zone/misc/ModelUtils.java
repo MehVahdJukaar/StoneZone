@@ -8,7 +8,7 @@ import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.StaticResource;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.GsonHelper;
@@ -38,21 +38,23 @@ public final class ModelUtils {
         Matcher matcher = PATH_PATTERN.matcher(id.getPath());
 
         // Skip the ResourceLocation/Id's modification
-        if ( !matcher.find() || id.getNamespace().contains("stonezone") ) {
+        if (!matcher.find() || id.getNamespace().contains("stonezone")) {
             return id;
         }
         return StoneZone.res(matcher.group("folder") + "/" + id.getNamespace() + matcher.group("path"));
     }
 
     public static void addTintIndexToModelAndReplaceParent(JsonObject jsonObject, @Nullable SimpleModule module,
-                                                       @Nullable String ignoreIfFromStone) {
-        replaceParent(jsonObject, module, ignoreIfFromStone);
-        addTintIndexToModel(jsonObject, 0);
+                                                           @Nullable String ignoreIfFromStone,
+                                                           TintConfiguration config) {
+        replaceParent(jsonObject, module, ignoreIfFromStone, config.splitForParent());
+        addTintIndexToModel(jsonObject, 0, config);
     }
 
     //same as above but with JsonObject. we could merge these 2 eventually. Just done this way so we dont have to parse those top layer models twice
     private static void replaceParent(JsonObject jsonObject, @Nullable SimpleModule module,
-                                       @Nullable String ignoreIfFromStone) {
+                                      @Nullable String ignoreIfFromStone,
+                                      TintConfiguration config) {
         // Modify the value of parent's
         if (jsonObject.has("parent")) {
             ResourceLocation oldRes = new ResourceLocation(jsonObject.get("parent").getAsString());
@@ -68,10 +70,10 @@ public final class ModelUtils {
                 ResourceLocation newRes = transformModelID(oldRes);
                 jsonObject.addProperty("parent", newRes.toString());
 
-                if (module instanceof StonezoneModule stonezoneModule &&
+                if (module instanceof StoneZoneModule stonezoneModule &&
                         !(RESOLVED_PARENTS.contains(oldRes) && oldRes.getNamespace().matches("stonezone")
-                )) {
-                    stonezoneModule.markModelForModification(oldRes);
+                        )) {
+                    stonezoneModule.markModelForModification(oldRes, config);
                     RESOLVED_PARENTS.add(oldRes);
                 }
             }
@@ -79,7 +81,7 @@ public final class ModelUtils {
     }
 
     @SuppressWarnings("SameParameterValue")
-    private static void addTintIndexToModel(JsonObject jsonObject, int tintIndex) {
+    private static void addTintIndexToModel(JsonObject jsonObject, int tintIndex, TintConfiguration config) {
         JsonElement elements = jsonObject.get("elements");
         if (elements != null) {
             // Some model files (walls or stairs) have more than one array under Elements
@@ -92,7 +94,11 @@ public final class ModelUtils {
                             JsonObject face = faces.getAsJsonObject(key);
                             // Add "tintindex": 0 if not present
                             if (!face.has("tintindex")) {
-                                face.addProperty("tintindex", tintIndex);
+                                // Check if the texture matches the one we want to tint
+                                String texture = face.get("texture").getAsString();
+                                if (!config.isExcluded(texture)) {
+                                    face.addProperty("tintindex", tintIndex);
+                                }
                             }
                         }
                     }
@@ -151,6 +157,10 @@ public final class ModelUtils {
         }
     }
 
+    /**
+     * @deprecated in favor of {@link StoneZoneEntrySet.Builder#addTintIndexToParentModel}
+     */
+    @Deprecated(forRemoval = true)
     public static void removeTintIndexFromParentModel(String pathModel, String excludeTexture, ClientDynamicResourcesHandler handler, ResourceManager manager) {
         ResourceLocation modelResLoc = ResType.BLOCK_MODELS.getPath(StoneZone.res(pathModel));
 
@@ -162,8 +172,7 @@ public final class ModelUtils {
 
             handler.dynamicPack.addJson(StoneZone.res(pathModel), model, ResType.BLOCK_MODELS);
 
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             handler.getLogger().error("Failed to modify parent model @ {} : {}", modelResLoc, e);
         }
     }

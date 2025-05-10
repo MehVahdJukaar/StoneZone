@@ -9,6 +9,8 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -19,7 +21,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 //SUPPORT: v1.0.0+
-public class MacawStairsModule extends StonezoneModule {
+public class MacawStairsModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> brick_terrace_stairs;
     public final SimpleEntrySet<StoneType, Block> brick_skyline_stairs;
@@ -43,7 +45,7 @@ public class MacawStairsModule extends StonezoneModule {
         super(modId, "mcs");
         ResourceLocation tab = modRes(modId);
 
-        brick_terrace_stairs = StonezoneEntrySet.of(StoneType.class, "brick_terrace_stairs",
+        brick_terrace_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_terrace_stairs",
                         getModBlock("stone_brick_terrace_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new TerraceStairs(copyProperties(stoneType))
                 )
@@ -57,7 +59,7 @@ public class MacawStairsModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_terrace_stairs);
 
-        brick_skyline_stairs = StonezoneEntrySet.of(StoneType.class, "brick_skyline_stairs",
+        brick_skyline_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_skyline_stairs",
                         getModBlock("stone_brick_skyline_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SkylineStairs(copyProperties(stoneType))
                 )
@@ -71,7 +73,7 @@ public class MacawStairsModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_skyline_stairs);
 
-        brick_compact_stairs = StonezoneEntrySet.of(StoneType.class, "brick_compact_stairs",
+        brick_compact_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_compact_stairs",
                         getModBlock("stone_brick_compact_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new CompactStairs(copyProperties(stoneType))
                 )
@@ -85,7 +87,7 @@ public class MacawStairsModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_compact_stairs);
 
-        brick_bulk_stairs = StonezoneEntrySet.of(StoneType.class, "brick_bulk_stairs",
+        brick_bulk_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_bulk_stairs",
                         getModBlock("stone_brick_bulk_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new BulkStairs(copyProperties(stoneType))
                 )
@@ -99,7 +101,7 @@ public class MacawStairsModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_bulk_stairs);
 
-        brick_loft_stairs = StonezoneEntrySet.of(StoneType.class, "brick_loft_stairs",
+        brick_loft_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_loft_stairs",
                         getModBlock("stone_brick_loft_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new LoftStairs(copyProperties(stoneType))
                 )
@@ -113,7 +115,7 @@ public class MacawStairsModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_loft_stairs);
 
-        brick_balconies = StonezoneEntrySet.of(StoneType.class, "brick_balcony",
+        brick_balconies = StoneZoneEntrySet.of(StoneType.class, "brick_balcony",
                         getModBlock("stone_brick_balcony"), StoneTypeRegistry::getStoneType,
                         stoneType -> new BalconyRailing(copyProperties(stoneType))
                 )
@@ -127,7 +129,7 @@ public class MacawStairsModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_balconies);
 
-        brick_railings = StonezoneEntrySet.of(StoneType.class, "brick_railing",
+        brick_railings = StoneZoneEntrySet.of(StoneType.class, "brick_railing",
                         getModBlock("stone_brick_railing"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StairRailing(copyProperties(stoneType))
                 )
@@ -141,7 +143,7 @@ public class MacawStairsModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_railings);
 
-        brick_platforms = StonezoneEntrySet.of(StoneType.class, "brick_platform",
+        brick_platforms = StoneZoneEntrySet.of(StoneType.class, "brick_platform",
                         getModBlock("stone_brick_platform"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StairPlatform(copyProperties(stoneType))
                 )
@@ -156,7 +158,7 @@ public class MacawStairsModule extends StonezoneModule {
         this.addEntry(brick_platforms);
 
 
-        mossy_brick_terrace_stairs = StonezoneEntrySet.of(StoneType.class, "brick_terrace_stairs", "mossy",
+        mossy_brick_terrace_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_terrace_stairs", "mossy",
                         getModBlock("mossy_stone_brick_terrace_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new TerraceStairs(copyProperties(stoneType))
                 )
@@ -170,7 +172,7 @@ public class MacawStairsModule extends StonezoneModule {
                 .build();
         this.addEntry(mossy_brick_terrace_stairs);
 
-        mossy_brick_skyline_stairs = StonezoneEntrySet.of(StoneType.class, "brick_skyline_stairs", "mossy",
+        mossy_brick_skyline_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_skyline_stairs", "mossy",
                         getModBlock("mossy_stone_brick_skyline_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SkylineStairs(copyProperties(stoneType))
                 )
@@ -184,7 +186,7 @@ public class MacawStairsModule extends StonezoneModule {
                 .build();
         this.addEntry(mossy_brick_skyline_stairs);
 
-        mossy_brick_compact_stairs = StonezoneEntrySet.of(StoneType.class, "brick_compact_stairs", "mossy",
+        mossy_brick_compact_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_compact_stairs", "mossy",
                         getModBlock("mossy_stone_brick_compact_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new CompactStairs(copyProperties(stoneType))
                 )
@@ -198,7 +200,7 @@ public class MacawStairsModule extends StonezoneModule {
                 .build();
         this.addEntry(mossy_brick_compact_stairs);
 
-        mossy_brick_bulk_stairs = StonezoneEntrySet.of(StoneType.class, "brick_bulk_stairs", "mossy",
+        mossy_brick_bulk_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_bulk_stairs", "mossy",
                         getModBlock("mossy_stone_brick_bulk_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new BulkStairs(copyProperties(stoneType))
                 )
@@ -212,7 +214,7 @@ public class MacawStairsModule extends StonezoneModule {
                 .build();
         this.addEntry(mossy_brick_bulk_stairs);
 
-        mossy_brick_loft_stairs = StonezoneEntrySet.of(StoneType.class, "brick_loft_stairs", "mossy",
+        mossy_brick_loft_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_loft_stairs", "mossy",
                         getModBlock("mossy_stone_brick_loft_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new LoftStairs(copyProperties(stoneType))
                 )
@@ -226,7 +228,7 @@ public class MacawStairsModule extends StonezoneModule {
                 .build();
         this.addEntry(mossy_brick_loft_stairs);
 
-        mossy_brick_balconies = StonezoneEntrySet.of(StoneType.class, "brick_balcony", "mossy",
+        mossy_brick_balconies = StoneZoneEntrySet.of(StoneType.class, "brick_balcony", "mossy",
                         getModBlock("mossy_stone_brick_balcony"), StoneTypeRegistry::getStoneType,
                         stoneType -> new BalconyRailing(copyProperties(stoneType))
                 )
@@ -240,7 +242,7 @@ public class MacawStairsModule extends StonezoneModule {
                 .build();
         this.addEntry(mossy_brick_balconies);
 
-        mossy_brick_railings = StonezoneEntrySet.of(StoneType.class, "brick_railing", "mossy",
+        mossy_brick_railings = StoneZoneEntrySet.of(StoneType.class, "brick_railing", "mossy",
                         getModBlock("mossy_stone_brick_railing"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StairRailing(copyProperties(stoneType))
                 )
@@ -254,7 +256,7 @@ public class MacawStairsModule extends StonezoneModule {
                 .build();
         this.addEntry(mossy_brick_railings);
 
-        mossy_brick_platforms = StonezoneEntrySet.of(StoneType.class, "brick_platform", "mossy",
+        mossy_brick_platforms = StoneZoneEntrySet.of(StoneType.class, "brick_platform", "mossy",
                         getModBlock("mossy_stone_brick_platform"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StairPlatform(copyProperties(stoneType))
                 )

@@ -4,8 +4,8 @@ import net.kikoz.mcwfences.objects.FenceHitbox;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
@@ -25,7 +25,7 @@ import net.minecraft.world.level.material.MapColor;
 import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromParentModel;
 
 //SUPPORT: v1.1.2+
-public class MacawFencesModule extends StonezoneModule {
+public class MacawFencesModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> modern_brick_walls;
     public final SimpleEntrySet<StoneType, Block> railing_brick_gates;
@@ -41,7 +41,7 @@ public class MacawFencesModule extends StonezoneModule {
         super(modId, "mcf");
         ResourceLocation tab = modRes("fenceitemgroup");
 
-        modern_brick_walls = StonezoneEntrySet.of(StoneType.class, "brick_wall", "modern",
+        modern_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "modern",
                         getModBlock("modern_stone_brick_wall"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FenceBlock(standardCopyProperies(stoneType))
                 )
@@ -56,7 +56,7 @@ public class MacawFencesModule extends StonezoneModule {
                 .build();
         this.addEntry(modern_brick_walls);
 
-        railing_brick_gates = StonezoneEntrySet.of(StoneType.class, "brick_railing_gate",
+        railing_brick_gates = StoneZoneEntrySet.of(StoneType.class, "brick_railing_gate",
                         getModBlock("stone_brick_railing_gate"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FenceGateBlock(standardCopyProperies(stoneType), WoodType.OAK)
                 )
@@ -73,7 +73,7 @@ public class MacawFencesModule extends StonezoneModule {
                 .build();
         this.addEntry(railing_brick_gates);
 
-        railing_brick_walls = StonezoneEntrySet.of(StoneType.class, "brick_wall", "railing",
+        railing_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "railing",
                         getModBlock("railing_stone_brick_wall"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FenceBlock(standardCopyProperies(stoneType))
                 )
@@ -90,7 +90,7 @@ public class MacawFencesModule extends StonezoneModule {
                 .build();
         this.addEntry(railing_brick_walls);
 
-        grass_topped_walls = StonezoneEntrySet.of(StoneType.class, "grass_topped_wall",
+        grass_topped_walls = StoneZoneEntrySet.of(StoneType.class, "grass_topped_wall",
                         getModBlock("stone_grass_topped_wall"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FenceHitbox(standardCopyProperies(stoneType))
                 )
@@ -108,7 +108,7 @@ public class MacawFencesModule extends StonezoneModule {
         this.addEntry(grass_topped_walls);
 
 //!! ANDESITE
-        pillar_walls = StonezoneEntrySet.of(StoneType.class, "pillar_wall",
+        pillar_walls = StoneZoneEntrySet.of(StoneType.class, "pillar_wall",
                         getModBlock("andesite_pillar_wall"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new FenceBlock(standardCopyProperies(stoneType))
                 )
@@ -123,7 +123,7 @@ public class MacawFencesModule extends StonezoneModule {
                 .build();
         this.addEntry(pillar_walls);
 
-        railing_gates = StonezoneEntrySet.of(StoneType.class, "railing_gate",
+        railing_gates = StoneZoneEntrySet.of(StoneType.class, "railing_gate",
                         getModBlock("andesite_railing_gate"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new FenceGateBlock(standardCopyProperies(stoneType), WoodType.OAK)
                 )
@@ -140,7 +140,7 @@ public class MacawFencesModule extends StonezoneModule {
                 .build();
         this.addEntry(railing_gates);
 
-        railing_walls = StonezoneEntrySet.of(StoneType.class, "wall", "railing",
+        railing_walls = StoneZoneEntrySet.of(StoneType.class, "wall", "railing",
                         getModBlock("railing_andesite_wall"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new FenceBlock(standardCopyProperies(stoneType))
                 )
@@ -157,7 +157,7 @@ public class MacawFencesModule extends StonezoneModule {
                 .build();
         this.addEntry(railing_walls);
 
-        modern_walls = StonezoneEntrySet.of(StoneType.class, "wall", "modern",
+        modern_walls = StoneZoneEntrySet.of(StoneType.class, "wall", "modern",
                         getModBlock("modern_andesite_wall"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new FenceBlock(standardCopyProperies(stoneType))
                 )

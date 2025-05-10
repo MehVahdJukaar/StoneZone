@@ -6,8 +6,8 @@ import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.common_classes.CompatChestBlock;
@@ -34,7 +34,7 @@ import static net.mehvahdjukaar.stone_zone.common_classes.CompatChestTexture.gen
 
 
 //SUPPORT: v1.0.0+
-public class StoneChestModule extends StonezoneModule {
+public class StoneChestModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> chests;
     public final ItemOnlyEntrySet<StoneType, Item> parts;
@@ -43,7 +43,7 @@ public class StoneChestModule extends StonezoneModule {
         super(modId, "sc");
         ResourceKey<CreativeModeTab> tab = CreativeModeTabs.FUNCTIONAL_BLOCKS;
 
-        chests = StonezoneEntrySet.of(StoneType.class, "","chest",
+        chests = StoneZoneEntrySet.of(StoneType.class, "","chest",
                         getModBlock("chest_stone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new CompatChestBlock(this::getTile, Utils.copyPropertySafe(stoneType.stone))
                 )
