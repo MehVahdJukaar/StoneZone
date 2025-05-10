@@ -191,9 +191,9 @@ public class BuildingButBetterModule extends StoneZoneModule {
 
         smooth_layers = StoneZoneEntrySet.of(StoneType.class, "layer", "smooth",
                         getModBlock("smooth_stone_layer"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new LayerBlock(copyChildrenPropertySafe("smooth_stone", stoneType))
+                        stoneType -> new LayerBlock(copyChildrenPropertySafe("smooth", stoneType))
                 )
-                .requiresChildren("smooth_slab", "smooth_stone") //REASON: recipes & textures
+                .requiresChildren("smooth_slab", "smooth") //REASON: recipes & textures
                 //TEXTURES: smooth_stones
                 .setTabKey(tab)
                 .defaultRecipe()

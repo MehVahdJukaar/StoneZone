@@ -106,7 +106,7 @@ dependencies {
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
     String path = System.getenv('REPOS20_1')
     boolean usesMavenLocalML =  System.getenv().MY_PC == "1"
-    print "isMyPc: $usesMavenLocalML"
+    print "isMyPc: $usesMavenLocalML\n"
 
         //- Repository LOCAL
     if (enable_moonlight_test.toBoolean()) {
@@ -118,16 +118,16 @@ dependencies {
         }
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:moonlight:forge_${moonlight_mavenVersion}") // v2.13.79
+        modImplementation("maven.modrinth:moonlight:${moonlight_mavenVersion}-forge") // v2.14.0
     }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     if (enable_everycomp_test.toBoolean()) {
         //- Repository LOCAL
-        modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
+        modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}-forge.jar"))
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}") // v2.7.25
+        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-forge") // v2.8.1
     }
 
 //!! TOOLS ---------------------------------------------------------------------------------------------------------- \\
@@ -168,7 +168,7 @@ dependencies {
 //!! =================================================== IMPORTS ==================================================== \\
         //- ONLY FOR TESTING - can be commented out or enabled
 //    modRuntimeOnly("curse.maven:better-archeology-835687:5693368") // supermartijn642s' Config-Lib, Yung's API
-//    modRuntimeOnly("curse.maven:twigs-496913:4605097")
+    modRuntimeOnly("curse.maven:twigs-496913:4605097")
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611947") // puzzles-lib
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1
 //    modRuntimeOnly("curse.maven:quark-243121:5594847") // Zeta
@@ -193,6 +193,9 @@ dependencies {
 
             // OTHER MAVENS
     modCompileOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel
+
+            // ~/forge/mods LOCAL
+    modCompileOnly("blocks_plus:blocks+1.20.1-1.7")
 
 //!! ================================================= FOR TESTING ================================================== \\
 

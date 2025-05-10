@@ -19,7 +19,7 @@ import org.violetmoon.zeta.block.ZetaPillarBlock;
 
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
 
-//SUPPORT: v4.0-4.6.0+
+//SUPPORT: v4.0-435+
 public class QuarkModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> vertical_slabs;
@@ -44,6 +44,7 @@ public class QuarkModule extends StoneZoneModule {
                 .addRecipe(modRes("building/crafting/vertslabs/andesite_vertical_slab"))
                 .addRecipe(modRes("building/crafting/vertslabs/andesite_vertical_slab_revert"))
                 .addCondition(stoneType -> !PlatHelper.isModLoaded("v_slab_compat"))
+                .copyParentDrop()
                 .build();
         this.addEntry(vertical_slabs);
 
@@ -61,6 +62,7 @@ public class QuarkModule extends StoneZoneModule {
                 .addRecipe(modRes("building/crafting/vertslabs/polished_andesite_vertical_slab"))
                 .addRecipe(modRes("building/crafting/vertslabs/polished_andesite_vertical_slab_revert"))
                 .addCondition(stoneType -> !PlatHelper.isModLoaded("v_slab_compat"))
+                .copyParentDrop()
                 .build();
         this.addEntry(polished_vertical_slabs);
 

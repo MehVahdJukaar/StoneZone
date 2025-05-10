@@ -1,5 +1,6 @@
 package net.mehvahdjukaar.stone_zone.api.intergration;
 
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
@@ -121,7 +122,7 @@ public class CompatStoneType {
 
         // Quark
         simpleStoneFinder("quark", "soul_sandstone");
-        stoneBlockFinder("quark", "duskbound", true, true); // STONE: duskbound_block
+//        stoneBlockFinder("quark", "duskbound", true, true); // STONE: duskbound_block
 
         // Nature's Spirit
         simpleStoneFinder("natures_spirit", "pink_sandstone");
@@ -141,8 +142,8 @@ public class CompatStoneType {
         simpleStoneFinder("natures_spirit", "purple_chalk");
         simpleStoneFinder("natures_spirit", "magenta_chalk");
         simpleStoneFinder("natures_spirit", "pink_chalk");
-        // Added by Nature's Spirit Arts and Crafts Compatibility
-        simpleStoneFinder("natures_spirit", "bleached_chalk");
+        // Added by Nature's Spirit with Arts and Crafts Compatibility
+        if (PlatHelper.isModLoaded("arts_and_crafts")) simpleStoneFinder("natures_spirit", "bleached_chalk");
 
         // Regions unexplored
         simpleStoneFinder("regions_unexplored", "argillite");
@@ -156,9 +157,11 @@ public class CompatStoneType {
 
 //!! StoneType
     public static void simpleStoneFinder(String modId, String nameStoneType) {
-        var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStoneType);
+        if (PlatHelper.isModLoaded(modId)) {
+            var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStoneType);
 
-        BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
+            BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
+        }
     }
 
         /**
@@ -166,20 +169,24 @@ public class CompatStoneType {
          * @param nameStone name of StoneType with "_stone" or any words
          */
     public static void stoneFinder(String modId, String nameStoneType, String nameStone) {
-        var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStone);
+        if (PlatHelper.isModLoaded(modId)) {
+            var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStone);
 
-        BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
+            BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
+        }
     }
 
     /// nameStone has "_block" as suffix
     public static void stoneBlockFinder(String modId, String nameStoneType, boolean includeSlab, boolean includeStairs) {
-        String baseName = nameStoneType + "_block";
+        if (PlatHelper.isModLoaded(modId)) {
+            String baseName = nameStoneType + "_block";
 
-        var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, baseName);
-        if (includeSlab) stonetypeFinder.addChild("slab", baseName +"_slab");
-        if (includeStairs) stonetypeFinder.addChild("slab", baseName +"_stairs");
+            var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, baseName);
+            if (includeSlab) stonetypeFinder.addChild("slab", baseName +"_slab");
+            if (includeStairs) stonetypeFinder.addChild("slab", baseName +"_stairs");
 
-        BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
+            BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
+        }
     }
     /** nameStone has "_block" as suffix
      * default parameter
@@ -191,22 +198,26 @@ public class CompatStoneType {
     }
 
     public static void advancedStoneFinder(String modId, String nameStoneType, String... nameChildren) {
-        var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStoneType);
+        if (PlatHelper.isModLoaded(modId)) {
+            var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStoneType);
 
-        for (String currentChild : nameChildren) {
-            String childKey = "";
-            if (currentChild.contains("brick")) childKey = "bricks";
+            for (String currentChild : nameChildren) {
+                String childKey = "";
+                if (currentChild.contains("brick")) childKey = "bricks";
 
-            stonetypeFinder.addChild(childKey, currentChild);
+                stonetypeFinder.addChild(childKey, currentChild);
+            }
+
+            BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
         }
-
-        BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
     }
 //!! MudType
     public static void simpleMudFinder(String modId, String nameStoneType) {
-        var stonetypeFinder = MudType.Finder.simple(modId, nameStoneType, nameStoneType);
+        if (PlatHelper.isModLoaded(modId)) {
+            var stonetypeFinder = MudType.Finder.simple(modId, nameStoneType, nameStoneType);
 
-        BlockSetAPI.addBlockTypeFinder(MudType.class, stonetypeFinder);
+            BlockSetAPI.addBlockTypeFinder(MudType.class, stonetypeFinder);
+        }
     }
 
 

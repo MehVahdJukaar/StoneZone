@@ -3,10 +3,10 @@ package net.mehvahdjukaar.stone_zone.misc;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
-import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.StaticResource;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.minecraft.resources.ResourceLocation;
@@ -161,7 +161,7 @@ public final class ModelUtils {
      * @deprecated in favor of {@link StoneZoneEntrySet.Builder#addTintIndexToParentModel}
      */
     @Deprecated(forRemoval = true)
-    public static void removeTintIndexFromParentModel(String pathModel, String excludeTexture, ClientDynamicResourcesHandler handler, ResourceManager manager) {
+    public static void removeTintIndexFromParentModel(String pathModel, String excludeTexture, ResourceSink sink, ResourceManager manager) {
         ResourceLocation modelResLoc = ResType.BLOCK_MODELS.getPath(StoneZone.res(pathModel));
 
         try (InputStream modelStream = manager.getResource(modelResLoc)
@@ -170,10 +170,10 @@ public final class ModelUtils {
 
             removeTintIndexFromModel(model, excludeTexture);
 
-            handler.dynamicPack.addJson(StoneZone.res(pathModel), model, ResType.BLOCK_MODELS);
+            sink.addJson(StoneZone.res(pathModel), model, ResType.BLOCK_MODELS);
 
         } catch (IOException e) {
-            handler.getLogger().error("Failed to modify parent model @ {} : {}", modelResLoc, e);
+            StoneZone.LOGGER.error("Failed to modify parent model @ {} : {}", modelResLoc, e);
         }
     }
 }

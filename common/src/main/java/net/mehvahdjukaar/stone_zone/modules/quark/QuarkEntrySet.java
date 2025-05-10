@@ -8,7 +8,7 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
-import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
@@ -59,10 +59,10 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
 
 
     @Override
-    public void generateRecipes(SimpleModule module, DynamicDataPack pack, ResourceManager manager) {
+    public void generateRecipes(SimpleModule module, ResourceManager manager, ResourceSink sink) {
         ZetaModule mod = zetaModule.get();
         if (mod == null || mod.enabled) {
-            super.generateRecipes(module, pack, manager);
+            super.generateRecipes(module, manager, sink);
         }
     }
 

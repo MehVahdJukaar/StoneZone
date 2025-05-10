@@ -1,22 +1,17 @@
+#### UPDATED:
+- **Stone Zone** (COMMON): Updated the major codes again to properly use the new Resource Generator
+  - <span style="color: YELLOW;">NOTE: I'm aware of the problem with Tinted Index for blocks that shouldn't be Tinted. This will be fixed in the future. It's Work-In-Progress</span>
+    - AFFECTED SUPPORTED MODS: Macaw's Mods
+
+## v2.8.0
+
 #### UPDATED: 
-- **LANG**: Corrected `%s Zone` to `Stone Zone
-- **CompatStoneType**: Fixed **Outer End**'s violite not being included/detected
-- **Macaw's Fences & Walls** (COMMON): Corrected modern_walls' recipe filename - [#87](https://github.com/MehVahdJukaar/StoneZone/issues/87)
-- **Macaw's Bridge** (COMMON): Moved the recipe under the correct block - [#87](https://github.com/MehVahdJukaar/StoneZone/issues/87)
+- **Stone Zone** (COMMON): Major Changes in code to use the new Resource Generator from **Every Compat** 
+- **Macaw's Paths & Pavings** (COMMON): Corrected a few blocks' properties
+
 
 ---
 
-#### ADDED:
-- **CompatStoneType**: 4 StoneType from **Prehistoric Fauna** due to their Note Block Sounds - HARP  
-- **CompatStoneType**: 1 StoneType from **Rocky Minerals**  
-
----
-
-#### NEW SUPPORTED MOD:
-- **More Beautiful Torches** (COMMON)
-
----
-
-**LEGENDS:**
+### **LEGENDS:**
 - (COMMON) : FABRIC & FORGE
 - (IT) : Included Texture - Added the ResourceLocation of the missing textures required for blocks or generating a new texture
