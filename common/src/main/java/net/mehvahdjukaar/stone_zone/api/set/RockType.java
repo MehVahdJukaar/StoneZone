@@ -162,7 +162,7 @@ public abstract class RockType extends BlockType{
     }
 
     public Block bricksOrStone() {
-        Block bricks= this.getBlockOfThis("bricks");
+        Block bricks = this.getBlockOfThis("bricks");
         return bricks != null ? bricks : this.block;
     }
 
