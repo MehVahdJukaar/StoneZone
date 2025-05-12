@@ -4,8 +4,8 @@ import com.ninni.twigs.block.ColumnBlock;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -20,10 +20,10 @@ public class TwigsModule extends StoneZoneModule {
     public TwigsModule(String modId) {
         super(modId, "tw");
 
-        columns = addEntry(StoneZoneEntrySet.of(StoneType.class, "column",
+        columns = StoneZoneEntrySet.of(StoneType.class, "column",
                         getModBlock("stone_column"), StoneTypeRegistry::getStoneType,
                         stoneType -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
-                        )
+                )
                 .createPaletteFromChild(p -> {
                     while (p.size() > 7) {
                         p.reduce();
@@ -40,8 +40,8 @@ public class TwigsModule extends StoneZoneModule {
                 .defaultRecipe()
                 .addRecipe(modRes("stone_column_stonecutting"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build()
-        );
+                .build();
+        this.addEntry(columns);
 
     }
 
