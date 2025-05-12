@@ -53,7 +53,6 @@ public class StoneworksModule extends StoneZoneModule {
                         getModBlock("stone_tiles"), StoneTypeRegistry::getStoneType,
                         s -> new Block(Utils.copyPropertySafe(s.stone))
                 )
-                .requiresChildren("stone") //REASON: recipes
                 .addTexture(modRes("block/stone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
