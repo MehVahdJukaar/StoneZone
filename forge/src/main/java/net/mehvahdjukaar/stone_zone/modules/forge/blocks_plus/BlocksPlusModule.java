@@ -3,8 +3,8 @@ package net.mehvahdjukaar.stone_zone.modules.forge.blocks_plus;
 import blocks_plus.blocks.BPFurnace;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
@@ -13,13 +13,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Objects;
-import java.util.function.Supplier;
 
 //SUPPORT: v1.7+
-public class BlocksPlusModule extends StonezoneModule {
+public class BlocksPlusModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> wall;
     public final SimpleEntrySet<StoneType, Block> pillar;
@@ -51,7 +49,7 @@ public class BlocksPlusModule extends StonezoneModule {
         super(modId, "bp");
         ResourceLocation tab = modRes("creative_tab");
 
-        wall = StonezoneEntrySet.of(StoneType.class, "wall",
+        wall = StoneZoneEntrySet.of(StoneType.class, "wall",
                         getModBlock("stone_wall"), StoneTypeRegistry::getStoneType,
                         stoneType -> new WallBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -65,7 +63,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(wall);
 
-        pillar = StonezoneEntrySet.of(StoneType.class, "pillar",
+        pillar = StoneZoneEntrySet.of(StoneType.class, "pillar",
                         getModBlock("stone_pillar"), StoneTypeRegistry::getStoneType,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -78,7 +76,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(pillar);
 
-        brick_pillar = StonezoneEntrySet.of(StoneType.class, "brick_pillar",
+        brick_pillar = StoneZoneEntrySet.of(StoneType.class, "brick_pillar",
                         getModBlock("stone_brick_pillar"), StoneTypeRegistry::getStoneType,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -94,7 +92,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_pillar);
 
-        smooth_stairs = StonezoneEntrySet.of(StoneType.class, "stairs", "smooth",
+        smooth_stairs = StoneZoneEntrySet.of(StoneType.class, "stairs", "smooth",
                         getModBlock("smooth_stone_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StairBlock(Objects.requireNonNull(stoneType.getBlockOfThis("smooth"))::defaultBlockState,
                                 Utils.copyPropertySafe(stoneType.stone))
@@ -108,7 +106,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_stairs);
 
-        smooth_wall = StonezoneEntrySet.of(StoneType.class, "wall", "smooth",
+        smooth_wall = StoneZoneEntrySet.of(StoneType.class, "wall", "smooth",
                         getModBlock("smooth_stone_wall"), StoneTypeRegistry::getStoneType,
                         stoneType -> new WallBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -123,7 +121,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_wall);
 
-        smooth_pillar = StonezoneEntrySet.of(StoneType.class, "pillar", "smooth",
+        smooth_pillar = StoneZoneEntrySet.of(StoneType.class, "pillar", "smooth",
                         getModBlock("smooth_stone_pillar"), StoneTypeRegistry::getStoneType,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -137,7 +135,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_pillar);
 
-        smooth_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "smooth",
+        smooth_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "smooth",
                         getModBlock("smooth_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -150,7 +148,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_bricks);
 
-        smooth_brick_stairs = StonezoneEntrySet.of(StoneType.class, "brick_stairs", "smooth",
+        smooth_brick_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_stairs", "smooth",
                         getModBlock("smooth_stone_brick_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StairBlock(smooth_bricks.blocks.get(stoneType)::defaultBlockState,
                                 Utils.copyPropertySafe(stoneType.stone))
@@ -165,7 +163,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_brick_stairs);
 
-        smooth_brick_slab = StonezoneEntrySet.of(StoneType.class, "brick_slab", "smooth",
+        smooth_brick_slab = StoneZoneEntrySet.of(StoneType.class, "brick_slab", "smooth",
                         getModBlock("smooth_stone_brick_slab"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -179,7 +177,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_brick_slab);
 
-        smooth_brick_wall = StonezoneEntrySet.of(StoneType.class, "brick_wall", "smooth",
+        smooth_brick_wall = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "smooth",
                         getModBlock("smooth_stone_brick_wall"), StoneTypeRegistry::getStoneType,
                         stoneType -> new WallBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -195,7 +193,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_brick_wall);
 
-        smooth_brick_pillar = StonezoneEntrySet.of(StoneType.class, "brick_pillar", "smooth",
+        smooth_brick_pillar = StoneZoneEntrySet.of(StoneType.class, "brick_pillar", "smooth",
                         getModBlock("smooth_stone_brick_pillar"), StoneTypeRegistry::getStoneType,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -210,7 +208,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_brick_pillar);
 
-        cracked_smooth_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "cracked_smooth",
+        cracked_smooth_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "cracked_smooth",
                         getModBlock("cracked_smooth_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -222,7 +220,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(cracked_smooth_bricks);
 
-        mossy_smooth_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "mossy_smooth",
+        mossy_smooth_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "mossy_smooth",
                         getModBlock("mossy_smooth_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -234,7 +232,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(mossy_smooth_bricks);
 
-        chiseled_smooth_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "chiseled_smooth",
+        chiseled_smooth_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "chiseled_smooth",
                         getModBlock("chiseled_smooth_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -249,7 +247,7 @@ public class BlocksPlusModule extends StonezoneModule {
         this.addEntry(chiseled_smooth_bricks);
 
 //!! ANDESITE
-        polished_wall = StonezoneEntrySet.of(StoneType.class, "wall", "polished",
+        polished_wall = StoneZoneEntrySet.of(StoneType.class, "wall", "polished",
                         getModBlock("polished_andesite_wall"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new WallBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -265,7 +263,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(polished_wall);
 
-        polished_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "polished",
+        polished_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "polished",
                         getModBlock("polished_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -280,7 +278,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(polished_bricks);
 
-        polished_brick_stairs = StonezoneEntrySet.of(StoneType.class, "brick_stairs", "polished",
+        polished_brick_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_stairs", "polished",
                         getModBlock("polished_andesite_brick_stairs"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new StairBlock(polished_bricks.blocks.get(stoneType)::defaultBlockState,
                                 Utils.copyPropertySafe(stoneType.stone))
@@ -296,7 +294,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(polished_brick_stairs);
 
-        polished_brick_slab = StonezoneEntrySet.of(StoneType.class, "brick_slab", "polished",
+        polished_brick_slab = StoneZoneEntrySet.of(StoneType.class, "brick_slab", "polished",
                         getModBlock("polished_andesite_brick_slab"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -311,7 +309,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(polished_brick_slab);
 
-        polished_brick_wall = StonezoneEntrySet.of(StoneType.class, "brick_wall", "polished",
+        polished_brick_wall = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "polished",
                         getModBlock("polished_andesite_brick_wall"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new WallBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -328,7 +326,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(polished_brick_wall);
 
-        polished_brick_pillar = StonezoneEntrySet.of(StoneType.class, "brick_pillar", "polished",
+        polished_brick_pillar = StoneZoneEntrySet.of(StoneType.class, "brick_pillar", "polished",
                         getModBlock("polished_andesite_brick_pillar"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -345,7 +343,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(polished_brick_pillar);
 
-        chiseled_polished = StonezoneEntrySet.of(StoneType.class, "","chiseled_polished",
+        chiseled_polished = StoneZoneEntrySet.of(StoneType.class, "","chiseled_polished",
                         getModBlock("chiseled_polished_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -359,7 +357,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(chiseled_polished);
 
-        cracked_polished_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "cracked_polished",
+        cracked_polished_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "cracked_polished",
                         getModBlock("cracked_polished_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -371,7 +369,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(cracked_polished_bricks);
 
-        mossy_polished_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "mossy_polished",
+        mossy_polished_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "mossy_polished",
                         getModBlock("mossy_polished_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -383,7 +381,7 @@ public class BlocksPlusModule extends StonezoneModule {
                 .build();
         this.addEntry(mossy_polished_bricks);
 
-        furnace = StonezoneEntrySet.of(StoneType.class, "furnace",
+        furnace = StoneZoneEntrySet.of(StoneType.class, "furnace",
                         getModBlock("andesite_furnace"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new BPFurnace(Utils.copyPropertySafe(stoneType.stone))
                 )

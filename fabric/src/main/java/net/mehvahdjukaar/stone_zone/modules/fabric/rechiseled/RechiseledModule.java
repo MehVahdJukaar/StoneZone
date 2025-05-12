@@ -10,8 +10,8 @@ import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.ChatFormatting;
@@ -37,7 +37,7 @@ import static com.supermartijn642.rechiseled.blocks.RechiseledPillarBlock.AXIS_P
 
 //SUPPORT: v1.1.6+
 //NOTE: There is a difference between FORGE & FABRIC - the key class is BlockState via RechiseledPillarBlock
-public class RechiseledModule extends StonezoneModule {
+public class RechiseledModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> big_tiles, big_tiles_connecting;
     public final SimpleEntrySet<StoneType, Block> bordered, bordered_connecting;
@@ -69,7 +69,7 @@ public class RechiseledModule extends StonezoneModule {
         super(modId, "rcd");
         ResourceLocation tab = modRes(modId);
 
-        big_tiles = StonezoneEntrySet.of(StoneType.class, "big_tiles",
+        big_tiles = StoneZoneEntrySet.of(StoneType.class, "big_tiles",
                         getModBlock("stone_big_tiles"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
@@ -79,7 +79,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(big_tiles);
 
-        big_tiles_connecting = StonezoneEntrySet.of(StoneType.class, "big_tiles_connecting",
+        big_tiles_connecting = StoneZoneEntrySet.of(StoneType.class, "big_tiles_connecting",
                         getModBlock("stone_big_tiles_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -89,7 +89,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(big_tiles_connecting);
 
-        bordered = StonezoneEntrySet.of(StoneType.class, "bordered",
+        bordered = StoneZoneEntrySet.of(StoneType.class, "bordered",
                         getModBlock("stone_bordered"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
@@ -99,7 +99,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(bordered);
 
-        bordered_connecting = StonezoneEntrySet.of(StoneType.class, "bordered_connecting",
+        bordered_connecting = StoneZoneEntrySet.of(StoneType.class, "bordered_connecting",
                         getModBlock("stone_bordered_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -109,7 +109,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(bordered_connecting);
 
-        brick_pattern = StonezoneEntrySet.of(StoneType.class, "brick_pattern",
+        brick_pattern = StoneZoneEntrySet.of(StoneType.class, "brick_pattern",
                         getModBlock("stone_brick_pattern"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
@@ -119,7 +119,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_pattern);
 
-        brick_pattern_connecting = StonezoneEntrySet.of(StoneType.class, "brick_pattern_connecting",
+        brick_pattern_connecting = StoneZoneEntrySet.of(StoneType.class, "brick_pattern_connecting",
                         getModBlock("stone_brick_pattern_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -129,7 +129,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_pattern_connecting);
 
-        brick_paving = StonezoneEntrySet.of(StoneType.class, "brick_paving",
+        brick_paving = StoneZoneEntrySet.of(StoneType.class, "brick_paving",
                         getModBlock("stone_brick_paving"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
@@ -139,7 +139,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_paving);
 
-        brick_paving_connecting = StonezoneEntrySet.of(StoneType.class, "brick_paving_connecting",
+        brick_paving_connecting = StoneZoneEntrySet.of(StoneType.class, "brick_paving_connecting",
                         getModBlock("stone_brick_paving_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -149,7 +149,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(brick_paving_connecting);
 
-        crushed = StonezoneEntrySet.of(StoneType.class, "crushed",
+        crushed = StoneZoneEntrySet.of(StoneType.class, "crushed",
                         getModBlock("stone_crushed"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
@@ -159,7 +159,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(crushed);
 
-        crushed_connecting = StonezoneEntrySet.of(StoneType.class, "crushed_connecting",
+        crushed_connecting = StoneZoneEntrySet.of(StoneType.class, "crushed_connecting",
                         getModBlock("stone_crushed_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -169,7 +169,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(crushed_connecting);
 
-        diagonal_bricks = StonezoneEntrySet.of(StoneType.class, "diagonal_bricks",
+        diagonal_bricks = StoneZoneEntrySet.of(StoneType.class, "diagonal_bricks",
                         getModBlock("stone_diagonal_bricks"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
@@ -179,7 +179,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(diagonal_bricks);
 
-        diagonal_bricks_connecting = StonezoneEntrySet.of(StoneType.class, "diagonal_bricks_connecting",
+        diagonal_bricks_connecting = StoneZoneEntrySet.of(StoneType.class, "diagonal_bricks_connecting",
                         getModBlock("stone_diagonal_bricks_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -189,7 +189,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(diagonal_bricks_connecting);
 
-        path = StonezoneEntrySet.of(StoneType.class, "path",
+        path = StoneZoneEntrySet.of(StoneType.class, "path",
                         getModBlock("stone_path"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
@@ -199,7 +199,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(path);
 
-        path_connecting = StonezoneEntrySet.of(StoneType.class, "path_connecting",
+        path_connecting = StoneZoneEntrySet.of(StoneType.class, "path_connecting",
                         getModBlock("stone_path_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -209,7 +209,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(path_connecting);
 
-        rotated_bricks = StonezoneEntrySet.of(StoneType.class, "rotated_bricks",
+        rotated_bricks = StoneZoneEntrySet.of(StoneType.class, "rotated_bricks",
                         getModBlock("stone_rotated_bricks"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
@@ -219,7 +219,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(rotated_bricks);
 
-        rotated_bricks_connecting = StonezoneEntrySet.of(StoneType.class, "rotated_bricks_connecting",
+        rotated_bricks_connecting = StoneZoneEntrySet.of(StoneType.class, "rotated_bricks_connecting",
                         getModBlock("stone_rotated_bricks_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -229,7 +229,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(rotated_bricks_connecting);
 
-        small_bricks = StonezoneEntrySet.of(StoneType.class, "small_bricks",
+        small_bricks = StoneZoneEntrySet.of(StoneType.class, "small_bricks",
                         getModBlock("stone_small_bricks"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
@@ -239,7 +239,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(small_bricks);
 
-        small_bricks_connecting = StonezoneEntrySet.of(StoneType.class, "small_bricks_connecting",
+        small_bricks_connecting = StoneZoneEntrySet.of(StoneType.class, "small_bricks_connecting",
                         getModBlock("stone_small_bricks_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -249,7 +249,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(small_bricks_connecting);
 
-        small_tiles = StonezoneEntrySet.of(StoneType.class, "small_tiles",
+        small_tiles = StoneZoneEntrySet.of(StoneType.class, "small_tiles",
                         getModBlock("stone_small_tiles"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
@@ -259,7 +259,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(small_tiles);
 
-        small_tiles_connecting = StonezoneEntrySet.of(StoneType.class, "small_tiles_connecting",
+        small_tiles_connecting = StoneZoneEntrySet.of(StoneType.class, "small_tiles_connecting",
                         getModBlock("stone_small_tiles_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -269,7 +269,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(small_tiles_connecting);
 
-        smooth_brick_paving = StonezoneEntrySet.of(StoneType.class, "smooth_brick_paving",
+        smooth_brick_paving = StoneZoneEntrySet.of(StoneType.class, "smooth_brick_paving",
                         getModBlock("stone_smooth_brick_paving"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
@@ -279,7 +279,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_brick_paving);
 
-        smooth_brick_paving_connecting = StonezoneEntrySet.of(StoneType.class, "smooth_brick_paving_connecting",
+        smooth_brick_paving_connecting = StoneZoneEntrySet.of(StoneType.class, "smooth_brick_paving_connecting",
                         getModBlock("stone_smooth_brick_paving_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -289,7 +289,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_brick_paving_connecting);
 
-        smooth_large_tiles = StonezoneEntrySet.of(StoneType.class, "smooth_large_tiles",
+        smooth_large_tiles = StoneZoneEntrySet.of(StoneType.class, "smooth_large_tiles",
                         getModBlock("stone_smooth_large_tiles"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
@@ -299,7 +299,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_large_tiles);
 
-        smooth_large_tiles_connecting = StonezoneEntrySet.of(StoneType.class, "smooth_large_tiles_connecting",
+        smooth_large_tiles_connecting = StoneZoneEntrySet.of(StoneType.class, "smooth_large_tiles_connecting",
                         getModBlock("stone_smooth_large_tiles_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -309,7 +309,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_large_tiles_connecting);
 
-        smooth_rotated_bricks = StonezoneEntrySet.of(StoneType.class, "smooth_rotated_bricks",
+        smooth_rotated_bricks = StoneZoneEntrySet.of(StoneType.class, "smooth_rotated_bricks",
                         getModBlock("stone_smooth_rotated_bricks"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
@@ -319,7 +319,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_rotated_bricks);
 
-        smooth_rotated_bricks_connecting = StonezoneEntrySet.of(StoneType.class, "smooth_rotated_bricks_connecting",
+        smooth_rotated_bricks_connecting = StoneZoneEntrySet.of(StoneType.class, "smooth_rotated_bricks_connecting",
                         getModBlock("stone_smooth_rotated_bricks_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -329,7 +329,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_rotated_bricks_connecting);
 
-        smooth_tiles = StonezoneEntrySet.of(StoneType.class, "smooth_tiles",
+        smooth_tiles = StoneZoneEntrySet.of(StoneType.class, "smooth_tiles",
                         getModBlock("stone_smooth_tiles"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
@@ -339,7 +339,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_tiles);
 
-        smooth_tiles_connecting = StonezoneEntrySet.of(StoneType.class, "smooth_tiles_connecting",
+        smooth_tiles_connecting = StoneZoneEntrySet.of(StoneType.class, "smooth_tiles_connecting",
                         getModBlock("stone_smooth_tiles_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -349,7 +349,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(smooth_tiles_connecting);
 
-        squares = StonezoneEntrySet.of(StoneType.class, "squares",
+        squares = StoneZoneEntrySet.of(StoneType.class, "squares",
                         getModBlock("stone_squares"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
@@ -359,7 +359,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(squares);
 
-        squares_connecting = StonezoneEntrySet.of(StoneType.class, "squares_connecting",
+        squares_connecting = StoneZoneEntrySet.of(StoneType.class, "squares_connecting",
                         getModBlock("stone_squares_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -369,7 +369,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(squares_connecting);
 
-        waves = StonezoneEntrySet.of(StoneType.class, "waves",
+        waves = StoneZoneEntrySet.of(StoneType.class, "waves",
                         getModBlock("stone_waves"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -379,7 +379,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(waves);
 
-        waves_connecting = StonezoneEntrySet.of(StoneType.class, "waves_connecting",
+        waves_connecting = StoneZoneEntrySet.of(StoneType.class, "waves_connecting",
                         getModBlock("stone_waves_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -388,7 +388,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(waves_connecting);
 
-        tiles = StonezoneEntrySet.of(StoneType.class, "tiles",
+        tiles = StoneZoneEntrySet.of(StoneType.class, "tiles",
                         getModBlock("stone_tiles"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -398,7 +398,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(tiles);
 
-        tiles_connecting = StonezoneEntrySet.of(StoneType.class, "tiles_connecting",
+        tiles_connecting = StoneZoneEntrySet.of(StoneType.class, "tiles_connecting",
                         getModBlock("stone_tiles_connecting"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
@@ -408,7 +408,7 @@ public class RechiseledModule extends StonezoneModule {
                 .build();
         this.addEntry(tiles_connecting);
 
-        slated = StonezoneEntrySet.of(StoneType.class, "slated",
+        slated = StoneZoneEntrySet.of(StoneType.class, "slated",
                         getModBlock("stone_slated"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledPillarBlock(false, Utils.copyPropertySafe(type.stone))
                 )
@@ -494,7 +494,7 @@ public class RechiseledModule extends StonezoneModule {
                             entryObj.addProperty("item", Utils.getID(currentBlock).toString());
 
                             if (!currentName.matches("slated")) { // Skip blc it don't have "_connecting" block
-                                StonezoneEntrySet<?, ?> otherEntry = (StonezoneEntrySet<?, ?>) this.getEntry(entryKey);
+                                StoneZoneEntrySet<?, ?> otherEntry = (StoneZoneEntrySet<?, ?>) this.getEntry(entryKey);
                                 Block otherBlock = otherEntry.blocks.get(stoneType);
                                 if (Objects.nonNull(otherBlock))
                                     entryObj.addProperty("connecting_item", Utils.getID(otherBlock).toString());
