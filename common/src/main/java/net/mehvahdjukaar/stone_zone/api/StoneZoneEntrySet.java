@@ -13,10 +13,9 @@ import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
-import net.mehvahdjukaar.stone_zone.misc.SpriteHelper;
 import net.mehvahdjukaar.stone_zone.misc.TintConfiguration;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.CreativeModeTab;
@@ -75,7 +74,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 // Modifying models' parent & "elements"
                 .addModifier((s, blockId, blockType) -> {
                     JsonObject jsonObject = GsonHelper.parse(s);
-                    ModelUtils.addTintIndexToModelAndReplaceParent(jsonObject, module, nameBaseStone, tintConfiguration);
+                    ModelUtils.addTintIndexToModelAndReplaceParent(new ResourceLocation("none"), jsonObject, module, nameBaseStone, tintConfiguration);
                     return jsonObject.toString();
                 })
                 .andThen(super.makeModelTransformer(module, manager));
@@ -183,19 +182,21 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
             }
         }
 
-        public Builder<T, B> excludeTextureFromParentTinting(String... textureKeys) {
+        /// Exclude mutiple textures in one parent file
+        public Builder<T, B> excludeMultipleTextureFromTinting(ResourceLocation parentId, String... textureKeys) {
             if (this.tintConfig == TintConfiguration.EMPTY) {
                 this.tintConfig = TintConfiguration.createNew();
             }
-            this.tintConfig.addToParent(textureKeys);
+            this.tintConfig.addParentAndTextureValues(parentId, textureKeys);
             return this;
         }
 
+        /// Exclude multiple textures in all parent files
         public Builder<T, B> excludeTextureFromTinting(String... textureKeys) {
             if (this.tintConfig == TintConfiguration.EMPTY) {
                 this.tintConfig = TintConfiguration.createNew();
             }
-            this.tintConfig.add(textureKeys);
+            this.tintConfig.addTextureValues(textureKeys);
             return this;
         }
     }

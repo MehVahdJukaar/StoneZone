@@ -2,7 +2,6 @@ package net.mehvahdjukaar.stone_zone.api;
 
 import com.google.gson.JsonObject;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
-import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
@@ -22,7 +21,6 @@ import net.minecraft.world.item.Item;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Consumer;
 
 
@@ -78,22 +76,23 @@ public class StoneZoneModule extends SimpleModule {
         super.addDynamicClientResources(executor);
         executor.accept((resourceManager, resourceSink) -> {
             getEntries().forEach(entrySetParent -> {
-                if (entrySetParent instanceof StonezoneEntrySet<?,?> entrySet) {
+                if (entrySetParent instanceof StoneZoneEntrySet<?,?> entrySet) {
                     entrySet.generateModels(this, resourceManager, resourceSink);
                 }
             });
 
-            // Creating custom models
+            // Creating custom parent model files
             Map<ResourceLocation, JsonObject> models = ModelUtils.readAllModelsAndParents(resourceManager, modelsToModify.keySet());
             for (var e : models.entrySet()) {
                 // Modifying the contents
                 JsonObject json = e.getValue();
-                var config = modelsToModify.getOrDefault(e.getKey(), TintConfiguration.EMPTY);
-            ModelUtils.addTintIndexToModelAndReplaceParent(json, null, null, config);
-                ResourceLocation newId = ModelUtils.transformModelID(e.getKey());
+                ResourceLocation oldRes = e.getKey();
+                var tintConfig = modelsToModify.getOrDefault(oldRes, TintConfiguration.EMPTY);
+                ModelUtils.addTintIndexToModelAndReplaceParent(oldRes, json, null, null, tintConfig);
+                ResourceLocation newRes = ModelUtils.transformModelID(e.getKey());
 
                 // Add custom models to the resources
-                resourceSink.addJson(newId, json, ResType.MODELS);
+                resourceSink.addJson(newRes, json, ResType.MODELS);
             }
         });
     }

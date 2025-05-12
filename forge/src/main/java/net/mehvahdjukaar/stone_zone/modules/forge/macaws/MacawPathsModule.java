@@ -5,8 +5,6 @@ import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
@@ -62,7 +60,7 @@ public class MacawPathsModule extends StoneZoneModule {
     public MacawPathsModule(String modId) {
         super(modId, "mcp");
         ResourceLocation tab = modRes("pathsitemgroup");
-        running_bond_paths = StonezoneEntrySet.of(StoneType.class, "running_bond_path",
+        running_bond_paths = StoneZoneEntrySet.of(StoneType.class, "running_bond_path",
                         getModBlock("stone_running_bond_path"), StoneTypeRegistry::getStoneType,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
@@ -76,7 +74,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(running_bond_paths);
 
-        running_bond_slabs = StonezoneEntrySet.of(StoneType.class, "running_bond_slab",
+        running_bond_slabs = StoneZoneEntrySet.of(StoneType.class, "running_bond_slab",
                         getModBlock("stone_running_bond_slab"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
@@ -90,7 +88,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(running_bond_slabs);
 
-        running_bonds = StonezoneEntrySet.of(StoneType.class, "running_bond",
+        running_bonds = StoneZoneEntrySet.of(StoneType.class, "running_bond",
                         getModBlock("stone_running_bond"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Block(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
@@ -104,7 +102,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(running_bonds);
 
-        mossy_running_bond_paths = StonezoneEntrySet.of(StoneType.class, "running_bond_path", "mossy",
+        mossy_running_bond_paths = StoneZoneEntrySet.of(StoneType.class, "running_bond_path", "mossy",
                         getModBlock("mossy_stone_running_bond_path"), StoneTypeRegistry::getStoneType,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
@@ -118,7 +116,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(mossy_running_bond_paths);
 
-        mossy_running_bond_slabs = StonezoneEntrySet.of(StoneType.class, "running_bond_slab", "mossy",
+        mossy_running_bond_slabs = StoneZoneEntrySet.of(StoneType.class, "running_bond_slab", "mossy",
                         getModBlock("mossy_stone_running_bond_slab"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
@@ -132,7 +130,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(mossy_running_bond_slabs);
 
-        mossy_running_bonds = StonezoneEntrySet.of(StoneType.class, "running_bond", "mossy",
+        mossy_running_bonds = StoneZoneEntrySet.of(StoneType.class, "running_bond", "mossy",
                         getModBlock("mossy_stone_running_bond"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Block(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
@@ -146,7 +144,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(mossy_running_bonds);
 
-        windmill_weave_paths = StonezoneEntrySet.of(StoneType.class, "windmill_weave_path",
+        windmill_weave_paths = StoneZoneEntrySet.of(StoneType.class, "windmill_weave_path",
                         getModBlock("stone_windmill_weave_path"), StoneTypeRegistry::getStoneType,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -160,7 +158,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(windmill_weave_paths);
 
-        windmill_weave_slabs = StonezoneEntrySet.of(StoneType.class, "windmill_weave_slab",
+        windmill_weave_slabs = StoneZoneEntrySet.of(StoneType.class, "windmill_weave_slab",
                         getModBlock("stone_windmill_weave_slab"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -174,7 +172,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(windmill_weave_slabs);
 
-        windmill_weaves = StonezoneEntrySet.of(StoneType.class, "windmill_weave",
+        windmill_weaves = StoneZoneEntrySet.of(StoneType.class, "windmill_weave",
                         getModBlock("stone_windmill_weave"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -188,7 +186,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(windmill_weaves);
 
-        mossy_windmill_weave_paths = StonezoneEntrySet.of(StoneType.class, "windmill_weave_path", "mossy",
+        mossy_windmill_weave_paths = StoneZoneEntrySet.of(StoneType.class, "windmill_weave_path", "mossy",
                         getModBlock("mossy_stone_windmill_weave_path"), StoneTypeRegistry::getStoneType,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
@@ -202,7 +200,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(mossy_windmill_weave_paths);
 
-        mossy_windmill_weave_slabs = StonezoneEntrySet.of(StoneType.class, "windmill_weave_slab", "mossy",
+        mossy_windmill_weave_slabs = StoneZoneEntrySet.of(StoneType.class, "windmill_weave_slab", "mossy",
                         getModBlock("mossy_stone_windmill_weave_slab"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
@@ -216,7 +214,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(mossy_windmill_weave_slabs);
 
-        mossy_windmill_weaves = StonezoneEntrySet.of(StoneType.class, "windmill_weave", "mossy",
+        mossy_windmill_weaves = StoneZoneEntrySet.of(StoneType.class, "windmill_weave", "mossy",
                         getModBlock("mossy_stone_windmill_weave"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Block(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
@@ -230,7 +228,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(mossy_windmill_weaves);
 
-        flagstone_paths = StonezoneEntrySet.of(StoneType.class, "flagstone_path",
+        flagstone_paths = StoneZoneEntrySet.of(StoneType.class, "flagstone_path",
                         getModBlock("stone_flagstone_path"), StoneTypeRegistry::getStoneType,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -244,7 +242,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(flagstone_paths);
 
-        flagstone_slabs = StonezoneEntrySet.of(StoneType.class, "flagstone_slab",
+        flagstone_slabs = StoneZoneEntrySet.of(StoneType.class, "flagstone_slab",
                         getModBlock("stone_flagstone_slab"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -258,7 +256,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(flagstone_slabs);
 
-        flagstones = StonezoneEntrySet.of(StoneType.class, "flagstone",
+        flagstones = StoneZoneEntrySet.of(StoneType.class, "flagstone",
                         getModBlock("stone_flagstone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -272,7 +270,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(flagstones);
 
-        mossy_flagstone_paths = StonezoneEntrySet.of(StoneType.class, "flagstone_path", "mossy",
+        mossy_flagstone_paths = StoneZoneEntrySet.of(StoneType.class, "flagstone_path", "mossy",
                         getModBlock("mossy_stone_flagstone_path"), StoneTypeRegistry::getStoneType,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
@@ -286,7 +284,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(mossy_flagstone_paths);
 
-        mossy_flagstone_slabs = StonezoneEntrySet.of(StoneType.class, "flagstone_slab", "mossy",
+        mossy_flagstone_slabs = StoneZoneEntrySet.of(StoneType.class, "flagstone_slab", "mossy",
                         getModBlock("mossy_stone_flagstone_slab"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
@@ -300,7 +298,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(mossy_flagstone_slabs);
 
-        mossy_flagstones = StonezoneEntrySet.of(StoneType.class, "flagstone", "mossy",
+        mossy_flagstones = StoneZoneEntrySet.of(StoneType.class, "flagstone", "mossy",
                         getModBlock("mossy_stone_flagstone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Block(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
@@ -314,7 +312,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(mossy_flagstones);
 
-        crystal_floor_paths = StonezoneEntrySet.of(StoneType.class, "crystal_floor_path",
+        crystal_floor_paths = StoneZoneEntrySet.of(StoneType.class, "crystal_floor_path",
                         getModBlock("stone_crystal_floor_path"), StoneTypeRegistry::getStoneType,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -328,7 +326,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(crystal_floor_paths);
 
-        crystal_floor_slabs = StonezoneEntrySet.of(StoneType.class, "crystal_floor_slab",
+        crystal_floor_slabs = StoneZoneEntrySet.of(StoneType.class, "crystal_floor_slab",
                         getModBlock("stone_crystal_floor_slab"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -342,7 +340,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(crystal_floor_slabs);
 
-        crystal_floors = StonezoneEntrySet.of(StoneType.class, "crystal_floor",
+        crystal_floors = StoneZoneEntrySet.of(StoneType.class, "crystal_floor",
                         getModBlock("stone_crystal_floor"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -356,7 +354,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(crystal_floors);
 
-        mossy_crystal_floor_paths = StonezoneEntrySet.of(StoneType.class, "crystal_floor_path", "mossy",
+        mossy_crystal_floor_paths = StoneZoneEntrySet.of(StoneType.class, "crystal_floor_path", "mossy",
                         getModBlock("mossy_stone_crystal_floor_path"), StoneTypeRegistry::getStoneType,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
@@ -370,7 +368,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(mossy_crystal_floor_paths);
 
-        mossy_crystal_floor_slabs = StonezoneEntrySet.of(StoneType.class, "crystal_floor_slab", "mossy",
+        mossy_crystal_floor_slabs = StoneZoneEntrySet.of(StoneType.class, "crystal_floor_slab", "mossy",
                         getModBlock("mossy_stone_crystal_floor_slab"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
@@ -384,7 +382,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(mossy_crystal_floor_slabs);
 
-        mossy_crystal_floors = StonezoneEntrySet.of(StoneType.class, "crystal_floor", "mossy",
+        mossy_crystal_floors = StoneZoneEntrySet.of(StoneType.class, "crystal_floor", "mossy",
                         getModBlock("mossy_stone_crystal_floor"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Block(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
@@ -398,7 +396,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(mossy_crystal_floors);
 
-        strewn_rocky_paths = StonezoneEntrySet.of(StoneType.class, "strewn_rocky_path",
+        strewn_rocky_paths = StoneZoneEntrySet.of(StoneType.class, "strewn_rocky_path",
                         getModBlock("stone_strewn_rocky_path"), StoneTypeRegistry::getStoneType,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -411,7 +409,7 @@ public class MacawPathsModule extends StoneZoneModule {
                 .build();
         this.addEntry(strewn_rocky_paths);
 
-        mossy_strewn_rocky_paths = StonezoneEntrySet.of(StoneType.class, "strewn_rocky_path", "mossy",
+        mossy_strewn_rocky_paths = StoneZoneEntrySet.of(StoneType.class, "strewn_rocky_path", "mossy",
                         getModBlock("mossy_stone_strewn_rocky_path"), StoneTypeRegistry::getStoneType,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )

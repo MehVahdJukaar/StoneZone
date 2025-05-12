@@ -4,13 +4,9 @@ import com.mcwbridges.kikoz.objects.Bridge_Block;
 import com.mcwbridges.kikoz.objects.Bridge_Stairs;
 import com.mcwbridges.kikoz.objects.Bridge_Support;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
-import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -21,8 +17,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
 import java.util.function.Consumer;
-
-import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromParentModel;
 
 
 //SUPPORT: v3.0.0+
@@ -46,7 +40,11 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("stone_brick_bridge"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Block(standardProperties(stoneType))
                 )
-                .requiresChildren("bricks", "brick_slab", "brick_wall") //REASON: textures, recipes
+                .excludeMultipleTextureFromTinting(modRes("block/bridge/bridge_stone/parent/base"), "#2")
+                .excludeMultipleTextureFromTinting(modRes("block/bridge/bridge_stone/parent/corner"), "#5")
+                .excludeMultipleTextureFromTinting(modRes("block/bridge/bridge_stone/parent/middle"), "#5")
+                .excludeMultipleTextureFromTinting(modRes("block/bridge/bridge_stone/parent/side"), "#5")
+//                .requiresChildren("bricks", "brick_slab", "brick_wall") //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
@@ -60,7 +58,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("mossy_stone_brick_bridge"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Block(standardProperties(stoneType))
                 )
-                .requiresChildren("mossy_bricks", "mossy_brick_slab", "mossy_brick_wall") //REASON: textures, recipes
+//                .requiresChildren("mossy_bricks", "mossy_brick_slab", "mossy_brick_wall") //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
@@ -74,7 +72,11 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("balustrade_stone_bricks_bridge"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Block(balustradeProperties(stoneType))
                 )
-                .requiresChildren("bricks", "brick_slab", "brick_wall") //REASON: textures, recipes
+                .excludeMultipleTextureFromTinting(modRes("block/bridge/balustrade/parent/base"), "#2")
+                .excludeMultipleTextureFromTinting(modRes("block/bridge/balustrade/parent/middle"), "#1")
+                .excludeMultipleTextureFromTinting(modRes("block/bridge/balustrade/parent/corner"), "#5")
+                .excludeMultipleTextureFromTinting(modRes("block/bridge/balustrade/parent/side"), "#5")
+//                .requiresChildren("bricks", "brick_slab", "brick_wall") //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
@@ -88,7 +90,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("balustrade_mossy_stone_bricks_bridge"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Block(balustradeProperties(stoneType))
                 )
-                .requiresChildren("mossy_bricks", "mossy_brick_slab", "mossy_brick_wall") //REASON: textures, recipes
+//                .requiresChildren("mossy_bricks", "mossy_brick_slab", "mossy_brick_wall") //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
@@ -102,7 +104,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("stone_bridge_pier"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Support(standardProperties(stoneType))
                 )
-                .requiresChildren("bricks") //REASON: textures, recipes
+//                .requiresChildren("bricks") //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_piers"), Registries.BLOCK)
@@ -116,7 +118,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("mossy_stone_bridge_pier"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Support(standardProperties(stoneType))
                 )
-                .requiresChildren("mossy_bricks") //REASON: textures, recipes
+//                .requiresChildren("mossy_bricks") //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_piers"), Registries.BLOCK)
@@ -130,7 +132,11 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("stone_brick_bridge_stair"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Stairs(standardProperties(stoneType))
                 )
-                .requiresChildren("bricks") //REASON: textures, recipes
+                .excludeMultipleTextureFromTinting(modRes("block/stair/stone/parent/base"), "#1")
+                .excludeMultipleTextureFromTinting(modRes("block/stair/stone/parent/double"), "#1")
+                .excludeMultipleTextureFromTinting(modRes("block/stair/stone/parent/left"), "#1")
+                .excludeMultipleTextureFromTinting(modRes("block/stair/stone/parent/right"), "#1")
+//                .requiresChildren("bricks") //REASON: textures, recipes
                 .requiresFromMap(brick_bridges.blocks) //REASON: recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -146,7 +152,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("mossy_stone_bridge_stair"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Stairs(standardProperties(stoneType))
                 )
-                .requiresChildren("mossy_bricks") //REASON: textures, recipes
+//                .requiresChildren("mossy_bricks") //REASON: textures, recipes
                 .requiresFromMap(mossy_brick_bridges.blocks) //REASON: recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -163,7 +169,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("andesite_bridge"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new Bridge_Block(standardProperties(stoneType))
                 )
-                .requiresChildren("polished_stone", "slab", "wall") //REASON: textures, recipes
+//                .requiresChildren("polished_stone", "slab", "wall") //REASON: textures, recipes
                 //TEXTURES: stone, polished_stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
@@ -172,7 +178,6 @@ public class MacawBridgesModule extends StoneZoneModule {
                 .addRecipe(modRes("stonecutter_andesite_bridge"))
                 .build();
         this.addEntry(bridges);
-
 
     }
 
@@ -190,40 +195,6 @@ public class MacawBridgesModule extends StoneZoneModule {
                 .strength(1.0F, 6.0F)
                 .requiresCorrectToolForDrops()
                 .sound(stoneType.getSound());
-    }
-
-    @Override
-    // MODELS
-    public void addDynamicClientResources(Consumer<ResourceGenTask> executor) {
-        super.addDynamicClientResources(executor);
-
-        executor.accept((manager, sink) -> {
-
-            // Bridge Model
-            String pathBridge = "mcwbridges/bridge/bridge_stone/parent/";
-
-            removeTintIndexFromParentModel(pathBridge + "base", "#2", sink, manager);
-            removeTintIndexFromParentModel(pathBridge + "corner", "#5", sink, manager);
-            removeTintIndexFromParentModel(pathBridge + "middle", "#5", sink, manager);
-            removeTintIndexFromParentModel(pathBridge + "side", "#5", sink, manager);
-
-            // Balustrade Model
-            String pathBalustrade = "mcwbridges/bridge/balustrade/parent/";
-
-            removeTintIndexFromParentModel(pathBalustrade + "base", "#2", sink, manager);
-            removeTintIndexFromParentModel(pathBalustrade + "middle", "#1", sink, manager);
-            removeTintIndexFromParentModel(pathBalustrade + "corner", "#5", sink, manager);
-            removeTintIndexFromParentModel(pathBalustrade + "side", "#5", sink, manager);
-
-            // Stair Model
-            String pathStair = "mcwbridges/stair/stone/parent/";
-
-            removeTintIndexFromParentModel(pathStair + "base", "#1", sink, manager);
-            removeTintIndexFromParentModel(pathStair + "double", "#1", sink, manager);
-            removeTintIndexFromParentModel(pathStair + "left", "#1", sink, manager);
-            removeTintIndexFromParentModel(pathStair + "right", "#1", sink, manager);
-
-        });
     }
 
 }

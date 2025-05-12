@@ -3,12 +3,9 @@ package net.mehvahdjukaar.stone_zone.modules.forge.macaws;
 import com.mcwwindows.kikoz.objects.*;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.StonezoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -17,10 +14,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
-
-import java.util.function.Consumer;
-
-import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromParentModel;
 
 
 //SUPPORT: v2.3.0+
@@ -46,6 +39,16 @@ public class MacawWindowsModule extends StoneZoneModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
+                //REASON: glass
+                .excludeMultipleTextureFromTinting(modRes("block/parent/resizeable/mid_m"), "#0")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/single"), "#1")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/single_l"), "#1")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/single_m"), "#1")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/top"), "#1")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/middle"), "#1")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/mid_l"), "#1")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/top_l"), "#1")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/top_m"), "#1")
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -65,6 +68,9 @@ public class MacawWindowsModule extends StoneZoneModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
+                //REASON: glass
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_barred"), "#0")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_barred_open"), "#0")
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -84,6 +90,9 @@ public class MacawWindowsModule extends StoneZoneModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
+                //REASON: glass
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_four"), "#0")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_four_open"), "#0")
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -103,6 +112,11 @@ public class MacawWindowsModule extends StoneZoneModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
+                //REASON: glass
+                .excludeMultipleTextureFromTinting(modRes("block/parent/gothic/gothic_small"), "#3")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/gothic/gothic_tall_lower"), "#3")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/gothic/gothic_tall_middle"), "#3")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/gothic/gothic_tall_upper"), "#3")
                 .requiresChildren("bricks") //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -143,6 +157,14 @@ public class MacawWindowsModule extends StoneZoneModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_above"), "#0")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_above_open"), "#0")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_base"), "#0")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_base_open"), "#0")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_below"), "#0")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_below_open"), "#0")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_middle"), "#0")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_middle_open"), "#0")
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -154,46 +176,4 @@ public class MacawWindowsModule extends StoneZoneModule {
 
     }
 
-    @Override
-    // MODELS
-    public void addDynamicClientResources(Consumer<ResourceGenTask> executor) {
-        super.addDynamicClientResources(executor);
-
-        executor.accept((manager, sink) -> {
-
-            // Gothic Model
-            String pathGothic = "mcwwindows/parent/gothic/gothic_";
-
-            removeTintIndexFromParentModel(pathGothic + "small", "#3", sink, manager);
-            removeTintIndexFromParentModel(pathGothic + "tall_lower", "#3", sink, manager);
-            removeTintIndexFromParentModel(pathGothic + "tall_middle", "#3", sink, manager);
-            removeTintIndexFromParentModel(pathGothic + "tall_upper", "#3", sink, manager);
-
-            // Window Model
-            String pathWindow = "mcwwindows/parent/window/";
-
-            removeTintIndexFromParentModel(pathWindow + "mid_l", "#1", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "middle", "#1", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "single", "#1", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "single_l", "#1", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "single_m", "#1", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "top", "#1", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "top_l", "#1", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "top_m", "#1", sink, manager);
-
-            removeTintIndexFromParentModel(pathWindow + "window_above", "#0", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "window_above_open", "#0", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "window_barred", "#0", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "window_barred_open", "#0", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "window_base", "#0", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "window_base_open", "#0", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "window_below", "#0", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "window_below_open", "#0", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "window_four", "#0", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "window_four_open", "#0", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "window_middle", "#0", sink, manager);
-            removeTintIndexFromParentModel(pathWindow + "window_middle_open", "#0", sink, manager);
-
-        });
-    }
 }
