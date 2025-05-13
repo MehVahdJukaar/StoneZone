@@ -5,13 +5,29 @@ import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 
-    /// StoneType Detection detect a StoneType that met 2 requirements:
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/// StoneType Detection detect a StoneType that met 2 requirements:
         /// BASS_DRUM (sound)
         /// blockID: nameStoneType_bricks - only 2 words
 // Put all undetected StoneTypes (including hardcoded ones) from mods in here to be included
 public class CompatStoneType {
 
     public static void init() {
+
+        // Aerial Hell
+        simpleStoneFinder("aerialhell", "glaucophanite"); // HARP
+        simpleStoneFinder("aerialhell", "lunatic_stone"); // HARP
+        simpleStoneFinder("aerialhell", "volucite_stone"); // HARP
+        simpleStoneFinder("aerialhell", "dark_lunatic_stone"); // HARP
+        simpleStoneFinder("aerialhell", "slippery_sand_stone");
+        stoneBlockFinder("aerialhell", "smoky_quartz");
+
+        advancedStoneFinder("aerialhell", "aerial_netherack",
+                "golden_nether_bricks", "golden_nether_bricks_slab",
+                "golden_nether_bricks_stairs", "golden_nether_bricks_wall"); // HARP
 
         // Rocky Minerals
         simpleStoneFinder("rockyminerals", "worn_granite");
@@ -203,7 +219,8 @@ public class CompatStoneType {
 
             for (String currentChild : nameChildren) {
                 String childKey = "";
-                if (currentChild.contains("brick")) childKey = "bricks";
+                childKey = getChildKeyFrom(currentChild);
+//                if (currentChild.contains("brick")) childKey = "bricks";
 
                 stonetypeFinder.addChild(childKey, currentChild);
             }
@@ -220,5 +237,29 @@ public class CompatStoneType {
         }
     }
 
+        /// Get the keyword from block: stone_bricks, key: bricks
+        public static String getChildKeyFrom(String childBlock) {
+            String lastword = childBlock.substring(childBlock.lastIndexOf("_") + 1);
+
+            // With "bricks"
+            if (childBlock.matches("\\w+_brick(s?)(_[a-z]+)?")) {
+                Pattern pattern = Pattern.compile("\\w+_(brick(?:s?))(_[a-z]+)?");
+                Matcher matcher = pattern.matcher(childBlock);
+                if (matcher.find()) {
+                    String suffix = (Objects.isNull(matcher.group(2))) ? matcher.group(1) : matcher.group(1) + matcher.group(2);
+                    return switch (suffix) {
+                        case "brick", "bricks" -> "bricks";
+                        case "brick_slab", "bricks_slab" -> "brick_slab";
+                        case "brick_stairs", "bricks_stairs" -> "brick_stairs";
+                        case "brick_wall", "bricks_wall" -> "brick_wall";
+                        default -> lastword;
+                    };
+                }
+            }
+            // Default
+            return switch (lastword) {
+                default -> lastword;
+            };
+        }
 
 }
