@@ -62,7 +62,7 @@ public final class ModelUtils {
             }
 
             // Skip these models/item file
-            if (!oldRes.toString().matches("minecraft:(?:item/generated|builtin/generated)")) {
+            if (!oldRes.toString().matches("minecraft:(?:item/generated|builtin/generated|item/chest)")) {
                 ResourceLocation newRes = transformModelID(oldRes);
                 jsonObject.addProperty("parent", newRes.toString());
 
