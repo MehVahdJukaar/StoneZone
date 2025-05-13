@@ -2,10 +2,12 @@ package net.mehvahdjukaar.stone_zone.api.intergration;
 
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
+import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 
 import java.util.Objects;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -180,10 +182,11 @@ public class CompatStoneType {
         }
     }
 
-        /**
-         * @param nameStoneType name of StoneType
-         * @param nameStone name of StoneType with "_stone" or any words
-         */
+    /**
+     * @param nameStoneType name of StoneType
+     * @param nameStone name of StoneType with "_stone" or any words
+    **/
+    @SuppressWarnings("unused")
     public static void stoneFinder(String modId, String nameStoneType, String nameStone) {
         if (PlatHelper.isModLoaded(modId)) {
             var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStone);
@@ -218,11 +221,9 @@ public class CompatStoneType {
             var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStoneType);
 
             for (String currentChild : nameChildren) {
-                String childKey = "";
-                childKey = getChildKeyFrom(currentChild);
-//                if (currentChild.contains("brick")) childKey = "bricks";
-
-                stonetypeFinder.addChild(childKey, currentChild);
+                String childKey = getChildKeyFrom(currentChild);
+                if (childKeySafe.contains(childKey)) stonetypeFinder.addChild(childKey, currentChild);
+                else StoneZone.LOGGER.warn("CompatStoneType: Incorrect childKey - {} for {}", childKey, currentChild);
             }
 
             BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
@@ -238,12 +239,13 @@ public class CompatStoneType {
     }
 
         /// Get the keyword from block: stone_bricks, key: bricks
+        @SuppressWarnings("RegExpAnonymousGroup")
         public static String getChildKeyFrom(String childBlock) {
             String lastword = childBlock.substring(childBlock.lastIndexOf("_") + 1);
 
             // With "bricks"
-            if (childBlock.matches("\\w+_brick(s?)(_[a-z]+)?")) {
-                Pattern pattern = Pattern.compile("\\w+_(brick(?:s?))(_[a-z]+)?");
+            if (childBlock.matches("\\w+_bricks?(?:_[a-z]+)?")) {
+                Pattern pattern = Pattern.compile("\\w+_(bricks?)(_[a-z]+)?");
                 Matcher matcher = pattern.matcher(childBlock);
                 if (matcher.find()) {
                     String suffix = (Objects.isNull(matcher.group(2))) ? matcher.group(1) : matcher.group(1) + matcher.group(2);
@@ -257,9 +259,15 @@ public class CompatStoneType {
                 }
             }
             // Default
-            return switch (lastword) {
-                default -> lastword;
-            };
+            return lastword;
         }
+
+    private static final Set<String> childKeySafe = Set.of(
+            "stone", "stairs", "slab", "wall", "button", "pressure_plate", "smooth_stone",
+            "cobblestone", "mossy_cobblestone",
+            "polished", "polished_stairs", "polished_slab",
+            "bricks", "brick_stairs", "brick_slab", "brick_wall", "cracked_bricks", "brick_tiles",
+            "mossy_bricks", "mossy_brick_slab", "mossy_brick_stairs", "mossy_brick_wall"
+    );
 
 }
