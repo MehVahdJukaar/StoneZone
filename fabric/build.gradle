@@ -71,7 +71,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:yungs-api-421850:5769972") // v4.0.6 | Better-Archeology
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904751") // v8.1.25 | Stoneworks
 //    modRuntimeOnly("curse.maven:forge-config-api-port-fabric-547434:5902421") // v8.1.25 | Stoneworks
-//    modRuntimeOnly("com.terraformersmc.terraform-api:terraform-wood-api-v1:7.0.3") // Blockus
+    modRuntimeOnly("com.terraformersmc.terraform-api:terraform-wood-api-v1:7.0.3") // Blockus, Bountiful-Fares
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129312") // v1.1.1 | Rechiseled
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4785838") // v1.1.8a | Rechiseled
 //    modRuntimeOnly("curse.maven:bclib-495191:4971470") // v3.0.14 | BetterEnd
@@ -86,6 +86,7 @@ dependencies {
         //- OTHER MAVENs - can be commented out or enabled
 //    modRuntimeOnly("com.jozufozu.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_version}") // Create
 //    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
+    modRuntimeOnly("me.shedaniel.cloth:cloth-config-fabric:${cloth_version}") // Bountiful-Fares
 
         //+ REQUIRED - The modules access libaries from below - Only in FABRIC
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
@@ -122,7 +123,8 @@ dependencies {
 //!! ================================================= FOR TESTING ================================================== \\
 
 //    modRuntimeOnly("curse.maven:betterend-413596:4971487") // BCLib
-    modRuntimeOnly("curse.maven:mwtis-stone-expansion-907720:4767668")
+//    modRuntimeOnly("curse.maven:mwtis-stone-expansion-907720:4767668")
+    modRuntimeOnly("curse.maven:bountiful-fares-972289:5388080") // Cloth-Config, Terraformersmc's terraform-wood-api
 }
 
 
