@@ -3,15 +3,13 @@ package net.mehvahdjukaar.stone_zone.modules.fabric.macaws;
 import net.kikoz.mcwfences.objects.FenceHitbox;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
-import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
@@ -21,8 +19,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
-
-import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromParentModel;
 
 //SUPPORT: v1.1.2+
 public class MacawFencesModule extends StoneZoneModule {
@@ -43,7 +39,7 @@ public class MacawFencesModule extends StoneZoneModule {
 
         modern_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "modern",
                         getModBlock("modern_stone_brick_wall"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new FenceBlock(standardCopyProperies(stoneType))
+                        stoneType -> new FenceBlock(standardCopyProperties(stoneType))
                 )
                 .requiresChildren("bricks", "cobblestone") //REASON: testures, recipes
                 //TEXTURES: bricks, cobblestone
@@ -58,8 +54,9 @@ public class MacawFencesModule extends StoneZoneModule {
 
         railing_brick_gates = StoneZoneEntrySet.of(StoneType.class, "brick_railing_gate",
                         getModBlock("stone_brick_railing_gate"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new FenceGateBlock(WoodType.OAK, standardCopyProperies(stoneType))
+                        stoneType -> new FenceGateBlock(WoodType.OAK, standardCopyProperties(stoneType))
                 )
+                .excludeTextureFromTinting("#4")
                 .requiresChildren("bricks") //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
@@ -75,8 +72,9 @@ public class MacawFencesModule extends StoneZoneModule {
 
         railing_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "railing",
                         getModBlock("railing_stone_brick_wall"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new FenceBlock(standardCopyProperies(stoneType))
+                        stoneType -> new FenceBlock(standardCopyProperties(stoneType))
                 )
+                .excludeTextureFromTinting("#2")
                 .requiresChildren("bricks") //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
@@ -92,8 +90,15 @@ public class MacawFencesModule extends StoneZoneModule {
 
         grass_topped_walls = StoneZoneEntrySet.of(StoneType.class, "grass_topped_wall",
                         getModBlock("stone_grass_topped_wall"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new FenceHitbox(standardCopyProperies(stoneType))
+                        stoneType -> new FenceHitbox(standardCopyProperties(stoneType))
                 )
+                //REASON: grass
+                .excludeMultipleTextureFromTinting(modRes("block/parent/grass_topped_wall_middle"), "#0", "#1")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/grass_topped_wall_post"), "#3", "#4")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/grass_topped_wall_corner"), "#2", "#3")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/grass_topped_wall_cross"), "#2", "#3")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/grass_topped_wall_side"), "#2", "#3")
+                .excludeMultipleTextureFromTinting(modRes("block/parent/grass_topped_wall_triple"), "#2", "#3")
                 .requiresChildren("bricks", "cobblestone") //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks, cobblestone
@@ -110,7 +115,7 @@ public class MacawFencesModule extends StoneZoneModule {
 //!! ANDESITE
         pillar_walls = StoneZoneEntrySet.of(StoneType.class, "pillar_wall",
                         getModBlock("andesite_pillar_wall"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new FenceBlock(standardCopyProperies(stoneType))
+                        stoneType -> new FenceBlock(standardCopyProperties(stoneType))
                 )
                 .requiresChildren("polished") //REASON: textures, recipes
                 //TEXTURES: stone, polished
@@ -125,7 +130,7 @@ public class MacawFencesModule extends StoneZoneModule {
 
         railing_gates = StoneZoneEntrySet.of(StoneType.class, "railing_gate",
                         getModBlock("andesite_railing_gate"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new FenceGateBlock(WoodType.OAK, standardCopyProperies(stoneType))
+                        stoneType -> new FenceGateBlock(WoodType.OAK, standardCopyProperties(stoneType))
                 )
                 .requiresChildren("polished") //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -142,7 +147,7 @@ public class MacawFencesModule extends StoneZoneModule {
 
         railing_walls = StoneZoneEntrySet.of(StoneType.class, "wall", "railing",
                         getModBlock("railing_andesite_wall"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new FenceBlock(standardCopyProperies(stoneType))
+                        stoneType -> new FenceBlock(standardCopyProperties(stoneType))
                 )
                 .requiresChildren("polished") //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -159,7 +164,7 @@ public class MacawFencesModule extends StoneZoneModule {
 
         modern_walls = StoneZoneEntrySet.of(StoneType.class, "wall", "modern",
                         getModBlock("modern_andesite_wall"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new FenceBlock(standardCopyProperies(stoneType))
+                        stoneType -> new FenceBlock(standardCopyProperties(stoneType))
                 )
                 .requiresChildren("polished") //REASON: testures, recipes
                 //TEXTURES: stone, polished
@@ -175,7 +180,7 @@ public class MacawFencesModule extends StoneZoneModule {
 
     }
 
-    private BlockBehaviour.Properties standardCopyProperies(StoneType stoneType) {
+    private BlockBehaviour.Properties standardCopyProperties(StoneType stoneType) {
         return Utils.copyPropertySafe(stoneType.bricksOrStone())
                 .mapColor(MapColor.STONE)
                 .sound(SoundType.STONE)
@@ -184,47 +189,4 @@ public class MacawFencesModule extends StoneZoneModule {
                 .requiresCorrectToolForDrops();
     }
 
-    @Override
-    // MODELS
-    public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
-        super.addDynamicClientResources(handler, manager);
-
-        if (!grass_topped_walls.blocks.isEmpty()) {
-            String pathGrassToppedWall = "mcwfences/parent/inventory/grass_topped_wall";
-            removeTintIndexFromParentModel(pathGrassToppedWall, "#3", handler, manager);
-            removeTintIndexFromParentModel(pathGrassToppedWall, "#4", handler, manager);
-
-            String[] filenames = {
-                    "corner", "cross", "side",
-                    "triple", "middle", "post"
-            };
-            for (String filename : filenames) {
-                String pathGrassTopped = "mcwfences/parent/grass_topped_wall_";
-                String targetTexture = switch (filename) {
-                    case "middle" -> "#0";
-                    case "post" -> "#3";
-                    default -> "#2";
-                };
-                String target2ndTexture = switch (filename) {
-                    case "middle" -> "#1";
-                    case "post" -> "#4";
-                    default -> "#3"; // corner|cross|side|triple
-                };
-                removeTintIndexFromParentModel(pathGrassTopped + filename, targetTexture, handler, manager);
-                removeTintIndexFromParentModel(pathGrassTopped + filename, target2ndTexture, handler, manager);
-            }
-        }
-
-        if (!railing_brick_walls.blocks.isEmpty()) {
-            String pathRailingWall = "mcwfences/parent/railing_wall";
-            removeTintIndexFromParentModel(pathRailingWall + "_post", "#2", handler, manager);
-            removeTintIndexFromParentModel(pathRailingWall + "_side", "#2", handler, manager);
-        }
-
-        if (!railing_brick_gates.blocks.isEmpty()) {
-            String pathRailingGate = "mcwfences/parent/railing_gate";
-            removeTintIndexFromParentModel(pathRailingGate, "#4", handler, manager);
-            removeTintIndexFromParentModel(pathRailingGate + "_open", "#4", handler, manager);
-        }
-    }
 }

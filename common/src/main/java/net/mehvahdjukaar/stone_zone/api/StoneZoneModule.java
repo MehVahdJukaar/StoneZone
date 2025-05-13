@@ -31,7 +31,7 @@ public class StoneZoneModule extends SimpleModule {
 
 
     @Override
-    @SuppressWarnings({"unchecked", "DataFlowIssue"})
+    @SuppressWarnings("DataFlowIssue")
     public ResourceKey<CreativeModeTab> getDedicatedTab() {
         return (ResourceKey<CreativeModeTab>) SZRegistry.MOD_TAB.getKey();
     }
@@ -74,17 +74,18 @@ public class StoneZoneModule extends SimpleModule {
     @Override
     public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
         super.addDynamicClientResources(handler, manager);
-        // Creating custom models
+        // Creating custom parent model files
         Map<ResourceLocation, JsonObject> models = ModelUtils.readAllModelsAndParents(manager, modelsToModify.keySet());
         for (var e : models.entrySet()) {
             // Modifying the contents
             JsonObject json = e.getValue();
-            var config = modelsToModify.getOrDefault(e.getKey(), TintConfiguration.EMPTY);
-            ModelUtils.addTintIndexToModelAndReplaceParent(json, null, null, config);
-            ResourceLocation newId = ModelUtils.transformModelID(e.getKey());
+            ResourceLocation oldRes = e.getKey();
+            var tintConfig = modelsToModify.getOrDefault(oldRes, TintConfiguration.EMPTY);
+            ModelUtils.addTintIndexToModelAndReplaceParent(oldRes, json, null, null, tintConfig);
+            ResourceLocation newRes = ModelUtils.transformModelID(e.getKey());
 
             // Add custom models to the resources
-            handler.dynamicPack.addJson(newId, json, ResType.MODELS);
+            handler.dynamicPack.addJson(newRes, json, ResType.MODELS);
         }
     }
 
