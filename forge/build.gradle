@@ -127,7 +127,7 @@ dependencies {
         modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}-forge.jar"))
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-forge") // v2.8.1
+        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-forge") // v2.8.2
     }
 
 //!! TOOLS ---------------------------------------------------------------------------------------------------------- \\
