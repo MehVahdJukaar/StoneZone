@@ -152,6 +152,7 @@ public abstract class RockType extends BlockType{
         return findRelatedEntry(prefixOrInfix, suffix, BuiltInRegistries.BLOCK);
     }
 
+    @SuppressWarnings("unused")
     private @Nullable Item findRelatedItem(String prefixOrInfix, String suffix) {
         return findRelatedEntry(prefixOrInfix, suffix, BuiltInRegistries.ITEM);
     }
