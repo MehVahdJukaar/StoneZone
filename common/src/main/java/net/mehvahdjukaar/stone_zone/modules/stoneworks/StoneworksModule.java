@@ -19,7 +19,7 @@ import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyBlockS
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
 
 
-//SUPPORT: v8.0.0+
+//SUPPORT: v21.1.0+
 public class StoneworksModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> tiles;
@@ -73,8 +73,7 @@ public class StoneworksModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("stone_tile_stairs_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_tile_stairs_from_stone_tiles_stonecutting"))
+                .addRecipe(modRes("stone_tile_stairs_from_stone_or_stone_tiles_stonecutting"))
                 .copyParentDrop()
                 .build();
         this.addEntry(tile_stairs);
@@ -88,8 +87,7 @@ public class StoneworksModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("stone_tile_slab_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_tile_slab_from_stone_tiles_stonecutting"))
+                .addRecipe(modRes("stone_tile_slab_from_stone_or_stone_tiles_stonecutting"))
                 .copyParentDrop()
                 .build();
         this.addEntry(tile_slabs);
@@ -103,8 +101,7 @@ public class StoneworksModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("stone_tile_wall_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_tile_wall_from_stone_tiles_stonecutting"))
+                .addRecipe(modRes("stone_tile_wall_from_stone_or_stone_tiles_stonecutting"))
                 .copyParentDrop()
                 .build();
         this.addEntry(tile_walls);
@@ -157,8 +154,7 @@ public class StoneworksModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("stone_plate_stairs_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_plate_stairs_from_stone_plates_stonecutting"))
+                .addRecipe(modRes("stone_plate_stairs_from_stone_or_stone_plates_stonecutting"))
                 .copyParentDrop()
                 .build();
         this.addEntry(plate_stairs);
@@ -172,8 +168,7 @@ public class StoneworksModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("stone_plate_slab_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_plate_slab_from_stone_plates_stonecutting"))
+                .addRecipe(modRes("stone_plate_slab_from_stone_or_stone_plates_stonecutting"))
                 .copyParentDrop()
                 .build();
         this.addEntry(plate_slabs);
@@ -187,8 +182,7 @@ public class StoneworksModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("stone_plate_wall_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_plate_wall_from_stone_plates_stonecutting"))
+                .addRecipe(modRes("stone_plate_wall_from_stone_or_stone_plates_stonecutting"))
                 .copyParentDrop()
                 .build();
         this.addEntry(plate_walls);
@@ -216,8 +210,7 @@ public class StoneworksModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("stone_paver_stairs_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_paver_stairs_from_stone_pavers_stonecutting"))
+                .addRecipe(modRes("stone_paver_stairs_from_stone_or_stone_pavers_stonecutting"))
                 .copyParentDrop()
                 .build();
         this.addEntry(paver_stairs);
@@ -231,8 +224,7 @@ public class StoneworksModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("stone_paver_slab_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_paver_slab_from_stone_pavers_stonecutting"))
+                .addRecipe(modRes("stone_paver_slab_from_stone_or_stone_pavers_stonecutting"))
                 .copyParentDrop()
                 .build();
         this.addEntry(paver_slabs);
@@ -246,8 +238,7 @@ public class StoneworksModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("stone_paver_wall_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_paver_wall_from_stone_pavers_stonecutting"))
+                .addRecipe(modRes("stone_paver_wall_from_stone_or_stone_pavers_stonecutting"))
                 .copyParentDrop()
                 .build();
         this.addEntry(paver_walls);
@@ -274,8 +265,7 @@ public class StoneworksModule extends StoneZoneModule {
                 //TEXTURES: stone_shingles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("stone_shingle_stairs_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_shingle_stairs_from_stone_shingles_stonecutting"))
+                .addRecipe(modRes("stone_shingle_stairs_from_stone_or_stone_shingles_stonecutting"))
                 .copyParentDrop()
                 .build();
         this.addEntry(shingle_stairs);
@@ -288,8 +278,7 @@ public class StoneworksModule extends StoneZoneModule {
                 //TEXTURES: stone_shingles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("stone_shingle_slab_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_shingle_slab_from_stone_shingles_stonecutting"))
+                .addRecipe(modRes("stone_shingle_slab_from_stone_or_stone_shingles_stonecutting"))
                 .copyParentDrop()
                 .build();
         this.addEntry(shingle_slabs);
@@ -303,8 +292,7 @@ public class StoneworksModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("stone_shingle_wall_from_stone_stonecutting"))
-                .addRecipe(modRes("stone_shingle_wall_from_stone_shingles_stonecutting"))
+                .addRecipe(modRes("stone_shingle_wall_from_stone_or_stone_shingles_stonecutting"))
                 .copyParentDrop()
                 .build();
         this.addEntry(shingle_walls);
