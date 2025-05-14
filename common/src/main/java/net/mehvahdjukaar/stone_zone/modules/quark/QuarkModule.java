@@ -3,7 +3,7 @@ package net.mehvahdjukaar.stone_zone.modules.quark;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.SZModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -19,8 +19,8 @@ import org.violetmoon.zeta.block.ZetaPillarBlock;
 
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
 
-//SUPPORT: v4.0-4.6.0+
-public class QuarkModule extends SZModule {
+//SUPPORT: v4.0-435+
+public class QuarkModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> vertical_slabs;
     public final SimpleEntrySet<StoneType, Block> polished_vertical_slabs;
@@ -44,6 +44,7 @@ public class QuarkModule extends SZModule {
                 .addRecipe(modRes("building/crafting/vertslabs/andesite_vertical_slab"))
                 .addRecipe(modRes("building/crafting/vertslabs/andesite_vertical_slab_revert"))
                 .addCondition(stoneType -> !PlatHelper.isModLoaded("v_slab_compat"))
+                .copyParentDrop()
                 .build();
         this.addEntry(vertical_slabs);
 
@@ -61,6 +62,7 @@ public class QuarkModule extends SZModule {
                 .addRecipe(modRes("building/crafting/vertslabs/polished_andesite_vertical_slab"))
                 .addRecipe(modRes("building/crafting/vertslabs/polished_andesite_vertical_slab_revert"))
                 .addCondition(stoneType -> !PlatHelper.isModLoaded("v_slab_compat"))
+                .copyParentDrop()
                 .build();
         this.addEntry(polished_vertical_slabs);
 

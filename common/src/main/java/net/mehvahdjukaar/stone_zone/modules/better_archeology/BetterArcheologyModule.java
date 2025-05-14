@@ -2,8 +2,8 @@ package net.mehvahdjukaar.stone_zone.modules.better_archeology;
 
 import net.Pandarix.betterarcheology.BetterArcheology;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.stone_zone.api.SZModule;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.StairBlock;
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyBlockStateSafe;
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
 
-public class BetterArcheologyModule extends SZModule {
+public class BetterArcheologyModule extends StoneZoneModule {
 
     public final SimpleEntrySet<MudType, Block> cracked_bricks;
     public final SimpleEntrySet<MudType, Block> cracked_brick_stairs;
@@ -26,7 +26,7 @@ public class BetterArcheologyModule extends SZModule {
         super(modId, "ba");
         ResourceLocation tab = modRes(BetterArcheology.MOD_ID);
 
-        cracked_bricks = StonezoneEntrySet.of(MudType.class, "bricks", "cracked",
+        cracked_bricks = StoneZoneEntrySet.of(MudType.class, "bricks", "cracked",
                         getModBlock("cracked_mud_bricks"), MudTypeRegistry::getMudType,
                         type -> new Block(copyChildrenPropertySafe("bricks", type))
                 )
@@ -39,7 +39,7 @@ public class BetterArcheologyModule extends SZModule {
                 .build();
         this.addEntry(cracked_bricks);
 
-        cracked_brick_stairs = StonezoneEntrySet.of(MudType.class, "brick_stairs", "cracked",
+        cracked_brick_stairs = StoneZoneEntrySet.of(MudType.class, "brick_stairs", "cracked",
                         getModBlock("cracked_mud_brick_stairs"), MudTypeRegistry::getMudType,
                         type -> new StairBlock(copyBlockStateSafe(cracked_bricks.blocks, type),
                                 copyChildrenPropertySafe("brick_stairs", type))
@@ -54,7 +54,7 @@ public class BetterArcheologyModule extends SZModule {
                 .build();
         this.addEntry(cracked_brick_stairs);
 
-        cracked_brick_slabs = StonezoneEntrySet.of(MudType.class, "brick_slab", "cracked",
+        cracked_brick_slabs = StoneZoneEntrySet.of(MudType.class, "brick_slab", "cracked",
                         getModBlock("cracked_mud_brick_slab"), MudTypeRegistry::getMudType,
                         type -> new SlabBlock(copyChildrenPropertySafe("brick_slab", type))
                 )

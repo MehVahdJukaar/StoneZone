@@ -1,14 +1,14 @@
 package net.mehvahdjukaar.stone_zone.common_classes;
 
-import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.RPUtils;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Respriter;
 import net.mehvahdjukaar.moonlight.api.resources.textures.TextureImage;
 import net.mehvahdjukaar.moonlight.api.util.math.colors.HCLColor;
+import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.level.block.Block;
@@ -18,18 +18,18 @@ import java.util.List;
 
 public class CompatChestTexture {
 
-    public static void generateChestTexture(ClientDynamicResourcesHandler handler, ResourceManager manager,
+    public static void generateChestTexture(ResourceSink sink, ResourceManager manager,
                                             String shortenedID, StoneType stoneType, Block block,
                                             ResourceLocation normalRLoc, ResourceLocation maskRLoc, ResourceLocation overlayRLoc,
                                             ResourceLocation trappedORLoc) {
-        generateChestTexture(handler, manager, shortenedID, stoneType, block, normalRLoc, maskRLoc, overlayRLoc, trappedORLoc, 2);
+        generateChestTexture(sink, manager, shortenedID, stoneType, block, normalRLoc, maskRLoc, overlayRLoc, trappedORLoc, 2);
     }
 
     /**
     * Generate a texture for chest and trapped_chest
     * @param removeDarkest 0: none removed, 1: removed once, 2: removed twice
     */
-    public static void generateChestTexture(ClientDynamicResourcesHandler handler, ResourceManager manager,
+    public static void generateChestTexture(ResourceSink sink, ResourceManager manager,
                                     String shortenedID, StoneType stoneType, Block block,
                                 ResourceLocation normalRLoc, ResourceLocation maskRLoc, ResourceLocation overlayRLoc,
                                     ResourceLocation trappedORLoc, int removeDarkest) {
@@ -72,7 +72,7 @@ public class CompatChestTexture {
                         });
                     }
 
-                    AnimationMetadataSection plankMeta = plankTexture.getMetadata();
+                    McMetaFile plankMeta = plankTexture.getMcMeta();
 
                     List<Palette> overlayPalette = new ArrayList<>();
                     for (var p : plankPalette) {
@@ -97,24 +97,24 @@ public class CompatChestTexture {
 
                     // Generating textures
                     ResourceLocation res = StoneZone.res(path);
-                    if (!handler.alreadyHasTextureAtLocation(manager, res)) {
+                    if (!sink.alreadyHasTextureAtLocation(manager, res)) {
                         ResourceLocation trappedRes = StoneZone.res(trapped_path);
 
-                        createChestTextures(handler, respriterNormal, respriterOverlay, plankMeta,
+                        createChestTextures(sink, respriterNormal, respriterOverlay, plankMeta,
                                 plankPalette, overlayPalette, res, trappedRes, trapOverlay);
                     }
 
                 } catch (Exception ex) {
-                    handler.getLogger().error("Failed to generate Chest block texture for for: {} - {}", block, ex);
+                    StoneZone.LOGGER.error("Failed to generate Chest block texture for for: {} - {}", block, ex);
                 }
         } catch (Exception ex) {
-            handler.getLogger().error("Could not generate any Chest block texture: ", ex);
+            StoneZone.LOGGER.error("Could not generate any Chest block texture: ", ex);
         }
     }
 
-    private static void createChestTextures(ClientDynamicResourcesHandler handler,
+    private static void createChestTextures(ResourceSink sink,
                                             Respriter respriter, Respriter respriterO,
-                                            AnimationMetadataSection baseMeta, List<Palette> basePalette,
+                                            McMetaFile baseMeta, List<Palette> basePalette,
                                             List<Palette> overlayPalette, ResourceLocation normalRLoc,
                                             ResourceLocation trappedRLoc, TextureImage trappedOverlay) {
 
@@ -125,10 +125,10 @@ public class CompatChestTexture {
         if (trappedOverlay != null) {
             TextureImage trapped = recoloredBase.makeCopy();
             trapped.applyOverlay(trappedOverlay.makeCopy());
-            handler.dynamicPack.addAndCloseTexture(trappedRLoc, trapped);
+            sink.addAndCloseTexture(trappedRLoc, trapped);
         }
 
-        handler.dynamicPack.addAndCloseTexture(normalRLoc, recoloredBase);
+        sink.addAndCloseTexture(normalRLoc, recoloredBase);
     }
 
 }

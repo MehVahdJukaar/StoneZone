@@ -7,26 +7,28 @@ import earth.terrarium.chipped.common.blocks.SpecialPointedDripstoneBlock;
 import net.mehvahdjukaar.every_compat.api.EntrySet;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.SZModule;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+
+import java.util.function.Consumer;
 
 import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.createAndAddCustomTags;
 
 
 //SUPPORT: v3.0.7+
-public class ChippedModule extends SZModule {
+public class ChippedModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> bricks;
     public final SimpleEntrySet<StoneType, Block> mini_tiles;
@@ -101,7 +103,7 @@ public class ChippedModule extends SZModule {
         ResourceLocation tab = modRes("main");
 
 
-        bricks = StonezoneEntrySet.of(StoneType.class, "bricks",
+        bricks = StoneZoneEntrySet.of(StoneType.class, "bricks",
                         getModBlock("andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -112,7 +114,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(bricks);
 
-        mini_tiles = StonezoneEntrySet.of(StoneType.class, "mini_tiles",
+        mini_tiles = StoneZoneEntrySet.of(StoneType.class, "mini_tiles",
                         getModBlock("andesite_mini_tiles"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -122,7 +124,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(mini_tiles);
 
-        pillars = StonezoneEntrySet.of(StoneType.class, "pillar",
+        pillars = StoneZoneEntrySet.of(StoneType.class, "pillar",
                         getModBlock("andesite_pillar"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -133,7 +135,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(pillars);
 
-        pillar_tops = StonezoneEntrySet.of(StoneType.class, "pillar_top",
+        pillar_tops = StoneZoneEntrySet.of(StoneType.class, "pillar_top",
                         getModBlock("andesite_pillar_top"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -148,7 +150,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(pillar_tops);
 
-        scales = StonezoneEntrySet.of(StoneType.class, "scales",
+        scales = StoneZoneEntrySet.of(StoneType.class, "scales",
                         getModBlock("andesite_scales"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -162,7 +164,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(scales);
 
-        angry = StonezoneEntrySet.of(StoneType.class, "", "angry",
+        angry = StoneZoneEntrySet.of(StoneType.class, "", "angry",
                         getModBlock("angry_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -172,7 +174,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(angry);
 
-        blank_carving = StonezoneEntrySet.of(StoneType.class, "carving", "blank",
+        blank_carving = StoneZoneEntrySet.of(StoneType.class, "carving", "blank",
                         getModBlock("blank_andesite_carving"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -182,7 +184,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(blank_carving);
 
-        carved = StonezoneEntrySet.of(StoneType.class, "", "carved",
+        carved = StoneZoneEntrySet.of(StoneType.class, "", "carved",
                         getModBlock("carved_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -192,7 +194,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(carved);
 
-        checkered_tiles = StonezoneEntrySet.of(StoneType.class, "tiles", "checkered",
+        checkered_tiles = StoneZoneEntrySet.of(StoneType.class, "tiles", "checkered",
                         getModBlock("checkered_andesite_tiles"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -202,7 +204,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(checkered_tiles);
 
-        cobbled = StonezoneEntrySet.of(StoneType.class, "", "cobbled",
+        cobbled = StoneZoneEntrySet.of(StoneType.class, "", "cobbled",
                         getModBlock("cobbled_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -212,7 +214,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(cobbled);
 
-        cracked_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "cracked",
+        cracked_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "cracked",
                         getModBlock("cracked_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -222,7 +224,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(cracked_bricks);
 
-        crackeddisordered__bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "cracked_disordered",
+        crackeddisordered__bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "cracked_disordered",
                         getModBlock("cracked_disordered_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -232,7 +234,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(crackeddisordered__bricks);
 
-        cracked_flat_tiles = StonezoneEntrySet.of(StoneType.class, "tiles", "cracked_flat",
+        cracked_flat_tiles = StoneZoneEntrySet.of(StoneType.class, "tiles", "cracked_flat",
                         getModBlock("cracked_flat_andesite_tiles"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -242,7 +244,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(cracked_flat_tiles);
 
-        creeper_carving = StonezoneEntrySet.of(StoneType.class, "carving", "creeper",
+        creeper_carving = StoneZoneEntrySet.of(StoneType.class, "carving", "creeper",
                         getModBlock("creeper_andesite_carving"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -252,7 +254,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(creeper_carving);
 
-        crying = StonezoneEntrySet.of(StoneType.class, "", "crying",
+        crying = StoneZoneEntrySet.of(StoneType.class, "", "crying",
                         getModBlock("crying_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -262,7 +264,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(crying);
 
-        cut_blank = StonezoneEntrySet.of(StoneType.class, "", "cut_blank",
+        cut_blank = StoneZoneEntrySet.of(StoneType.class, "", "cut_blank",
                         getModBlock("cut_blank_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -272,7 +274,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(cut_blank);
 
-        glad = StonezoneEntrySet.of(StoneType.class, "", "glad",
+        glad = StoneZoneEntrySet.of(StoneType.class, "", "glad",
                         getModBlock("glad_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -282,7 +284,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(glad);
 
-        duh = StonezoneEntrySet.of(StoneType.class, "", "duh",
+        duh = StoneZoneEntrySet.of(StoneType.class, "", "duh",
                         getModBlock("duh_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -292,7 +294,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(duh);
 
-        engraved = StonezoneEntrySet.of(StoneType.class, "", "engraved",
+        engraved = StoneZoneEntrySet.of(StoneType.class, "", "engraved",
                         getModBlock("engraved_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -302,7 +304,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(engraved);
 
-        eroded = StonezoneEntrySet.of(StoneType.class, "", "eroded",
+        eroded = StoneZoneEntrySet.of(StoneType.class, "", "eroded",
                         getModBlock("eroded_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -312,7 +314,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(eroded);
 
-        etched_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "etched",
+        etched_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "etched",
                         getModBlock("etched_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -322,7 +324,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(etched_bricks);
 
-        flat_tiles = StonezoneEntrySet.of(StoneType.class, "tiles", "flat",
+        flat_tiles = StoneZoneEntrySet.of(StoneType.class, "tiles", "flat",
                         getModBlock("flat_andesite_tiles"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -332,7 +334,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(flat_tiles);
 
-        inlayed = StonezoneEntrySet.of(StoneType.class, "", "inlayed",
+        inlayed = StoneZoneEntrySet.of(StoneType.class, "", "inlayed",
                         getModBlock("inlayed_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -342,7 +344,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(inlayed);
 
-        inscribed = StonezoneEntrySet.of(StoneType.class, "", "inscribed",
+        inscribed = StoneZoneEntrySet.of(StoneType.class, "", "inscribed",
                         getModBlock("inscribed_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -352,7 +354,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(inscribed);
 
-        layed_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "layed",
+        layed_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "layed",
                         getModBlock("layed_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -362,7 +364,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(layed_bricks);
 
-        loded = StonezoneEntrySet.of(StoneType.class, "", "loded",
+        loded = StoneZoneEntrySet.of(StoneType.class, "", "loded",
                         getModBlock("loded_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -372,7 +374,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(loded);
 
-        offset_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "offset",
+        offset_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "offset",
                         getModBlock("offset_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -383,7 +385,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(offset_bricks);
 
-        pillar_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "pillar",
+        pillar_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "pillar",
                         getModBlock("pillar_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -394,7 +396,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(pillar_bricks);
 
-        prismal_remnants = StonezoneEntrySet.of(StoneType.class, "remnants", "prismal",
+        prismal_remnants = StoneZoneEntrySet.of(StoneType.class, "remnants", "prismal",
                         getModBlock("prismal_andesite_remnants"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -404,7 +406,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(prismal_remnants);
 
-        rough = StonezoneEntrySet.of(StoneType.class, "", "rough",
+        rough = StoneZoneEntrySet.of(StoneType.class, "", "rough",
                         getModBlock("rough_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -414,7 +416,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(rough);
 
-        rounded_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "rounded",
+        rounded_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "rounded",
                         getModBlock("rounded_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -424,7 +426,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(rounded_bricks);
 
-        runic_carved = StonezoneEntrySet.of(StoneType.class, "", "runic_carved",
+        runic_carved = StoneZoneEntrySet.of(StoneType.class, "", "runic_carved",
                         getModBlock("runic_carved_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -434,7 +436,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(runic_carved);
 
-        sad = StonezoneEntrySet.of(StoneType.class, "", "sad",
+        sad = StoneZoneEntrySet.of(StoneType.class, "", "sad",
                         getModBlock("sad_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -444,7 +446,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(sad);
 
-        sanded = StonezoneEntrySet.of(StoneType.class, "", "sanded",
+        sanded = StoneZoneEntrySet.of(StoneType.class, "", "sanded",
                         getModBlock("sanded_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -454,7 +456,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(sanded);
 
-        small_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "small",
+        small_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "small",
                         getModBlock("small_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -464,7 +466,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(small_bricks);
 
-        smooth_inlayed = StonezoneEntrySet.of(StoneType.class, "", "smooth_inlayed",
+        smooth_inlayed = StoneZoneEntrySet.of(StoneType.class, "", "smooth_inlayed",
                         getModBlock("smooth_inlayed_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -474,7 +476,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(smooth_inlayed);
 
-        smooth_ringed = StonezoneEntrySet.of(StoneType.class, "", "smooth_ringed",
+        smooth_ringed = StoneZoneEntrySet.of(StoneType.class, "", "smooth_ringed",
                         getModBlock("smooth_ringed_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -484,7 +486,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(smooth_ringed);
 
-        smoothed_double_inlayed = StonezoneEntrySet.of(StoneType.class, "", "smoothed_double_inlayed",
+        smoothed_double_inlayed = StoneZoneEntrySet.of(StoneType.class, "", "smoothed_double_inlayed",
                         getModBlock("smoothed_double_inlayed_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -494,7 +496,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(smoothed_double_inlayed);
 
-        spider_carving = StonezoneEntrySet.of(StoneType.class, "carving", "spider",
+        spider_carving = StoneZoneEntrySet.of(StoneType.class, "carving", "spider",
                         getModBlock("spider_andesite_carving"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -504,11 +506,11 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(spider_carving);
 
-        pointed_dripstone = StonezoneEntrySet.of(StoneType.class, "pointed_dripstone",
+        pointed_dripstone = StoneZoneEntrySet.of(StoneType.class, "pointed_dripstone",
                         getModBlock("andesite_pointed_dripstone"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new SpecialPointedDripstoneBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .setRenderType(RenderLayer.TRANSLUCENT)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone"))
                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_down_base"))
                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_down_frustum"))
@@ -525,7 +527,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(pointed_dripstone);
 
-        stacked_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "stacked",
+        stacked_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "stacked",
                         getModBlock("stacked_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -535,7 +537,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(stacked_bricks);
 
-        tiled = StonezoneEntrySet.of(StoneType.class, "", "tiled",
+        tiled = StoneZoneEntrySet.of(StoneType.class, "", "tiled",
                         getModBlock("tiled_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -545,7 +547,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(tiled);
 
-        tiny_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "tiny",
+        tiny_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "tiny",
                         getModBlock("tiny_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -555,7 +557,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(tiny_bricks);
 
-        tiny_layered_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "tiny_layered",
+        tiny_layered_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "tiny_layered",
                         getModBlock("tiny_layered_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -565,7 +567,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(tiny_layered_bricks);
 
-        tiny_layered_slabs = StonezoneEntrySet.of(StoneType.class, "slabs", "tiny_layered",
+        tiny_layered_slabs = StoneZoneEntrySet.of(StoneType.class, "slabs", "tiny_layered",
                         getModBlock("tiny_layered_andesite_slabs"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -575,7 +577,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(tiny_layered_slabs);
 
-        trodden = StonezoneEntrySet.of(StoneType.class, "", "trodden",
+        trodden = StoneZoneEntrySet.of(StoneType.class, "", "trodden",
                         getModBlock("trodden_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -585,7 +587,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(trodden);
 
-        unamused = StonezoneEntrySet.of(StoneType.class, "", "unamused",
+        unamused = StoneZoneEntrySet.of(StoneType.class, "", "unamused",
                         getModBlock("unamused_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -595,7 +597,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(unamused);
 
-        vertical_cut = StonezoneEntrySet.of(StoneType.class, "", "vertical_cut",
+        vertical_cut = StoneZoneEntrySet.of(StoneType.class, "", "vertical_cut",
                         getModBlock("vertical_cut_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -605,7 +607,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(vertical_cut);
 
-        vertical_disordered_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "vertical_disordered",
+        vertical_disordered_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "vertical_disordered",
                         getModBlock("vertical_disordered_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -615,7 +617,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(vertical_disordered_bricks);
 
-        weathered = StonezoneEntrySet.of(StoneType.class, "", "weathered",
+        weathered = StoneZoneEntrySet.of(StoneType.class, "", "weathered",
                         getModBlock("weathered_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -625,7 +627,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(weathered);
 
-        bordered = StonezoneEntrySet.of(StoneType.class, "", "bordered",
+        bordered = StoneZoneEntrySet.of(StoneType.class, "", "bordered",
                         getModBlock("bordered_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -639,7 +641,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(bordered);
 
-        brick_bordered = StonezoneEntrySet.of(StoneType.class, "", "brick_bordered",
+        brick_bordered = StoneZoneEntrySet.of(StoneType.class, "", "brick_bordered",
                         getModBlock("brick_bordered_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -653,7 +655,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(brick_bordered);
 
-        cut_column = StonezoneEntrySet.of(StoneType.class, "column", "cut",
+        cut_column = StoneZoneEntrySet.of(StoneType.class, "column", "cut",
                         getModBlock("cut_andesite_column"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -667,7 +669,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(cut_column);
 
-        edged_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "edged",
+        edged_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "edged",
                         getModBlock("edged_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -681,7 +683,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(edged_bricks);
 
-        overlapping_tiles = StonezoneEntrySet.of(StoneType.class, "tiles", "overlapping",
+        overlapping_tiles = StoneZoneEntrySet.of(StoneType.class, "tiles", "overlapping",
                         getModBlock("overlapping_andesite_tiles"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -695,7 +697,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(overlapping_tiles);
 
-        polished = StonezoneEntrySet.of(StoneType.class, "", "polished",
+        polished = StoneZoneEntrySet.of(StoneType.class, "", "polished",
                         getModBlock("polished_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -706,7 +708,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(polished);
 
-        smooth_column = StonezoneEntrySet.of(StoneType.class, "column", "smooth",
+        smooth_column = StoneZoneEntrySet.of(StoneType.class, "column", "smooth",
                         getModBlock("smooth_andesite_column"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -720,7 +722,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(smooth_column);
 
-        thick_inlayed = StonezoneEntrySet.of(StoneType.class, "", "thick_inlayed",
+        thick_inlayed = StoneZoneEntrySet.of(StoneType.class, "", "thick_inlayed",
                         getModBlock("thick_inlayed_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -733,7 +735,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(thick_inlayed);
 
-        tiled_column = StonezoneEntrySet.of(StoneType.class, "column", "tiled",
+        tiled_column = StoneZoneEntrySet.of(StoneType.class, "column", "tiled",
                         getModBlock("tiled_andesite_column"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -747,7 +749,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(tiled_column);
 
-        tiled_bordered = StonezoneEntrySet.of(StoneType.class, "", "tiled_bordered",
+        tiled_bordered = StoneZoneEntrySet.of(StoneType.class, "", "tiled_bordered",
                         getModBlock("tiled_bordered_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -761,7 +763,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(tiled_bordered);
 
-        tiny_brick_bordered = StonezoneEntrySet.of(StoneType.class, "", "tiny_brick_bordered",
+        tiny_brick_bordered = StoneZoneEntrySet.of(StoneType.class, "", "tiny_brick_bordered",
                         getModBlock("tiny_brick_bordered_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -774,7 +776,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(tiny_brick_bordered);
 
-        curly_pillar = StonezoneEntrySet.of(StoneType.class, "pillar", "curly",
+        curly_pillar = StoneZoneEntrySet.of(StoneType.class, "pillar", "curly",
                         getModBlock("curly_andesite_pillar"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -788,7 +790,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(curly_pillar);
 
-        fine_pillar = StonezoneEntrySet.of(StoneType.class, "pillar", "fine",
+        fine_pillar = StoneZoneEntrySet.of(StoneType.class, "pillar", "fine",
                         getModBlock("fine_andesite_pillar"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -803,7 +805,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(fine_pillar);
 
-        ornate_pillar = StonezoneEntrySet.of(StoneType.class, "pillar", "ornate",
+        ornate_pillar = StoneZoneEntrySet.of(StoneType.class, "pillar", "ornate",
                         getModBlock("ornate_andesite_pillar"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -818,7 +820,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(ornate_pillar);
 
-        simple_pillar = StonezoneEntrySet.of(StoneType.class, "pillar", "simple",
+        simple_pillar = StoneZoneEntrySet.of(StoneType.class, "pillar", "simple",
                         getModBlock("simple_andesite_pillar"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -833,7 +835,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(simple_pillar);
 
-        massive_bricks = StonezoneEntrySet.of(StoneType.class, "bricks", "massive",
+        massive_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "massive",
                         getModBlock("massive_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -848,7 +850,7 @@ public class ChippedModule extends SZModule {
                 .build();
         this.addEntry(massive_bricks);
 
-        spiraled = StonezoneEntrySet.of(StoneType.class, "", "spiraled",
+        spiraled = StoneZoneEntrySet.of(StoneType.class, "", "spiraled",
                         getModBlock("spiraled_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -863,14 +865,18 @@ public class ChippedModule extends SZModule {
 
     @Override
     // RECIPES & TAGS
-    public void addDynamicServerResources(ServerDynamicResourcesHandler handler, ResourceManager manager) {
-        super.addDynamicServerResources(handler, manager);
+    public void addDynamicServerResources(Consumer<ResourceGenTask> executor) {
+        super.addDynamicServerResources(executor);
 
-        addMasonTableRecipe(handler);
+        executor.accept((manager, sink) -> {
+
+            addMasonTableRecipe(sink);
+
+        });
 
     }
 
-    private void addMasonTableRecipe(ServerDynamicResourcesHandler handler) {
+    private void addMasonTableRecipe(ResourceSink sink) {
         JsonArray listTag = new JsonArray();
 
         // Creating tag for every stonetype
@@ -880,13 +886,13 @@ public class ChippedModule extends SZModule {
             if (stoneType.isVanilla()) continue;
 
             ResourceLocation tagResLoc = StoneZone.res(shortenedId() +"/"+ stoneType.getAppendableId());
-            createAndAddCustomTags(tagResLoc, handler, stoneType.stone);
+            createAndAddCustomTags(tagResLoc, sink, stoneType.stone);
 
             for (EntrySet<?> entry : this.getEntries()) {
 
                 SimpleEntrySet<?, ?> currentEntry = ((SimpleEntrySet<?, ?>) entry);
 
-                isTagCreated = createAndAddCustomTags(tagResLoc, handler, currentEntry.blocks.get(stoneType));
+                isTagCreated = createAndAddCustomTags(tagResLoc, sink, currentEntry.blocks.get(stoneType));
 
             }
 
@@ -896,7 +902,7 @@ public class ChippedModule extends SZModule {
         JsonObject recipeJO = new JsonObject();
         recipeJO.addProperty("type", "chipped:mason_table");
         recipeJO.add("tags", listTag);
-        handler.dynamicPack.addJson(StoneZone.res(shortenedId() + "/mason_table"), recipeJO, ResType.RECIPES);
+        sink.addJson(StoneZone.res(shortenedId() + "/mason_table"), recipeJO, ResType.RECIPES);
 
     }
 

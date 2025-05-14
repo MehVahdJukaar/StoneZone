@@ -2,12 +2,12 @@ package net.mehvahdjukaar.stone_zone.modules.forge.stone_chest;
 
 import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.SZModule;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.common_classes.CompatChestBlock;
@@ -17,7 +17,6 @@ import net.mehvahdjukaar.stone_zone.common_classes.CompatChestItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -30,11 +29,13 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.Tags;
 
+import java.util.function.Consumer;
+
 import static net.mehvahdjukaar.stone_zone.common_classes.CompatChestTexture.generateChestTexture;
 
 
 //SUPPORT: v1.0.0+
-public class StoneChestModule extends SZModule {
+public class StoneChestModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> chests;
     public final ItemOnlyEntrySet<StoneType, Item> parts;
@@ -43,7 +44,7 @@ public class StoneChestModule extends SZModule {
         super(modId, "sc");
         ResourceKey<CreativeModeTab> tab = CreativeModeTabs.FUNCTIONAL_BLOCKS;
 
-        chests = StonezoneEntrySet.of(StoneType.class, "","chest",
+        chests = StoneZoneEntrySet.of(StoneType.class, "","chest",
                         getModBlock("chest_stone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new CompatChestBlock(this::getTile, Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -102,32 +103,36 @@ public class StoneChestModule extends SZModule {
 
     @Override
     // Textures
-    public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
-        super.addDynamicClientResources(handler, manager);
-        chests.blocks.forEach((stoneType, block) -> {
+    public void addDynamicClientResources(Consumer<ResourceGenTask> executor) {
+        super.addDynamicClientResources(executor);
 
-            // SINGLE
-            generateChestTexture(handler, manager, shortenedId(), stoneType, block,
-                    modRes("entity/chest/stone"),
-                    StoneZone.res("entity/sc/stone_m"),
-                    StoneZone.res("entity/sc/stone_o"),
-                    null
-            );
-            // LEFT
-            generateChestTexture(handler, manager, shortenedId(), stoneType, block,
-                    modRes("entity/chest/stone_left"),
-                    StoneZone.res("entity/sc/stone_left_m"),
-                    StoneZone.res("entity/sc/stone_left_o"),
-                    null
-            );
-            // RIGHT
-            generateChestTexture(handler, manager, shortenedId(), stoneType, block,
-                    modRes("entity/chest/stone_right"),
-                    StoneZone.res("entity/sc/stone_right_m"),
-                    StoneZone.res("entity/sc/stone_right_o"),
-                    null
-            );
+        executor.accept((manager, sink) ->
 
-        });
+            chests.blocks.forEach((stoneType, block) -> {
+
+                // SINGLE
+                generateChestTexture(sink, manager, shortenedId(), stoneType, block,
+                        modRes("entity/chest/stone"),
+                        StoneZone.res("entity/sc/stone_m"),
+                        StoneZone.res("entity/sc/stone_o"),
+                        null
+                );
+                // LEFT
+                generateChestTexture(sink, manager, shortenedId(), stoneType, block,
+                        modRes("entity/chest/stone_left"),
+                        StoneZone.res("entity/sc/stone_left_m"),
+                        StoneZone.res("entity/sc/stone_left_o"),
+                        null
+                );
+                // RIGHT
+                generateChestTexture(sink, manager, shortenedId(), stoneType, block,
+                        modRes("entity/chest/stone_right"),
+                        StoneZone.res("entity/sc/stone_right_m"),
+                        StoneZone.res("entity/sc/stone_right_o"),
+                        null
+                );
+
+            })
+        );
     }
 }

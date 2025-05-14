@@ -4,20 +4,22 @@ import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
+/**
+ * Childkey Availability:
+ * stone, stairs, slab, wall, button, pressure_plate, smooth_stone
+ * cobblestone, mossy_cobblestone
+ * polished, polished_stairs, polished_slab
+ * bricks, brick_stairs, brick_slab, brick_wall, cracked_bricks, brick_tiles,
+ * mossy_bricks, mossy_brick_slab, mossy_brick_stairs, mossy_brick_wall
+ **/
 public abstract class RockType extends BlockType{
-    /**
-     * Childkey Availability:
-     * stone, cobblestone, stairs, slab, wall, button, pressure_plate, smooth_stone
-     * polished, polished_stairs, polished_slab
-     * bricks, brick_stairs, brick_slab, brick_wall, cracked_bricks, brick_tiles,
-     * mossy_bricks, mossy_brick_slab, mossy_brick_stairs, mossy_brick_wall
-     **/
 
     public final Block block;
 
@@ -36,37 +38,46 @@ public abstract class RockType extends BlockType{
     @Override
     protected void initializeChildrenBlocks() {
         this.addChild("stone", this.block);
-        this.addChild("stairs", this.findRelatedEntry("stairs", BuiltInRegistries.BLOCK));
-        this.addChild("slab", this.findRelatedEntry("slab", BuiltInRegistries.BLOCK));
-        this.addChild("wall", this.findRelatedEntry("wall", BuiltInRegistries.BLOCK));
-        this.addChild("button", this.findRelatedEntry("button", BuiltInRegistries.BLOCK));
-        this.addChild("pressure_plate", this.findRelatedEntry("pressure_plate", BuiltInRegistries.BLOCK));
-        this.addChild("smooth_stone", this.findRelatedEntry("smooth", "stone", BuiltInRegistries.BLOCK));
+        this.addChild("stairs", this.findRelatedBlock("", "stairs"));
+        this.addChild("slab", this.findRelatedBlock("", "slab"));
+        this.addChild("wall", this.findRelatedBlock("", "wall"));
+        this.addChild("button", this.findRelatedBlock("", "button"));
+        this.addChild("pressure_plate", this.findRelatedBlock("", "pressure_plate"));
 
-        Block cobblestone = this.findRelatedEntry("cobblestone", BuiltInRegistries.BLOCK);
-        this.addChild("cobblestone", cobblestone);
+        Block cobblestone = this.findCobblestoneEntry("", "cobblestone");
         if (Objects.nonNull(cobblestone)) {
-            this.addChild("mossy_cobblestone", this.findRelatedEntry("mossy","cobblestone", BuiltInRegistries.BLOCK));
+            this.addChild("cobblestone", cobblestone);
+            this.addChild("mossy_cobblestone", this.findRelatedBlock("mossy","cobblestone"));
         }
 
-        Block polished = this.findRelatedEntry("polished", BuiltInRegistries.BLOCK);
-        this.addChild("polished", polished);
+        Block polished = this.findRelatedBlock("polished", "");
         if (Objects.nonNull(polished)) {
-            this.addChild("polished_stairs", findRelatedEntry("polished", "stairs", BuiltInRegistries.BLOCK));
-            this.addChild("polished_slab", findRelatedEntry("polished", "slab", BuiltInRegistries.BLOCK));
+            this.addChild("polished", polished);
+            this.addChild("polished_stairs", findRelatedBlock("polished", "stairs"));
+            this.addChild("polished_slab", findRelatedBlock("polished", "slab"));
         }
 
-        Block bricks = this.findRelatedEntry("bricks", BuiltInRegistries.BLOCK);
-        this.addChild("bricks", bricks);
-        if (bricks != null) {
+        Block smooth = this.findRelatedBlock("smooth", "");
+        if (Objects.nonNull(smooth)) {
+            this.addChild("smooth", smooth);
+            this.addChild("smooth_stairs", findRelatedBlock("smooth", "stairs"));
+            this.addChild("smooth_slab", findRelatedBlock("smooth", "slab"));
+            this.addChild("smooth_wall", findRelatedBlock("smooth", "wall"));
+        }
+
+        Block bricks = this.findBrickEntry("", "bricks");
+        Block bricksTFC = this.findRelatedBlock("", "bricks");
+        if (Objects.nonNull(bricks) || Objects.nonNull(bricksTFC)) {
             // Support TFC & AFC
             if (this.id.getNamespace().matches("tfc|afc")) {
-                this.addChild("brick_stairs", findRelatedEntry("bricks", "stairs", BuiltInRegistries.BLOCK));
-                this.addChild("brick_slab", findRelatedEntry("bricks", "slab", BuiltInRegistries.BLOCK));
-                this.addChild("brick_wall", findRelatedEntry("bricks", "wall", BuiltInRegistries.BLOCK));
-                this.addChild("cracked_bricks", findRelatedEntry("cracked_bricks",  BuiltInRegistries.BLOCK));
+                this.addChild("bricks", bricksTFC);
+                this.addChild("brick_stairs", findRelatedBlock("bricks", "stairs"));
+                this.addChild("brick_slab", findRelatedBlock("bricks", "slab"));
+                this.addChild("brick_wall", findRelatedBlock("bricks", "wall"));
+                this.addChild("cracked_bricks", findRelatedBlock("cracked_bricks", ""));
             }
             else {
+                this.addChild("bricks", bricks);
                 this.addChild("brick_stairs", findChildBrickEntry("stairs"));
                 this.addChild("brick_slab", findChildBrickEntry("slab"));
                 this.addChild("brick_wall", findChildBrickEntry("wall"));
@@ -79,19 +90,20 @@ public abstract class RockType extends BlockType{
             }
         }
 
-        // Support TFC & AFC
-        Block smoothTFC = findRelatedEntry("smooth", BuiltInRegistries.BLOCK);
-        this.addChild("smooth_stone", smoothTFC);
-        if (Objects.nonNull(smoothTFC)) {
-            this.addChild("smooth_stairs", findRelatedEntry("smooth", "stairs", BuiltInRegistries.BLOCK));
-            this.addChild("smooth_slab", findRelatedEntry("smooth", "slab", BuiltInRegistries.BLOCK));
-            this.addChild("smooth_wall", findRelatedEntry("smooth", "wall", BuiltInRegistries.BLOCK));
-        }
     }
 
     @Override
     protected void initializeChildrenItems() {
-        this.addChild("brick", this.findRelatedEntry("brick", BuiltInRegistries.ITEM));
+
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private @Nullable Block findCobblestoneEntry(String prefix, String suffix) {
+        suffix = (suffix.isEmpty()) ? "" : "_" + suffix;
+
+        Block first = this.findRelatedEntry("cobbled", suffix, BuiltInRegistries.BLOCK);
+        if (first != null) return first;
+        return this.findRelatedEntry(prefix, suffix, BuiltInRegistries.BLOCK);
     }
 
     /// @param suffix concatenation of "brick_" + suffix
@@ -101,13 +113,12 @@ public abstract class RockType extends BlockType{
         return this.findRelatedEntry("bricks_" + suffix, BuiltInRegistries.BLOCK);
     }
 
-    @SuppressWarnings("SameParameterValue")
-    private @Nullable Block findBrickEntry(String pre, String post) {
-        post = (post.isEmpty()) ? "" : "_" + post;
+    private @Nullable Block findBrickEntry(String prefix, String suffix) {
+        suffix = (suffix.isEmpty()) ? "" : "_" + suffix;
 
-        var first = this.findRelatedEntry(pre,"brick" + post, BuiltInRegistries.BLOCK);
+        Block first = this.findRelatedEntry(prefix,"brick" + suffix, BuiltInRegistries.BLOCK);
         if (first != null) return first;
-        return this.findRelatedEntry(pre,"bricks" + post, BuiltInRegistries.BLOCK);
+        return this.findRelatedEntry(prefix,"bricks" + suffix, BuiltInRegistries.BLOCK);
     }
 
     @Override
@@ -116,7 +127,7 @@ public abstract class RockType extends BlockType{
             return reg.get(new ResourceLocation("cobblestone"));
         }
 
-        if (!suffix.isEmpty()) suffix = "_" + suffix;
+        if (!suffix.isEmpty() && !prefixOrInfix.isEmpty()) suffix = "_" + suffix;
         ResourceLocation[] targets = {
                 new ResourceLocation(id.getNamespace(), id.getPath() +"_"+ prefixOrInfix + suffix),
                 new ResourceLocation(id.getNamespace(), prefixOrInfix +"_"+ id.getPath() + suffix),
@@ -137,9 +148,13 @@ public abstract class RockType extends BlockType{
         return found;
     }
 
-    @Override
-    protected <V> V findRelatedEntry(String prefixOrInfix, Registry<V> reg) {
-        return findRelatedEntry(prefixOrInfix, "", reg);
+    private @Nullable Block findRelatedBlock(String prefixOrInfix, String suffix) {
+        return findRelatedEntry(prefixOrInfix, suffix, BuiltInRegistries.BLOCK);
+    }
+
+    @SuppressWarnings("unused")
+    private @Nullable Item findRelatedItem(String prefixOrInfix, String suffix) {
+        return findRelatedEntry(prefixOrInfix, suffix, BuiltInRegistries.ITEM);
     }
 
     @Override
@@ -148,7 +163,7 @@ public abstract class RockType extends BlockType{
     }
 
     public Block bricksOrStone() {
-        Block bricks= this.getBlockOfThis("bricks");
+        Block bricks = this.getBlockOfThis("bricks");
         return bricks != null ? bricks : this.block;
     }
 

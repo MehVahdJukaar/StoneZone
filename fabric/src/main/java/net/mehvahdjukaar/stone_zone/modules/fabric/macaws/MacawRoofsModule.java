@@ -2,25 +2,21 @@ package net.mehvahdjukaar.stone_zone.modules.fabric.macaws;
 
 import net.kikoz.mcwroofs.objects.roofs.*;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.SZModule;
-import net.mehvahdjukaar.stone_zone.api.StonezoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
-import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromParentModel;
-
 
 //SUPPORT: v2.3.1+
-public class MacawRoofsModule extends SZModule {
+public class MacawRoofsModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> roofs;
     public final SimpleEntrySet<StoneType, Block> attic_roofs;
@@ -42,7 +38,7 @@ public class MacawRoofsModule extends SZModule {
         super(modId, "mcr");
         ResourceLocation tab = modRes("roofs");
 
-        roofs = StonezoneEntrySet.of(StoneType.class, "roof",
+        roofs = StoneZoneEntrySet.of(StoneType.class, "roof",
                         getModBlock("stone_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new BaseRoof(stoneType.stone.defaultBlockState(), stoneCopyProperties(stoneType)
                         )
@@ -54,19 +50,20 @@ public class MacawRoofsModule extends SZModule {
                 .build();
         this.addEntry(roofs);
 
-        attic_roofs = StonezoneEntrySet.of(StoneType.class, "attic_roof",
+        attic_roofs = StoneZoneEntrySet.of(StoneType.class, "attic_roof",
                         getModBlock("stone_attic_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new RoofGlass(stoneCopyProperties(stoneType)
                         )
                 )
                 //TEXTURES: stone
+                .excludeTextureFromTinting("#3") //REASON: glass
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(attic_roofs);
 
-        top_roofs = StonezoneEntrySet.of(StoneType.class, "top_roof",
+        top_roofs = StoneZoneEntrySet.of(StoneType.class, "top_roof",
                         getModBlock("stone_top_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new RoofTopNew(stoneCopyProperties(stoneType)
                         )
@@ -78,7 +75,7 @@ public class MacawRoofsModule extends SZModule {
                 .build();
         this.addEntry(top_roofs);
 
-        lower_roofs = StonezoneEntrySet.of(StoneType.class, "lower_roof",
+        lower_roofs = StoneZoneEntrySet.of(StoneType.class, "lower_roof",
                         getModBlock("stone_lower_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new BaseRoof(stoneType.stone.defaultBlockState(), stoneCopyProperties(stoneType)
                         )
@@ -90,7 +87,7 @@ public class MacawRoofsModule extends SZModule {
                 .build();
         this.addEntry(lower_roofs);
 
-        steep_roofs = StonezoneEntrySet.of(StoneType.class, "steep_roof",
+        steep_roofs = StoneZoneEntrySet.of(StoneType.class, "steep_roof",
                         getModBlock("stone_steep_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SteepRoof(stoneType.stone.defaultBlockState(), stoneCopyProperties(stoneType)
                         )
@@ -102,7 +99,7 @@ public class MacawRoofsModule extends SZModule {
                 .build();
         this.addEntry(steep_roofs);
 
-        upper_lower_roofs = StonezoneEntrySet.of(StoneType.class, "upper_lower_roof",
+        upper_lower_roofs = StoneZoneEntrySet.of(StoneType.class, "upper_lower_roof",
                         getModBlock("stone_upper_lower_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Lower(stoneType.stone.defaultBlockState(), stoneCopyProperties(stoneType)
                         )
@@ -114,7 +111,7 @@ public class MacawRoofsModule extends SZModule {
                 .build();
         this.addEntry(upper_lower_roofs);
 
-        upper_steep_roofs = StonezoneEntrySet.of(StoneType.class, "upper_steep_roof",
+        upper_steep_roofs = StoneZoneEntrySet.of(StoneType.class, "upper_steep_roof",
                         getModBlock("stone_upper_steep_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Steep(stoneType.stone.defaultBlockState(), Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -125,7 +122,7 @@ public class MacawRoofsModule extends SZModule {
                 .build();
         this.addEntry(upper_steep_roofs);
 
-        bricks_roofs = StonezoneEntrySet.of(StoneType.class, "bricks_roof",
+        bricks_roofs = StoneZoneEntrySet.of(StoneType.class, "bricks_roof",
                         getModBlock("stone_bricks_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new BaseRoof(stoneType.stone.defaultBlockState(), stoneCopyProperties(stoneType))
                 )
@@ -137,7 +134,7 @@ public class MacawRoofsModule extends SZModule {
                 .build();
         this.addEntry(bricks_roofs);
 
-        bricks_attic_roofs = StonezoneEntrySet.of(StoneType.class, "bricks_attic_roof",
+        bricks_attic_roofs = StoneZoneEntrySet.of(StoneType.class, "bricks_attic_roof",
                         getModBlock("stone_bricks_attic_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new RoofGlass(stoneCopyProperties(stoneType))
                 )
@@ -149,7 +146,7 @@ public class MacawRoofsModule extends SZModule {
                 .build();
         this.addEntry(bricks_attic_roofs);
 
-        bricks_top_roofs = StonezoneEntrySet.of(StoneType.class, "bricks_top_roof",
+        bricks_top_roofs = StoneZoneEntrySet.of(StoneType.class, "bricks_top_roof",
                         getModBlock("stone_bricks_top_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new RoofTopNew(stoneCopyProperties(stoneType))
                 )
@@ -161,7 +158,7 @@ public class MacawRoofsModule extends SZModule {
                 .build();
         this.addEntry(bricks_top_roofs);
 
-        bricks_lower_roofs = StonezoneEntrySet.of(StoneType.class, "bricks_lower_roof",
+        bricks_lower_roofs = StoneZoneEntrySet.of(StoneType.class, "bricks_lower_roof",
                         getModBlock("stone_bricks_lower_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new BaseRoof(stoneType.stone.defaultBlockState(), stoneCopyProperties(stoneType))
                 )
@@ -173,7 +170,7 @@ public class MacawRoofsModule extends SZModule {
                 .build();
         this.addEntry(bricks_lower_roofs);
 
-        bricks_steep_roofs = StonezoneEntrySet.of(StoneType.class, "bricks_steep_roof",
+        bricks_steep_roofs = StoneZoneEntrySet.of(StoneType.class, "bricks_steep_roof",
                         getModBlock("stone_bricks_steep_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SteepRoof(stoneType.stone.defaultBlockState(), stoneCopyProperties(stoneType))
                 )
@@ -185,7 +182,7 @@ public class MacawRoofsModule extends SZModule {
                 .build();
         this.addEntry(bricks_steep_roofs);
 
-        bricks_upper_lower_roofs = StonezoneEntrySet.of(StoneType.class, "bricks_upper_lower_roof",
+        bricks_upper_lower_roofs = StoneZoneEntrySet.of(StoneType.class, "bricks_upper_lower_roof",
                         getModBlock("stone_bricks_upper_lower_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Lower(stoneType.stone.defaultBlockState(), stoneCopyProperties(stoneType))
                 )
@@ -197,7 +194,7 @@ public class MacawRoofsModule extends SZModule {
                 .build();
         this.addEntry(bricks_upper_lower_roofs);
 
-        bricks_upper_steep_roofs = StonezoneEntrySet.of(StoneType.class, "bricks_upper_steep_roof",
+        bricks_upper_steep_roofs = StoneZoneEntrySet.of(StoneType.class, "bricks_upper_steep_roof",
                         getModBlock("stone_bricks_upper_steep_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Steep(stoneType.stone.defaultBlockState(), stoneCopyProperties(stoneType))
                 )
@@ -218,16 +215,4 @@ public class MacawRoofsModule extends SZModule {
                 .requiresCorrectToolForDrops();
     }
 
-    @Override
-    // MODELS
-    public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
-        super.addDynamicClientResources(handler, manager);
-
-// Attic-Roof Model
-        String pathAtticRoof = "mcwroofs/parent/attic_roof";
-
-        removeTintIndexFromParentModel(pathAtticRoof + "_closed", "#3", handler, manager);
-        removeTintIndexFromParentModel(pathAtticRoof + "_open", "#3", handler, manager);
-
-    }
 }

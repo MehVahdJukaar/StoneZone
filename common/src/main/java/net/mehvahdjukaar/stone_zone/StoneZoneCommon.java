@@ -1,9 +1,10 @@
 package net.mehvahdjukaar.stone_zone;
 
-import net.mehvahdjukaar.stone_zone.modules.bbb.BuildingButBetterModule;
+import net.mehvahdjukaar.stone_zone.modules.building_but_better.BuildingButBetterModule;
 import net.mehvahdjukaar.stone_zone.modules.better_archeology.BetterArcheologyModule;
 import net.mehvahdjukaar.stone_zone.modules.blockus.BlockusModule;
 import net.mehvahdjukaar.stone_zone.modules.chipped.ChippedModule;
+import net.mehvahdjukaar.stone_zone.modules.more_beautiful_torches.MoreBeautifulTorches;
 import net.mehvahdjukaar.stone_zone.modules.quark.QuarkModule;
 import net.mehvahdjukaar.stone_zone.modules.quark.QuarkMudModule;
 import net.mehvahdjukaar.stone_zone.modules.stoneworks.StoneworksModule;
@@ -29,14 +30,15 @@ public class StoneZoneCommon {
 
 //!! =================================================== Add Modules ================================================ \\
 
-        addIfLoaded("twigs", () -> TwigsModule::new);
-        addIfLoaded("bbb", () -> BuildingButBetterModule::new);
-        addIfLoaded("chipped", () -> ChippedModule::new);
+        addIfLoaded("betterarcheology", () -> BetterArcheologyModule::new);
         addIfLoaded("blockus", () -> BlockusModule::new);
-        addIfLoaded("stoneworks", () -> StoneworksModule::new);
+        addIfLoaded("building_but_better", () -> BuildingButBetterModule::new);
+        addIfLoaded("chipped", () -> ChippedModule::new);
         addIfLoaded("quark", () -> QuarkModule::new);
         addIfLoaded("quark", () -> QuarkMudModule::new);
-        addIfLoaded("betterarcheology", () -> BetterArcheologyModule::new);
+        addIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorches::new);
+        addIfLoaded("stoneworks", () -> StoneworksModule::new);
+        addIfLoaded("twigs", () -> TwigsModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
 

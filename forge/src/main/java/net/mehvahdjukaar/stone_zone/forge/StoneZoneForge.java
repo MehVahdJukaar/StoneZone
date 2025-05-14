@@ -2,6 +2,8 @@ package net.mehvahdjukaar.stone_zone.forge;
 
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
+import net.mehvahdjukaar.stone_zone.modules.forge.additional_lights.AdditionalLightsModule;
+import net.mehvahdjukaar.stone_zone.modules.forge.blocks_plus.BlocksPlusModule;
 import net.mehvahdjukaar.stone_zone.modules.forge.create.CreateModule;
 import net.mehvahdjukaar.stone_zone.modules.forge.macaws.*;
 import net.mehvahdjukaar.stone_zone.modules.forge.rechiseled.RechiseledModule;
@@ -35,11 +37,11 @@ public class StoneZoneForge extends StoneZoneCommon {
         addIfLoaded("mcwpaths", () -> MacawPathsModule::new);
 
         // General
+        addIfLoaded("additional_lights", () -> AdditionalLightsModule::new);
+        addIfLoaded("blocksplus", () -> BlocksPlusModule::new);
+        addIfLoaded("create", () -> CreateModule::new);
         addIfLoaded("rechiseled", () -> RechiseledModule::new);
         addIfLoaded("stonechest", () -> StoneChestModule::new);
-
-        //!! TEMP - Until Fabric version is updated to v6.0.0
-        addIfLoaded("create", () -> CreateModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
 

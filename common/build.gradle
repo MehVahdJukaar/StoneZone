@@ -15,7 +15,7 @@ dependencies {
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
     String path = System.getenv('REPOS20_1')
     boolean usesMavenLocalML =  System.getenv().MY_PC == "1"
-    print "isMyPc: $usesMavenLocalML"
+    print "isMyPc: $usesMavenLocalML\n"
 
         //- Repository LOCAL
     if (enable_moonlight_test.toBoolean()) {
@@ -27,7 +27,7 @@ dependencies {
         }
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:moonlight:fabric_${moonlight_mavenVersion}") // v2.13.79
+        modImplementation("maven.modrinth:moonlight:${moonlight_mavenVersion}-fabric") // v2.14.0
     }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
@@ -36,7 +36,7 @@ dependencies {
         modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.7.24
+        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.8.2
     }
 
 //!! ================================================= DEPENDENCIES ================================================= \\
@@ -52,11 +52,12 @@ dependencies {
     //+ REQUIRED - The modules access libaries from below
     modCompileOnly("curse.maven:better-archeology-835687:5704094") // supermartijn642s' Config-Lib
     modCompileOnly("curse.maven:blockus-312289:5896309")
-    modCompileOnly("curse.maven:quark-243121:5594847")
-    modCompileOnly("curse.maven:create-fabric-624165:5982726")
-    modCompileOnly("curse.maven:twigs-496913:4603805")
     modCompileOnly("curse.maven:building-but-better-989479:5382599")
+    modCompileOnly("curse.maven:create-fabric-624165:5982726")
+    modCompileOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib
+    modCompileOnly("curse.maven:quark-243121:5594847")
     modCompileOnly("curse.maven:stoneworks-852663:4611947")
+    modCompileOnly("curse.maven:twigs-496913:4603805")
 
         //+ OTHER MAVENS
     modCompileOnly("earth.terrarium.chipped:chipped-fabric-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib
