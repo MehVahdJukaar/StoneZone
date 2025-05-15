@@ -229,6 +229,7 @@ public class CompatStoneType {
             BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
         }
     }
+
 //!! MudType
     public static void simpleMudFinder(String modId, String nameStoneType) {
         if (PlatHelper.isModLoaded(modId)) {
