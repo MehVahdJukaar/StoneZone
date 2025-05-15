@@ -108,17 +108,18 @@ public abstract class RockType extends BlockType{
 
     /// @param suffix concatenation of "brick_" + suffix
     private @Nullable Block findChildBrickEntry(String suffix) {
-        var first = this.findRelatedEntry("brick_" + suffix, BuiltInRegistries.BLOCK);
+        suffix = (suffix.isEmpty()) ? "" : "_"+ suffix;
+        var first = this.findRelatedEntry("brick" + suffix, BuiltInRegistries.BLOCK);
         if (first != null) return first;
-        return this.findRelatedEntry("bricks_" + suffix, BuiltInRegistries.BLOCK);
+        return this.findRelatedEntry("bricks" + suffix, BuiltInRegistries.BLOCK);
     }
 
     private @Nullable Block findBrickEntry(String prefix, String suffix) {
         suffix = (suffix.isEmpty()) ? "" : "_" + suffix;
 
-        Block first = this.findRelatedEntry(prefix,"brick" + suffix, BuiltInRegistries.BLOCK);
+        Block first = this.findRelatedEntry(prefix, "brick" + suffix, BuiltInRegistries.BLOCK);
         if (first != null) return first;
-        return this.findRelatedEntry(prefix,"bricks" + suffix, BuiltInRegistries.BLOCK);
+        return this.findRelatedEntry(prefix, "bricks" + suffix, BuiltInRegistries.BLOCK);
     }
 
     @Override
