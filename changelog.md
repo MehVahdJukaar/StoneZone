@@ -13,6 +13,17 @@
 
 ---
 
+### UPDATED:
+- **Macaw's Bridge** (FORGE): Re-enable the `requiresChildren()` - Forgot to do that and what it does is ensure the StoneType has the children (polished, bricks, so on) for textures or recipes
+  - <span style="color: RED;">WARNING: Ensure you backup your world or replace your blocks (from StoneZone with Macaw's Bridges before you update StoneZone</span>
+
+### ADDED:
+- **EN_US**: stone_bridge from **Macaw's Bridge** (missed that one) - [#110](https://github.com/MehVahdJukaar/StoneZone/issues/110)
+
+---
+
+## v2.8.3
+
 ### UPDATED: 
 - **Stone Chest** (FORGE): Fixed the chests' missing textures in inventory - [#108](https://github.com/MehVahdJukaar/StoneZone/issues/108)
 
@@ -33,20 +44,3 @@
   - smoky_quartz
   - aerial_netherack 
     - children: golden_nether_bricks
-
----
-
-## v2.8.1
-
-### UPDATED:
-- **Stone Zone** (COMMON): Updated the major codes again to properly use the new Resource Generator
-  - <span style="color: YELLOW;">NOTE: I'm aware of the problem with Tinted Index for blocks' parts that shouldn't be Tinted. This will be fixed in the future. It's Work-In-Progress</span>
-    - AFFECTED SUPPORTED MODS: Macaw's Mods
-
----
-
-## v2.8.0
-
-### UPDATED: 
-- **Stone Zone** (COMMON): Major Changes in code to use the new Resource Generator from **Every Compat** 
-- **Macaw's Paths & Pavings** (COMMON): Corrected a few blocks' properties
