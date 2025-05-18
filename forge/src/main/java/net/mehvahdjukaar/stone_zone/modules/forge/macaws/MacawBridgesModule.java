@@ -44,7 +44,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                 .excludeMultipleTextureFromTinting(modRes("block/bridge/bridge_stone/parent/corner"), "#5")
                 .excludeMultipleTextureFromTinting(modRes("block/bridge/bridge_stone/parent/middle"), "#5")
                 .excludeMultipleTextureFromTinting(modRes("block/bridge/bridge_stone/parent/side"), "#5")
-//                .requiresChildren("bricks", "brick_slab", "brick_wall") //REASON: textures, recipes
+                .requiresChildren("bricks", "brick_slab", "brick_wall") //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
@@ -58,7 +58,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("mossy_stone_brick_bridge"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Block(standardProperties(stoneType))
                 )
-//                .requiresChildren("mossy_bricks", "mossy_brick_slab", "mossy_brick_wall") //REASON: textures, recipes
+                .requiresChildren("mossy_bricks", "mossy_brick_slab", "mossy_brick_wall") //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
@@ -76,7 +76,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                 .excludeMultipleTextureFromTinting(modRes("block/bridge/balustrade/parent/middle"), "#1")
                 .excludeMultipleTextureFromTinting(modRes("block/bridge/balustrade/parent/corner"), "#5")
                 .excludeMultipleTextureFromTinting(modRes("block/bridge/balustrade/parent/side"), "#5")
-//                .requiresChildren("bricks", "brick_slab", "brick_wall") //REASON: textures, recipes
+                .requiresChildren("bricks", "brick_slab", "brick_wall") //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
@@ -90,7 +90,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("balustrade_mossy_stone_bricks_bridge"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Block(balustradeProperties(stoneType))
                 )
-//                .requiresChildren("mossy_bricks", "mossy_brick_slab", "mossy_brick_wall") //REASON: textures, recipes
+                .requiresChildren("mossy_bricks", "mossy_brick_slab", "mossy_brick_wall") //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
@@ -104,7 +104,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("stone_bridge_pier"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Support(standardProperties(stoneType))
                 )
-//                .requiresChildren("bricks") //REASON: textures, recipes
+                .requiresChildren("bricks") //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_piers"), Registries.BLOCK)
@@ -118,7 +118,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("mossy_stone_bridge_pier"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Support(standardProperties(stoneType))
                 )
-//                .requiresChildren("mossy_bricks") //REASON: textures, recipes
+                .requiresChildren("mossy_bricks") //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_piers"), Registries.BLOCK)
@@ -136,7 +136,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                 .excludeMultipleTextureFromTinting(modRes("block/stair/stone/parent/double"), "#1")
                 .excludeMultipleTextureFromTinting(modRes("block/stair/stone/parent/left"), "#1")
                 .excludeMultipleTextureFromTinting(modRes("block/stair/stone/parent/right"), "#1")
-//                .requiresChildren("bricks") //REASON: textures, recipes
+                .requiresChildren("bricks") //REASON: textures, recipes
                 .requiresFromMap(brick_bridges.blocks) //REASON: recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -152,7 +152,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("mossy_stone_bridge_stair"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Stairs(standardProperties(stoneType))
                 )
-//                .requiresChildren("mossy_bricks") //REASON: textures, recipes
+                .requiresChildren("mossy_bricks") //REASON: textures, recipes
                 .requiresFromMap(mossy_brick_bridges.blocks) //REASON: recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -169,7 +169,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("andesite_bridge"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new Bridge_Block(standardProperties(stoneType))
                 )
-//                .requiresChildren("polished_stone", "slab", "wall") //REASON: textures, recipes
+                .requiresChildren("polished_stone", "slab", "wall") //REASON: textures, recipes
                 //TEXTURES: stone, polished_stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
