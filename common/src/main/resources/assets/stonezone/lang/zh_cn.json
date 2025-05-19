@@ -1,7 +1,7 @@
 {
-  "itemGroup.stonezone": "泛用兼容：%s",
-  "itemGroup.stonezone.stonezone": "泛用兼容：%s",
-  "item.stonezone.all_stones": "所有%s",
+  "itemGroup.stonezone": "泛用兼容：石材",
+  "itemGroup.stonezone.stonezone": "泛用兼容：石材",
+  "item.stonezone.all_stones": "所有石材",
 
   "block_type.twigs.column": "%s立柱",
 
@@ -129,7 +129,7 @@
   "block_type.mcwfences.modern_brick_wall": "现代%s砖墙",
   "block_type.mcwfences.brick_railing_gate": "%s砖铁栅栏门",
   "block_type.mcwfences.railing_brick_wall": "%s砖铁栅栏墙",
-  "block_type.mcwfences.grass_topped_wall": "%s覆草墙",
+  "block_type.mcwfences.grass_topped_wall": "%s草顶墙",
   "block_type.mcwfences.pillar_wall": "%s砖柱墙",
   "block_type.mcwfences.railing_gate": "%s铁栅栏门",
   "block_type.mcwfences.railing_wall": "%s铁栅栏墙",
@@ -292,6 +292,10 @@
   "block_type.additional_lights.standing_torch_l_mossy_bricks": "覆苔%s砖高立式火把",
   "block_type.additional_lights.standing_torch_l_smooth": "平滑%s高立式火把",
   "block_type.additional_lights.standing_torch_l": "%s高立式火把",
+  "block_type.additional_lights.fire_pit_s_polished":  "磨制%s火盆",
+  "block_type.additional_lights.fire_pit_l_polished":  "磨制%s高火盆",
+  "block_type.additional_lights.standing_torch_s_polished":  "磨制%s立式火把",
+  "block_type.additional_lights.standing_torch_l_polished":  "磨制%s高立式火把",
 
   "block_type.more_beautiful_torches.torch": "%s火把",
   "block_type.more_beautiful_torches.soul_torch": "%s灵魂火把",
@@ -305,6 +309,33 @@
   "block_type.more_beautiful_torches.polished_torch": "磨制%s火把",
   "block_type.more_beautiful_torches.polished_soul_torch": "磨制%s灵魂火把",
   "block_type.more_beautiful_torches.polished_redstone_torch": "磨制%s红石火把",
+
+  "block_type.blocksplus.wall":  "%s墙",
+  "block_type.blocksplus.pillar": "%s柱",
+  "block_type.blocksplus.brick_pillar":  "%s砖柱",
+  "block_type.blocksplus.smooth_stairs": "平滑%s楼梯",
+  "block_type.blocksplus.smooth_wall":  "平滑%s墙",
+  "block_type.blocksplus.smooth_pillar": "平滑%s柱",
+  "block_type.blocksplus.smooth_bricks":  "平滑%s砖",
+  "block_type.blocksplus.smooth_brick_stairs": "平滑%s砖楼梯",
+  "block_type.blocksplus.smooth_brick_slab":  "平滑%s砖台阶",
+  "block_type.blocksplus.smooth_brick_wall": "平滑%s砖墙",
+  "block_type.blocksplus.smooth_brick_pillar":  "平滑%s砖柱",
+  "block_type.blocksplus.cracked_smooth_bricks": "裂纹平滑%s砖",
+  "block_type.blocksplus.mossy_smooth_bricks":  "覆苔平滑%s砖",
+  "block_type.blocksplus.chiseled_smooth_bricks": "雕纹平滑%s砖",
+  "block_type.blocksplus.polished_wall":  "磨制%s墙",
+  "block_type.blocksplus.polished_bricks": "磨制%s砖",
+  "block_type.blocksplus.polished_brick_stairs":  "磨制%s砖楼梯",
+  "block_type.blocksplus.polished_brick_slab": "磨制%s砖台阶",
+  "block_type.blocksplus.polished_brick_wall":  "磨制%s砖墙",
+  "block_type.blocksplus.polished_brick_pillar": "磨制%s砖柱",
+  "block_type.blocksplus.chiseled_polished":  "雕纹磨制%s",
+  "block_type.blocksplus.cracked_polished_bricks": "裂纹磨制%s砖",
+  "block_type.blocksplus.mossy_polished_bricks":  "覆苔磨制%s砖",
+  "block_type.blocksplus.furnace": "%s熔炉",
+
+
 
   "stone_type.minecraft.stone": "石头",
   "stone_type.minecraft.andesite": "安山岩",
@@ -382,6 +413,7 @@
 
   "stone_type.arts_and_crafts.gypsum": "石膏石",
   "stone_type.arts_and_crafts.soapstone": "皂石",
+  "stone_type.arts_and_crafts.white_chalk": "白色白垩岩",
 
   "stone_type.atmospheric.dolerite": "粗玄岩",
   "stone_type.atmospheric.ivory_travertine": "象牙白石灰华",
@@ -400,6 +432,9 @@
   "stone_type.biomemakeover.mesmerite": "迷魂石",
 
   "stone_type.biomesoplenty.brimstone": "硫磺石",
+  "stone_type.biomesoplenty.black_sandstone": "黑砂岩",
+  "stone_type.biomesoplenty.white_sandstone": "白砂岩",
+  "stone_type.biomesoplenty.orange_sandstone": "橙砂岩",
 
   "stone_type.biomeswevegone.dacite": "英安岩",
   "stone_type.biomeswevegone.red_rock": "红岩",
@@ -534,6 +569,24 @@
   "stone_type.natures_spirit.travertine": "洞石",
   "stone_type.natures_spirit.chert": "黑硅岩",
   "stone_type.natures_spirit.kaolin": "高岭土",
+  "stone_type.natures_spirit.pink_sandstone": "粉红砂岩",
+  "stone_type.natures_spirit.white_chalk": "白色白垩岩",
+  "stone_type.natures_spirit.light_gray_chalk": "淡灰色白垩岩",
+  "stone_type.natures_spirit.gray_chalk": "灰色白垩岩",
+  "stone_type.natures_spirit.black_chalk": "黑色白垩岩",
+  "stone_type.natures_spirit.brown_chalk": "棕色白垩岩",
+  "stone_type.natures_spirit.red_chalk": "红色白垩岩",
+  "stone_type.natures_spirit.orange_chalk": "橙色白垩岩",
+  "stone_type.natures_spirit.yellow_chalk": "黄色白垩岩",
+  "stone_type.natures_spirit.lime_chalk": "黄绿色白垩岩",
+  "stone_type.natures_spirit.green_chalk": "绿色白垩岩",
+  "stone_type.natures_spirit.cyan_chalk": "青色白垩岩",
+  "stone_type.natures_spirit.light_blue_chalk": "淡蓝色白垩岩",
+  "stone_type.natures_spirit.blue_chalk": "蓝色白垩岩",
+  "stone_type.natures_spirit.purple_chalk": "紫色白垩岩",
+  "stone_type.natures_spirit.magenta_chalk": "品红色白垩岩",
+  "stone_type.natures_spirit.pink_chalk": "粉红色白垩岩",
+  "stone_type.natures_spirit.bleached_chalk": "漂色白垩岩",
 
   "stone_type.netherexp.soul_slate": "魂板岩",
 
@@ -564,6 +617,7 @@
   "stone_type.railcraft.abyssal_stone": "深渊岩",
 
   "stone_type.regions_unexplored.chalk": "白垩岩",
+  "stone_type.regions_unexplored.argillite": "泥板岩",
 
   "stone_type.rubinated_nether.altar_stone": "祭坛石",
 
