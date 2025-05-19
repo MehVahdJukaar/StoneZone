@@ -1,5 +1,7 @@
 package net.mehvahdjukaar.stone_zone.neoforge;
 
+import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
+import net.mehvahdjukaar.moonlight.api.platform.neoforge.RegHelperImpl;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.additional_lights.AdditionalLightsModule;
@@ -7,6 +9,7 @@ import net.mehvahdjukaar.stone_zone.modules.neoforge.create.CreateModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.macaws.*;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.rechiseled.RechiseledModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.stone_chest.StoneChestModule;
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
@@ -17,7 +20,8 @@ import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
 @Mod(StoneZone.MOD_ID)
 public class StoneZoneForge extends StoneZoneCommon {
 
-    public StoneZoneForge() {
+    public StoneZoneForge(IEventBus bus) {
+        RegHelper.startRegisteringFor(bus);
         this.initialize();
     }
 
