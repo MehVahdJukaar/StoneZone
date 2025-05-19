@@ -17,6 +17,7 @@
 
 ### UPDATED: 
 - **LANG**: zh_cn - @ChuijkYahus
+- **StoneZone** (NF): Fixed the crash - Related to IEventBusRegister stuff
 
 ---
 
