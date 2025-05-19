@@ -70,8 +70,8 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
         }
 
         if (!BLACKLISTED_MODS.contains(baseRes.getNamespace())) {
-            // Check for <type>_bricks | <type>_stone_bricks
-            if (path.matches("[a-z]+(?:_(bricks|stairs)|_stone_(bricks|stairs))") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM ) {
+            // Check for <type>_bricks | <type>_stairs | <type>_stone_bricks | <type>_stone_stairs
+            if (path.matches("[a-z]+(?:_(?:bricks?|stairs)|_stone_(?:bricks?|stairs))") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM ) {
                 String stoneName = path.substring(0, path.length() - 7); // get stoneName from namespace:stoneName_bricks
                 String stoneAlt = stoneName + "_stone"; // Some mods included "_stone" as the suffix
                 ResourceLocation idBlockType = baseRes.withPath(stoneName);

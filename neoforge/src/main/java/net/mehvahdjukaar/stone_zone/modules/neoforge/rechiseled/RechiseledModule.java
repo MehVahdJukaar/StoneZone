@@ -511,7 +511,7 @@ public class RechiseledModule extends StoneZoneModule {
                     "bricks",
                     "mossy_bricks",
                     "cracked_bricks",
-                    "smooth_stone"
+                    "smooth"
             };
 
             for (var key : vanillaBlocks) {

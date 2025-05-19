@@ -11,10 +11,8 @@ import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
-import net.mehvahdjukaar.stone_zone.misc.SpriteHelper;
 import net.mehvahdjukaar.stone_zone.misc.TintConfiguration;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -31,6 +29,7 @@ import java.util.List;
 import java.util.function.*;
 
 import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.addTagToAllBlocks;
+import static net.mehvahdjukaar.stone_zone.misc.ResourceUtils.getChildModelId;
 
 public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
 
@@ -69,13 +68,13 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone, "stone")
                 .replaceWithTextureFromChild("minecraft:block/cobblestone", "cobblestone")
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", "bricks")
-                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth_stone")
+                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, "polished")
                 .replaceWithTextureFromChild("minecraft:block/mossy_" + nameBaseStone + "_bricks", "mossy_bricks")
                 // Modifying models' parent & "elements"
                 .addModifier((s, blockId, blockType) -> {
                     JsonObject jsonObject = GsonHelper.parse(s);
-                    ModelUtils.addTintIndexToModelAndReplaceParent(jsonObject, module, nameBaseStone, tintConfiguration);
+                    ModelUtils.addTintIndexToModelAndReplaceParent(ResourceLocation.parse("none"), jsonObject, module, nameBaseStone, tintConfiguration);
                     return jsonObject.toString();
                 })
                 .andThen(super.makeModelTransformer(module, manager));
@@ -87,19 +86,15 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
     protected BlockTypeResTransformer<T> makeBlockStateTransformer(SimpleModule module, ResourceManager manager) {
         String nameBaseStone = baseType.get().getTypeName();
         return BlockTypeResTransformer.<T>create(module.getModId(), manager)
+                .replaceWithTextureFromChild("minecraft:block/"+nameBaseStone, "stone")
+                .replaceWithTextureFromChild("minecraft:block/polished_"+nameBaseStone, "polished")
                 .addModifier((s, blockId, stoneType) ->
                         s.replace("minecraft:block/" + nameBaseStone, getChildModelId("stone", stoneType, blockId)))
                 .addModifier((s, blockId, stoneType) ->
                         s.replace("minecraft:block/" + nameBaseStone + "_bricks", getChildModelId("bricks", stoneType, blockId)))
                 .addModifier((s, blockId, stoneType) ->
-                        s.replace("minecraft:block/smooth_" + nameBaseStone, getChildModelId("smooth_stone", stoneType, blockId)))
+                        s.replace("minecraft:block/smooth_" + nameBaseStone, getChildModelId("smooth", stoneType, blockId)))
                 .andThen(super.makeBlockStateTransformer(module, manager));
-    }
-
-    private String getChildModelId(String childkey, T stoneType, ResourceLocation blockId) {
-        if (SpriteHelper.modelID.containsKey(blockId)) return SpriteHelper.modelID.get(blockId);
-
-        return Utils.getID(stoneType.getBlockOfThis(childkey)).withPrefix("block/").toString();
     }
 
     @Override
@@ -125,7 +120,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
     //!! SUB-CLASS
     public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {
 
-        private TintConfiguration tintConfig = TintConfiguration.EMPTY;
+        protected TintConfiguration tintConfig = TintConfiguration.EMPTY;
 
         protected Builder(Class<T> type, String name, @Nullable String prefix, Supplier<T> baseType, Supplier<B> baseBlock, Function<T, B> blockFactory) {
             super(type, name, prefix, baseType, baseBlock, blockFactory);
@@ -180,19 +175,21 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
             }
         }
 
-        public Builder<T, B> excludeTextureFromParentTinting(String... textureKeys) {
+        /// Exclude mutiple textures in one parent file
+        public Builder<T, B> excludeMultipleTextureFromTinting(ResourceLocation parentId, String... textureKeys) {
             if (this.tintConfig == TintConfiguration.EMPTY) {
                 this.tintConfig = TintConfiguration.createNew();
             }
-            this.tintConfig.addToParent(textureKeys);
+            this.tintConfig.addParentAndTextureValues(parentId, textureKeys);
             return this;
         }
 
+        /// Exclude multiple textures in all parent files
         public Builder<T, B> excludeTextureFromTinting(String... textureKeys) {
             if (this.tintConfig == TintConfiguration.EMPTY) {
                 this.tintConfig = TintConfiguration.createNew();
             }
-            this.tintConfig.add(textureKeys);
+            this.tintConfig.addTextureValues(textureKeys);
             return this;
         }
     }

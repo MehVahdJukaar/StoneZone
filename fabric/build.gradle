@@ -76,8 +76,8 @@ dependencies {
 //    modRuntimeOnly("curse.maven:terrablender-fabric-565956:6054948") // v4.1.0.8 | Biomes-O'-Plenty
 //    modRuntimeOnly("curse.maven:glitchcore-955399:5660741") // v2.1.0.0 | Biomes-O'-Plenty | required: Typetools, Night-Config
 //    modRuntimeOnly("curse.maven:yungs-api-421850:5769972") // v4.0.6 | Better-Archeology //!! 1.20
-//    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904751") // v8.1.25 | Stoneworks //!! 1.20
-//    modRuntimeOnly("curse.maven:forge-config-api-port-fabric-547434:5902421") // v8.1.25 | Stoneworks //!! 1.20
+//    modRuntimeOnly("curse.maven:puzzles-lib-495476:6494828") // v21.1.36 | Stoneworks
+//    modRuntimeOnly("curse.maven:forge-config-api-port-fabric-547434:5982384") // v21.1.3 | Stoneworks
 //    modRuntimeOnly("com.terraformersmc.terraform-api:terraform-wood-api-v1:7.0.3") // Blockus //!! 1.20
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129312") // v1.1.1 | Rechiseled //!! 1.20
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4785838") // v1.1.8a | Rechiseled //!! 1.20
@@ -107,7 +107,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:blockus-312289:5896309") // Terraformersmc's terraform-wood-api //!! 1.20
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5382599") //!! 1.20
 //    modRuntimeOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib //!! 1.20
-//    modRuntimeOnly("curse.maven:stoneworks-852663:4611948") // puzzles-lib, forge-config-api-port //!! 1.20
+//    modRuntimeOnly("curse.maven:stoneworks-852663:5731745") // puzzles-lib, forge-config-api-port
 //    modRuntimeOnly("curse.maven:twigs-496913:4603805") //!! 1.20
 
     //- OTHER MAVENS

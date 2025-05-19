@@ -58,7 +58,7 @@ dependencies {
     modCompileOnly("curse.maven:create-fabric-624165:5982726") //!! 1.20
     modCompileOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib //!! 1.20
     modCompileOnly("curse.maven:quark-243121:5594847") //!! 1.20
-    modCompileOnly("curse.maven:stoneworks-852663:4611947") //!! 1.20
+    modCompileOnly("curse.maven:stoneworks-852663:5731745")
     modCompileOnly("curse.maven:twigs-496913:4603805") //!! 1.20
 
         //+ OTHER MAVENS

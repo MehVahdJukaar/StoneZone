@@ -2,7 +2,6 @@ package net.mehvahdjukaar.stone_zone.modules.fabric.macaws;
 
 import net.kikoz.mcwroofs.objects.roofs.*;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
@@ -10,13 +9,10 @@ import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-
-import static net.mehvahdjukaar.stone_zone.misc.ModelUtils.removeTintIndexFromParentModel;
 
 
 //SUPPORT: v2.3.1+
@@ -60,6 +56,7 @@ public class MacawRoofsModule extends StoneZoneModule {
                         )
                 )
                 //TEXTURES: stone
+                .excludeTextureFromTinting("#3") //REASON: glass
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
@@ -218,16 +215,4 @@ public class MacawRoofsModule extends StoneZoneModule {
                 .requiresCorrectToolForDrops();
     }
 
-    @Override
-    // MODELS
-    public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
-        super.addDynamicClientResources(handler, manager);
-
-// Attic-Roof Model
-        String pathAtticRoof = "mcwroofs/parent/attic_roof";
-
-        removeTintIndexFromParentModel(pathAtticRoof + "_closed", "#3", handler, manager);
-        removeTintIndexFromParentModel(pathAtticRoof + "_open", "#3", handler, manager);
-
-    }
 }

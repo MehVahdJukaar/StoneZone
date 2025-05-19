@@ -57,11 +57,11 @@ public class BlockusModule extends StoneZoneModule {
         smooth_stairs = StoneZoneEntrySet.of(StoneType.class, "stairs", "smooth",
                         getModBlock("smooth_stone_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StairBlock(
-                                Objects.requireNonNull(stoneType.getBlockOfThis("smooth_stone")).defaultBlockState(),
+                                Objects.requireNonNull(stoneType.getBlockOfThis("smooth")).defaultBlockState(),
                                 Utils.copyPropertySafe(stoneType.stone)
                         )
                 )
-                .requiresChildren("smooth_stone") //REASON: textures, recipes
+                .requiresChildren("smooth") //REASON: textures, recipes
                 //TEXTURES: smooth_stone, smooth_stone_slab_side
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
