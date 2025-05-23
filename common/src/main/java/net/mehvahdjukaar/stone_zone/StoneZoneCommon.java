@@ -32,7 +32,7 @@ public class StoneZoneCommon {
 
         addIfLoaded("betterarcheology", () -> BetterArcheologyModule::new);
         addIfLoaded("blockus", () -> BlockusModule::new);
-        addIfLoaded("building_but_better", () -> BuildingButBetterModule::new);
+        addIfLoaded("bbb", () -> BuildingButBetterModule::new);
         addIfLoaded("chipped", () -> ChippedModule::new);
         addIfLoaded("quark", () -> QuarkModule::new);
         addIfLoaded("quark", () -> QuarkMudModule::new);

@@ -36,7 +36,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
 //    public final SimpleEntrySet<StoneType, Block> blocks;
 
     public BuildingButBetterModule(String modId) {
-        super(modId, "building_but_better");
+        super(modId, "bbb");
         ResourceLocation tab = modRes("item_group");
 
         columns = StoneZoneEntrySet.of(StoneType.class, "column",
