@@ -6,12 +6,22 @@
     <ul style="list-style-type: disc; padding-left: 20px;">
       <li>(COMMON): FORGE & FABRIC</li>
       <li>(IT): Included Texture: Added the ResourceLocation of the missing textures required for blocks or generating a new texture</li>
-      <li>(UD): Undetected StoneType have been manually added.</li>
+      <li>(UDS): Undetected StoneType have been manually added.</li>
     </ul>
   </div>
 </div>
 
+### UPDATED: 
+- **BlocksPlus** (FORGE): Improved furance's texture 
+- **Stone Zone** (COMMON): Fixed **Building But Better**'s mod-id - @igalaxy 
+  - <span style="color: RED;">WARNING: If you have **Building But Better** installed, then backup your world because the blocks will be removed from the world due to change of blocks' ID</span>
+
+### ADDED:
+- **Galesphere** (UDS): pink_salt, rose_pink_salt, pastel_pink_salt
+
 ---
+
+## v2.8.4
 
 ### UPDATED:
 - **Macaw's Bridge** (FORGE): Re-enable the `requiresChildren()` - Forgot to do that and what it does is ensure the StoneType has the children (polished, bricks, so on) for textures or recipes
