@@ -382,15 +382,15 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(mossy_polished_bricks);
 
         furnace = StoneZoneEntrySet.of(StoneType.class, "furnace",
-                        getModBlock("andesite_furnace"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("granite_furnace"), StoneTypeRegistry::getGraniteType,
                         stoneType -> new BPFurnace(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTile(getModTile("furnace"))
-                .addTexture(modRes("block/andesite_furnace_top"))
-                .addTexture(modRes("block/andesite_furnace_side"))
-//                .addTextureM(modRes("block/andesite_furnace_front"), StoneZone.res("block/bp/andesite_furnace_front_m"))
-                .addTexture(modRes("block/andesite_furnace_front"))
-                .addTextureM(modRes("block/andesite_furnace_front_on"), StoneZone.res("block/bp/andesite_furnace_front_m"))
+                .addTexture(modRes("block/granite_furnace_top"))
+                .addTexture(modRes("block/granite_furnace_side"))
+                .addTextureM(modRes("block/granite_furnace_front"), StoneZone.res("block/bp/granite_furnace_front_m"))
+                .addTextureM(modRes("block/granite_furnace_front_on"), StoneZone.res("block/bp/granite_furnace_front_on_m"))
+//                .addTexture(modRes("block/granite_furnace_front"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
