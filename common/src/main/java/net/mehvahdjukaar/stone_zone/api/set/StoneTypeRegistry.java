@@ -40,6 +40,10 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
         return getValue("andesite");
     }
 
+    public static StoneType getGraniteType() {
+        return getValue("granite");
+    }
+
     public static Collection<StoneType> getTypes() {
         return INSTANCE.getValues();
     }
