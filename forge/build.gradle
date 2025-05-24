@@ -212,6 +212,8 @@ dependencies {
 //    modRuntimeOnly("curse.maven:caverns-and-chasms-438005:6040957") // Blueprint
 //    modRuntimeOnly("curse.maven:aerial-hell-674630:5423795")
 //    modRuntimeOnly("curse.maven:the-undergarden-379849:5182632")
+//    modRuntimeOnly("curse.maven:natures-spirit-1044992:6445117")
+//    modRuntimeOnly("curse.maven:galosphere-631098:4983871")
 
     // MUDTYPE ONLY
     modRuntimeOnly("curse.maven:deeperdarker-659011:5906086")
