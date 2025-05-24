@@ -19,6 +19,11 @@ public class CompatStoneType {
 
     public static void init() {
 
+        // Galosphere
+        simpleStoneFinder("galosphere", "pink_salt"); // HARP
+        simpleStoneFinder("galosphere", "rose_pink_salt"); // HARP
+        simpleStoneFinder("galosphere", "pastel_pink_salt"); // HARP
+
         // Aerial Hell
         simpleStoneFinder("aerialhell", "glaucophanite"); // HARP
         simpleStoneFinder("aerialhell", "lunatic_stone"); // HARP
