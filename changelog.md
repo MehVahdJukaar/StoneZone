@@ -12,6 +12,13 @@
 </div>
 
 ### UPDATED: 
+- **Stone Zone** (COMMON): Updated to use **Every Compat** v2.8.6
+
+---
+
+## v2.8.5
+
+### UPDATED: 
 - **BlocksPlus** (FORGE): Improved furance's texture 
 - **Stone Zone** (COMMON): Fixed **Building But Better**'s mod-id - @igalaxy 
   - <span style="color: RED;">WARNING: If you have **Building But Better** installed, then backup your world because the blocks will be removed from the world due to change of blocks' ID</span>
