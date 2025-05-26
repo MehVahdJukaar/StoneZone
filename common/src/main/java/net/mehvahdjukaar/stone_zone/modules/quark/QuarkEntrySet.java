@@ -7,6 +7,7 @@ import net.mehvahdjukaar.every_compat.api.AbstractSimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
+import net.mehvahdjukaar.every_compat.misc.ModelConfiguration;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
@@ -50,10 +51,11 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
                          @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
                          boolean mergedPalette,
                          TintConfiguration tintConfig, boolean copyTint,
-                         Predicate<T> condition) {
-
+                         Predicate<T> condition, ModelConfiguration modelConfig
+    ) {
         super(type, name, prefix, blockSupplier, baseBlock, baseType, Objects.requireNonNull(tab), tabMode, tableMode, itemFactory,
-                tileFactory, renderType, paletteSupplier, extraTransform, mergedPalette, tintConfig, copyTint, condition);
+                tileFactory, renderType, paletteSupplier, extraTransform, mergedPalette, tintConfig, copyTint,
+                condition, modelConfig);
         var m = Preconditions.checkNotNull(module);
         this.zetaModule = Suppliers.memoize(() -> Quark.ZETA.modules.get(m));
     }
@@ -133,10 +135,10 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
 
         @Override
         public QuarkEntrySet<T, B> build() {
-            var e = new QuarkEntrySet<>(type, name, prefix, quarkModule,
-                    baseBlock, baseType, blockSupplier, tab, tabMode, lootMode,
-                    itemFactory, tileHolder, renderType, palette, extraModelTransform, useMergedPalette,
-                    tintConfig, copyTint,  condition);
+            var e = new QuarkEntrySet<>(this.type, this.name, this.prefix, this.quarkModule,
+                    this.baseBlock, this.baseType, this.blockSupplier, this.tab, this.tabMode, this.lootMode,
+                    this.itemFactory, this.tileHolder, this.renderType, this.palette, this.extraModelTransform, this.useMergedPalette,
+                    this.tintConfig, this.copyTint, this.condition, this.modelConfig);
 
             e.recipeLocations.addAll(this.recipes);
             e.tags.putAll(this.tags);

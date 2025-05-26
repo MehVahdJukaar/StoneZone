@@ -6,6 +6,7 @@ import net.mehvahdjukaar.every_compat.api.AbstractSimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
+import net.mehvahdjukaar.every_compat.misc.ModelConfiguration;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
@@ -45,10 +46,10 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                                         @Nullable McMetaFile>> paletteSupplier,
                                 @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
                                 boolean mergedPalette, TintConfiguration tintConfig, boolean copyTint,
-                                Predicate<T> condition) {
-
+                                Predicate<T> condition, ModelConfiguration modelConfig
+    ) {
         super(type, name, prefix, blockSupplier, baseBlock, baseType, tab, tabMode, lootMode, itemFactory, tileFactory,
-                renderType, paletteSupplier, extraTransform, mergedPalette, copyTint, condition);
+                renderType, paletteSupplier, extraTransform, mergedPalette, copyTint, condition, modelConfig);
         this.tintConfiguration = tintConfig;
     }
 
@@ -173,7 +174,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                         this.baseType, this.tab, this.tabMode, this.lootMode, this.itemFactory,
                         this.tileHolder, this.renderType, this.palette, this.extraModelTransform,
                         this.useMergedPalette, this.tintConfig, this.copyTint,
-                        this.condition);
+                        this.condition, this.modelConfig);
                 e.recipeLocations.addAll(this.recipes);
                 e.tags.putAll(this.tags);
                 e.textures.addAll(this.textures);
