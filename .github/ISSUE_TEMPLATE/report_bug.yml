@@ -47,6 +47,15 @@ body:
       placeholder: ex. stonezone-1.20-2.7.0
     validations:
       required: true
+
+  - type: input
+    id: everycomp
+    attributes:
+      label: EveryCompat Version
+      description: The current version of EveryCompat
+      placeholder: ex. everycomp-1.20-2.8.0-forge
+    validations:
+      required: true
      
   - type: input
     id: moonlight
