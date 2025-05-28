@@ -14,7 +14,7 @@ public class HardcodedBlockType {
     public static String shortenedIdenfity;
 
     public static final Set<String> BLACKLISTED_MODS = Set.of(
-            "immersive_weathering", "chipped", "create_confectionery"
+            "immersive_weathering", "chipped", "create_confectionery", "rgbblocks"
     );
 
     public static final Set<String> BLACKLISTED_STONETYPES = Set.of(
