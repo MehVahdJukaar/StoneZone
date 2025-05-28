@@ -12,6 +12,13 @@
 </div>
 
 ### UPDATED: 
+- **Stone Zone** (COMMON): Blacklisted **RGB Blocks**
+
+---
+
+## v2.8.6
+
+### UPDATED: 
 - **Stone Zone** (COMMON): Updated to use **Every Compat** v2.8.6
 
 ---
