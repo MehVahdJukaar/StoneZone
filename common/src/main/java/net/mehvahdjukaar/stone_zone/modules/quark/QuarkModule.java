@@ -54,7 +54,7 @@ public class QuarkModule extends StoneZoneModule {
                         stoneType -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis("polished_slab"),
                                 copyChildrenPropertySafe("polished_slab", stoneType))
                 )
-                .requiresChildren("polished_slab", "polished") //REASON: recipes & textures
+                .requiresChildren("polished_slab", "polished") //REASON: recipes, textures
                 //TEXTURES: polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
