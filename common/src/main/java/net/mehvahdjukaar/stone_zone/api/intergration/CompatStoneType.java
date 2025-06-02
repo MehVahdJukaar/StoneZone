@@ -19,6 +19,24 @@ public class CompatStoneType {
 
     public static void init() {
 
+        // Nature's Spirit
+        simpleStoneFinder("natures_spirit", "white_kaolin");
+        simpleStoneFinder("natures_spirit", "light_gray_kaolin");
+        simpleStoneFinder("natures_spirit", "gray_kaolin");
+        simpleStoneFinder("natures_spirit", "black_kaolin");
+        simpleStoneFinder("natures_spirit", "brown_kaolin");
+        simpleStoneFinder("natures_spirit", "red_kaolin");
+        simpleStoneFinder("natures_spirit", "orange_kaolin");
+        simpleStoneFinder("natures_spirit", "yellow_kaolin");
+        simpleStoneFinder("natures_spirit", "lime_kaolin");
+        simpleStoneFinder("natures_spirit", "green_kaolin");
+        simpleStoneFinder("natures_spirit", "cyan_kaolin");
+        simpleStoneFinder("natures_spirit", "light_blue_kaolin");
+        simpleStoneFinder("natures_spirit", "blue_kaolin");
+        simpleStoneFinder("natures_spirit", "purple_kaolin");
+        simpleStoneFinder("natures_spirit", "magenta_kaolin");
+        simpleStoneFinder("natures_spirit", "pink_kaolin");
+
         // Galosphere
         simpleStoneFinder("galosphere", "pink_salt"); // HARP
         simpleStoneFinder("galosphere", "rose_pink_salt"); // HARP
