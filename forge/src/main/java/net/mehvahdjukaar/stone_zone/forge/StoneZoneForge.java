@@ -1,6 +1,7 @@
 package net.mehvahdjukaar.stone_zone.forge;
 
 import net.mehvahdjukaar.stone_zone.StoneZone;
+import net.mehvahdjukaar.stone_zone.StoneZoneClient;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
 import net.mehvahdjukaar.stone_zone.modules.forge.additional_lights.AdditionalLightsModule;
 import net.mehvahdjukaar.stone_zone.modules.forge.blocks_plus.BlocksPlusModule;
@@ -8,6 +9,10 @@ import net.mehvahdjukaar.stone_zone.modules.forge.create.CreateModule;
 import net.mehvahdjukaar.stone_zone.modules.forge.macaws.*;
 import net.mehvahdjukaar.stone_zone.modules.forge.rechiseled.RechiseledModule;
 import net.mehvahdjukaar.stone_zone.modules.forge.stone_chest.StoneChestModule;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
@@ -20,6 +25,8 @@ public class StoneZoneForge extends StoneZoneCommon {
 
     public StoneZoneForge() {
         this.initialize();
+
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     @Override
@@ -45,6 +52,11 @@ public class StoneZoneForge extends StoneZoneCommon {
 
 //!! ====================================================== OTHERS ================================================== \\
 
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public void itemTooltipEvent(ItemTooltipEvent event) {
+        StoneZoneClient.onItemTooltip(event.getItemStack(), event.getFlags(), event.getToolTip());
     }
 
 }
