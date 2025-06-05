@@ -11,6 +11,14 @@
   </div>
 </div>
 
+### ADDED: 
+- **Nature's Spirit** (UD): Kaolin Color Variations - [#115](https://github.com/MehVahdJukaar/StoneZone/issues/115)
+- **StoneZone** (COMMON): Added the Tooltip where it will now show where blocks are from: "Stone Type" or "Mud Type"
+
+---
+
+## v2.8.7
+
 ### UPDATED: 
 - **Stone Zone** (COMMON): Blacklisted **RGB Blocks**
 
