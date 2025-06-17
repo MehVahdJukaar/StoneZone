@@ -48,14 +48,14 @@ public class StoneChestModule extends StoneZoneModule {
                         getModBlock("chest_stone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new CompatChestBlock(this::getTile, Utils.copyPropertySafe(stoneType.stone))
                 )
+                .addTile(VariantChestBlockEntity::new)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.GUARDED_BY_PIGLINS, Registries.BLOCK)
                 .addTag(Tags.Blocks.CHESTS, Registries.BLOCK)
                 .addTag(Tags.Items.CHESTS, Registries.ITEM)
-                .addCustomItem((w, block, properties) -> new CompatChestItem(block, properties))
-                .addTile(VariantChestBlockEntity::new)
                 .setTabKey(tab)
                 .defaultRecipe()
+                .addCustomItem((stoneType, block, properties) -> new CompatChestItem(block, properties))
                 .build();
         this.addEntry(chests);
 
@@ -74,7 +74,6 @@ public class StoneChestModule extends StoneZoneModule {
                                         "\""+ StoneZone.res("item/"+shortenedId()+"/"+ stoneType.getAppendableIdWith("part", "")) +"\"")
                 ))
                 .setTabKey(tab)
-//                .addRecipe(modRes("part_stone"))
                 .defaultRecipe()
                 .build();
         this.addEntry(parts);
