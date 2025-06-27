@@ -70,6 +70,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 .replaceWithTextureFromChild("minecraft:block/cobblestone", "cobblestone")
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", "bricks")
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth")
+                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone + "_slab_side", "smooth_slab")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, "polished")
                 .replaceWithTextureFromChild("minecraft:block/mossy_" + nameBaseStone + "_bricks", "mossy_bricks")
                 // Modifying models' parent & "elements"
