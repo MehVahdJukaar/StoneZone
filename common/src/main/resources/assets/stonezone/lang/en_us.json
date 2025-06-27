@@ -340,6 +340,15 @@
   "block_type.blocksplus.chiseled_polished":  "Chiseled Polished %s",
   "block_type.blocksplus.cracked_polished_bricks": "Cracked Polished %s Bricks",
   "block_type.blocksplus.mossy_polished_bricks":  "Mossy Polished %s Bricks",
-  "block_type.blocksplus.furnace": "%s Furnace"
+  "block_type.blocksplus.furnace": "%s Furnace",
+
+  "block_type.buildersaddition.vertical_slab": "%s Vertical Slab",
+  "block_type.buildersaddition.smooth_vertical_slab": "Smooth %s Vertical Slab",
+  "block_type.buildersaddition.bricks_vertical_slab": "%s Bricks Vertical Slab",
+  "block_type.buildersaddition.mossy_bricks_vertical_slab": "Mossy %s Bricks Vertical Slab",
+  "block_type.buildersaddition.cut_pillar": "Cut %s Pillar",
+  "block_type.buildersaddition.cut_smooth_pillar": "Cut Smooth %s Pillar",
+  "block_type.buildersaddition.cut_bricks_pillar": "Cut %s Bricks Pillar",
+  "block_type.buildersaddition.cut_mossy_bricks_pillar": "Cut Mossy %s Bricks Pillar"
 
 }

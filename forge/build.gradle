@@ -188,6 +188,7 @@ dependencies {
 
             //+ GENERAL
     modCompileOnly("curse.maven:additional-lights-384991:4596807")
+    modCompileOnly("curse.maven:buildersaddition-389697:4772826")
     modCompileOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
     modCompileOnly("curse.maven:stone-chest-307052:5389562")
 

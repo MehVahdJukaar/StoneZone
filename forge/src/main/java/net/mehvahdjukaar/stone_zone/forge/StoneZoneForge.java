@@ -5,6 +5,7 @@ import net.mehvahdjukaar.stone_zone.StoneZoneClient;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
 import net.mehvahdjukaar.stone_zone.modules.forge.additional_lights.AdditionalLightsModule;
 import net.mehvahdjukaar.stone_zone.modules.forge.blocks_plus.BlocksPlusModule;
+import net.mehvahdjukaar.stone_zone.modules.forge.buildersaddition.BuildersAdditionModule;
 import net.mehvahdjukaar.stone_zone.modules.forge.create.CreateModule;
 import net.mehvahdjukaar.stone_zone.modules.forge.macaws.*;
 import net.mehvahdjukaar.stone_zone.modules.forge.rechiseled.RechiseledModule;
@@ -46,6 +47,7 @@ public class StoneZoneForge extends StoneZoneCommon {
         // General
         addIfLoaded("additional_lights", () -> AdditionalLightsModule::new);
         addIfLoaded("blocksplus", () -> BlocksPlusModule::new);
+        addIfLoaded("buildersaddition", () -> BuildersAdditionModule::new);
         addIfLoaded("create", () -> CreateModule::new);
         addIfLoaded("rechiseled", () -> RechiseledModule::new);
         addIfLoaded("stonechest", () -> StoneChestModule::new);
