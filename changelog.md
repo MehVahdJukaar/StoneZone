@@ -4,12 +4,24 @@
   </div>
   <div style="text-align: left;">
     <ul style="list-style-type: disc; padding-left: 20px;">
-      <li>(COMMON): FORGE & FABRIC</li>
+      <li>(COMMON): FABRIC & FORGE</li>
+      <li>(FB): FABRIC</li>
+      <li>(FG): FORGE</li>
       <li>(IT): Included Texture: Added the ResourceLocation of the missing textures required for blocks or generating a new texture</li>
       <li>(UDS): Undetected StoneType have been manually added.</li>
     </ul>
   </div>
 </div>
+
+### UPDATED: 
+- **Stone Zone** (COMMON): Blacklisted **Blue Skies'** brumble blc it's not a StoneType, more likely to be WoodType - [#120](https://github.com/MehVahdJukaar/StoneZone/issues/120)
+
+### NEW SUPPORTED MOD:
+- **Builder's Crafts & Additions** (FG)
+
+---
+
+## v2.8.8
 
 ### ADDED: 
 - **Nature's Spirit** (UD): Kaolin Color Variations - [#115](https://github.com/MehVahdJukaar/StoneZone/issues/115)
