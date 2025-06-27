@@ -13,12 +13,15 @@ import java.util.Objects;
 
 /**
  * Childkey Availability:
- * stone, stairs, slab, wall, button, pressure_plate, smooth_stone
- * cobblestone, mossy_cobblestone
- * polished, polished_stairs, polished_slab
+ * <Ul>
+ * stone, stairs, slab, wall, button, pressure_plate,
+ * smooth, smooth_stairs, smooth_slab, smooth_wall,
+ * cobblestone, mossy_cobblestone,
+ * polished, polished_stairs, polished_slab,
  * bricks, brick_stairs, brick_slab, brick_wall, cracked_bricks, brick_tiles,
  * mossy_bricks, mossy_brick_slab, mossy_brick_stairs, mossy_brick_wall
- **/
+ * </Ul>
+**/
 public abstract class RockType extends BlockType{
 
     public final Block block;

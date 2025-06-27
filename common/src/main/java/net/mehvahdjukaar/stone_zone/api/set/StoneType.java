@@ -15,12 +15,15 @@ import java.util.function.Supplier;
 
 /**
  * Childkey Availability:
- * stone, stairs, slab, wall, button, pressure_plate, smooth_stone
- * cobblestone, mossy_cobblestone
- * polished, polished_stairs, polished_slab
+ * <Ul>
+ * stone, stairs, slab, wall, button, pressure_plate,
+ * smooth, smooth_stairs, smooth_slab, smooth_wall,
+ * cobblestone, mossy_cobblestone,
+ * polished, polished_stairs, polished_slab,
  * bricks, brick_stairs, brick_slab, brick_wall, cracked_bricks, brick_tiles,
  * mossy_bricks, mossy_brick_slab, mossy_brick_stairs, mossy_brick_wall
- **/
+ * </Ul>
+**/
 public class StoneType extends RockType {
 
 
@@ -84,11 +87,15 @@ public class StoneType extends RockType {
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
                     Block stone = stoneFinder.get();
-                    var d = BuiltInRegistries.BLOCK.get(BuiltInRegistries.BLOCK.getDefaultKey());
-                    if (stone != d && stone != null) {
-                        var w = new StoneType(id, stone);
-                        childNames.forEach((key, value) -> w.addChild(key, BuiltInRegistries.BLOCK.get(value)));
-                        return Optional.of(w);
+                    var defaultKey = BuiltInRegistries.BLOCK.get(BuiltInRegistries.BLOCK.getDefaultKey()); // minecraft:air
+                    if (stone != defaultKey && stone != null) {
+                        var stoneType = new StoneType(id, stone);
+                        childNames.forEach((key, value) -> {
+                            if (BuiltInRegistries.ITEM.containsKey(value)) stoneType.addChild(key, BuiltInRegistries.ITEM.get(value));
+                            else if (BuiltInRegistries.BLOCK.containsKey(value)) stoneType.addChild(key, BuiltInRegistries.BLOCK.get(value));
+                            else StoneZone.LOGGER.warn("Failed to get children for StoneType: {} - {}", id, key);
+                        });
+                        return Optional.of(stoneType);
                     }
                 } catch (Exception ignored) {
                 }
