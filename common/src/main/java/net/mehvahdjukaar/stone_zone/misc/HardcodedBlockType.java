@@ -22,6 +22,7 @@ public class HardcodedBlockType {
             "quark:shingles",
             //REASON: not a stonetype
             "outer_end:himmel", "quark:midori", "twigs:silt", "supplementaries:ash", "blue_skies:brumble",
+            "nifty:concrete",
             //REASON: shouldn't be detected
             "desire:polished_stone", "desire:chiseled_stone"
     );
