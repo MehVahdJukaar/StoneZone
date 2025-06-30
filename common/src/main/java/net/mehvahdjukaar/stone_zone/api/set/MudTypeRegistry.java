@@ -44,8 +44,7 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
     public Optional<MudType> detectTypeFromBlock(Block baseblock, ResourceLocation baseRes) {
         String path = baseRes.getPath();
 
-        if (
-                path.matches("[a-z]+_mud_bricks")
+        if (path.matches("[a-z]+_mud_bricks")
                 && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM
                 && !BLACKLISTED_MODS.contains(baseRes.getNamespace())
         ) {
@@ -54,7 +53,7 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
             ResourceLocation idBlockType = baseRes.withPath(mudName);
             ResourceLocation idBlockTypeAlt = baseRes.withPath(mudAlt);
 
-            if (Objects.isNull(get(idBlockType)) || Objects.isNull(get(idBlockTypeAlt))) {
+            if (Objects.isNull(get(idBlockType)) && Objects.isNull(get(idBlockTypeAlt))) {
                 var opt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(mudName));
                 var alt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(mudAlt));
                 if (opt.isPresent()) return Optional.of(new MudType(baseRes.withPath(mudName), opt.get()));
