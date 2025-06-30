@@ -5,11 +5,9 @@ import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
+import net.minecraft.resources.ResourceLocation;
 
-import java.util.Objects;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /// StoneType Detection detect a StoneType that met 2 requirements:
         /// BASS_DRUM (sound)
@@ -48,11 +46,11 @@ public class CompatStoneType {
         simpleStoneFinder("aerialhell", "volucite_stone"); // HARP
         simpleStoneFinder("aerialhell", "dark_lunatic_stone"); // HARP
         simpleStoneFinder("aerialhell", "slippery_sand_stone");
-        stoneBlockFinder("aerialhell", "smoky_quartz");
+        advancedStoneFinder("aerialhell", "smoky_quartz", "smoky_quartz_block");
 
-        advancedStoneFinder("aerialhell", "aerial_netherack",
-                "golden_nether_bricks", "golden_nether_bricks_slab",
-                "golden_nether_bricks_stairs", "golden_nether_bricks_wall"); // HARP
+        advancedStoneFinder("aerialhell", "aerial_netherack","aerial_netherack",
+                "BRICKS-golden_nether_bricks", "BRICK_SLAB-golden_nether_bricks_slab",
+                "BRICK_STAIRS-golden_nether_bricks_stairs", "BRICK_WALL-golden_nether_bricks_wall"); // HARP
 
         // Rocky Minerals
         simpleStoneFinder("rockyminerals", "worn_granite");
@@ -133,8 +131,8 @@ public class CompatStoneType {
         simpleStoneFinder("create_dd", "potassic"); // NO BRICKS or POLISHED
         simpleStoneFinder("create_dd", "weathered_limestone");
 
-        // Bountiful Fares - nameStone of feldspar is feldspar_block
-        stoneBlockFinder("bountifulfares", "feldspar");
+        // Bountiful Fares (FABRIC)
+        advancedStoneFinder("bountifulfares", "feldspar", "feldspar_block");
 
         // Aether Redux
         simpleStoneFinder("aether_redux", "sentrite"); // HARP
@@ -197,56 +195,38 @@ public class CompatStoneType {
     }
 
 //!! StoneType
-    public static void simpleStoneFinder(String modId, String nameStoneType) {
-        if (PlatHelper.isModLoaded(modId)) {
-            var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStoneType);
-
-            BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
-        }
+    /**
+     * @param modId - mod id of the mod
+     * @param nameStoneType - name of StoneType
+     * @param nameChildren - childkey-ID_of_the_children or nameGemType_ingot
+     */
+    public static void simpleStoneFinder(String modId, String nameStoneType, String... nameChildren) {
+        advancedStoneFinder(modId, nameStoneType, nameStoneType, nameChildren);
     }
 
     /**
-     * @param nameStoneType name of StoneType
-     * @param nameStone name of StoneType with "_stone" or any words
-    **/
-    @SuppressWarnings("unused")
-    public static void stoneFinder(String modId, String nameStoneType, String nameStone) {
+     * @param modId - mod id of the mod
+     * @param nameStoneType - name of stoneType without "_block"
+     * @param nameBlock - name of block for stoneType. Usually with "_block"
+     * @param nameChildren - childkey-ID_of_the_children or stoneType_nugget
+     */
+    public static void advancedStoneFinder(String modId, String nameStoneType, String nameBlock, String... nameChildren) {
         if (PlatHelper.isModLoaded(modId)) {
-            var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStone);
-
-            BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
-        }
-    }
-
-    /// nameStone has "_block" as suffix
-    public static void stoneBlockFinder(String modId, String nameStoneType, boolean includeSlab, boolean includeStairs) {
-        if (PlatHelper.isModLoaded(modId)) {
-            String baseName = nameStoneType + "_block";
-
-            var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, baseName);
-            if (includeSlab) stonetypeFinder.addChild("slab", baseName +"_slab");
-            if (includeStairs) stonetypeFinder.addChild("slab", baseName +"_stairs");
-
-            BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
-        }
-    }
-    /** nameStone has "_block" as suffix
-     * default parameter
-     * includeSlab: false
-     * includeStairs: false
-    */
-    public static void stoneBlockFinder(String modId, String nameStoneType) {
-        stoneBlockFinder(modId, nameStoneType, false, false);
-    }
-
-    public static void advancedStoneFinder(String modId, String nameStoneType, String... nameChildren) {
-        if (PlatHelper.isModLoaded(modId)) {
-            var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameStoneType);
+            var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameBlock);
 
             for (String currentChild : nameChildren) {
                 String childKey = getChildKeyFrom(currentChild);
-                if (childKeySafe.contains(childKey)) stonetypeFinder.addChild(childKey, currentChild);
-                else StoneZone.LOGGER.warn("CompatStoneType: Incorrect childKey - {} for {}", childKey, currentChild);
+                String blockId = currentChild.split("-")[1];
+                ResourceLocation childId = (blockId.contains(":"))
+                        ? ResourceLocation.parse(blockId)
+                        : ResourceLocation.fromNamespaceAndPath(modId, blockId);
+
+                if (currentChild.contains("-") && childKeySafe.contains(childKey)) {
+                    stonetypeFinder.addChild(childKey, childId);
+                }
+                else if (childKeySafe.contains(childKey)) stonetypeFinder.addChild(childKey, currentChild);
+                else StoneZone.LOGGER.warn("StoneTypeFinder: Incorrect childKey - {} for {}", childKey, currentChild);
+
             }
 
             BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
@@ -254,37 +234,23 @@ public class CompatStoneType {
     }
 
 //!! MudType
-    public static void simpleMudFinder(String modId, String nameStoneType) {
+    public static void simpleMudFinder(String modId, String nameMudType) {
         if (PlatHelper.isModLoaded(modId)) {
-            var stonetypeFinder = MudType.Finder.simple(modId, nameStoneType, nameStoneType);
+            var stonetypeFinder = MudType.Finder.simple(modId, nameMudType, nameMudType);
 
             BlockSetAPI.addBlockTypeFinder(MudType.class, stonetypeFinder);
         }
     }
 
-        /// Get the keyword from block: stone_bricks, key: bricks
-        @SuppressWarnings("RegExpAnonymousGroup")
-        public static String getChildKeyFrom(String childBlock) {
-            String lastword = childBlock.substring(childBlock.lastIndexOf("_") + 1);
-
-            // With "bricks"
-            if (childBlock.matches("\\w+_bricks?(?:_[a-z]+)?")) {
-                Pattern pattern = Pattern.compile("\\w+_(bricks?)(_[a-z]+)?");
-                Matcher matcher = pattern.matcher(childBlock);
-                if (matcher.find()) {
-                    String suffix = (Objects.isNull(matcher.group(2))) ? matcher.group(1) : matcher.group(1) + matcher.group(2);
-                    return switch (suffix) {
-                        case "brick", "bricks" -> "bricks";
-                        case "brick_slab", "bricks_slab" -> "brick_slab";
-                        case "brick_stairs", "bricks_stairs" -> "brick_stairs";
-                        case "brick_wall", "bricks_wall" -> "brick_wall";
-                        default -> lastword;
-                    };
-                }
-            }
-            // Default
-            return lastword;
+    /// Get the keyword from block: stone_bricks, key: bricks
+    public static String getChildKeyFrom(String childBlock) {
+        if (childBlock.contains("-")) {
+            return childBlock.split("-")[0];
         }
+
+        // Default
+        return childBlock.substring(childBlock.lastIndexOf("_") + 1);
+    }
 
     private static final Set<String> childKeySafe = Set.of(
             "stone", "stairs", "slab", "wall", "button", "pressure_plate", "smooth_stone",
