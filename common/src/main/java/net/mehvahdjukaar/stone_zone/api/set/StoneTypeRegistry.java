@@ -5,6 +5,7 @@ import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
 import java.util.Collection;
@@ -19,6 +20,8 @@ import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_S
 public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
     public static final StoneTypeRegistry INSTANCE = new StoneTypeRegistry();
+    //NOTE: Do not remove below because crsah will occurred and I do not know why
+    public static final StoneType STONE_TYPE = new StoneType(ResourceLocation.withDefaultNamespace("stone"), Blocks.STONE);
 
     public StoneTypeRegistry() {
         super(StoneType.class, "stone_type");
@@ -54,7 +57,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
     @Override
     public StoneType getDefaultType() {
-        return this.get(ResourceLocation.parse("stone"));
+        return STONE_TYPE;
     }
 
     @Override
