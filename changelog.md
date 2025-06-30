@@ -13,6 +13,18 @@
   </div>
 </div>
 
+---
+
+### UPDATED:
+- **Stone Zone** (COMMON): Fixed the crash occurred with v2.10.5
+
+### ADDED:
+- **The Twilight Forest** (UD): mazestone & deadrock
+
+---
+
+## v2.10.5
+
 ### UPDATED:
 - **Stone Zone** (COMMON): 
   - Removed **Quark**'s _duskbound_ blc it's not a StoneType
