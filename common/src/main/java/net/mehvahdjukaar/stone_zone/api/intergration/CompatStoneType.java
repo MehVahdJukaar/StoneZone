@@ -17,6 +17,9 @@ public class CompatStoneType {
 
     public static void init() {
 
+        // Marioverse
+        simpleStoneFinder("marioverse", "deep_fungal_stone");
+
         // Nature's Spirit
         simpleStoneFinder("natures_spirit", "white_kaolin");
         simpleStoneFinder("natures_spirit", "light_gray_kaolin");
