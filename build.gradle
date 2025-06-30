@@ -54,7 +54,6 @@ subprojects {
             }
             it.parchment("org.parchmentmc.data:parchment-${rootProject.parchment_version}")
         }
-
     }
 
     var env = System.getenv()
@@ -82,10 +81,13 @@ subprojects {
                 dependencies {
                     required.project "fabric-api"
                     required.project "moonlight"
+                    required.project "every-compat"
                 }
             } else {
+                versionName = mod_id +"-"+ mod_version
                 dependencies {
                     required.project "moonlight"
+                    required.project "every-compat"
                 }
             }
         }
@@ -97,6 +99,7 @@ subprojects {
             project {
                 id = project_id
                 changelog = changelogText
+                changelogType = 'markdown'
                 releaseType = release_type
                 for (var ver : versions){
                     addGameVersion ver
