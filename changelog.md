@@ -13,7 +13,24 @@
   </div>
 </div>
 
+### UPDATED:
+- **Stone Zone** (COMMON): 
+  - Removed **Quark**'s _duskbound_ blc it's not a StoneType
+    - <span style="color: RED;">WARNING: Backup your world if you have **Quark** installed</span>
+  - Improved the detection system
+
+### ADDED: 
+- **Nature's Spirit** (UD): Kaolin Color Variations - [#115](https://github.com/MehVahdJukaar/StoneZone/issues/115)
+- **Marioverse** (UD): deep_fungal_stone
+- **Stone Zone** (COMMON): Added 4 Macaw's Compat Mod for **Macaw's BYG** & **Macaw's Biomes O' Plenty** - @22858
+  - Doors
+  - Trapdoors
+  - Paths & Pavings
+  - Windows
+
 ---
+
+## v2.10.4
 
 ### UPDATED: 
 - **LANG**: zh_cn - @ChuijkYahus
