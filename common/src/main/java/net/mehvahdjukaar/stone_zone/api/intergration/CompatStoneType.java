@@ -7,11 +7,7 @@ import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /// StoneType Detection detect a StoneType that met 2 requirements:
         /// BASS_DRUM (sound)
