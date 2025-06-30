@@ -17,6 +17,10 @@ public class CompatStoneType {
 
     public static void init() {
 
+        // The-Twiligth-Forest
+        simpleStoneFinder("twilightforest", "mazestone", "BRICKS-mazestone_brick");
+        advancedStoneFinder("twilightforest", "deadrock", "deadrock");
+
         // Nature's Spirit
         simpleStoneFinder("natures_spirit", "white_kaolin");
         simpleStoneFinder("natures_spirit", "light_gray_kaolin");
