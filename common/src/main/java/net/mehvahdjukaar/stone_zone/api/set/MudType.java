@@ -1,6 +1,7 @@
 package net.mehvahdjukaar.stone_zone.api.set;
 
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
+import net.mehvahdjukaar.moonlight.core.ClientConfigs;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -12,6 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
+
+import static net.mehvahdjukaar.moonlight.api.set.DebugBlockTypes.appendToDebugFile;
 
 /**
  * Childkey Availability:
@@ -31,6 +34,8 @@ public class MudType extends RockType {
     protected MudType(ResourceLocation id, Block mud) {
         super(id, mud);
         this.mud = mud;
+
+        if (ClientConfigs.BLOCKTYPES_DEBUG.get() && !this.isVanilla()) appendToDebugFile(getTranslationKey());
     }
 
     @Override
