@@ -118,7 +118,7 @@ dependencies {
         }
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:moonlight:${moonlight_mavenVersion}-forge") // v2.14.0
+        modImplementation("maven.modrinth:moonlight:${moonlight_mavenVersion}-forge") // v2.14.12
     }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
@@ -127,7 +127,7 @@ dependencies {
         modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}-forge.jar"))
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-forge") // v2.8.6
+        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-forge") // v2.8.11
     }
 
 //!! TOOLS ---------------------------------------------------------------------------------------------------------- \\
