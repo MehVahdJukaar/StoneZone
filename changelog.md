@@ -1,17 +1,37 @@
 <div style="text-align: center; border: 1px solid yellow; padding: 10px;">
-  <div style="text-align: center; margin-bottom: 10px;">
-    <h3>LEGEND</h3>
-  </div>
-  <div style="text-align: left;">
-    <ul style="list-style-type: disc; padding-left: 20px;">
-      <li>(COMMON): FABRIC & FORGE</li>
-      <li>(FB): FABRIC</li>
-      <li>(FG): FORGE</li>
-      <li>(IT): Included Texture: Added the ResourceLocation of the missing textures required for blocks or generating a new texture</li>
-      <li>(UDS): Undetected StoneType have been manually added.</li>
-    </ul>
-  </div>
+
+<div style="text-align: center; margin-bottom: 10px;">
+
+### LEGEND
+
 </div>
+
+<div style="text-align: left;">
+
+* **(COMMON)**: FORGE & FABRIC
+* **(FB)**: FABRIC
+* **(FG)**: FORGE
+* **(IT)**: Included Texture: Added the ResourceLocation of the missing textures required for blocks or generating a new texture
+* **(UDS)**: Undetected StoneType have been manually added.
+* **(COMPAT)**: Create an exception for a compat mod. EveryCompat won't included for the Supported Mod and the Wood Mod
+* **(INCLUDED)**: The block is not generated because a Wood Mod already have the same block as the supported mod will be generated
+* **(EXCLUDED)**: The block is generated BUT it shouldn't be generated for a reason
+
+</div>
+
+</div>
+
+### UPDATED: 
+- **Stone Zone** (COMMON): 
+  - required Moonlight v2.14.12 from now
+  - Improved the detection system to ensure that a type (woodtype, stonetype, so on) is not added to other blocktypes.
+    - This applied to GemsRealm's types, too. 
+- **Twilight Forest** (UDS): mazestone & deadrock
+
+---
+
+## v2.8.9
+
 
 ### UPDATED: 
 - **Stone Zone** (COMMON): Blacklisted **Blue Skies'** brumble blc it's not a StoneType, more likely to be WoodType - [#120](https://github.com/MehVahdJukaar/StoneZone/issues/120)
