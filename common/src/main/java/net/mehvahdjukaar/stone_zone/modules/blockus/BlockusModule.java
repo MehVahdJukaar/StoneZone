@@ -158,7 +158,7 @@ public class BlockusModule extends StoneZoneModule {
 
         tile_stairs = StoneZoneEntrySet.of(StoneType.class, "tile_stairs",
                         getModBlock("stone_tile_stairs"), StoneTypeRegistry::getStoneType,
-                        stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
+                        stoneType -> new StairBlock(tiles.blocks.get(stoneType).defaultBlockState(),
                                 copyChildrenPropertySafe("stairs", stoneType))
                 )
                 .requiresFromMap(tiles.blocks) //REASON: textures, recipes
