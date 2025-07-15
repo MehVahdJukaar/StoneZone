@@ -131,10 +131,16 @@ public abstract class RockType extends BlockType{
             return reg.get(new ResourceLocation("cobblestone"));
         }
 
+        String prefix = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
+        String infix = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
+        String withoutUnderscore = suffix;
+        if (!suffix.isEmpty()) suffix = "_" + suffix;
+
         if (!suffix.isEmpty() && !prefixOrInfix.isEmpty()) suffix = "_" + suffix;
         ResourceLocation[] targets = {
-                new ResourceLocation(id.getNamespace(), id.getPath() +"_"+ prefixOrInfix + suffix),
-                new ResourceLocation(id.getNamespace(), prefixOrInfix +"_"+ id.getPath() + suffix),
+                // DEFAULT
+                new ResourceLocation(id.getNamespace(), id.getPath() + infix + suffix),
+                new ResourceLocation(id.getNamespace(), prefix + id.getPath() + suffix),
                 // TFC & AFC: Include children of stone_type: stairs, slab...
                 new ResourceLocation(id.getNamespace(), "rock/raw/" + id.getPath() +"_"+ prefixOrInfix),
                 // TFC & AFC: Include children of smooth, cobblestone, button, pressure_plate, bricks, cracked_bricks
