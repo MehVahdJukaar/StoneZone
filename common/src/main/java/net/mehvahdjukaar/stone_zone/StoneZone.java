@@ -24,12 +24,13 @@ public class StoneZone extends EveryCompat {
     public static void init() {
         SZConfigs.init();
         SZRegistry.init();
+        SpriteHelper.initHardcodedSprite();
 
         BlockSetAPI.registerBlockSetDefinition(StoneTypeRegistry.INSTANCE);
         BlockSetAPI.registerBlockSetDefinition(MudTypeRegistry.INSTANCE);
         CompatStoneType.init();
 
-        PlatHelper.addCommonSetup(SpriteHelper::addHardcodedSprites);
+        PlatHelper.addCommonSetup(SpriteHelper::addHardcodedModel);
 
         if (PlatHelper.getPhysicalSide().isClient()) {
             ClientHelper.addClientReloadListener(() -> (preparationBarrier, resourceManager, preparationsProfiler, reloadProfiler, backgroundExecutor, gameExecutor) ->
