@@ -24,13 +24,13 @@ public class StoneZoneClient {
             var compatModule = StoneZone.getModuleOfItem(item);
             if (compatModule != null) {
                 if (blockTooltip) {
-                    StoneType metalType = StoneTypeRegistry.INSTANCE.getBlockTypeOf(item);
-                    if (metalType != null) {
-                        components.add(Component.translatable("tooltip.stonezone.stone_type", metalType.toString()).withStyle(ChatFormatting.GRAY));
+                    StoneType stoneType = StoneTypeRegistry.INSTANCE.getBlockTypeOf(item);
+                    if (stoneType != null) {
+                        components.add(Component.translatable("tooltip.stonezone.stone_type", stoneType.toString()).withStyle(ChatFormatting.GOLD));
                     }
-                    MudType gemType = MudTypeRegistry.INSTANCE.getBlockTypeOf(item);
-                    if (gemType != null) {
-                        components.add(Component.translatable("tooltip.stonezone.mud_type", gemType.toString()).withStyle(ChatFormatting.GRAY));
+                    MudType mudType = MudTypeRegistry.INSTANCE.getBlockTypeOf(item);
+                    if (mudType != null) {
+                        components.add(Component.translatable("tooltip.stonezone.mud_type", mudType.toString()).withStyle(ChatFormatting.GOLD));
                     }
                 }
             }
