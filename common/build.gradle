@@ -55,6 +55,7 @@ dependencies {
     modCompileOnly("curse.maven:blockus-312289:5896309")
     modCompileOnly("curse.maven:building-but-better-989479:5382599")
     modCompileOnly("curse.maven:create-fabric-624165:5982726")
+    modCompileOnly("curse.maven:decorative-blocks-362528:5089408")
     modCompileOnly("curse.maven:fabric-waystones-410902:6300601")
     modCompileOnly("curse.maven:handcrafted-538214:5118730") // Resourceful-Lib
     modCompileOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib

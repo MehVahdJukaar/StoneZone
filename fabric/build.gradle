@@ -182,11 +182,12 @@ dependencies {
 //    modRuntimeOnly("curse.maven:better-archeology-835687:5704094") // supermartijn642s' Config-Lib, Yung's API
 //    modRuntimeOnly("curse.maven:blockus-312289:5896309") // Terraformersmc's terraform-wood-api
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5382599")
+//    modRuntimeOnly("curse.maven:decorative-blocks-362528:5089408")
+//    modRuntimeOnly("curse.maven:fabric-waystones-410902:6300601") // Owo-Lib
 //    modRuntimeOnly("curse.maven:handcrafted-538214:5118730") // Resourceful-Lib
 //    modRuntimeOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611948") // puzzles-lib, forge-config-api-port
 //    modRuntimeOnly("curse.maven:twigs-496913:4603805")
-//    modRuntimeOnly("curse.maven:fabric-waystones-410902:6300601")
 
             //- OTHER MAVENS
 //    modRuntimeOnly("earth.terrarium.chipped:chipped-fabric-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib
