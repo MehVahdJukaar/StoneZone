@@ -47,10 +47,10 @@ public abstract class RockType extends BlockType{
         this.addChild("button", this.findRelatedBlock("", "button"));
         this.addChild("pressure_plate", this.findRelatedBlock("", "pressure_plate"));
 
-        Block cobblestone = this.findCobblestoneEntry("", "cobblestone");
+        Block cobblestone = this.findCobblestoneEntry("", "");
         if (Objects.nonNull(cobblestone)) {
             this.addChild("cobblestone", cobblestone);
-            this.addChild("mossy_cobblestone", this.findRelatedBlock("mossy","cobblestone"));
+            this.addChild("mossy_cobblestone", this.findRelatedBlock("mossy",""));
         }
 
         Block polished = this.findRelatedBlock("polished", "");
@@ -68,7 +68,7 @@ public abstract class RockType extends BlockType{
             this.addChild("smooth_wall", findRelatedBlock("smooth", "wall"));
         }
 
-        Block bricks = this.findBrickEntry("", "bricks");
+        Block bricks = this.findBrickEntry("", "");
         Block bricksTFC = this.findRelatedBlock("", "bricks");
         if (Objects.nonNull(bricks) || Objects.nonNull(bricksTFC)) {
             // Support TFC & AFC
@@ -81,10 +81,10 @@ public abstract class RockType extends BlockType{
             }
             else {
                 this.addChild("bricks", bricks);
-                this.addChild("brick_stairs", findChildBrickEntry("stairs"));
-                this.addChild("brick_slab", findChildBrickEntry("slab"));
-                this.addChild("brick_wall", findChildBrickEntry("wall"));
-                this.addChild("brick_tiles", findChildBrickEntry("tiles"));
+                this.addChild("brick_stairs", findBrickEntry("", "stairs"));
+                this.addChild("brick_slab", findBrickEntry("", "slab"));
+                this.addChild("brick_wall", findBrickEntry("", "wall"));
+                this.addChild("brick_tiles", findBrickEntry("", "tiles"));
                 this.addChild("cracked_bricks", findBrickEntry("cracked", ""));
                 this.addChild("mossy_bricks", findBrickEntry("mossy", ""));
                 this.addChild("mossy_brick_slab", findBrickEntry("mossy", "slab"));
@@ -96,33 +96,25 @@ public abstract class RockType extends BlockType{
     }
 
     @Override
-    protected void initializeChildrenItems() {
-
-    }
+    protected void initializeChildrenItems() {}
 
     @SuppressWarnings("SameParameterValue")
+    /// Checking the id for "cobbled" or "cobblestone"
     private @Nullable Block findCobblestoneEntry(String prefix, String suffix) {
-        suffix = (suffix.isEmpty()) ? "" : "_" + suffix;
+        String suffixed = (suffix.isEmpty()) ? "" : "_" + suffix;
 
         Block first = this.findRelatedEntry("cobbled", suffix, BuiltInRegistries.BLOCK);
         if (first != null) return first;
-        return this.findRelatedEntry(prefix, suffix, BuiltInRegistries.BLOCK);
+        return this.findRelatedEntry(prefix, "cobblestone" + suffixed, BuiltInRegistries.BLOCK);
     }
 
-    /// @param suffix concatenation of "brick_" + suffix
-    private @Nullable Block findChildBrickEntry(String suffix) {
-        suffix = (suffix.isEmpty()) ? "" : "_"+ suffix;
-        var first = this.findRelatedEntry("brick" + suffix, BuiltInRegistries.BLOCK);
-        if (first != null) return first;
-        return this.findRelatedEntry("bricks" + suffix, BuiltInRegistries.BLOCK);
-    }
-
+    /// Checking the id for "bricks" or "brick"
     private @Nullable Block findBrickEntry(String prefix, String suffix) {
-        suffix = (suffix.isEmpty()) ? "" : "_" + suffix;
+        String suffixed = (suffix.isEmpty()) ? "" : "_" + suffix;
 
-        Block first = this.findRelatedEntry(prefix, "brick" + suffix, BuiltInRegistries.BLOCK);
+        Block first = this.findRelatedEntry(prefix, "brick" + suffixed, BuiltInRegistries.BLOCK);
         if (first != null) return first;
-        return this.findRelatedEntry(prefix, "bricks" + suffix, BuiltInRegistries.BLOCK);
+        return this.findRelatedEntry(prefix, "bricks" + suffixed, BuiltInRegistries.BLOCK);
     }
 
     @Override
