@@ -41,7 +41,7 @@ dependencies {
 
 //!! ================================================= DEPENDENCIES ================================================= \\
 
-    //!! REQUIRED - The modules access libaries from below
+    //+ REQUIRED - The modules access libaries from below
     modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
     modCompileOnly("curse.maven:owo-lib-532610:4749199") // v0.11.2 | Fabric-Waystones
 
@@ -56,6 +56,7 @@ dependencies {
     modCompileOnly("curse.maven:building-but-better-989479:5382599")
     modCompileOnly("curse.maven:create-fabric-624165:5982726")
     modCompileOnly("curse.maven:fabric-waystones-410902:6300601")
+    modCompileOnly("curse.maven:handcrafted-538214:5118730") // Resourceful-Lib
     modCompileOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib
     modCompileOnly("curse.maven:quark-243121:5594847")
     modCompileOnly("curse.maven:stoneworks-852663:4611947")

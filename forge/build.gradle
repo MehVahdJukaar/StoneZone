@@ -146,8 +146,9 @@ dependencies {
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904750") // v8.1.25 | Stoneworks
 //    modRuntimeOnly("curse.maven:zeta-968868:6312779") // v1.0.28 | Quark
 //    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | Chipped
-//    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | Chipped
+//    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | Chipped, Handcrafted
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled
+//    modRuntimeOnly("curse.maven:curios-309927:6418456") // v5.14.1 | Eternal-Tales
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled, Better-Archeology
 //    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct
 //    modRuntimeOnly("curse.maven:blueprint-382216:5292242") // v7.1.0 | The-Outer-End, Caverns-And-Chasms
@@ -173,6 +174,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1
 //    modRuntimeOnly("curse.maven:quark-243121:6312787") // Zeta
 //    modRuntimeOnly("curse.maven:more-beautiful-torches-860325:5263631") // Monolib
+//    modRuntimeOnly("curse.maven:handcrafted-538214:5118729") // ResourceFul-Lib
 
             //- OTHER MAVENS
 //    modRuntimeOnly("earth.terrarium.chipped:chipped-forge-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib, REQUIRE: Bytecodecs
@@ -215,6 +217,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:the-undergarden-379849:5182632")
 //    modRuntimeOnly("curse.maven:natures-spirit-1044992:6445117")
 //    modRuntimeOnly("curse.maven:galosphere-631098:4983871")
+//    modRuntimeOnly("curse.maven:eternal-tales-416512:6687256")
 
     // MUDTYPE ONLY
     modRuntimeOnly("curse.maven:deeperdarker-659011:5906086")

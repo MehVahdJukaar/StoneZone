@@ -351,6 +351,9 @@
   "block_type.buildersaddition.cut_bricks_pillar": "Cut %s Bricks Pillar",
   "block_type.buildersaddition.cut_mossy_bricks_pillar": "Cut Mossy %s Bricks Pillar",
 
-  "block_type.fwaystones.brick_waystone": "%s Brick Waystone"
+  "block_type.fwaystones.brick_waystone": "%s Brick Waystone",
+
+  "block_type.handcrafted.pillar_trim": "%s Pillar Trim",
+  "block_type.handcrafted.corner_trim": "%s Corner Trim"
 
 }
