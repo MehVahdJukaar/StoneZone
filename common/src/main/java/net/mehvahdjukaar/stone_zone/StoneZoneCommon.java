@@ -4,6 +4,7 @@ import net.mehvahdjukaar.stone_zone.modules.building_but_better.BuildingButBette
 import net.mehvahdjukaar.stone_zone.modules.better_archeology.BetterArcheologyModule;
 import net.mehvahdjukaar.stone_zone.modules.blockus.BlockusModule;
 import net.mehvahdjukaar.stone_zone.modules.chipped.ChippedModule;
+import net.mehvahdjukaar.stone_zone.modules.wraith_waystones.WraithWaystonesModule;
 import net.mehvahdjukaar.stone_zone.modules.more_beautiful_torches.MoreBeautifulTorches;
 import net.mehvahdjukaar.stone_zone.modules.quark.QuarkModule;
 import net.mehvahdjukaar.stone_zone.modules.quark.QuarkMudModule;
@@ -34,6 +35,7 @@ public class StoneZoneCommon {
         addIfLoaded("blockus", () -> BlockusModule::new);
         addIfLoaded("bbb", () -> BuildingButBetterModule::new);
         addIfLoaded("chipped", () -> ChippedModule::new);
+        addIfLoaded("fwaystones", () -> WraithWaystonesModule::new);
         addIfLoaded("quark", () -> QuarkModule::new);
         addIfLoaded("quark", () -> QuarkMudModule::new);
         addIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorches::new);

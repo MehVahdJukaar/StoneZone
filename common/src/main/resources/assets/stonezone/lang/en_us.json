@@ -349,6 +349,8 @@
   "block_type.buildersaddition.cut_pillar": "Cut %s Pillar",
   "block_type.buildersaddition.cut_smooth_pillar": "Cut Smooth %s Pillar",
   "block_type.buildersaddition.cut_bricks_pillar": "Cut %s Bricks Pillar",
-  "block_type.buildersaddition.cut_mossy_bricks_pillar": "Cut Mossy %s Bricks Pillar"
+  "block_type.buildersaddition.cut_mossy_bricks_pillar": "Cut Mossy %s Bricks Pillar",
+
+  "block_type.fwaystones.brick_waystone": "%s Brick Waystone"
 
 }
