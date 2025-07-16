@@ -1,6 +1,7 @@
 package net.mehvahdjukaar.stone_zone;
 
 import net.mehvahdjukaar.every_compat.EveryCompat;
+import net.mehvahdjukaar.every_compat.api.CompatModule;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
@@ -16,6 +17,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class StoneZone extends EveryCompat {
     public static final String MOD_ID = "stonezone";
@@ -56,5 +59,17 @@ public class StoneZone extends EveryCompat {
         if (PlatHelper.isModLoaded(modId)) {
             ServerDynamicResourcesHandler.INSTANCE.dynamicPack.addNamespaces(modId);
         }
+    }
+
+    @SafeVarargs
+    public static void addMultipleIfLoaded(String modId, Supplier<Function<String, CompatModule>>... moduleFactories) {
+        if (PlatHelper.isModLoaded(modId)) {
+            CompatModule module;
+            for (var moduleFactory : moduleFactories) {
+                module = moduleFactory.get().apply(modId);
+                addModule(module);
+            }
+        }
+
     }
 }
