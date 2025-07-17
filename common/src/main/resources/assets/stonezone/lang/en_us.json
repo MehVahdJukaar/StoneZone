@@ -361,6 +361,8 @@
   "block_type.blocksyouneed_luna.laid": "Laid %s",
   "block_type.blocksyouneed_luna.laid_stairs": "Laid %s Stairs",
   "block_type.blocksyouneed_luna.laid_slab": "Laid %s Slab",
-  "block_type.blocksyouneed_luna.laid_wall": "Laid %s Wall"
+  "block_type.blocksyouneed_luna.laid_wall": "Laid %s Wall",
+
+  "block_type.waystones.waystone": "%s Waystone"
 
 }

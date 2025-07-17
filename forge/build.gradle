@@ -153,6 +153,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct
 //    modRuntimeOnly("curse.maven:blueprint-382216:5292242") // v7.1.0 | The-Outer-End, Caverns-And-Chasms
 //    modRuntimeOnly("curse.maven:monolib-968432:6123976") // v2.0.0 | More-Beautiful-Torches
+//    modRuntimeOnly("curse.maven:balm-531761:6778755") // v7.3.32 | Waystones
 
         //- ~/forge/mods LOCAL
 
@@ -176,6 +177,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:quark-243121:6312787") // Zeta
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611947") // puzzles-lib
 //    modRuntimeOnly("curse.maven:twigs-496913:4605097")
+//    modRuntimeOnly("curse.maven:waystones-245755:6779067") // Balm
 
             //- OTHER MAVENS
 //    modRuntimeOnly("earth.terrarium.chipped:chipped-forge-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib, REQUIRE: Bytecodecs

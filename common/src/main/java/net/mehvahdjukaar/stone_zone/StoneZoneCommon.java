@@ -6,6 +6,7 @@ import net.mehvahdjukaar.stone_zone.modules.blockus.BlockusModule;
 import net.mehvahdjukaar.stone_zone.modules.chipped.ChippedModule;
 import net.mehvahdjukaar.stone_zone.modules.decorative_blocks.DecorativeBlocksModule;
 import net.mehvahdjukaar.stone_zone.modules.handcrafted.HandcraftedModule;
+import net.mehvahdjukaar.stone_zone.modules.waystones.WaystonesModule;
 import net.mehvahdjukaar.stone_zone.modules.wraith_waystones.WraithWaystonesModule;
 import net.mehvahdjukaar.stone_zone.modules.more_beautiful_torches.MoreBeautifulTorches;
 import net.mehvahdjukaar.stone_zone.modules.quark.QuarkModule;
@@ -45,6 +46,7 @@ public class StoneZoneCommon {
         addIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorches::new);
         addIfLoaded("stoneworks", () -> StoneworksModule::new);
         addIfLoaded("twigs", () -> TwigsModule::new);
+        addIfLoaded("waystones", () -> WaystonesModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
 

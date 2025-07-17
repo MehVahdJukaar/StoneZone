@@ -44,6 +44,7 @@ dependencies {
     //+ REQUIRED - The modules access libaries from below
     modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
     modCompileOnly("curse.maven:owo-lib-532610:4749199") // v0.11.2 | Fabric-Waystones
+//    modCompileOnly("curse.maven:balm-fabric-500525:6778750") // v7.3.32 | Waystones
 
 //!! =================================================== IMPORTS ==================================================== \\
     //- MODULES - don't need library from the mod, so it's fine to ignore
@@ -62,6 +63,7 @@ dependencies {
     modCompileOnly("curse.maven:quark-243121:5594847")
     modCompileOnly("curse.maven:stoneworks-852663:4611947")
     modCompileOnly("curse.maven:twigs-496913:4603805")
+    modCompileOnly("curse.maven:waystones-245755:6779064") // Balm
 
         //+ OTHER MAVENS
     modCompileOnly("earth.terrarium.chipped:chipped-fabric-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib

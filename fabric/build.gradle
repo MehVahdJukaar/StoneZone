@@ -164,7 +164,8 @@ dependencies {
 //    modRuntimeOnly("curse.maven:athena-841890:5176880") // Chipped
 //    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659872")  // v2.1.29 | Chipped, Handcrafted
 //    modRuntimeOnly("curse.maven:monolib-968432:6123964") // v2.0.0 | More-Beautiful-Torches
-//    modRuntimeOnly("curse.maven:owo-lib-532610:4749199") // v0.11.2 | Fabric-Waystones
+//    modRuntimeOnly("curse.maven:owo-lib-532610:4749199") // v0.11.2 | Wraith-Waystones
+//    modRuntimeOnly("curse.maven:balm-fabric-500525:6778750") // v7.3.32 | Waystones
 
         //- ~/fabric/mods LOCAL@
 
@@ -188,6 +189,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611948") // puzzles-lib, forge-config-api-port
 //    modRuntimeOnly("curse.maven:twigs-496913:4603805")
+//    modRuntimeOnly("curse.maven:waystones-245755:6779064") // Balm
 
             //- OTHER MAVENS
 //    modRuntimeOnly("earth.terrarium.chipped:chipped-fabric-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib
