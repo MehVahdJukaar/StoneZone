@@ -83,19 +83,23 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
                 ResourceLocation idBlockType = baseRes.withPath(stoneName);
                 ResourceLocation idBlockTypeAlt = baseRes.withPath(stoneAlt);
 
-                // Ensure that detected BlockType is actually StoneType
-                boolean isStoneTypeBlacklisted = !(BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneName).toString()) || BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneAlt).toString()));
+                /// Ensure that detected BlockType is actually StoneType
+                boolean isStoneTypeNotBlacklisted = !(BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneName).toString()) || BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneAlt).toString()));
 
-                boolean noOreType = !BuiltInRegistries.ITEM.containsKey(
-                        new ResourceLocation(baseRes.getNamespace(), blockPath.replaceAll("([a-z]+_)\\w+", "$1ore"))
+                boolean noDustType = !BuiltInRegistries.ITEM.containsKey(
+                        new ResourceLocation(baseRes.getNamespace(), blockPath.replaceAll("(?<name>[a-z]+_)\\w+", "${name}dust"))
                 );
-                boolean noWoodType = !BuiltInRegistries.ITEM.containsKey(
-                        new ResourceLocation(baseRes.getNamespace(), blockPath.replace("block", "log"))
+                boolean noOreType = !BuiltInRegistries.BLOCK.containsKey(
+                        new ResourceLocation(baseRes.getNamespace(), blockPath.replaceAll("(?<name>[a-z]+_)\\w+", "${name}ore"))
+                );
+                boolean noWoodType = !BuiltInRegistries.BLOCK.containsKey(
+                        new ResourceLocation(baseRes.getNamespace(), blockPath.replaceAll("(?<name>[a-z]+_)[a-z]+", "${name}log"))
                 );
 
-                // Check if a BlockType is already added
-                if (( Objects.isNull(get(idBlockType)) && Objects.isNull(get(idBlockTypeAlt)) )
-                        && isStoneTypeBlacklisted
+                /// Check if a BlockType is already added
+                if ((Objects.isNull(get(idBlockType)) && Objects.isNull(get(idBlockTypeAlt)))
+                        && isStoneTypeNotBlacklisted
+                        && noDustType
                         && noOreType
                         && noWoodType
                 ) {
