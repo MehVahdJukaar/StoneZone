@@ -35,9 +35,13 @@ public class HardcodedBlockType {
         supportedBlockName = blockName;
         shortenedIdenfity = shortenedId;
 
+            /// ========== INCLUDE VANILLA TYPE ========== \\\
+        // Include minecraft's PRISMARINE with Waystones
+        if (isStoneFrom("waystones", "", "", "", "prismarine_waystone")) return false;
+
             /// ========== EXCLUDE ========== \\\
         // EXAMPLE
-//        if (isStoneRegistryOf("create", "c", "create", "create:limestone", "limestone_pillar")) return true;
+//        if (isStoneRegistryOf("create", "create", "create:limestone", "limestone_pillar")) return true;
 
         // Exclude all of Vanilla Types
         if (stoneType.isVanilla()) return true;
