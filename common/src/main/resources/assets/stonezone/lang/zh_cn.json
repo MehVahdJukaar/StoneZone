@@ -336,7 +336,22 @@
   "block_type.blocksplus.cracked_polished_bricks": "裂纹磨制%s砖",
   "block_type.blocksplus.mossy_polished_bricks":  "覆苔磨制%s砖",
   "block_type.blocksplus.furnace": "%s熔炉",
+  
+  "block_type.buildersaddition.vertical_slab": "%s垂直台阶",
+  "block_type.buildersaddition.smooth_vertical_slab": "平滑%s垂直台阶",
+  "block_type.buildersaddition.bricks_vertical_slab": "%s砖垂直台阶",
+  "block_type.buildersaddition.mossy_bricks_vertical_slab": "覆苔%s砖垂直台阶",
+  "block_type.buildersaddition.cut_pillar": "切割%s柱",
+  "block_type.buildersaddition.cut_smooth_pillar": "切割平滑%s柱",
+  "block_type.buildersaddition.cut_bricks_pillar": "切割%s砖柱",
+  "block_type.buildersaddition.cut_mossy_bricks_pillar": "覆苔切割%s砖柱",
 
+  "block_type.fwaystones.brick_waystone": "%s砖指路石",
+
+  "block_type.handcrafted.pillar_trim": "%s柱饰",
+  "block_type.handcrafted.corner_trim": "%s檐饰",
+
+  "block_type.decorative_blocks.pillar": "%s柱",
 
 
   "stone_type.minecraft.stone": "石头",
