@@ -17,6 +17,16 @@ public class CompatStoneType {
 
     public static void init() {
 
+        // Blocks You Need - Luna
+            //NOTE: not really a StoneType
+        simpleStoneFinder("blocksyouneed_luna", "sodalite");
+        simpleStoneFinder("blocksyouneed_luna", "sunstone",
+                "BRICKS-sunstone_bricks_ornate", "BRICK_STAIRS-sunstone_bricks_stairs",
+                "BRICK_SLAB-sunstone_bricks_slab", "BRICK_WALL-sunstone_bricks_wall");
+        simpleStoneFinder("blocksyouneed_luna", "glance",
+                "BRICK_STAIRS-glance_bricks_stairs", "BRICK_SLAB-glance_bricks_slab",
+                "BRICK_WALL-glance_bricks_wall");
+
         // The-Twiligth-Forest
         simpleStoneFinder("twilightforest", "mazestone", "BRICKS-mazestone_brick");
         advancedStoneFinder("twilightforest", "deadrock", "deadrock");
@@ -246,6 +256,7 @@ public class CompatStoneType {
         }
     }
 
+//!! OTHERS
     /// Get the keyword from block: stone_bricks, key: bricks
     public static String getChildKeyFrom(String childBlock) {
         if (childBlock.contains("-")) {
@@ -257,7 +268,8 @@ public class CompatStoneType {
     }
 
     private static final Set<String> childKeySafe = Set.of(
-            "stone", "stairs", "slab", "wall", "button", "pressure_plate", "smooth_stone",
+            "stone", "stairs", "slab", "wall", "button", "pressure_plate",
+            "smooth", "smooth_stairs", "smooth_slab", "smooth_wall",
             "cobblestone", "mossy_cobblestone",
             "polished", "polished_stairs", "polished_slab",
             "bricks", "brick_stairs", "brick_slab", "brick_wall", "cracked_bricks", "brick_tiles",
