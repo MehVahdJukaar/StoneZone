@@ -356,6 +356,11 @@
   "block_type.handcrafted.pillar_trim": "%s Pillar Trim",
   "block_type.handcrafted.corner_trim": "%s Corner Trim",
 
-  "block_type.decorative_blocks.pillar": "%s Pillar"
+  "block_type.decorative_blocks.pillar": "%s Pillar",
+
+  "block_type.blocksyouneed_luna.laid": "Laid %s",
+  "block_type.blocksyouneed_luna.laid_stairs": "Laid %s Stairs",
+  "block_type.blocksyouneed_luna.laid_slab": "Laid %s Slab",
+  "block_type.blocksyouneed_luna.laid_wall": "Laid %s Wall"
 
 }
