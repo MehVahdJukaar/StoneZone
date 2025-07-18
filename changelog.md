@@ -10,7 +10,7 @@
 
 * **(COMMON)**: FORGE & FABRIC
 * **(FB)**: FABRIC
-* **(FG)**: FORGE
+* **(F)**: FORGE
 * **(IT)**: Included Texture: Added the ResourceLocation of the missing textures required for blocks or generating a new texture
 * **(UDS)**: Undetected StoneType have been manually added.
 * **(COMPAT)**: Create an exception for a compat mod. EveryCompat won't included for the Supported Mod and the Wood Mod
@@ -20,6 +20,25 @@
 </div>
 
 </div>
+
+### UPDATED: 
+- **LANG**: zh_cn for Builder's Crafts & Addition, Wraith-Waystones, Decorative-Blocks, Handcrafted - @libu2333
+- **Blockus** (COMMON): Corrected the baseBlock for tile_stairs
+- **Stone Zone** (COMMON): 
+  - Updated Spritehelper to use method from **Every Compat** so the (IT) can work properly
+  - Fixed the system detection to detect "bricks" of any StoneTypes
+
+### NEW SUPPORTED:
+- <span style="color: YELLOW;">**Waystones** (COMMON)</span> - Yup, Waystones is supported and prismarine_waystone is included, too.
+- **\[Let's Do\] Candlelight** (COMMON)
+- **Handcrafted** (COMMON)
+- **Decorative Blocks** (COMMON)
+- **Wraith Waystone** (FB) - Can be used with Sinytra-Connector for FORGE & NOTE: the recipe for `stone_brick_waystone` will be different
+- **Blocks You Need (Luna)** (F)
+
+---
+
+## v2.8.10
 
 ### UPDATED: 
 - **Stone Zone** (COMMON): 
