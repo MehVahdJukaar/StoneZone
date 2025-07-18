@@ -22,6 +22,13 @@
 </div>
 
 ### UPDATED: 
+- **Blocks You Need (Luna)** (F): Fixed the crash 
+
+---
+
+## v2.8.11
+
+### UPDATED: 
 - **LANG**: zh_cn for Builder's Crafts & Addition, Wraith-Waystones, Decorative-Blocks, Handcrafted - @libu2333
 - **Blockus** (COMMON): Corrected the baseBlock for tile_stairs
 - **Stone Zone** (COMMON): 
