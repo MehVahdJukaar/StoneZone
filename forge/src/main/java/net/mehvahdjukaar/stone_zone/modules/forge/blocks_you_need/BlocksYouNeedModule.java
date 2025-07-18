@@ -119,7 +119,7 @@ public class BlocksYouNeedModule extends StoneZoneModule {
 
         laid_wall = StoneZoneEntrySet.of(StoneType.class, "wall", "laid",
                         getModBlock("laid_sandstone_wall"), StoneTypeRegistry::getSandstoneType,
-                        stoneType -> new WallBlock(copyWallSafe("stone_wall", stoneType)
+                        stoneType -> new WallBlock(copyWallSafe("laid_sandstone_wall", stoneType)
                                 .strength(0.8F, 0.8F)
                                 .requiresCorrectToolForDrops()
                         )
@@ -142,10 +142,10 @@ public class BlocksYouNeedModule extends StoneZoneModule {
     }
 
     public BlockBehaviour.Properties copyWallSafe(String baseType, StoneType stoneType) {
+        Block wall = stoneType.getBlockOfThis("wall");
+
         return Utils.copyPropertySafe(
-                (Objects.nonNull(stoneType.getBlockOfThis("wall")))
-                        ? Objects.requireNonNull(stoneType.getBlockOfThis("wall"))
-                        : getModBlock(baseType).get()
+                (Objects.nonNull(wall)) ? Objects.requireNonNull(wall) : getModBlock(baseType).get()
         );
     }
 }
