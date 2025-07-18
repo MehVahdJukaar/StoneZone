@@ -52,7 +52,7 @@ public class BlocksYouNeedModule extends StoneZoneModule {
 //        this.addEntry(path);
 
         laid = StoneZoneEntrySet.of(StoneType.class, "", "laid",
-                        getModBlock("laid_sandstone"), () -> StoneTypeRegistry.getValue("sandstone"),
+                        getModBlock("laid_sandstone"), StoneTypeRegistry::getSandstoneType,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone)
                                 .sound(stoneType.getSound())
                                 .strength(0.8F)
@@ -73,7 +73,7 @@ public class BlocksYouNeedModule extends StoneZoneModule {
         this.addEntry(laid);
 
         laid_stairs = StoneZoneEntrySet.of(StoneType.class, "stairs", "laid",
-                        getModBlock("laid_sandstone_stairs"), () -> StoneTypeRegistry.getValue("sandstone"),
+                        getModBlock("laid_sandstone_stairs"), StoneTypeRegistry::getSandstoneType,
                         stoneType -> new StairBlock(laid.blocks.get(stoneType).defaultBlockState(),
                                 copyChildrenPropertySafe("stairs", stoneType)
                                         .strength(0.8F, 0.8F)
@@ -96,7 +96,7 @@ public class BlocksYouNeedModule extends StoneZoneModule {
         this.addEntry(laid_stairs);
 
         laid_slab = StoneZoneEntrySet.of(StoneType.class, "slab", "laid",
-                        getModBlock("laid_sandstone_slab"), () -> StoneTypeRegistry.getValue("sandstone"),
+                        getModBlock("laid_sandstone_slab"), StoneTypeRegistry::getSandstoneType,
                         stoneType -> new SlabBlock(copyChildrenPropertySafe("slab", stoneType)
                                 .strength(0.8F, 0.8F)
                                 .requiresCorrectToolForDrops()
@@ -118,7 +118,7 @@ public class BlocksYouNeedModule extends StoneZoneModule {
         this.addEntry(laid_slab);
 
         laid_wall = StoneZoneEntrySet.of(StoneType.class, "wall", "laid",
-                        getModBlock("laid_sandstone_wall"), () -> StoneTypeRegistry.getValue("sandstone"),
+                        getModBlock("laid_sandstone_wall"), StoneTypeRegistry::getSandstoneType,
                         stoneType -> new WallBlock(copyWallSafe("stone_wall", stoneType)
                                 .strength(0.8F, 0.8F)
                                 .requiresCorrectToolForDrops()
