@@ -363,6 +363,10 @@
   "block_type.blocksyouneed_luna.laid_slab": "Laid %s Slab",
   "block_type.blocksyouneed_luna.laid_wall": "Laid %s Wall",
 
-  "block_type.waystones.waystone": "%s Waystone"
+  "block_type.waystones.waystone": "%s Waystone",
+
+  "block_type.candlelight.counter": "%s Counter",
+  "block_type.candlelight.stove": "%s Stove",
+  "block_type.candlelight.kitchen_sink": "%s Kitchen Sink"
 
 }

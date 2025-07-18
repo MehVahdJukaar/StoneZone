@@ -6,6 +6,7 @@ import net.mehvahdjukaar.stone_zone.modules.blockus.BlockusModule;
 import net.mehvahdjukaar.stone_zone.modules.chipped.ChippedModule;
 import net.mehvahdjukaar.stone_zone.modules.decorative_blocks.DecorativeBlocksModule;
 import net.mehvahdjukaar.stone_zone.modules.handcrafted.HandcraftedModule;
+import net.mehvahdjukaar.stone_zone.modules.lets_do.CandlelightModule;
 import net.mehvahdjukaar.stone_zone.modules.waystones.WaystonesModule;
 import net.mehvahdjukaar.stone_zone.modules.wraith_waystones.WraithWaystonesModule;
 import net.mehvahdjukaar.stone_zone.modules.more_beautiful_torches.MoreBeautifulTorches;
@@ -35,17 +36,18 @@ public class StoneZoneCommon {
 
 //!! =================================================== Add Modules ================================================ \\
 
+        addIfLoaded("bbb", () -> BuildingButBetterModule::new);
         addIfLoaded("betterarcheology", () -> BetterArcheologyModule::new);
         addIfLoaded("blockus", () -> BlockusModule::new);
-        addIfLoaded("bbb", () -> BuildingButBetterModule::new);
+        addIfLoaded("candlelight", () -> CandlelightModule::new);
         addIfLoaded("chipped", () -> ChippedModule::new);
         addIfLoaded("decorative_blocks", () -> DecorativeBlocksModule::new);
         addIfLoaded("fwaystones", () -> WraithWaystonesModule::new);
         addIfLoaded("handcrafted", () -> HandcraftedModule::new);
-        addMultipleIfLoaded("quark", () -> QuarkModule::new, () -> QuarkMudModule::new);
         addIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorches::new);
         addIfLoaded("stoneworks", () -> StoneworksModule::new);
         addIfLoaded("twigs", () -> TwigsModule::new);
+        addMultipleIfLoaded("quark", () -> QuarkModule::new, () -> QuarkMudModule::new);
         addIfLoaded("waystones", () -> WaystonesModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\

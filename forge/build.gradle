@@ -154,6 +154,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:blueprint-382216:5292242") // v7.1.0 | The-Outer-End, Caverns-And-Chasms
 //    modRuntimeOnly("curse.maven:monolib-968432:6123976") // v2.0.0 | More-Beautiful-Torches
 //    modRuntimeOnly("curse.maven:balm-531761:6778755") // v7.3.32 | Waystones
+//    modRuntimeOnly("curse.maven:architectury-api-419699:5137938") // v9.2.14 | [Let's-Do]-Candlelight, [Let's-Do]-Farm-&-Charm,
 
         //- ~/forge/mods LOCAL
 
@@ -178,6 +179,8 @@ dependencies {
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611947") // puzzles-lib
 //    modRuntimeOnly("curse.maven:twigs-496913:4605097")
 //    modRuntimeOnly("curse.maven:waystones-245755:6779067") // Balm
+//    modRuntimeOnly("curse.maven:lets-do-farm-charm-1038103:6561948") // Architectury-API
+//    modRuntimeOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:6195385") // [Let's-Do]-Farm-&-Charm, Architectury-API
 
             //- OTHER MAVENS
 //    modRuntimeOnly("earth.terrarium.chipped:chipped-forge-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib, REQUIRE: Bytecodecs
