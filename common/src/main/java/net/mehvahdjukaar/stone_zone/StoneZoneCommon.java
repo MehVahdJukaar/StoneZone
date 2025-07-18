@@ -39,7 +39,7 @@ public class StoneZoneCommon {
         addIfLoaded("bbb", () -> BuildingButBetterModule::new);
         addIfLoaded("betterarcheology", () -> BetterArcheologyModule::new);
         addIfLoaded("blockus", () -> BlockusModule::new);
-        addIfLoaded("candlelight", () -> CandlelightModule::new);
+        addIfLoaded("candlelight", () -> CandlelightModule::new); //!! [Let's Do]
         addIfLoaded("chipped", () -> ChippedModule::new);
         addIfLoaded("decorative_blocks", () -> DecorativeBlocksModule::new);
         addIfLoaded("fwaystones", () -> WraithWaystonesModule::new);
