@@ -56,6 +56,7 @@ public class WraithWaystonesModule extends StoneZoneModule {
                 .defaultRecipe()
                 //RECIPES: Manully created below
                 .addCustomItem((stoneType, block, properties) -> new WaystoneItem(block, properties))
+                .copyParentDrop()
                 .build();
         this.addEntry(brick_waystone);
 
