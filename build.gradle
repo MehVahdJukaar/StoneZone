@@ -89,7 +89,10 @@ subprojects {
                         optionalDependency("building-but-better")
                         optionalDependency("better-archeology")
                         optionalDependency("create-fabric")
-//                        optionalDependency("decorative-blocks")
+                        optionalDependency("decorative-blocks")
+                        optionalDependency("fabric-waystones") // Wraith-Waystones
+                        optionalDependency("handcrafted")
+                        optionalDependency("lets-do-candlelight")
                         optionalDependency("macaws-bridges")
                         optionalDependency("macaws-fences-and-walls")
                         optionalDependency("macaws-paths-and-pavings")
@@ -101,6 +104,7 @@ subprojects {
                         optionalDependency("stoneworks")
                         optionalDependency("twigs")
                         optionalDependency("rechiseled")
+                        optionalDependency("waystones")
                     }
                 } else {
                     relations {
@@ -108,12 +112,15 @@ subprojects {
                         requiredDependency("every-compat")
                         optionalDependency("additional-lights")
                         optionalDependency("better-archeology")
+                        optionalDependency("blocks-you-need")
                         optionalDependency("blockus")
-//                        optionalDependency("buildersaddition")
+                        optionalDependency("buildersaddition")
                         optionalDependency("building-but-better")
 //                        optionalDependency("corail-pillar")
                         optionalDependency("create")
-//                        optionalDependency("decorative-blocks")
+                        optionalDependency("decorative-blocks")
+                        optionalDependency("handcrafted")
+                        optionalDependency("lets-do-candlelight")
                         optionalDependency("macaws-bridges")
                         optionalDependency("macaws-fences-and-walls")
                         optionalDependency("macaws-paths-and-pavings")
@@ -127,6 +134,7 @@ subprojects {
                         optionalDependency("stoneworks")
                         optionalDependency("twigs")
                         optionalDependency("rechiseled")
+                        optionalDependency("waystones")
                     }
                 }
             }
