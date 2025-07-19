@@ -34,7 +34,7 @@ import java.util.Objects;
 
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
 
-//SUPPORT: v0.5.1+
+//SUPPORT: v6.0.2+
 public class CreateModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> cuts;
@@ -72,6 +72,7 @@ public class CreateModule extends StoneZoneModule {
                 //TAGS: create:stone_types/andesite - manually created
                 .setTabKey(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop() //NOTE: it's required blc idk why the loot_table is not being generated - #125
                 .build();
         this.addEntry(cuts);
 
@@ -89,6 +90,7 @@ public class CreateModule extends StoneZoneModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(cut_stairs);
 
@@ -107,6 +109,7 @@ public class CreateModule extends StoneZoneModule {
                 .defaultRecipe()
                 .addRecipe(modRes("cut_andesite_slab_recycling")) //Crafts cut_andesite
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(cut_slabs);
 
@@ -123,6 +126,7 @@ public class CreateModule extends StoneZoneModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(cut_walls);
 
@@ -135,6 +139,7 @@ public class CreateModule extends StoneZoneModule {
                 //TAGS: create:stone_types/andesite - manually created
                 .setTabKey(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(cut_bricks);
 
@@ -151,6 +156,7 @@ public class CreateModule extends StoneZoneModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(cut_brick_stairs);
 
@@ -168,6 +174,7 @@ public class CreateModule extends StoneZoneModule {
                 .defaultRecipe()
                 .addRecipe(modRes("cut_andesite_brick_slab_recycling")) //Crafts cut_andesite_bricks
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(cut_brick_slabs);
 
@@ -184,6 +191,7 @@ public class CreateModule extends StoneZoneModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(cut_brick_walls);
 
@@ -196,6 +204,7 @@ public class CreateModule extends StoneZoneModule {
                 //TAGS: create:stone_types/andesite - manually created
                 .setTabKey(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(polished_cuts);
 
@@ -213,6 +222,7 @@ public class CreateModule extends StoneZoneModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(polished_cut_stairs);
 
@@ -232,6 +242,7 @@ public class CreateModule extends StoneZoneModule {
                 .defaultRecipe()
                 .addRecipe(modRes("polished_cut_andesite_slab_recycling")) //Crafts polished_cut_andesite
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(polished_cut_slabs);
 
@@ -248,6 +259,7 @@ public class CreateModule extends StoneZoneModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(polished_cut_walls);
 
@@ -260,6 +272,7 @@ public class CreateModule extends StoneZoneModule {
                 //TAGS: create:stone_types/andesite - manually created
                 .setTabKey(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(small_bricks);
 
@@ -277,6 +290,7 @@ public class CreateModule extends StoneZoneModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(small_brick_stairs);
 
@@ -294,6 +308,7 @@ public class CreateModule extends StoneZoneModule {
                 .defaultRecipe()
                 .addRecipe(modRes("small_andesite_brick_slab_recycling")) //Crafts small_andesite_bricks
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(small_brick_slabs);
 
@@ -310,6 +325,7 @@ public class CreateModule extends StoneZoneModule {
                 .setTabKey(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(small_brick_walls);
 
@@ -324,6 +340,7 @@ public class CreateModule extends StoneZoneModule {
                 //TAGS: create:stone_types/andesite - manually created
                 .setTabKey(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(pillars);
 
@@ -339,6 +356,7 @@ public class CreateModule extends StoneZoneModule {
                 //TAGS: create:stone_types/andesite - manually created
                 .setTabKey(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .copyParentDrop()
                 .build();
         this.addEntry(layereds);
 
