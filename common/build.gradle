@@ -36,7 +36,7 @@ dependencies {
         modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.8.11
+        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.8.13
     }
 
 //!! ================================================= DEPENDENCIES ================================================= \\
@@ -64,8 +64,8 @@ dependencies {
     modCompileOnly("curse.maven:stoneworks-852663:4611947")
     modCompileOnly("curse.maven:twigs-496913:4603805")
     modCompileOnly("curse.maven:waystones-245755:6779064") // Balm
-    modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:6195387") //+[Let's-Do]-Farm-&-Charm
     modCompileOnly("curse.maven:lets-do-farm-charm-1038103:6561949") // Architectury-API
+    modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:6195387") //+[Let's-Do]-Farm-&-Charm
 
         //+ OTHER MAVENS
     modCompileOnly("earth.terrarium.chipped:chipped-fabric-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib
