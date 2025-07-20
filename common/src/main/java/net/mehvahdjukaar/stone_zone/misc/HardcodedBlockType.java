@@ -23,7 +23,10 @@ public class HardcodedBlockType {
             "outer_end:himmel", "quark:midori", "twigs:silt", "supplementaries:ash", "blue_skies:brumble",
             "nifty:concrete", "blocksyouneed_luna:bluestone", "blocksyouneed_luna:scorchcobble",
             //REASON: shouldn't be detected
-            "desire:polished_stone", "desire:chiseled_stone"
+            "desire:polished_stone", "desire:chiseled_stone", "create_dd:cut_stone",
+
+            //REASON: The StoneType's texture is only white and no way for blocks to copy its color behavior
+            "rgbblocks:prismarine"
     );
 
     @Nullable
@@ -40,12 +43,6 @@ public class HardcodedBlockType {
             /// ========== EXCLUDE ========== \\\
         // Exclude all of Vanilla Types
         if (stoneType.isVanilla()) return true;
-
-        // The StoneType's texture is only white and no way for blocks to copy its color behavior
-        if (isStoneFrom("", "", "rgbblocks:prismarine", "")) return true;
-
-        // Create: Dreams & Desires' cut_stone_bricks shouldn't be detected but was
-        if (isStoneFrom("", "", "create_dd:cut_stone", "")) return true;
 
         // Stone Expansion's stone is based on Minecraft's stone and shouldn't be included
         if (isStoneFrom("", "", "stoneexpansion:(cut|mossy|smooth|polished)_stone", "")) return true;
