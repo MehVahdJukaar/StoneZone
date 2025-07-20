@@ -352,6 +352,17 @@
   "block_type.handcrafted.corner_trim": "%s檐饰",
 
   "block_type.decorative_blocks.pillar": "%s柱",
+  
+  "block_type.blocksyouneed_luna.laid": "平铺%s",
+  "block_type.blocksyouneed_luna.laid_stairs": "平铺%s楼梯",
+  "block_type.blocksyouneed_luna.laid_slab": "平铺%s台阶",
+  "block_type.blocksyouneed_luna.laid_wall": "平铺%s墙",
+
+  "block_type.waystones.waystone": "%s指路石",
+
+  "block_type.candlelight.counter": "%s柜台",
+  "block_type.candlelight.stove": "%s火炉",
+  "block_type.candlelight.kitchen_sink": "%s厨房水槽",
 
 
   "stone_type.minecraft.stone": "石头",
