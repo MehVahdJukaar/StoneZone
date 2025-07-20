@@ -5,8 +5,10 @@
   "tooltip.stonezone.stone_type": "Stone Type: %s",
   "tooltip.stonezone.mud_type": "Mud Type: %s",
 
-  "stone_type:what_is_stone.limestone": "Beige Limestone",
-  "stone_type:what_is_stone.marble": "White Marble",
+  "stone_type.what_is_stone.limestone": "Beige Limestone",
+  "stone_type.what_is_stone.marble": "White Marble",
+
+  "stone_type.wetland_whimsy.limestone": "Lemonstone",
 
   "block_type.twigs.column": "%s Column",
 
