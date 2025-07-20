@@ -2,7 +2,6 @@ package net.mehvahdjukaar.stone_zone.modules.chipped;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import earth.terrarium.chipped.common.blocks.DirectionBlock;
 import earth.terrarium.chipped.common.blocks.SpecialPointedDripstoneBlock;
 import net.mehvahdjukaar.every_compat.api.EntrySet;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
@@ -105,7 +104,7 @@ public class ChippedModule extends StoneZoneModule {
 
         bricks = StoneZoneEntrySet.of(StoneType.class, "bricks",
                         getModBlock("andesite_bricks"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
                 .addTexture(modRes("block/andesite/andesite_bricks"))
@@ -116,7 +115,7 @@ public class ChippedModule extends StoneZoneModule {
 
         mini_tiles = StoneZoneEntrySet.of(StoneType.class, "mini_tiles",
                         getModBlock("andesite_mini_tiles"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/andesite_mini_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -126,7 +125,7 @@ public class ChippedModule extends StoneZoneModule {
 
         pillars = StoneZoneEntrySet.of(StoneType.class, "pillar",
                         getModBlock("andesite_pillar"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
                 .addTexture(modRes("block/andesite/andesite_pillar"))
@@ -137,7 +136,7 @@ public class ChippedModule extends StoneZoneModule {
 
         pillar_tops = StoneZoneEntrySet.of(StoneType.class, "pillar_top",
                         getModBlock("andesite_pillar_top"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
                 .addTexture(modRes("block/andesite/andesite_pillar_top"))
@@ -152,7 +151,7 @@ public class ChippedModule extends StoneZoneModule {
 
         scales = StoneZoneEntrySet.of(StoneType.class, "scales",
                         getModBlock("andesite_scales"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/andesite_scales"))
                 .addTexture(modRes("block/andesite/polished_andesite")) //REQUIRED BY: Other blocks
@@ -166,7 +165,7 @@ public class ChippedModule extends StoneZoneModule {
 
         angry = StoneZoneEntrySet.of(StoneType.class, "", "angry",
                         getModBlock("angry_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/angry_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -176,7 +175,7 @@ public class ChippedModule extends StoneZoneModule {
 
         blank_carving = StoneZoneEntrySet.of(StoneType.class, "carving", "blank",
                         getModBlock("blank_andesite_carving"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/blank_andesite_carving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -186,7 +185,7 @@ public class ChippedModule extends StoneZoneModule {
 
         carved = StoneZoneEntrySet.of(StoneType.class, "", "carved",
                         getModBlock("carved_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/carved_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -196,7 +195,7 @@ public class ChippedModule extends StoneZoneModule {
 
         checkered_tiles = StoneZoneEntrySet.of(StoneType.class, "tiles", "checkered",
                         getModBlock("checkered_andesite_tiles"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/checkered_andesite_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -206,7 +205,7 @@ public class ChippedModule extends StoneZoneModule {
 
         cobbled = StoneZoneEntrySet.of(StoneType.class, "", "cobbled",
                         getModBlock("cobbled_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/cobbled_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -216,7 +215,7 @@ public class ChippedModule extends StoneZoneModule {
 
         cracked_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "cracked",
                         getModBlock("cracked_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/cracked_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -226,7 +225,7 @@ public class ChippedModule extends StoneZoneModule {
 
         crackeddisordered__bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "cracked_disordered",
                         getModBlock("cracked_disordered_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/cracked_disordered_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -236,7 +235,7 @@ public class ChippedModule extends StoneZoneModule {
 
         cracked_flat_tiles = StoneZoneEntrySet.of(StoneType.class, "tiles", "cracked_flat",
                         getModBlock("cracked_flat_andesite_tiles"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/cracked_flat_andesite_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -246,7 +245,7 @@ public class ChippedModule extends StoneZoneModule {
 
         creeper_carving = StoneZoneEntrySet.of(StoneType.class, "carving", "creeper",
                         getModBlock("creeper_andesite_carving"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/creeper_andesite_carving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -256,7 +255,7 @@ public class ChippedModule extends StoneZoneModule {
 
         crying = StoneZoneEntrySet.of(StoneType.class, "", "crying",
                         getModBlock("crying_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/crying_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -266,7 +265,7 @@ public class ChippedModule extends StoneZoneModule {
 
         cut_blank = StoneZoneEntrySet.of(StoneType.class, "", "cut_blank",
                         getModBlock("cut_blank_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/cut_blank_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -276,7 +275,7 @@ public class ChippedModule extends StoneZoneModule {
 
         glad = StoneZoneEntrySet.of(StoneType.class, "", "glad",
                         getModBlock("glad_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/glad_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -286,7 +285,7 @@ public class ChippedModule extends StoneZoneModule {
 
         duh = StoneZoneEntrySet.of(StoneType.class, "", "duh",
                         getModBlock("duh_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/duh_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -296,7 +295,7 @@ public class ChippedModule extends StoneZoneModule {
 
         engraved = StoneZoneEntrySet.of(StoneType.class, "", "engraved",
                         getModBlock("engraved_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/engraved_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -306,7 +305,7 @@ public class ChippedModule extends StoneZoneModule {
 
         eroded = StoneZoneEntrySet.of(StoneType.class, "", "eroded",
                         getModBlock("eroded_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/eroded_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -316,7 +315,7 @@ public class ChippedModule extends StoneZoneModule {
 
         etched_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "etched",
                         getModBlock("etched_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/etched_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -326,7 +325,7 @@ public class ChippedModule extends StoneZoneModule {
 
         flat_tiles = StoneZoneEntrySet.of(StoneType.class, "tiles", "flat",
                         getModBlock("flat_andesite_tiles"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/flat_andesite_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -336,7 +335,7 @@ public class ChippedModule extends StoneZoneModule {
 
         inlayed = StoneZoneEntrySet.of(StoneType.class, "", "inlayed",
                         getModBlock("inlayed_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/inlayed_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -346,7 +345,7 @@ public class ChippedModule extends StoneZoneModule {
 
         inscribed = StoneZoneEntrySet.of(StoneType.class, "", "inscribed",
                         getModBlock("inscribed_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/inscribed_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -356,7 +355,7 @@ public class ChippedModule extends StoneZoneModule {
 
         layed_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "layed",
                         getModBlock("layed_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/layed_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -366,7 +365,7 @@ public class ChippedModule extends StoneZoneModule {
 
         loded = StoneZoneEntrySet.of(StoneType.class, "", "loded",
                         getModBlock("loded_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/loded_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -376,7 +375,7 @@ public class ChippedModule extends StoneZoneModule {
 
         offset_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "offset",
                         getModBlock("offset_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
                 .addTexture(modRes("block/andesite/offset_andesite_bricks"))
@@ -387,7 +386,7 @@ public class ChippedModule extends StoneZoneModule {
 
         pillar_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "pillar",
                         getModBlock("pillar_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
                 .addTexture(modRes("block/andesite/pillar_andesite_bricks"))
@@ -398,7 +397,7 @@ public class ChippedModule extends StoneZoneModule {
 
         prismal_remnants = StoneZoneEntrySet.of(StoneType.class, "remnants", "prismal",
                         getModBlock("prismal_andesite_remnants"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/prismal_andesite_remnants"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -408,7 +407,7 @@ public class ChippedModule extends StoneZoneModule {
 
         rough = StoneZoneEntrySet.of(StoneType.class, "", "rough",
                         getModBlock("rough_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/rough_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -418,7 +417,7 @@ public class ChippedModule extends StoneZoneModule {
 
         rounded_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "rounded",
                         getModBlock("rounded_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/rounded_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -428,7 +427,7 @@ public class ChippedModule extends StoneZoneModule {
 
         runic_carved = StoneZoneEntrySet.of(StoneType.class, "", "runic_carved",
                         getModBlock("runic_carved_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/runic_carved_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -438,7 +437,7 @@ public class ChippedModule extends StoneZoneModule {
 
         sad = StoneZoneEntrySet.of(StoneType.class, "", "sad",
                         getModBlock("sad_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/sad_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -448,7 +447,7 @@ public class ChippedModule extends StoneZoneModule {
 
         sanded = StoneZoneEntrySet.of(StoneType.class, "", "sanded",
                         getModBlock("sanded_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/sanded_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -458,7 +457,7 @@ public class ChippedModule extends StoneZoneModule {
 
         small_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "small",
                         getModBlock("small_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/small_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -468,7 +467,7 @@ public class ChippedModule extends StoneZoneModule {
 
         smooth_inlayed = StoneZoneEntrySet.of(StoneType.class, "", "smooth_inlayed",
                         getModBlock("smooth_inlayed_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/smooth_inlayed_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -478,7 +477,7 @@ public class ChippedModule extends StoneZoneModule {
 
         smooth_ringed = StoneZoneEntrySet.of(StoneType.class, "", "smooth_ringed",
                         getModBlock("smooth_ringed_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/smooth_ringed_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -488,7 +487,7 @@ public class ChippedModule extends StoneZoneModule {
 
         smoothed_double_inlayed = StoneZoneEntrySet.of(StoneType.class, "", "smoothed_double_inlayed",
                         getModBlock("smoothed_double_inlayed_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/smoothed_double_inlayed_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -498,7 +497,7 @@ public class ChippedModule extends StoneZoneModule {
 
         spider_carving = StoneZoneEntrySet.of(StoneType.class, "carving", "spider",
                         getModBlock("spider_andesite_carving"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/spider_andesite_carving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -529,7 +528,7 @@ public class ChippedModule extends StoneZoneModule {
 
         stacked_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "stacked",
                         getModBlock("stacked_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/stacked_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -539,7 +538,7 @@ public class ChippedModule extends StoneZoneModule {
 
         tiled = StoneZoneEntrySet.of(StoneType.class, "", "tiled",
                         getModBlock("tiled_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/tiled_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -549,7 +548,7 @@ public class ChippedModule extends StoneZoneModule {
 
         tiny_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "tiny",
                         getModBlock("tiny_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/tiny_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -559,7 +558,7 @@ public class ChippedModule extends StoneZoneModule {
 
         tiny_layered_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "tiny_layered",
                         getModBlock("tiny_layered_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/tiny_layered_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -569,7 +568,7 @@ public class ChippedModule extends StoneZoneModule {
 
         tiny_layered_slabs = StoneZoneEntrySet.of(StoneType.class, "slabs", "tiny_layered",
                         getModBlock("tiny_layered_andesite_slabs"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/tiny_layered_andesite_slabs"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -579,7 +578,7 @@ public class ChippedModule extends StoneZoneModule {
 
         trodden = StoneZoneEntrySet.of(StoneType.class, "", "trodden",
                         getModBlock("trodden_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/trodden_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -589,7 +588,7 @@ public class ChippedModule extends StoneZoneModule {
 
         unamused = StoneZoneEntrySet.of(StoneType.class, "", "unamused",
                         getModBlock("unamused_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/unamused_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -599,7 +598,7 @@ public class ChippedModule extends StoneZoneModule {
 
         vertical_cut = StoneZoneEntrySet.of(StoneType.class, "", "vertical_cut",
                         getModBlock("vertical_cut_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/vertical_cut_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -609,7 +608,7 @@ public class ChippedModule extends StoneZoneModule {
 
         vertical_disordered_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "vertical_disordered",
                         getModBlock("vertical_disordered_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/vertical_disordered_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -619,7 +618,7 @@ public class ChippedModule extends StoneZoneModule {
 
         weathered = StoneZoneEntrySet.of(StoneType.class, "", "weathered",
                         getModBlock("weathered_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/weathered_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -629,7 +628,7 @@ public class ChippedModule extends StoneZoneModule {
 
         bordered = StoneZoneEntrySet.of(StoneType.class, "", "bordered",
                         getModBlock("bordered_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/bordered_andesite"))
                 .addTexture(modRes("block/andesite/ctm/bordered_andesite_ctm/0"))
@@ -643,7 +642,7 @@ public class ChippedModule extends StoneZoneModule {
 
         brick_bordered = StoneZoneEntrySet.of(StoneType.class, "", "brick_bordered",
                         getModBlock("brick_bordered_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
 //                .addTexture(modRes("block/andesite/common_textures/0"))
                 .addTexture(modRes("block/andesite/brick_bordered_andesite"))
@@ -657,7 +656,7 @@ public class ChippedModule extends StoneZoneModule {
 
         cut_column = StoneZoneEntrySet.of(StoneType.class, "column", "cut",
                         getModBlock("cut_andesite_column"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/cut_andesite_column"))
                 .addTexture(modRes("block/andesite/ctm/cut_andesite_column_ctm/0"))
@@ -671,7 +670,7 @@ public class ChippedModule extends StoneZoneModule {
 
         edged_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "edged",
                         getModBlock("edged_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/edged_andesite_bricks"))
                 .addTexture(modRes("block/andesite/ctm/edged_andesite_bricks_ctm/0"))
@@ -685,7 +684,7 @@ public class ChippedModule extends StoneZoneModule {
 
         overlapping_tiles = StoneZoneEntrySet.of(StoneType.class, "tiles", "overlapping",
                         getModBlock("overlapping_andesite_tiles"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 //TEXTURES: common_textures/0 (generated via pillar_top)
                 .addTexture(modRes("block/andesite/overlapping_andesite_tiles"))
@@ -699,7 +698,7 @@ public class ChippedModule extends StoneZoneModule {
 
         polished = StoneZoneEntrySet.of(StoneType.class, "", "polished",
                         getModBlock("polished_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 //TEXTURES: common_textures/0 (generated via pillar_top), polished (generated via scaled)
                 //TEXTURES: polished_andesite_ctm/1, polished_andesite_ctm/2, polished_andesite_ctm/3 (generated via scaled)
@@ -710,7 +709,7 @@ public class ChippedModule extends StoneZoneModule {
 
         smooth_column = StoneZoneEntrySet.of(StoneType.class, "column", "smooth",
                         getModBlock("smooth_andesite_column"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/smooth_andesite_column"))
                 .addTexture(modRes("block/andesite/ctm/smooth_andesite_column_ctm/0"))
@@ -724,7 +723,7 @@ public class ChippedModule extends StoneZoneModule {
 
         thick_inlayed = StoneZoneEntrySet.of(StoneType.class, "", "thick_inlayed",
                         getModBlock("thick_inlayed_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 //TEXTURES: common_textures/1, common_textures/2 (generated via pillar_top)
                 .addTexture(modRes("block/andesite/thick_inlayed_andesite"))
@@ -737,7 +736,7 @@ public class ChippedModule extends StoneZoneModule {
 
         tiled_column = StoneZoneEntrySet.of(StoneType.class, "column", "tiled",
                         getModBlock("tiled_andesite_column"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/tiled_andesite_column"))
                 .addTexture(modRes("block/andesite/ctm/tiled_andesite_column_ctm/0"))
@@ -751,7 +750,7 @@ public class ChippedModule extends StoneZoneModule {
 
         tiled_bordered = StoneZoneEntrySet.of(StoneType.class, "", "tiled_bordered",
                         getModBlock("tiled_bordered_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 //TEXTURES: common_textures/0 (generated via pillar_top)
                 .addTexture(modRes("block/andesite/tiled_bordered_andesite"))
@@ -765,7 +764,7 @@ public class ChippedModule extends StoneZoneModule {
 
         tiny_brick_bordered = StoneZoneEntrySet.of(StoneType.class, "", "tiny_brick_bordered",
                         getModBlock("tiny_brick_bordered_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 //TEXTURES: common_textures/0, common_textures/1, common_textures/2 (generated via pillar_top)
                 .addTexture(modRes("block/andesite/tiny_brick_bordered_andesite"))
@@ -837,7 +836,7 @@ public class ChippedModule extends StoneZoneModule {
 
         massive_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "massive",
                         getModBlock("massive_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
                 .addTexture(modRes("block/andesite/massive_andesite_bricks"))
@@ -852,7 +851,7 @@ public class ChippedModule extends StoneZoneModule {
 
         spiraled = StoneZoneEntrySet.of(StoneType.class, "", "spiraled",
                         getModBlock("spiraled_andesite"), StoneTypeRegistry::getAndesiteType,
-                        stoneType -> new DirectionBlock(Utils.copyPropertySafe(stoneType.stone))
+                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/andesite/spiraled_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
