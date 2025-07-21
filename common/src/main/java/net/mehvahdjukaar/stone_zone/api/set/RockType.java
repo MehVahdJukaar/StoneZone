@@ -17,7 +17,7 @@ import java.util.Objects;
  * stone, stairs, slab, wall, button, pressure_plate,
  * smooth, smooth_stairs, smooth_slab, smooth_wall,
  * cobblestone, mossy_cobblestone,
- * polished, polished_stairs, polished_slab,
+ * polished, polished_stairs, polished_slab, polished_wall
  * bricks, brick_stairs, brick_slab, brick_wall, cracked_bricks, brick_tiles,
  * mossy_bricks, mossy_brick_slab, mossy_brick_stairs, mossy_brick_wall
  * </Ul>
@@ -58,6 +58,7 @@ public abstract class RockType extends BlockType{
             this.addChild("polished", polished);
             this.addChild("polished_stairs", findRelatedBlock("polished", "stairs"));
             this.addChild("polished_slab", findRelatedBlock("polished", "slab"));
+            this.addChild("polished_wall", findRelatedBlock("polished", "wall"));
         }
 
         Block smooth = this.findRelatedBlock("smooth", "");
@@ -126,7 +127,6 @@ public abstract class RockType extends BlockType{
         String prefix = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
         String infix = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
         String withoutUnderscore = suffix;
-        if (!suffix.isEmpty()) suffix = "_" + suffix;
 
         if (!suffix.isEmpty() && !prefixOrInfix.isEmpty()) suffix = "_" + suffix;
         ResourceLocation[] targets = {
