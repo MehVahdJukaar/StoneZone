@@ -34,6 +34,9 @@ dependencies {
     if (enable_everycomp_test.toBoolean()) {
         //- Repository LOCAL
         modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
+    } else if (enable_librarysection_test.toBoolean()) {
+        //- Repository LOCAL
+        modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-LS-${everycomp_testVersion}-fabric.jar"))
     } else {
         //+ MAVEN
         modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.8.13

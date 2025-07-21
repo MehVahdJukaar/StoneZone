@@ -125,6 +125,9 @@ dependencies {
     if (enable_everycomp_test.toBoolean()) {
         //- Repository LOCAL
         modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}-forge.jar"))
+    } else if (enable_librarysection_test.toBoolean()) {
+        //- Repository LOCAL
+        modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-LS-${everycomp_testVersion}-forge.jar"))
     } else {
         //+ MAVEN
         modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-forge") // v2.8.13
@@ -142,16 +145,17 @@ dependencies {
     modRuntimeOnly("curse.maven:terrablender-563928:5378180") // v3.0.1.7 |
     modRuntimeOnly("curse.maven:citadel-331936:6002521") // v2.6.1 | Alexs-Caves
 //    modRuntimeOnly("curse.maven:yungs-api-421850:5769971") // v4.0.6 | Better-Archeology
-//    modRuntimeOnly("curse.maven:patchouli-306770:4966125") // v84 | TFC
+//    modRuntimeOnly("curse.maven:patchouli-306770:6164575") // v84.1 | TFC
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:5904750") // v8.1.25 | Stoneworks
 //    modRuntimeOnly("curse.maven:zeta-968868:6312779") // v1.0.28 | Quark
 //    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | Chipped
 //    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | Chipped, Handcrafted
+//    modRuntimeOnly("curse.maven:ctm-267602:5983309") // v1.1.10 | Chipped
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled
 //    modRuntimeOnly("curse.maven:curios-309927:6418456") // v5.14.1 | Eternal-Tales
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled, Better-Archeology
 //    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct
-//    modRuntimeOnly("curse.maven:blueprint-382216:5292242") // v7.1.0 | The-Outer-End, Caverns-And-Chasms
+//    modRuntimeOnly("curse.maven:blueprint-382216:5292242") // v7.1.0 | The-Outer-End, Caverns-And-Chasms, Atmospheric
 //    modRuntimeOnly("curse.maven:monolib-968432:6123976") // v2.0.0 | More-Beautiful-Torches
 //    modRuntimeOnly("curse.maven:balm-531761:6778755") // v7.3.32 | Waystones
 //    modRuntimeOnly("curse.maven:architectury-api-419699:5137938") // v9.2.14 | [Let's-Do]-Candlelight, [Let's-Do]-Farm-&-Charm,
@@ -221,6 +225,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:artsandcrafts-1034791:5992027")
 //    modRuntimeOnly("curse.maven:the-outer-end-430404:5812948") // Blueprint
 //    modRuntimeOnly("curse.maven:caverns-and-chasms-438005:6040957") // Blueprint
+//    modRuntimeOnly("curse.maven:atmospheric-362393:6393127") // Blueprint
 //    modRuntimeOnly("curse.maven:aerial-hell-674630:5423795")
 //    modRuntimeOnly("curse.maven:the-undergarden-379849:5182632")
 //    modRuntimeOnly("curse.maven:natures-spirit-1044992:6445117")
@@ -231,6 +236,6 @@ dependencies {
     modRuntimeOnly("curse.maven:deeperdarker-659011:5906086")
 
     // STONETYPE & WOODTYPE
-//    modRuntimeOnly("curse.maven:terrafirmacraft-302973:5943050") // patchouli
+//    modRuntimeOnly("curse.maven:terrafirmacraft-302973:6739107") // patchouli
 
 }
