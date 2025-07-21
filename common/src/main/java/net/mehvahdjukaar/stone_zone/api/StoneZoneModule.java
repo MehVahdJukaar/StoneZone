@@ -53,7 +53,7 @@ public class StoneZoneModule extends SimpleModule {
         String blockName = blockId.substring(blockId.lastIndexOf("/") + 1);
 
         if (blockType instanceof StoneType stoneType) {
-            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(blockName, stoneType, modId, shortenedId());
+            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(blockName, stoneType, modId);
             if (hardcoded != null) return hardcoded;
         }
 
