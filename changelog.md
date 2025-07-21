@@ -22,6 +22,21 @@
 </div>
 
 ### UPDATED: 
+- **LANG**: 
+  - zh_cn for **Blocks you need**, **\[Let's Do\] Candlelight**, **Waystones** - @libu2333
+  - en_us for **Wetland Whimsy**'s limestone to use "Lemonstone"
+- **Chipped** (COMMON): Corrected the blocks' class & see the link for more details - [#126](https://github.com/MehVahdJukaar/WoodGood/issues/126)
+- **Stone Zone** (COMMON): Corrected the detection system to detect StoneType's children
+- **(INCLUDED)**: Included block with "pillar" from:
+  - **Create**
+  - **Quark**
+  - **Decorative Blocks**
+
+---
+
+## v2.8.12
+
+### UPDATED: 
 - **Blocks You Need (Luna)** (F): Fixed the crash 
 
 ---
