@@ -51,7 +51,7 @@ itemIcon="stonezone:all_stones" #catalogue icon
 
 [[dependencies.stonezone]]
     modId="everycomp"
-    mandatory=true
+    mandatory=false
     versionRange="[1.20-2.8.13,]"
     ordering="AFTER"
     side="BOTH"

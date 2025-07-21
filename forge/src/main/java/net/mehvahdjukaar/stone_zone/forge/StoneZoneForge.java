@@ -15,6 +15,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
@@ -26,6 +27,20 @@ import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
 public class StoneZoneForge extends StoneZoneCommon {
 
     public StoneZoneForge() {
+        if (!ModList.get().isLoaded("everycomp")) {
+            throw new RuntimeException("""
+                    \n
+                    Either one of 2 mods is required for run this mod:
+                    
+                    Every Compat (Wood Good)
+                    
+                    OR
+                    
+                    Every Compat (Library Section)
+                    """
+            );
+        }
+
         this.initialize();
 
         MinecraftForge.EVENT_BUS.register(this);
