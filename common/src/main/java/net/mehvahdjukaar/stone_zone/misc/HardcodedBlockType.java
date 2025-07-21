@@ -48,8 +48,8 @@ public class HardcodedBlockType {
         if (isStoneFrom("", "", "stoneexpansion:(cut|mossy|smooth|polished)_stone", "")) return true;
 
             /// ========== INCLUDE ========== \\\
-        // EXAMPLE
-//        if (isStoneRegistryOf("create", "c", "create", "create:limestone", "limestone_pillar")) return false;
+        // pillar from Decorative-Blocks, Quark, Create should be always generated
+        if (isStoneFrom("quark|create|decorative_blocks", "", "", "pillar")) return false;
 
         // Create's cut wasn't generated due to Quark's cut_soul_sandstone
         if (isStoneFrom("create", "quark", "", "cut_soul_sandstone")) return false;
