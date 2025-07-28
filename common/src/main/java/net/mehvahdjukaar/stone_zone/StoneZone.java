@@ -10,6 +10,7 @@ import net.mehvahdjukaar.stone_zone.api.intergration.CompatStoneType;
 import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.configs.SZConfigs;
+import net.mehvahdjukaar.stone_zone.configs.UnsafeDisablerConfigs;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
 import net.mehvahdjukaar.stone_zone.misc.SpriteHelper;
 import net.minecraft.resources.ResourceLocation;
@@ -26,6 +27,7 @@ public class StoneZone extends EveryCompat {
 
     public static void init() {
         SZConfigs.init();
+        UnsafeDisablerConfigs.init();
         SZRegistry.init();
         SpriteHelper.initHardcodedSprite();
 

@@ -1,14 +1,19 @@
 package net.mehvahdjukaar.stone_zone.misc;
 
+import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Set;
 
+import static net.mehvahdjukaar.stone_zone.configs.UnsafeDisablerConfigs.*;
+
 public class HardcodedBlockType {
 
-    public static String stoneidentify;
-    public static String StoneTypeFromMod;
+    public static String stoneIdentify;
+    public static String mudIdentify;
+    public static String stoneTypeFromMod;
+    public static String mudTypeFromMod;
     public static String modId;
     public static String supportedBlockName;
 
@@ -30,24 +35,32 @@ public class HardcodedBlockType {
     );
 
     @Nullable
-    public static Boolean isStoneBlockAlreadyRegistered(String blockName, StoneType stoneType, String ModId) {
-        stoneidentify = stoneType.getId().toString();
-        StoneTypeFromMod = stoneType.getNamespace();
+    public static Boolean isStoneBlockAlreadyRegistered(String entrySetId, String blockName, StoneType stoneType, String ModId) {
+        stoneIdentify = stoneType.getId().toString();
+        stoneTypeFromMod = stoneType.getNamespace();
         modId = ModId;
         supportedBlockName = blockName;
 
-            /// ========== INCLUDE VANILLA TYPE ========== \\\
+        /// ─────────────────────────── Include Vanilla Type ────────────────────────────
+
         // Include minecraft's PRISMARINE with Waystones
         if (isStoneFrom("waystones", "", "", "prismarine_waystone")) return false;
 
-            /// ========== EXCLUDE ========== \\\
+        /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ EXCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        // Exclude one StoneType from a Stone mod
+        if (stoneTypeList.get().stream().anyMatch(stoneIdentify::matches)) return true;
+
+        // Exclude one EntrySet from a module
+        if (entrySetList.get().stream().anyMatch(entrySetId::matches)) return true;
+
         // Exclude all of Vanilla Types
         if (stoneType.isVanilla()) return true;
 
         // Stone Expansion's stone is based on Minecraft's stone and shouldn't be included
         if (isStoneFrom("", "", "stoneexpansion:(cut|mossy|smooth|polished)_stone", "")) return true;
 
-            /// ========== INCLUDE ========== \\\
+        /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         // pillar from Decorative-Blocks, Quark, Create should be always generated
         if (isStoneFrom("quark|create|decorative_blocks", "", "", "pillar")) return false;
 
@@ -64,27 +77,77 @@ public class HardcodedBlockType {
         return null;
     }
 
-    public static Boolean isStoneFrom(String supportedModId, String stonetypeFromMod, String stoneTypeId, String whichSupportedBlockName) {
+    @Nullable
+    public static Boolean isMudBlockAlreadyRegistered(String entrySetId, String blockName, MudType mudType, String ModId) {
+        mudIdentify = mudType.getId().toString();
+        mudTypeFromMod = mudType.getNamespace();
+        modId = ModId;
+        supportedBlockName = blockName;
+
+        /// ─────────────────────────── Include Vanilla Type ────────────────────────────
+
+        /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ EXCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        // Exclude one MudType from a Stone mod
+        if (mudTypeList.get().stream().anyMatch(mudIdentify::matches)) return true;
+
+        // Exclude one EntrySet from a module
+        if (entrySetList.get().stream().anyMatch(entrySetId::matches)) return true;
+
+        /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+        return null;
+    }
+
+    public static Boolean isStoneFrom(String supportedModId, String stonetypeFromMod, String stoneTypeId, String supportedBlockId) {
 
         String[] expressions = {
                 supportedModId,
                 stonetypeFromMod,
                 stoneTypeId,
-                whichSupportedBlockName
+                supportedBlockId
         };
 
         String[] values = {
                 modId,
-                StoneTypeFromMod,
-                stoneidentify,
+                stoneTypeFromMod,
+                stoneIdentify,
                 supportedBlockName
         };
 
         for (int idx = 0; idx < values.length; idx++ ) {
 
             if (!expressions[idx].isEmpty()) { // Skip the blank expressions
-                boolean isNotMatched = !(values[idx].matches(expressions[idx]) | values[idx].contains(expressions[idx]));
-                if (isNotMatched) return false;
+                boolean mismatched = !(values[idx].matches(expressions[idx]) || values[idx].contains(expressions[idx]));
+                if (mismatched) return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static Boolean isMudFrom(String supportedModId, String mudtypeFromMod, String mudTypeId, String supportedBlockId) {
+
+        String[] expressions = {
+                supportedModId,
+                mudtypeFromMod,
+                mudTypeId,
+                supportedBlockId
+        };
+
+        String[] values = {
+                modId,
+                mudTypeFromMod,
+                mudIdentify,
+                supportedBlockName
+        };
+
+        for (int idx = 0; idx < values.length; idx++ ) {
+
+            if (!expressions[idx].isEmpty()) { // Skip the blank expressions
+                boolean mismatched = !(values[idx].matches(expressions[idx]) || values[idx].contains(expressions[idx]));
+                if (mismatched) return false;
             }
         }
 

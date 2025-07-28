@@ -9,6 +9,7 @@ import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.SZRegistry;
 import net.mehvahdjukaar.stone_zone.StoneZone;
+import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
@@ -47,17 +48,21 @@ public class StoneZoneModule extends SimpleModule {
     }
 
     @Override
-    public boolean isEntryAlreadyRegistered(String blockId, BlockType blockType, Registry<?> registry) {
+    public boolean isEntryAlreadyRegistered(String entrySetId, String blockId, BlockType blockType, Registry<?> registry) {
 
         // blockId: stonezone:twigs/strata/<stonetype>_column | blockName: <stonetype>_column
         String blockName = blockId.substring(blockId.lastIndexOf("/") + 1);
 
         if (blockType instanceof StoneType stoneType) {
-            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(blockName, stoneType, modId);
+            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(entrySetId, blockName, stoneType, modId);
+            if (hardcoded != null) return hardcoded;
+        }
+        else if (blockType instanceof MudType mudType) {
+            Boolean hardcoded = HardcodedBlockType.isMudBlockAlreadyRegistered(entrySetId, blockName, mudType, modId);
             if (hardcoded != null) return hardcoded;
         }
 
-        var isAlreadyRegistered = super.isEntryAlreadyRegistered(blockId, blockType, registry);
+        var isAlreadyRegistered = super.isEntryAlreadyRegistered(entrySetId, blockId, blockType, registry);
         if (isAlreadyRegistered) {
             //noinspection ConstantValue
             return isAlreadyRegistered;
