@@ -34,7 +34,7 @@ public class UnsafeDisablerConfigs {
                         but harmful in SERVER because you won't able to join.
 
                         ══════════════════════════ Detail ═══════════════════════════
-                        This file allow you to exclude StoneTypes, MudType, EntrySet, or a Module
+                        This file allow you to exclude StoneTypes, MudType, EntrySet
                         1) You can find their names for StoneTypes, MudType, or EntrySet in `everycomp-entries.toml`
                         2) Leave a value empty to disable that rule.
 
@@ -46,30 +46,30 @@ public class UnsafeDisablerConfigs {
             builder.comment(comment);
 
             builder.push("stonetype");
-            String WoodTypeExample = """
+            String stoneTypeExample = """
                         EXAMPLE: blacklist = [
-                            "forestry:.*fireproof.*",\t\tCOMMENT: .* is an RegEx, it exclude all of WoodType containing "fireproof" from Forestry
-                            "biomesoplenty:.*",\t\t\t\tCOMMENT: .* is an RegEx, it exclude all of WoodType from Wood Mod for any Module
-                            "biomesoplenty:redwood"\t\tCOMMENT: exclude redwood from Wood Mod for any module
+                            "forestry:.*fireproof.*",\t\tCOMMENT: .* is an RegEx, it exclude all of StoneType containing "fireproof" from Forestry
+                            "biomesoplenty:.*",\t\t\t\tCOMMENT: .* is an RegEx, it exclude all of StoneType from Wood Mod for any Module
+                            "biomesoplenty:redwood"\t\tCOMMENT: exclude redwood from Stone Mod for any module
                         ]
                     """;
-            stoneTypeList = builder.comment("Exclude WoodType from all of Modules\n"+WoodTypeExample).define("blacklist", List.of());
+            stoneTypeList = builder.comment("Exclude StoneType from all of Modules\n"+stoneTypeExample).define("blacklist", List.of());
             builder.pop();
 
             builder.push("mudtype");
-            mudTypeList = builder.comment("Exclude LeavesType from all of Modules\n\tThe example is same as WoodType's").define("blacklist", List.of());
+            mudTypeList = builder.comment("Exclude MudType from all of Modules\n\tThe example is same as StoneType's").define("blacklist", List.of());
             builder.pop();
 
             builder.push("entryset");
             String entrysetExample = """
-                        This is only applied to Wood-Good.
+                        This is only applied to Stone-Zone.
                         EXAMPLE: blacklist = [
                             "chipped:checkered_trapdoor",\tCOMMENT: chipped:checkered_oak_trapdoor without "oak"
                             "variantvanillablocks:chest",\tCOMMENT: variantvanillablocks:oak_chest without "oak"
-                            "chipped:.*"\t\t\t\t\tCOMMENT: .* is an regex which will exclude all of EntrySets from one Module - Wood-Good ONLY
+                            "chipped:.*"\t\t\t\t\tCOMMENT: .* is an regex which will exclude all of EntrySets from one Module
                         ]
                     """;
-            entrySetList = builder.comment("Exclude EntrySet from the module for All of WoodType or LeavesType\n"+entrysetExample).define("blacklist", List.of());
+            entrySetList = builder.comment("Exclude EntrySet from the module for All of StoneType or MudType\n"+entrysetExample).define("blacklist", List.of());
             builder.pop();
 
 //            builder.push("module");
