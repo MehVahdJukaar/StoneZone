@@ -52,12 +52,14 @@ subprojects {
                     required.project "fabric-api"
                     required.project "moonlight"
                     required.project "every-compat"
+                    required.project "library-section"
                 }
             } else {
                 versionName = mod_id +"-"+ mod_version
                 dependencies {
                     required.project "moonlight"
                     required.project "every-compat"
+                    required.project "library-section"
                 }
             }
         }
@@ -85,6 +87,7 @@ subprojects {
                         requiredDependency("fabric-api")
                         requiredDependency("selene")
                         requiredDependency("every-compat")
+                        optionalDependency("library-section")
                         optionalDependency("additional-lights")
                         optionalDependency("building-but-better")
                         optionalDependency("better-archeology")
@@ -110,6 +113,7 @@ subprojects {
                     relations {
                         requiredDependency("selene")
                         requiredDependency("every-compat")
+                        optionalDependency("library-section")
                         optionalDependency("additional-lights")
                         optionalDependency("better-archeology")
                         optionalDependency("blocks-you-need")
