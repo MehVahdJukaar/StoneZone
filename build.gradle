@@ -54,7 +54,9 @@ subprojects {
                     required.project "every-compat"
                     required.project "library-section"
                 }
-            } else {
+            }
+            //!! FORGE
+            else {
                 versionName = mod_id +"-"+ mod_version
                 dependencies {
                     required.project "moonlight"
@@ -109,7 +111,9 @@ subprojects {
                         optionalDependency("rechiseled")
                         optionalDependency("waystones")
                     }
-                } else {
+                }
+                //!! FORGE
+                else {
                     relations {
                         requiredDependency("selene")
                         requiredDependency("every-compat")
