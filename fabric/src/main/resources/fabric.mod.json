@@ -27,6 +27,6 @@
     "fabric": "*",
     "minecraft": ">=1.20",
     "moonlight": ">=1.20-2.14.12",
-    "everycomp": ">=1.20-2.8.13"
+    "everycomp": ">=1.20-2.8.14"
   }
 }

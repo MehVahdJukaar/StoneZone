@@ -131,7 +131,7 @@ dependencies {
     } else {
         //+ MAVEN
         if (useLibrarySection_maven.toBoolean())
-            modImplementation("maven.modrinth:library-section:${everycomp_mavenVersion}-forge") // v2.8.13
+            modImplementation("maven.modrinth:library-section:${everycomp_mavenVersion}-forge") // v2.8.14
         else
             modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-forge")
     }
