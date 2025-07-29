@@ -21,6 +21,18 @@
 
 </div>
 
+### REQUIRED VERSION:
+- **Every Compat v2.8.14** - Same verison is applied to **Library Section**
+
+### UPDATED: 
+- **Stone Zone** (COMMON): 
+  - Added a config to disable the visibility of SearchBar in GemsRealm' tab
+  - Added new config to disable EntrySet, BlockTypes, or Module
+
+---
+
+## v2.8.13
+
 ### UPDATED: 
 - **LANG**: 
   - zh_cn for **Blocks you need**, **\[Let's Do\] Candlelight**, **Waystones** - @libu2333
