@@ -123,14 +123,17 @@ dependencies {
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     if (enable_everycomp_test.toBoolean()) {
-        //- Repository LOCAL
+        //- Repository LOCAL - Every Compat
         modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-${everycomp_testVersion}-forge.jar"))
     } else if (enable_librarysection_test.toBoolean()) {
-        //- Repository LOCAL
-        modImplementation(files(path + "\\WoodGood\\forge\\build\\libs\\everycomp-LS-${everycomp_testVersion}-forge.jar"))
+        //- Repository LOCAL - Library Section
+        modImplementation(files(path + "\\WoodGood-Library\\forge\\build\\libs\\everycomp-LS-${everycomp_testVersion}-forge.jar"))
     } else {
         //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-forge") // v2.8.13
+        if (useLibrarySection_maven.toBoolean())
+            modImplementation("maven.modrinth:library-section:${everycomp_mavenVersion}-forge") // v2.8.13
+        else
+            modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-forge")
     }
 
 //!! TOOLS ---------------------------------------------------------------------------------------------------------- \\
