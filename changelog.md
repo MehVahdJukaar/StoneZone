@@ -21,6 +21,13 @@
 
 </div>
 
+### UPDATED: 
+- **Stone Zone** (COMMON): Fixed the SERVER crash related to `stonezone-hazardous.toml` config - [#1006](https://github.com/MehVahdJukaar/WoodGood/issues/1006)
+
+---
+
+## v2.8.14
+
 ### REQUIRED VERSION:
 - **Every Compat v2.8.14** - Same verison is applied to **Library Section**
 
