@@ -127,13 +127,33 @@ public class CompatStoneType {
         simpleStoneFinder("betterend", "sulphuric_rock");
 
         // Create
-        simpleStoneFinder("create", "limestone"); // NO BRICKS or POLISHED
-        simpleStoneFinder("create", "asurine"); // NO BRICKS or POLISHED
-        simpleStoneFinder("create", "crimsite"); // NO BRICKS or POLISHED
-        simpleStoneFinder("create", "ochrum"); // NO BRICKS or POLISHED
-        simpleStoneFinder("create", "veridium"); // NO BRICKS or POLISHED
-        simpleStoneFinder("create", "scoria"); // NO BRICKS or POLISHED
-        simpleStoneFinder("create", "scorchia"); // NO BRICKS or POLISHED
+        simpleStoneFinder("create", "limestone",
+                "BRICKS-cut_limestone_bricks", "POLISHED-polished_cut_limestone"
+        ); // NO BRICKS or POLISHED
+
+        simpleStoneFinder("create", "asurine",
+                "BRICKS-cut_asurine_bricks", "POLISHED-polished_cut_asurine"
+        ); // NO BRICKS or POLISHED
+
+        simpleStoneFinder("create", "crimsite",
+                "BRICKS-cut_crimsite_bricks", "POLISHED-polished_cut_crimsite"
+        ); // NO BRICKS or POLISHED
+
+        simpleStoneFinder("create", "ochrum",
+                "BRICKS-cut_ochrum_bricks", "POLISHED-polished_cut_ochrum"
+        ); // NO BRICKS or POLISHED
+
+        simpleStoneFinder("create", "veridium",
+                "BRICKS-cut_veridium_bricks", "POLISHED-polished_cut_veridium"
+        ); // NO BRICKS or POLISHED
+
+        simpleStoneFinder("create", "scoria",
+                "BRICKS-cut_scoria_bricks", "POLISHED-polished_cut_scoria"
+        ); // NO BRICKS or POLISHED
+
+        simpleStoneFinder("create", "scorchia",
+                "BRICKS-cut_scorchia_bricks", "POLISHED-polished_cut_scorchia"
+        ); // NO BRICKS or POLISHED
 
             // Create Dreams & Desires
         simpleStoneFinder("create_dd", "gabbro"); // NO BRICKS or POLISHED
