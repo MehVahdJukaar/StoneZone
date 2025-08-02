@@ -3,7 +3,7 @@ package net.mehvahdjukaar.stone_zone.modules.lets_do;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.common_classes.TagUtility;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -19,7 +19,7 @@ import net.satisfy.farm_and_charm.core.block.SinkBlock;
 
 
 //SUPPORT: v2.0.4+
-public class CandlelightModule extends StoneZoneModule {
+public class CandlelightModule extends StoneZoneSimpleModule {
 
     public final SimpleEntrySet<StoneType, Block> counter;
     public final SimpleEntrySet<StoneType, Block> stove;

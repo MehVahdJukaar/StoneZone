@@ -7,7 +7,7 @@ import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.common_classes.CompatChestBlock;
@@ -35,7 +35,7 @@ import static net.mehvahdjukaar.stone_zone.common_classes.CompatChestTexture.gen
 
 
 //SUPPORT: v1.0.0+
-public class StoneChestModule extends StoneZoneModule {
+public class StoneChestModule extends StoneZoneSimpleModule {
 
     public final SimpleEntrySet<StoneType, Block> chests;
     public final ItemOnlyEntrySet<StoneType, Item> parts;

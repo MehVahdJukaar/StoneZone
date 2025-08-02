@@ -6,7 +6,7 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -18,7 +18,7 @@ import java.util.Objects;
 
 
 //SUPPORT: v20230928a+
-public class BuildersAdditionModule extends StoneZoneModule {
+public class BuildersAdditionModule extends StoneZoneSimpleModule {
 
     public final SimpleEntrySet<StoneType, Block> vertical_slab;
     public final SimpleEntrySet<StoneType, Block> smooth_vertical_slab;

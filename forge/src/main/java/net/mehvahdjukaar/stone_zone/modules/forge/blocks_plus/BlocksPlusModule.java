@@ -3,7 +3,7 @@ package net.mehvahdjukaar.stone_zone.modules.forge.blocks_plus;
 import blocks_plus.blocks.BPFurnace;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.*;
 import java.util.Objects;
 
 //SUPPORT: v1.7+
-public class BlocksPlusModule extends StoneZoneModule {
+public class BlocksPlusModule extends StoneZoneSimpleModule {
 
     public final SimpleEntrySet<StoneType, Block> wall;
     public final SimpleEntrySet<StoneType, Block> pillar;

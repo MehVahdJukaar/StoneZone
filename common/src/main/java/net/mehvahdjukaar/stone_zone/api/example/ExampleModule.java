@@ -7,7 +7,7 @@ import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
 import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.Block;
  * You could name the class "StoneModule" for supporting StoneType Blocks and "WoodGoodModule" for WoodType & LeavesType
 **/
 @SuppressWarnings("unused")
-public class ExampleModule extends StoneZoneModule {
+public class ExampleModule extends StoneZoneSimpleModule {
 
     /// For Blocks - NOTE: it's using SimpleEntrySet
     public final SimpleEntrySet<StoneType, Block> sampleBlock, sampleBlock_2;
