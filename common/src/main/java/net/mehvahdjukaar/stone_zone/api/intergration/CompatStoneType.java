@@ -20,6 +20,9 @@ public class CompatStoneType {
         // Marioverse
         simpleStoneFinder("marioverse", "deep_fungal_stone");
 
+        if (!PlatHelper.isModLoaded("gemsrealm")) // Will add if Gems-Realm is not installed
+            advancedStoneFinder("marioverse", "amethyst", "minecraft:amethyst_block");
+
         // The-Twiligth-Forest
         simpleStoneFinder("twilightforest", "mazestone", "BRICKS-mazestone_brick");
         advancedStoneFinder("twilightforest", "deadrock", "deadrock");
@@ -219,7 +222,12 @@ public class CompatStoneType {
      */
     public static void advancedStoneFinder(String modId, String nameStoneType, String nameBlock, String... nameChildren) {
         if (PlatHelper.isModLoaded(modId)) {
-            var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameBlock);
+            StoneType.Finder stonetypeFinder;
+
+            if (nameBlock.contains(":"))
+                stonetypeFinder = StoneType.Finder.simple(ResourceLocation.fromNamespaceAndPath(modId, nameStoneType), ResourceLocation.parse(nameBlock));
+            else
+                stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameBlock);
 
             for (String currentChild : nameChildren) {
                 String childKey = getChildKeyFrom(currentChild);
