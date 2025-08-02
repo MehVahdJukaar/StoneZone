@@ -6,7 +6,7 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.Direction;
@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.*;
 
 
 //SUPPORT: v3.0.0+
-public class MoreBeautifulTorches extends StoneZoneSimpleModule {
+public class MoreBeautifulTorches extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> wall_torch,
                                                   torch;

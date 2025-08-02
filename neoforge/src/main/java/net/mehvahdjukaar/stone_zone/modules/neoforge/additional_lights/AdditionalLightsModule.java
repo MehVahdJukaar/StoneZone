@@ -2,7 +2,7 @@ package net.mehvahdjukaar.stone_zone.modules.neoforge.additional_lights;
 
 import com.mgen256.al.blocks.*;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -15,7 +15,7 @@ import java.util.Objects;
 
 
 //SUPPORT: v
-public class AdditionalLightsModule extends StoneZoneSimpleModule {
+public class AdditionalLightsModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> al_lamp;
 

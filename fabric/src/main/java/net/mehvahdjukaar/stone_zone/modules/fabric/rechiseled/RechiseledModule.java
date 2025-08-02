@@ -10,7 +10,7 @@ import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -38,7 +38,7 @@ import static com.supermartijn642.rechiseled.blocks.RechiseledPillarBlock.AXIS_P
 
 //SUPPORT: v1.1.6+
 //NOTE: There is a difference between FORGE & FABRIC - the key class is BlockState via RechiseledPillarBlock
-public class RechiseledModule extends StoneZoneSimpleModule {
+public class RechiseledModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> big_tiles, big_tiles_connecting;
     public final SimpleEntrySet<StoneType, Block> bordered, bordered_connecting;

@@ -11,7 +11,7 @@ import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -25,7 +25,7 @@ import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.createAnd
 
 
 //SUPPORT: v3.0.7+
-public class ChippedModule extends StoneZoneSimpleModule {
+public class ChippedModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> bricks;
     public final SimpleEntrySet<StoneType, Block> mini_tiles;
