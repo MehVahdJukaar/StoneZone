@@ -18,7 +18,7 @@ public class CompatStoneType {
     public static void init() {
 
         // Marioverse
-        simpleStoneFinder("marioverse", "deep_fungal_stone");
+        advancedStoneFinder("marioverse", "deep_fungal", "deep_fungal_stone");
 
         if (!PlatHelper.isModLoaded("gemsrealm")) // Will add if Gems-Realm is not installed
             advancedStoneFinder("marioverse", "amethyst", "minecraft:amethyst_block");
