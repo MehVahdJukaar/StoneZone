@@ -24,7 +24,7 @@ import net.minecraft.world.level.block.Block;
  * StoneZoneEntry is subclass of SimpleEntrySet
  * <p>
  * There are 2 BlockTypes that StoneZone can detect: StoneType, MudType
- * You could name the class "StoneZoneModule" for supporting StoneType Blocks and "WoodGoodModule" for WoodType & LeavesType
+ * You could name the class "StoneModule" for supporting StoneType Blocks and "WoodGoodModule" for WoodType & LeavesType
 **/
 @SuppressWarnings("unused")
 public class ExampleModule extends StoneZoneSimpleModule {
