@@ -222,12 +222,9 @@ public class CompatStoneType {
      */
     public static void advancedStoneFinder(String modId, String nameStoneType, String nameBlock, String... nameChildren) {
         if (PlatHelper.isModLoaded(modId)) {
-            StoneType.Finder stonetypeFinder;
-
-            if (nameBlock.contains(":"))
-                stonetypeFinder = StoneType.Finder.simple(ResourceLocation.fromNamespaceAndPath(modId, nameStoneType), ResourceLocation.parse(nameBlock));
-            else
-                stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameBlock);
+            StoneType.Finder stonetypeFinder = (nameBlock.contains(":"))
+                    ? StoneType.Finder.simple(ResourceLocation.fromNamespaceAndPath(modId, nameStoneType), ResourceLocation.parse(nameBlock))
+                    : StoneType.Finder.simple(modId, nameStoneType, nameBlock);
 
             for (String currentChild : nameChildren) {
                 String childKey = getChildKeyFrom(currentChild);
@@ -251,16 +248,16 @@ public class CompatStoneType {
 //!! MudType
     public static void simpleMudFinder(String modId, String nameMudType) {
         if (PlatHelper.isModLoaded(modId)) {
-            var stonetypeFinder = MudType.Finder.simple(modId, nameMudType, nameMudType);
+            MudType.Finder mudtypeFinder = MudType.Finder.simple(modId, nameMudType, nameMudType);
 
-            BlockSetAPI.addBlockTypeFinder(MudType.class, stonetypeFinder);
+            BlockSetAPI.addBlockTypeFinder(MudType.class, mudtypeFinder);
         }
     }
 
     /// Get the keyword from block: stone_bricks, key: bricks
     public static String getChildKeyFrom(String childBlock) {
         if (childBlock.contains("-")) {
-            return childBlock.split("-")[0];
+            return childBlock.split("-")[0].toLowerCase();
         }
 
         // Default
