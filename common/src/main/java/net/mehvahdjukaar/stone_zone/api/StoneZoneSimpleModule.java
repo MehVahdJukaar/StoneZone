@@ -24,8 +24,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class StoneZoneModule extends SimpleModule {
-    public StoneZoneModule(String modId, String shortId) {
+public class StoneZoneSimpleModule extends SimpleModule {
+    public StoneZoneSimpleModule(String modId, String shortId) {
         super(modId, shortId, StoneZone.MOD_ID);
     }
 

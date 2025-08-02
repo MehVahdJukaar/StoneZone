@@ -5,7 +5,7 @@ import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -17,7 +17,7 @@ import net.minecraft.world.level.material.MapColor;
 
 
 //SUPPORT: v2.3.0+
-public class MacawWindowsModule extends StoneZoneModule {
+public class MacawWindowsModule extends StoneZoneSimpleModule {
 
     public final SimpleEntrySet<StoneType, Block> windows;
     public final SimpleEntrySet<StoneType, Block> window2s;

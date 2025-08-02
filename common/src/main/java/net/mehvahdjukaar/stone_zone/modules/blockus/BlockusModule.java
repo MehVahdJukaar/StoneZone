@@ -3,7 +3,7 @@ package net.mehvahdjukaar.stone_zone.modules.blockus;
 import com.brand.blockus.blocks.base.OrientableBlockBase;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -22,7 +22,7 @@ import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildr
 
 //SUPPORT: v2.7.20+
 //NOTE: Can be supported via Sinytra-Connector
-public class BlockusModule extends StoneZoneModule {
+public class BlockusModule extends StoneZoneSimpleModule {
 
     public final SimpleEntrySet<StoneType, Block> herringbone_bricks;
     public final SimpleEntrySet<StoneType, Block> smooth_stairs;

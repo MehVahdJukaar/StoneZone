@@ -6,7 +6,7 @@ import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.StaticResource;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.util.GsonHelper;
@@ -67,7 +67,7 @@ public final class ModelUtils {
                 jsonObject.addProperty("parent", newRes.toString());
 
                 // Creating/Modifying the parent model files
-                if (module instanceof StoneZoneModule stonezoneModule &&
+                if (module instanceof StoneZoneSimpleModule stonezoneModule &&
                     !(RESOLVED_PARENTS.contains(oldRes) || oldRes.getNamespace().matches("stonezone"))
                 ) {
                     stonezoneModule.markModelForModification(oldRes, config);

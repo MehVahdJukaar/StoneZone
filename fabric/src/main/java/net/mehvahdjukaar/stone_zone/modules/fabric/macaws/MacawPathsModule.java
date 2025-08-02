@@ -6,7 +6,7 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.SlabBlock;
 
 
 //SUPPORT v1.0.4+
-public class MacawPathsModule extends StoneZoneModule {
+public class MacawPathsModule extends StoneZoneSimpleModule {
 
     public final SimpleEntrySet<StoneType, Block> running_bond_paths;
     public final SimpleEntrySet<StoneType, Block> running_bond_slabs;
