@@ -15,6 +15,18 @@
 
 ---
 
+### UPDATED: 
+- **Create** (NF): 
+  - Fixed all of blocks' dropping - [#125](https://github.com/MehVahdJukaar/WoodGood/issues/125)
+  - (UD): Add `polished` & `bricks` to StoneType's children
+- **Chipped** (COMMON): Corrected the blocks' class & see the link for more details - [#126](https://github.com/MehVahdJukaar/WoodGood/issues/126)
+- **Marioverse** (UD): Added `amethyst` & updated `deep_fungal` to have the correct id to detect other children
+  - NOTE: it's not out on Curseforge or Modrinth yet. it's WIP - @WenXin
+
+---
+
+## v2.10.6
+
 ### UPDATED:
 - **Stone Zone** (COMMON): Fixed the crash occurred with v2.10.5
 
