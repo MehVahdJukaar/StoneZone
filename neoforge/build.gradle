@@ -1,5 +1,5 @@
 plugins {
-    id 'com.github.johnrengelman.shadow'
+    id 'com.gradleup.shadow'
 }
 
 architectury {
@@ -87,11 +87,11 @@ publishing {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 
-dependencies {neoForge "net.neoforged:neoforge:${neo_version}"
+dependencies {
+    neoForge "net.neoforged:neoforge:${neo_version}"
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
-
 
     implementation 'org.jetbrains:annotations:22.0.0'
 
