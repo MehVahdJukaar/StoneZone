@@ -1,5 +1,5 @@
 plugins {
-    id 'dev.architectury.loom' version '1.9-SNAPSHOT' apply false
+    id 'dev.architectury.loom' version '1.10-SNAPSHOT' apply false
     id 'architectury-plugin' version '3.4-SNAPSHOT'
     id 'com.github.johnrengelman.shadow' version '8.1.1' apply false
     id 'io.github.juuxel.loom-quiltflower' version '1.7.1' apply false
@@ -204,6 +204,8 @@ allprojects {
         maven { name = "TerraformersMC"; url = "https://maven.terraformersmc.com/" }
         maven { url = "https://raw.githubusercontent.com/moddingplayground/maven/main/" }
         maven { url = 'https://maven.ambertation.de/releases' } // BCLib, BetterEnd, WunderLib
+        maven { url 'https://maven.wispforest.io' }
+        maven { url 'https://maven.su5ed.dev/releases' }
     }
 
     tasks.withType(JavaCompile).configureEach {
