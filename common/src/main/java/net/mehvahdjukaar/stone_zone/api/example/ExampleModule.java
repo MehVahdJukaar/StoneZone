@@ -33,7 +33,7 @@ public class ExampleModule extends StoneZoneModule {
     /// For Blocks - NOTE: it's using SimpleEntrySet
     public final SimpleEntrySet<StoneType, Block> sampleBlock, sampleBlock_2;
 
-    /// For Items - NOTE: it's using SimpleEntrySet
+    /// For Items - NOTE: it's using ItemOnlyEntrySet
     public final ItemOnlyEntrySet<WoodType, Item> sampleItem;
 
     public ExampleModule(String modId) {
@@ -57,7 +57,8 @@ public class ExampleModule extends StoneZoneModule {
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 ///OPTIONAL: Without this, the default texture is stone's texture
-                .createPaletteFromStoneChild("bricks")
+                .createPaletteFromStoneChild("bricks") // in case of no "childkey", then "stone" will be used
+                .createPaletteFromBricks() // Is same as above but in case of no "bricks", then "stone" will be used
 
                 ///OPTIONAL: Check if a StoneType has the children required, then block will be generated
                 .requiresChildren("slab", "other_childkey") //REASON: can be for recipes or textures
@@ -88,6 +89,11 @@ public class ExampleModule extends StoneZoneModule {
                 ///OPTIONAL: Special cases
                 .copyParentDrop() // copy the loot_table of the baseBlock (oak_table)
                 .setRenderType(RenderLayer.CUTOUT) //USAGE: CUTOUT, CUTOUT_MIPPED, SOLID, TRANSLUCENT
+
+                ///OPTIONAL: Exclude a BlockType from being generated
+                .excludeBlockTypes("minecraft", "stone", "diorite")
+                .excludeBlockTypes("minecraft:(stone|diorite)") // Is same as above
+                .excludeBlockTypes("minecraft:.*") // Exclude all of Vanilla StoneType
 
                 .build();
         this.addEntry(sampleBlock);
