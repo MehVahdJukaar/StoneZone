@@ -76,12 +76,15 @@ public class MudType extends RockType {
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
                     Block mud = mudFinder.get();
-                    var d = BuiltInRegistries.BLOCK.get(BuiltInRegistries.BLOCK.getDefaultKey());
-                    if (mud != d && mud != null) {
-                        var newMud = new MudType(id, mud);
-                        childNames.forEach((key, value) ->
-                                newMud.addChild(key, BuiltInRegistries.BLOCK.get(value)));
-                        return Optional.of(newMud);
+                    var defaultKey = BuiltInRegistries.BLOCK.get(BuiltInRegistries.BLOCK.getDefaultKey()); // minecraft:air
+                    if (mud != defaultKey && mud != null) {
+                        MudType mudType = new MudType(id, mud);
+                        childNames.forEach((key, value) -> {
+                            if (BuiltInRegistries.BLOCK.containsKey(value)) mudType.addChild(key, BuiltInRegistries.BLOCK.get(value));
+                            else if (BuiltInRegistries.ITEM.containsKey(value)) mudType.addChild(key, BuiltInRegistries.ITEM.get(value));
+                            else StoneZone.LOGGER.warn("Failed to get children for MudType: {} - {}", id, key);
+                        });
+                        return Optional.of(mudType);
                     }
                 } catch (Exception ignored) {
                 }
