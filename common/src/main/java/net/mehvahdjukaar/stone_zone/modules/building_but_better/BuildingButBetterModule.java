@@ -4,7 +4,7 @@ import com.starfish_studios.bbb.block.*;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -21,7 +21,7 @@ import java.util.Objects;
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
 
 //SUPPORT: v1.0.1+
-public class BuildingButBetterModule extends StoneZoneSimpleModule {
+public class BuildingButBetterModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> columns;
     public final SimpleEntrySet<StoneType, Block> fences;

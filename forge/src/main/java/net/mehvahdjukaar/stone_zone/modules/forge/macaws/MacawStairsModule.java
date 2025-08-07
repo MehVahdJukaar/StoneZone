@@ -7,7 +7,7 @@ import com.mcwstairs.kikoz.objects.stair_types.*;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 //SUPPORT: v1.0.0+
-public class MacawStairsModule extends StoneZoneSimpleModule {
+public class MacawStairsModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> brick_terrace_stairs;
     public final SimpleEntrySet<StoneType, Block> brick_skyline_stairs;

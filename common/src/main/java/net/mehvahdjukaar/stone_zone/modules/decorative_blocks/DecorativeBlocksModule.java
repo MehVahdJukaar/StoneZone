@@ -2,7 +2,7 @@ package net.mehvahdjukaar.stone_zone.modules.decorative_blocks;
 
 import lilypuree.decorative_blocks.blocks.PillarBlock;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -10,11 +10,12 @@ import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 
 
 //SUPPORT: v4.1.3+
-public class DecorativeBlocksModule extends StoneZoneSimpleModule {
+public class DecorativeBlocksModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> pillar;
 

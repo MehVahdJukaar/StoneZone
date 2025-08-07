@@ -1,9 +1,11 @@
 package net.mehvahdjukaar.stone_zone.modules.forge.blocks_you_need;
 
+import net.lunabups.byn.block.StonePathBlock;
+import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -23,7 +25,7 @@ import static net.mehvahdjukaar.stone_zone.StoneZone.MOD_ID;
 
 
 //SUPPORT: v1.10+
-public class BlocksYouNeedModule extends StoneZoneSimpleModule {
+public class BlocksYouNeedModule extends StoneZoneModule {
 
 //    public final SimpleEntrySet<StoneType, Block> path;
     public final SimpleEntrySet<StoneType, Block> laid;

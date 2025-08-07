@@ -4,7 +4,7 @@ import earth.terrarium.handcrafted.common.blocks.trims.CornerTrimBlock;
 import earth.terrarium.handcrafted.common.blocks.trims.PillarTrimBlock;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.Block;
 
 
 //SUPPORT: v3.0.6+
-public class HandcraftedModule extends StoneZoneSimpleModule {
+public class HandcraftedModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> pillar_trim;
     public final SimpleEntrySet<StoneType, Block> corner_trim;

@@ -4,7 +4,7 @@ import net.kikoz.mcwroofs.objects.roofs.*;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 
 
 //SUPPORT: v2.3.1+
-public class MacawRoofsModule extends StoneZoneSimpleModule {
+public class MacawRoofsModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> roofs;
     public final SimpleEntrySet<StoneType, Block> attic_roofs;

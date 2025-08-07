@@ -4,8 +4,9 @@ import com.mcwbridges.kikoz.objects.Bridge_Block;
 import com.mcwbridges.kikoz.objects.Bridge_Stairs;
 import com.mcwbridges.kikoz.objects.Bridge_Support;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -15,9 +16,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
+import java.util.function.Consumer;
+
 
 //SUPPORT: v3.0.0+
-public class MacawBridgesModule extends StoneZoneSimpleModule {
+public class MacawBridgesModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> brick_bridges;
     public final SimpleEntrySet<StoneType, Block> mossy_brick_bridges;

@@ -3,7 +3,7 @@ package net.mehvahdjukaar.stone_zone.modules.stoneworks;
 import fuzs.stoneworks.Stoneworks;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneSimpleModule;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
@@ -20,7 +20,7 @@ import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildr
 
 
 //SUPPORT: v8.0.0+
-public class StoneworksModule extends StoneZoneSimpleModule {
+public class StoneworksModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> tiles;
     public final SimpleEntrySet<StoneType, Block> tile_stairs;
