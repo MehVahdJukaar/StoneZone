@@ -19,123 +19,6 @@ configurations {
     developmentFabric.extendsFrom common
 }
 
-dependencies {
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modApi "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}+${minecraft_version}"
-
-
-    common(project(path: ":common", configuration: "namedElements")) { transitive false }
-    shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
-
-
-
-    modCompileOnly("me.shedaniel.cloth:cloth-config-fabric:${cloth_version}") {
-        exclude group: 'net.fabricmc.fabric-api'
-    }
-
-    // Development QOL
-    modImplementation("com.terraformersmc:modmenu:${modmenu_version}")
-
-//!! MOONLIGHT LIB (REQUIRED) --------------------------------------------------------------------------------------- \\
-    String path = System.getenv('REPOS21_1')
-    boolean usesMavenLocalML =  System.getenv().MY_PC == "1"
-    print "isMyPc: $usesMavenLocalML"
-
-    //- Repository LOCAL
-    if (enable_moonlight_test.toBoolean()) {
-        if (usesMavenLocalML) {
-            //- ~/fabric/mods LOCAL
-            modImplementation("net.mehvahdjukaar:moonlight-fabric:${project.moonlight_testVersion}") // LOCAL
-        } else {
-            modImplementation(files(path + "\\Moonlight\\fabric\\build\\libs\\moonlight-${moonlight_testVersion}-fabric.jar"))
-        }
-    } else {
-        //+ MAVEN
-        modImplementation("maven.modrinth:moonlight:${moonlight_mavenVersion}-fabric") // v2.18.13
-    }
-
-//!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
-    if (enable_everycomp_test.toBoolean()) {
-        //- Repository LOCAL
-        modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
-    } else {
-        //+ MAVEN
-        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.10.1
-    }
-
-//!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
-    modRuntimeOnly("curse.maven:jei-238222:5846878")
-    modRuntimeOnly("curse.maven:emi-580555:5872512") // v1.1.18
-    modRuntimeOnly("curse.maven:jade-324717:5884237") // v15.8.3
-    modRuntimeOnly("curse.maven:crafttweaker-239197:6434160") // Faux-Custom-Entity-Data
-//    modRuntimeOnly("curse.maven:worldedit-225608:5830452") // required loom 1.7.410
-
-//!! ================================================= DEPENDENCIES ================================================= \\
-    //- ONLY FOR TESTING - can be commented out or enabled
-    modRuntimeOnly("curse.maven:faux-custom-entity-data-575305:5623810") // v13.0.1 | CraftTweaker
-//    modRuntimeOnly("curse.maven:terrablender-fabric-565956:6054948") // v4.1.0.8 | Biomes-O'-Plenty
-//    modRuntimeOnly("curse.maven:glitchcore-955399:5660741") // v2.1.0.0 | Biomes-O'-Plenty | required: Typetools, Night-Config
-//    modRuntimeOnly("curse.maven:yungs-api-421850:5769972") // v4.0.6 | Better-Archeology //!! 1.20
-//    modRuntimeOnly("curse.maven:puzzles-lib-495476:6494828") // v21.1.36 | Stoneworks
-//    modRuntimeOnly("curse.maven:forge-config-api-port-fabric-547434:5982384") // v21.1.3 | Stoneworks
-//    modRuntimeOnly("com.terraformersmc.terraform-api:terraform-wood-api-v1:7.0.3") // Blockus //!! 1.20
-//    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129312") // v1.1.1 | Rechiseled //!! 1.20
-//    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4785838") // v1.1.8a | Rechiseled //!! 1.20
-//    modRuntimeOnly("curse.maven:bclib-495191:4971470") // v3.0.14 | BetterEnd //!! 1.20
-//    modRuntimeOnly("com.github.quiqueck:BCLib:3.0.14") // BetterEnd //!! 1.20
-//    modRuntimeOnly("com.github.quiqueck:WunderLib:1.1.5") // BetterEnd //!! 1.20
-//    modRuntimeOnly("curse.maven:athena-841890:5176880") // Chipped //!! 1.20
-//    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659872")  // v2.1.29 | Chipped //!! 1.20
-//    modRuntimeOnly("curse.maven:monolib-968432:6123964") // v2.0.0 | More-Beautiful-Torches //!! 1.20
-
-    //- ~/fabric/mods LOCAL@
-
-    //- OTHER MAVENs - can be commented out or enabled
-//    modRuntimeOnly("com.jozufozu.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_version}") // Create
-//    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
-//    modRuntimeOnly('net.jodah:typetools:0.6.3') // GlitchCore
-//    modRuntimeOnly('com.electronwill.night-config:core:3.8.1') // GlitchCore
-//    modRuntimeOnly('com.electronwill.night-config:toml:3.8.1') // GlitchCore
-
-    //+ REQUIRED - The modules access libaries from below - Only in FABRIC
-    modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
-    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:6076743") // v1.1.18a | Rechiseled
-
-//!! =================================================== IMPORTS ==================================================== \\
-    //- ONLY FOR TESTING - can be commented out or enabled
-//    modRuntimeOnly("curse.maven:better-archeology-835687:5704094") // supermartijn642s' Config-Lib, Yung's API //!! 1.20
-//    modRuntimeOnly("curse.maven:blockus-312289:5896309") // Terraformersmc's terraform-wood-api //!! 1.20
-//    modRuntimeOnly("curse.maven:building-but-better-989479:5382599") //!! 1.20
-//    modRuntimeOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib //!! 1.20
-//    modRuntimeOnly("curse.maven:stoneworks-852663:5731745") // puzzles-lib, forge-config-api-port
-//    modRuntimeOnly("curse.maven:twigs-496913:4603805") //!! 1.20
-
-    //- OTHER MAVENS
-//    modRuntimeOnly("earth.terrarium.chipped:chipped-fabric-${minecraft_version}:4.0.2") //INCLUDED: Athena, Resourceful-Lib
-
-    //+ REQUIRED - The modules access libaries from below - ONLY IN FABRIC
-        // MACAW's
-    modCompileOnly("curse.maven:macaws-bridges-351725:5465222") //v3.0.0
-    modCompileOnly("curse.maven:macaws-paths-and-pavings-629153:5430737") //v1.0.5
-    modCompileOnly("curse.maven:macaws-windows-363569:5592083") //v2.3.0
-    modCompileOnly("curse.maven:macaws-roofs-352039:5554934") //v2.3.1
-    modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442197") //v1.1.2
-    modCompileOnly("curse.maven:macaws-stairs-1119394:5802484") //v1.0.1
-
-        //+ GENERAL
-    modCompileOnly("curse.maven:create-fabric-624165:5982726") // Do not use for RunTime //!! 1.20
-    modCompileOnly("curse.maven:rechiseled-558998:5663507") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
-
-        // OTHER MAVENS
-//    modCompileOnly("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}:slim") { transitive = false } // Registrate, Flywheel //!! maven is outdated & not available
-
-//!! ================================================= FOR TESTING ================================================== \\
-
-//!! Need to find a stone mod, I cannot find a simple mod, ugh!
-//    modRuntimeOnly("curse.maven:betterend-413596:5680728") // BCLib, WunderLib, WorldWeaver  //!! ALPHA
-//    modRuntimeOnly("curse.maven:mwtis-stone-expansion-907720:4767668") //!! 1.20
-}
-
 
 processResources {
     filesMatching("fabric.mod.json") {
@@ -192,4 +75,123 @@ publishing {
             allowInsecureProtocol = true
         }
     }
+}
+
+dependencies {
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    modApi "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}+${minecraft_version}"
+
+
+    common(project(path: ":common", configuration: "namedElements")) { transitive false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
+
+
+
+    modCompileOnly("me.shedaniel.cloth:cloth-config-fabric:${cloth_version}") {
+        exclude group: 'net.fabricmc.fabric-api'
+    }
+
+    // Development QOL
+    modImplementation("com.terraformersmc:modmenu:${modmenu_version}")
+
+//!! MOONLIGHT LIB (REQUIRED) --------------------------------------------------------------------------------------- \\
+    String path = System.getenv('REPOS21_1')
+    boolean usesMavenLocalML =  System.getenv().MY_PC == "1"
+    print "\nisMyPc: $usesMavenLocalML"
+
+    //- Repository LOCAL
+    if (enable_moonlight_test.toBoolean()) {
+        if (usesMavenLocalML) {
+            //- ~/fabric/mods LOCAL
+            modImplementation("net.mehvahdjukaar:moonlight-fabric:${project.moonlight_testVersion}") // LOCAL
+        } else {
+            modImplementation(files(path + "\\Moonlight\\fabric\\build\\libs\\moonlight-${moonlight_testVersion}-fabric.jar"))
+        }
+    } else {
+        //+ MAVEN
+        modImplementation("maven.modrinth:moonlight:${moonlight_mavenVersion}-fabric") // v2.18.13
+    }
+
+//!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
+    if (enable_everycomp_test.toBoolean()) {
+        //- Repository LOCAL
+        modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
+    } else {
+        //+ MAVEN
+        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric") // v2.10.1
+    }
+
+//!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
+    modRuntimeOnly("curse.maven:jei-238222:5846878")
+    modRuntimeOnly("curse.maven:emi-580555:5872512") // v1.1.18
+    modRuntimeOnly("curse.maven:jade-324717:5884237") // v15.8.3
+    modRuntimeOnly("curse.maven:crafttweaker-239197:6434160") // Faux-Custom-Entity-Data
+//    modRuntimeOnly("curse.maven:worldedit-225608:5830452") // required loom 1.7.410
+
+//!! ================================================= DEPENDENCIES ================================================= \\
+    //- ONLY FOR TESTING - can be commented out or enabled
+    modRuntimeOnly("curse.maven:faux-custom-entity-data-575305:5623810") // v13.0.1 | CraftTweaker
+//    modRuntimeOnly("curse.maven:terrablender-fabric-565956:6054948") // v4.1.0.8 | Biomes-O'-Plenty
+//    modRuntimeOnly("curse.maven:glitchcore-955399:5660741") // v2.1.0.0 | Biomes-O'-Plenty | required: Typetools, Night-Config
+//    modRuntimeOnly("curse.maven:yungs-api-421850:5769972") // v4.0.6 | NONE //!! 1.20
+//    modRuntimeOnly("curse.maven:puzzles-lib-495476:6494828") // v21.1.36 | Stoneworks
+//    modRuntimeOnly("curse.maven:forge-config-api-port-fabric-547434:5982384") // v21.1.3 | Stoneworks
+//    modRuntimeOnly("com.terraformersmc.terraform-api:terraform-wood-api-v1:7.0.3") // Blockus //!! 1.20
+//    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129312") // v1.1.1 | Rechiseled //!! 1.20
+//    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:5546988") // v1.1.8 | Rechiseled
+//    modRuntimeOnly("curse.maven:bclib-495191:4971470") // v3.0.14 | BetterEnd //!! 1.20
+//    modRuntimeOnly("com.github.quiqueck:BCLib:3.0.14") // BetterEnd //!! 1.20
+//    modRuntimeOnly("com.github.quiqueck:WunderLib:1.1.5") // BetterEnd //!! 1.20
+//    modRuntimeOnly("curse.maven:athena-841890:5176880") // Chipped //!! 1.20
+//    modRuntimeOnly("curse.maven:resourceful-lib-570073:5973189")  // v3.0.12 | Chipped
+//    modRuntimeOnly("curse.maven:resourceful-config-714059:6467774") // v3.0.11 | Better-Archeology
+//    modRuntimeOnly("curse.maven:monolib-968432:6123964") // v2.0.0 | More-Beautiful-Torches //!! 1.20
+//    modRuntimeOnly("curse.maven:architectury-api-419699:5786326") // v13.0.8 | Better-Archeology
+
+    //- ~/fabric/mods LOCAL@
+
+    //- OTHER MAVENs - can be commented out or enabled
+//    modRuntimeOnly("com.jozufozu.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_version}") // Create
+//    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
+//    modRuntimeOnly('net.jodah:typetools:0.6.3') // GlitchCore
+//    modRuntimeOnly('com.electronwill.night-config:core:3.8.1') // GlitchCore
+//    modRuntimeOnly('com.electronwill.night-config:toml:3.8.1') // GlitchCore
+
+    //+ REQUIRED - The modules access libaries from below - Only in FABRIC
+    modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
+    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:6076743") // v1.1.18a | Rechiseled
+
+//!! =================================================== IMPORTS ==================================================== \\
+    //- ONLY FOR TESTING - can be commented out or enabled
+//    modRuntimeOnly("curse.maven:better-archeology-835687:6423003") // Resourceful-Config, Architectury-API
+//    modRuntimeOnly("curse.maven:blockus-312289:5896309") // Terraformersmc's terraform-wood-api //!! 1.20
+//    modRuntimeOnly("curse.maven:building-but-better-989479:5382599") //!! 1.20
+//    modRuntimeOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib //!! 1.20
+//    modRuntimeOnly("curse.maven:stoneworks-852663:5731745") // puzzles-lib, forge-config-api-port
+//    modRuntimeOnly("curse.maven:twigs-496913:4603805") //!! 1.20
+
+    //- OTHER MAVENS
+//    modRuntimeOnly("earth.terrarium.chipped:chipped-fabric-${minecraft_version}:4.0.2") //INCLUDED: Athena, Resourceful-Lib
+
+    //+ REQUIRED - The modules access libaries from below - ONLY IN FABRIC
+        // MACAW's
+    modCompileOnly("curse.maven:macaws-bridges-351725:5465222") //v3.0.0
+    modCompileOnly("curse.maven:macaws-paths-and-pavings-629153:5430737") //v1.0.5
+    modCompileOnly("curse.maven:macaws-windows-363569:5592083") //v2.3.0
+    modCompileOnly("curse.maven:macaws-roofs-352039:5554934") //v2.3.1
+    modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442197") //v1.1.2
+    modCompileOnly("curse.maven:macaws-stairs-1119394:5802484") //v1.0.1
+
+        //+ GENERAL
+    modCompileOnly("curse.maven:create-fabric-624165:5982726") // Do not use for RunTime //!! 1.20
+    modCompileOnly("curse.maven:rechiseled-558998:5663507") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
+
+        // OTHER MAVENS
+//    modCompileOnly("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}:slim") { transitive = false } // Registrate, Flywheel //!! maven is outdated & not available
+
+//!! ================================================= FOR TESTING ================================================== \\
+
+//!! Need to find a stone mod, I cannot find a simple mod, ugh!
+//    modRuntimeOnly("curse.maven:betterend-413596:5680728") // BCLib, WunderLib, WorldWeaver  //!! ALPHA
+//    modRuntimeOnly("curse.maven:mwtis-stone-expansion-907720:4767668") //!! 1.20
 }
