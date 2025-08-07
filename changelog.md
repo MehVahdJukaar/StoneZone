@@ -16,6 +16,15 @@
 ---
 
 ### UPDATED: 
+- **Better Archeology** (COMMON): Supporting v1.3.2+ (1.21.1)
+- **Stone Zone** (COMMON): Fixed the detection system to detect children including bricks, brick_stairs, brick_slab, so on...
+
+---
+
+## v2.10.7
+
+
+### UPDATED: 
 - **Create** (NF): 
   - Fixed all of blocks' dropping - [#125](https://github.com/MehVahdJukaar/WoodGood/issues/125)
   - (UD): Add `polished` & `bricks` to StoneType's children
