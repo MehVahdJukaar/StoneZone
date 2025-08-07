@@ -1,9 +1,9 @@
 package net.mehvahdjukaar.stone_zone.modules.better_archeology;
 
-import net.Pandarix.betterarcheology.BetterArcheology;
+import net.Pandarix.BACommon;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.StairBlock;
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyBlockStateSafe;
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
 
+//SUPPORT: v1.3.2
 public class BetterArcheologyModule extends StoneZoneModule {
 
     public final SimpleEntrySet<MudType, Block> cracked_bricks;
@@ -24,14 +25,14 @@ public class BetterArcheologyModule extends StoneZoneModule {
 
     public BetterArcheologyModule(String modId) {
         super(modId, "ba");
-        ResourceLocation tab = modRes(BetterArcheology.MOD_ID);
+        ResourceLocation tab = modRes(BACommon.MOD_ID);
 
         cracked_bricks = StoneZoneEntrySet.of(MudType.class, "bricks", "cracked",
                         getModBlock("cracked_mud_bricks"), MudTypeRegistry::getMudType,
                         type -> new Block(copyChildrenPropertySafe("bricks", type))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("bricks") //REASON: recipes & palettes
+                .requiresChildren("bricks") //REASON: textures, recipes
                 .addTexture(modRes("block/cracked_mud_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -45,12 +46,12 @@ public class BetterArcheologyModule extends StoneZoneModule {
                                 copyChildrenPropertySafe("brick_stairs", type))
                 )
                 .createPaletteFromBricks()
-                .requiresFromMap(cracked_bricks.blocks) //REASON: recipes & textures
+                .requiresFromMap(cracked_bricks.blocks) //REASON: textures, recipes
                 //TEXTURES: cracked_bricks (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .addRecipe(modRes("cracked_mud_brick_stairs"))
-                .addRecipe(modRes("cracked_mud_brick_stairs_stonecutting"))
+                .addRecipe(ResourceLocation.withDefaultNamespace("cracked_mud_brick_stairs_from_cracked_mud_bricks_stonecutting"))
                 .build();
         this.addEntry(cracked_brick_stairs);
 
@@ -59,12 +60,12 @@ public class BetterArcheologyModule extends StoneZoneModule {
                         type -> new SlabBlock(copyChildrenPropertySafe("brick_slab", type))
                 )
                 .createPaletteFromBricks()
-                .requiresFromMap(cracked_bricks.blocks) //REASON: recipes & textures
+                .requiresFromMap(cracked_bricks.blocks) //REASON: textures, recipes
                 //TEXTURES: cracked_bricks (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .addRecipe(modRes("cracked_mud_brick_slabs"))
-                .addRecipe(modRes("cracked_mud_brick_slabs_stonecutting"))
+                .addRecipe(ResourceLocation.withDefaultNamespace("cracked_mud_brick_slab_from_cracked_mud_bricks_stonecutting"))
                 .build();
         this.addEntry(cracked_brick_slabs);
     }
