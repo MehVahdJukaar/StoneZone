@@ -136,8 +136,13 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                     return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
                     }, "bricks", null, blockType, manager);
                 }
-                return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
-                }, "stone", null, blockType, manager);
+                if (blockType.getTranslationKey().startsWith("stone_type")) {
+                    return AbstractSimpleEntrySet.makePaletteFromChild(p -> {},
+                            "stone", null, blockType, manager);
+                } else { /// mud_type
+                    return AbstractSimpleEntrySet.makePaletteFromChild(p -> {},
+                            "mud", null, blockType, manager);
+                }
             });
             return this;
         }
