@@ -13,8 +13,8 @@ import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
@@ -333,7 +333,8 @@ public class CreateModule extends StoneZoneModule {
                         getModBlock("andesite_pillar"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new ConnectedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                //TEXTURES: layereds' andesite_cut_cap & andesite_cut_cap_connected (below)
+                .addTexture(modRes("block/palettes/stone_types/cap/andesite_cut_cap")) // andesite_cut_cap
+                .addTexture(modRes("block/palettes/stone_types/cap/andesite_cut_cap_connected")) // andesite_cut_cap_connected
                 .addTexture(modRes("block/palettes/stone_types/pillar/andesite_cut_pillar"))
                 .addTexture(modRes("block/palettes/stone_types/pillar/andesite_cut_pillar_connected"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -348,8 +349,7 @@ public class CreateModule extends StoneZoneModule {
                         getModBlock("layered_andesite"), StoneTypeRegistry::getAndesiteType,
                         stoneType -> new LayeredBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .addTexture(modRes("block/palettes/stone_types/cap/andesite_cut_cap")) // andesite_cut_cap
-                .addTexture(modRes("block/palettes/stone_types/cap/andesite_cut_cap_connected")) // andesite_cut_cap_connected
+                //TEXTURES: pillars' andesite_cut_cap & andesite_cut_cap_connected (above)
                 .addTexture(modRes("block/palettes/stone_types/layered/andesite_cut_layered"))
                 .addTexture(modRes("block/palettes/stone_types/layered/andesite_cut_layered_connected"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
