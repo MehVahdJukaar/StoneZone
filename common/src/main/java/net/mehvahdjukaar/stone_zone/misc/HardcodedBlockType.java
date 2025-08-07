@@ -1,5 +1,6 @@
 package net.mehvahdjukaar.stone_zone.misc;
 
+import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import org.jetbrains.annotations.Nullable;
 
@@ -8,69 +9,100 @@ import java.util.Set;
 public class HardcodedBlockType {
 
     public static String stoneidentify;
+    public static String mudIdentify;
     public static String StoneTypeFromMod;
+    public static String mudTypeFromMod;
     public static String modId;
     public static String supportedBlockName;
-    public static String shortenedIdenfity;
 
     public static final Set<String> BLACKLISTED_MODS = Set.of(
-            "immersive_weathering", "chipped", "create_confectionery"
+            "immersive_weathering", "chipped", "create_confectionery", "rgbblocks"
     );
 
     public static final Set<String> BLACKLISTED_STONETYPES = Set.of(
-            "quark:shingles", //REASON: is a terracotta
+            //REASON: is a terracotta
+            "quark:shingles",
             //REASON: not a stonetype
-            "outer_end:himmel", "quark:midori", "twigs:silt", "supplementaries:ash",
-            //REASON: Shouldn't be detected
-            "minecraft:cobblestone"
+            "outer_end:himmel", "quark:midori", "twigs:silt", "supplementaries:ash", "blue_skies:brumble",
+            "nifty:concrete", "blocksyouneed_luna:bluestone", "blocksyouneed_luna:scorchcobble",
+            //REASON: shouldn't be detected
+            "minecraft:cobblestone", "minecraft:mud", "minecraft:infested_stone", "biomeswevegone:mossy_stone",
+
+            //REASON: The StoneType's texture is only white and no way for blocks to copy its color behavior
+            "rgbblocks:prismarine"
     );
 
     @Nullable
-    public static Boolean isStoneBlockAlreadyRegistered(String blockName, StoneType stoneType, String ModId, String shortenedId) {
+    public static Boolean isStoneBlockAlreadyRegistered(String blockName, StoneType stoneType, String ModId) {
         stoneidentify = stoneType.getId().toString();
         StoneTypeFromMod = stoneType.getNamespace();
         modId = ModId;
         supportedBlockName = blockName;
-        shortenedIdenfity = shortenedId;
 
-            /// ========== EXCLUDE ========== \\\
-        // EXAMPLE
-//        if (isStoneRegistryOf("create", "c", "create", "create:limestone", "limestone_pillar")) return true;
+        /// ─────────────────────────── INCLUDE VANILLA TYPE ────────────────────────────
+
+        /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ EXCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        // Exclude one StoneType from a Stone mod
+//        if (stoneTypeList.get().stream().anyMatch(stoneIdentify::matches)) return true; // FOR NEW CONFIG
+
+        // Exclude one EntrySet from a module
+//        if (entrySetList.get().stream().anyMatch(entrySetId::matches)) return true; // FOR NEW CONFIG
 
         // Exclude all of Vanilla Types
         if (stoneType.isVanilla()) return true;
 
-        // The StoneType's texture is only white and no way for blocks to copy its color behavior
-        if (isStoneFrom("", "", "", "rgbblocks:prismarine", "")) return true;
-
-        // Create: Dreams & Desires' cut_stone_bricks shouldn't be detected but was
-        if (isStoneFrom("", "", "", "create_dd:cut_stone", "")) return true;
+        // Exclude all of Vanilla Types
+        if (stoneType.isVanilla()) return true;
 
         // Stone Expansion's stone is based on Minecraft's stone and shouldn't be included
-        if (isStoneFrom("", "", "", "stoneexpansion:(cut|mossy|smooth|polished)_stone", "")) return true;
+        if (isStoneFrom("", "", "stoneexpansion:(cut|mossy|smooth|polished)_stone", "")) return true;
 
-            /// ========== INCLUDE ========== \\\
-        // EXAMPLE
-//        if (isStoneRegistryOf("create", "c", "create", "create:limestone", "limestone_pillar")) return false;
+        /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        // pillar from Decorative-Blocks, Quark, Create should be always generated
+        if (isStoneFrom("quark|create|decorative_blocks", "", "", "pillar")) return false;
 
         // Create's cut wasn't generated due to Quark's cut_soul_sandstone
-        if (isStoneFrom("create", "", "quark", "", "cut_soul_sandstone")) return false;
+        if (isStoneFrom("create", "quark", "", "cut_soul_sandstone")) return false;
 
         // The stone_squares block from Blockus is why stone_squares from Rechiseled got skipped
-        if (isStoneFrom("rechiseled", "", "blockus", "", "squares")) return false;
+        if (isStoneFrom("rechiseled", "blockus", "", "squares")) return false;
 
         // Create's blocks aren't generated for Quark, Wetland-Whimsy, Geologic-Expansion because they both have LIMESTONE & Also fix the tag issue (#64)
-        if (isStoneFrom("create", "", "", "quark:limestone|wetland_whimsy:limestone|geologicexpansion:limestone", "")) return false;
+        if (isStoneFrom("create", "", "quark:limestone|wetland_whimsy:limestone|geologicexpansion:limestone", "")) return false;
 
 
         return null;
     }
 
-    public static Boolean isStoneFrom(String whichSupportedModId, String shortenedId, String stonetypeFromMod, String stoneTypeId, String whichSupportedBlockName) {
+    @Nullable
+//    public static Boolean isMudBlockAlreadyRegistered(String entrySetId, String blockName, MudType mudType, String ModId) { // FOR NEW CONFIG
+    public static Boolean isMudBlockAlreadyRegistered(String blockName, MudType mudType, String ModId) {
+        mudIdentify = mudType.getId().toString();
+        mudTypeFromMod = mudType.getNamespace();
+        modId = ModId;
+        supportedBlockName = blockName;
+
+        /// ─────────────────────────── Include Vanilla Type ────────────────────────────
+
+        /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ EXCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        // Exclude one MudType from a Stone mod
+//        if (mudTypeList.get().stream().anyMatch(mudIdentify::matches)) return true; // FOR NEW CONFIG
+
+        // Exclude one EntrySet from a module
+//        if (entrySetList.get().stream().anyMatch(entrySetId::matches)) return true; // FOR NEW CONFIG
+
+        /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+        return null;
+    }
+
+    public static Boolean isStoneFrom(String whichSupportedModId, String stonetypeFromMod, String stoneTypeId, String whichSupportedBlockName) {
 
         String[] expressions = {
                 whichSupportedModId,
-                shortenedId,
                 stonetypeFromMod,
                 stoneTypeId,
                 whichSupportedBlockName
@@ -78,7 +110,6 @@ public class HardcodedBlockType {
 
         String[] values = {
                 modId,
-                shortenedIdenfity,
                 StoneTypeFromMod,
                 stoneidentify,
                 supportedBlockName
@@ -87,8 +118,35 @@ public class HardcodedBlockType {
         for (int idx = 0; idx < values.length; idx++ ) {
 
             if (!expressions[idx].isEmpty()) { // Skip the blank expressions
-                boolean isNotMatched = !(values[idx].matches(expressions[idx]) | values[idx].contains(expressions[idx]));
-                if (isNotMatched) return false;
+                boolean mismatched = !(values[idx].matches(expressions[idx]) || values[idx].contains(expressions[idx]));
+                if (mismatched) return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static Boolean isMudFrom(String supportedModId, String mudtypeFromMod, String mudTypeId, String supportedBlockId) {
+
+        String[] expressions = {
+                supportedModId,
+                mudtypeFromMod,
+                mudTypeId,
+                supportedBlockId
+        };
+
+        String[] values = {
+                modId,
+                mudTypeFromMod,
+                mudIdentify,
+                supportedBlockName
+        };
+
+        for (int idx = 0; idx < values.length; idx++ ) {
+
+            if (!expressions[idx].isEmpty()) { // Skip the blank expressions
+                boolean mismatched = !(values[idx].matches(expressions[idx]) || values[idx].contains(expressions[idx]));
+                if (mismatched) return false;
             }
         }
 

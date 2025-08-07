@@ -9,6 +9,7 @@ import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.SZRegistry;
 import net.mehvahdjukaar.stone_zone.StoneZone;
+import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
@@ -53,7 +54,13 @@ public class StoneZoneModule extends SimpleModule {
         String blockName = blockId.substring(blockId.lastIndexOf("/") + 1);
 
         if (blockType instanceof StoneType stoneType) {
-            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(blockName, stoneType, modId, shortenedId());
+//            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(entrySetId, blockName, stoneType, modId); // FOR NEW CONFIG
+            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(blockName, stoneType, modId);
+            if (hardcoded != null) return hardcoded;
+        }
+        else if (blockType instanceof MudType mudType) {
+//            Boolean hardcoded = HardcodedBlockType.isMudBlockAlreadyRegistered(entrySetId, blockName, mudType, modId); // FOR NEW CONFIG
+            Boolean hardcoded = HardcodedBlockType.isMudBlockAlreadyRegistered(blockName, mudType, modId);
             if (hardcoded != null) return hardcoded;
         }
 
