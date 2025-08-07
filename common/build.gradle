@@ -16,7 +16,7 @@ dependencies {
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
     String path = System.getenv('REPOS21_1')
     boolean usesMavenLocalML =  System.getenv().MY_PC == "1"
-    print "isMyPc: $usesMavenLocalML"
+    print "\nisMyPc: $usesMavenLocalML"
 
     //- Repository LOCAL
     if (enable_moonlight_test.toBoolean()) {
@@ -52,7 +52,7 @@ dependencies {
     // ~/common/mods LOCAL
 
     //+ REQUIRED - The modules access libaries from below
-    modCompileOnly("curse.maven:better-archeology-835687:5704094") // supermartijn642s' Config-Lib //!! 1.20
+    modCompileOnly("curse.maven:better-archeology-835687:6423003") // Supermartijn642s' Config-Lib, Yung's API
     modCompileOnly("curse.maven:blockus-312289:5896309") //!! 1.20
     modCompileOnly("curse.maven:building-but-better-989479:5382599") //!! 1.20
     modCompileOnly("curse.maven:create-fabric-624165:5982726") //!! 1.20

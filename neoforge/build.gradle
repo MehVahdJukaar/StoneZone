@@ -99,7 +99,7 @@ dependencies {
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
     String path = System.getenv('REPOS21_1')
     boolean usesMavenLocalML =  System.getenv().MY_PC == "1"
-    print "isMyPc: $usesMavenLocalML"
+    print "\nisMyPc: $usesMavenLocalML"
 
     //- Repository LOCAL
     if (enable_moonlight_test.toBoolean()) {
@@ -133,19 +133,23 @@ dependencies {
 
 //!! ================================================= DEPENDENCIES ================================================= \\
     //- ONLY FOR TESTING - can be commented out or enabled
-    modRuntimeOnly("curse.maven:terrablender-neoforge-940057:6054947") // v4.1.0.8 |
+    modRuntimeOnly("curse.maven:terrablender-neoforge-940057:6054947") // v4.1.0.8 | Biomes-O'-Plenty
+    modRuntimeOnly("curse.maven:glitchcore-955399:5660740") // v2.1.0.0 | Biomes-O'-Plenty | required: Typetools, Night-Config
+//    modRuntimeOnly("curse.maven:aeroblender-879879:5911923") // v1.0.0 | Aether
 //    modRuntimeOnly("curse.maven:citadel-331936:6002521") // v2.6.1 | Alexs-Caves //!! 1.20
-//    modRuntimeOnly("curse.maven:yungs-api-421850:5769971") // v4.0.6 | Better-Archeology //!! 1.20
+//    modRuntimeOnly("curse.maven:yungs-api-421850:6715462") // v5.1.6 | NONE //!! FORGE
 //    modRuntimeOnly("curse.maven:patchouli-306770:4966125") // v84 | TFC //!! 1.20
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:6494827") // v21.1.36 | Stoneworks
 //    modRuntimeOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark //!! 1.20
 //    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | Chipped //!! 1.20
-//    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | Chipped //!! 1.20
+//    modRuntimeOnly("curse.maven:resourceful-lib-570073:5973188") // v3.0.12 | Chipped
+//    modRuntimeOnly("curse.maven:resourceful-config-714059:6467772") // v3.0.11 | Better-Archeology
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled //!! 1.20
-//    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled, Better-Archeology //!! 1.20
+//    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:5546996") // v1.1.8 | Rechiseled
 //    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct //!! 1.20
 //    modRuntimeOnly("curse.maven:blueprint-382216:5292242") // v7.1.0 | The-Outer-End, Caverns-And-Chasms //!! 1.20
 //    modRuntimeOnly("curse.maven:monolib-968432:6123976") // v2.0.0 | More-Beautiful-Torches //!! 1.20
+//    modRuntimeOnly("curse.maven:architectury-api-419699:5786327") // v13.0.8 | Better-Archeology
 
     //- ~/forge/mods LOCAL
 
@@ -162,7 +166,7 @@ dependencies {
 
 //!! =================================================== IMPORTS ==================================================== \\
     //- ONLY FOR TESTING - can be commented out or enabled
-//    modRuntimeOnly("curse.maven:better-archeology-835687:5693368") // supermartijn642s' Config-Lib, Yung's API //!! 1.20
+//    modRuntimeOnly("curse.maven:better-archeology-835687:6423649") // Resourceful-Config, Architectury-API
 //    modRuntimeOnly("curse.maven:twigs-496913:4605097") //!! 1.20
 //    modRuntimeOnly("curse.maven:stoneworks-852663:5731747") // puzzles-lib
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1 //!! 1.20
@@ -205,6 +209,11 @@ dependencies {
 
     // MUDTYPE ONLY
     modRuntimeOnly("curse.maven:deeperdarker-659011:5908863")
+//    modRuntimeOnly("curse.maven:oh-the-biomes-weve-gone-1070751:6808771") // CorgiLib, GeckoLib, Oh-The-Trees-You'll-Grow, Terrablender
+
+    // Oh-The_Biomes-We've-Gone's Dependency
+//    modRuntimeOnly("curse.maven:corgilib-693313:6808264") // v5.0.0.7 | Oh-The-Biomes-We've-Gone
+//    modRuntimeOnly("curse.maven:oh-the-trees-youll-grow-962544:6607561") // v5.0.14 | Oh-The-Biomes-We've-Gone
 
     // STONETYPE & WOODTYPE
 //    modRuntimeOnly("curse.maven:terrafirmacraft-302973:5943050") // patchouli //!! 1.20
