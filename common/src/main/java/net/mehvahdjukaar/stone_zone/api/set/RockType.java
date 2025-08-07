@@ -102,20 +102,22 @@ public abstract class RockType extends BlockType{
     @SuppressWarnings("SameParameterValue")
     /// Checking the id for "cobbled" or "cobblestone"
     private @Nullable Block findCobblestoneEntry(String prefix, String suffix) {
+        String prefixed = (prefix.isEmpty()) ? "" : prefix + "_";
         String suffixed = (suffix.isEmpty()) ? "" : "_" + suffix;
 
-        Block first = this.findRelatedEntry("cobbled", suffix, BuiltInRegistries.BLOCK);
+        Block first = this.findRelatedEntry(prefixed + "cobbled", suffix, BuiltInRegistries.BLOCK);
         if (first != null) return first;
-        return this.findRelatedEntry(prefix, "cobblestone" + suffixed, BuiltInRegistries.BLOCK);
+        return this.findRelatedEntry(prefixed, "cobblestone" + suffixed, BuiltInRegistries.BLOCK);
     }
 
     /// Checking the id for "bricks" or "brick"
     private @Nullable Block findBrickEntry(String prefix, String suffix) {
+        String prefixed = (prefix.isEmpty()) ? "" : prefix + "_";
         String suffixed = (suffix.isEmpty()) ? "" : "_" + suffix;
 
-        Block first = this.findRelatedEntry(prefix, "brick" + suffixed, BuiltInRegistries.BLOCK);
+        Block first = this.findRelatedEntry(prefixed, "brick" + suffixed, BuiltInRegistries.BLOCK);
         if (first != null) return first;
-        return this.findRelatedEntry(prefix, "bricks" + suffixed, BuiltInRegistries.BLOCK);
+        return this.findRelatedEntry(prefixed, "bricks" + suffixed, BuiltInRegistries.BLOCK);
     }
 
     @Override
@@ -124,21 +126,21 @@ public abstract class RockType extends BlockType{
             return reg.get(ResourceLocation.withDefaultNamespace("cobblestone"));
         }
 
-        String prefix = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
-        String infix = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
-        String withoutUnderscore = suffix;
+        String prefixed = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
+        String infixed = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
+        String suffixed = (suffix.isEmpty()) ? "" : "_" + suffix;
 
-        if (!suffix.isEmpty() && !prefixOrInfix.isEmpty()) suffix = "_" + suffix;
+//        if (!suffix.isEmpty() && !prefixOrInfix.isEmpty()) suffix = "_" + suffix;
         ResourceLocation[] targets = {
                 // DEFAULT
-                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), id.getPath() + infix + suffix),
-                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), prefix + id.getPath() + suffix),
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), id.getPath() + infixed + suffixed),
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), prefixed + id.getPath() + suffixed),
                 // TFC & AFC: Include children of stone_type: stairs, slab...
-                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/raw/" + id.getPath() +"_"+ prefixOrInfix),
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/raw/" + id.getPath() + suffixed),
                 // TFC & AFC: Include children of smooth, cobblestone, button, pressure_plate, bricks, cracked_bricks
-                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/" + prefixOrInfix + suffix +"/"+ id.getPath()),
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/" + prefixed + suffix +"/"+ id.getPath()),
                 // TFC & AFC: Include children of brick_slab, smooth_slab, brick_stairs, smooth_stairs
-                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/"+ prefixOrInfix +"/"+ id.getPath() + suffix)
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/"+ prefixOrInfix +"/"+ id.getPath() + suffixed)
         };
         V found = null;
         for (var r : targets) {
