@@ -204,6 +204,13 @@ allprojects {
         maven { name = "TerraformersMC"; url = "https://maven.terraformersmc.com/" }
         maven { url = "https://raw.githubusercontent.com/moddingplayground/maven/main/" }
         maven { url = 'https://maven.ambertation.de/releases' } // BCLib, BetterEnd, WunderLib
+        maven { // GeckoLib
+            url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+            content {
+                includeGroup("software.bernie.geckolib")
+            }
+        }
+        maven { url = 'https://maven.wispforest.io' } // OwO-Lib, Accessories
     }
 
     tasks.withType(JavaCompile).configureEach {
