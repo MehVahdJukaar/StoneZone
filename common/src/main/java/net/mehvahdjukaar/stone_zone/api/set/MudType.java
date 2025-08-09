@@ -13,6 +13,17 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+/**
+ * Childkey Availability:
+ * <Ul>
+ * mud, packed, stairs, slab, wall, button, pressure_plate, <br>
+ * smooth, smooth_stairs, smooth_slab, smooth_wall, <br>
+ * cobblestone, mossy_cobblestone, <br>
+ * polished, polished_stairs, polished_slab, polished_wall <br>
+ * bricks, brick_stairs, brick_slab, brick_wall, cracked_bricks, brick_tiles, <br>
+ * mossy_bricks, mossy_brick_slab, mossy_brick_stairs, mossy_brick_wall, <br>
+ * </Ul>
+ **/
 public class MudType extends RockType {
 
     public final Block mud;
