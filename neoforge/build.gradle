@@ -157,6 +157,7 @@ dependencies {
 //    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
 //    modRuntimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_neoforge_version}") // Create
 //    modRuntimeOnly("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}") // Create
+//    modRuntimeOnly("software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:4.7.6") // v4.7.6 | Oh-The-Biomes-We've-Gone
 
     //+ REQUIRED - The modules access libaries from below - Only in FORGE
     modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:6076757") // v1.1.18a | Rechiseled
