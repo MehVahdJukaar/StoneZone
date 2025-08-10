@@ -29,6 +29,7 @@ public class HardcodedBlockType {
             "nifty:concrete", "blocksyouneed_luna:bluestone", "blocksyouneed_luna:scorchcobble",
             //REASON: shouldn't be detected
             "desire:polished_stone", "desire:chiseled_stone", "create_dd:cut_stone",
+            "stoneexpansion:cut_stone", "stoneexpansion:mossy_stone", "stoneexpansion:smooth_stone", "stoneexpansion:polished_stone",
 
             //REASON: The StoneType's texture is only white and no way for blocks to copy its color behavior
             "rgbblocks:prismarine"
