@@ -57,8 +57,10 @@ public class HardcodedBlockType {
         // Exclude all of Vanilla Types
         if (stoneType.isVanilla()) return true;
 
-        // Stone Expansion's stone is based on Minecraft's stone and shouldn't be included
-        if (isStoneFrom("", "", "stoneexpansion:(cut|mossy|smooth|polished)_stone", "")) return true;
+        // Exclude generated blocks that is just one mod that is both Supported Mods and StoneTypeFromMod
+        if (isStoneFrom("quark", "quark", "", "pillar")) return true;
+        if (isStoneFrom("create", "create", "", "pillar")) return true;
+        if (isStoneFrom("decorative_blocks", "decorative_blocks", "", "pillar")) return true;
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         // pillar from Decorative-Blocks, Quark, Create should be always generated
