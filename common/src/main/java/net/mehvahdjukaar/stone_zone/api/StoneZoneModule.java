@@ -50,25 +50,18 @@ public class StoneZoneModule extends SimpleModule {
     @Override
     public boolean isEntryAlreadyRegistered(String entrySetId, String blockId, BlockType blockType, Registry<?> registry) {
 
-        // blockId: stonezone:twigs/strata/<stonetype>_column | blockName: <stonetype>_column
-        String blockName = blockId.substring(blockId.lastIndexOf("/") + 1);
+        // blockId: <stonetype>_column from the full Id: stonezone:twigs/strata/<stonetype>_column - it's done in EveryCompat
 
         if (blockType instanceof StoneType stoneType) {
-            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(entrySetId, blockName, stoneType, modId);
+            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(entrySetId, blockId, stoneType, modId);
             if (hardcoded != null) return hardcoded;
         }
         else if (blockType instanceof MudType mudType) {
-            Boolean hardcoded = HardcodedBlockType.isMudBlockAlreadyRegistered(entrySetId, blockName, mudType, modId);
+            Boolean hardcoded = HardcodedBlockType.isMudBlockAlreadyRegistered(entrySetId, blockId, mudType, modId);
             if (hardcoded != null) return hardcoded;
         }
 
-        var isAlreadyRegistered = super.isEntryAlreadyRegistered(entrySetId, blockId, blockType, registry);
-        if (isAlreadyRegistered) {
-            //noinspection ConstantValue
-            return isAlreadyRegistered;
-        }
-
-        return false;
+        return super.isEntryAlreadyRegistered(entrySetId, blockId, blockType, registry);
     }
 
     @Override
