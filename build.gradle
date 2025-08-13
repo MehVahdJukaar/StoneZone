@@ -40,19 +40,20 @@ subprojects {
 
     if (env.MODRINTH_TOKEN) {
         modrinth {
-            projectId = "stone-zone"
+            projectId = modrinth_id
             uploadFile = tasks.remapJar
-            gameVersions = [rootProject.minecraft_version]
+            gameVersions = ["${minecraft_version}"] as Iterable<? extends String>
             loaders = [modLoader]
             changelog = changelogText
+            versionNumber =  mod_version +"-"+ modLoader
+            versionType = release_type
 
             if (modLoader == "fabric") {
-                versionName = mod_id +"-"+ mod_version + "-fabric"
                 dependencies {
                     required.project "fabric-api"
                     required.project "moonlight"
                     required.project "every-compat"
-                    required.project "library-section"
+                    optional.project "library-section"
                 }
             }
             //!! FORGE
@@ -61,7 +62,7 @@ subprojects {
                 dependencies {
                     required.project "moonlight"
                     required.project "every-compat"
-                    required.project "library-section"
+                    optional.project "library-section"
                 }
             }
         }

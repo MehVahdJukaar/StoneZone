@@ -16,11 +16,11 @@ configurations {
 }
 
 processResources {
-    inputs.property "version", project.version
+    inputs.property "version", project.minecraft_version
     inputs.property "mod_id", rootProject.mod_id
 
     filesMatching("fabric.mod.json") {
-        expand "version": project.version, "mod_id": rootProject.mod_id
+        expand "version": project.minecraft_version, "mod_id": rootProject.mod_id
     }
 }
 
