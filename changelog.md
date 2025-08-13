@@ -22,6 +22,17 @@
 </div>
 
 ### UPDATED: 
+- **Stone Zone** (COMMON): 
+  - Fixed the duplicated blocks, `pillar` from 3 supported mods: **Create**, **Decorative Blocks**, **Quark**
+  - **BIG UPDATE**: removed sounds from detection system, changed the API, also fixed the crash from [#130](https://github.com/MehVahdJukaar/StoneZone/issues/130), [#131](https://github.com/MehVahdJukaar/StoneZone/issues/131), [Moonlight#373](https://github.com/MehVahdJukaar/Moonlight/issues/373) 
+- **Stone Expansion** (FB): Blacklisted 4 StoneTypes: cut_stone, mossy_stone, smooth_stone, polished_stone
+  - Because they are Stone's children, not really a new StoneType. 
+
+---
+
+## v2.8.15
+
+### UPDATED: 
 - **Stone Zone** (COMMON): Fixed the SERVER crash related to `stonezone-hazardous.toml` config - [#1006](https://github.com/MehVahdJukaar/WoodGood/issues/1006)
 
 ---

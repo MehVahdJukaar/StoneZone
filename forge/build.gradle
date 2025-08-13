@@ -158,7 +158,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:curios-309927:6418456") // v5.14.1 | Eternal-Tales
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled, Better-Archeology
 //    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct
-    modRuntimeOnly("curse.maven:blueprint-382216:5292242") // v7.1.0 | The-Outer-End, Caverns-And-Chasms, Atmospheric
+//    modRuntimeOnly("curse.maven:blueprint-382216:5292242") // v7.1.0 | The-Outer-End, Caverns-And-Chasms, Atmospheric
 //    modRuntimeOnly("curse.maven:monolib-968432:6123976") // v2.0.0 | More-Beautiful-Torches
 //    modRuntimeOnly("curse.maven:balm-531761:6778755") // v7.3.32 | Waystones
 //    modRuntimeOnly("curse.maven:architectury-api-419699:5137938") // v9.2.14 | [Let's-Do]-Candlelight, [Let's-Do]-Farm-&-Charm,
@@ -225,17 +225,17 @@ dependencies {
 //    modRuntimeOnly("curse.maven:thaumon-926511:5492065")
 //    modRuntimeOnly("curse.maven:gaia-dimension-302529:4794552")
 //    modRuntimeOnly("curse.maven:what-is-stone-colorful-caves-853161:5175855")
-    modRuntimeOnly("curse.maven:artsandcrafts-1034791:5992027")
-    modRuntimeOnly("curse.maven:the-outer-end-430404:5812948") // Blueprint
-    modRuntimeOnly("curse.maven:caverns-and-chasms-438005:6040957") // Blueprint
-    modRuntimeOnly("curse.maven:atmospheric-362393:6393127") // Blueprint
+//    modRuntimeOnly("curse.maven:artsandcrafts-1034791:5992027")
+//    modRuntimeOnly("curse.maven:the-outer-end-430404:5812948") // Blueprint
+//    modRuntimeOnly("curse.maven:caverns-and-chasms-438005:6040957") // Blueprint
+//    modRuntimeOnly("curse.maven:atmospheric-362393:6393127") // Blueprint
 //    modRuntimeOnly("curse.maven:aerial-hell-674630:5423795")
 //    modRuntimeOnly("curse.maven:the-undergarden-379849:5182632")
 //    modRuntimeOnly("curse.maven:natures-spirit-1044992:6445117")
 //    modRuntimeOnly("curse.maven:galosphere-631098:4983871")
 //    modRuntimeOnly("curse.maven:eternal-tales-416512:6687256")
 //    modRuntimeOnly("curse.maven:regions-unexplored-659110:5558225")
-    modRuntimeOnly("curse.maven:twigs-496913:4998195")
+//    modRuntimeOnly("curse.maven:twigs-496913:4998195")
 
     // MUDTYPE ONLY
     modRuntimeOnly("curse.maven:deeperdarker-659011:5906086")
