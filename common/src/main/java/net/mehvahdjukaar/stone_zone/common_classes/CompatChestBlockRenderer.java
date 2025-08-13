@@ -42,7 +42,7 @@ public class CompatChestBlockRenderer extends ChestRenderer<CompatChestBlockEnti
     //assumes standard naming here. Generalize if needed
     public CompatChestBlockRenderer(BlockEntityRendererProvider.Context context, String shortenedId) {
         super(context);
-        for (StoneType w : StoneTypeRegistry.getTypes()) {
+        for (StoneType w : StoneTypeRegistry.INSTANCE.getValues()) {
             if (w.isVanilla()) continue;
             String path = "entity/chest/" + shortenedId + "/" + w.getAppendableId() + "_chest";
             String trapped_path = "entity/chest/" + shortenedId + "/" + w.getAppendableId() + "_trapped_chest";

@@ -8,6 +8,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -163,7 +164,7 @@ public class MacawBridgesModule extends StoneZoneModule {
 
 //!! ANDESITE
         bridges = StoneZoneEntrySet.of(StoneType.class, "bridge",
-                        getModBlock("andesite_bridge"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("andesite_bridge"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new Bridge_Block(standardProperties(stoneType))
                 )
                 .requiresChildren("polished_stone", "slab", "wall") //REASON: textures, recipes

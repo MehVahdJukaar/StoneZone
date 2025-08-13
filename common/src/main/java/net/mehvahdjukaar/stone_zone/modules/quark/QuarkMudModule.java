@@ -5,7 +5,8 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.MudType;
-import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaMudTypes;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
@@ -32,11 +33,11 @@ public class QuarkMudModule extends StoneZoneModule {
         ResourceKey<CreativeModeTab> tab = CreativeModeTabs.BUILDING_BLOCKS;
 
         brick_lattices = QuarkEntrySet.of(MudType.class, "brick_lattice", MoreMudBlocksModule.class,
-                        getModBlock("mud_brick_lattice"), MudTypeRegistry::getMudType,
+                        getModBlock("mud_brick_lattice"), () -> VanillaMudTypes.MUD,
                         mudType -> new MudBrickLatticeBlock(null, copyChildrenPropertySafe("bricks", mudType))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("bricks") //REASON: recipes, palettes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: recipes, palettes
                 .addTexture(modRes("block/mud_brick_lattice"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -47,7 +48,7 @@ public class QuarkMudModule extends StoneZoneModule {
         this.addEntry(brick_lattices);
 
         carved_bricks = QuarkEntrySet.of(MudType.class, "bricks", "carved", MoreMudBlocksModule.class,
-                        getModBlock("carved_mud_bricks"), MudTypeRegistry::getMudType,
+                        getModBlock("carved_mud_bricks"), () -> VanillaMudTypes.MUD,
                         mudType -> {
                             String name = shortenedId() + "/" + mudType.getAppendableIdWith("carved", "bricks");
                             return new ZetaBlock(name, null, copyChildrenPropertySafe("bricks", mudType));
@@ -65,7 +66,7 @@ public class QuarkMudModule extends StoneZoneModule {
         this.addEntry(carved_bricks);
 
         pillars = QuarkEntrySet.of(MudType.class, "pillar", MoreMudBlocksModule.class,
-                        getModBlock("mud_pillar"), MudTypeRegistry::getMudType,
+                        getModBlock("mud_pillar"), () -> VanillaMudTypes.MUD,
                         mudType -> {
                             String name = shortenedId() + "/" + mudType.getAppendableIdWith("pillar");
                             return new ZetaPillarBlock(name, null, Utils.copyPropertySafe(mudType.mud));

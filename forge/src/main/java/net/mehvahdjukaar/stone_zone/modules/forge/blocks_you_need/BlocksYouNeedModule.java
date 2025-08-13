@@ -1,13 +1,11 @@
 package net.mehvahdjukaar.stone_zone.modules.forge.blocks_you_need;
 
-import net.lunabups.byn.block.StonePathBlock;
-import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -42,7 +40,7 @@ public class BlocksYouNeedModule extends StoneZoneModule {
 //                        getModBlock("stone_path"), StoneTypeRegistry::getStoneType,
 //                        stoneType -> new StonePathBlock()
 //                )
-//                .requiresChildren("cobblestone") //REASON: recipes
+//                .requiresChildren(VanillaRockTypeChildKeys.COBBLESTONE) //REASON: recipes
 //                .addTexture(modRes("block/stone_path"))
 //                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
 //                .setTabKey(tab)
@@ -52,7 +50,7 @@ public class BlocksYouNeedModule extends StoneZoneModule {
 //        this.addEntry(path);
 
         laid = StoneZoneEntrySet.of(StoneType.class, "", "laid",
-                        getModBlock("laid_sandstone"), StoneTypeRegistry::getSandstoneType,
+                        getModBlock("laid_sandstone"), () -> VanillaStoneTypes.SANDSTONE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone)
                                 .sound(stoneType.getSound())
                                 .strength(0.8F)
@@ -73,7 +71,7 @@ public class BlocksYouNeedModule extends StoneZoneModule {
         this.addEntry(laid);
 
         laid_stairs = StoneZoneEntrySet.of(StoneType.class, "stairs", "laid",
-                        getModBlock("laid_sandstone_stairs"), StoneTypeRegistry::getSandstoneType,
+                        getModBlock("laid_sandstone_stairs"), () -> VanillaStoneTypes.SANDSTONE,
                         stoneType -> new StairBlock(laid.blocks.get(stoneType).defaultBlockState(),
                                 copyChildrenPropertySafe("stairs", stoneType)
                                         .strength(0.8F, 0.8F)
@@ -96,7 +94,7 @@ public class BlocksYouNeedModule extends StoneZoneModule {
         this.addEntry(laid_stairs);
 
         laid_slab = StoneZoneEntrySet.of(StoneType.class, "slab", "laid",
-                        getModBlock("laid_sandstone_slab"), StoneTypeRegistry::getSandstoneType,
+                        getModBlock("laid_sandstone_slab"), () -> VanillaStoneTypes.SANDSTONE,
                         stoneType -> new SlabBlock(copyChildrenPropertySafe("slab", stoneType)
                                 .strength(0.8F, 0.8F)
                                 .requiresCorrectToolForDrops()
@@ -118,7 +116,7 @@ public class BlocksYouNeedModule extends StoneZoneModule {
         this.addEntry(laid_slab);
 
         laid_wall = StoneZoneEntrySet.of(StoneType.class, "wall", "laid",
-                        getModBlock("laid_sandstone_wall"), StoneTypeRegistry::getSandstoneType,
+                        getModBlock("laid_sandstone_wall"), () -> VanillaStoneTypes.SANDSTONE,
                         stoneType -> new WallBlock(copyWallSafe("laid_sandstone_wall", stoneType)
                                 .strength(0.8F, 0.8F)
                                 .requiresCorrectToolForDrops()

@@ -1,279 +1,209 @@
 package net.mehvahdjukaar.stone_zone.api.intergration;
 
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
-import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
-import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.set.MudType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.minecraft.resources.ResourceLocation;
+import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
 
-import java.util.Set;
-
-/// StoneType Detection detect a StoneType that met 2 requirements:
-        /// BASS_DRUM (sound)
-        /// blockID: nameStoneType_bricks - only 2 words
+/// StoneType Detection detect a StoneType that doesn't met 3 requirements:
+        /// blockID: nameStoneType_bricks - only 1 word, the "nameStoneType"
+        /// CHECK for POLISHED: polished_nameStoneType
+        /// CHECK for BRICKS: nameStoneType_bricks
 // Put all undetected StoneTypes (including hardcoded ones) from mods in here to be included
 public class CompatStoneType {
 
+    /* Defintion of REASONS:
+     * 2-Words: Name of StoneType has 2 words instead of 1 word
+     *
+     * Id-Stone: the Id of STONE has an affix
+     *
+     * Spelling-Convention: a typo in the Id, no underscore. Example: bricks_stairs instead of brick_stairs
+     *
+     * Naming-Convention: blocks has unique names that doesn't have "_block", "_stone", or has different affix
+     *
+     * No-Children: There is no children for StoneType, just Stone.
+     *
+     * Undetected-Bricks: StoneType's BRICKS has different Id aside an suffix of "_bricks" like "_brick"
+     *
+     * Undetectable: The StoneType have no BRICKS or POLISHED to be detected
+     */
     public static void init() {
+
+        StoneTypeRegistry stoneReg = StoneTypeRegistry.INSTANCE;
 
         // Blocks You Need - Luna
             //NOTE: not really a StoneType
-        simpleStoneFinder("blocksyouneed_luna", "sodalite");
-        simpleStoneFinder("blocksyouneed_luna", "sunstone",
-                "BRICKS-sunstone_bricks_ornate", "BRICK_STAIRS-sunstone_bricks_stairs",
-                "BRICK_SLAB-sunstone_bricks_slab", "BRICK_WALL-sunstone_bricks_wall");
-        simpleStoneFinder("blocksyouneed_luna", "glance",
-                "BRICK_STAIRS-glance_bricks_stairs", "BRICK_SLAB-glance_bricks_slab",
-                "BRICK_WALL-glance_bricks_wall");
+        stoneReg.addSimpleFinder("blocksyouneed_luna", "sodalite");
+
+
+        stoneReg.addSimpleFinder("blocksyouneed_luna", "sunstone") //REASON: Undetected-Bricks, Spelling-Convention
+                .childBlockSuffix(VanillaRockTypeChildKeys.BRICKS, "_bricks_ornate")
+                .childBlockSuffix(VanillaRockTypeChildKeys.BRICK_STAIRS, "_bricks_stairs")
+                .childBlockSuffix(VanillaRockTypeChildKeys.BRICK_SLAB, "_bricks_slab")
+                .childBlockSuffix(VanillaRockTypeChildKeys.BRICK_WALL, "_bricks_wall");
+
+
+        stoneReg.addSimpleFinder("blocksyouneed_luna", "glance") //REASON: Spelling-Convention
+                .childBlockSuffix(VanillaRockTypeChildKeys.BRICK_STAIRS, "_bricks_stairs")
+                .childBlockSuffix(VanillaRockTypeChildKeys.BRICK_SLAB, "_bricks_slab")
+                .childBlockSuffix(VanillaRockTypeChildKeys.BRICK_WALL, "_bricks_wall");
 
         // The-Twiligth-Forest
-        simpleStoneFinder("twilightforest", "mazestone", "BRICKS-mazestone_brick");
-        advancedStoneFinder("twilightforest", "deadrock", "deadrock");
+        stoneReg.addSimpleFinder("twilightforest", "deadrock"); //REASON: Undetectable
+        stoneReg.addSimpleFinder("twilightforest", "mazestone") //REASON: Undetected-Bricks
+                .childBlockSuffix(VanillaRockTypeChildKeys.BRICKS, "_brick");
 
-        // Nature's Spirit
-        simpleStoneFinder("natures_spirit", "white_kaolin");
-        simpleStoneFinder("natures_spirit", "light_gray_kaolin");
-        simpleStoneFinder("natures_spirit", "gray_kaolin");
-        simpleStoneFinder("natures_spirit", "black_kaolin");
-        simpleStoneFinder("natures_spirit", "brown_kaolin");
-        simpleStoneFinder("natures_spirit", "red_kaolin");
-        simpleStoneFinder("natures_spirit", "orange_kaolin");
-        simpleStoneFinder("natures_spirit", "yellow_kaolin");
-        simpleStoneFinder("natures_spirit", "lime_kaolin");
-        simpleStoneFinder("natures_spirit", "green_kaolin");
-        simpleStoneFinder("natures_spirit", "cyan_kaolin");
-        simpleStoneFinder("natures_spirit", "light_blue_kaolin");
-        simpleStoneFinder("natures_spirit", "blue_kaolin");
-        simpleStoneFinder("natures_spirit", "purple_kaolin");
-        simpleStoneFinder("natures_spirit", "magenta_kaolin");
-        simpleStoneFinder("natures_spirit", "pink_kaolin");
+        // Nature's Spirit - REASON: 2-Words
+        stoneReg.addSimpleFinder("natures_spirit", "white_kaolin");
+        stoneReg.addSimpleFinder("natures_spirit", "light_gray_kaolin");
+        stoneReg.addSimpleFinder("natures_spirit", "gray_kaolin");
+        stoneReg.addSimpleFinder("natures_spirit", "black_kaolin");
+        stoneReg.addSimpleFinder("natures_spirit", "brown_kaolin");
+        stoneReg.addSimpleFinder("natures_spirit", "red_kaolin");
+        stoneReg.addSimpleFinder("natures_spirit", "orange_kaolin");
+        stoneReg.addSimpleFinder("natures_spirit", "yellow_kaolin");
+        stoneReg.addSimpleFinder("natures_spirit", "lime_kaolin");
+        stoneReg.addSimpleFinder("natures_spirit", "green_kaolin");
+        stoneReg.addSimpleFinder("natures_spirit", "cyan_kaolin");
+        stoneReg.addSimpleFinder("natures_spirit", "light_blue_kaolin");
+        stoneReg.addSimpleFinder("natures_spirit", "blue_kaolin");
+        stoneReg.addSimpleFinder("natures_spirit", "purple_kaolin");
+        stoneReg.addSimpleFinder("natures_spirit", "magenta_kaolin");
+        stoneReg.addSimpleFinder("natures_spirit", "pink_kaolin");
 
-        // Galosphere
-        simpleStoneFinder("galosphere", "pink_salt"); // HARP
-        simpleStoneFinder("galosphere", "rose_pink_salt"); // HARP
-        simpleStoneFinder("galosphere", "pastel_pink_salt"); // HARP
+        // Galosphere - REASON: 2-Words
+        stoneReg.addSimpleFinder("galosphere", "pink_salt");
+        stoneReg.addSimpleFinder("galosphere", "rose_pink_salt");
+        stoneReg.addSimpleFinder("galosphere", "pastel_pink_salt");
 
-        // Aerial Hell
-        simpleStoneFinder("aerialhell", "glaucophanite"); // HARP
-        simpleStoneFinder("aerialhell", "lunatic_stone"); // HARP
-        simpleStoneFinder("aerialhell", "volucite_stone"); // HARP
-        simpleStoneFinder("aerialhell", "dark_lunatic_stone"); // HARP
-        simpleStoneFinder("aerialhell", "slippery_sand_stone");
-        advancedStoneFinder("aerialhell", "smoky_quartz", "smoky_quartz_block");
+        // Aerial Hell - REASON: 2-Words
+        stoneReg.addSimpleFinder("aerialhell", "dark_lunatic_stone");
+        stoneReg.addSimpleFinder("aerialhell", "slippery_sand_stone");
 
-        advancedStoneFinder("aerialhell", "aerial_netherack","aerial_netherack",
-                "BRICKS-golden_nether_bricks", "BRICK_SLAB-golden_nether_bricks_slab",
-                "BRICK_STAIRS-golden_nether_bricks_stairs", "BRICK_WALL-golden_nether_bricks_wall"); // HARP
+        stoneReg.addSimpleFinder("aerialhell", "lunatic_stone"); //REASON: Undetectable
+        stoneReg.addSimpleFinder("aerialhell", "volucite_stone"); //REASON: Undetectable
 
-        // Rocky Minerals
-        simpleStoneFinder("rockyminerals", "worn_granite");
+        stoneReg.addSimpleFinder("aerialhell", "smoky_quartz") //REASON: Id-Stone
+                .stoneSuffix("_block");
 
-        // Prehistoric Fauna
-        simpleStoneFinder("prehistoricfauna", "chalk"); // HARP
-        simpleStoneFinder("prehistoricfauna", "henostone"); // HARP
-        simpleStoneFinder("prehistoricfauna", "sandstone"); // HARP
-        simpleStoneFinder("prehistoricfauna", "siltstone"); // HARP
+        stoneReg.addSimpleFinder("aerialhell", "aerial_netherack") //REASON: Spelling-Convention
+                .childBlock(VanillaRockTypeChildKeys.BRICKS, "golden_nether_bricks")
+                .childBlock(VanillaRockTypeChildKeys.BRICK_STAIRS, "golden_nether_bricks_stairs")
+                .childBlock(VanillaRockTypeChildKeys.BRICK_SLAB, "golden_nether_bricks_slab")
+                .childBlock(VanillaRockTypeChildKeys.BRICK_WALL, "golden_nether_bricks_wall");
 
-        // Project-Reds-Exploration
-        advancedStoneFinder("projectred_exploration", "marble", "marble_brick"); // HARP
+        // Rocky Minerals - REASON: 2-words
+        stoneReg.addSimpleFinder("rockymineral", "worn_granite");
 
-        // Twigs
-        simpleStoneFinder("twigs", "rhyolite"); // HARP
-        simpleStoneFinder("twigs", "schist"); // HARP
-        simpleStoneFinder("twigs", "bloodstone"); // HARP
+        // Project-Reds-Exploration - REASON: Undetected-Bricks
+        stoneReg.addSimpleFinder("projectred_exploration", "marble")
+                .childBlockSuffix(VanillaRockTypeChildKeys.BRICKS, "_brick");
 
-        // Atmospheric
-        simpleStoneFinder("atmospheric", "dolerite"); // HARP
-        simpleStoneFinder("atmospheric", "ivory_travertine");
-        simpleStoneFinder("atmospheric", "peach_travertine");
-        simpleStoneFinder("atmospheric", "persimmon_travertine");
-        simpleStoneFinder("atmospheric", "saffron_travertine");
+        // Atmospheric - REASON: 2-Words
+        stoneReg.addSimpleFinder("atmospheric", "ivory_travertine");
+        stoneReg.addSimpleFinder("atmospheric", "peach_travertine");
+        stoneReg.addSimpleFinder("atmospheric", "persimmon_travertine");
+        stoneReg.addSimpleFinder("atmospheric", "saffron_travertine");
 
         // Arts-And-Crafts
-        simpleStoneFinder("arts_and_crafts", "gypsum"); // HARP
-        simpleStoneFinder("arts_and_crafts", "white_chalk");
+        stoneReg.addSimpleFinder("arts_and_crafts", "white_chalk"); //REASON: 2-Words
 
-        // Caverns-And-Chasms
-        simpleStoneFinder("caverns_and_chasms", "sugilite"); // HARP
-        simpleStoneFinder("caverns_and_chasms", "cassiterite"); // HARP
+        // Oh The Biomes We've Gone - REASON: 2-Words
+        stoneReg.addSimpleFinder("biomeswevegone", "white_sandstone");
+        stoneReg.addSimpleFinder("biomeswevegone", "blue_sandstone");
+        stoneReg.addSimpleFinder("biomeswevegone", "black_sandstone");
+        stoneReg.addSimpleFinder("biomeswevegone", "purple_sandstone");
+        stoneReg.addSimpleFinder("biomeswevegone", "pink_sandstone");
+        stoneReg.addSimpleFinder("biomeswevegone", "windswept_sandstone");
+        stoneReg.addSimpleFinder("biomeswevegone", "red_rock");
 
-        // DivineRPG
-        simpleStoneFinder("divinerpg", "twilight_stone");
+        // What Is Stone - REASON: 2-Words
+        stoneReg.addSimpleFinder("what_is_stone", "white_granite");
+        stoneReg.addSimpleFinder("what_is_stone", "white_limestone");
+        stoneReg.addSimpleFinder("what_is_stone", "arkosic_sandstone");
+        stoneReg.addSimpleFinder("what_is_stone", "black_marble");
+        stoneReg.addSimpleFinder("what_is_stone", "grey_limestone");
+        stoneReg.addSimpleFinder("what_is_stone", "anthracite"); //REASON: No-Children
 
-        // Outer End
-        simpleStoneFinder("outer_end", "violite"); // HARP
+        // BetterEnd - REASON: 2-Words
+        stoneReg.addSimpleFinder("betterend", "azure_jadestone");
+        stoneReg.addSimpleFinder("betterend", "sandy_jadestone");
+        stoneReg.addSimpleFinder("betterend", "virid_jadestone");
+        stoneReg.addSimpleFinder("betterend", "sulphuric_rock");
 
-        // Deeper And Darker
-        simpleMudFinder("deeperdarker", "sculk_grime");
+        // Create - REASON: Undetectable
+        stoneReg.addSimpleFinder("create", "limestone");
+        stoneReg.addSimpleFinder("create", "asurine");
+        stoneReg.addSimpleFinder("create", "crimsite");
+        stoneReg.addSimpleFinder("create", "ochrum");
+        stoneReg.addSimpleFinder("create", "veridium");
+        stoneReg.addSimpleFinder("create", "scoria");
+        stoneReg.addSimpleFinder("create", "scorchia");
 
-        // Oh The Biomes We've Gone
-        simpleStoneFinder("biomeswevegone", "white_sandstone");
-        simpleStoneFinder("biomeswevegone", "blue_sandstone");
-        simpleStoneFinder("biomeswevegone", "black_sandstone");
-        simpleStoneFinder("biomeswevegone", "purple_sandstone");
-        simpleStoneFinder("biomeswevegone", "pink_sandstone");
-        simpleStoneFinder("biomeswevegone", "windswept_sandstone");
-        simpleStoneFinder("biomeswevegone", "red_rock");
+            // Create Dreams & Desires - REASON: Undetectable
+        stoneReg.addSimpleFinder("create_dd", "gabbro");
+        stoneReg.addSimpleFinder("create_dd", "aethersite");
+        stoneReg.addSimpleFinder("create_dd", "potassic");
+        stoneReg.addSimpleFinder("create_dd", "weathered_limestone"); //REASON: 2-Words
 
-        // What Is Stone
-        simpleStoneFinder("what_is_stone", "anthracite"); // No other children
-        simpleStoneFinder("what_is_stone", "white_granite");
-        simpleStoneFinder("what_is_stone", "white_limestone");
-        simpleStoneFinder("what_is_stone", "arkosic_sandstone");
-        simpleStoneFinder("what_is_stone", "black_marble");
-        simpleStoneFinder("what_is_stone", "grey_limestone");
+        // Bountiful Fares (FABRIC) - REASON: Id-Stone
+        stoneReg.addSimpleFinder("bountifulfares", "feldspar")
+                .stoneSuffix("_block");
 
-        // BetterEnd
-        simpleStoneFinder("betterend", "azure_jadestone");
-        simpleStoneFinder("betterend", "sandy_jadestone");
-        simpleStoneFinder("betterend", "virid_jadestone");
-        simpleStoneFinder("betterend", "sulphuric_rock");
-
-        // Create
-        simpleStoneFinder("create", "limestone"); // NO BRICKS or POLISHED
-        simpleStoneFinder("create", "asurine"); // NO BRICKS or POLISHED
-        simpleStoneFinder("create", "crimsite"); // NO BRICKS or POLISHED
-        simpleStoneFinder("create", "ochrum"); // NO BRICKS or POLISHED
-        simpleStoneFinder("create", "veridium"); // NO BRICKS or POLISHED
-        simpleStoneFinder("create", "scoria"); // NO BRICKS or POLISHED
-        simpleStoneFinder("create", "scorchia"); // NO BRICKS or POLISHED
-
-            // Create Dreams & Desires
-        simpleStoneFinder("create_dd", "gabbro"); // NO BRICKS or POLISHED
-        simpleStoneFinder("create_dd", "aethersite"); // NO BRICKS or POLISHED
-        simpleStoneFinder("create_dd", "potassic"); // NO BRICKS or POLISHED
-        simpleStoneFinder("create_dd", "weathered_limestone");
-
-        // Bountiful Fares (FABRIC)
-        advancedStoneFinder("bountifulfares", "feldspar", "feldspar_block");
-
-        // Aether Redux
-        simpleStoneFinder("aether_redux", "sentrite"); // HARP
-        simpleStoneFinder("aether_redux", "divinite"); // HARP
-        simpleStoneFinder("aether_redux", "driftshale"); // NO BRICKS
-
-        // Aether Works
-        simpleStoneFinder("aetherworks", "suevite"); // HARP
+        // Aether Redux - REASON: Undetectable
+        stoneReg.addSimpleFinder("aether_redux", "driftshale");
 
         // Deep Aether
-        simpleStoneFinder("deep_aether", "clorite"); // NO BRICKS
-        simpleStoneFinder("deep_aether", "raw_clorite");
+        stoneReg.addSimpleFinder("deep_aether", "clorite"); //REASON: Undetectable
+        stoneReg.addSimpleFinder("deep_aether", "raw_clorite"); //REASON: 2-words
 
-        // Alex's Caves
-        simpleStoneFinder("alexscaves", "galena"); // HARP
-        simpleStoneFinder("alexscaves", "radrock"); // HARP
-        simpleStoneFinder("alexscaves", "abyssmarine"); // HARP
-        simpleStoneFinder("alexscaves", "guanostone"); // HARP
-        simpleStoneFinder("alexscaves", "limestone"); // NO BRICKS
+        // Alex's Caves - REASON: Undetectable
+        stoneReg.addSimpleFinder("alexscave", "limestone");
 
-        // Enlightened End
-        simpleStoneFinder("enlightened_end", "void_shale");
+        // Enlightened End - REASON: 2-Words
+        stoneReg.addSimpleFinder("enlightened_end", "void_shale");
 
-        // Ars Nouveau
-        simpleStoneFinder("ars_nouveau", "sourcestone"); // HARP
+        // Quark - REASON: 2-Words
+        stoneReg.addSimpleFinder("quark", "soul_sandstone");
 
-        // Quark
-        simpleStoneFinder("quark", "soul_sandstone");
-//        stoneBlockFinder("quark", "duskbound", true, true); // STONE: duskbound_block
+        // Nature's Spirit - REASON: 2-Words
+        stoneReg.addSimpleFinder("natures_spirit", "pink_sandstone");
+        stoneReg.addSimpleFinder("natures_spirit", "white_chalk");
+        stoneReg.addSimpleFinder("natures_spirit", "light_gray_chalk");
+        stoneReg.addSimpleFinder("natures_spirit", "gray_chalk");
+        stoneReg.addSimpleFinder("natures_spirit", "black_chalk");
+        stoneReg.addSimpleFinder("natures_spirit", "brown_chalk");
+        stoneReg.addSimpleFinder("natures_spirit", "red_chalk");
+        stoneReg.addSimpleFinder("natures_spirit", "orange_chalk");
+        stoneReg.addSimpleFinder("natures_spirit", "yellow_chalk");
+        stoneReg.addSimpleFinder("natures_spirit", "lime_chalk");
+        stoneReg.addSimpleFinder("natures_spirit", "green_chalk");
+        stoneReg.addSimpleFinder("natures_spirit", "cyan_chalk");
+        stoneReg.addSimpleFinder("natures_spirit", "light_blue_chalk");
+        stoneReg.addSimpleFinder("natures_spirit", "blue_chalk");
+        stoneReg.addSimpleFinder("natures_spirit", "purple_chalk");
+        stoneReg.addSimpleFinder("natures_spirit", "magenta_chalk");
+        stoneReg.addSimpleFinder("natures_spirit", "pink_chalk");
 
-        // Nature's Spirit
-        simpleStoneFinder("natures_spirit", "pink_sandstone");
-        simpleStoneFinder("natures_spirit", "white_chalk");
-        simpleStoneFinder("natures_spirit", "light_gray_chalk");
-        simpleStoneFinder("natures_spirit", "gray_chalk");
-        simpleStoneFinder("natures_spirit", "black_chalk");
-        simpleStoneFinder("natures_spirit", "brown_chalk");
-        simpleStoneFinder("natures_spirit", "red_chalk");
-        simpleStoneFinder("natures_spirit", "orange_chalk");
-        simpleStoneFinder("natures_spirit", "yellow_chalk");
-        simpleStoneFinder("natures_spirit", "lime_chalk");
-        simpleStoneFinder("natures_spirit", "green_chalk");
-        simpleStoneFinder("natures_spirit", "cyan_chalk");
-        simpleStoneFinder("natures_spirit", "light_blue_chalk");
-        simpleStoneFinder("natures_spirit", "blue_chalk");
-        simpleStoneFinder("natures_spirit", "purple_chalk");
-        simpleStoneFinder("natures_spirit", "magenta_chalk");
-        simpleStoneFinder("natures_spirit", "pink_chalk");
-        // Added by Nature's Spirit with Arts and Crafts Compatibility
-        if (PlatHelper.isModLoaded("arts_and_crafts")) simpleStoneFinder("natures_spirit", "bleached_chalk");
+        // Added by Nature's Spirit with Arts and Crafts Compatibility - REASON: 2-Words
+        if (PlatHelper.isModLoaded("arts_and_crafts")) stoneReg.addSimpleFinder("natures_spirit", "bleached_chalk");
 
-        // Regions unexplored
-        simpleStoneFinder("regions_unexplored", "argillite");
+        // Regions unexplored - REASON: Undetectable
+        stoneReg.addSimpleFinder("regions_unexplored", "argillite");
 
-        // Biomes o'plenty
-        simpleStoneFinder("biomesoplenty", "black_sandstone");
-        simpleStoneFinder("biomesoplenty", "orange_sandstone");
-        simpleStoneFinder("biomesoplenty", "white_sandstone");
+        // Biomes o'plenty - REASON: 2-Words
+        stoneReg.addSimpleFinder("biomesoplenty", "black_sandstone");
+        stoneReg.addSimpleFinder("biomesoplenty", "orange_sandstone");
+        stoneReg.addSimpleFinder("biomesoplenty", "white_sandstone");
 
+        //      ┌──────────────────────────────────────────────────────────┐
+        //      │                         MUDTYPE                          │
+        //      └──────────────────────────────────────────────────────────┘
+
+        MudTypeRegistry mudReg = MudTypeRegistry.INSTANCE;
+
+        // Deeper And Darker - REASON: 2-Words
+        mudReg.addSimpleFinder("deeperdarker:sculk_grime");
     }
-
-//!! StoneType
-    /**
-     * @param modId - mod id of the mod
-     * @param nameStoneType - name of StoneType
-     * @param nameChildren - childkey-ID_of_the_children or nameGemType_ingot
-     */
-    public static void simpleStoneFinder(String modId, String nameStoneType, String... nameChildren) {
-        advancedStoneFinder(modId, nameStoneType, nameStoneType, nameChildren);
-    }
-
-    /**
-     * @param modId - mod id of the mod
-     * @param nameStoneType - name of stoneType without "_block"
-     * @param nameBlock - name of block for stoneType. Usually with "_block"
-     * @param nameChildren - childkey-ID_of_the_children or stoneType_nugget
-     */
-    public static void advancedStoneFinder(String modId, String nameStoneType, String nameBlock, String... nameChildren) {
-        if (PlatHelper.isModLoaded(modId)) {
-            var stonetypeFinder = StoneType.Finder.simple(modId, nameStoneType, nameBlock);
-
-            for (String currentChild : nameChildren) {
-                String childKey = getChildKeyFrom(currentChild);
-                String blockId = currentChild.split("-")[1];
-                ResourceLocation childId = (blockId.contains(":"))
-                        ? new ResourceLocation(blockId)
-                        : new ResourceLocation(modId, blockId);
-
-                if (currentChild.contains("-") && childKeySafe.contains(childKey)) {
-                    stonetypeFinder.addChild(childKey, childId);
-                }
-                else if (childKeySafe.contains(childKey)) stonetypeFinder.addChild(childKey, currentChild);
-                else StoneZone.LOGGER.warn("StoneTypeFinder: Incorrect childKey - {} for {}", childKey, currentChild);
-
-            }
-
-            BlockSetAPI.addBlockTypeFinder(StoneType.class, stonetypeFinder);
-        }
-    }
-
-//!! MudType
-    public static void simpleMudFinder(String modId, String nameMudType) {
-        if (PlatHelper.isModLoaded(modId)) {
-            var stonetypeFinder = MudType.Finder.simple(modId, nameMudType, nameMudType);
-
-            BlockSetAPI.addBlockTypeFinder(MudType.class, stonetypeFinder);
-        }
-    }
-
-//!! OTHERS
-    /// Get the keyword from block: stone_bricks, key: bricks
-    public static String getChildKeyFrom(String childBlock) {
-        if (childBlock.contains("-")) {
-            return childBlock.split("-")[0];
-        }
-
-        // Default
-        return childBlock.substring(childBlock.lastIndexOf("_") + 1);
-    }
-
-    private static final Set<String> childKeySafe = Set.of(
-            "stone", "stairs", "slab", "wall", "button", "pressure_plate",
-            "smooth", "smooth_stairs", "smooth_slab", "smooth_wall",
-            "cobblestone", "mossy_cobblestone",
-            "polished", "polished_stairs", "polished_slab",
-            "bricks", "brick_stairs", "brick_slab", "brick_wall", "cracked_bricks", "brick_tiles",
-            "mossy_bricks", "mossy_brick_slab", "mossy_brick_stairs", "mossy_brick_wall"
-    );
 
 }

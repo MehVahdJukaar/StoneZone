@@ -1,14 +1,11 @@
 package net.mehvahdjukaar.stone_zone.api.set;
 
-import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
-import java.util.Collection;
-import java.util.Objects;
 import java.util.Optional;
 
 import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_MODS;
@@ -17,30 +14,27 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
 
     public static final MudTypeRegistry INSTANCE = new MudTypeRegistry();
 
+    public static MudType getMudType() {
+        return VanillaMudTypes.MUD;
+    }
+
     public MudTypeRegistry() {
         super(MudType.class, "mud_type");
-
-        this.addFinder(MudType.Finder.vanilla("mud"));
     }
 
-    public static MudType getMudType() {
-        return getValue("mud");
-    }
-
-    public static Collection<MudType> getTypes() {
-        return INSTANCE.getValues();
-    }
-
-    public static MudType getValue(String mudTypeId) {
-        return INSTANCE.get(new ResourceLocation(mudTypeId));
+    @Override
+    @SuppressWarnings("UnstableApiUsage")
+    public MudType register(MudType vanillaType) {
+        return super.register(vanillaType);
     }
 
     @Override
     public MudType getDefaultType() {
-        return getMudType();
+        return VanillaMudTypes.MUD;
     }
 
     @Override
+    @SuppressWarnings("UnstableApiUsage")
     public Optional<MudType> detectTypeFromBlock(Block baseblock, ResourceLocation baseRes) {
         String path = baseRes.getPath();
 
@@ -53,7 +47,7 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
             ResourceLocation idBlockType = baseRes.withPath(mudName);
             ResourceLocation idBlockTypeAlt = baseRes.withPath(mudAlt);
 
-            if (Objects.isNull(get(idBlockType)) && Objects.isNull(get(idBlockTypeAlt))) {
+            if (!valuesReg.containsKey(idBlockType) && !valuesReg.containsKey(idBlockTypeAlt)) {
                 var opt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(mudName));
                 var alt = BuiltInRegistries.BLOCK.getOptional(baseRes.withPath(mudAlt));
                 if (opt.isPresent()) return Optional.of(new MudType(baseRes.withPath(mudName), opt.get()));
@@ -64,11 +58,20 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
         return Optional.empty();
     }
 
-    @Override
-    public void addTypeTranslations(AfterLanguageLoadEvent language) {
-        getValues().forEach((mudType) -> {
-            if (language.isDefault()) language.addEntry(mudType.getTranslationKey(), mudType.getReadableName());
-        });
+
+    //shorthand for add finder. Gives a builder-like object that's meant to be configured inline
+    public MudType.Finder addSimpleFinder(ResourceLocation stoneTypeId) {
+        MudType.Finder finder = new MudType.Finder(stoneTypeId);
+        this.addFinder(finder);
+        return finder;
+    }
+
+    public MudType.Finder addSimpleFinder(String typeId) {
+        return addSimpleFinder(new ResourceLocation(typeId));
+    }
+
+    public MudType.Finder addSimpleFinder(String namespace, String nameStoneType) {
+        return addSimpleFinder(new ResourceLocation(namespace, nameStoneType));
     }
 
     @Override

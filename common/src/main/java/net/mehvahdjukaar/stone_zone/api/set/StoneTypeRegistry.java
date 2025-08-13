@@ -1,14 +1,11 @@
 package net.mehvahdjukaar.stone_zone.api.set;
 
-import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
-import java.util.Collection;
-import java.util.Objects;
 import java.util.Optional;
 
 import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_MODS;
@@ -20,18 +17,6 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
     public static final StoneTypeRegistry INSTANCE = new StoneTypeRegistry();
 
-    public StoneTypeRegistry() {
-        super(StoneType.class, "stone_type");
-
-        this.addFinder(StoneType.Finder.vanilla("stone"));
-        this.addFinder(StoneType.Finder.vanilla("andesite"));
-        this.addFinder(StoneType.Finder.vanilla("diorite"));
-        this.addFinder(StoneType.Finder.vanilla("granite"));
-        this.addFinder(StoneType.Finder.vanilla("tuff"));
-        this.addFinder(StoneType.Finder.vanilla("calcite"));
-        this.addFinder(StoneType.Finder.vanilla("blackstone"));
-    }
-
     public static StoneType getStoneType() {
         return getValue("stone");
     }
@@ -40,25 +25,22 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
         return getValue("andesite");
     }
 
-    public static StoneType getGraniteType() {
-        return getValue("granite");
-    }
-
-    public static StoneType getSandstoneType() {
-        return getValue("sandstone");
-    }
-
-    public static Collection<StoneType> getTypes() {
-        return INSTANCE.getValues();
-    }
-
     public static StoneType getValue(String stoneTypeId) {
         return INSTANCE.get(new ResourceLocation(stoneTypeId));
     }
 
+    public StoneTypeRegistry() {
+        super(StoneType.class, "stone_type");
+    }
+
+    @Override
+    protected StoneType register(StoneType vanillaType) {
+        return super.register(vanillaType);
+    }
+
     @Override
     public StoneType getDefaultType() {
-        return this.get(new ResourceLocation("stone"));
+        return VanillaStoneTypes.STONE;
     }
 
     @Override
@@ -80,8 +62,8 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
         /// DEFAULT
         if (!BLACKLISTED_MODS.contains(baseRes.getNamespace())) {
-            // Check for <type>_bricks | <type>_stairs | <type>_stone_bricks | <type>_stone_stairs
-            if (blockPath.matches("[a-z]+(?:_(?:bricks?|stairs)|_stone_(?:bricks?|stairs))") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM ) {
+            // Check for <type>_bricks | <type>_stone_bricks
+            if (blockPath.matches("[a-z]+_(stone_)?bricks?")) {
                 String stoneName = blockPath.substring(0, blockPath.length() - 7); // get stoneName from namespace:stoneName_bricks
                 String stoneAlt = stoneName + "_stone"; // Some mods included "_stone" as the suffix
                 ResourceLocation idBlockType = baseRes.withPath(stoneName);
@@ -101,7 +83,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
                 );
 
                 /// Check if a BlockType is already added
-                if ((Objects.isNull(get(idBlockType)) && Objects.isNull(get(idBlockTypeAlt)))
+                if (!valuesReg.containsKey(idBlockType) && !valuesReg.containsKey(idBlockTypeAlt)
                         && isStoneTypeNotBlacklisted
                         && noDustType
                         && noOreType
@@ -115,7 +97,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
             }
             // Check for polished_<type> | polished_<type>_stone
-            else if (blockPath.matches("polished_[a-z]+(?:_stone)?") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM ) {
+            else if (blockPath.matches("polished_[a-z]+(?:_stone)?")) {
                 String stoneName = blockPath.replace("polished_", ""); // get stoneName from namespace:polished_stoneName
                 String stoneAlt = stoneName + "_stone"; // Some mods included "_stone" as the suffix
                 ResourceLocation idBlockType = baseRes.withPath(stoneName);
@@ -125,7 +107,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
                 boolean isStoneTypeBlacklisted = !(BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneName).toString()) || BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneAlt).toString()));
 
                 // Check if a BlockType is already added
-                if (( Objects.isNull(get(idBlockType)) && Objects.isNull(get(idBlockTypeAlt)) )
+                if (!valuesReg.containsKey(idBlockType) && !valuesReg.containsKey(idBlockTypeAlt)
                         && isStoneTypeBlacklisted
                 ) {
                     var opt = BuiltInRegistries.BLOCK.getOptional(idBlockType);
@@ -138,11 +120,19 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
         return Optional.empty();
     }
 
-    @Override
-    public void addTypeTranslations(AfterLanguageLoadEvent language) {
-        this.getValues().forEach((stoneType) -> {
-            if (language.isDefault()) language.addEntry(stoneType.getTranslationKey(), stoneType.getReadableName());
-        });
+    //shorthand for add finder. Gives a builder-like object that's meant to be configured inline
+    public StoneType.Finder addSimpleFinder(ResourceLocation stoneTypeId) {
+        StoneType.Finder finder = new StoneType.Finder(stoneTypeId);
+        this.addFinder(finder);
+        return finder;
+    }
+
+    public StoneType.Finder addSimpleFinder(String typeId) {
+        return addSimpleFinder(new ResourceLocation(typeId));
+    }
+
+    public StoneType.Finder addSimpleFinder(String namespace, String nameStoneType) {
+        return addSimpleFinder(new ResourceLocation(namespace, nameStoneType));
     }
 
     @Override

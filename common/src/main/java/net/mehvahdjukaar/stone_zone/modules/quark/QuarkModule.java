@@ -6,6 +6,8 @@ import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
@@ -32,11 +34,11 @@ public class QuarkModule extends StoneZoneModule {
 
         vertical_slabs = QuarkEntrySet.of(StoneType.class, "vertical_slab",
                         VerticalSlabsModule.class,
-                        getModBlock("andesite_vertical_slab"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("andesite_vertical_slab"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis("slab"),
                                 copyChildrenPropertySafe("slab", stoneType))
                 )
-                .requiresChildren("slab") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.SLAB) //REASON: recipes
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -50,7 +52,7 @@ public class QuarkModule extends StoneZoneModule {
 
         polished_vertical_slabs = QuarkEntrySet.of(StoneType.class, "vertical_slab", "polished",
                         VerticalSlabsModule.class,
-                        getModBlock("polished_andesite_vertical_slab"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("polished_andesite_vertical_slab"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis("polished_slab"),
                                 copyChildrenPropertySafe("polished_slab", stoneType))
                 )
@@ -67,13 +69,13 @@ public class QuarkModule extends StoneZoneModule {
         this.addEntry(polished_vertical_slabs);
 
         pillars = QuarkEntrySet.of(StoneType.class, "pillar", MoreStoneVariantsModule.class,
-                        getModBlock("andesite_pillar"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("andesite_pillar"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> {
                             String name = shortenedId() + "/" + stoneType.getAppendableIdWith("pillar");
                             return new ZetaPillarBlock(name, null, Utils.copyPropertySafe(stoneType.stone));
                         }
                 )
-                .requiresChildren("polished_slab") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.POLISHED_SLAB) //REASON: recipes
                 .addTexture(modRes("block/andesite_pillar"))
                 .addTexture(modRes("block/andesite_pillar_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)

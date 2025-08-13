@@ -8,6 +8,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -117,7 +118,7 @@ public class MacawWindowsModule extends StoneZoneModule {
                 .excludeMultipleTextureFromTinting(modRes("block/parent/gothic/gothic_tall_lower"), "#3")
                 .excludeMultipleTextureFromTinting(modRes("block/parent/gothic/gothic_tall_middle"), "#3")
                 .excludeMultipleTextureFromTinting(modRes("block/parent/gothic/gothic_tall_upper"), "#3")
-                .requiresChildren("bricks") //REASON: textures, recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)

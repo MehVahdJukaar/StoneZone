@@ -9,6 +9,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -65,7 +66,7 @@ public class MacawPathsModule extends StoneZoneModule {
                         stoneType -> new PathBlock(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("bricks") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: running_bonds
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -79,7 +80,7 @@ public class MacawPathsModule extends StoneZoneModule {
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("bricks") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: running_bonds
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -93,7 +94,7 @@ public class MacawPathsModule extends StoneZoneModule {
                         stoneType -> new Block(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("bricks") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addTexture(modRes("block/stone_running_bond"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -107,7 +108,7 @@ public class MacawPathsModule extends StoneZoneModule {
                         stoneType -> new PathBlock(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("mossy_bricks") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: mossy_running_bonds
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -121,7 +122,7 @@ public class MacawPathsModule extends StoneZoneModule {
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("mossy_bricks") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: mossy_running_bonds
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -135,7 +136,7 @@ public class MacawPathsModule extends StoneZoneModule {
                         stoneType -> new Block(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("mossy_bricks") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addTextureM(modRes("block/mossy_stone_running_bond"), StoneZone.res("block/mcp/mossy_stone_running_bond_m"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -149,7 +150,7 @@ public class MacawPathsModule extends StoneZoneModule {
                         stoneType -> new PathBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("bricks") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: windmill_weaves
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -163,7 +164,7 @@ public class MacawPathsModule extends StoneZoneModule {
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("bricks") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: windmill_weaves
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -177,7 +178,7 @@ public class MacawPathsModule extends StoneZoneModule {
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("bricks") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addTexture(modRes("block/stone_windmill_weave"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -191,7 +192,7 @@ public class MacawPathsModule extends StoneZoneModule {
                         stoneType -> new PathBlock(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("mossy_bricks") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: mossy_windmill_weaves
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -205,7 +206,7 @@ public class MacawPathsModule extends StoneZoneModule {
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("mossy_bricks") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: mossy_windmill_weaves
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)

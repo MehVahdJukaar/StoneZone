@@ -9,17 +9,19 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
  * Childkey Availability:
  * <Ul>
- * stone, stairs, slab, wall, button, pressure_plate,
- * smooth, smooth_stairs, smooth_slab, smooth_wall,
- * cobblestone, mossy_cobblestone,
- * polished, polished_stairs, polished_slab, polished_wall
- * bricks, brick_stairs, brick_slab, brick_wall, cracked_bricks, brick_tiles,
- * mossy_bricks, mossy_brick_slab, mossy_brick_stairs, mossy_brick_wall
+ * STONE, STAIRS, SLAB, WALL, BUTTON, PRESSURE_PLATE,
+ * SMOOTH, SMOOTH_STAIRS, SMOOTH_SLAB, SMOOTH_WALL,
+ * COBBLESTONE, MOSSY_COBBLESTONE,
+ * POLISHED, POLISHED_STAIRS, POLISHED_SLAB, POLISHED_WALL,
+ * BRICKS, BRICK_STAIRS, BRICK_SLAB, BRICK_WALL, CRACKED_BRICKS, BRICK_TILES,
+ * MOSSY_BRICKS, MOSSY_BRICK_SLAB, MOSSY_BRICK_STAIRS, MOSSY_BRICK_WALL
  * </Ul>
 **/
 public abstract class RockType extends BlockType{
@@ -167,6 +169,21 @@ public abstract class RockType extends BlockType{
     public Block bricksOrStone() {
         Block bricks = this.getBlockOfThis("bricks");
         return bricks != null ? bricks : this.block;
+    }
+
+    static ResourceLocation[] makeKnownIDConventions(ResourceLocation id, String... suffixKeyword) {
+        List<ResourceLocation> resources = new ArrayList<>();
+        for (String keyword : suffixKeyword) {
+            String path = id.getPath();
+            String namespace = id.getNamespace();
+
+            String suffixed = (keyword.isEmpty()) ? "" : "_" + keyword;
+            String prefixed = (keyword.isEmpty()) ? "" : keyword + "_";
+
+            resources.add(new ResourceLocation(namespace, path + suffixed));
+            resources.add(new ResourceLocation(namespace, prefixed + path));
+        }
+        return resources.toArray(new ResourceLocation[0]);
     }
 
 }

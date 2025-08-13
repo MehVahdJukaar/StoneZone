@@ -8,6 +8,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -30,7 +31,7 @@ public class CandlelightModule extends StoneZoneModule {
         ResourceLocation tab = modRes(modId);
 
         counter = StoneZoneEntrySet.of(StoneType.class, "counter",
-                        getModBlock("sandstone_counter"), StoneTypeRegistry::getSandstoneType,
+                        getModBlock("sandstone_counter"), () -> VanillaStoneTypes.SANDSTONE,
                         stoneType -> new LineConnectingBlock(Utils.copyPropertySafe(stoneType.stone)
                                 .noOcclusion()
                         )
@@ -43,7 +44,7 @@ public class CandlelightModule extends StoneZoneModule {
         this.addEntry(counter);
 
         kitchen_sink = StoneZoneEntrySet.of(StoneType.class, "kitchen_sink",
-                        getModBlock("sandstone_kitchen_sink"), StoneTypeRegistry::getSandstoneType,
+                        getModBlock("sandstone_kitchen_sink"), () -> VanillaStoneTypes.SANDSTONE,
                         stoneType -> new SinkBlock(Utils.copyPropertySafe(stoneType.stone)
                                 .noOcclusion()
                                 .pushReaction(PushReaction.IGNORE)
@@ -60,7 +61,7 @@ public class CandlelightModule extends StoneZoneModule {
         this.addEntry(kitchen_sink);
 
         stove = StoneZoneEntrySet.of(StoneType.class, "stove",
-                        getModBlock("sandstone_stove"), StoneTypeRegistry::getSandstoneType,
+                        getModBlock("sandstone_stove"), () -> VanillaStoneTypes.SANDSTONE,
                         stoneType -> new CStoveBlock(Utils.copyPropertySafe(stoneType.stone)
                                 .lightLevel(s -> 12)
                         )

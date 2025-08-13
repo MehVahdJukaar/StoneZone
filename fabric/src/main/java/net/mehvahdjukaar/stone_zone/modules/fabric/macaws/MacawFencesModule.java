@@ -8,6 +8,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -114,7 +115,7 @@ public class MacawFencesModule extends StoneZoneModule {
 
 //!! ANDESITE
         pillar_walls = StoneZoneEntrySet.of(StoneType.class, "pillar_wall",
-                        getModBlock("andesite_pillar_wall"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("andesite_pillar_wall"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new FenceBlock(standardCopyProperies(stoneType))
                 )
                 .requiresChildren("polished") //REASON: textures, recipes
@@ -129,7 +130,7 @@ public class MacawFencesModule extends StoneZoneModule {
         this.addEntry(pillar_walls);
 
         railing_gates = StoneZoneEntrySet.of(StoneType.class, "railing_gate",
-                        getModBlock("andesite_railing_gate"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("andesite_railing_gate"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new FenceGateBlock(standardCopyProperies(stoneType), WoodType.OAK)
                 )
                 .requiresChildren("polished") //REASON: textures, recipes
@@ -146,7 +147,7 @@ public class MacawFencesModule extends StoneZoneModule {
         this.addEntry(railing_gates);
 
         railing_walls = StoneZoneEntrySet.of(StoneType.class, "wall", "railing",
-                        getModBlock("railing_andesite_wall"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("railing_andesite_wall"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new FenceBlock(standardCopyProperies(stoneType))
                 )
                 .requiresChildren("polished") //REASON: textures, recipes
@@ -163,7 +164,7 @@ public class MacawFencesModule extends StoneZoneModule {
         this.addEntry(railing_walls);
 
         modern_walls = StoneZoneEntrySet.of(StoneType.class, "wall", "modern",
-                        getModBlock("modern_andesite_wall"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("modern_andesite_wall"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new FenceBlock(standardCopyProperies(stoneType))
                 )
                 .requiresChildren("polished") //REASON: testures, recipes

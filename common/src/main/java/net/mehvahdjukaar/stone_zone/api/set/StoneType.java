@@ -1,6 +1,8 @@
 package net.mehvahdjukaar.stone_zone.api.set;
 
+import com.google.common.base.Preconditions;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.moonlight.core.ClientConfigs;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -9,8 +11,6 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.ApiStatus;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -28,7 +28,6 @@ import static net.mehvahdjukaar.moonlight.api.set.DebugBlockTypes.appendToDebugF
  * </Ul>
 **/
 public class StoneType extends RockType {
-
 
     public final Block stone;
 
@@ -59,36 +58,50 @@ public class StoneType extends RockType {
         return bricks != null ? bricks : this.stone;
     }
 
-    public static class Finder implements SetFinder<StoneType> {
+    public static Block findStone(ResourceLocation id) {
+        ResourceLocation[] tests = makeKnownIDConventions(id,  "", "stone");
+        return Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
+    }
 
-        private final Map<String, ResourceLocation> childNames = new HashMap<>();
-        private final Supplier<Block> stoneFinder;
-        private final ResourceLocation id;
+    public static class Finder extends SetFinderBuilder<StoneType> {
 
-        public Finder(ResourceLocation id, Supplier<Block> stone) {
-            this.id = id;
-            this.stoneFinder = stone;
+        private Supplier<Block> stoneFinder;
+
+        public Finder(ResourceLocation id) {
+            super(id, StoneTypeRegistry.INSTANCE);
+            this.stone(() -> findStone(id));
         }
 
-        public static Finder vanilla(String nameStone){
-            return simple("minecraft", nameStone, nameStone);
+        public Finder stone(Supplier<Block> stoneFinder) {
+            this.stoneFinder = stoneFinder;
+            return this;
         }
 
-        public static Finder simple(String modId, String nameStoneType, String nameStone) {
-            return simple(new ResourceLocation(modId, nameStoneType), new ResourceLocation(modId, nameStone));
+        /// @param id Full Id of MudType as ResourceLocation
+        public Finder stone(ResourceLocation id) {
+            return this.stone(() -> BuiltInRegistries.BLOCK.getOptional(id)
+                    .orElseThrow(() -> new IllegalStateException("Failed to find stone block: " + id))
+            );
         }
 
-        public static Finder simple(ResourceLocation nameStoneTYpe, ResourceLocation nameStone) {
-            return new Finder(nameStoneTYpe,
-                    () -> BuiltInRegistries.BLOCK.get(nameStone));
+        /// /// @param stoneName name of Stone Block without modId or namespace
+        public Finder stone(String nameStone) {
+            return this.stone(Utils.idWithOptionalNamespace(nameStone, id.getNamespace()));
         }
 
-        public void addChild(String childType, String childName) {
-            addChild(childType, new ResourceLocation(id.getNamespace(), childName));
+        /**
+         * @param prefix include the underscore, "_" if the blockId has one
+         * @param suffix include the underscore, "_" if the blockId has one
+         */
+        public Finder stoneAffix(String prefix, String suffix) {
+            return stone(prefix + id.getPath() + suffix);
         }
 
-        public void addChild(String childType, ResourceLocation childName) {
-            this.childNames.put(childType, childName);
+        /**
+         * @param suffix include the underscore, "_" if the blockId has one
+         */
+        public Finder stoneSuffix(String suffix) {
+            return stone(id.getPath() + suffix);
         }
 
         @Override
@@ -96,20 +109,20 @@ public class StoneType extends RockType {
         public Optional<StoneType> get() {
             if (PlatHelper.isModLoaded(id.getNamespace())) {
                 try {
-                    Block stone = stoneFinder.get();
-                    var defaultKey = BuiltInRegistries.BLOCK.get(BuiltInRegistries.BLOCK.getDefaultKey()); // minecraft:air
-                    if (stone != defaultKey && stone != null) {
-                        var stoneType = new StoneType(id, stone);
-                        childNames.forEach((key, value) -> {
-                            if (BuiltInRegistries.ITEM.containsKey(value)) stoneType.addChild(key, BuiltInRegistries.ITEM.get(value));
-                            else if (BuiltInRegistries.BLOCK.containsKey(value)) stoneType.addChild(key, BuiltInRegistries.BLOCK.get(value));
-                            else StoneZone.LOGGER.warn("Failed to get children for StoneType: {} - {}", id, key);
-                        });
-                        return Optional.of(stoneType);
-                    }
-                } catch (Exception ignored) {
+                    Block stone = Preconditions.checkNotNull(stoneFinder.get(), "Manual Finder - failed to find a stone block for {}", id);
+                    var stoneType = new StoneType(id, stone);
+                    childNames.forEach((key, value) -> {
+                        try {
+                            ItemLike obj = Preconditions.checkNotNull(value.get());
+                            stoneType.addChild(key, obj);
+                        } catch (Exception e) {
+                            StoneZone.LOGGER.warn("Failed to get children for StoneType: {} - {}. Ignored! ERROR: {}", id, key, e.getMessage());
+                        }
+                    });
+                    return Optional.of(stoneType);
+                } catch (Exception e) {
+                    StoneZone.LOGGER.warn("Failed to find custom StoneType: {} - ", id, e);
                 }
-                StoneZone.LOGGER.warn("Failed to find custom stone type {}", id);
             }
             return Optional.empty();
         }

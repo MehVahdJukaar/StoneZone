@@ -7,6 +7,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -126,7 +127,7 @@ public class MacawRoofsModule extends StoneZoneModule {
                         getModBlock("stone_bricks_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new BaseRoof(stoneType.stone.defaultBlockState(), stoneCopyProperties(stoneType))
                 )
-                .requiresChildren("bricks") //REASON: textures, recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -138,7 +139,7 @@ public class MacawRoofsModule extends StoneZoneModule {
                         getModBlock("stone_bricks_attic_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new RoofGlass(stoneCopyProperties(stoneType))
                 )
-                .requiresChildren("bricks") //REASON: textures, recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -150,7 +151,7 @@ public class MacawRoofsModule extends StoneZoneModule {
                         getModBlock("stone_bricks_top_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new RoofTopNew(stoneCopyProperties(stoneType))
                 )
-                .requiresChildren("bricks") //REASON: textures, recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -162,7 +163,7 @@ public class MacawRoofsModule extends StoneZoneModule {
                         getModBlock("stone_bricks_lower_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new BaseRoof(stoneType.stone.defaultBlockState(), stoneCopyProperties(stoneType))
                 )
-                .requiresChildren("bricks") //REASON: textures, recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -174,7 +175,7 @@ public class MacawRoofsModule extends StoneZoneModule {
                         getModBlock("stone_bricks_steep_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SteepRoof(stoneType.stone.defaultBlockState(), stoneCopyProperties(stoneType))
                 )
-                .requiresChildren("bricks") //REASON: textures, recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -186,7 +187,7 @@ public class MacawRoofsModule extends StoneZoneModule {
                         getModBlock("stone_bricks_upper_lower_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Lower(stoneType.stone.defaultBlockState(), stoneCopyProperties(stoneType))
                 )
-                .requiresChildren("bricks") //REASON: textures, recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -198,7 +199,7 @@ public class MacawRoofsModule extends StoneZoneModule {
                         getModBlock("stone_bricks_upper_steep_roof"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Steep(stoneType.stone.defaultBlockState(), stoneCopyProperties(stoneType))
                 )
-                .requiresChildren("bricks") //REASON: textures, recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)

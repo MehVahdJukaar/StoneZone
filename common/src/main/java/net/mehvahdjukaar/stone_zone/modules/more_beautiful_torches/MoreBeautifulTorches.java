@@ -9,6 +9,8 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaStoneTypes;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
@@ -134,7 +136,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                         stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.WALL_TORCH), ParticleTypes.FLAME)
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("bricks") //REASON: textures
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures
                 .addTextureM(modRes("block/stone_bricks_torch"), StoneZone.res("block/common_torch_m"))
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
@@ -148,7 +150,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                         stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.TORCH), ParticleTypes.FLAME)
                 )
                 //TEXTURES: bricks_wall_torch
-                .requiresChildren("bricks") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: recipes
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
@@ -162,7 +164,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                         stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("bricks") //REASON: textures
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures
                 .addTextureM(modRes("block/stone_bricks_soul_torch"), StoneZone.res("block/common_torch_m"))
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
@@ -176,7 +178,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                         stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.SOUL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
                 //TEXTURES: bricks_soul_wall_torch
-                .requiresChildren("bricks") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: recipes
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
@@ -190,7 +192,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                         stoneType -> new RedstoneWallTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_WALL_TORCH))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("bricks") //REASON: textures
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures
                 .addTextureM(modRes("block/stone_bricks_redstone_torch"), StoneZone.res("block/common_redstone_torch_m"))
                 .addTextureM(modRes("block/stone_bricks_redstone_torch_off"), StoneZone.res("block/common_torch_m"))
                 .noTab()
@@ -204,7 +206,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                         stoneType -> new RedstoneTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_TORCH))
                 )
                 //TEXTURES: bricks_redstone_wall_torch
-                .requiresChildren("bricks") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: recipes
                 .setTabKey(tab)
                 .defaultRecipe()
                 .addCustomItem((w, b, p) -> new StandingAndWallBlockItem(b, bricks_redstone_wall_torch.blocks.get(w), p, Direction.DOWN))
@@ -218,7 +220,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                         stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.WALL_TORCH), ParticleTypes.FLAME)
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("smooth") //REASON: textures
+                .requiresChildren(VanillaRockTypeChildKeys.SMOOTH) //REASON: textures
                 .addTextureM(modRes("block/smooth_stone_torch"), StoneZone.res("block/common_torch_m"))
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .noTab()
@@ -232,7 +234,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                         stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.TORCH), ParticleTypes.FLAME)
                 )
                 //TEXTURES: smooth_wall_torch
-                .requiresChildren("smooth") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.SMOOTH) //REASON: recipes
                 .addTag(new ResourceLocation("dangerclose:torch_burn_danger"), Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
@@ -298,7 +300,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
 
 //!!--POLISHED--
         polished_wall_torch = StoneZoneEntrySet.of(StoneType.class, "wall_torch", "polished",
-                        getModBlock("polished_andesite_wall_torch"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("polished_andesite_wall_torch"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.WALL_TORCH), ParticleTypes.FLAME)
                 )
                 .createPaletteFromBricks()
@@ -312,7 +314,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(polished_wall_torch);
 
         polished_torch = StoneZoneEntrySet.of(StoneType.class, "torch", "polished",
-                        getModBlock("polished_andesite_torch"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("polished_andesite_torch"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.TORCH), ParticleTypes.FLAME)
                 )
                 //TEXTURES: polished_wall_torch
@@ -326,7 +328,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(polished_torch);
 
         polished_soul_wall_torch = StoneZoneEntrySet.of(StoneType.class, "soul_wall_torch", "polished",
-                        getModBlock("polished_andesite_soul_wall_torch"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("polished_andesite_soul_wall_torch"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
                 .createPaletteFromBricks()
@@ -340,7 +342,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(polished_soul_wall_torch);
 
         polished_soul_torch = StoneZoneEntrySet.of(StoneType.class, "soul_torch", "polished",
-                        getModBlock("polished_andesite_soul_torch"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("polished_andesite_soul_torch"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.SOUL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
                 //TEXTURES: polished_soul_wall_torch
@@ -354,7 +356,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(polished_soul_torch);
 
         polished_redstone_wall_torch = StoneZoneEntrySet.of(StoneType.class, "redstone_wall_torch", "polished",
-                        getModBlock("polished_andesite_redstone_wall_torch"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("polished_andesite_redstone_wall_torch"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new RedstoneWallTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_WALL_TORCH))
                 )
                 .createPaletteFromBricks()
@@ -368,7 +370,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(polished_redstone_wall_torch);
 
         polished_redstone_torch = StoneZoneEntrySet.of(StoneType.class, "redstone_torch", "polished",
-                        getModBlock("polished_andesite_redstone_torch"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("polished_andesite_redstone_torch"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new RedstoneTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_TORCH))
                 )
                 //TEXTURES: polished_redstone_wall_torch

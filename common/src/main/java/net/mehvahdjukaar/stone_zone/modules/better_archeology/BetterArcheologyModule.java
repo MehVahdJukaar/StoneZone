@@ -6,6 +6,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -31,7 +32,7 @@ public class BetterArcheologyModule extends StoneZoneModule {
                         type -> new Block(copyChildrenPropertySafe("bricks", type))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("bricks") //REASON: recipes & palettes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: recipes & palettes
                 .addTexture(modRes("block/cracked_mud_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)

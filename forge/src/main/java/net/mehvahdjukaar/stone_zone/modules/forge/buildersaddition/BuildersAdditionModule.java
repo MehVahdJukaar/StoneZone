@@ -9,6 +9,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -56,7 +57,7 @@ public class BuildersAdditionModule extends StoneZoneModule {
                                 Utils.getID(stoneType.getBlockOfThis("smooth")).getPath(),
                                 Objects.requireNonNull(stoneType.getBlockOfThis("smooth")))
                 )
-                .requiresChildren("smooth")  //REASON: recipes, textures
+                .requiresChildren(VanillaRockTypeChildKeys.SMOOTH)  //REASON: recipes, textures
                 .addCondition(w -> !(PlatHelper.isModLoaded("v_slab_compat") || PlatHelper.isModLoaded("additionalplacements")) )
                 //TEXTURES: smooth, smooth_slab
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -73,7 +74,7 @@ public class BuildersAdditionModule extends StoneZoneModule {
                                 Utils.getID(stoneType.getBlockOfThis("bricks")).getPath(),
                                 stoneType.bricksOrStone())
                 )
-                .requiresChildren("bricks") //REASON: recipes, textures
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: recipes, textures
                 .addCondition(w -> !(PlatHelper.isModLoaded("v_slab_compat") || PlatHelper.isModLoaded("additionalplacements")) )
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -91,7 +92,7 @@ public class BuildersAdditionModule extends StoneZoneModule {
                                 Utils.getID(stoneType.getBlockOfThis("mossy_bricks")).getPath(),
                                 Objects.requireNonNull(stoneType.getBlockOfThis("mossy_bricks")))
                 )
-                .requiresChildren("mossy_bricks") //REASON: recipes, textures
+                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: recipes, textures
                 .addCondition(w -> !(PlatHelper.isModLoaded("v_slab_compat") || PlatHelper.isModLoaded("additionalplacements")) )
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -140,7 +141,7 @@ public class BuildersAdditionModule extends StoneZoneModule {
                                 Objects.requireNonNull(stoneType.getBlockOfThis("bricks"))
                         )
                 )
-                .requiresChildren("bricks")
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -157,7 +158,7 @@ public class BuildersAdditionModule extends StoneZoneModule {
                                 Objects.requireNonNull(stoneType.getBlockOfThis("mossy_bricks"))
                         )
                 )
-                .requiresChildren("mossy_bricks") //REASON: recipes, textures
+                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: recipes, textures
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)

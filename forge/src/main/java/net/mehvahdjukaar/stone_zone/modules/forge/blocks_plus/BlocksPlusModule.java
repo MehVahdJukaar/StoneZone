@@ -2,12 +2,13 @@ package net.mehvahdjukaar.stone_zone.modules.forge.blocks_plus;
 
 import blocks_plus.blocks.BPFurnace;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
+import net.mehvahdjukaar.stone_zone.StoneZone;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.set.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -50,7 +51,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         ResourceLocation tab = modRes("creative_tab");
 
         wall = StoneZoneEntrySet.of(StoneType.class, "wall",
-                        getModBlock("stone_wall"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_wall"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new WallBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 //TEXTURES: stone
@@ -64,7 +65,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(wall);
 
         pillar = StoneZoneEntrySet.of(StoneType.class, "pillar",
-                        getModBlock("stone_pillar"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_pillar"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTexture(modRes("block/stone_pillar"))
@@ -77,11 +78,11 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(pillar);
 
         brick_pillar = StoneZoneEntrySet.of(StoneType.class, "brick_pillar",
-                        getModBlock("stone_brick_pillar"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_pillar"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("bricks") //REASON: textures, recipes
+                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
                 .addTexture(modRes("block/stone_brick_pillar"))
                 .addTexture(modRes("block/stone_brick_pillar_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -93,11 +94,11 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(brick_pillar);
 
         smooth_stairs = StoneZoneEntrySet.of(StoneType.class, "stairs", "smooth",
-                        getModBlock("smooth_stone_stairs"), StoneTypeRegistry::getStoneType,
+                        getModBlock("smooth_stone_stairs"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new StairBlock(Objects.requireNonNull(stoneType.getBlockOfThis("smooth"))::defaultBlockState,
                                 Utils.copyPropertySafe(stoneType.stone))
                 )
-                .requiresChildren("smooth") //REASON: textures, recipes
+                .requiresChildren(VanillaRockTypeChildKeys.SMOOTH) //REASON: textures, recipes
                 //TEXTURES: smooth
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -107,10 +108,10 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(smooth_stairs);
 
         smooth_wall = StoneZoneEntrySet.of(StoneType.class, "wall", "smooth",
-                        getModBlock("smooth_stone_wall"), StoneTypeRegistry::getStoneType,
+                        getModBlock("smooth_stone_wall"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new WallBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .requiresChildren("smooth") //REASON: textures, recipes
+                .requiresChildren(VanillaRockTypeChildKeys.SMOOTH) //REASON: textures, recipes
                 //TEXTURES: smooth
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
@@ -122,7 +123,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(smooth_wall);
 
         smooth_pillar = StoneZoneEntrySet.of(StoneType.class, "pillar", "smooth",
-                        getModBlock("smooth_stone_pillar"), StoneTypeRegistry::getStoneType,
+                        getModBlock("smooth_stone_pillar"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromStoneChild("smooth")
@@ -136,7 +137,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(smooth_pillar);
 
         smooth_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "smooth",
-                        getModBlock("smooth_stone_bricks"), StoneTypeRegistry::getStoneType,
+                        getModBlock("smooth_stone_bricks"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -149,7 +150,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(smooth_bricks);
 
         smooth_brick_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_stairs", "smooth",
-                        getModBlock("smooth_stone_brick_stairs"), StoneTypeRegistry::getStoneType,
+                        getModBlock("smooth_stone_brick_stairs"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new StairBlock(smooth_bricks.blocks.get(stoneType)::defaultBlockState,
                                 Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -164,7 +165,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(smooth_brick_stairs);
 
         smooth_brick_slab = StoneZoneEntrySet.of(StoneType.class, "brick_slab", "smooth",
-                        getModBlock("smooth_stone_brick_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("smooth_stone_brick_slab"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .requiresFromMap(smooth_bricks.blocks) //REASON: textures, recipes
@@ -178,7 +179,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(smooth_brick_slab);
 
         smooth_brick_wall = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "smooth",
-                        getModBlock("smooth_stone_brick_wall"), StoneTypeRegistry::getStoneType,
+                        getModBlock("smooth_stone_brick_wall"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new WallBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .requiresFromMap(smooth_bricks.blocks) //REASON: textures, recipes
@@ -194,7 +195,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(smooth_brick_wall);
 
         smooth_brick_pillar = StoneZoneEntrySet.of(StoneType.class, "brick_pillar", "smooth",
-                        getModBlock("smooth_stone_brick_pillar"), StoneTypeRegistry::getStoneType,
+                        getModBlock("smooth_stone_brick_pillar"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -209,7 +210,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(smooth_brick_pillar);
 
         cracked_smooth_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "cracked_smooth",
-                        getModBlock("cracked_smooth_stone_bricks"), StoneTypeRegistry::getStoneType,
+                        getModBlock("cracked_smooth_stone_bricks"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -221,7 +222,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(cracked_smooth_bricks);
 
         mossy_smooth_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "mossy_smooth",
-                        getModBlock("mossy_smooth_stone_bricks"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_smooth_stone_bricks"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -233,7 +234,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(mossy_smooth_bricks);
 
         chiseled_smooth_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "chiseled_smooth",
-                        getModBlock("chiseled_smooth_stone_bricks"), StoneTypeRegistry::getStoneType,
+                        getModBlock("chiseled_smooth_stone_bricks"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -248,10 +249,10 @@ public class BlocksPlusModule extends StoneZoneModule {
 
 //!! ANDESITE
         polished_wall = StoneZoneEntrySet.of(StoneType.class, "wall", "polished",
-                        getModBlock("polished_andesite_wall"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("polished_andesite_wall"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new WallBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .requiresChildren("polished") //REASON: textures, recipes
+                .requiresChildren(VanillaRockTypeChildKeys.POLISHED) //REASON: textures, recipes
                 //TEXTURES: polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
@@ -264,11 +265,11 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(polished_wall);
 
         polished_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "polished",
-                        getModBlock("polished_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("polished_andesite_bricks"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("polished") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.POLISHED) //REASON: recipes
                 .addTexture(modRes("block/polished_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -279,7 +280,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(polished_bricks);
 
         polished_brick_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_stairs", "polished",
-                        getModBlock("polished_andesite_brick_stairs"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("polished_andesite_brick_stairs"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new StairBlock(polished_bricks.blocks.get(stoneType)::defaultBlockState,
                                 Utils.copyPropertySafe(stoneType.stone))
                 )
@@ -295,7 +296,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(polished_brick_stairs);
 
         polished_brick_slab = StoneZoneEntrySet.of(StoneType.class, "brick_slab", "polished",
-                        getModBlock("polished_andesite_brick_slab"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("polished_andesite_brick_slab"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .requiresFromMap(polished_bricks.blocks) //REASON: textures, recipes
@@ -310,7 +311,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(polished_brick_slab);
 
         polished_brick_wall = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "polished",
-                        getModBlock("polished_andesite_brick_wall"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("polished_andesite_brick_wall"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new WallBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .requiresFromMap(polished_bricks.blocks) //REASON: textures, recipes
@@ -327,11 +328,11 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(polished_brick_wall);
 
         polished_brick_pillar = StoneZoneEntrySet.of(StoneType.class, "brick_pillar", "polished",
-                        getModBlock("polished_andesite_brick_pillar"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("polished_andesite_brick_pillar"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("polished") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.POLISHED) //REASON: recipes
                 .addTexture(modRes("block/polished_andesite_brick_pillar"))
                 .addTexture(modRes("block/polished_andesite_brick_pillar_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -344,11 +345,11 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(polished_brick_pillar);
 
         chiseled_polished = StoneZoneEntrySet.of(StoneType.class, "","chiseled_polished",
-                        getModBlock("chiseled_polished_andesite"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("chiseled_polished_andesite"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromStoneChild("polished")
-                .requiresChildren("polished") //REASON: textures
+                .requiresChildren(VanillaRockTypeChildKeys.POLISHED) //REASON: textures
                 .addTexture(modRes("block/chiseled_polished_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -358,7 +359,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(chiseled_polished);
 
         cracked_polished_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "cracked_polished",
-                        getModBlock("cracked_polished_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("cracked_polished_andesite_bricks"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -370,7 +371,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(cracked_polished_bricks);
 
         mossy_polished_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "mossy_polished",
-                        getModBlock("mossy_polished_andesite_bricks"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("mossy_polished_andesite_bricks"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -382,7 +383,7 @@ public class BlocksPlusModule extends StoneZoneModule {
         this.addEntry(mossy_polished_bricks);
 
         furnace = StoneZoneEntrySet.of(StoneType.class, "furnace",
-                        getModBlock("granite_furnace"), StoneTypeRegistry::getGraniteType,
+                        getModBlock("granite_furnace"), () -> VanillaStoneTypes.GRANITE,
                         stoneType -> new BPFurnace(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTile(getModTile("furnace"))

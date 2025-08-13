@@ -8,6 +8,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -157,7 +158,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
                         getModBlock("stone_layer"), StoneTypeRegistry::getStoneType,
                         stoneType -> new LayerBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .requiresChildren("slab") //REASON: recipes
+                .requiresChildren(VanillaRockTypeChildKeys.SLAB) //REASON: recipes
                 //TEXTURES: stones
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_blocks"), Registries.BLOCK)
