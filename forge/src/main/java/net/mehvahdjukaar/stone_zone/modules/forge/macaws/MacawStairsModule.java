@@ -11,7 +11,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
-import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -48,7 +48,7 @@ public class MacawStairsModule extends StoneZoneModule {
                         getModBlock("stone_brick_terrace_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new TerraceStairs(copyProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -62,7 +62,7 @@ public class MacawStairsModule extends StoneZoneModule {
                         getModBlock("stone_brick_skyline_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SkylineStairs(copyProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -76,7 +76,7 @@ public class MacawStairsModule extends StoneZoneModule {
                         getModBlock("stone_brick_compact_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new CompactStairs(copyProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -90,7 +90,7 @@ public class MacawStairsModule extends StoneZoneModule {
                         getModBlock("stone_brick_bulk_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new BulkStairs(copyProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -104,7 +104,7 @@ public class MacawStairsModule extends StoneZoneModule {
                         getModBlock("stone_brick_loft_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new LoftStairs(copyProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -118,7 +118,7 @@ public class MacawStairsModule extends StoneZoneModule {
                         getModBlock("stone_brick_balcony"), StoneTypeRegistry::getStoneType,
                         stoneType -> new BalconyRailing(copyProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("balconies"), Registries.BLOCK)
@@ -132,7 +132,7 @@ public class MacawStairsModule extends StoneZoneModule {
                         getModBlock("stone_brick_railing"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StairRailing(copyProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -146,7 +146,7 @@ public class MacawStairsModule extends StoneZoneModule {
                         getModBlock("stone_brick_platform"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StairPlatform(copyProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -161,7 +161,7 @@ public class MacawStairsModule extends StoneZoneModule {
                         getModBlock("mossy_stone_brick_terrace_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new TerraceStairs(copyProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -175,7 +175,7 @@ public class MacawStairsModule extends StoneZoneModule {
                         getModBlock("mossy_stone_brick_skyline_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new SkylineStairs(copyProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -189,7 +189,7 @@ public class MacawStairsModule extends StoneZoneModule {
                         getModBlock("mossy_stone_brick_compact_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new CompactStairs(copyProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -203,7 +203,7 @@ public class MacawStairsModule extends StoneZoneModule {
                         getModBlock("mossy_stone_brick_bulk_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new BulkStairs(copyProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -217,7 +217,7 @@ public class MacawStairsModule extends StoneZoneModule {
                         getModBlock("mossy_stone_brick_loft_stairs"), StoneTypeRegistry::getStoneType,
                         stoneType -> new LoftStairs(copyProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -231,7 +231,7 @@ public class MacawStairsModule extends StoneZoneModule {
                         getModBlock("mossy_stone_brick_balcony"), StoneTypeRegistry::getStoneType,
                         stoneType -> new BalconyRailing(copyProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -245,7 +245,7 @@ public class MacawStairsModule extends StoneZoneModule {
                         getModBlock("mossy_stone_brick_railing"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StairRailing(copyProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
@@ -259,7 +259,7 @@ public class MacawStairsModule extends StoneZoneModule {
                         getModBlock("mossy_stone_brick_platform"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StairPlatform(copyProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)

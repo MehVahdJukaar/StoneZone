@@ -6,7 +6,7 @@ import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.VanillaMudTypes;
-import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
@@ -37,7 +37,7 @@ public class QuarkMudModule extends StoneZoneModule {
                         mudType -> new MudBrickLatticeBlock(null, copyChildrenPropertySafe("bricks", mudType))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: recipes, palettes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: recipes, palettes
                 .addTexture(modRes("block/mud_brick_lattice"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)

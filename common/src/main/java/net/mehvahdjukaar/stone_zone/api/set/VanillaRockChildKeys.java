@@ -1,7 +1,7 @@
 package net.mehvahdjukaar.stone_zone.api.set;
 
 @SuppressWarnings("unused")
-public class VanillaRockTypeChildKeys {
+public class VanillaRockChildKeys {
 
     public static final String STONE = "stone";
     public static final String STAIRS = "stairs";

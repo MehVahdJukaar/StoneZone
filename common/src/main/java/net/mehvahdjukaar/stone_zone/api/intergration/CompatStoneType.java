@@ -3,7 +3,7 @@ package net.mehvahdjukaar.stone_zone.api.intergration;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
-import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 
 /// StoneType Detection detect a StoneType that doesn't met 3 requirements:
         /// blockID: nameStoneType_bricks - only 1 word, the "nameStoneType"
@@ -37,21 +37,21 @@ public class CompatStoneType {
 
 
         stoneReg.addSimpleFinder("blocksyouneed_luna", "sunstone") //REASON: Undetected-Bricks, Spelling-Convention
-                .childBlockSuffix(VanillaRockTypeChildKeys.BRICKS, "_bricks_ornate")
-                .childBlockSuffix(VanillaRockTypeChildKeys.BRICK_STAIRS, "_bricks_stairs")
-                .childBlockSuffix(VanillaRockTypeChildKeys.BRICK_SLAB, "_bricks_slab")
-                .childBlockSuffix(VanillaRockTypeChildKeys.BRICK_WALL, "_bricks_wall");
+                .childBlockSuffix(VanillaRockChildKeys.BRICKS, "_bricks_ornate")
+                .childBlockSuffix(VanillaRockChildKeys.BRICK_STAIRS, "_bricks_stairs")
+                .childBlockSuffix(VanillaRockChildKeys.BRICK_SLAB, "_bricks_slab")
+                .childBlockSuffix(VanillaRockChildKeys.BRICK_WALL, "_bricks_wall");
 
 
         stoneReg.addSimpleFinder("blocksyouneed_luna", "glance") //REASON: Spelling-Convention
-                .childBlockSuffix(VanillaRockTypeChildKeys.BRICK_STAIRS, "_bricks_stairs")
-                .childBlockSuffix(VanillaRockTypeChildKeys.BRICK_SLAB, "_bricks_slab")
-                .childBlockSuffix(VanillaRockTypeChildKeys.BRICK_WALL, "_bricks_wall");
+                .childBlockSuffix(VanillaRockChildKeys.BRICK_STAIRS, "_bricks_stairs")
+                .childBlockSuffix(VanillaRockChildKeys.BRICK_SLAB, "_bricks_slab")
+                .childBlockSuffix(VanillaRockChildKeys.BRICK_WALL, "_bricks_wall");
 
         // The-Twiligth-Forest
         stoneReg.addSimpleFinder("twilightforest", "deadrock"); //REASON: Undetectable
         stoneReg.addSimpleFinder("twilightforest", "mazestone") //REASON: Undetected-Bricks
-                .childBlockSuffix(VanillaRockTypeChildKeys.BRICKS, "_brick");
+                .childBlockSuffix(VanillaRockChildKeys.BRICKS, "_brick");
 
         // Nature's Spirit - REASON: 2-Words
         stoneReg.addSimpleFinder("natures_spirit", "white_kaolin");
@@ -87,17 +87,17 @@ public class CompatStoneType {
                 .stoneSuffix("_block");
 
         stoneReg.addSimpleFinder("aerialhell", "aerial_netherack") //REASON: Spelling-Convention
-                .childBlock(VanillaRockTypeChildKeys.BRICKS, "golden_nether_bricks")
-                .childBlock(VanillaRockTypeChildKeys.BRICK_STAIRS, "golden_nether_bricks_stairs")
-                .childBlock(VanillaRockTypeChildKeys.BRICK_SLAB, "golden_nether_bricks_slab")
-                .childBlock(VanillaRockTypeChildKeys.BRICK_WALL, "golden_nether_bricks_wall");
+                .childBlock(VanillaRockChildKeys.BRICKS, "golden_nether_bricks")
+                .childBlock(VanillaRockChildKeys.BRICK_STAIRS, "golden_nether_bricks_stairs")
+                .childBlock(VanillaRockChildKeys.BRICK_SLAB, "golden_nether_bricks_slab")
+                .childBlock(VanillaRockChildKeys.BRICK_WALL, "golden_nether_bricks_wall");
 
         // Rocky Minerals - REASON: 2-words
         stoneReg.addSimpleFinder("rockymineral", "worn_granite");
 
         // Project-Reds-Exploration - REASON: Undetected-Bricks
         stoneReg.addSimpleFinder("projectred_exploration", "marble")
-                .childBlockSuffix(VanillaRockTypeChildKeys.BRICKS, "_brick");
+                .childBlockSuffix(VanillaRockChildKeys.BRICKS, "_brick");
 
         // Atmospheric - REASON: 2-Words
         stoneReg.addSimpleFinder("atmospheric", "ivory_travertine");

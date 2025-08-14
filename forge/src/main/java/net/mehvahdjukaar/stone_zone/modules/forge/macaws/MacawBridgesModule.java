@@ -4,12 +4,11 @@ import com.mcwbridges.kikoz.objects.Bridge_Block;
 import com.mcwbridges.kikoz.objects.Bridge_Stairs;
 import com.mcwbridges.kikoz.objects.Bridge_Support;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
-import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 import net.mehvahdjukaar.stone_zone.api.set.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -17,8 +16,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
-
-import java.util.function.Consumer;
 
 
 //SUPPORT: v3.0.0+
@@ -106,7 +103,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("stone_bridge_pier"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Support(standardProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_piers"), Registries.BLOCK)
@@ -120,7 +117,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("mossy_stone_bridge_pier"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Support(standardProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_piers"), Registries.BLOCK)
@@ -138,7 +135,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                 .excludeMultipleTextureFromTinting(modRes("block/stair/stone/parent/double"), "#1")
                 .excludeMultipleTextureFromTinting(modRes("block/stair/stone/parent/left"), "#1")
                 .excludeMultipleTextureFromTinting(modRes("block/stair/stone/parent/right"), "#1")
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
                 .requiresFromMap(brick_bridges.blocks) //REASON: recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -154,7 +151,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("mossy_stone_bridge_stair"), StoneTypeRegistry::getStoneType,
                         stoneType -> new Bridge_Stairs(standardProperties(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
                 .requiresFromMap(mossy_brick_bridges.blocks) //REASON: recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)

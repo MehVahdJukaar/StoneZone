@@ -8,7 +8,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
-import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 import net.mehvahdjukaar.stone_zone.api.set.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -59,7 +59,7 @@ public class MacawFencesModule extends StoneZoneModule {
                         stoneType -> new FenceGateBlock(standardCopyProperies(stoneType), WoodType.OAK)
                 )
                 .excludeTextureFromTinting("#4")
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -77,7 +77,7 @@ public class MacawFencesModule extends StoneZoneModule {
                         stoneType -> new FenceBlock(standardCopyProperies(stoneType))
                 )
                 .excludeTextureFromTinting("#2")
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -119,7 +119,7 @@ public class MacawFencesModule extends StoneZoneModule {
                         getModBlock("andesite_pillar_wall"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new FenceBlock(standardCopyProperies(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.POLISHED) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.POLISHED) //REASON: textures, recipes
                 //TEXTURES: stone, polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
@@ -134,7 +134,7 @@ public class MacawFencesModule extends StoneZoneModule {
                         getModBlock("andesite_railing_gate"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new FenceGateBlock(standardCopyProperies(stoneType), WoodType.OAK)
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.POLISHED) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.POLISHED) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -151,7 +151,7 @@ public class MacawFencesModule extends StoneZoneModule {
                         getModBlock("railing_andesite_wall"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new FenceBlock(standardCopyProperies(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.POLISHED) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.POLISHED) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -168,7 +168,7 @@ public class MacawFencesModule extends StoneZoneModule {
                         getModBlock("modern_andesite_wall"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new FenceBlock(standardCopyProperies(stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.POLISHED) //REASON: testures, recipes
+                .requiresChildren(VanillaRockChildKeys.POLISHED) //REASON: testures, recipes
                 //TEXTURES: stone, polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)

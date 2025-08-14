@@ -6,7 +6,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
-import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -35,7 +35,7 @@ public class WraithWaystonesModule extends StoneZoneModule {
                         )
                 )
                 .createPaletteFromBricks()
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: recipes
                 .addTile(getModTile("waystone"))
                 .addTextureM(modRes("block/stone_brick_waystone_active"),
                         res("block/wws/stone_brick_waystone_active_m"))

@@ -5,8 +5,7 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
-import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 import net.mehvahdjukaar.stone_zone.api.set.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -38,7 +37,7 @@ public class QuarkModule extends StoneZoneModule {
                         stoneType -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis("slab"),
                                 copyChildrenPropertySafe("slab", stoneType))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.SLAB) //REASON: recipes
+                .requiresChildren(VanillaRockChildKeys.SLAB) //REASON: recipes
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -75,7 +74,7 @@ public class QuarkModule extends StoneZoneModule {
                             return new ZetaPillarBlock(name, null, Utils.copyPropertySafe(stoneType.stone));
                         }
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.POLISHED_SLAB) //REASON: recipes
+                .requiresChildren(VanillaRockChildKeys.POLISHED_SLAB) //REASON: recipes
                 .addTexture(modRes("block/andesite_pillar"))
                 .addTexture(modRes("block/andesite_pillar_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)

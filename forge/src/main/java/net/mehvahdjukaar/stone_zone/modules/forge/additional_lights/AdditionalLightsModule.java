@@ -6,7 +6,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.set.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
-import net.mehvahdjukaar.stone_zone.api.set.VanillaRockTypeChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 import net.mehvahdjukaar.stone_zone.api.set.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -167,7 +167,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("standing_torch_s_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StandingTorch_S(stoneType.stone)
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -179,7 +179,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("standing_torch_s_mossy_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StandingTorch_S(Objects.requireNonNull(stoneType.getBlockOfThis("mossy_bricks")))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -191,7 +191,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("standing_torch_s_smooth_stone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StandingTorch_S(Objects.requireNonNull(stoneType.getBlockOfThis("smooth")))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.SMOOTH) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.SMOOTH) //REASON: textures, recipes
                 //TEXTURES: smooth
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -214,7 +214,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("standing_torch_l_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StandingTorch_L(Objects.requireNonNull(stoneType.getBlockOfThis("bricks")))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -226,7 +226,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("standing_torch_l_mossy_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StandingTorch_L(Objects.requireNonNull(stoneType.getBlockOfThis("mossy_bricks")))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -238,7 +238,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("standing_torch_l_smooth_stone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new StandingTorch_L(Objects.requireNonNull(stoneType.getBlockOfThis("smooth")))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.SMOOTH) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.SMOOTH) //REASON: textures, recipes
                 //TEXTURES: smooth
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -261,7 +261,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("fire_pit_s_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FirePit_S(Objects.requireNonNull(stoneType.getBlockOfThis("bricks")))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -273,7 +273,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("fire_pit_s_mossy_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FirePit_S(Objects.requireNonNull(stoneType.getBlockOfThis("mossy_bricks")))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -285,7 +285,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("fire_pit_s_smooth_stone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FirePit_S(Objects.requireNonNull(stoneType.getBlockOfThis("smooth")))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.SMOOTH) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.SMOOTH) //REASON: textures, recipes
                 //TEXTURES: smooth
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -308,7 +308,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("fire_pit_l_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FirePit_L(Objects.requireNonNull(stoneType.getBlockOfThis("bricks")))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -320,7 +320,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("fire_pit_l_mossy_stone_bricks"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FirePit_L(Objects.requireNonNull(stoneType.getBlockOfThis("mossy_bricks")))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -332,7 +332,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("fire_pit_l_smooth_stone"), StoneTypeRegistry::getStoneType,
                         stoneType -> new FirePit_L(Objects.requireNonNull(stoneType.getBlockOfThis("smooth")))
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.SMOOTH) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.SMOOTH) //REASON: textures, recipes
                 //TEXTURES: smooth
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -356,7 +356,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("standing_torch_s_polished_andesite"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new StandingTorch_S(stoneType.stone)
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.POLISHED) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.POLISHED) //REASON: textures, recipes
                 //TEXTURES: polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -368,7 +368,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("standing_torch_l_polished_andesite"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new StandingTorch_L(stoneType.stone)
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.POLISHED) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.POLISHED) //REASON: textures, recipes
                 //TEXTURES: polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -380,7 +380,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("fire_pit_s_polished_andesite"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new FirePit_S(stoneType.stone)
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.POLISHED) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.POLISHED) //REASON: textures, recipes
                 //TEXTURES: polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -392,7 +392,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("fire_pit_l_polished_andesite"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new FirePit_L(stoneType.stone)
                 )
-                .requiresChildren(VanillaRockTypeChildKeys.POLISHED) //REASON: textures, recipes
+                .requiresChildren(VanillaRockChildKeys.POLISHED) //REASON: textures, recipes
                 //TEXTURES: polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
