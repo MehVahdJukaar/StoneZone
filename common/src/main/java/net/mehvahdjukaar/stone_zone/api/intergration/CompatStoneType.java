@@ -86,7 +86,7 @@ public class CompatStoneType {
         stoneReg.addSimpleFinder("aerialhell", "smoky_quartz") //REASON: Id-Stone
                 .stoneSuffix("_block");
 
-        stoneReg.addSimpleFinder("aerialhell", "aerial_netherack") //REASON: Spelling-Convention
+        stoneReg.addSimpleFinder("aerialhell", "aerial_netherrack") //REASON: Spelling-Convention
                 .childBlock(VanillaRockChildKeys.BRICKS, "golden_nether_bricks")
                 .childBlock(VanillaRockChildKeys.BRICK_STAIRS, "golden_nether_bricks_stairs")
                 .childBlock(VanillaRockChildKeys.BRICK_SLAB, "golden_nether_bricks_slab")
