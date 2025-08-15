@@ -11,7 +11,7 @@ issueTrackerURL="https://github.com/MehVahdJukaar/StoneZone/issues" #optional
 
 modId="stonezone" #mandatory
 
-version = "${minecraft_version}"
+version = "${version}"
 
 displayName="Stone Zone" #mandatory
 
