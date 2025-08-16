@@ -62,7 +62,6 @@ publishing {
             from components.java
         }
     }
-
     // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
     repositories {
         // Add repositories to publish to here.
@@ -84,15 +83,11 @@ publishing {
         }
     }
 }
+
 repositories {
-    maven { url "https://maven.shedaniel.me/" } // Cloth Config API
-
-    maven { url "https://maven.terraformersmc.com/releases" } // Mod Menu
-
-    maven {
-        name = 'ModdingPlayground'
-        url  = 'https://raw.githubusercontent.com/moddingplayground/maven/main/'
-    }
+    maven { url = 'https://maven.fabricmc.net/' }
+    maven { url = "https://maven.terraformersmc.com/releases" } // Mod Menu
+    maven { url  = 'https://raw.githubusercontent.com/moddingplayground/maven/main/' }
     maven { // Reach Entity Attributes
         url = "https://maven.jamieswhiteshirt.com/libs-release"
         content { includeGroup("com.jamieswhiteshirt") }
