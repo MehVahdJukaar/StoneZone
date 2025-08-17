@@ -16,17 +16,6 @@ import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.moonlight.api.set.DebugBlockTypes.appendToDebugFile;
 
-/**
- * Childkey Availability:
- * <Ul>
- * stone, stairs, slab, wall, button, pressure_plate,
- * smooth, smooth_stairs, smooth_slab, smooth_wall,
- * cobblestone, mossy_cobblestone,
- * polished, polished_stairs, polished_slab,
- * bricks, brick_stairs, brick_slab, brick_wall, cracked_bricks, brick_tiles,
- * mossy_bricks, mossy_brick_slab, mossy_brick_stairs, mossy_brick_wall
- * </Ul>
-**/
 public class MudType extends RockType {
 
     public final Block mud;
@@ -55,7 +44,7 @@ public class MudType extends RockType {
     }
 
     public static Block findMud(ResourceLocation id) {
-        ResourceLocation[] tests = makeKnownIDConventions(id,  "", "stone");
+        ResourceLocation[] tests = makeKnownIDConventions(id,  "mud");
         return Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
     }
 
@@ -76,7 +65,7 @@ public class MudType extends RockType {
         /// @param id Full Id of MudType as ResourceLocation
         public MudType.Finder mud(ResourceLocation id) {
             return this.mud(() -> BuiltInRegistries.BLOCK.getOptional(id)
-                    .orElseThrow(() -> new IllegalStateException("Failed to find stone block: " + id))
+                    .orElseThrow(() -> new IllegalStateException("Failed to find mud block: " + id))
             );
         }
 

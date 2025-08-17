@@ -23,7 +23,6 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
     }
 
     @Override
-    @SuppressWarnings("UnstableApiUsage")
     public MudType register(MudType vanillaType) {
         return super.register(vanillaType);
     }
@@ -34,7 +33,6 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
     }
 
     @Override
-    @SuppressWarnings("UnstableApiUsage")
     public Optional<MudType> detectTypeFromBlock(Block baseblock, ResourceLocation baseRes) {
         String path = baseRes.getPath();
 
@@ -60,8 +58,8 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
 
 
     //shorthand for add finder. Gives a builder-like object that's meant to be configured inline
-    public MudType.Finder addSimpleFinder(ResourceLocation stoneTypeId) {
-        MudType.Finder finder = new MudType.Finder(stoneTypeId);
+    public MudType.Finder addSimpleFinder(ResourceLocation mudTypeId) {
+        MudType.Finder finder = new MudType.Finder(mudTypeId);
         this.addFinder(finder);
         return finder;
     }
@@ -70,8 +68,8 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
         return addSimpleFinder(new ResourceLocation(typeId));
     }
 
-    public MudType.Finder addSimpleFinder(String namespace, String nameStoneType) {
-        return addSimpleFinder(new ResourceLocation(namespace, nameStoneType));
+    public MudType.Finder addSimpleFinder(String namespace, String nameMudType) {
+        return addSimpleFinder(new ResourceLocation(namespace, nameMudType));
     }
 
     @Override
