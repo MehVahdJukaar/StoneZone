@@ -3,17 +3,13 @@ package net.mehvahdjukaar.stone_zone.modules.quark;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Suppliers;
 import com.mojang.datafixers.util.Pair;
-import net.mehvahdjukaar.every_compat.api.AbstractSimpleEntrySet;
-import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.api.SimpleModule;
-import net.mehvahdjukaar.every_compat.api.TabAddMode;
+import net.mehvahdjukaar.every_compat.api.*;
 import net.mehvahdjukaar.every_compat.misc.ModelConfiguration;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
-import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 import net.mehvahdjukaar.stone_zone.misc.TintConfiguration;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -27,7 +23,6 @@ import org.violetmoon.quark.base.Quark;
 import org.violetmoon.zeta.module.IDisableable;
 import org.violetmoon.zeta.module.ZetaModule;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.function.*;
 
@@ -47,7 +42,7 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
                          @Nullable TriFunction<T, B, Item.Properties, Item> itemFactory,
                          @Nullable SimpleEntrySet.ITileHolder<?> tileFactory,
                          @Nullable Object renderType,
-                         @Nullable BiFunction<T, ResourceManager, Pair<List<Palette>, @Nullable McMetaFile>> paletteSupplier,
+                         @Nullable BiFunction<T, ResourceManager, PaletteStrategy.PaletteAndAnimation> paletteSupplier,
                          @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
                          boolean mergedPalette,
                          TintConfiguration tintConfig, boolean copyTint,
@@ -124,11 +119,11 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
         public QuarkEntrySet.Builder<T, B> createPaletteFromBricks() {
             this.setPalette((blockType, manager) -> {
                 if (blockType.getChild("bricks") != null) {
-                    return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
-                    }, "bricks", null, blockType, manager);
+                    var paletteAnimation = PaletteStrategies.makePaletteFromChild(blockType, manager, VanillaRockChildKeys.BRICKS, null, p -> {});
+                    return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
                 }
-                return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
-                }, "stone", null, blockType, manager);
+                var paletteAnimation = PaletteStrategies.makePaletteFromMainChild(blockType, manager);
+                return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
             });
             return this;
         }

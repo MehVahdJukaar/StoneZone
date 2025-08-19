@@ -2,17 +2,13 @@ package net.mehvahdjukaar.stone_zone.api;
 
 import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
-import net.mehvahdjukaar.every_compat.api.AbstractSimpleEntrySet;
-import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.api.SimpleModule;
-import net.mehvahdjukaar.every_compat.api.TabAddMode;
+import net.mehvahdjukaar.every_compat.api.*;
 import net.mehvahdjukaar.every_compat.misc.ModelConfiguration;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
-import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
 import net.mehvahdjukaar.stone_zone.misc.TintConfiguration;
 import net.minecraft.resources.ResourceKey;
@@ -26,7 +22,6 @@ import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.function.*;
 
 import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.addTagToAllBlocks;
@@ -42,8 +37,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                                 TabAddMode tabMode, LootTableMode lootMode,
                                 @Nullable TriFunction<T, B, Item.Properties, Item> itemFactory,
                                 @Nullable ITileHolder tileFactory, @Nullable Object renderType,
-                                @Nullable BiFunction<T, ResourceManager, Pair<List<Palette>,
-                                        @Nullable McMetaFile>> paletteSupplier,
+                                @Nullable BiFunction<T, ResourceManager, PaletteStrategy.PaletteAndAnimation> paletteSupplier,
                                 @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
                                 boolean mergedPalette, TintConfiguration tintConfig, boolean copyTint,
                                 Predicate<T> condition, ModelConfiguration modelConfig
@@ -127,6 +121,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
     }
 
     //!! SUB-CLASS
+    @SuppressWarnings("DataFlowIssue") // McMetaFile is nullable
     public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {
 
         protected TintConfiguration tintConfig = TintConfiguration.EMPTY;
@@ -135,30 +130,36 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
             super(type, name, prefix, baseType, baseBlock, blockFactory);
         }
 
+        @Deprecated(forRemoval = true)
+        /// @deprecated new method haven't been implemented yet
         public StoneZoneEntrySet.Builder<T, B> createPaletteFromStone() {
             return (Builder<T, B>) createPaletteFromChild("stone");
         }
 
+        @Deprecated(forRemoval = true)
+        /// @deprecated new method haven't been implemented yet
         public StoneZoneEntrySet.Builder<T, B> createPaletteFromBricks() {
             this.setPalette((blockType, manager) -> {
                 if (blockType.getChild("bricks") != null) {
-                    return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
-                    }, "bricks", null, blockType, manager);
+                    var paletteAnimation = PaletteStrategies.makePaletteFromChild(blockType, manager, VanillaRockChildKeys.BRICKS, null, p -> {});
+                    return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
                 }
-                return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
-                }, "stone", null, blockType, manager);
+                var paletteAnimation = PaletteStrategies.makePaletteFromMainChild(blockType, manager);
+                return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
             });
             return this;
         }
 
+        @Deprecated(forRemoval = true)
+        /// @deprecated new method haven't been implemented yet
         public StoneZoneEntrySet.Builder<T, B> createPaletteFromStoneChild(String childKey) {
             this.setPalette((blockType, manager) -> {
-                if (blockType.getChild(childKey) != null) {
-                    return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
-                    }, childKey, null, blockType, manager);
+                if (blockType.getChild("bricks") != null) {
+                    var paletteAnimation = PaletteStrategies.makePaletteFromChild(blockType, manager, childKey, null, p -> {});
+                    return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
                 }
-                return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
-                }, "stone", null, blockType, manager);
+                var paletteAnimation = PaletteStrategies.makePaletteFromMainChild(blockType, manager);
+                return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
             });
             return this;
         }
