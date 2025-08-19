@@ -167,14 +167,14 @@ dependencies {
 
         //- OTHER MAVENs - can be commented out or enabled
 //    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
-//    modRuntimeOnly("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}") // Create
-//    modRuntimeOnly("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}") // Create
+    modRuntimeOnly("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}") // Create
+    modRuntimeOnly("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}") // Create
 
         //+ REQUIRED - The modules access libaries from below - Only in FORGE
     modImplementation("curse.maven:supermartijn642s-core-lib-454372:5668859") // v1.1.17a | Rechiseled
 
             //+ OTHER MAVENS
-    modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create
+    modImplementation("com.tterrag.registrate:Registrate:${registrate_version}") // Create
 
 //!! =================================================== IMPORTS ==================================================== \\
         //- ONLY FOR TESTING - can be commented out or enabled
@@ -210,7 +210,7 @@ dependencies {
     modCompileOnly("curse.maven:stone-chest-307052:5389562")
 
             // OTHER MAVENS
-    modCompileOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel, Ponder
+    modImplementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel, Ponder
 
             // ~/forge/mods LOCAL
     modCompileOnly("blocks_plus:blocks+1.20.1-1.7")
