@@ -44,7 +44,7 @@ public class MudType extends RockType {
     }
 
     public static Block findMud(ResourceLocation id) {
-        ResourceLocation[] tests = makeKnownIDConventions(id,  "mud");
+        ResourceLocation[] tests = makeKnownIDConventions(id,  "", "mud");
         return Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
     }
 
