@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_MODS;
@@ -145,5 +146,11 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
     @Deprecated(forRemoval = true)
     public static StoneType getValue(String stoneTypeId) {
         return INSTANCE.get(new ResourceLocation(stoneTypeId));
+    }
+
+    /// USE {@link StoneTypeRegistry#INSTANCE} - can be used in FOR Loop statement
+    @Deprecated(forRemoval = true)
+    public static Collection<StoneType> getTypes() {
+        return INSTANCE.getValues();
     }
 }
