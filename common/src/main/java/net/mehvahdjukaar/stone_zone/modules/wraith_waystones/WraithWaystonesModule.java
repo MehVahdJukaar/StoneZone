@@ -4,9 +4,9 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -28,7 +28,7 @@ public class WraithWaystonesModule extends StoneZoneModule {
         ResourceLocation tab = modRes(modId);
 
         brick_waystone = StoneZoneEntrySet.of(StoneType.class, "brick_waystone",
-                        getModBlock("stone_brick_waystone"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_waystone"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new WaystoneBlock(Utils.copyPropertySafe(stoneType.stone)
                                 .strength(FabricWaystones.CONFIG.waystone_block_hardness(), 3600000.0F)
                                 .requiresCorrectToolForDrops()

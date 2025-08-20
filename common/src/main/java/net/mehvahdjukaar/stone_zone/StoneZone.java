@@ -7,7 +7,7 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
 import net.mehvahdjukaar.stone_zone.api.intergration.CompatStoneType;
 import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.configs.SZConfigs;
 import net.mehvahdjukaar.stone_zone.configs.UnsafeDisablerConfigs;
 import net.mehvahdjukaar.stone_zone.misc.SpriteHelper;

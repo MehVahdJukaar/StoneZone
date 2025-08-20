@@ -6,8 +6,8 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
@@ -21,7 +21,7 @@ public class TwigsModule extends StoneZoneModule {
         super(modId, "tw");
 
         columns = StoneZoneEntrySet.of(StoneType.class, "column",
-                        getModBlock("stone_column"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_column"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
                 .createPaletteFromChild(p -> {

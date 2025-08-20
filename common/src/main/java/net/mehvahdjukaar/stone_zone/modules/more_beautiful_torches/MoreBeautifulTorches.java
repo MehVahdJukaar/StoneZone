@@ -7,10 +7,9 @@ import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
-import net.mehvahdjukaar.stone_zone.api.set.VanillaStoneTypes;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
@@ -57,7 +56,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                 : modRes("morebeautifultorches_tab");
 
         wall_torch = StoneZoneEntrySet.of(StoneType.class, "wall_torch",
-                        getModBlock("stone_wall_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_wall_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.WALL_TORCH).noCollission().instabreak().lightLevel(l -> 14), ParticleTypes.FLAME)
                 )
                 .addTextureM(modRes("block/stone_torch"), StoneZone.res("block/common_torch_m"))
@@ -69,7 +68,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(wall_torch);
 
         torch = StoneZoneEntrySet.of(StoneType.class, "torch",
-                        getModBlock("stone_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.TORCH).noCollission().instabreak().lightLevel(l -> 14), ParticleTypes.FLAME)
                 )
                 //TEXTURES: wall_torch
@@ -82,7 +81,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(torch);
 
         soul_wall_torch = StoneZoneEntrySet.of(StoneType.class, "soul_wall_torch",
-                        getModBlock("stone_soul_wall_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_soul_wall_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
                 .setRenderType(RenderLayer.CUTOUT)
@@ -94,7 +93,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(soul_wall_torch);
 
         soul_torch = StoneZoneEntrySet.of(StoneType.class, "soul_torch",
-                        getModBlock("stone_soul_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_soul_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.SOUL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
                 //TEXTURES: soul_wall_torch
@@ -107,7 +106,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(soul_torch);
 
         redstone_wall_torch = StoneZoneEntrySet.of(StoneType.class, "redstone_wall_torch",
-                        getModBlock("stone_redstone_wall_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_redstone_wall_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new RedstoneWallTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_WALL_TORCH))
                 )
                 .addTextureM(modRes("block/stone_redstone_torch"), StoneZone.res("block/common_redstone_torch_m"))
@@ -119,7 +118,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(redstone_wall_torch);
 
         redstone_torch = StoneZoneEntrySet.of(StoneType.class, "redstone_torch",
-                        getModBlock("stone_redstone_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_redstone_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new RedstoneTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_TORCH))
                 )
                 //TEXTURES: redstone_wall_torch
@@ -132,7 +131,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
 
 //!!--BRICKS--
         bricks_wall_torch = StoneZoneEntrySet.of(StoneType.class, "bricks_wall_torch",
-                        getModBlock("stone_bricks_wall_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_bricks_wall_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.WALL_TORCH), ParticleTypes.FLAME)
                 )
                 .createPaletteFromBricks()
@@ -146,7 +145,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(bricks_wall_torch);
 
         bricks_torch = StoneZoneEntrySet.of(StoneType.class, "bricks_torch",
-                        getModBlock("stone_bricks_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_bricks_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.TORCH), ParticleTypes.FLAME)
                 )
                 //TEXTURES: bricks_wall_torch
@@ -160,7 +159,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(bricks_torch);
 
         bricks_soul_wall_torch = StoneZoneEntrySet.of(StoneType.class, "bricks_soul_wall_torch",
-                        getModBlock("stone_bricks_soul_wall_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_bricks_soul_wall_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
                 .createPaletteFromBricks()
@@ -174,7 +173,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(bricks_soul_wall_torch);
 
         bricks_soul_torch = StoneZoneEntrySet.of(StoneType.class, "bricks_soul_torch",
-                        getModBlock("stone_bricks_soul_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_bricks_soul_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.SOUL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
                 //TEXTURES: bricks_soul_wall_torch
@@ -188,7 +187,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(bricks_soul_torch);
 
         bricks_redstone_wall_torch = StoneZoneEntrySet.of(StoneType.class, "bricks_redstone_wall_torch",
-                        getModBlock("stone_bricks_redstone_wall_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_bricks_redstone_wall_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new RedstoneWallTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_WALL_TORCH))
                 )
                 .createPaletteFromBricks()
@@ -202,7 +201,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(bricks_redstone_wall_torch);
 
         bricks_redstone_torch = StoneZoneEntrySet.of(StoneType.class, "bricks_redstone_torch",
-                        getModBlock("stone_bricks_redstone_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_bricks_redstone_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new RedstoneTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_TORCH))
                 )
                 //TEXTURES: bricks_redstone_wall_torch
@@ -216,7 +215,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
 
 //!!--SMOOTH--
         smooth_wall_torch = StoneZoneEntrySet.of(StoneType.class, "wall_torch", "smooth",
-                        getModBlock("smooth_stone_wall_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("smooth_stone_wall_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.WALL_TORCH), ParticleTypes.FLAME)
                 )
                 .createPaletteFromBricks()
@@ -230,7 +229,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(smooth_wall_torch);
 
         smooth_torch = StoneZoneEntrySet.of(StoneType.class, "torch", "smooth",
-                        getModBlock("smooth_stone_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("smooth_stone_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.TORCH), ParticleTypes.FLAME)
                 )
                 //TEXTURES: smooth_wall_torch
@@ -244,7 +243,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(smooth_torch);
 
         smooth_soul_wall_torch = StoneZoneEntrySet.of(StoneType.class, "soul_wall_torch", "smooth",
-                        getModBlock("smooth_stone_soul_wall_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("smooth_stone_soul_wall_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new WallTorchBlock(Utils.copyPropertySafe(Blocks.SOUL_WALL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
                 .createPaletteFromBricks()
@@ -258,7 +257,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(smooth_soul_wall_torch);
 
         smooth_soul_torch = StoneZoneEntrySet.of(StoneType.class, "soul_torch", "smooth",
-                        getModBlock("smooth_stone_soul_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("smooth_stone_soul_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new TorchBlock(Utils.copyPropertySafe(Blocks.SOUL_TORCH), ParticleTypes.SOUL_FIRE_FLAME)
                 )
                 //TEXTURES: smooth_soul_wall_torch
@@ -272,7 +271,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(smooth_soul_torch);
 
         smooth_redstone_wall_torch = StoneZoneEntrySet.of(StoneType.class, "redstone_wall_torch", "smooth",
-                        getModBlock("smooth_stone_redstone_wall_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("smooth_stone_redstone_wall_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new RedstoneWallTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_WALL_TORCH))
                 )
                 .createPaletteFromBricks()
@@ -286,7 +285,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
         this.addEntry(smooth_redstone_wall_torch);
 
         smooth_redstone_torch = StoneZoneEntrySet.of(StoneType.class, "redstone_torch", "smooth",
-                        getModBlock("smooth_stone_redstone_torch"), StoneTypeRegistry::getStoneType,
+                        getModBlock("smooth_stone_redstone_torch"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new RedstoneTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_TORCH))
                 )
                 //TEXTURES: smooth_redstone_wall_torch

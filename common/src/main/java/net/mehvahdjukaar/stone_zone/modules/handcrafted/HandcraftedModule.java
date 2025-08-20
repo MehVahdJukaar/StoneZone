@@ -4,11 +4,11 @@ import earth.terrarium.handcrafted.common.blocks.trims.CornerTrimBlock;
 import earth.terrarium.handcrafted.common.blocks.trims.PillarTrimBlock;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -27,7 +27,7 @@ public class HandcraftedModule extends StoneZoneModule {
         ResourceLocation tab = modRes("main");
 
         pillar_trim = StoneZoneEntrySet.of(StoneType.class, "pillar_trim",
-                        getModBlock("stone_pillar_trim"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_pillar_trim"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new PillarTrimBlock(Utils.copyPropertySafe(stoneType.stone).noOcclusion(), false)
                 )
                 .addTexture(modRes("block/trim/pillar/stone_pillar_trim_normal"))
@@ -49,7 +49,7 @@ public class HandcraftedModule extends StoneZoneModule {
         this.addEntry(pillar_trim);
 
         corner_trim = StoneZoneEntrySet.of(StoneType.class, "corner_trim",
-                        getModBlock("stone_corner_trim"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_corner_trim"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new CornerTrimBlock(Utils.copyPropertySafe(stoneType.stone).noOcclusion(), false)
                 )
                 .addTexture(modRes("block/trim/corner/stone_corner_trim_normal"))

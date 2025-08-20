@@ -5,8 +5,8 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -23,7 +23,7 @@ public class WaystonesModule extends StoneZoneModule {
         ResourceLocation tab = modRes(modId);
         
         waystone = StoneZoneEntrySet.of(StoneType.class, "waystone",
-                        getModBlock("blackstone_waystone"), () -> StoneTypeRegistry.getValue("blackstone"),
+                        getModBlock("blackstone_waystone"), () -> VanillaStoneTypes.BLACKSTONE,
                         stoneType -> new WaystoneBlock(Utils.copyPropertySafe(stoneType.stone)
                                 .sound(stoneType.getSound())
                                 .strength(5.0F, 2000.0F)

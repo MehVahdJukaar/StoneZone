@@ -7,9 +7,9 @@ import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -62,7 +62,7 @@ public class MacawPathsModule extends StoneZoneModule {
         super(modId, "mcp");
         ResourceLocation tab = modRes("pathsitemgroup");
         running_bond_paths = StoneZoneEntrySet.of(StoneType.class, "running_bond_path",
-                        getModBlock("stone_running_bond_path"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_running_bond_path"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
                 .createPaletteFromBricks()
@@ -76,7 +76,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(running_bond_paths);
 
         running_bond_slabs = StoneZoneEntrySet.of(StoneType.class, "running_bond_slab",
-                        getModBlock("stone_running_bond_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_running_bond_slab"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
                 .createPaletteFromBricks()
@@ -90,7 +90,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(running_bond_slabs);
 
         running_bonds = StoneZoneEntrySet.of(StoneType.class, "running_bond",
-                        getModBlock("stone_running_bond"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_running_bond"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
                 .createPaletteFromBricks()
@@ -104,7 +104,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(running_bonds);
 
         mossy_running_bond_paths = StoneZoneEntrySet.of(StoneType.class, "running_bond_path", "mossy",
-                        getModBlock("mossy_stone_running_bond_path"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_running_bond_path"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
                 .createPaletteFromBricks()
@@ -118,7 +118,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(mossy_running_bond_paths);
 
         mossy_running_bond_slabs = StoneZoneEntrySet.of(StoneType.class, "running_bond_slab", "mossy",
-                        getModBlock("mossy_stone_running_bond_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_running_bond_slab"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
                 .createPaletteFromBricks()
@@ -132,7 +132,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(mossy_running_bond_slabs);
 
         mossy_running_bonds = StoneZoneEntrySet.of(StoneType.class, "running_bond", "mossy",
-                        getModBlock("mossy_stone_running_bond"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_running_bond"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(Blocks.DARK_PRISMARINE))
                 )
                 .createPaletteFromBricks()
@@ -146,7 +146,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(mossy_running_bonds);
 
         windmill_weave_paths = StoneZoneEntrySet.of(StoneType.class, "windmill_weave_path",
-                        getModBlock("stone_windmill_weave_path"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_windmill_weave_path"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -160,7 +160,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(windmill_weave_paths);
 
         windmill_weave_slabs = StoneZoneEntrySet.of(StoneType.class, "windmill_weave_slab",
-                        getModBlock("stone_windmill_weave_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_windmill_weave_slab"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -174,7 +174,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(windmill_weave_slabs);
 
         windmill_weaves = StoneZoneEntrySet.of(StoneType.class, "windmill_weave",
-                        getModBlock("stone_windmill_weave"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_windmill_weave"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -188,7 +188,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(windmill_weaves);
 
         mossy_windmill_weave_paths = StoneZoneEntrySet.of(StoneType.class, "windmill_weave_path", "mossy",
-                        getModBlock("mossy_stone_windmill_weave_path"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_windmill_weave_path"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
                 .createPaletteFromBricks()
@@ -202,7 +202,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(mossy_windmill_weave_paths);
 
         mossy_windmill_weave_slabs = StoneZoneEntrySet.of(StoneType.class, "windmill_weave_slab", "mossy",
-                        getModBlock("mossy_stone_windmill_weave_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_windmill_weave_slab"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
                 .createPaletteFromBricks()
@@ -216,7 +216,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(mossy_windmill_weave_slabs);
 
         mossy_windmill_weaves = StoneZoneEntrySet.of(StoneType.class, "windmill_weave", "mossy",
-                        getModBlock("mossy_stone_windmill_weave"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_windmill_weave"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
                 .createPaletteFromBricks()
@@ -230,7 +230,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(mossy_windmill_weaves);
 
         flagstone_paths = StoneZoneEntrySet.of(StoneType.class, "flagstone_path",
-                        getModBlock("stone_flagstone_path"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_flagstone_path"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -244,7 +244,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(flagstone_paths);
 
         flagstone_slabs = StoneZoneEntrySet.of(StoneType.class, "flagstone_slab",
-                        getModBlock("stone_flagstone_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_flagstone_slab"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -258,7 +258,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(flagstone_slabs);
 
         flagstones = StoneZoneEntrySet.of(StoneType.class, "flagstone",
-                        getModBlock("stone_flagstone"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_flagstone"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -272,7 +272,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(flagstones);
 
         mossy_flagstone_paths = StoneZoneEntrySet.of(StoneType.class, "flagstone_path", "mossy",
-                        getModBlock("mossy_stone_flagstone_path"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_flagstone_path"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
                 .createPaletteFromBricks()
@@ -286,7 +286,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(mossy_flagstone_paths);
 
         mossy_flagstone_slabs = StoneZoneEntrySet.of(StoneType.class, "flagstone_slab", "mossy",
-                        getModBlock("mossy_stone_flagstone_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_flagstone_slab"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
                 .createPaletteFromBricks()
@@ -300,7 +300,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(mossy_flagstone_slabs);
 
         mossy_flagstones = StoneZoneEntrySet.of(StoneType.class, "flagstone", "mossy",
-                        getModBlock("mossy_stone_flagstone"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_flagstone"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
                 .createPaletteFromBricks()
@@ -314,7 +314,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(mossy_flagstones);
 
         crystal_floor_paths = StoneZoneEntrySet.of(StoneType.class, "crystal_floor_path",
-                        getModBlock("stone_crystal_floor_path"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_crystal_floor_path"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -328,7 +328,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(crystal_floor_paths);
 
         crystal_floor_slabs = StoneZoneEntrySet.of(StoneType.class, "crystal_floor_slab",
-                        getModBlock("stone_crystal_floor_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_crystal_floor_slab"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -342,7 +342,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(crystal_floor_slabs);
 
         crystal_floors = StoneZoneEntrySet.of(StoneType.class, "crystal_floor",
-                        getModBlock("stone_crystal_floor"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_crystal_floor"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .createPaletteFromBricks()
@@ -356,7 +356,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(crystal_floors);
 
         mossy_crystal_floor_paths = StoneZoneEntrySet.of(StoneType.class, "crystal_floor_path", "mossy",
-                        getModBlock("mossy_stone_crystal_floor_path"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_crystal_floor_path"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
                 .createPaletteFromBricks()
@@ -370,7 +370,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(mossy_crystal_floor_paths);
 
         mossy_crystal_floor_slabs = StoneZoneEntrySet.of(StoneType.class, "crystal_floor_slab", "mossy",
-                        getModBlock("mossy_stone_crystal_floor_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_crystal_floor_slab"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new SlabBlock(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
                 .createPaletteFromBricks()
@@ -384,7 +384,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(mossy_crystal_floor_slabs);
 
         mossy_crystal_floors = StoneZoneEntrySet.of(StoneType.class, "crystal_floor", "mossy",
-                        getModBlock("mossy_stone_crystal_floor"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_crystal_floor"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
                 .createPaletteFromBricks()
@@ -398,7 +398,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(mossy_crystal_floors);
 
         strewn_rocky_paths = StoneZoneEntrySet.of(StoneType.class, "strewn_rocky_path",
-                        getModBlock("stone_strewn_rocky_path"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_strewn_rocky_path"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .requiresChildren("bricks") //REASON: recipes
@@ -411,7 +411,7 @@ public class MacawPathsModule extends StoneZoneModule {
         this.addEntry(strewn_rocky_paths);
 
         mossy_strewn_rocky_paths = StoneZoneEntrySet.of(StoneType.class, "strewn_rocky_path", "mossy",
-                        getModBlock("mossy_stone_strewn_rocky_path"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_strewn_rocky_path"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new PathBlock(Utils.copyPropertySafe(getMossyCobblestoneSafe(stoneType)))
                 )
                 .requiresChildren("mossy_cobblestone", "mossy_bricks") //REASON: textures, recipes

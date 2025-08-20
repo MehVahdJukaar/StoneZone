@@ -7,9 +7,9 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -35,7 +35,7 @@ public class BuildersAdditionModule extends StoneZoneModule {
         ResourceLocation tab = modRes("builders_addition_group");
 
         vertical_slab = StoneZoneEntrySet.of(StoneType.class, "vertical_slab",
-                        getModBlock("stone_vertical_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_vertical_slab"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new VerticalSlab(
                                 Utils.getID(stoneType.stone).getPath(),
                                 stoneType.stone)
@@ -52,7 +52,7 @@ public class BuildersAdditionModule extends StoneZoneModule {
         this.addEntry(vertical_slab);
 
         smooth_vertical_slab = StoneZoneEntrySet.of(StoneType.class, "vertical_slab", "smooth",
-                        getModBlock("smooth_stone_vertical_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("smooth_stone_vertical_slab"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new VerticalSlab(
                                 Utils.getID(stoneType.getBlockOfThis("smooth")).getPath(),
                                 Objects.requireNonNull(stoneType.getBlockOfThis("smooth")))
@@ -69,7 +69,7 @@ public class BuildersAdditionModule extends StoneZoneModule {
         this.addEntry(smooth_vertical_slab);
 
         bricks_vertical_slab = StoneZoneEntrySet.of(StoneType.class, "bricks_vertical_slab",
-                        getModBlock("stone_bricks_vertical_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_bricks_vertical_slab"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new VerticalSlab(
                                 Utils.getID(stoneType.getBlockOfThis("bricks")).getPath(),
                                 stoneType.bricksOrStone())
@@ -87,7 +87,7 @@ public class BuildersAdditionModule extends StoneZoneModule {
         this.addEntry(bricks_vertical_slab);
 
         mossy_bricks_vertical_slab = StoneZoneEntrySet.of(StoneType.class, "bricks_vertical_slab", "mossy",
-                        getModBlock("mossy_stone_bricks_vertical_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_bricks_vertical_slab"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new VerticalSlab(
                                 Utils.getID(stoneType.getBlockOfThis("mossy_bricks")).getPath(),
                                 Objects.requireNonNull(stoneType.getBlockOfThis("mossy_bricks")))
@@ -105,7 +105,7 @@ public class BuildersAdditionModule extends StoneZoneModule {
         this.addEntry(mossy_bricks_vertical_slab);
 
         cut_pillar = StoneZoneEntrySet.of(StoneType.class, "pillar", "cut",
-                        getModBlock("cut_stone_pillar"), StoneTypeRegistry::getStoneType,
+                        getModBlock("cut_stone_pillar"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Pillar(
                                 Utils.getID(stoneType.stone).getPath(),
                                 Objects.requireNonNull(stoneType.stone)
@@ -119,7 +119,7 @@ public class BuildersAdditionModule extends StoneZoneModule {
         this.addEntry(cut_pillar);
 
         cut_smooth_pillar = StoneZoneEntrySet.of(StoneType.class, "pillar", "cut_smooth",
-                        getModBlock("cut_smooth_stone_pillar"), StoneTypeRegistry::getStoneType,
+                        getModBlock("cut_smooth_stone_pillar"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Pillar(
                                 Utils.getID(stoneType.getBlockOfThis("smooth")).getPath(),
                                 Objects.requireNonNull(stoneType.getBlockOfThis("smooth"))
@@ -135,7 +135,7 @@ public class BuildersAdditionModule extends StoneZoneModule {
         this.addEntry(cut_smooth_pillar);
 
         cut_bricks_pillar = StoneZoneEntrySet.of(StoneType.class, "bricks_pillar", "cut",
-                        getModBlock("cut_stone_bricks_pillar"), StoneTypeRegistry::getStoneType,
+                        getModBlock("cut_stone_bricks_pillar"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Pillar(
                                 Utils.getID(stoneType.getBlockOfThis("bricks")).getPath(),
                                 Objects.requireNonNull(stoneType.getBlockOfThis("bricks"))
@@ -152,7 +152,7 @@ public class BuildersAdditionModule extends StoneZoneModule {
         this.addEntry(cut_bricks_pillar);
 
         cut_mossy_bricks_pillar = StoneZoneEntrySet.of(StoneType.class, "bricks_pillar", "cut_mossy",
-                        getModBlock("cut_mossy_stone_bricks_pillar"), StoneTypeRegistry::getStoneType,
+                        getModBlock("cut_mossy_stone_bricks_pillar"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Pillar(
                                 Utils.getID(stoneType.getBlockOfThis("mossy_bricks")).getPath(),
                                 Objects.requireNonNull(stoneType.getBlockOfThis("mossy_bricks"))

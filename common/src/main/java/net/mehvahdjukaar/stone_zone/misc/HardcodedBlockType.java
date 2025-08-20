@@ -1,7 +1,7 @@
 package net.mehvahdjukaar.stone_zone.misc;
 
 import net.mehvahdjukaar.stone_zone.api.set.MudType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Set;

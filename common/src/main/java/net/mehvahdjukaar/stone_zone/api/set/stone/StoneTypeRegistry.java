@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.api.set;
+package net.mehvahdjukaar.stone_zone.api.set.stone;
 
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -16,18 +16,6 @@ import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_S
 public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
     public static final StoneTypeRegistry INSTANCE = new StoneTypeRegistry();
-
-    public static StoneType getStoneType() {
-        return getValue("stone");
-    }
-
-    public static StoneType getAndesiteType() {
-        return getValue("andesite");
-    }
-
-    public static StoneType getValue(String stoneTypeId) {
-        return INSTANCE.get(new ResourceLocation(stoneTypeId));
-    }
 
     public StoneTypeRegistry() {
         super(StoneType.class, "stone_type");
@@ -138,5 +126,24 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
     @Override
     public int priority() {
         return 110;
+    }
+
+    //!! ───────────────────────────────────────────── Marked For Removal ──────────────────────────────────────────────
+    /// USE {@link VanillaStoneTypes#STONE}
+    @Deprecated(forRemoval = true)
+    public static StoneType getStoneType() {
+        return getValue("stone");
+    }
+
+    /// USE {@link VanillaStoneTypes#ANDESITE}
+    @Deprecated(forRemoval = true)
+    public static StoneType getAndesiteType() {
+        return getValue("andesite");
+    }
+
+    /// USE {@link VanillaStoneTypes}
+    @Deprecated(forRemoval = true)
+    public static StoneType getValue(String stoneTypeId) {
+        return INSTANCE.get(new ResourceLocation(stoneTypeId));
     }
 }

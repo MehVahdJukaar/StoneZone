@@ -2,8 +2,8 @@ package net.mehvahdjukaar.stone_zone.api.intergration;
 
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
 
 /// StoneType Detection detect a StoneType that doesn't met 3 requirements:
         /// blockID: nameStoneType_bricks - only 1 word, the "nameStoneType"

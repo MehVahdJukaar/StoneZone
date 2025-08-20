@@ -6,10 +6,9 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
-import net.mehvahdjukaar.stone_zone.api.set.VanillaStoneTypes;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -40,7 +39,7 @@ public class MacawFencesModule extends StoneZoneModule {
         ResourceLocation tab = modRes("fenceitemgroup");
 
         modern_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "modern",
-                        getModBlock("modern_stone_brick_wall"), StoneTypeRegistry::getStoneType,
+                        getModBlock("modern_stone_brick_wall"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new FenceBlock(standardCopyProperies(stoneType))
                 )
                 .requiresChildren("bricks", "cobblestone") //REASON: testures, recipes
@@ -55,7 +54,7 @@ public class MacawFencesModule extends StoneZoneModule {
         this.addEntry(modern_brick_walls);
 
         railing_brick_gates = StoneZoneEntrySet.of(StoneType.class, "brick_railing_gate",
-                        getModBlock("stone_brick_railing_gate"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_railing_gate"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new FenceGateBlock(standardCopyProperies(stoneType), WoodType.OAK)
                 )
                 .excludeTextureFromTinting("#4")
@@ -73,7 +72,7 @@ public class MacawFencesModule extends StoneZoneModule {
         this.addEntry(railing_brick_gates);
 
         railing_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "railing",
-                        getModBlock("railing_stone_brick_wall"), StoneTypeRegistry::getStoneType,
+                        getModBlock("railing_stone_brick_wall"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new FenceBlock(standardCopyProperies(stoneType))
                 )
                 .excludeTextureFromTinting("#2")
@@ -91,7 +90,7 @@ public class MacawFencesModule extends StoneZoneModule {
         this.addEntry(railing_brick_walls);
 
         grass_topped_walls = StoneZoneEntrySet.of(StoneType.class, "grass_topped_wall",
-                        getModBlock("stone_grass_topped_wall"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_grass_topped_wall"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new FenceHitbox(standardCopyProperies(stoneType))
                 )
                 //REASON: grass

@@ -8,8 +8,8 @@ import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.mehvahdjukaar.stone_zone.common_classes.CompatChestBlock;
 import net.mehvahdjukaar.stone_zone.common_classes.CompatChestBlockEntity;
 import net.mehvahdjukaar.stone_zone.common_classes.CompatChestBlockRenderer;
@@ -45,7 +45,7 @@ public class StoneChestModule extends StoneZoneModule {
         ResourceKey<CreativeModeTab> tab = CreativeModeTabs.FUNCTIONAL_BLOCKS;
 
         chests = StoneZoneEntrySet.of(StoneType.class, "","chest",
-                        getModBlock("chest_stone"), StoneTypeRegistry::getStoneType,
+                        getModBlock("chest_stone"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new CompatChestBlock(this::getTile, Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTile(VariantChestBlockEntity::new)
@@ -60,7 +60,7 @@ public class StoneChestModule extends StoneZoneModule {
         this.addEntry(chests);
 
         parts = ItemOnlyEntrySet.builder(StoneType.class, "", "part",
-                        getModItem("part_stone"), StoneTypeRegistry::getStoneType,
+                        getModItem("part_stone"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Item(new Item.Properties())
                 )
                 .copyParentTint()

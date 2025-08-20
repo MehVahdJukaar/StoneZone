@@ -1,10 +1,10 @@
-package net.mehvahdjukaar.stone_zone.api.set;
+package net.mehvahdjukaar.stone_zone.api.set.stone;
 
 import com.google.common.base.Preconditions;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.moonlight.core.ClientConfigs;
 import net.mehvahdjukaar.stone_zone.StoneZone;
+import net.mehvahdjukaar.stone_zone.api.set.RockType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
@@ -13,8 +13,6 @@ import org.jetbrains.annotations.ApiStatus;
 
 import java.util.Optional;
 import java.util.function.Supplier;
-
-import static net.mehvahdjukaar.moonlight.api.set.DebugBlockTypes.appendToDebugFile;
 
 /**
  * Childkey Availability:
@@ -34,8 +32,6 @@ public class StoneType extends RockType {
     protected StoneType(ResourceLocation id, Block stone) {
         super(id, stone);
         this.stone = stone;
-
-        if (ClientConfigs.BLOCKTYPES_DEBUG.get() && !this.isVanilla()) appendToDebugFile(getTranslationKey());
     }
 
     @Override

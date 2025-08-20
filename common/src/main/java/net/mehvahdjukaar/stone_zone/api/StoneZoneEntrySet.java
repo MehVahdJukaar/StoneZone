@@ -113,14 +113,14 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
             super(type, name, prefix, baseType, baseBlock, blockFactory);
         }
 
-        @Deprecated(forRemoval = true)
         /// @deprecated new method haven't been implemented yet
+        @Deprecated(forRemoval = true)
         public StoneZoneEntrySet.Builder<T, B> createPaletteFromStone() {
             return (Builder<T, B>) createPaletteFromChild("stone");
         }
 
-        @Deprecated(forRemoval = true)
         /// @deprecated new method haven't been implemented yet
+        @Deprecated(forRemoval = true)
         public StoneZoneEntrySet.Builder<T, B> createPaletteFromBricks() {
             this.setPalette((blockType, manager) -> {
                 if (blockType.getChild("bricks") != null) {
@@ -133,8 +133,8 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
             return this;
         }
 
-        @Deprecated(forRemoval = true)
         /// @deprecated new method haven't been implemented yet
+        @Deprecated(forRemoval = true)
         public StoneZoneEntrySet.Builder<T, B> createPaletteFromStoneChild(String childKey) {
             this.setPalette((blockType, manager) -> {
                 if (blockType.getChild("bricks") != null) {

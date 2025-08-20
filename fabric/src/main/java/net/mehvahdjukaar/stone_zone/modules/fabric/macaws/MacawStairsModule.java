@@ -7,10 +7,10 @@ import com.mcwstairs.kikoz.objects.stair_types.*;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -44,7 +44,7 @@ public class MacawStairsModule extends StoneZoneModule {
         ResourceLocation tab = modRes(modId);
 
         brick_terrace_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_terrace_stairs",
-                        getModBlock("stone_brick_terrace_stairs"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_terrace_stairs"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new TerraceStairs(copyProperties(stoneType))
                 )
                 .requiresChildren("bricks") //REASON: textures, recipes
@@ -58,7 +58,7 @@ public class MacawStairsModule extends StoneZoneModule {
         this.addEntry(brick_terrace_stairs);
 
         brick_skyline_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_skyline_stairs",
-                        getModBlock("stone_brick_skyline_stairs"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_skyline_stairs"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new SkylineStairs(copyProperties(stoneType))
                 )
                 .requiresChildren("bricks") //REASON: textures, recipes
@@ -72,7 +72,7 @@ public class MacawStairsModule extends StoneZoneModule {
         this.addEntry(brick_skyline_stairs);
 
         brick_compact_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_compact_stairs",
-                        getModBlock("stone_brick_compact_stairs"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_compact_stairs"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new CompactStairs(copyProperties(stoneType))
                 )
                 .requiresChildren("bricks") //REASON: textures, recipes
@@ -86,7 +86,7 @@ public class MacawStairsModule extends StoneZoneModule {
         this.addEntry(brick_compact_stairs);
 
         brick_bulk_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_bulk_stairs",
-                        getModBlock("stone_brick_bulk_stairs"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_bulk_stairs"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new BulkStairs(copyProperties(stoneType))
                 )
                 .requiresChildren("bricks") //REASON: textures, recipes
@@ -100,7 +100,7 @@ public class MacawStairsModule extends StoneZoneModule {
         this.addEntry(brick_bulk_stairs);
 
         brick_loft_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_loft_stairs",
-                        getModBlock("stone_brick_loft_stairs"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_loft_stairs"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new LoftStairs(copyProperties(stoneType))
                 )
                 .requiresChildren("bricks") //REASON: textures, recipes
@@ -114,7 +114,7 @@ public class MacawStairsModule extends StoneZoneModule {
         this.addEntry(brick_loft_stairs);
 
         brick_balconies = StoneZoneEntrySet.of(StoneType.class, "brick_balcony",
-                        getModBlock("stone_brick_balcony"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_balcony"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new BalconyRailing(copyProperties(stoneType))
                 )
                 .requiresChildren("bricks") //REASON: textures, recipes
@@ -128,7 +128,7 @@ public class MacawStairsModule extends StoneZoneModule {
         this.addEntry(brick_balconies);
 
         brick_railings = StoneZoneEntrySet.of(StoneType.class, "brick_railing",
-                        getModBlock("stone_brick_railing"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_railing"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new StairRailing(copyProperties(stoneType))
                 )
                 .requiresChildren("bricks") //REASON: textures, recipes
@@ -142,7 +142,7 @@ public class MacawStairsModule extends StoneZoneModule {
         this.addEntry(brick_railings);
 
         brick_platforms = StoneZoneEntrySet.of(StoneType.class, "brick_platform",
-                        getModBlock("stone_brick_platform"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_platform"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new StairPlatform(copyProperties(stoneType))
                 )
                 .requiresChildren("bricks") //REASON: textures, recipes
@@ -157,7 +157,7 @@ public class MacawStairsModule extends StoneZoneModule {
 
 
         mossy_brick_terrace_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_terrace_stairs", "mossy",
-                        getModBlock("mossy_stone_brick_terrace_stairs"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_brick_terrace_stairs"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new TerraceStairs(copyProperties(stoneType))
                 )
                 .requiresChildren("mossy_bricks") //REASON: textures, recipes
@@ -171,7 +171,7 @@ public class MacawStairsModule extends StoneZoneModule {
         this.addEntry(mossy_brick_terrace_stairs);
 
         mossy_brick_skyline_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_skyline_stairs", "mossy",
-                        getModBlock("mossy_stone_brick_skyline_stairs"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_brick_skyline_stairs"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new SkylineStairs(copyProperties(stoneType))
                 )
                 .requiresChildren("mossy_bricks") //REASON: textures, recipes
@@ -185,7 +185,7 @@ public class MacawStairsModule extends StoneZoneModule {
         this.addEntry(mossy_brick_skyline_stairs);
 
         mossy_brick_compact_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_compact_stairs", "mossy",
-                        getModBlock("mossy_stone_brick_compact_stairs"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_brick_compact_stairs"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new CompactStairs(copyProperties(stoneType))
                 )
                 .requiresChildren("mossy_bricks") //REASON: textures, recipes
@@ -199,7 +199,7 @@ public class MacawStairsModule extends StoneZoneModule {
         this.addEntry(mossy_brick_compact_stairs);
 
         mossy_brick_bulk_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_bulk_stairs", "mossy",
-                        getModBlock("mossy_stone_brick_bulk_stairs"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_brick_bulk_stairs"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new BulkStairs(copyProperties(stoneType))
                 )
                 .requiresChildren("mossy_bricks") //REASON: textures, recipes
@@ -213,7 +213,7 @@ public class MacawStairsModule extends StoneZoneModule {
         this.addEntry(mossy_brick_bulk_stairs);
 
         mossy_brick_loft_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_loft_stairs", "mossy",
-                        getModBlock("mossy_stone_brick_loft_stairs"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_brick_loft_stairs"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new LoftStairs(copyProperties(stoneType))
                 )
                 .requiresChildren("mossy_bricks") //REASON: textures, recipes
@@ -227,7 +227,7 @@ public class MacawStairsModule extends StoneZoneModule {
         this.addEntry(mossy_brick_loft_stairs);
 
         mossy_brick_balconies = StoneZoneEntrySet.of(StoneType.class, "brick_balcony", "mossy",
-                        getModBlock("mossy_stone_brick_balcony"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_brick_balcony"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new BalconyRailing(copyProperties(stoneType))
                 )
                 .requiresChildren("mossy_bricks") //REASON: textures, recipes
@@ -241,7 +241,7 @@ public class MacawStairsModule extends StoneZoneModule {
         this.addEntry(mossy_brick_balconies);
 
         mossy_brick_railings = StoneZoneEntrySet.of(StoneType.class, "brick_railing", "mossy",
-                        getModBlock("mossy_stone_brick_railing"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_brick_railing"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new StairRailing(copyProperties(stoneType))
                 )
                 .requiresChildren("mossy_bricks") //REASON: textures, recipes
@@ -255,7 +255,7 @@ public class MacawStairsModule extends StoneZoneModule {
         this.addEntry(mossy_brick_railings);
 
         mossy_brick_platforms = StoneZoneEntrySet.of(StoneType.class, "brick_platform", "mossy",
-                        getModBlock("mossy_stone_brick_platform"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_brick_platform"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new StairPlatform(copyProperties(stoneType))
                 )
                 .requiresChildren("mossy_bricks") //REASON: textures, recipes

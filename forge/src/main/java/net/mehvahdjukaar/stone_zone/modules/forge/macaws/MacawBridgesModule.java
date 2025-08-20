@@ -6,10 +6,9 @@ import com.mcwbridges.kikoz.objects.Bridge_Support;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
-import net.mehvahdjukaar.stone_zone.api.set.VanillaStoneTypes;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -36,7 +35,7 @@ public class MacawBridgesModule extends StoneZoneModule {
         ResourceLocation tab = modRes(modId);
 
         brick_bridges = StoneZoneEntrySet.of(StoneType.class, "brick_bridge",
-                        getModBlock("stone_brick_bridge"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_bridge"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Bridge_Block(standardProperties(stoneType))
                 )
                 .excludeMultipleTextureFromTinting(modRes("block/bridge/bridge_stone/parent/base"), "#2")
@@ -54,7 +53,7 @@ public class MacawBridgesModule extends StoneZoneModule {
         this.addEntry(brick_bridges);
 
         mossy_brick_bridges = StoneZoneEntrySet.of(StoneType.class, "brick_bridge", "mossy",
-                        getModBlock("mossy_stone_brick_bridge"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_brick_bridge"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Bridge_Block(standardProperties(stoneType))
                 )
                 .requiresChildren("mossy_bricks", "mossy_brick_slab", "mossy_brick_wall") //REASON: textures, recipes
@@ -68,7 +67,7 @@ public class MacawBridgesModule extends StoneZoneModule {
         this.addEntry(mossy_brick_bridges);
 
         balustrade_bricks_bridges = StoneZoneEntrySet.of(StoneType.class, "bricks_bridge", "balustrade",
-                        getModBlock("balustrade_stone_bricks_bridge"), StoneTypeRegistry::getStoneType,
+                        getModBlock("balustrade_stone_bricks_bridge"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Bridge_Block(balustradeProperties(stoneType))
                 )
                 .excludeMultipleTextureFromTinting(modRes("block/bridge/balustrade/parent/base"), "#2")
@@ -86,7 +85,7 @@ public class MacawBridgesModule extends StoneZoneModule {
         this.addEntry(balustrade_bricks_bridges);
 
         balustrade_mossy_bricks_bridges = StoneZoneEntrySet.of(StoneType.class, "bricks_bridge", "balustrade_mossy",
-                        getModBlock("balustrade_mossy_stone_bricks_bridge"), StoneTypeRegistry::getStoneType,
+                        getModBlock("balustrade_mossy_stone_bricks_bridge"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Bridge_Block(balustradeProperties(stoneType))
                 )
                 .requiresChildren("mossy_bricks", "mossy_brick_slab", "mossy_brick_wall") //REASON: textures, recipes
@@ -100,7 +99,7 @@ public class MacawBridgesModule extends StoneZoneModule {
         this.addEntry(balustrade_mossy_bricks_bridges);
 
         bridge_piers = StoneZoneEntrySet.of(StoneType.class, "bridge_pier",
-                        getModBlock("stone_bridge_pier"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_bridge_pier"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Bridge_Support(standardProperties(stoneType))
                 )
                 .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: textures, recipes
@@ -114,7 +113,7 @@ public class MacawBridgesModule extends StoneZoneModule {
         this.addEntry(bridge_piers);
 
         mossy_bridge_piers = StoneZoneEntrySet.of(StoneType.class, "bridge_pier", "mossy",
-                        getModBlock("mossy_stone_bridge_pier"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_bridge_pier"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Bridge_Support(standardProperties(stoneType))
                 )
                 .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
@@ -128,7 +127,7 @@ public class MacawBridgesModule extends StoneZoneModule {
         this.addEntry(mossy_bridge_piers);
 
         brick_bridge_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_bridge_stair",
-                        getModBlock("stone_brick_bridge_stair"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_bridge_stair"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Bridge_Stairs(standardProperties(stoneType))
                 )
                 .excludeMultipleTextureFromTinting(modRes("block/stair/stone/parent/base"), "#1")
@@ -148,7 +147,7 @@ public class MacawBridgesModule extends StoneZoneModule {
         this.addEntry(brick_bridge_stairs);
 
         mossy_bridge_stairs = StoneZoneEntrySet.of(StoneType.class, "bridge_stair", "mossy",
-                        getModBlock("mossy_stone_bridge_stair"), StoneTypeRegistry::getStoneType,
+                        getModBlock("mossy_stone_bridge_stair"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Bridge_Stairs(standardProperties(stoneType))
                 )
                 .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: textures, recipes
