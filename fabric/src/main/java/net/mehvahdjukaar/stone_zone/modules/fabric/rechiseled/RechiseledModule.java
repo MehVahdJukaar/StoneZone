@@ -5,7 +5,6 @@ import com.google.gson.JsonObject;
 import com.supermartijn642.core.TextComponents;
 import com.supermartijn642.core.block.BaseBlock;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.api.TextureInfo;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
@@ -73,7 +72,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_big_tiles"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_big_tiles")).copyMCMETA())
+                .addTexture(modRes("block/stone_big_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -93,7 +92,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_bordered"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_bordered")).copyMCMETA())
+                .addTexture(modRes("block/stone_bordered"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -113,7 +112,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_brick_pattern"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_brick_pattern")).copyMCMETA())
+                .addTexture(modRes("block/stone_brick_pattern"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -133,7 +132,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_brick_paving"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_brick_paving")).copyMCMETA())
+                .addTexture(modRes("block/stone_brick_paving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -153,7 +152,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_crushed"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_crushed")).copyMCMETA())
+                .addTexture(modRes("block/stone_crushed"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -173,7 +172,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_diagonal_bricks"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_diagonal_bricks")).copyMCMETA())
+                .addTexture(modRes("block/stone_diagonal_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -193,7 +192,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_path"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_path")).copyMCMETA())
+                .addTexture(modRes("block/stone_path"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -213,7 +212,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_rotated_bricks"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_rotated_bricks")).copyMCMETA())
+                .addTexture(modRes("block/stone_rotated_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -233,7 +232,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_small_bricks"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_small_bricks")).copyMCMETA())
+                .addTexture(modRes("block/stone_small_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -253,7 +252,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_small_tiles"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_small_tiles")).copyMCMETA())
+                .addTexture(modRes("block/stone_small_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -273,7 +272,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_smooth_brick_paving"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_smooth_brick_paving")).copyMCMETA())
+                .addTexture(modRes("block/stone_smooth_brick_paving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -293,7 +292,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_smooth_large_tiles"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_smooth_large_tiles")).copyMCMETA())
+                .addTexture(modRes("block/stone_smooth_large_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -313,7 +312,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_smooth_rotated_bricks"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_smooth_rotated_bricks")).copyMCMETA())
+                .addTexture(modRes("block/stone_smooth_rotated_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -333,7 +332,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_smooth_tiles"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_smooth_tiles")).copyMCMETA())
+                .addTexture(modRes("block/stone_smooth_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -353,7 +352,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_squares"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_squares")).copyMCMETA())
+                .addTexture(modRes("block/stone_squares"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -373,7 +372,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_waves"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_waves")).copyMCMETA())
+                .addTexture(modRes("block/stone_waves"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -392,7 +391,7 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_tiles"), StoneTypeRegistry::getStoneType,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_tiles")).copyMCMETA())
+                .addTexture(modRes("block/stone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -422,7 +421,7 @@ public class RechiseledModule extends StoneZoneModule {
     }
 
     /// CUSTOM CLASS - REASON: Changed BlockProperties to Proerties to use Utils.copyPropertySafe()
-    public static class CompatRechiseledBlock extends BaseBlock {
+    public static class CompatRechiseledBlock extends CompatBaseBlock {
         public final boolean connecting;
 
         public CompatRechiseledBlock(boolean connecting, Properties properties) {
@@ -464,6 +463,12 @@ public class RechiseledModule extends StoneZoneModule {
         @Override
         protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder){
             builder.add(AXIS_PROPERTY);
+        }
+    }
+
+    public static class CompatBaseBlock extends BaseBlock {
+        public CompatBaseBlock(boolean saveTileData, Properties properties) {
+            super(saveTileData, properties);
         }
     }
 
