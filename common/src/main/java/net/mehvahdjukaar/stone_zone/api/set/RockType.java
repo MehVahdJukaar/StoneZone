@@ -171,7 +171,7 @@ public abstract class RockType extends BlockType{
         return bricks != null ? bricks : this.block;
     }
 
-    static ResourceLocation[] makeKnownIDConventions(ResourceLocation id, String... suffixKeyword) {
+    protected static ResourceLocation[] makeKnownIDConventions(ResourceLocation id, String... suffixKeyword) {
         List<ResourceLocation> resources = new ArrayList<>();
         for (String keyword : suffixKeyword) {
             String path = id.getPath();
