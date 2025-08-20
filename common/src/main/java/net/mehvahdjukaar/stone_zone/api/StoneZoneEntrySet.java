@@ -1,6 +1,5 @@
 package net.mehvahdjukaar.stone_zone.api;
 
-import com.google.gson.JsonObject;
 import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.every_compat.api.*;
 import net.mehvahdjukaar.every_compat.misc.ModelConfiguration;
@@ -9,12 +8,10 @@ import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
-import net.mehvahdjukaar.stone_zone.misc.ModelUtils;
 import net.mehvahdjukaar.stone_zone.misc.TintConfiguration;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -67,14 +64,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone + "_slab_side", "smooth_slab")
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, "polished")
                 .replaceWithTextureFromChild("minecraft:block/mossy_" + nameBaseStone + "_bricks", "mossy_bricks")
-                // Modifying models' parent & "elements"
-                .addModifier((s, blockId, blockType) -> {
-                    JsonObject jsonObject = GsonHelper.parse(s);
-                    ModelUtils.addTintIndexToModelAndReplaceParent(new ResourceLocation("none"), jsonObject, module, nameBaseStone, tintConfiguration);
-                    return jsonObject.toString();
-                })
                 .andThen(super.makeModelTransformer(module, manager));
-
     }
 
 
@@ -91,13 +81,6 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 .addModifier((s, blockId, stoneType) ->
                         s.replace("minecraft:block/smooth_" + nameBaseStone, getChildModelId("smooth", stoneType, blockId)))
                 .andThen(super.makeBlockStateTransformer(module, manager));
-    }
-
-    @Override
-    public void generateModels(SimpleModule module, ResourceManager manager, ResourceSink sink) {
-        makeBlockStateTransformer(module, manager);
-        makeModelTransformer(module, manager);
-        super.generateModels(module, manager, sink);
     }
 
     @Override
