@@ -57,7 +57,7 @@ public class HardcodedBlockType {
         if (entrySetList.get().stream().anyMatch(entrySetId::matches)) return true;
 
         // Exclude all of Vanilla Types
-        if (stoneType.isVanilla()) return true;
+        if (isKnownVanillaStone(stoneType)) return true;
 
         // Exclude generated blocks that is just one mod that is both Supported Mods and StoneTypeFromMod
         if (isStoneFrom("quark", "quark", "", "pillar")) return true;
@@ -65,6 +65,7 @@ public class HardcodedBlockType {
         if (isStoneFrom("decorative_blocks", "decorative_blocks", "", "pillar")) return true;
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
         // pillar from Decorative-Blocks, Quark, Create should be always generated
         if (isStoneFrom("quark|create|decorative_blocks", "", "", "pillar")) return false;
 
@@ -97,6 +98,9 @@ public class HardcodedBlockType {
 
         // Exclude one EntrySet from a module
         if (entrySetList.get().stream().anyMatch(entrySetId::matches)) return true;
+
+        // Exclude all of Vanilla Types
+        if (isKnownVanillaMud(mudType)) return true;
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -157,5 +161,32 @@ public class HardcodedBlockType {
 
         return true;
     }
+
+    //for mods that might add in vanilla namespace
+    // StoneType
+    public static boolean isKnownVanillaStone(StoneType stoneType){
+        var id = stoneType.getId();
+        if (id.getNamespace().equals("minecraft")) {
+            return VANILLA_STONES.contains(id.getPath());
+        }
+        return false;
+    }
+
+    private static final Set<String> VANILLA_STONES = Set.of(
+            "stone", "andesite", "granite", "diorite", "tuff", "calcite", "blackstone", "sandstone"
+    );
+
+    // MudType
+    public static boolean isKnownVanillaMud(MudType mudType){
+        var id = mudType.getId();
+        if (id.getNamespace().equals("minecraft")) {
+            return VANILLA_MUDS.contains(id.getPath());
+        }
+        return false;
+    }
+
+    private static final Set<String> VANILLA_MUDS = Set.of(
+            "mud"
+    );
 
 }
