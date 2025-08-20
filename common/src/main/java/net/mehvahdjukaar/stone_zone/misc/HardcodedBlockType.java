@@ -26,7 +26,8 @@ public class HardcodedBlockType {
             "quark:shingles",
             //REASON: not a stonetype
             "outer_end:himmel", "quark:midori", "twigs:silt", "supplementaries:ash", "blue_skies:brumble",
-            "nifty:concrete", "blocksyouneed_luna:bluestone", "blocksyouneed_luna:scorchcobble",
+            "nifty:concrete", "blocksyouneed_luna:bluestone", "blocksyouneed_luna:scorchcobble", "sullysmod:amber",
+            "endergetic:eumus",
             //REASON: shouldn't be detected
             "desire:polished_stone", "desire:chiseled_stone", "create_dd:cut_stone",
             "stoneexpansion:cut_stone", "stoneexpansion:mossy_stone", "stoneexpansion:smooth_stone", "stoneexpansion:polished_stone",
