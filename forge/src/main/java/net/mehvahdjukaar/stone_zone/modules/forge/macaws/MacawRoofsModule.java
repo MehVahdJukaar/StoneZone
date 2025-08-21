@@ -57,7 +57,6 @@ public class MacawRoofsModule extends StoneZoneModule {
                         )
                 )
                 //TEXTURES: stone
-                .excludeTextureFromTinting("#3") //REASON: glass
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()

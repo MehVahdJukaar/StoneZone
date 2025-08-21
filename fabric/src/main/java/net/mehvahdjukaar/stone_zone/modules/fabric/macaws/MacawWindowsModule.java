@@ -15,6 +15,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
 
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BRICKS;
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BRICK_SLAB;
+
 
 //SUPPORT: v2.3.0+
 public class MacawWindowsModule extends StoneZoneModule {
@@ -39,16 +42,6 @@ public class MacawWindowsModule extends StoneZoneModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
-                //REASON: glass
-                .excludeMultipleTextureFromTinting(modRes("block/parent/resizeable/mid_m"), "#0")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/single"), "#1")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/single_l"), "#1")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/single_m"), "#1")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/top"), "#1")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/middle"), "#1")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/mid_l"), "#1")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/top_l"), "#1")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/top_m"), "#1")
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -68,9 +61,6 @@ public class MacawWindowsModule extends StoneZoneModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
-                //REASON: glass
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_barred"), "#0")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_barred_open"), "#0")
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -90,9 +80,6 @@ public class MacawWindowsModule extends StoneZoneModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
-                //REASON: glass
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_four"), "#0")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_four_open"), "#0")
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -112,12 +99,7 @@ public class MacawWindowsModule extends StoneZoneModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
-                //REASON: glass
-                .excludeMultipleTextureFromTinting(modRes("block/parent/gothic/gothic_small"), "#3")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/gothic/gothic_tall_lower"), "#3")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/gothic/gothic_tall_middle"), "#3")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/gothic/gothic_tall_upper"), "#3")
-                .requiresChildren("bricks") //REASON: textures, recipes
+                .requiresChildren(BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
@@ -137,7 +119,7 @@ public class MacawWindowsModule extends StoneZoneModule {
                         )
 
                 )
-                .requiresChildren("bricks", "brick_slab") //REASON: textures, recipes
+                .requiresChildren(BRICKS, BRICK_SLAB) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -157,14 +139,6 @@ public class MacawWindowsModule extends StoneZoneModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_above"), "#0")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_above_open"), "#0")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_base"), "#0")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_base_open"), "#0")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_below"), "#0")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_below_open"), "#0")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_middle"), "#0")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/window/window_middle_open"), "#0")
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
