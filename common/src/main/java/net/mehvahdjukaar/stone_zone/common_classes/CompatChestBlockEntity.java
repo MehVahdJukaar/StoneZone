@@ -2,6 +2,7 @@ package net.mehvahdjukaar.stone_zone.common_classes;
 
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -19,7 +20,7 @@ public class CompatChestBlockEntity extends ChestBlockEntity {
     public CompatChestBlockEntity(BlockEntityType<?> arg, BlockPos pos, BlockState state) {
         super(arg, pos, state);
         StoneType stone = StoneTypeRegistry.INSTANCE.getBlockTypeOf(state.getBlock());
-        this.stoneType = stone == null ? StoneTypeRegistry.getStoneType() : stone;
+        this.stoneType = stone == null ? VanillaStoneTypes.STONE : stone;
         this.trapped = state.getBlock() instanceof CompatTrappedChestBlock;
     }
 

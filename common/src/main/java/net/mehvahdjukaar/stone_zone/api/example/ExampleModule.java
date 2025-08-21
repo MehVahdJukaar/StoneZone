@@ -9,7 +9,7 @@ import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -44,7 +44,7 @@ public class ExampleModule extends StoneZoneModule {
 
         /// NOTE: it's using StoneZoneEntrySet
         sampleBlock_2 = StoneZoneEntrySet.of(StoneType.class,"suffix", "prefix",
-                        getModBlock("oak_table"), StoneTypeRegistry::getStoneType,
+                        getModBlock("oak_table"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .build();
@@ -52,7 +52,7 @@ public class ExampleModule extends StoneZoneModule {
 
         /// NOTE: it's using StoneZoneEntrySet
         sampleBlock = StoneZoneEntrySet.of(StoneType.class,"table",
-                        getModBlock("oak_table"), StoneTypeRegistry::getStoneType,
+                        getModBlock("oak_table"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 ///OPTIONAL: Without this, the default texture is stone's texture
