@@ -3,7 +3,7 @@ package net.mehvahdjukaar.stone_zone.api.set;
 @SuppressWarnings("unused")
 public class VanillaRockChildKeys {
 
-    public static final String STONE = "stone";
+    // BLOCKS
     public static final String STAIRS = "stairs";
     public static final String SLAB = "slab";
     public static final String WALL = "wall";

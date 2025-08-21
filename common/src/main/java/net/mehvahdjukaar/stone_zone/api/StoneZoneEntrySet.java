@@ -19,7 +19,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.*;
 
 import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.addTagToAllBlocks;
-import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BRICKS;
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
+import static net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys.STONE;
 import static net.mehvahdjukaar.stone_zone.misc.ResourceUtils.getChildModelId;
 
 public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
@@ -52,13 +53,13 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
         String nameBaseStone = baseType.get().getTypeName();
         return BlockTypeResTransformer.<T>create(module.getModId(), manager)
                 //these need to be run first. idk why but its like that
-                .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone, "stone")
-                .replaceWithTextureFromChild("minecraft:block/cobblestone", "cobblestone")
-                .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", "bricks")
-                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, "smooth")
-                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone + "_slab_side", "smooth_slab")
-                .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, "polished")
-                .replaceWithTextureFromChild("minecraft:block/mossy_" + nameBaseStone + "_bricks", "mossy_bricks")
+                .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone, STONE)
+                .replaceWithTextureFromChild("minecraft:block/cobblestone", COBBLESTONE)
+                .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", BRICKS)
+                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, SMOOTH)
+                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone + "_slab_side", SMOOTH_SLAB)
+                .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, POLISHED)
+                .replaceWithTextureFromChild("minecraft:block/mossy_" + nameBaseStone + "_bricks", MOSSY_BRICKS)
                 .andThen(super.makeModelTransformer(module, manager));
     }
 
@@ -67,14 +68,14 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
     protected BlockTypeResTransformer<T> makeBlockStateTransformer(SimpleModule module, ResourceManager manager) {
         String nameBaseStone = baseType.get().getTypeName();
         return BlockTypeResTransformer.<T>create(module.getModId(), manager)
-                .replaceWithTextureFromChild("minecraft:block/"+nameBaseStone, "stone")
-                .replaceWithTextureFromChild("minecraft:block/polished_"+nameBaseStone, "polished")
+                .replaceWithTextureFromChild("minecraft:block/"+nameBaseStone, STONE)
+                .replaceWithTextureFromChild("minecraft:block/polished_"+nameBaseStone, POLISHED)
                 .addModifier((s, blockId, stoneType) ->
-                        s.replace("minecraft:block/" + nameBaseStone, getChildModelId("stone", stoneType, blockId)))
+                        s.replace("minecraft:block/" + nameBaseStone, getChildModelId(STONE, stoneType, blockId)))
                 .addModifier((s, blockId, stoneType) ->
-                        s.replace("minecraft:block/" + nameBaseStone + "_bricks", getChildModelId("bricks", stoneType, blockId)))
+                        s.replace("minecraft:block/" + nameBaseStone + "_bricks", getChildModelId(BRICKS, stoneType, blockId)))
                 .addModifier((s, blockId, stoneType) ->
-                        s.replace("minecraft:block/smooth_" + nameBaseStone, getChildModelId("smooth", stoneType, blockId)))
+                        s.replace("minecraft:block/smooth_" + nameBaseStone, getChildModelId(SMOOTH, stoneType, blockId)))
                 .andThen(super.makeBlockStateTransformer(module, manager));
     }
 
