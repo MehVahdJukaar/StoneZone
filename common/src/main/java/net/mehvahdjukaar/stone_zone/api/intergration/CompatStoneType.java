@@ -31,10 +31,17 @@ public class CompatStoneType {
 
         StoneTypeRegistry stoneReg = StoneTypeRegistry.INSTANCE;
 
+        // Sundries - REASON: 2-Words
+        stoneReg.addSimpleFinder("sundries", "green_marble");
+        stoneReg.addSimpleFinder("sundries", "white_marble");
+        stoneReg.addSimpleFinder("sundries", "pink_granodiorite");
+        stoneReg.addSimpleFinder("sundries", "black_granite");
+        stoneReg.addSimpleFinder("sundries", "black_marble");
+        stoneReg.addSimpleFinder("sundries", "pink_marble");
+
         // Blocks You Need - Luna
             //NOTE: not really a StoneType
         stoneReg.addSimpleFinder("blocksyouneed_luna", "sodalite");
-
 
         stoneReg.addSimpleFinder("blocksyouneed_luna", "sunstone") //REASON: Undetected-Bricks, Spelling-Convention
                 .childBlockSuffix(VanillaRockChildKeys.BRICKS, "_bricks_ornate")
