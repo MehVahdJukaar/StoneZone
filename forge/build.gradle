@@ -154,9 +154,9 @@ dependencies {
 //    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | Chipped
 //    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | Chipped, Handcrafted
 //    modRuntimeOnly("curse.maven:ctm-267602:5983309") // v1.1.10 | Chipped
-    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled
+//    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled
 //    modRuntimeOnly("curse.maven:curios-309927:6418456") // v5.14.1 | Eternal-Tales
-    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled, Better-Archeology
+//    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled, Better-Archeology
 //    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct
 //    modRuntimeOnly("curse.maven:blueprint-382216:5292242") // v7.1.0 | The-Outer-End, Caverns-And-Chasms, Atmospheric
 //    modRuntimeOnly("curse.maven:monolib-968432:6123976") // v2.0.0 | More-Beautiful-Torches
@@ -171,10 +171,10 @@ dependencies {
     modRuntimeOnly("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}") // Create
 
         //+ REQUIRED - The modules access libaries from below - Only in FORGE
-    modImplementation("curse.maven:supermartijn642s-core-lib-454372:5668859") // v1.1.17a | Rechiseled
+    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:5668859") // v1.1.17a | Rechiseled
 
             //+ OTHER MAVENS
-    modImplementation("com.tterrag.registrate:Registrate:${registrate_version}") // Create
+    modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create
 
 //!! =================================================== IMPORTS ==================================================== \\
         //- ONLY FOR TESTING - can be commented out or enabled
@@ -206,11 +206,11 @@ dependencies {
     modCompileOnly("curse.maven:additional-lights-384991:4596807")
     modCompileOnly("curse.maven:blocks-you-need-925718:6759906")
     modCompileOnly("curse.maven:buildersaddition-389697:4772826")
-    modImplementation("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
+    modCompileOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
     modCompileOnly("curse.maven:stone-chest-307052:5389562")
 
             // OTHER MAVENS
-    modImplementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel, Ponder
+    modCompileOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false } // Registrate, Flywheel, Ponder
 
             // ~/forge/mods LOCAL
     modCompileOnly("blocks_plus:blocks+1.20.1-1.7")
@@ -236,6 +236,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:eternal-tales-416512:6687256")
 //    modRuntimeOnly("curse.maven:regions-unexplored-659110:5558225")
 //    modRuntimeOnly("curse.maven:twigs-496913:4998195")
+//    modRuntimeOnly("curse.maven:sundries-1101684:6884756")
 
     // MUDTYPE ONLY
     modRuntimeOnly("curse.maven:deeperdarker-659011:5906086")
