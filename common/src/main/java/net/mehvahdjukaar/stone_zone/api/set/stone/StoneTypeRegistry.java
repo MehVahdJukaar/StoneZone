@@ -52,7 +52,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
         /// DEFAULT
         if (!BLACKLISTED_MODS.contains(baseRes.getNamespace())) {
             // Check for <type>_bricks | <type>_stone_bricks
-            if (blockPath.matches("[a-z]+_(stone_)?bricks?")) {
+            if (blockPath.matches("[a-z]+_(?:stone_)?bricks?")) {
                 String stoneName = blockPath.substring(0, blockPath.length() - 7); // get stoneName from namespace:stoneName_bricks
                 String stoneAlt = stoneName + "_stone"; // Some mods included "_stone" as the suffix
                 ResourceLocation idBlockType = baseRes.withPath(stoneName);
