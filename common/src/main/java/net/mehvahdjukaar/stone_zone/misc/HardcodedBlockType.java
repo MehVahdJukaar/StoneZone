@@ -78,6 +78,8 @@ public class HardcodedBlockType {
         // Create's blocks aren't generated for Quark, Wetland-Whimsy, Geologic-Expansion, TerraFirmaCraft because they both have LIMESTONE & Also fix the tag issue (#64)
         if (isStoneFrom("create", "", "quark:limestone|wetland_whimsy:limestone|geologicexpansion:limestone|tfc:limestone", "")) return false;
 
+        // Ensure blocks to be generated because TerraFirmaCraft has similar name of Vanilla StoneType (andesite, granite, diorite, so on...)
+        if (isStoneFrom("", "tfc", "", "")) return false;
 
         return null;
     }
