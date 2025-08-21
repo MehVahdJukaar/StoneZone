@@ -1,8 +1,8 @@
 package net.mehvahdjukaar.stone_zone;
 
 import net.mehvahdjukaar.every_compat.configs.ECConfigs;
-import net.mehvahdjukaar.stone_zone.api.set.MudType;
-import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.mud.MudType;
+import net.mehvahdjukaar.stone_zone.api.set.mud.MudTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
 import net.minecraft.ChatFormatting;

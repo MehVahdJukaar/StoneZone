@@ -7,7 +7,7 @@ import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.SZRegistry;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.set.MudType;
+import net.mehvahdjukaar.stone_zone.api.set.mud.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType;
 import net.minecraft.core.Registry;

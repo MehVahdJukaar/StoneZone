@@ -1,10 +1,10 @@
-package net.mehvahdjukaar.stone_zone.api.set;
+package net.mehvahdjukaar.stone_zone.api.set.mud;
 
 import com.google.common.base.Preconditions;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.moonlight.core.ClientConfigs;
 import net.mehvahdjukaar.stone_zone.StoneZone;
+import net.mehvahdjukaar.stone_zone.api.set.RockType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
@@ -14,8 +14,6 @@ import org.jetbrains.annotations.ApiStatus;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.moonlight.api.set.DebugBlockTypes.appendToDebugFile;
-
 public class MudType extends RockType {
 
     public final Block mud;
@@ -23,8 +21,6 @@ public class MudType extends RockType {
     protected MudType(ResourceLocation id, Block mud) {
         super(id, mud);
         this.mud = mud;
-
-        if (ClientConfigs.BLOCKTYPES_DEBUG.get() && !this.isVanilla()) appendToDebugFile(getTranslationKey());
     }
 
     @Override

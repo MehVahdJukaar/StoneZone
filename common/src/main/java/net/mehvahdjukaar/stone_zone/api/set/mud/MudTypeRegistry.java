@@ -1,11 +1,13 @@
-package net.mehvahdjukaar.stone_zone.api.set;
+package net.mehvahdjukaar.stone_zone.api.set.mud;
 
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_MODS;
@@ -13,10 +15,6 @@ import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_M
 public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
 
     public static final MudTypeRegistry INSTANCE = new MudTypeRegistry();
-
-    public static MudType getMudType() {
-        return VanillaMudTypes.MUD;
-    }
 
     public MudTypeRegistry() {
         super(MudType.class, "mud_type");
@@ -75,5 +73,24 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
     @Override
     public int priority() {
         return 110;
+    }
+
+    //!! ───────────────────────────────────────────── Marked For Removal ──────────────────────────────────────────────
+    /// USE {@link VanillaMudTypes#MUD}
+    @Deprecated(forRemoval = true)
+    public static MudType getMudType() {
+        return VanillaMudTypes.MUD;
+    }
+
+    /// USE {@link VanillaMudTypes}
+    @Deprecated(forRemoval = true)
+    public static MudType getValue(String mudTypeId) {
+        return INSTANCE.get(new ResourceLocation(mudTypeId));
+    }
+
+    /// USE {@link StoneTypeRegistry#INSTANCE} - can be used in FOR Loop statement
+    @Deprecated(forRemoval = true)
+    public static Collection<MudType> getTypes() {
+        return INSTANCE.getValues();
     }
 }

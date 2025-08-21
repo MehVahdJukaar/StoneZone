@@ -4,9 +4,8 @@ import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.MudType;
-import net.mehvahdjukaar.stone_zone.api.set.VanillaMudTypes;
-import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.mud.MudType;
+import net.mehvahdjukaar.stone_zone.api.set.mud.VanillaMudTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
@@ -19,6 +18,8 @@ import org.violetmoon.zeta.block.ZetaBlock;
 import org.violetmoon.zeta.block.ZetaPillarBlock;
 
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BRICKS;
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BRICK_SLAB;
 
 
 //SUPPORT: v4.0-4.6.0+
@@ -34,10 +35,10 @@ public class QuarkMudModule extends StoneZoneModule {
 
         brick_lattices = QuarkEntrySet.of(MudType.class, "brick_lattice", MoreMudBlocksModule.class,
                         getModBlock("mud_brick_lattice"), () -> VanillaMudTypes.MUD,
-                        mudType -> new MudBrickLatticeBlock(null, copyChildrenPropertySafe("bricks", mudType))
+                        mudType -> new MudBrickLatticeBlock(null, copyChildrenPropertySafe(BRICKS, mudType))
                 )
                 .createPaletteFromBricks()
-                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: recipes, palettes
+                .requiresChildren(BRICKS) //REASON: recipes, palettes
                 .addTexture(modRes("block/mud_brick_lattice"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -51,11 +52,11 @@ public class QuarkMudModule extends StoneZoneModule {
                         getModBlock("carved_mud_bricks"), () -> VanillaMudTypes.MUD,
                         mudType -> {
                             String name = shortenedId() + "/" + mudType.getAppendableIdWith("carved", "bricks");
-                            return new ZetaBlock(name, null, copyChildrenPropertySafe("bricks", mudType));
+                            return new ZetaBlock(name, null, copyChildrenPropertySafe(BRICKS, mudType));
                         }
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("brick_slab", "bricks") //REASON: recipes, textures, palettes
+                .requiresChildren(BRICK_SLAB, BRICKS) //REASON: recipes, textures, palettes
                 //TEXTURES: bricks
                 .addTexture(modRes("block/carved_mud_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -73,7 +74,7 @@ public class QuarkMudModule extends StoneZoneModule {
                         }
                 )
                 .createPaletteFromBricks()
-                .requiresChildren("brick_slab", "bricks") //REASON: recipes, palettes
+                .requiresChildren(BRICK_SLAB, BRICKS) //REASON: recipes, palettes
                 .addTexture(modRes("block/mud_pillar"))
                 .addTexture(modRes("block/mud_pillar_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
