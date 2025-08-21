@@ -24,13 +24,16 @@ public class HardcodedBlockType {
     public static final Set<String> BLACKLISTED_STONETYPES = Set.of(
             //REASON: is a terracotta
             "quark:shingles",
+
             //REASON: not a stonetype
             "outer_end:himmel", "quark:midori", "twigs:silt", "supplementaries:ash", "blue_skies:brumble",
             "nifty:concrete", "blocksyouneed_luna:bluestone", "blocksyouneed_luna:scorchcobble", "sullysmod:amber",
-            "endergetic:eumus",
+            "endergetic:eumus", "minecraft:mud",
+
             //REASON: shouldn't be detected
             "desire:polished_stone", "desire:chiseled_stone", "create_dd:cut_stone",
             "stoneexpansion:cut_stone", "stoneexpansion:mossy_stone", "stoneexpansion:smooth_stone", "stoneexpansion:polished_stone",
+            "minecraft:infested_stone",
 
             //REASON: The StoneType's texture is only white and no way for blocks to copy its color behavior
             "rgbblocks:prismarine"
@@ -175,7 +178,8 @@ public class HardcodedBlockType {
     }
 
     private static final Set<String> VANILLA_STONES = Set.of(
-            "stone", "andesite", "granite", "diorite", "tuff", "calcite", "blackstone", "sandstone"
+            "stone", "andesite", "granite", "diorite", "tuff", "calcite", "blackstone", "sandstone",
+            "basalt", "deepslate", "prismarine", "nether", "end_stone"
     );
 
     // MudType
