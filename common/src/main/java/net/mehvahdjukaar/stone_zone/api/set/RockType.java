@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
+
 /**
  * Childkey Availability:
  * <Ul>
@@ -28,9 +30,9 @@ public abstract class RockType extends BlockType{
 
     public final Block block;
 
-    protected RockType(ResourceLocation id, Block stone) {
+    protected RockType(ResourceLocation id, Block block) {
         super(id);
-        this.block = stone;
+        this.block = block;
     }
 
     @Override
@@ -42,33 +44,33 @@ public abstract class RockType extends BlockType{
 
     @Override
     protected void initializeChildrenBlocks() {
-        this.addChild("stone", this.block);
-        this.addChild("stairs", this.findRelatedBlock("", "stairs"));
-        this.addChild("slab", this.findRelatedBlock("", "slab"));
-        this.addChild("wall", this.findRelatedBlock("", "wall"));
-        this.addChild("button", this.findRelatedBlock("", "button"));
-        this.addChild("pressure_plate", this.findRelatedBlock("", "pressure_plate"));
+        this.addChild("block", this.block);
+        this.addChild(STAIRS, this.findRelatedBlock("", "stairs"));
+        this.addChild(SLAB, this.findRelatedBlock("", "slab"));
+        this.addChild(WALL, this.findRelatedBlock("", "wall"));
+        this.addChild(BUTTON, this.findRelatedBlock("", "button"));
+        this.addChild(PRESSURE_PLATE, this.findRelatedBlock("", "pressure_plate"));
 
         Block cobblestone = this.findCobblestoneEntry("", "");
         if (Objects.nonNull(cobblestone)) {
-            this.addChild("cobblestone", cobblestone);
-            this.addChild("mossy_cobblestone", this.findRelatedBlock("mossy",""));
+            this.addChild(COBBLESTONE, cobblestone);
+            this.addChild(MOSSY_COBBLESTONE, this.findRelatedBlock("mossy",""));
         }
 
         Block polished = this.findRelatedBlock("polished", "");
         if (Objects.nonNull(polished)) {
-            this.addChild("polished", polished);
-            this.addChild("polished_stairs", findRelatedBlock("polished", "stairs"));
-            this.addChild("polished_slab", findRelatedBlock("polished", "slab"));
-            this.addChild("polished_wall", findRelatedBlock("polished", "wall"));
+            this.addChild(POLISHED, polished);
+            this.addChild(POLISHED_STAIRS, findRelatedBlock("polished", "stairs"));
+            this.addChild(POLISHED_SLAB, findRelatedBlock("polished", "slab"));
+            this.addChild(POLISHED_WALL, findRelatedBlock("polished", "wall"));
         }
 
         Block smooth = this.findRelatedBlock("smooth", "");
         if (Objects.nonNull(smooth)) {
-            this.addChild("smooth", smooth);
-            this.addChild("smooth_stairs", findRelatedBlock("smooth", "stairs"));
-            this.addChild("smooth_slab", findRelatedBlock("smooth", "slab"));
-            this.addChild("smooth_wall", findRelatedBlock("smooth", "wall"));
+            this.addChild(SMOOTH, smooth);
+            this.addChild(SMOOTH_STAIRS, findRelatedBlock("smooth", "stairs"));
+            this.addChild(SMOOTH_SLAB, findRelatedBlock("smooth", "slab"));
+            this.addChild(SMOOTH_WALL, findRelatedBlock("smooth", "wall"));
         }
 
         Block bricks = this.findBrickEntry("", "");
@@ -76,23 +78,23 @@ public abstract class RockType extends BlockType{
         if (Objects.nonNull(bricks) || Objects.nonNull(bricksTFC)) {
             // Support TFC & AFC
             if (this.id.getNamespace().matches("tfc|afc")) {
-                this.addChild("bricks", bricksTFC);
-                this.addChild("brick_stairs", findRelatedBlock("bricks", "stairs"));
-                this.addChild("brick_slab", findRelatedBlock("bricks", "slab"));
-                this.addChild("brick_wall", findRelatedBlock("bricks", "wall"));
-                this.addChild("cracked_bricks", findRelatedBlock("cracked_bricks", ""));
+                this.addChild(BRICKS, bricksTFC);
+                this.addChild(BRICK_STAIRS, findRelatedBlock("bricks", "stairs"));
+                this.addChild(BRICK_SLAB, findRelatedBlock("bricks", "slab"));
+                this.addChild(BRICK_WALL, findRelatedBlock("bricks", "wall"));
+                this.addChild(CRACKED_BRICKS, findRelatedBlock("cracked_bricks", ""));
             }
             else {
-                this.addChild("bricks", bricks);
-                this.addChild("brick_stairs", findBrickEntry("", "stairs"));
-                this.addChild("brick_slab", findBrickEntry("", "slab"));
-                this.addChild("brick_wall", findBrickEntry("", "wall"));
-                this.addChild("brick_tiles", findBrickEntry("", "tiles"));
-                this.addChild("cracked_bricks", findBrickEntry("cracked", ""));
-                this.addChild("mossy_bricks", findBrickEntry("mossy", ""));
-                this.addChild("mossy_brick_slab", findBrickEntry("mossy", "slab"));
-                this.addChild("mossy_brick_stairs", findBrickEntry("mossy", "stairs"));
-                this.addChild("mossy_brick_wall", findBrickEntry("mossy", "wall"));
+                this.addChild(BRICKS, bricks);
+                this.addChild(BRICK_STAIRS, findBrickEntry("", "stairs"));
+                this.addChild(BRICK_SLAB, findBrickEntry("", "slab"));
+                this.addChild(BRICK_WALL, findBrickEntry("", "wall"));
+                this.addChild(BRICK_TILES, findBrickEntry("", "tiles"));
+                this.addChild(CRACKED_BRICKS, findBrickEntry("cracked", ""));
+                this.addChild(MOSSY_BRICKS, findBrickEntry("mossy", ""));
+                this.addChild(MOSSY_BRICK_SLAB, findBrickEntry("mossy", "slab"));
+                this.addChild(MOSSY_BRICK_STAIRS, findBrickEntry("mossy", "stairs"));
+                this.addChild(MOSSY_BRICK_WALL, findBrickEntry("mossy", "wall"));
             }
         }
 
@@ -126,21 +128,20 @@ public abstract class RockType extends BlockType{
             return reg.get(new ResourceLocation("cobblestone"));
         }
 
-        String prefix = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
-        String infix = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
-        String withoutUnderscore = suffix;
+        String prefixed = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
+        String infixed = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
+        String suffixed = (suffix.isEmpty()) ? "" : "_" + suffix;
 
-        if (!suffix.isEmpty() && !prefixOrInfix.isEmpty()) suffix = "_" + suffix;
         ResourceLocation[] targets = {
                 // DEFAULT
-                new ResourceLocation(id.getNamespace(), id.getPath() + infix + suffix),
-                new ResourceLocation(id.getNamespace(), prefix + id.getPath() + suffix),
+                new ResourceLocation(id.getNamespace(), id.getPath() + infixed + suffixed),
+                new ResourceLocation(id.getNamespace(), prefixed + id.getPath() + suffixed),
                 // TFC & AFC: Include children of stone_type: stairs, slab...
-                new ResourceLocation(id.getNamespace(), "rock/raw/" + id.getPath() +"_"+ prefixOrInfix),
+                new ResourceLocation(id.getNamespace(), "rock/raw/" + id.getPath() + suffixed),
                 // TFC & AFC: Include children of smooth, cobblestone, button, pressure_plate, bricks, cracked_bricks
-                new ResourceLocation(id.getNamespace(), "rock/" + prefixOrInfix + suffix +"/"+ id.getPath()),
+                new ResourceLocation(id.getNamespace(), "rock/" + prefixed + suffix +"/"+ id.getPath()),
                 // TFC & AFC: Include children of brick_slab, smooth_slab, brick_stairs, smooth_stairs
-                new ResourceLocation(id.getNamespace(), "rock/"+ prefixOrInfix +"/"+ id.getPath() + suffix)
+                new ResourceLocation(id.getNamespace(), "rock/"+ prefixOrInfix +"/"+ id.getPath() + suffixed)
         };
         V found = null;
         for (var r : targets) {
