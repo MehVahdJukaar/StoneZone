@@ -13,7 +13,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 
 
-//SUPPORT: v
+//SUPPORT: v14.1.15+
 public class WaystonesModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> waystone;
