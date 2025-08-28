@@ -19,7 +19,7 @@ public class CompatStoneType {
      *
      * Spelling-Convention: a typo in the Id, no underscore. Example: bricks_stairs instead of brick_stairs
      *
-     * Naming-Convention: blocks has unique names that doesn't have "_block", "_stone", or has different affix
+     * Naming-Convention: blocks has unique names that doesn't have "_block", "_stone", "_mud", or has different affix
      *
      * No-Children: There is no children for StoneType, just Stone.
      *
@@ -211,6 +211,9 @@ public class CompatStoneType {
 
         // Deeper And Darker - REASON: 2-Words
         mudReg.addSimpleFinder("deeperdarker:sculk_grime");
+
+        // Enlighened End - REASON: Naming-Convention
+        mudReg.addSimpleFinder("enlightened_end:chorloam");
     }
 
 }

@@ -32,7 +32,7 @@ public class HardcodedBlockType {
             //REASON: not a stonetype
             "outer_end:himmel", "quark:midori", "twigs:silt", "supplementaries:ash", "blue_skies:brumble",
             "nifty:concrete", "blocksyouneed_luna:bluestone", "blocksyouneed_luna:scorchcobble", "sullysmod:amber",
-            "endergetic:eumus", "minecraft:mud",
+            "endergetic:eumus", "minecraft:mud", "enlightened_end:chorloam",
 
             //REASON: shouldn't be detected
             "desire:polished_stone", "desire:chiseled_stone", "create_dd:cut_stone",
