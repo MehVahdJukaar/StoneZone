@@ -8,7 +8,7 @@
 
 <div style="text-align: left;">
 
-* **(COMMON)**: FORGE & FABRIC
+* **(C)**: FORGE & FABRIC
 * **(FB)**: FABRIC
 * **(F)**: FORGE
 * **(IT)**: Included Texture: Added the ResourceLocation of the missing textures required for blocks or generating a new texture
@@ -20,6 +20,12 @@
 </div>
 
 </div>
+
+### UPDATED: 
+- **Stone Zone** (C): Fixed children not being detected - [#137](https://github.com/MehVahdJukaar/StoneZone/issues/137)
+- **Quark** (IT): Added a custom texture for a tinted StoneType: Myalite's stone & bricks - [#140](https://github.com/MehVahdJukaar/StoneZone/issues/140)
+
+---
 
 ## v2.9.0
 
