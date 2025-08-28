@@ -10,7 +10,7 @@ import net.mehvahdjukaar.stone_zone.api.set.mud.MudTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.configs.SZConfigs;
 import net.mehvahdjukaar.stone_zone.configs.UnsafeDisablerConfigs;
-import net.mehvahdjukaar.stone_zone.misc.SpriteHelper;
+import net.mehvahdjukaar.stone_zone.misc.CompatSpriteHelper;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,13 +26,13 @@ public class StoneZone extends EveryCompat {
         SZConfigs.init();
         UnsafeDisablerConfigs.init();
         SZRegistry.init();
-        SpriteHelper.initHardcodedSprite();
+        CompatSpriteHelper.initHardcodedSprite();
 
         BlockSetAPI.registerBlockSetDefinition(StoneTypeRegistry.INSTANCE);
         BlockSetAPI.registerBlockSetDefinition(MudTypeRegistry.INSTANCE);
         CompatStoneType.init();
 
-        PlatHelper.addCommonSetup(SpriteHelper::addHardcodedModel);
+        PlatHelper.addCommonSetup(CompatSpriteHelper::addHardcodedModel);
 
         // Add ModId to DynamicPack so the tags can be loaded into the world first time
         addModToDynamicPack("caverns_and_chasms");

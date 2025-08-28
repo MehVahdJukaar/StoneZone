@@ -1,6 +1,7 @@
 package net.mehvahdjukaar.stone_zone.misc;
 
 
+import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.resources.ResourceLocation;
 
@@ -9,13 +10,17 @@ import java.util.Map;
 
 import static net.mehvahdjukaar.every_compat.misc.SpriteExtra.addOptional;
 
-public class SpriteHelper {
+public class CompatSpriteHelper {
 
     public final static Map<ResourceLocation, String> modelID = new HashMap<>();
 
     // TEXTURES \\
 /// NOTE: Used to identify StoneTypes' texture only based off their name
     public static void initHardcodedSprite() {
+
+        // Quark
+        addOptional("quark:myalite", "all", StoneZone.MOD_ID + ":block/quark/myalite_tinted");
+        addOptional("quark:myalite_bricks", "all", StoneZone.MOD_ID + ":block/quark/myalite_bricks_tinted");
 
         // BetterEnd
         addOptional("betterend:umbralith", "all", "betterend:block/umbralith");
@@ -44,4 +49,8 @@ public class SpriteHelper {
     private static void addToModelId(String blockid, String pathModel) {
         modelID.put(StoneZone.res(blockid), pathModel);
     }
+
+    public final static Map<ResourceLocation, Pair<String, String>> tintedStoneType = Map.of(
+            new ResourceLocation("quark:myalite"), Pair.of(":block/quark/myalite_tinted", ":block/quark/myalite_bricks_tinted")
+    );
 }
