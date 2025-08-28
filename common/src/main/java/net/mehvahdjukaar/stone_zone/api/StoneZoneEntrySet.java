@@ -7,6 +7,7 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
+import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.CreativeModeTab;
@@ -21,6 +22,7 @@ import java.util.function.*;
 import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.addTagToAllBlocks;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 import static net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys.STONE;
+import static net.mehvahdjukaar.stone_zone.misc.CompatSpriteHelper.tintedStoneType;
 import static net.mehvahdjukaar.stone_zone.misc.ResourceUtils.getChildModelId;
 
 public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
@@ -53,9 +55,18 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
         String nameBaseStone = baseType.get().getTypeName();
         return BlockTypeResTransformer.<T>create(module.getModId(), manager)
                 //these need to be run first. idk why but its like that
+                .addModifier((s, resourceLocation, blockType) -> {
+                    if (tintedStoneType.containsKey(blockType.getId())) {
+                        String stonePath = tintedStoneType.get(blockType.getId()).getFirst();
+                        String bricksPath = tintedStoneType.get(blockType.getId()).getSecond();
+                        return s.replace("minecraft:block/" + nameBaseStone + "_bricks", StoneZone.MOD_ID + stonePath)
+                                .replace("minecraft:block/" + nameBaseStone,StoneZone.MOD_ID + bricksPath);
+                    }
+                    return s;
+                })
+                .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", BRICKS)
                 .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone, STONE)
                 .replaceWithTextureFromChild("minecraft:block/cobblestone", COBBLESTONE)
-                .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", BRICKS)
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, SMOOTH)
                 .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone + "_slab_side", SMOOTH_SLAB)
                 .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, POLISHED)
