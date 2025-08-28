@@ -18,7 +18,11 @@ public class HardcodedBlockType {
     public static String supportedBlockName;
 
     public static final Set<String> BLACKLISTED_MODS = Set.of(
-            "immersive_weathering", "chipped", "create_confectionery", "rgbblocks"
+            //REASON: shouldn't be detected
+            "immersive_weathering", "chipped", "create_confectionery", "rgbblocks",
+
+            //REASON: It has a tinted StoneType but impossible to support because it has tintedIndex where color changes based on coordinates
+            "opalescence"
     );
 
     public static final Set<String> BLACKLISTED_STONETYPES = Set.of(
