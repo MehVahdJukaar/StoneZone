@@ -7,7 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 public class ResourceUtils {
 
     public static <T extends BlockType> String getChildModelId(String childkey, T stoneType, ResourceLocation blockId) {
-        if (CompatSpriteHelper.modelID.containsKey(blockId)) return CompatSpriteHelper.modelID.get(blockId);
+        if (CompatSpritesHelper.modelID.containsKey(blockId)) return CompatSpritesHelper.modelID.get(blockId);
 
         return Utils.getID(stoneType.getBlockOfThis(childkey)).withPrefix("block/").toString();
     }

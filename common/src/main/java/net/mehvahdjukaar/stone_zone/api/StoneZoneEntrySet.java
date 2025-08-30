@@ -22,7 +22,7 @@ import java.util.function.*;
 import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.addTagToAllBlocks;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 import static net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys.STONE;
-import static net.mehvahdjukaar.stone_zone.misc.CompatSpriteHelper.tintedStoneType;
+import static net.mehvahdjukaar.stone_zone.misc.CompatSpritesHelper.tintedStoneType;
 import static net.mehvahdjukaar.stone_zone.misc.ResourceUtils.getChildModelId;
 
 public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {

@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static net.mehvahdjukaar.every_compat.misc.SpriteExtra.addOptional;
 
-public class CompatSpriteHelper {
+public class CompatSpritesHelper {
 
     public final static Map<ResourceLocation, String> modelID = new HashMap<>();
 
