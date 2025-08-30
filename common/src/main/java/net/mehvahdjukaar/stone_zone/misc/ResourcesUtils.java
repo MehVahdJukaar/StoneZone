@@ -4,8 +4,9 @@ import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.minecraft.resources.ResourceLocation;
 
-public class ResourceUtils {
+public class ResourcesUtils {
 
+    @SuppressWarnings("DataFlowIssue")
     public static <T extends BlockType> String getChildModelId(String childkey, T stoneType, ResourceLocation blockId) {
         if (CompatSpritesHelper.modelID.containsKey(blockId)) return CompatSpritesHelper.modelID.get(blockId);
 
