@@ -41,7 +41,7 @@ public class MacawFencesModule extends StoneZoneModule {
 
         modern_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "modern",
                         getModBlock("modern_stone_brick_wall"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new FenceBlock(standardCopyProperies(stoneType))
+                        stoneType -> new FenceBlock(standardCopyProperties(stoneType))
                 )
                 .requiresChildren(BRICKS, COBBLESTONE) //REASON: testures, recipes
                 //TEXTURES: bricks, cobblestone
@@ -56,7 +56,7 @@ public class MacawFencesModule extends StoneZoneModule {
 
         railing_brick_gates = StoneZoneEntrySet.of(StoneType.class, "brick_railing_gate",
                         getModBlock("stone_brick_railing_gate"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new FenceGateBlock(standardCopyProperies(stoneType), WoodType.OAK)
+                        stoneType -> new FenceGateBlock(standardCopyProperties(stoneType), WoodType.OAK)
                 )
                 .requiresChildren(BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -73,7 +73,7 @@ public class MacawFencesModule extends StoneZoneModule {
 
         railing_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "railing",
                         getModBlock("railing_stone_brick_wall"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new FenceBlock(standardCopyProperies(stoneType))
+                        stoneType -> new FenceBlock(standardCopyProperties(stoneType))
                 )
                 .requiresChildren(BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -90,7 +90,7 @@ public class MacawFencesModule extends StoneZoneModule {
 
         grass_topped_walls = StoneZoneEntrySet.of(StoneType.class, "grass_topped_wall",
                         getModBlock("stone_grass_topped_wall"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new FenceHitbox(standardCopyProperies(stoneType))
+                        stoneType -> new FenceHitbox(standardCopyProperties(stoneType))
                 )
                 .requiresChildren(BRICKS, COBBLESTONE) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -108,7 +108,7 @@ public class MacawFencesModule extends StoneZoneModule {
 //!! ANDESITE
         pillar_walls = StoneZoneEntrySet.of(StoneType.class, "pillar_wall",
                         getModBlock("andesite_pillar_wall"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new FenceBlock(standardCopyProperies(stoneType))
+                        stoneType -> new FenceBlock(standardCopyProperties(stoneType))
                 )
                 .requiresChildren(POLISHED) //REASON: textures, recipes
                 //TEXTURES: stone, polished
@@ -123,7 +123,7 @@ public class MacawFencesModule extends StoneZoneModule {
 
         railing_gates = StoneZoneEntrySet.of(StoneType.class, "railing_gate",
                         getModBlock("andesite_railing_gate"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new FenceGateBlock(standardCopyProperies(stoneType), WoodType.OAK)
+                        stoneType -> new FenceGateBlock(standardCopyProperties(stoneType), WoodType.OAK)
                 )
                 .requiresChildren(POLISHED) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -140,7 +140,7 @@ public class MacawFencesModule extends StoneZoneModule {
 
         railing_walls = StoneZoneEntrySet.of(StoneType.class, "wall", "railing",
                         getModBlock("railing_andesite_wall"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new FenceBlock(standardCopyProperies(stoneType))
+                        stoneType -> new FenceBlock(standardCopyProperties(stoneType))
                 )
                 .requiresChildren(POLISHED) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -157,7 +157,7 @@ public class MacawFencesModule extends StoneZoneModule {
 
         modern_walls = StoneZoneEntrySet.of(StoneType.class, "wall", "modern",
                         getModBlock("modern_andesite_wall"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new FenceBlock(standardCopyProperies(stoneType))
+                        stoneType -> new FenceBlock(standardCopyProperties(stoneType))
                 )
                 .requiresChildren(POLISHED) //REASON: testures, recipes
                 //TEXTURES: stone, polished
@@ -173,7 +173,7 @@ public class MacawFencesModule extends StoneZoneModule {
 
     }
 
-    private BlockBehaviour.Properties standardCopyProperies(StoneType stoneType) {
+    private BlockBehaviour.Properties standardCopyProperties(StoneType stoneType) {
         return Utils.copyPropertySafe(stoneType.bricksOrStone())
                 .mapColor(MapColor.STONE)
                 .sound(SoundType.STONE)
