@@ -1,7 +1,9 @@
 package net.mehvahdjukaar.stone_zone.api;
 
+import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
@@ -23,7 +25,6 @@ public class StoneZoneModule extends SimpleModule {
     public StoneZoneModule(String modId, String shortId) {
         super(modId, shortId, StoneZone.MOD_ID);
     }
-
 
     @Override
     @SuppressWarnings("DataFlowIssue")
@@ -69,7 +70,12 @@ public class StoneZoneModule extends SimpleModule {
         executor.accept((resourceManager, resourceSink) -> {
             getEntries().forEach(entrySetParent -> {
                 if (entrySetParent instanceof StoneZoneEntrySet<?,?> entrySet) {
-                    entrySet.generateModels(this, resourceManager, resourceSink);
+                    try {
+                        entrySet.generateModels(this, resourceManager, resourceSink);
+                    } catch (Exception ex) {
+                        EveryCompat.LOGGER.error("Failed to generate client resources for EntrySet: {} from module {}:", entrySet, this, ex);
+                        if (PlatHelper.isDev()) throw ex;
+                    }
                 }
             });
         });

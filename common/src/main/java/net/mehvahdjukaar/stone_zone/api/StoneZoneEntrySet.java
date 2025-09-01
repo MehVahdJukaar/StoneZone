@@ -3,11 +3,13 @@ package net.mehvahdjukaar.stone_zone.api;
 import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.every_compat.api.*;
 import net.mehvahdjukaar.every_compat.misc.ModelConfiguration;
+import net.mehvahdjukaar.every_compat.misc.ResourcesUtils;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.StoneZone;
+import net.mehvahdjukaar.stone_zone.misc.CompatSpritesHelper;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.CreativeModeTab;
@@ -51,27 +53,39 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
     }
 
     @Override
+    public void generateModels(SimpleModule module, ResourceManager manager, ResourceSink sink) {
+        ResourcesUtils.generateStandardBlockModels(manager, sink, blocks, baseType.get(),
+                makeModelTransformer(module, manager), makeBlockStateTransformer(module, manager), this.modelConfiguration
+        );
+        ResourcesUtils.generateStandardItemModels(manager, sink, items, baseType.get(),
+                makeModelTransformer(module, manager), this.modelConfiguration
+        );
+    }
+
+    @Override
     protected BlockTypeResTransformer<T> makeModelTransformer(SimpleModule module, ResourceManager manager) {
-        String nameBaseStone = baseType.get().getTypeName();
-        return BlockTypeResTransformer.<T>create(module.getModId(), manager)
-                //these need to be run first. idk why but its like that
-                .addModifier((s, resourceLocation, blockType) -> {
+        String oldTypeName = baseType.get().getTypeName();
+        BlockTypeResTransformer<T> modelTransformer = BlockTypeResTransformer.<T>create(module.getModId(), manager)
+                // Modifying models' filename & ResourceLocation
+                .setIDModifier((s, blockId, blockType) ->
+                        BlockTypeResTransformer.replaceFullGenericType(s, blockType, blockId, oldTypeName, null, 2)
+                )
+                // Modifying the model files' content
+                .addModifier((s, blockId, blockType) -> {
+                    s = BlockTypeResTransformer.replaceFullGenericType(s, blockType, blockId, oldTypeName, module.getModId(), "block(?!.*parent)");
+
                     if (tintedStoneType.containsKey(blockType.getId())) {
                         String stonePath = tintedStoneType.get(blockType.getId()).getFirst();
                         String bricksPath = tintedStoneType.get(blockType.getId()).getSecond();
-                        return s.replace("minecraft:block/" + nameBaseStone + "_bricks", StoneZone.MOD_ID + stonePath)
-                                .replace("minecraft:block/" + nameBaseStone,StoneZone.MOD_ID + bricksPath);
+                        return s.replace("minecraft:block/" + oldTypeName + "_bricks", StoneZone.MOD_ID + stonePath)
+                                .replace("minecraft:block/" + oldTypeName,StoneZone.MOD_ID + bricksPath);
                     }
                     return s;
-                })
-                .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone + "_bricks", BRICKS)
-                .replaceWithTextureFromChild("minecraft:block/" + nameBaseStone, STONE)
-                .replaceWithTextureFromChild("minecraft:block/cobblestone", COBBLESTONE)
-                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone, SMOOTH)
-                .replaceWithTextureFromChild("minecraft:block/smooth_" + nameBaseStone + "_slab_side", SMOOTH_SLAB)
-                .replaceWithTextureFromChild("minecraft:block/polished_" + nameBaseStone, POLISHED)
-                .replaceWithTextureFromChild("minecraft:block/mossy_" + nameBaseStone + "_bricks", MOSSY_BRICKS)
-                .andThen(super.makeModelTransformer(module, manager));
+                });
+
+        CompatSpritesHelper.replaceStoneTextures(modelTransformer, oldTypeName);
+
+        return modelTransformer;
     }
 
 

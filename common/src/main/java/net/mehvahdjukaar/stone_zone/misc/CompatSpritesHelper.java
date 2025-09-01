@@ -2,6 +2,8 @@ package net.mehvahdjukaar.stone_zone.misc;
 
 
 import com.mojang.datafixers.util.Pair;
+import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
+import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.resources.ResourceLocation;
 
@@ -9,6 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static net.mehvahdjukaar.every_compat.misc.SpriteExtra.addOptional;
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
+import static net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys.STONE;
 
 public class CompatSpritesHelper {
 
@@ -53,4 +57,20 @@ public class CompatSpritesHelper {
     public final static Map<ResourceLocation, Pair<String, String>> tintedStoneType = Map.of(
             new ResourceLocation("quark:myalite"), Pair.of(":block/quark/myalite_tinted", ":block/quark/myalite_bricks_tinted")
     );
+
+
+    //      ┌──────────────────────────────────────────────────────────┐
+    //      │                     TEXTURE METHODS                      │
+    //      └──────────────────────────────────────────────────────────┘
+
+    public static <T extends BlockType> BlockTypeResTransformer<T> replaceStoneTextures(BlockTypeResTransformer<T> modelTransformer, String oldTypeName) {
+        return modelTransformer
+                .replaceWithTextureFromChild("minecraft:block/" + oldTypeName + "_bricks", BRICKS)
+                .replaceWithTextureFromChild("minecraft:block/" + oldTypeName, STONE)
+                .replaceWithTextureFromChild("minecraft:block/cobblestone", COBBLESTONE)
+                .replaceWithTextureFromChild("minecraft:block/smooth_" + oldTypeName, SMOOTH)
+                .replaceWithTextureFromChild("minecraft:block/smooth_" + oldTypeName + "_slab_side", SMOOTH_SLAB)
+                .replaceWithTextureFromChild("minecraft:block/polished_" + oldTypeName, POLISHED)
+                .replaceWithTextureFromChild("minecraft:block/mossy_" + oldTypeName + "_bricks", MOSSY_BRICKS);
+    }
 }
