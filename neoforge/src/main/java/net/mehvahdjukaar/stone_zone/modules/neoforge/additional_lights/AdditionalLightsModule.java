@@ -2,10 +2,10 @@ package net.mehvahdjukaar.stone_zone.modules.neoforge.additional_lights;
 
 import com.mgen256.al.blocks.*;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;

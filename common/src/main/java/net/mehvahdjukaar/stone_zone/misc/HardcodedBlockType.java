@@ -1,64 +1,78 @@
 package net.mehvahdjukaar.stone_zone.misc;
 
-import net.mehvahdjukaar.stone_zone.api.set.MudType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.mud.MudType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Set;
 
+import static net.mehvahdjukaar.stone_zone.configs.UnsafeDisablerConfigs.*;
+
 public class HardcodedBlockType {
 
-    public static String stoneidentify;
+    public static String stoneIdentify;
     public static String mudIdentify;
-    public static String StoneTypeFromMod;
+    public static String stoneTypeFromMod;
     public static String mudTypeFromMod;
     public static String modId;
     public static String supportedBlockName;
 
     public static final Set<String> BLACKLISTED_MODS = Set.of(
-            "immersive_weathering", "chipped", "create_confectionery", "rgbblocks"
+            //REASON: shouldn't be detected
+            "immersive_weathering", "chipped", "create_confectionery", "rgbblocks",
+
+            //REASON: It has a tinted StoneType but impossible to support because it has tintedIndex where color changes based on coordinates
+            "opalescence"
     );
 
     public static final Set<String> BLACKLISTED_STONETYPES = Set.of(
             //REASON: is a terracotta
             "quark:shingles",
+
             //REASON: not a stonetype
             "outer_end:himmel", "quark:midori", "twigs:silt", "supplementaries:ash", "blue_skies:brumble",
-            "nifty:concrete", "blocksyouneed_luna:bluestone", "blocksyouneed_luna:scorchcobble", "thaumon:amber",
+            "nifty:concrete", "blocksyouneed_luna:bluestone", "blocksyouneed_luna:scorchcobble", "sullysmod:amber",
+            "endergetic:eumus", "minecraft:mud", "enlightened_end:chorloam",
+
             //REASON: shouldn't be detected
-            "minecraft:cobblestone", "minecraft:mud", "minecraft:infested_stone", "biomeswevegone:mossy_stone",
+            "desire:polished_stone", "desire:chiseled_stone", "create_dd:cut_stone",
+            "stoneexpansion:cut_stone", "stoneexpansion:mossy_stone", "stoneexpansion:smooth_stone", "stoneexpansion:polished_stone",
+            "minecraft:infested_stone",
 
             //REASON: The StoneType's texture is only white and no way for blocks to copy its color behavior
             "rgbblocks:prismarine"
     );
 
     @Nullable
-    public static Boolean isStoneBlockAlreadyRegistered(String blockName, StoneType stoneType, String ModId) {
-        stoneidentify = stoneType.getId().toString();
-        StoneTypeFromMod = stoneType.getNamespace();
+    public static Boolean isStoneBlockAlreadyRegistered(String entrySetId, String blockName, StoneType stoneType, String ModId) {
+        stoneIdentify = stoneType.getId().toString();
+        stoneTypeFromMod = stoneType.getNamespace();
         modId = ModId;
         supportedBlockName = blockName;
 
-        /// ─────────────────────────── INCLUDE VANILLA TYPE ────────────────────────────
+        /// ─────────────────────────── Include Vanilla Type ────────────────────────────
+
+        // Include minecraft's PRISMARINE with Waystones
+        if (isStoneFrom("waystones", "", "", "prismarine_waystone")) return false;
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ EXCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
         // Exclude one StoneType from a Stone mod
-//        if (stoneTypeList.get().stream().anyMatch(stoneIdentify::matches)) return true; // FOR NEW CONFIG
+        if (stoneTypeList.get().stream().anyMatch(stoneIdentify::matches)) return true;
 
         // Exclude one EntrySet from a module
-//        if (entrySetList.get().stream().anyMatch(entrySetId::matches)) return true; // FOR NEW CONFIG
+        if (entrySetList.get().stream().anyMatch(entrySetId::matches)) return true;
 
         // Exclude all of Vanilla Types
-        if (stoneType.isVanilla()) return true;
+        if (isKnownVanillaStone(stoneType)) return true;
 
-        // Exclude all of Vanilla Types
-        if (stoneType.isVanilla()) return true;
-
-        // Stone Expansion's stone is based on Minecraft's stone and shouldn't be included
-        if (isStoneFrom("", "", "stoneexpansion:(cut|mossy|smooth|polished)_stone", "")) return true;
+        // Exclude generated blocks that is just one mod that is both Supported Mods and StoneTypeFromMod
+        if (isStoneFrom("quark", "quark", "", "pillar")) return true;
+        if (isStoneFrom("create", "create", "", "pillar")) return true;
+        if (isStoneFrom("decorative_blocks", "decorative_blocks", "", "pillar")) return true;
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
         // pillar from Decorative-Blocks, Quark, Create should be always generated
         if (isStoneFrom("quark|create|decorative_blocks", "", "", "pillar")) return false;
 
@@ -68,16 +82,17 @@ public class HardcodedBlockType {
         // The stone_squares block from Blockus is why stone_squares from Rechiseled got skipped
         if (isStoneFrom("rechiseled", "blockus", "", "squares")) return false;
 
-        // Create's blocks aren't generated for Quark, Wetland-Whimsy, Geologic-Expansion because they both have LIMESTONE & Also fix the tag issue (#64)
-        if (isStoneFrom("create", "", "quark:limestone|wetland_whimsy:limestone|geologicexpansion:limestone", "")) return false;
+        // Create's blocks aren't generated for Quark, Wetland-Whimsy, Geologic-Expansion, TerraFirmaCraft because they both have LIMESTONE & Also fix the tag issue (#64)
+        if (isStoneFrom("create", "", "quark:limestone|wetland_whimsy:limestone|geologicexpansion:limestone|tfc:limestone", "")) return false;
 
+        // Ensure blocks to be generated because TerraFirmaCraft has similar name of Vanilla StoneType (andesite, granite, diorite, so on...)
+        if (isStoneFrom("", "tfc", "", "")) return false;
 
         return null;
     }
 
     @Nullable
-//    public static Boolean isMudBlockAlreadyRegistered(String entrySetId, String blockName, MudType mudType, String ModId) { // FOR NEW CONFIG
-    public static Boolean isMudBlockAlreadyRegistered(String blockName, MudType mudType, String ModId) {
+    public static Boolean isMudBlockAlreadyRegistered(String entrySetId, String blockName, MudType mudType, String ModId) {
         mudIdentify = mudType.getId().toString();
         mudTypeFromMod = mudType.getNamespace();
         modId = ModId;
@@ -88,10 +103,13 @@ public class HardcodedBlockType {
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ EXCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
         // Exclude one MudType from a Stone mod
-//        if (mudTypeList.get().stream().anyMatch(mudIdentify::matches)) return true; // FOR NEW CONFIG
+        if (mudTypeList.get().stream().anyMatch(mudIdentify::matches)) return true;
 
         // Exclude one EntrySet from a module
-//        if (entrySetList.get().stream().anyMatch(entrySetId::matches)) return true; // FOR NEW CONFIG
+        if (entrySetList.get().stream().anyMatch(entrySetId::matches)) return true;
+
+        // Exclude all of Vanilla Types
+        if (isKnownVanillaMud(mudType)) return true;
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -99,19 +117,19 @@ public class HardcodedBlockType {
         return null;
     }
 
-    public static Boolean isStoneFrom(String whichSupportedModId, String stonetypeFromMod, String stoneTypeId, String whichSupportedBlockName) {
+    public static Boolean isStoneFrom(String supportedModId, String stonetypeFromMod, String stoneTypeId, String supportedBlockId) {
 
         String[] expressions = {
-                whichSupportedModId,
+                supportedModId,
                 stonetypeFromMod,
                 stoneTypeId,
-                whichSupportedBlockName
+                supportedBlockId
         };
 
         String[] values = {
                 modId,
-                StoneTypeFromMod,
-                stoneidentify,
+                stoneTypeFromMod,
+                stoneIdentify,
                 supportedBlockName
         };
 
@@ -152,5 +170,33 @@ public class HardcodedBlockType {
 
         return true;
     }
+
+    //for mods that might add in vanilla namespace
+    // StoneType
+    public static boolean isKnownVanillaStone(StoneType stoneType){
+        var id = stoneType.getId();
+        if (id.getNamespace().equals("minecraft")) {
+            return VANILLA_STONES.contains(id.getPath());
+        }
+        return false;
+    }
+
+    private static final Set<String> VANILLA_STONES = Set.of(
+            "stone", "andesite", "granite", "diorite", "tuff", "calcite", "blackstone", "sandstone",
+            "basalt", "deepslate", "prismarine", "nether", "end_stone"
+    );
+
+    // MudType
+    public static boolean isKnownVanillaMud(MudType mudType){
+        var id = mudType.getId();
+        if (id.getNamespace().equals("minecraft")) {
+            return VANILLA_MUDS.contains(id.getPath());
+        }
+        return false;
+    }
+
+    private static final Set<String> VANILLA_MUDS = Set.of(
+            "mud"
+    );
 
 }

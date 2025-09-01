@@ -2,10 +2,11 @@ package net.mehvahdjukaar.stone_zone.modules.better_archeology;
 
 import net.Pandarix.BACommon;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
+import net.mehvahdjukaar.stone_zone.api.StonePaletteStrategies;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.MudType;
-import net.mehvahdjukaar.stone_zone.api.set.MudTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.mud.MudType;
+import net.mehvahdjukaar.stone_zone.api.set.mud.VanillaMudTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -15,6 +16,8 @@ import net.minecraft.world.level.block.StairBlock;
 
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyBlockStateSafe;
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BRICKS;
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BRICK_SLAB;
 
 //SUPPORT: v1.3.2
 public class BetterArcheologyModule extends StoneZoneModule {
@@ -28,12 +31,11 @@ public class BetterArcheologyModule extends StoneZoneModule {
         ResourceLocation tab = modRes(BACommon.MOD_ID);
 
         cracked_bricks = StoneZoneEntrySet.of(MudType.class, "bricks", "cracked",
-                        getModBlock("cracked_mud_bricks"), MudTypeRegistry::getMudType,
-                        type -> new Block(copyChildrenPropertySafe("bricks", type))
+                        getModBlock("cracked_mud_bricks"), () -> VanillaMudTypes.MUD,
+                        mudType -> new Block(copyChildrenPropertySafe(BRICKS, mudType))
                 )
-                .createPaletteFromBricks()
-                .requiresChildren("bricks") //REASON: textures, recipes
-                .addTexture(modRes("block/cracked_mud_bricks"))
+                .requiresChildren(BRICKS) //REASON: Recipes & palettes
+                .addTexture(modRes("block/cracked_mud_bricks"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .defaultRecipe()
@@ -41,12 +43,11 @@ public class BetterArcheologyModule extends StoneZoneModule {
         this.addEntry(cracked_bricks);
 
         cracked_brick_stairs = StoneZoneEntrySet.of(MudType.class, "brick_stairs", "cracked",
-                        getModBlock("cracked_mud_brick_stairs"), MudTypeRegistry::getMudType,
+                        getModBlock("cracked_mud_brick_stairs"), () -> VanillaMudTypes.MUD,
                         type -> new StairBlock(copyBlockStateSafe(cracked_bricks.blocks, type),
                                 copyChildrenPropertySafe("brick_stairs", type))
                 )
-                .createPaletteFromBricks()
-                .requiresFromMap(cracked_bricks.blocks) //REASON: textures, recipes
+                .requiresFromMap(cracked_bricks.blocks) //REASON: Recipes, Textures
                 //TEXTURES: cracked_bricks (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -56,11 +57,10 @@ public class BetterArcheologyModule extends StoneZoneModule {
         this.addEntry(cracked_brick_stairs);
 
         cracked_brick_slabs = StoneZoneEntrySet.of(MudType.class, "brick_slab", "cracked",
-                        getModBlock("cracked_mud_brick_slab"), MudTypeRegistry::getMudType,
-                        type -> new SlabBlock(copyChildrenPropertySafe("brick_slab", type))
+                        getModBlock("cracked_mud_brick_slab"), () -> VanillaMudTypes.MUD,
+                        mudType -> new SlabBlock(copyChildrenPropertySafe(BRICK_SLAB, mudType))
                 )
-                .createPaletteFromBricks()
-                .requiresFromMap(cracked_bricks.blocks) //REASON: textures, recipes
+                .requiresFromMap(cracked_bricks.blocks) //REASON: Recipes, Textures
                 //TEXTURES: cracked_bricks (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)

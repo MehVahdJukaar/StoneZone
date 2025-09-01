@@ -1,15 +1,17 @@
 package net.mehvahdjukaar.stone_zone.modules.neoforge.stone_chest;
 
 import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
+import net.mehvahdjukaar.every_compat.api.PaletteStrategies;
+import net.mehvahdjukaar.every_compat.api.PaletteStrategy;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.dynamicpack.ClientDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.mehvahdjukaar.stone_zone.common_classes.CompatChestBlock;
 import net.mehvahdjukaar.stone_zone.common_classes.CompatChestBlockEntity;
 import net.mehvahdjukaar.stone_zone.common_classes.CompatChestBlockRenderer;
@@ -17,7 +19,6 @@ import net.mehvahdjukaar.stone_zone.common_classes.CompatChestItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -30,6 +31,10 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.Tags;
 
+import java.util.function.Consumer;
+
+import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.registerCached;
+import static net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys.STONE;
 import static net.mehvahdjukaar.stone_zone.common_classes.CompatChestTexture.generateChestTexture;
 
 
@@ -44,41 +49,45 @@ public class StoneChestModule extends StoneZoneModule {
         ResourceKey<CreativeModeTab> tab = CreativeModeTabs.FUNCTIONAL_BLOCKS;
 
         chests = StoneZoneEntrySet.of(StoneType.class, "","chest",
-                        getModBlock("chest_stone"), StoneTypeRegistry::getStoneType,
+                        getModBlock("chest_stone"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new CompatChestBlock(this::getTile, Utils.copyPropertySafe(stoneType.stone))
                 )
+                .addTile(VariantChestBlockEntity::new)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.GUARDED_BY_PIGLINS, Registries.BLOCK)
                 .addTag(Tags.Blocks.CHESTS, Registries.BLOCK)
                 .addTag(Tags.Items.CHESTS, Registries.ITEM)
-                .addCustomItem((w, block, properties) -> new CompatChestItem(block, properties))
-                .addTile(VariantChestBlockEntity::new)
                 .setTabKey(tab)
                 .defaultRecipe()
+                .addCustomItem((stoneType, block, properties) -> new CompatChestItem(block, properties))
                 .build();
         this.addEntry(chests);
 
         parts = ItemOnlyEntrySet.builder(StoneType.class, "", "part",
-                        getModItem("part_stone"), StoneTypeRegistry::getStoneType,
+                        getModItem("part_stone"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Item(new Item.Properties())
                 )
-                .copyParentTint()
-                .createPaletteFromChild(p -> {
-                    while (p.size() > 4) p.reduceUp();
-                }, "stone")
-                .addTextureM(modRes("item/part_stone"), StoneZone.res("item/sc/part_stone_m"))
+                .addTextureM(modRes("item/part_stone"),
+                        StoneZone.res("item/sc/part_stone_m"),
+                        customPalette)
                 .addModelTransform(m -> m.addModifier(
                         (s, blockId, stoneType) ->
                                 s.replace("\"stonechest:item/part_stone\"",
                                         "\""+ StoneZone.res("item/"+shortenedId()+"/"+ stoneType.getAppendableIdWith("part", "")) +"\"")
                 ))
                 .setTabKey(tab)
-//                .addRecipe(modRes("part_stone"))
                 .defaultRecipe()
                 .build();
         this.addEntry(parts);
 
     }
+
+    public static final PaletteStrategy customPalette = registerCached((blockType, manager) ->
+            PaletteStrategies.makePaletteFromChild(
+                    blockType, manager, STONE, null,
+                    p -> {
+                        while (p.size() > 4) p.reduceUp();
+                    }));
 
     // GetTiles
     private BlockEntityType<? extends ChestBlockEntity> getTile() {
@@ -102,32 +111,36 @@ public class StoneChestModule extends StoneZoneModule {
 
     @Override
     // Textures
-    public void addDynamicClientResources(ClientDynamicResourcesHandler handler, ResourceManager manager) {
-        super.addDynamicClientResources(handler, manager);
-        chests.blocks.forEach((stoneType, block) -> {
+    public void addDynamicClientResources(Consumer<ResourceGenTask> executor) {
+        super.addDynamicClientResources(executor);
 
-            // SINGLE
-            generateChestTexture(handler, manager, shortenedId(), stoneType, block,
-                    modRes("entity/chest/stone"),
-                    StoneZone.res("entity/sc/stone_m"),
-                    StoneZone.res("entity/sc/stone_o"),
-                    null
-            );
-            // LEFT
-            generateChestTexture(handler, manager, shortenedId(), stoneType, block,
-                    modRes("entity/chest/stone_left"),
-                    StoneZone.res("entity/sc/stone_left_m"),
-                    StoneZone.res("entity/sc/stone_left_o"),
-                    null
-            );
-            // RIGHT
-            generateChestTexture(handler, manager, shortenedId(), stoneType, block,
-                    modRes("entity/chest/stone_right"),
-                    StoneZone.res("entity/sc/stone_right_m"),
-                    StoneZone.res("entity/sc/stone_right_o"),
-                    null
-            );
+        executor.accept((manager, sink) ->
 
-        });
+            chests.blocks.forEach((stoneType, block) -> {
+
+                // SINGLE
+                generateChestTexture(sink, manager, shortenedId(), stoneType, block,
+                        modRes("entity/chest/stone"),
+                        StoneZone.res("entity/sc/stone_m"),
+                        StoneZone.res("entity/sc/stone_o"),
+                        null
+                );
+                // LEFT
+                generateChestTexture(sink, manager, shortenedId(), stoneType, block,
+                        modRes("entity/chest/stone_left"),
+                        StoneZone.res("entity/sc/stone_left_m"),
+                        StoneZone.res("entity/sc/stone_left_o"),
+                        null
+                );
+                // RIGHT
+                generateChestTexture(sink, manager, shortenedId(), stoneType, block,
+                        modRes("entity/chest/stone_right"),
+                        StoneZone.res("entity/sc/stone_right_m"),
+                        StoneZone.res("entity/sc/stone_right_o"),
+                        null
+                );
+
+            })
+        );
     }
 }

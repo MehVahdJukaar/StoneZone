@@ -7,8 +7,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -42,7 +42,7 @@ public class CompatChestBlockRenderer extends ChestRenderer<CompatChestBlockEnti
     //assumes standard naming here. Generalize if needed
     public CompatChestBlockRenderer(BlockEntityRendererProvider.Context context, String shortenedId) {
         super(context);
-        for (StoneType w : StoneTypeRegistry.getTypes()) {
+        for (StoneType w : StoneTypeRegistry.INSTANCE) {
             if (w.isVanilla()) continue;
             String path = "entity/chest/" + shortenedId + "/" + w.getAppendableId() + "_chest";
             String trapped_path = "entity/chest/" + shortenedId + "/" + w.getAppendableId() + "_trapped_chest";

@@ -1,14 +1,12 @@
-package net.mehvahdjukaar.stone_zone.api.set;
+package net.mehvahdjukaar.stone_zone.api.set.stone;
 
-import net.mehvahdjukaar.moonlight.api.events.AfterLanguageLoadEvent;
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
 import java.util.Collection;
-import java.util.Objects;
 import java.util.Optional;
 
 import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_MODS;
@@ -20,47 +18,18 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
     public static final StoneTypeRegistry INSTANCE = new StoneTypeRegistry();
 
-    /* NOTE:
-     * Do not remove below because crsah will occurred and I do not know why
-     * the error is Cannot read field "id" because "newType" is null
-     */
-    public static final StoneType STONE_TYPE = new StoneType(ResourceLocation.withDefaultNamespace("stone"), Blocks.STONE);
-
     public StoneTypeRegistry() {
         super(StoneType.class, "stone_type");
-
-//        this.addFinder(StoneType.Finder.vanilla("stone")); // currently disabled for now
-        this.addFinder(StoneType.Finder.vanilla("andesite"));
-        this.addFinder(StoneType.Finder.vanilla("diorite"));
-        this.addFinder(StoneType.Finder.vanilla("granite"));
-        this.addFinder(StoneType.Finder.vanilla("tuff"));
-        this.addFinder(StoneType.Finder.vanilla("calcite"));
-        this.addFinder(StoneType.Finder.vanilla("blackstone"));
     }
 
-    public static StoneType getStoneType() {
-        return getValue("stone");
-    }
-
-    public static StoneType getAndesiteType() {
-        return getValue("andesite");
-    }
-
-    public static StoneType getGraniteType() {
-        return getValue("granite");
-    }
-
-    public static Collection<StoneType> getTypes() {
-        return INSTANCE.getValues();
-    }
-
-    public static StoneType getValue(String stoneTypeId) {
-        return INSTANCE.get(ResourceLocation.parse(stoneTypeId));
+    @Override
+    protected StoneType register(StoneType vanillaType) {
+        return super.register(vanillaType);
     }
 
     @Override
     public StoneType getDefaultType() {
-        return STONE_TYPE;
+        return VanillaStoneTypes.STONE;
     }
 
     @Override
@@ -68,12 +37,11 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
         String blockPath = baseRes.getPath();
         /// Support TerraFirmaCraft (TFC) & ArborFirmaCraft (AFC)
         if (baseRes.getNamespace().matches("tfc|afc")) {
-
-            if (blockPath.matches("rock/bricks/\\w+")) {
+            if (blockPath.matches("rock/bricks/\\w+") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM ) {
                 int index = blockPath.lastIndexOf("/");
                 String stoneName = blockPath.substring(index + 1); // Get granite from tfc:rock/bricks/granite
                 var opt = BuiltInRegistries.BLOCK.getOptional(
-                        baseRes.withPath(blockPath.replace("bricks", "raw"))
+                        ResourceLocation.fromNamespaceAndPath(baseRes.getNamespace(), blockPath.replace("bricks", "raw"))
                 );
                 if (opt.isPresent()) {
                     return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));
@@ -83,15 +51,14 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
         /// DEFAULT
         if (!BLACKLISTED_MODS.contains(baseRes.getNamespace())) {
-            /// Check for TYPE_bricks | TYPE_stairs | TYPE_stone_bricks | TYPE_stone_stairs
-            if (blockPath.matches("[a-z]+_(stone_)?bricks?")) {
-
-                String stoneName = (blockPath.matches("[a-z]+_(stone_)?brick")) ? blockPath.substring(0, blockPath.length() - 6) : blockPath.substring(0, blockPath.length() - 7); // get stoneName from namespace:stoneName_bricks
+            // Check for <type>_bricks | <type>_stone_bricks
+            if (blockPath.matches("[a-z]+_(?:stone_)?bricks?")) {
+                String stoneName = blockPath.substring(0, blockPath.length() - 7); // get stoneName from namespace:stoneName_bricks
                 String stoneAlt = stoneName + "_stone"; // Some mods included "_stone" as the suffix
                 ResourceLocation idBlockType = baseRes.withPath(stoneName);
                 ResourceLocation idBlockTypeAlt = baseRes.withPath(stoneAlt);
 
-                // Ensure that detected BlockType is actually StoneType
+                /// Ensure that detected BlockType is actually StoneType
                 boolean isStoneTypeNotBlacklisted = !(BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneName).toString()) || BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneAlt).toString()));
 
                 boolean noDustType = !BuiltInRegistries.ITEM.containsKey(
@@ -105,7 +72,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
                 );
 
                 /// Check if a BlockType is already added
-                if (Objects.isNull(get(idBlockType)) && Objects.isNull(get(idBlockTypeAlt))
+                if (!valuesReg.containsKey(idBlockType) && !valuesReg.containsKey(idBlockTypeAlt)
                         && isStoneTypeNotBlacklisted
                         && noDustType
                         && noOreType
@@ -118,7 +85,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
                 }
 
             }
-            /// Check for polished_TYPE | polished_TYPE_stone
+            // Check for polished_<type> | polished_<type>_stone
             else if (blockPath.matches("polished_[a-z]+(?:_stone)?")) {
                 String stoneName = blockPath.replace("polished_", ""); // get stoneName from namespace:polished_stoneName
                 String stoneAlt = stoneName + "_stone"; // Some mods included "_stone" as the suffix
@@ -129,8 +96,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
                 boolean isStoneTypeBlacklisted = !(BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneName).toString()) || BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneAlt).toString()));
 
                 // Check if a BlockType is already added
-                if ( Objects.isNull(get(idBlockType))
-                        && Objects.isNull(get(idBlockTypeAlt))
+                if (!valuesReg.containsKey(idBlockType) && !valuesReg.containsKey(idBlockTypeAlt)
                         && isStoneTypeBlacklisted
                 ) {
                     var opt = BuiltInRegistries.BLOCK.getOptional(idBlockType);
@@ -143,15 +109,48 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
         return Optional.empty();
     }
 
-    @Override
-    public void addTypeTranslations(AfterLanguageLoadEvent language) {
-        this.getValues().forEach((stoneType) -> {
-            if (language.isDefault()) language.addEntry(stoneType.getTranslationKey(), stoneType.getReadableName());
-        });
+    //shorthand for add finder. Gives a builder-like object that's meant to be configured inline
+    public StoneType.Finder addSimpleFinder(ResourceLocation stoneTypeId) {
+        StoneType.Finder finder = new StoneType.Finder(stoneTypeId);
+        this.addFinder(finder);
+        return finder;
+    }
+
+    public StoneType.Finder addSimpleFinder(String typeId) {
+        return addSimpleFinder(ResourceLocation.parse(typeId));
+    }
+
+    public StoneType.Finder addSimpleFinder(String namespace, String nameStoneType) {
+        return addSimpleFinder(ResourceLocation.fromNamespaceAndPath(namespace, nameStoneType));
     }
 
     @Override
     public int priority() {
         return 110;
+    }
+
+    //!! ───────────────────────────────────────────── Marked For Removal ──────────────────────────────────────────────
+    /// USE {@link VanillaStoneTypes#STONE}
+    @Deprecated(forRemoval = true)
+    public static StoneType getStoneType() {
+        return getValue("stone");
+    }
+
+    /// USE {@link VanillaStoneTypes#ANDESITE}
+    @Deprecated(forRemoval = true)
+    public static StoneType getAndesiteType() {
+        return getValue("andesite");
+    }
+
+    /// USE {@link VanillaStoneTypes}
+    @Deprecated(forRemoval = true)
+    public static StoneType getValue(String stoneTypeId) {
+        return INSTANCE.get(ResourceLocation.parse(stoneTypeId));
+    }
+
+    /// USE {@link StoneTypeRegistry#INSTANCE} - can be used in FOR Loop statement
+    @Deprecated(forRemoval = true)
+    public static Collection<StoneType> getTypes() {
+        return INSTANCE.getValues();
     }
 }

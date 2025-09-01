@@ -5,8 +5,8 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -50,10 +50,10 @@ public class StoneworksModule extends StoneZoneModule {
         ResourceLocation tab = modRes(Stoneworks.MOD_ID);
 
         tiles = StoneZoneEntrySet.of(StoneType.class, "tiles",
-                        getModBlock("stone_tiles"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_tiles"), () -> VanillaStoneTypes.STONE,
                         s -> new Block(Utils.copyPropertySafe(s.stone))
                 )
-                .requiresChildren("stone") //REASON: recipes
+                //RECIPES: stone
                 .addTexture(modRes("block/stone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -63,7 +63,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(tiles);
 
         tile_stairs = StoneZoneEntrySet.of(StoneType.class, "tile_stairs",
-                        getModBlock("stone_tile_stairs"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_tile_stairs"), () -> VanillaStoneTypes.STONE,
                         s -> new StairBlock(copyBlockStateSafe(tiles.blocks, s),
                                 copyChildrenPropertySafe("stairs", s)
                         )
@@ -79,7 +79,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(tile_stairs);
 
         tile_slabs = StoneZoneEntrySet.of(StoneType.class, "tile_slab",
-                        getModBlock("stone_tile_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_tile_slab"), () -> VanillaStoneTypes.STONE,
                         s -> new SlabBlock(copyChildrenPropertySafe("slab", s))
                 )
                 .requiresFromMap(tiles.blocks) //REASON: recipes & textures
@@ -93,7 +93,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(tile_slabs);
 
         tile_walls = StoneZoneEntrySet.of(StoneType.class, "tile_wall",
-                        getModBlock("stone_tile_wall"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_tile_wall"), () -> VanillaStoneTypes.STONE,
                         s -> new WallBlock(copyWallSafe("stone_tile_wall", s))
                 )
                 .requiresFromMap(tiles.blocks) //REASON: recipes & textures
@@ -107,7 +107,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(tile_walls);
 
         cracked_tiles = StoneZoneEntrySet.of(StoneType.class, "tiles", "cracked",
-                        getModBlock("cracked_stone_tiles"), StoneTypeRegistry::getStoneType,
+                        getModBlock("cracked_stone_tiles"), () -> VanillaStoneTypes.STONE,
                         s -> new Block(Utils.copyPropertySafe(s.stone))
                 )
                 .addTexture(modRes("block/cracked_stone_tiles"))
@@ -119,7 +119,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(cracked_tiles);
 
         pillars = StoneZoneEntrySet.of(StoneType.class, "pillar",
-                        getModBlock("stone_pillar"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_pillar"), () -> VanillaStoneTypes.STONE,
                         s -> new RotatedPillarBlock(Utils.copyPropertySafe(s.stone))
                 )
                 .addTexture(modRes("block/stone_pillar_top"))
@@ -132,7 +132,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(pillars);
 
         plates = StoneZoneEntrySet.of(StoneType.class, "plates",
-                        getModBlock("stone_plates"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_plates"), () -> VanillaStoneTypes.STONE,
                         s -> new Block(Utils.copyPropertySafe(s.stone))
                 )
                 .addTexture(modRes("block/stone_plates"))
@@ -144,7 +144,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(plates);
 
         plate_stairs = StoneZoneEntrySet.of(StoneType.class, "plate_stairs",
-                        getModBlock("stone_plate_stairs"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_plate_stairs"), () -> VanillaStoneTypes.STONE,
                         s -> new StairBlock(s.stone.defaultBlockState(),
                                 copyChildrenPropertySafe("stairs", s)
                         )
@@ -160,7 +160,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(plate_stairs);
 
         plate_slabs = StoneZoneEntrySet.of(StoneType.class, "plate_slab",
-                        getModBlock("stone_plate_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_plate_slab"), () -> VanillaStoneTypes.STONE,
                         s -> new SlabBlock(copyChildrenPropertySafe("slab", s))
                 )
                 .requiresFromMap(plates.blocks) //REASON: recipes & textures
@@ -174,7 +174,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(plate_slabs);
 
         plate_walls = StoneZoneEntrySet.of(StoneType.class, "plate_wall",
-                        getModBlock("stone_plate_wall"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_plate_wall"), () -> VanillaStoneTypes.STONE,
                         s -> new WallBlock(copyWallSafe("stone_plate_wall", s))
                 )
                 .requiresFromMap(plates.blocks) //REASON: recipes & textures
@@ -188,7 +188,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(plate_walls);
 
         pavers = StoneZoneEntrySet.of(StoneType.class, "pavers",
-                        getModBlock("stone_pavers"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_pavers"), () -> VanillaStoneTypes.STONE,
                         s -> new Block(Utils.copyPropertySafe(s.stone))
                 )
                 .addTexture(modRes("block/stone_pavers"))
@@ -200,7 +200,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(pavers);
 
         paver_stairs = StoneZoneEntrySet.of(StoneType.class, "paver_stairs",
-                        getModBlock("stone_paver_stairs"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_paver_stairs"), () -> VanillaStoneTypes.STONE,
                         s -> new StairBlock(s.stone.defaultBlockState(),
                                 copyChildrenPropertySafe("stairs", s)
                         )
@@ -216,7 +216,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(paver_stairs);
 
         paver_slabs = StoneZoneEntrySet.of(StoneType.class, "paver_slab",
-                        getModBlock("stone_paver_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_paver_slab"), () -> VanillaStoneTypes.STONE,
                         s -> new SlabBlock(copyChildrenPropertySafe("slab", s))
                 )
                 .requiresFromMap(pavers.blocks) //REASON: recipes & textures
@@ -230,7 +230,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(paver_slabs);
 
         paver_walls = StoneZoneEntrySet.of(StoneType.class, "paver_wall",
-                        getModBlock("stone_paver_wall"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_paver_wall"), () -> VanillaStoneTypes.STONE,
                         s -> new WallBlock(copyWallSafe("stone_paver_wall", s))
                 )
                 .requiresFromMap(pavers.blocks) //REASON: recipes & textures
@@ -244,7 +244,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(paver_walls);
 
         shingles = StoneZoneEntrySet.of(StoneType.class, "shingles",
-                        getModBlock("stone_shingles"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_shingles"), () -> VanillaStoneTypes.STONE,
                         s -> new Block(Utils.copyPropertySafe(s.stone))
                 )
                 .addTexture(modRes("block/stone_shingles"))
@@ -256,7 +256,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(shingles);
 
         shingle_stairs = StoneZoneEntrySet.of(StoneType.class, "shingle_stairs",
-                        getModBlock("stone_shingle_stairs"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_shingle_stairs"), () -> VanillaStoneTypes.STONE,
                         s -> new StairBlock(s.stone.defaultBlockState(),
                                 copyChildrenPropertySafe("stairs", s)
                         )
@@ -271,7 +271,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(shingle_stairs);
 
         shingle_slabs = StoneZoneEntrySet.of(StoneType.class, "shingle_slab",
-                        getModBlock("stone_shingle_slab"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_shingle_slab"), () -> VanillaStoneTypes.STONE,
                         s -> new SlabBlock(copyChildrenPropertySafe("slab", s))
                 )
                 .requiresFromMap(shingles.blocks) //REASON: recipes & textures
@@ -284,7 +284,7 @@ public class StoneworksModule extends StoneZoneModule {
         this.addEntry(shingle_slabs);
 
         shingle_walls = StoneZoneEntrySet.of(StoneType.class, "shingle_wall",
-                        getModBlock("stone_shingle_wall"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_shingle_wall"), () -> VanillaStoneTypes.STONE,
                         s -> new WallBlock(copyWallSafe("stone_shingle_wall", s)
                 ))
                 .requiresFromMap(shingles.blocks) //REASON: recipes & textures

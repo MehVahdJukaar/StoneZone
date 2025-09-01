@@ -2,18 +2,15 @@ package net.mehvahdjukaar.stone_zone.modules.quark;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Suppliers;
-import com.mojang.datafixers.util.Pair;
-import net.mehvahdjukaar.every_compat.api.AbstractSimpleEntrySet;
+import net.mehvahdjukaar.every_compat.api.PaletteStrategy;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
+import net.mehvahdjukaar.every_compat.misc.ModelConfiguration;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
-import net.mehvahdjukaar.moonlight.api.resources.pack.DynamicDataPack;
-import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.misc.TintConfiguration;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.BlockItem;
@@ -26,7 +23,6 @@ import org.violetmoon.quark.base.Quark;
 import org.violetmoon.zeta.module.IDisableable;
 import org.violetmoon.zeta.module.ZetaModule;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.function.*;
 
@@ -46,24 +42,25 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
                          @Nullable TriFunction<T, B, Item.Properties, Item> itemFactory,
                          @Nullable SimpleEntrySet.ITileHolder<?> tileFactory,
                          @Nullable Object renderType,
-                         @Nullable BiFunction<T, ResourceManager, Pair<List<Palette>, @Nullable McMetaFile>> paletteSupplier,
+                         @Nullable BiFunction<T, ResourceManager, PaletteStrategy.PaletteAndAnimation> paletteSupplier,
                          @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
                          boolean mergedPalette,
-                         TintConfiguration tintConfig, boolean copyTint,
-                         Predicate<T> condition) {
-
+                         boolean copyTint,
+                         Predicate<T> condition, ModelConfiguration modelConfig
+    ) {
         super(type, name, prefix, blockSupplier, baseBlock, baseType, Objects.requireNonNull(tab), tabMode, tableMode, itemFactory,
-                tileFactory, renderType, paletteSupplier, extraTransform, mergedPalette, tintConfig, copyTint, condition);
+                tileFactory, renderType, paletteSupplier, extraTransform, mergedPalette, copyTint,
+                condition, modelConfig);
         var m = Preconditions.checkNotNull(module);
         this.zetaModule = Suppliers.memoize(() -> Quark.ZETA.modules.get(m));
     }
 
 
     @Override
-    public void generateRecipes(SimpleModule module, DynamicDataPack pack, ResourceManager manager) {
+    public void generateRecipes(SimpleModule module, ResourceManager manager, ResourceSink sink) {
         ZetaModule mod = zetaModule.get();
         if (mod == null || mod.enabled) {
-            super.generateRecipes(module, pack, manager);
+            super.generateRecipes(module, manager, sink);
         }
     }
 
@@ -115,28 +112,33 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
             this.blockSupplier = factory;
         }
 
-        public QuarkEntrySet.Builder<T, B> createPaletteFromStone() {
-            return (QuarkEntrySet.Builder<T, B>) createPaletteFromChild("stone");
-        }
-
-        public QuarkEntrySet.Builder<T, B> createPaletteFromBricks() {
-            this.setPalette((blockType, manager) -> {
-                if (blockType.getChild("bricks") != null) {
-                    return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
-                    }, "bricks", null, blockType, manager);
-                }
-                return AbstractSimpleEntrySet.makePaletteFromChild(p -> {
-                }, "stone", null, blockType, manager);
-            });
-            return this;
-        }
+//        /// @deprecated new method haven't been implemented yet
+//        @Deprecated(forRemoval = true)
+//        public QuarkEntrySet.Builder<T, B> createPaletteFromStone() {
+//            return (QuarkEntrySet.Builder<T, B>) createPaletteFromChild("stone");
+//        }
+//
+//        /// @deprecated new method haven't been implemented yet
+//        @SuppressWarnings("DataFlowIssue")
+//        @Deprecated(forRemoval = true)
+//        public QuarkEntrySet.Builder<T, B> createPaletteFromBricks() {
+//            this.setPalette((blockType, manager) -> {
+//                if (blockType.getChild(BRICKS) != null) {
+//                    var paletteAnimation = PaletteStrategies.makePaletteFromChild(blockType, manager, BRICKS, null, p -> {});
+//                    return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
+//                }
+//                var paletteAnimation = PaletteStrategies.makePaletteFromMainChild(blockType, manager);
+//                return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
+//            });
+//            return this;
+//        }
 
         @Override
         public QuarkEntrySet<T, B> build() {
-            var e = new QuarkEntrySet<>(type, name, prefix, quarkModule,
-                    baseBlock, baseType, blockSupplier, tab, tabMode, lootMode,
-                    itemFactory, tileHolder, renderType, palette, extraModelTransform, useMergedPalette,
-                    tintConfig, copyTint,  condition);
+            var e = new QuarkEntrySet<>(this.type, this.name, this.prefix, this.quarkModule,
+                    this.baseBlock, this.baseType, this.blockSupplier, this.tab, this.tabMode, this.lootMode,
+                    this.itemFactory, this.tileHolder, this.renderType, this.palette, this.extraModelTransform, this.useMergedPalette,
+                    this.copyTint, this.condition, this.modelConfig);
 
             e.recipeLocations.addAll(this.recipes);
             e.tags.putAll(this.tags);

@@ -6,8 +6,8 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -19,6 +19,8 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
+
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 //SUPPORT: v1.1.2+
 public class MacawFencesModule extends StoneZoneModule {
@@ -38,10 +40,10 @@ public class MacawFencesModule extends StoneZoneModule {
         ResourceLocation tab = modRes("fenceitemgroup");
 
         modern_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "modern",
-                        getModBlock("modern_stone_brick_wall"), StoneTypeRegistry::getStoneType,
+                        getModBlock("modern_stone_brick_wall"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new FenceBlock(standardCopyProperties(stoneType))
                 )
-                .requiresChildren("bricks", "cobblestone") //REASON: testures, recipes
+                .requiresChildren(BRICKS, COBBLESTONE) //REASON: testures, recipes
                 //TEXTURES: bricks, cobblestone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
@@ -53,11 +55,10 @@ public class MacawFencesModule extends StoneZoneModule {
         this.addEntry(modern_brick_walls);
 
         railing_brick_gates = StoneZoneEntrySet.of(StoneType.class, "brick_railing_gate",
-                        getModBlock("stone_brick_railing_gate"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_railing_gate"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new FenceGateBlock(WoodType.OAK, standardCopyProperties(stoneType))
                 )
-                .excludeTextureFromTinting("#4")
-                .requiresChildren("bricks") //REASON: textures, recipes
+                .requiresChildren(BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -71,11 +72,10 @@ public class MacawFencesModule extends StoneZoneModule {
         this.addEntry(railing_brick_gates);
 
         railing_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "railing",
-                        getModBlock("railing_stone_brick_wall"), StoneTypeRegistry::getStoneType,
+                        getModBlock("railing_stone_brick_wall"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new FenceBlock(standardCopyProperties(stoneType))
                 )
-                .excludeTextureFromTinting("#2")
-                .requiresChildren("bricks") //REASON: textures, recipes
+                .requiresChildren(BRICKS) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -89,17 +89,10 @@ public class MacawFencesModule extends StoneZoneModule {
         this.addEntry(railing_brick_walls);
 
         grass_topped_walls = StoneZoneEntrySet.of(StoneType.class, "grass_topped_wall",
-                        getModBlock("stone_grass_topped_wall"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_grass_topped_wall"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new FenceHitbox(standardCopyProperties(stoneType))
                 )
-                //REASON: grass
-                .excludeMultipleTextureFromTinting(modRes("block/parent/grass_topped_wall_middle"), "#0", "#1")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/grass_topped_wall_post"), "#3", "#4")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/grass_topped_wall_corner"), "#2", "#3")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/grass_topped_wall_cross"), "#2", "#3")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/grass_topped_wall_side"), "#2", "#3")
-                .excludeMultipleTextureFromTinting(modRes("block/parent/grass_topped_wall_triple"), "#2", "#3")
-                .requiresChildren("bricks", "cobblestone") //REASON: textures, recipes
+                .requiresChildren(BRICKS, COBBLESTONE) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks, cobblestone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -114,10 +107,10 @@ public class MacawFencesModule extends StoneZoneModule {
 
 //!! ANDESITE
         pillar_walls = StoneZoneEntrySet.of(StoneType.class, "pillar_wall",
-                        getModBlock("andesite_pillar_wall"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("andesite_pillar_wall"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new FenceBlock(standardCopyProperties(stoneType))
                 )
-                .requiresChildren("polished") //REASON: textures, recipes
+                .requiresChildren(POLISHED) //REASON: textures, recipes
                 //TEXTURES: stone, polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
@@ -129,10 +122,10 @@ public class MacawFencesModule extends StoneZoneModule {
         this.addEntry(pillar_walls);
 
         railing_gates = StoneZoneEntrySet.of(StoneType.class, "railing_gate",
-                        getModBlock("andesite_railing_gate"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("andesite_railing_gate"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new FenceGateBlock(WoodType.OAK, standardCopyProperties(stoneType))
                 )
-                .requiresChildren("polished") //REASON: textures, recipes
+                .requiresChildren(POLISHED) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -146,10 +139,10 @@ public class MacawFencesModule extends StoneZoneModule {
         this.addEntry(railing_gates);
 
         railing_walls = StoneZoneEntrySet.of(StoneType.class, "wall", "railing",
-                        getModBlock("railing_andesite_wall"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("railing_andesite_wall"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new FenceBlock(standardCopyProperties(stoneType))
                 )
-                .requiresChildren("polished") //REASON: textures, recipes
+                .requiresChildren(POLISHED) //REASON: textures, recipes
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -163,10 +156,10 @@ public class MacawFencesModule extends StoneZoneModule {
         this.addEntry(railing_walls);
 
         modern_walls = StoneZoneEntrySet.of(StoneType.class, "wall", "modern",
-                        getModBlock("modern_andesite_wall"), StoneTypeRegistry::getAndesiteType,
+                        getModBlock("modern_andesite_wall"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new FenceBlock(standardCopyProperties(stoneType))
                 )
-                .requiresChildren("polished") //REASON: testures, recipes
+                .requiresChildren(POLISHED) //REASON: testures, recipes
                 //TEXTURES: stone, polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)

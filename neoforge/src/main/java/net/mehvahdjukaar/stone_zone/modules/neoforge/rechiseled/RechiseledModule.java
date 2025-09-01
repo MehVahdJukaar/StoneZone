@@ -5,28 +5,25 @@ import com.google.gson.JsonObject;
 import com.supermartijn642.core.TextComponents;
 import com.supermartijn642.core.block.BaseBlock;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.api.TextureInfo;
-import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import org.jetbrains.annotations.NotNull;
@@ -72,17 +69,17 @@ public class RechiseledModule extends StoneZoneModule {
         ResourceLocation tab = modRes(modId);
 
         big_tiles = StoneZoneEntrySet.of(StoneType.class, "big_tiles",
-                        getModBlock("stone_big_tiles"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_big_tiles"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_big_tiles")).copyMCMETA())
+                .addTexture(modRes("block/stone_big_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(big_tiles);
 
         big_tiles_connecting = StoneZoneEntrySet.of(StoneType.class, "big_tiles_connecting",
-                        getModBlock("stone_big_tiles_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_big_tiles_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -92,17 +89,17 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(big_tiles_connecting);
 
         bordered = StoneZoneEntrySet.of(StoneType.class, "bordered",
-                        getModBlock("stone_bordered"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_bordered"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_bordered")).copyMCMETA())
+                .addTexture(modRes("block/stone_bordered"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(bordered);
 
         bordered_connecting = StoneZoneEntrySet.of(StoneType.class, "bordered_connecting",
-                        getModBlock("stone_bordered_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_bordered_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -112,17 +109,17 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(bordered_connecting);
 
         brick_pattern = StoneZoneEntrySet.of(StoneType.class, "brick_pattern",
-                        getModBlock("stone_brick_pattern"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_pattern"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_brick_pattern")).copyMCMETA())
+                .addTexture(modRes("block/stone_brick_pattern"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(brick_pattern);
 
         brick_pattern_connecting = StoneZoneEntrySet.of(StoneType.class, "brick_pattern_connecting",
-                        getModBlock("stone_brick_pattern_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_pattern_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -132,17 +129,17 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(brick_pattern_connecting);
 
         brick_paving = StoneZoneEntrySet.of(StoneType.class, "brick_paving",
-                        getModBlock("stone_brick_paving"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_paving"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_brick_paving")).copyMCMETA())
+                .addTexture(modRes("block/stone_brick_paving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(brick_paving);
 
         brick_paving_connecting = StoneZoneEntrySet.of(StoneType.class, "brick_paving_connecting",
-                        getModBlock("stone_brick_paving_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_brick_paving_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -152,17 +149,17 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(brick_paving_connecting);
 
         crushed = StoneZoneEntrySet.of(StoneType.class, "crushed",
-                        getModBlock("stone_crushed"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_crushed"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_crushed")).copyMCMETA())
+                .addTexture(modRes("block/stone_crushed"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(crushed);
 
         crushed_connecting = StoneZoneEntrySet.of(StoneType.class, "crushed_connecting",
-                        getModBlock("stone_crushed_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_crushed_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -172,17 +169,17 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(crushed_connecting);
 
         diagonal_bricks = StoneZoneEntrySet.of(StoneType.class, "diagonal_bricks",
-                        getModBlock("stone_diagonal_bricks"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_diagonal_bricks"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_diagonal_bricks")).copyMCMETA())
+                .addTexture(modRes("block/stone_diagonal_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(diagonal_bricks);
 
         diagonal_bricks_connecting = StoneZoneEntrySet.of(StoneType.class, "diagonal_bricks_connecting",
-                        getModBlock("stone_diagonal_bricks_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_diagonal_bricks_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -192,17 +189,17 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(diagonal_bricks_connecting);
 
         path = StoneZoneEntrySet.of(StoneType.class, "path",
-                        getModBlock("stone_path"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_path"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_path")).copyMCMETA())
+                .addTexture(modRes("block/stone_path"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(path);
 
         path_connecting = StoneZoneEntrySet.of(StoneType.class, "path_connecting",
-                        getModBlock("stone_path_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_path_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -212,17 +209,17 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(path_connecting);
 
         rotated_bricks = StoneZoneEntrySet.of(StoneType.class, "rotated_bricks",
-                        getModBlock("stone_rotated_bricks"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_rotated_bricks"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_rotated_bricks")).copyMCMETA())
+                .addTexture(modRes("block/stone_rotated_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(rotated_bricks);
 
         rotated_bricks_connecting = StoneZoneEntrySet.of(StoneType.class, "rotated_bricks_connecting",
-                        getModBlock("stone_rotated_bricks_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_rotated_bricks_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -232,17 +229,17 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(rotated_bricks_connecting);
 
         small_bricks = StoneZoneEntrySet.of(StoneType.class, "small_bricks",
-                        getModBlock("stone_small_bricks"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_small_bricks"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_small_bricks")).copyMCMETA())
+                .addTexture(modRes("block/stone_small_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(small_bricks);
 
         small_bricks_connecting = StoneZoneEntrySet.of(StoneType.class, "small_bricks_connecting",
-                        getModBlock("stone_small_bricks_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_small_bricks_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -252,17 +249,17 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(small_bricks_connecting);
 
         small_tiles = StoneZoneEntrySet.of(StoneType.class, "small_tiles",
-                        getModBlock("stone_small_tiles"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_small_tiles"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_small_tiles")).copyMCMETA())
+                .addTexture(modRes("block/stone_small_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(small_tiles);
 
         small_tiles_connecting = StoneZoneEntrySet.of(StoneType.class, "small_tiles_connecting",
-                        getModBlock("stone_small_tiles_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_small_tiles_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -272,17 +269,17 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(small_tiles_connecting);
 
         smooth_brick_paving = StoneZoneEntrySet.of(StoneType.class, "smooth_brick_paving",
-                        getModBlock("stone_smooth_brick_paving"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_smooth_brick_paving"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_smooth_brick_paving")).copyMCMETA())
+                .addTexture(modRes("block/stone_smooth_brick_paving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(smooth_brick_paving);
 
         smooth_brick_paving_connecting = StoneZoneEntrySet.of(StoneType.class, "smooth_brick_paving_connecting",
-                        getModBlock("stone_smooth_brick_paving_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_smooth_brick_paving_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -292,17 +289,17 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(smooth_brick_paving_connecting);
 
         smooth_large_tiles = StoneZoneEntrySet.of(StoneType.class, "smooth_large_tiles",
-                        getModBlock("stone_smooth_large_tiles"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_smooth_large_tiles"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_smooth_large_tiles")).copyMCMETA())
+                .addTexture(modRes("block/stone_smooth_large_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(smooth_large_tiles);
 
         smooth_large_tiles_connecting = StoneZoneEntrySet.of(StoneType.class, "smooth_large_tiles_connecting",
-                        getModBlock("stone_smooth_large_tiles_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_smooth_large_tiles_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -312,17 +309,17 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(smooth_large_tiles_connecting);
 
         smooth_rotated_bricks = StoneZoneEntrySet.of(StoneType.class, "smooth_rotated_bricks",
-                        getModBlock("stone_smooth_rotated_bricks"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_smooth_rotated_bricks"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_smooth_rotated_bricks")).copyMCMETA())
+                .addTexture(modRes("block/stone_smooth_rotated_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(smooth_rotated_bricks);
 
         smooth_rotated_bricks_connecting = StoneZoneEntrySet.of(StoneType.class, "smooth_rotated_bricks_connecting",
-                        getModBlock("stone_smooth_rotated_bricks_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_smooth_rotated_bricks_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -332,17 +329,17 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(smooth_rotated_bricks_connecting);
 
         smooth_tiles = StoneZoneEntrySet.of(StoneType.class, "smooth_tiles",
-                        getModBlock("stone_smooth_tiles"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_smooth_tiles"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_smooth_tiles")).copyMCMETA())
+                .addTexture(modRes("block/stone_smooth_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(smooth_tiles);
 
         smooth_tiles_connecting = StoneZoneEntrySet.of(StoneType.class, "smooth_tiles_connecting",
-                        getModBlock("stone_smooth_tiles_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_smooth_tiles_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -352,17 +349,17 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(smooth_tiles_connecting);
 
         squares = StoneZoneEntrySet.of(StoneType.class, "squares",
-                        getModBlock("stone_squares"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_squares"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_squares")).copyMCMETA())
+                .addTexture(modRes("block/stone_squares"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(squares);
 
         squares_connecting = StoneZoneEntrySet.of(StoneType.class, "squares_connecting",
-                        getModBlock("stone_squares_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_squares_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
@@ -372,17 +369,17 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(squares_connecting);
 
         waves = StoneZoneEntrySet.of(StoneType.class, "waves",
-                        getModBlock("stone_waves"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_waves"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_waves")).copyMCMETA())
+                .addTexture(modRes("block/stone_waves"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(waves);
 
         waves_connecting = StoneZoneEntrySet.of(StoneType.class, "waves_connecting",
-                        getModBlock("stone_waves_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_waves_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -391,17 +388,17 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(waves_connecting);
 
         tiles = StoneZoneEntrySet.of(StoneType.class, "tiles",
-                        getModBlock("stone_tiles"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_tiles"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                .addTexture(TextureInfo.of(modRes("block/stone_tiles")).copyMCMETA())
+                .addTexture(modRes("block/stone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
         this.addEntry(tiles);
 
         tiles_connecting = StoneZoneEntrySet.of(StoneType.class, "tiles_connecting",
-                        getModBlock("stone_tiles_connecting"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_tiles_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 .requiresFromMap(tiles.blocks)
@@ -411,7 +408,7 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntry(tiles_connecting);
 
         slated = StoneZoneEntrySet.of(StoneType.class, "slated",
-                        getModBlock("stone_slated"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_slated"), () -> VanillaStoneTypes.STONE,
                         type -> new CompatRechiseledPillarBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(modRes("block/stone_slated_end"))
@@ -424,10 +421,10 @@ public class RechiseledModule extends StoneZoneModule {
     }
 
     /// CUSTOM CLASS - REASON: Changed BlockProperties to Proerties to use Utils.copyPropertySafe()
-    public static class CompatRechiseledBlock extends BaseBlock {
+    public static class CompatRechiseledBlock extends CompatBaseBlock {
         public final boolean connecting;
 
-        public CompatRechiseledBlock(boolean connecting, BlockBehaviour.Properties properties) {
+        public CompatRechiseledBlock(boolean connecting, Properties properties) {
             super(false, properties);
             this.connecting = connecting;
         }
@@ -441,7 +438,7 @@ public class RechiseledModule extends StoneZoneModule {
     }
 
     public static class CompatRechiseledPillarBlock extends CompatRechiseledBlock {
-        public CompatRechiseledPillarBlock(boolean connecting, BlockBehaviour.Properties properties) {
+        public CompatRechiseledPillarBlock(boolean connecting, Properties properties) {
             super(connecting, properties);
             this.registerDefaultState(this.defaultBlockState().setValue(AXIS_PROPERTY, Direction.Axis.Y));
         }
@@ -469,70 +466,79 @@ public class RechiseledModule extends StoneZoneModule {
         }
     }
 
+    public static class CompatBaseBlock extends BaseBlock {
+        public CompatBaseBlock(boolean saveTileData, Properties properties) {
+            super(saveTileData, properties);
+        }
+    }
+
     @Override
     // RECIPES
-    public void addDynamicServerResources(ServerDynamicResourcesHandler handler, ResourceManager manager) {
-        super.addDynamicServerResources(handler, manager);
+    public void addDynamicServerResources(Consumer<ResourceGenTask> executor) {
+        super.addDynamicServerResources(executor);
 
-        big_tiles.blocks.forEach((stoneType, block) -> {
+        executor.accept((manager, sink) ->
 
-            // Adding all supported-blocks of a StoneType to Array
-            JsonArray entriesArray = new JsonArray();
+            big_tiles.blocks.forEach((stoneType, block) -> {
 
-            for (var entry : this.getEntries()) {
-                JsonObject entryObj = new JsonObject();
+                // Adding all supported-blocks of a StoneType to Array
+                JsonArray entriesArray = new JsonArray();
 
-                SimpleEntrySet<?, ?> currentEntry = ((SimpleEntrySet<?, ?>) entry);
-                String currentName = currentEntry.getName();
+                for (var entry : this.getEntries()) {
+                    JsonObject entryObj = new JsonObject();
 
-                // Get the other block with "_connecting"
-                String entryKey = currentName + "_connecting";
+                    SimpleEntrySet<?, ?> currentEntry = ((SimpleEntrySet<?, ?>) entry);
+                    String currentName = currentEntry.getName();
 
-                if (!currentName.contains("_connecting")) { // Skip the blocks with "_connecting"
-                    Block currentBlock = currentEntry.blocks.get(stoneType);
-                    if (Objects.nonNull(currentBlock)) {
-                        entryObj.addProperty("item", Utils.getID(currentBlock).toString());
+                    // Get the other block with "_connecting"
+                    String entryKey = currentName + "_connecting";
 
-                        if (!currentName.matches("slated")) { // Skip blc it don't have "_connecting" block
-                            StoneZoneEntrySet<?, ?> otherEntry = (StoneZoneEntrySet<?, ?>) this.getEntry(entryKey);
-                            Block otherBlock = otherEntry.blocks.get(stoneType);
-                            if (Objects.nonNull(otherBlock))
-                                entryObj.addProperty("connecting_item", Utils.getID(otherBlock).toString());
+                    if (!currentName.contains("_connecting")) { // Skip the blocks with "_connecting"
+                        Block currentBlock = currentEntry.blocks.get(stoneType);
+                        if (Objects.nonNull(currentBlock)) {
+                            entryObj.addProperty("item", Utils.getID(currentBlock).toString());
+
+                            if (!currentName.matches("slated")) { // Skip blc it don't have "_connecting" block
+                                StoneZoneEntrySet<?, ?> otherEntry = (StoneZoneEntrySet<?, ?>) this.getEntry(entryKey);
+                                Block otherBlock = otherEntry.blocks.get(stoneType);
+                                if (Objects.nonNull(otherBlock))
+                                    entryObj.addProperty("connecting_item", Utils.getID(otherBlock).toString());
+                            }
+
+                            entriesArray.add(entryObj);
                         }
+                    }
+                }
 
+                // Adding vanilla blocks to Array
+                String[] vanillaBlocks = {
+                        "stone",
+                        "bricks",
+                        "mossy_bricks",
+                        "cracked_bricks",
+                        "smooth"
+                };
+
+                for (var key : vanillaBlocks) {
+                    Block currentBlock = stoneType.getBlockOfThis(key);
+                    if (Objects.nonNull(currentBlock)) {
+                        JsonObject entryObj = new JsonObject();
+                        entryObj.addProperty("item", Utils.getID(currentBlock).toString());
                         entriesArray.add(entryObj);
                     }
                 }
-            }
 
-            // Adding vanilla blocks to Array
-            String[] vanillaBlocks = {
-                    "stone",
-                    "bricks",
-                    "mossy_bricks",
-                    "cracked_bricks",
-                    "smooth"
-            };
+                // Recipes
+                JsonObject chiseling_recipe = new JsonObject();
+                chiseling_recipe.addProperty("type", "rechiseled:chiseling");
+                chiseling_recipe.addProperty("overwrite", false);
+                chiseling_recipe.add("entries", entriesArray);
 
-            for (var key : vanillaBlocks) {
-                Block currentBlock = stoneType.getBlockOfThis(key);
-                if (Objects.nonNull(currentBlock)) {
-                    JsonObject entryObj = new JsonObject();
-                    entryObj.addProperty("item", Utils.getID(currentBlock).toString());
-                    entriesArray.add(entryObj);
-                }
-            }
+                // Adding to resources
+                ResourceLocation resLoc = StoneZone.res("chiseling_recipes/" + stoneType.getAppendableId());
+                sink.addJson(resLoc, chiseling_recipe, ResType.JSON);
 
-            // Recipes
-            JsonObject chiseling_recipe = new JsonObject();
-            chiseling_recipe.addProperty("type", "rechiseled:chiseling");
-            chiseling_recipe.addProperty("overwrite", false);
-            chiseling_recipe.add("entries", entriesArray);
-
-            // Adding to resources
-            ResourceLocation resLoc = StoneZone.res("chiseling_recipes/" + stoneType.getAppendableId());
-            handler.dynamicPack.addJson(resLoc, chiseling_recipe, ResType.JSON);
-
-        });
+            })
+        );
     }
 }

@@ -1,15 +1,14 @@
 package net.mehvahdjukaar.stone_zone.api.example;
 
-import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
-import net.mehvahdjukaar.every_compat.api.RenderLayer;
-import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodType;
-import net.mehvahdjukaar.moonlight.api.set.wood.WoodTypeRegistry;
+import net.mehvahdjukaar.every_compat.api.*;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
+import net.mehvahdjukaar.stone_zone.api.StonePaletteStrategies;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.StoneTypeRegistry;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -18,6 +17,8 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+
+import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.registerCached;
 
 /**
  * StoneZoneModule is subclass of SimpleModule
@@ -33,8 +34,8 @@ public class ExampleModule extends StoneZoneModule {
     /// For Blocks - NOTE: it's using SimpleEntrySet
     public final SimpleEntrySet<StoneType, Block> sampleBlock, sampleBlock_2;
 
-    /// For Items - NOTE: it's using ItemOnlyEntrySet
-    public final ItemOnlyEntrySet<WoodType, Item> sampleItem;
+    /// For Items - NOTE: it's using SimpleEntrySet
+    public final ItemOnlyEntrySet<StoneType, Item> sampleItem;
 
     public ExampleModule(String modId) {
         super(modId, "tfc"); // If the mod's name is TerraFirmaCraft, then you could use 3 upper letter
@@ -45,7 +46,7 @@ public class ExampleModule extends StoneZoneModule {
 
         /// NOTE: it's using StoneZoneEntrySet
         sampleBlock_2 = StoneZoneEntrySet.of(StoneType.class,"suffix", "prefix",
-                        getModBlock("oak_table"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_table"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .build();
@@ -53,15 +54,11 @@ public class ExampleModule extends StoneZoneModule {
 
         /// NOTE: it's using StoneZoneEntrySet
         sampleBlock = StoneZoneEntrySet.of(StoneType.class,"table",
-                        getModBlock("oak_table"), StoneTypeRegistry::getStoneType,
+                        getModBlock("stone_table"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
-                ///OPTIONAL: Without this, the default texture is stone's texture
-                .createPaletteFromStoneChild("bricks") // in case of no "childkey", then "stone" will be used
-                .createPaletteFromBricks() // Is same as above but in case of no "bricks", then "stone" will be used
-
                 ///OPTIONAL: Check if a StoneType has the children required, then block will be generated
-                .requiresChildren("slab", "other_childkey") //REASON: can be for recipes or textures
+                .requiresChildren(VanillaRockChildKeys.SLAB) //REASON: can be for recipes or textures
                 .requiresFromMap(sampleBlock_2.blocks) // If your block required another block for crafting or texturing
                 //NOTE: sampleBlock_2 has to be above of this EntrySet for .requiresFromMap to work properly
 
@@ -69,9 +66,12 @@ public class ExampleModule extends StoneZoneModule {
                 .addTile(getModTile("id_of_EntityType"))
 
                 ///OPTIONAL: Adding block's textures to be generated
-                .addTexture(modRes("block/oak_table"))
-                .addTexture(ResourceLocation.parse("twigs:block/oak_table_bottom"))
-                .addTextureM(modRes("block/oak_table_top"), modRes("block/mask/oak_table_top_m")) // If the texture has parts that shouldn't be recolored, the mask (black color) can be used to exclude them
+                .addTexture(modRes("block/stone_table"))
+                .addTexture(ResourceLocation.parse("twigs:block/stone_table_bottom"))
+                .addTextureM(modRes("block/stone_table_top"), modRes("block/mask/stone_table_top_m")) // If the texture has parts that shouldn't be recolored, the mask (black color) can be used to exclude them
+
+                ///OPTIONAL: Without this, the default texture is STONE's texture - Below will use BRICKS' texture instead of STONE's
+                .addTexture(modRes("example_palette_texture"), StonePaletteStrategies.BRICKS_STANDARD)
 
                 ///OPTIONAL: Adding tags to the block
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -82,12 +82,12 @@ public class ExampleModule extends StoneZoneModule {
                 .setTabKey(yourModTab)
 
                 ///OPTIONAL: Creating recipes for the block
-                .defaultRecipe() // default: new ResourceLocation("twigs:oak_table") via recipes folder
+                .defaultRecipe() // default: new ResourceLocation("twigs:stone_table") via recipes folder
                 ///OPTIONAL: if the recipe has a different path unlike above
                 .addRecipe(modRes("path/to/recipeFile")) // Do not use "recipes/"
 
                 ///OPTIONAL: Special cases
-                .copyParentDrop() // copy the loot_table of the baseBlock (oak_table)
+                .copyParentDrop() // copy the loot_table of the baseBlock (stone_table)
                 .setRenderType(RenderLayer.CUTOUT) //USAGE: CUTOUT, CUTOUT_MIPPED, SOLID, TRANSLUCENT
 
                 ///OPTIONAL: Exclude a BlockType from being generated
@@ -98,9 +98,9 @@ public class ExampleModule extends StoneZoneModule {
                 .build();
         this.addEntry(sampleBlock);
 
-        sampleItem = ItemOnlyEntrySet.builder(WoodType.class,"table",
-                        getModItem("oak_table"), ()-> WoodTypeRegistry.OAK_TYPE,
-                        w -> new Item(new Item.Properties())
+        sampleItem = ItemOnlyEntrySet.builder(StoneType.class,"table",
+                        getModItem("stone_table"), ()-> VanillaStoneTypes.STONE,
+                        stoneType -> new Item(new Item.Properties())
                 )
                 .addTexture(modRes("item/itemTexture"))
                 .addTag(ResourceLocation.parse("twigs:tables"), Registries.ITEM)
@@ -108,4 +108,17 @@ public class ExampleModule extends StoneZoneModule {
                 .build();
         this.addEntry(sampleItem);
     }
+
+    /// Instead of StonePaletteStrategies.BRICKS_STANDARD, below can be used with different strategy to modify the palettes used for generating new texture
+    public static final PaletteStrategy customPalette = registerCached((blockType, manager) ->
+            PaletteStrategies.makePaletteFromChild(blockType, manager,
+                    VanillaStoneChildKeys.POLISHED, // it can be BRICKS, SMOOTH, POLISHED or others
+                    null, // not really needed. so it can stay null - this is only applied to WoodType's LOG which has _side and _top
+                    (p) -> {
+                        p.reduceDown(); // remove darkest
+                        p.reduceUp(); // remove lightest
+                        p.increaseInner(); // add an average color
+                        p.increaseInner();
+                    })
+    ); // What this is creating is an low contrast texture.
 }
