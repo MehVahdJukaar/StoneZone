@@ -32,6 +32,17 @@ public class CompatStoneType {
 
         StoneTypeRegistry stoneReg = StoneTypeRegistry.INSTANCE;
 
+        // Pokecube AOI - REASON: 2-Words
+        stoneReg.addSimpleFinder("pokecube_legends", "ultra_darkstone")
+                .childBlock(COBBLESTONE, "ultra_dark_cobblestone");
+        stoneReg.addSimpleFinder("pokecube_legends", "dusk_dolerite")
+                .childBlock(COBBLESTONE, "cobbled_dusk_dolerite");
+        stoneReg.addSimpleFinder("pokecube_legends", "azure_sandstone");
+        stoneReg.addSimpleFinder("pokecube_legends", "blackened_sandstone");
+        stoneReg.addSimpleFinder("pokecube_legends", "crystallized_sandstone");
+        stoneReg.addSimpleFinder("pokecube_legends", "meteorite") //REASON: Id-Stone
+                .stone("meteorite_block");
+
         // Sundries - REASON: 2-Words
         stoneReg.addSimpleFinder("sundries", "green_marble");
         stoneReg.addSimpleFinder("sundries", "white_marble");
