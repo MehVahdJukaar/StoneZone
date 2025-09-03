@@ -25,7 +25,6 @@ public class StoneZoneModule extends SimpleModule {
         super(modId, shortId, StoneZone.MOD_ID);
     }
 
-
     @Override
     @SuppressWarnings("DataFlowIssue")
     public ResourceKey<CreativeModeTab> getDedicatedTab() {
