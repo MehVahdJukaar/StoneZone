@@ -95,7 +95,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("stone_bridge_pier"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Bridge_Support(standardProperties(stoneType))
                 )
-                .requiresChildren(BRICKS) //REASON: textures, recipes
+                .requiresChildren(BRICKS, BRICK_WALL) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_piers"), Registries.BLOCK)
@@ -109,7 +109,7 @@ public class MacawBridgesModule extends StoneZoneModule {
                         getModBlock("mossy_stone_bridge_pier"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Bridge_Support(standardProperties(stoneType))
                 )
-                .requiresChildren(MOSSY_BRICKS) //REASON: textures, recipes
+                .requiresChildren(MOSSY_BRICKS, MOSSY_BRICK_WALL) //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_piers"), Registries.BLOCK)
