@@ -32,6 +32,15 @@ public class CompatStoneType {
 
         StoneTypeRegistry stoneReg = StoneTypeRegistry.INSTANCE;
 
+        // Koopa's Critters - REASON: Naming-Convention
+        stoneReg.addSimpleFinder("koopascritters", "kopje_granite")
+                .stoneSuffix("_kc")
+                .childBlockSuffix(SLAB, "_slab_kc")
+                .childBlockSuffix(STAIRS, "_kc_stairs")
+                .childBlockAffix(POLISHED, "polished_", "_kc")
+                .childBlockAffix(POLISHED_STAIRS, "polished_", "_stairs_kc")
+                .childBlockAffix(POLISHED_WALL, "polished_", "_wall_kc");
+
         // Pokecube AOI - REASON: 2-Words
         stoneReg.addSimpleFinder("pokecube_legends", "ultra_darkstone")
                 .childBlock(COBBLESTONE, "ultra_dark_cobblestone");
