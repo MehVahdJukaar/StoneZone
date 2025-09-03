@@ -4,7 +4,7 @@
   </div>
   <div style="text-align: left;">
     <ul style="list-style-type: disc; padding-left: 20px;">
-      <li>(COMMON): FORGE & FABRIC</li>
+      <li>(C): FORGE & FABRIC</li>
       <li>(NF): NEOFORGE</li>
       <li>(FB): FABRIC</li>
       <li>(IT): Included Texture: Added the ResourceLocation of the missing textures required for blocks or generating a new texture</li>
@@ -13,74 +13,11 @@
   </div>
 </div>
 
----
-
-### UPDATED: 
-- **Better Archeology** (COMMON): Supporting v1.3.2+ (1.21.1)
-- **Stone Zone** (COMMON): Fixed the detection system to detect children including bricks, brick_stairs, brick_slab, so on...
-
----
-
-## v2.10.7
-
-
-### UPDATED: 
-- **Create** (NF): 
-  - Fixed all of blocks' dropping - [#125](https://github.com/MehVahdJukaar/WoodGood/issues/125)
-  - (UD): Add `polished` & `bricks` to StoneType's children
-- **Chipped** (COMMON): Corrected the blocks' class & see the link for more details - [#126](https://github.com/MehVahdJukaar/WoodGood/issues/126)
-- **Marioverse** (UD): Added `amethyst` & updated `deep_fungal` to have the correct id to detect other children
-  - NOTE: it's not out on Curseforge or Modrinth yet. it's WIP - @WenXin
-
----
-
-## v2.10.6
-
 ### UPDATED:
-- **Stone Zone** (COMMON): Fixed the crash occurred with v2.10.5
+- **StoneZone** (C): 
+  - Updated to work with **EveryCompat v2.11.0+** and **Moonlight v2.23.0**
+  - Major changes in the code
 
 ### ADDED:
-- **The Twilight Forest** (UD): mazestone & deadrock
-
----
-
-## v2.10.5
-
-### UPDATED:
-- **Stone Zone** (COMMON): 
-  - Removed **Quark**'s _duskbound_ blc it's not a StoneType
-    - <span style="color: RED;">WARNING: Backup your world if you have **Quark** installed</span>
-  - Improved the detection system
-
-### ADDED: 
-- **Nature's Spirit** (UD): Kaolin Color Variations - [#115](https://github.com/MehVahdJukaar/StoneZone/issues/115)
-- **Marioverse** (UD): deep_fungal_stone
-- **Stone Zone** (COMMON): Added 4 Macaw's Compat Mod for **Macaw's BYG** & **Macaw's Biomes O' Plenty** - @22858
-  - Doors
-  - Trapdoors
-  - Paths & Pavings
-  - Windows
-
----
-
-## v2.10.4
-
-### UPDATED: 
-- **LANG**: zh_cn - @ChuijkYahus
-- **StoneZone** (NF): Fixed the crash - Related to IEventBusRegister stuff
-
----
-
-## v2.10.3
-
-### UPDATED:
-- **Stoneworks** (COMMON): Fixed the blocks not dropping - [#100](https://github.com/MehVahdJukaar/StoneZone/issues/100)
-- **StoneZone** (COMMON): Bought Updated & Improved codes from 1.20.1 for tinting system
-
----
-
-## v2.10.2
-
-### UPDATED: 
-- **Chipped** (COMMON): Updated an outdated recipe system for 1.21
-- **FABRIC**: corrected the modID in fabric.mod.json for **fabric API**
+- **Pokecube AOI** (UD): ultra_darkstone, dusk_dolerite, azure_sandstone, blackened_sandstone, crystallized_sandstone, meteorite
+- **Koopa's Critter** (UD): kopje_granite
