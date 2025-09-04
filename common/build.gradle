@@ -60,6 +60,7 @@ dependencies {
     modCompileOnly("curse.maven:quark-243121:5594847") //!! 1.20
     modCompileOnly("curse.maven:stoneworks-852663:5731745")
     modCompileOnly("curse.maven:twigs-496913:4603805") //!! 1.20
+    modCompileOnly("curse.maven:waystones-245755:6856570") // Balm
 
         //+ OTHER MAVENS
     modCompileOnly("earth.terrarium.chipped:chipped-fabric-1.21.1:4.0.2") //INCLUDED: Athena, Resourceful-Lib
