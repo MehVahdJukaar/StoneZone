@@ -13,6 +13,17 @@
   </div>
 </div>
 
+### UPDATED: 
+- **Additional Lights** (NF): Outdated codes are updated and fixed the crash - [#147](https://github.com/MehVahdJukaar/StoneZone/issues/147) 
+- **Chipped** (C): Fixed the missing textures
+
+### NEW:
+- **Waystones** (C)
+
+---
+
+## v2.11.0
+
 ### UPDATED:
 - **StoneZone** (C): 
   - Updated to work with **EveryCompat v2.11.0+** and **Moonlight v2.23.0**
