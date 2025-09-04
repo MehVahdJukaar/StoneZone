@@ -50,7 +50,7 @@ public class StoneType extends RockType {
     }
 
     public Block bricksOrStone() {
-        Block bricks= this.getBlockOfThis("bricks");
+        Block bricks = this.getBlockOfThis("bricks");
         return bricks != null ? bricks : this.stone;
     }
 
