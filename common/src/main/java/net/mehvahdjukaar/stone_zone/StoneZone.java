@@ -52,15 +52,12 @@ public class StoneZone extends EveryCompat {
         }
     }
 
+    /// Use addMultipleIfLoaded from EveryCompat
+    @Deprecated(forRemoval = true)
     @SafeVarargs
     public static void addMultipleIfLoaded(String modId, Supplier<Function<String, CompatModule>>... moduleFactories) {
-        if (PlatHelper.isModLoaded(modId)) {
-            CompatModule module;
             for (var moduleFactory : moduleFactories) {
-                module = moduleFactory.get().apply(modId);
-                addModule(module);
+                addIfLoaded(modId, moduleFactory);
             }
-        }
-
     }
 }
