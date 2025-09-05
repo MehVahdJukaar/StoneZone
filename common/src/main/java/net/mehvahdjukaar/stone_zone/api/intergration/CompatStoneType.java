@@ -76,6 +76,13 @@ public class CompatStoneType {
                 .childBlockSuffix(BRICK_SLAB, "_bricks_slab")
                 .childBlockSuffix(BRICK_WALL, "_bricks_wall");
 
+        // Marioverse
+        stoneReg.addSimpleFinder("marioverse", "deep_fungal");
+
+        if (!PlatHelper.isModLoaded("gemsrealm")) // Will add if Gems-Realm is not installed
+            stoneReg.addSimpleFinder("marioverse", "amethyst")
+                    .stone("minecraft:amethyst_block");
+
         // The-Twiligth-Forest
         stoneReg.addSimpleFinder("twilightforest", "deadrock"); //REASON: Undetectable
         stoneReg.addSimpleFinder("twilightforest", "mazestone") //REASON: Undetected-Bricks
