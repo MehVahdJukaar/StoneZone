@@ -175,6 +175,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:quark-243121:5594847") // Zeta //!! 1.20
 //    modRuntimeOnly("curse.maven:more-beautiful-torches-860325:5263631") // Monolib //!! 1.20
 //    modRuntimeOnly("curse.maven:waystones-245755:6856574") // Balm
+//    modRuntimeOnly("curse.maven:handcrafted-538214:6330030") // Resourceful-Lib
 
         //- OTHER MAVENS
 //    modRuntimeOnly("earth.terrarium.chipped:chipped-neoforge-${minecraft_version}:4.0.2") //INCLUDED: Athena, Resourceful-Lib, REQUIRE: Bytecodecs

@@ -57,6 +57,7 @@ dependencies {
     modCompileOnly("curse.maven:building-but-better-989479:5382599") //!! 1.20
     modCompileOnly("curse.maven:create-fabric-624165:5982726") //!! 1.20
     modCompileOnly("curse.maven:fabric-waystones-410902:5798771")
+    modCompileOnly("curse.maven:handcrafted-538214:6330032") // Resourceful-Lib
     modCompileOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib //!! 1.20
     modCompileOnly("curse.maven:quark-243121:5594847") //!! 1.20
     modCompileOnly("curse.maven:stoneworks-852663:5731745")
