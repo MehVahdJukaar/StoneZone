@@ -34,6 +34,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 //SUPPORT: v6.0.2+
 public class CreateModule extends StoneZoneModule {
@@ -141,7 +142,8 @@ public class CreateModule extends StoneZoneModule {
 
         cut_brick_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_stairs", "cut",
                         getModBlock("cut_andesite_brick_stairs"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new StairBlock(stoneType.stone.defaultBlockState(), copyChildrenPropertySafe("brick_stairs", stoneType))
+                        stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
+                                copyChildrenPropertySafe(BRICK_STAIRS, stoneType))
                 )
                 .requiresFromMap(cut_bricks.blocks) //REASON: recipes
                 //TEXTURES: cut_bricks (above)
@@ -157,7 +159,7 @@ public class CreateModule extends StoneZoneModule {
 
         cut_brick_slabs = StoneZoneEntrySet.of(StoneType.class, "brick_slab", "cut",
                         getModBlock("cut_andesite_brick_slab"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new SlabBlock(copyChildrenPropertySafe("brick_slab", stoneType))
+                        stoneType -> new SlabBlock(copyChildrenPropertySafe(BRICK_SLAB, stoneType))
                 )
                 .requiresFromMap(cut_bricks.blocks) //REASON: recipes
                 //TEXTURES: cut_bricks (above)
@@ -174,7 +176,7 @@ public class CreateModule extends StoneZoneModule {
 
         cut_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "cut",
                         getModBlock("cut_andesite_brick_wall"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new WallBlock(copyChildrenPropertySafe("brick_wall", stoneType))
+                        stoneType -> new WallBlock(copyChildrenPropertySafe(BRICK_WALL, stoneType))
                 )
                 .requiresFromMap(cut_bricks.blocks) //REASON: recipes
                 //TEXTURES: cut_bricks (above)
@@ -203,7 +205,7 @@ public class CreateModule extends StoneZoneModule {
         polished_cut_stairs = StoneZoneEntrySet.of(StoneType.class, "stairs", "polished_cut",
                         getModBlock("polished_cut_andesite_stairs"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
-                                copyChildrenPropertySafe("polished_stairs", stoneType))
+                                copyChildrenPropertySafe(POLISHED_STAIRS, stoneType))
                 )
                 .requiresFromMap(polished_cuts.blocks) //REASON: recipes
                 //TEXTURES: polished_cut (above)
@@ -219,7 +221,7 @@ public class CreateModule extends StoneZoneModule {
 
         polished_cut_slabs = StoneZoneEntrySet.of(StoneType.class, "slab", "polished_cut",
                         getModBlock("polished_cut_andesite_slab"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new SlabBlock(copyChildrenPropertySafe("polished_slab", stoneType))
+                        stoneType -> new SlabBlock(copyChildrenPropertySafe(POLISHED_SLAB, stoneType))
                 )
                 .requiresFromMap(polished_cuts.blocks) //REASON: recipes
                 //REASON: below belong to cut_slabs but if it won't be generated, then the texture won't be, too
@@ -238,7 +240,7 @@ public class CreateModule extends StoneZoneModule {
 
         polished_cut_walls = StoneZoneEntrySet.of(StoneType.class, "wall", "polished_cut",
                         getModBlock("polished_cut_andesite_wall"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new WallBlock(copyChildrenPropertySafe("polished_wall", stoneType))
+                        stoneType -> new WallBlock(copyChildrenPropertySafe(POLISHED_WALL, stoneType))
                 )
                 .requiresFromMap(polished_cuts.blocks) //REASON: recipes
                 //TEXTURES: polished_cut (above)
@@ -267,9 +269,9 @@ public class CreateModule extends StoneZoneModule {
         small_brick_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_stairs", "small",
                         getModBlock("small_andesite_brick_stairs"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
-                                copyChildrenPropertySafe("polished_stairs", stoneType))
+                                copyChildrenPropertySafe(BRICK_STAIRS, stoneType))
                 )
-                .addCondition(s -> Objects.nonNull(small_bricks.blocks.get(s))) //REASON: recipes
+                .requiresFromMap(small_bricks.blocks) //REASON: recipes
                 //TEXTURES: small_bricks (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
@@ -283,9 +285,9 @@ public class CreateModule extends StoneZoneModule {
 
         small_brick_slabs = StoneZoneEntrySet.of(StoneType.class, "brick_slab", "small",
                         getModBlock("small_andesite_brick_slab"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new SlabBlock(copyChildrenPropertySafe("polished_slab", stoneType))
+                        stoneType -> new SlabBlock(copyChildrenPropertySafe(BRICK_SLAB, stoneType))
                 )
-                .addCondition(s -> Objects.nonNull(small_bricks.blocks.get(s))) //REASON: recipes
+                .requiresFromMap(small_bricks.blocks) //REASON: recipes
                 //TEXTURES: small_bricks, cut_slabs (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
@@ -300,9 +302,9 @@ public class CreateModule extends StoneZoneModule {
 
         small_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "small",
                         getModBlock("small_andesite_brick_wall"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new WallBlock(copyChildrenPropertySafe("polished_wall", stoneType))
+                        stoneType -> new WallBlock(copyChildrenPropertySafe(BRICK_WALL, stoneType))
                 )
-                .addCondition(s -> Objects.nonNull(small_bricks.blocks.get(s))) //REASON: recipes
+                .requiresFromMap(small_bricks.blocks) //REASON: recipes
                 //TEXTURES: small_bricks (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
