@@ -1,7 +1,6 @@
 package net.mehvahdjukaar.stone_zone;
 
 import net.mehvahdjukaar.every_compat.EveryCompat;
-import net.mehvahdjukaar.every_compat.api.CompatModule;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
@@ -14,9 +13,6 @@ import net.mehvahdjukaar.stone_zone.misc.CompatSpritesHelper;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class StoneZone extends EveryCompat {
     public static final String MOD_ID = "stonezone";
@@ -52,12 +48,4 @@ public class StoneZone extends EveryCompat {
         }
     }
 
-    /// Use addMultipleIfLoaded from EveryCompat
-    @Deprecated(forRemoval = true)
-    @SafeVarargs
-    public static void addMultipleIfLoaded(String modId, Supplier<Function<String, CompatModule>>... moduleFactories) {
-            for (var moduleFactory : moduleFactories) {
-                addIfLoaded(modId, moduleFactory);
-            }
-    }
 }
