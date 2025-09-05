@@ -97,7 +97,7 @@ dependencies {
 //!! MOONLIGHT LIB (REQUIRED) --------------------------------------------------------------------------------------- \\
     String path = System.getenv('REPOS21_1')
     boolean usesMavenLocalML =  System.getenv().MY_PC == "1"
-    print "\nisMyPc: $usesMavenLocalML"
+    print "\nisMyPc-FABRIC: $usesMavenLocalML"
 
     //- Repository LOCAL
     if (enable_moonlight_test.toBoolean()) {
