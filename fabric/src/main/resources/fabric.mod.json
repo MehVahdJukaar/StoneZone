@@ -28,7 +28,7 @@
     "fabric-api": ">=0.92.0+1.21.1",
     "minecraft": ">=${minecraft_min_version} <${minecraft_max_version}",
     "moonlight": ">=${moonlight_version_range}",
-    "everycomp": ">=1.21-2.11.1"
+    "everycomp": ">=1.21-2.11.3"
 
   }
 }
