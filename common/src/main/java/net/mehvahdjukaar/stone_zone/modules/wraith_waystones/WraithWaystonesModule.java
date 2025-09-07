@@ -19,7 +19,7 @@ import wraith.fwaystones.item.WaystoneItem;
 import static net.mehvahdjukaar.stone_zone.StoneZone.res;
 
 
-//SUPPORT: v3.3.3+
+//SUPPORT: v3.3.4+
 public class WraithWaystonesModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> brick_waystone;
