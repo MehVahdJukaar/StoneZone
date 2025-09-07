@@ -45,6 +45,7 @@ dependencies {
 
     //+ REQUIRED - The modules access libaries from below
     modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark //!! 1.20
+    modCompileOnly("curse.maven:owo-lib-532610:6446006") // v0.12.15.4 | Fabric-Waystones
 
 //!! =================================================== IMPORTS ==================================================== \\
     //- MODULES - don't need library from the mod, so it's fine to ignore
