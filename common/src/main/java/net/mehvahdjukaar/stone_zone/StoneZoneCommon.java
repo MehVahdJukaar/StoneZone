@@ -40,7 +40,7 @@ public class StoneZoneCommon {
         addIfLoaded("blockus", () -> BlockusModule::new);
         addIfLoaded("candlelight", () -> CandlelightModule::new); //!! [Let's Do]
         addIfLoaded("chipped", () -> ChippedModule::new);
-//        addIfLoaded("decorative_blocks", () -> DecorativeBlocksModule::new);
+//        addIfLoaded("decorative_blocks", () -> DecorativeBlocksModule::new); // NOT AVAILABLE
         addIfLoaded("fwaystones", () -> WraithWaystonesModule::new);
         addIfLoaded("handcrafted", () -> HandcraftedModule::new);
         addIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorches::new);
