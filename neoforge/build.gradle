@@ -151,6 +151,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:monolib-968432:6123976") // v2.0.0 | More-Beautiful-Torches //!! 1.20
 //    modRuntimeOnly("curse.maven:architectury-api-419699:5786327") // v13.0.8 | Better-Archeology
 //    modRuntimeOnly("curse.maven:balm-531761:6841890") // v21.0.49 | Waystones
+//    modRuntimeOnly("curse.maven:curios-309927:6529130") // v9.5.1 | Ars-Nouveau
 
     //- ~/forge/mods LOCAL
 
@@ -158,7 +159,7 @@ dependencies {
 //    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
 //    modRuntimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_neoforge_version}") // Create
 //    modRuntimeOnly("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}") // Create
-//    modRuntimeOnly("software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:4.7.6") // v4.7.6 | Oh-The-Biomes-We've-Gone
+//    modRuntimeOnly("software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:4.7.7") // Oh-The-Biomes-We've-Gone, Ars-Nouveau
 
     //+ REQUIRED - The modules access libaries from below - Only in FORGE
     modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:6076757") // v1.1.18a | Rechiseled
@@ -192,7 +193,7 @@ dependencies {
     modCompileOnly("curse.maven:macaws-stairs-1119394:5802422") //v1.0.1
 
         //+ GENERAL
-    modCompileOnly("curse.maven:additional-lights-384991:5504182")
+    modCompileOnly("curse.maven:additional-lights-384991:6841545")
     modCompileOnly("curse.maven:rechiseled-558998:5663514") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
     modCompileOnly("curse.maven:stone-chest-307052:5931165")
 
@@ -207,6 +208,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:spelunkery-790530:5727135") // Moonlight-Lib //!! 1.20
 //    modRuntimeOnly("curse.maven:tinkers-construct-74072:6041763") // Mantle //!! 1.20
     modRuntimeOnly("curse.maven:thaumon-926511:5492714")
+//    modRuntimeOnly("curse.maven:ars-nouveau-401955:6954892") // Curios-API, GeckoLib
 //    modRuntimeOnly("curse.maven:gaia-dimension-302529:5773438")
 //    modRuntimeOnly("curse.maven:what-is-stone-colorful-caves-853161:5175855") //!! 1.20
 //    modRuntimeOnly("curse.maven:artsandcrafts-1034791:5992027") //!! 1.20
