@@ -13,6 +13,13 @@
   </div>
 </div>
 
+### UPDATED: 
+- **Additional Lights** (NF): StoneTypes from **Ars Nouveau** is EXCLUDED - see [#149](https://github.com/MehVahdJukaar/StoneZone/issues/149) for reasons
+
+---
+
+## v2.11.2
+
 ### REQUIRED:
 - **EveryCompat v2.11.3**
 
