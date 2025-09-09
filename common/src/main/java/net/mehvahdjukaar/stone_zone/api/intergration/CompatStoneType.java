@@ -32,6 +32,11 @@ public class CompatStoneType {
 
         StoneTypeRegistry stoneReg = StoneTypeRegistry.INSTANCE;
 
+        // Ars Nouveau
+        stoneReg.addSimpleFinder("ars_nouveau", "sourcestone")
+                .childBlock(BRICKS, "sourcestone_large_bricks")
+                .childBlock(POLISHED, "polished_sconce");
+
         // Koopa's Critters - REASON: Naming-Convention
         stoneReg.addSimpleFinder("koopascritters", "kopje_granite")
                 .stoneSuffix("_kc")
