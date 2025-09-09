@@ -16,7 +16,7 @@ import java.util.Objects;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 
-//SUPPORT: v2.1.10
+//SUPPORT: v2.1.10+
 public class AdditionalLightsModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> al_lamp;
