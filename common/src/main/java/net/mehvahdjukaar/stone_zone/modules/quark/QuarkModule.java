@@ -4,7 +4,6 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
@@ -19,6 +18,7 @@ import org.violetmoon.quark.content.building.module.VerticalSlabsModule;
 import org.violetmoon.zeta.block.ZetaPillarBlock;
 
 import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 //SUPPORT: v4.0-435+
 public class QuarkModule extends StoneZoneModule {
@@ -34,36 +34,36 @@ public class QuarkModule extends StoneZoneModule {
         vertical_slabs = QuarkEntrySet.of(StoneType.class, "vertical_slab",
                         VerticalSlabsModule.class,
                         getModBlock("andesite_vertical_slab"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis("slab"),
-                                copyChildrenPropertySafe("slab", stoneType))
+                        stoneType -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis(SLAB),
+                                copyChildrenPropertySafe(SLAB, stoneType))
                 )
-                .requiresChildren(VanillaRockChildKeys.SLAB) //REASON: recipes
+                .requiresChildren(SLAB) //REASON: recipes
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .addRecipe(modRes("building/stonecutting/vertslabs/andesite_vertical_slab_stonecutter"))
                 .addRecipe(modRes("building/crafting/vertslabs/andesite_vertical_slab"))
                 .addRecipe(modRes("building/crafting/vertslabs/andesite_vertical_slab_revert"))
-                .addCondition(stoneType -> !PlatHelper.isModLoaded("v_slab_compat"))
                 .copyParentDrop()
+                .addCondition(stoneType -> !PlatHelper.isModLoaded("v_slab_compat"))
                 .build();
         this.addEntry(vertical_slabs);
 
         polished_vertical_slabs = QuarkEntrySet.of(StoneType.class, "vertical_slab", "polished",
                         VerticalSlabsModule.class,
                         getModBlock("polished_andesite_vertical_slab"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis("polished_slab"),
-                                copyChildrenPropertySafe("polished_slab", stoneType))
+                        stoneType -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis(POLISHED_SLAB),
+                                copyChildrenPropertySafe(POLISHED_SLAB, stoneType))
                 )
-                .requiresChildren("polished_slab", "polished") //REASON: recipes, textures
+                .requiresChildren(POLISHED_SLAB, POLISHED) //REASON: recipes, textures
                 //TEXTURES: polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .addRecipe(modRes("building/stonecutting/vertslabs/polished_andesite_vertical_slab_stonecutter"))
                 .addRecipe(modRes("building/crafting/vertslabs/polished_andesite_vertical_slab"))
                 .addRecipe(modRes("building/crafting/vertslabs/polished_andesite_vertical_slab_revert"))
-                .addCondition(stoneType -> !PlatHelper.isModLoaded("v_slab_compat"))
                 .copyParentDrop()
+                .addCondition(stoneType -> !PlatHelper.isModLoaded("v_slab_compat"))
                 .build();
         this.addEntry(polished_vertical_slabs);
 
@@ -74,7 +74,7 @@ public class QuarkModule extends StoneZoneModule {
                             return new ZetaPillarBlock(name, null, Utils.copyPropertySafe(stoneType.stone));
                         }
                 )
-                .requiresChildren(VanillaRockChildKeys.POLISHED_SLAB) //REASON: recipes
+                .requiresChildren(POLISHED_SLAB) //REASON: recipes
                 .addTexture(modRes("block/andesite_pillar"))
                 .addTexture(modRes("block/andesite_pillar_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
