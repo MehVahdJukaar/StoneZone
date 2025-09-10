@@ -37,7 +37,7 @@ public class HardcodedBlockType {
             //REASON: shouldn't be detected
             "desire:polished_stone", "desire:chiseled_stone", "create_dd:cut_stone",
             "stoneexpansion:cut_stone", "stoneexpansion:mossy_stone", "stoneexpansion:smooth_stone", "stoneexpansion:polished_stone",
-            "minecraft:infested_stone",
+            "minecraft:infested_stone", "ars_nouveau:sconce",
 
             //REASON: The StoneType's texture is only white and no way for blocks to copy its color behavior
             "rgbblocks:prismarine"
