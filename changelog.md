@@ -21,6 +21,20 @@
 
 </div>
 
+## UPDATED: 
+- **Enlightened End** (UDS): `chorloam` as MudType but is blacklisted as StoneType
+- **Stone Zone** (C): Updated to correct the modification of models' content - [#141](https://github.com/MehVahdJukaar/StoneZone/issues/141)
+- **Macaw's Fences & Walls** (C): Fixed the wrong textures on modern_[StoneType\]_brick_wall and railing_\[StoneType\]_brick_wall - This is just TEMP FIX
+  - This is an issue on Macaw's side and this is already reported to the DEV to fix few typos. 
+- **Pokecube AIO** (UDS): ultra_darkstone, dusk_dolerite, azure_sandstone, blackened_sandstone, crystallized_sandstone, meteorite
+- **Koopa's Critters** (UDS): kopje_granite
+- **Ars Nouveau** (UDS): sourcestone
+  - sconce is blacklisted
+
+---
+
+## v2.9.1
+
 ### UPDATED: 
 - **Stone Zone** (C): Fixed children not being detected - [#137](https://github.com/MehVahdJukaar/StoneZone/issues/137)
 - **Quark** (IT): Added a custom texture for a tinted StoneType: Myalite's stone & bricks - [#140](https://github.com/MehVahdJukaar/StoneZone/issues/140)
