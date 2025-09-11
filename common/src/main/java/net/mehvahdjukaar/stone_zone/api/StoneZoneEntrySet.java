@@ -107,7 +107,9 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 .addModifier((s, blockId, stoneType) ->
                         s.replace("minecraft:block/" + oldTypeName + "_bricks", getChildModelId(BRICKS, stoneType, blockId)))
                 .addModifier((s, blockId, stoneType) ->
-                        s.replace("minecraft:block/smooth_" + oldTypeName, getChildModelId(SMOOTH, stoneType, blockId)));
+                        s.replace("minecraft:block/smooth_" + oldTypeName, getChildModelId(SMOOTH, stoneType, blockId)))
+                .replaceBlockType(oldTypeName)
+                .IDReplaceType(oldTypeName);
     }
 
     @Override
