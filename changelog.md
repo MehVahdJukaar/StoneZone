@@ -21,6 +21,13 @@
 
 </div>
 
+### UPDATED: 
+- **Stone Zone** (C): Fixed the placed blocks' missing texture and its shape
+
+---
+
+## v2.9.2
+
 ## UPDATED: 
 - **Enlightened End** (UDS): `chorloam` as MudType but is blacklisted as StoneType
 - **Stone Zone** (C): Updated to correct the modification of models' content - [#141](https://github.com/MehVahdJukaar/StoneZone/issues/141)
