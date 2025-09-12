@@ -22,6 +22,9 @@ public class CompatSpritesHelper {
 /// NOTE: Used to identify StoneTypes' texture only based off their name
     public static void initHardcodedSprite() {
 
+        // Thuamon
+        addOptional("thaumon:amber", "all", "thaumon:block/amber_side");
+
         // Quark
         addOptional("quark:myalite", "all", StoneZone.MOD_ID + ":block/quark/myalite_tinted");
         addOptional("quark:myalite_bricks", "all", StoneZone.MOD_ID + ":block/quark/myalite_bricks_tinted");
