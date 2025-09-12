@@ -74,7 +74,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 )
                 // Modifying the model files' content
                 .addModifier((s, blockId, blockType) -> {
-                    s = BlockTypeResTransformer.replaceFullGenericType(s, blockType, blockId, oldTypeName, module.getModId(), "block(?!.*parent)");
+                    s = BlockTypeResTransformer.replaceFullGenericType(s, blockType, blockId, oldTypeName, module.getModId(), "block(?!.*(?:parent|template))");
 
                     if (tintedStoneType.containsKey(blockType.getId())) {
                         String stonePath = tintedStoneType.get(blockType.getId()).getFirst();
