@@ -33,4 +33,8 @@ public class VanillaStoneTypes {
     public static final StoneType SANDSTONE = StoneTypeRegistry.INSTANCE.register(
             new StoneType(ResourceLocation.withDefaultNamespace("sandstone"), Blocks.SANDSTONE)
     );
+
+    public static final StoneType DEEPSLATE = StoneTypeRegistry.INSTANCE.register(
+            new StoneType(ResourceLocation.withDefaultNamespace("deepslate"), Blocks.DEEPSLATE)
+    );
 }

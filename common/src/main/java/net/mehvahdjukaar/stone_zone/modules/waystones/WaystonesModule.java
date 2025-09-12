@@ -23,14 +23,14 @@ public class WaystonesModule extends StoneZoneModule {
         ResourceLocation tab = modRes(modId);
         
         waystone = StoneZoneEntrySet.of(StoneType.class, "waystone",
-                        getModBlock("blackstone_waystone"), () -> VanillaStoneTypes.BLACKSTONE,
+                        getModBlock("deepslate_waystone"), () -> VanillaStoneTypes.DEEPSLATE,
                         stoneType -> new WaystoneBlock(Utils.copyPropertySafe(stoneType.stone)
                                 .sound(stoneType.getSound())
                                 .strength(5.0F, 2000.0F)
                         )
                 )
                 .addTile(getModTile("waystone"))
-                .addTexture(modRes("block/blackstone_waystone"))
+                .addTexture(modRes("block/deepslate_waystone"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("waystones"), Registries.BLOCK)
                 .addTag(modRes("waystone"), Registries.BLOCK)
