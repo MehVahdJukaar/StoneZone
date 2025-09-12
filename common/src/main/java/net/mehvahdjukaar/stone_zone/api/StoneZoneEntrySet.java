@@ -67,8 +67,10 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
         String oldTypeName = baseType.get().getTypeName();
         BlockTypeResTransformer<T> modelTransformer = BlockTypeResTransformer.<T>create(module.getModId(), manager)
                 // Modifying models' filename & ResourceLocation
-                .setIDModifier((s, blockId, blockType) ->
-                        BlockTypeResTransformer.replaceFullGenericType(s, blockType, blockId, oldTypeName, null, 2)
+                .setIDModifier((s, blockId, blockType) -> {
+                            s = s.replace("stonebrick", "stone_brick"); // TEMP FIX for MacawFences
+                            return BlockTypeResTransformer.replaceFullGenericType(s, blockType, blockId, oldTypeName, null, 2);
+                        }
                 )
                 // Modifying the model files' content
                 .addModifier((s, blockId, blockType) -> {
@@ -91,17 +93,23 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
 
     @Override
     protected BlockTypeResTransformer<T> makeBlockStateTransformer(SimpleModule module, ResourceManager manager) {
-        String nameBaseStone = baseType.get().getTypeName();
+        String oldTypeName = baseType.get().getTypeName();
         return BlockTypeResTransformer.<T>create(module.getModId(), manager)
-                .replaceWithTextureFromChild("minecraft:block/"+nameBaseStone, STONE)
-                .replaceWithTextureFromChild("minecraft:block/polished_"+nameBaseStone, POLISHED)
+                .addModifier((s, blockId, blockType) -> { // TEMP fix for MacawFences
+                    s = s.replace("stonebrick", "stone_brick");
+                    BlockTypeResTransformer.replaceFullGenericType(s, blockType, blockId, oldTypeName, module.getModId(), "block");
+                    return s;
+                })
+                .replaceWithTextureFromChild("minecraft:block/"+oldTypeName, STONE)
+                .replaceWithTextureFromChild("minecraft:block/polished_"+oldTypeName, POLISHED)
                 .addModifier((s, blockId, stoneType) ->
-                        s.replace("minecraft:block/" + nameBaseStone, getChildModelId(STONE, stoneType, blockId)))
+                        s.replace("minecraft:block/" + oldTypeName, getChildModelId(STONE, stoneType, blockId)))
                 .addModifier((s, blockId, stoneType) ->
-                        s.replace("minecraft:block/" + nameBaseStone + "_bricks", getChildModelId(BRICKS, stoneType, blockId)))
+                        s.replace("minecraft:block/" + oldTypeName + "_bricks", getChildModelId(BRICKS, stoneType, blockId)))
                 .addModifier((s, blockId, stoneType) ->
-                        s.replace("minecraft:block/smooth_" + nameBaseStone, getChildModelId(SMOOTH, stoneType, blockId)))
-                .andThen(super.makeBlockStateTransformer(module, manager));
+                        s.replace("minecraft:block/smooth_" + oldTypeName, getChildModelId(SMOOTH, stoneType, blockId)))
+                .replaceBlockType(oldTypeName)
+                .IDReplaceType(oldTypeName);
     }
 
     @Override
