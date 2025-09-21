@@ -128,20 +128,20 @@ public abstract class RockType extends BlockType{
             return reg.get(ResourceLocation.withDefaultNamespace("cobblestone"));
         }
 
-        String prefixed = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
-        String infixed = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
-        String suffixed = (suffix.isEmpty()) ? "" : "_" + suffix;
+        String prefix_ = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
+        String _infix = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
+        String _suffix = (suffix.isEmpty()) ? "" : "_" + suffix;
 
         ResourceLocation[] targets = {
                 // DEFAULT
-                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), id.getPath() + infixed + suffixed),
-                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), prefixed + id.getPath() + suffixed),
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), id.getPath() + _infix + _suffix),
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), prefix_ + id.getPath() + _suffix),
                 // TFC & AFC: Include children of stone_type: stairs, slab...
-                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/raw/" + id.getPath() + suffixed),
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/raw/" + id.getPath() + _suffix),
                 // TFC & AFC: Include children of smooth, cobblestone, button, pressure_plate, bricks, cracked_bricks
-                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/" + prefixed + suffix +"/"+ id.getPath()),
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/" + prefix_ + suffix +"/"+ id.getPath()),
                 // TFC & AFC: Include children of brick_slab, smooth_slab, brick_stairs, smooth_stairs
-                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/"+ prefixOrInfix +"/"+ id.getPath() + suffixed)
+                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/"+ prefixOrInfix +"/"+ id.getPath() + _suffix)
         };
         V found = null;
         for (var r : targets) {
@@ -172,17 +172,17 @@ public abstract class RockType extends BlockType{
         return bricks != null ? bricks : this.block;
     }
 
-    protected static ResourceLocation[] makeKnownIDConventions(ResourceLocation id, String... suffixKeyword) {
+    protected static ResourceLocation[] makeKnownIDConventions(ResourceLocation id, String... affixKeyword) {
         List<ResourceLocation> resources = new ArrayList<>();
-        for (String keyword : suffixKeyword) {
+        for (String keyword : affixKeyword) {
             String path = id.getPath();
             String namespace = id.getNamespace();
 
-            String suffixed = (keyword.isEmpty()) ? "" : "_" + keyword;
-            String prefixed = (keyword.isEmpty()) ? "" : keyword + "_";
+            String _suffix = (keyword.isEmpty()) ? "" : "_" + keyword;
+            String prefix_ = (keyword.isEmpty()) ? "" : keyword + "_";
 
-            resources.add(ResourceLocation.fromNamespaceAndPath(namespace, path + suffixed));
-            resources.add(ResourceLocation.fromNamespaceAndPath(namespace, prefixed + path));
+            resources.add(ResourceLocation.fromNamespaceAndPath(namespace, path + _suffix));
+            resources.add(ResourceLocation.fromNamespaceAndPath(namespace, prefix_ + path));
         }
         return resources.toArray(new ResourceLocation[0]);
     }
