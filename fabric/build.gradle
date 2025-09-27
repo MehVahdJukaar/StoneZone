@@ -178,7 +178,7 @@ dependencies {
 
         //+ REQUIRED - The modules access libaries from below - Only in FABRIC
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
-    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:5668908") // v1.1.17a | Rechiseled
+    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:6076732") // v1.1.18a | Rechiseled
 
 //!! =================================================== IMPORTS ==================================================== \\
         //- ONLY FOR TESTING - can be commented out or enabled
