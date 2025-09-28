@@ -160,6 +160,7 @@ dependencies {
 //    modRuntimeOnly("com.terraformersmc.terraform-api:terraform-wood-api-v1:7.0.3") // Blockus, Bountiful-Fares
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129312") // v1.1.1 | Rechiseled
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4785838") // v1.1.8a | Rechiseled
+//    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:6076732") // v1.1.18a | Rechiseled, Additional-Lanterns
     modRuntimeOnly("com.github.quiqueck:BCLib:3.0.14") // BetterEnd
     modRuntimeOnly("com.github.quiqueck:WunderLib:1.1.5") // BetterEnd
 //    modRuntimeOnly("curse.maven:athena-841890:5176880") // Chipped
@@ -178,7 +179,6 @@ dependencies {
 
         //+ REQUIRED - The modules access libaries from below - Only in FABRIC
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:${registrate_fabric_version}") // Create
-    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:6076732") // v1.1.18a | Rechiseled
 
 //!! =================================================== IMPORTS ==================================================== \\
         //- ONLY FOR TESTING - can be commented out or enabled
@@ -209,7 +209,7 @@ dependencies {
 
             //+ GENERAL
     modCompileOnly("curse.maven:create-fabric-624165:5982726") // Do not use for RunTime
-    modCompileOnly("curse.maven:rechiseled-558998:5286340") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
+//    modCompileOnly("curse.maven:rechiseled-558998:5286340") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
 
             // OTHER MAVENS
 //    modCompileOnly("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}:slim") { transitive = false } // Registrate, Flywheel //!! maven is outdated & not available

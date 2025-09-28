@@ -154,9 +154,9 @@ dependencies {
 //    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | Chipped
 //    modRuntimeOnly("curse.maven:resourceful-lib-570073:5659871") // v2.1.29 | Chipped, Handcrafted
 //    modRuntimeOnly("curse.maven:ctm-267602:5983309") // v1.1.10 | Chipped
-//    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled
 //    modRuntimeOnly("curse.maven:curios-309927:6418456") // v5.14.1 | Eternal-Tales
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:4715408") // v1.1.8 | Rechiseled, Better-Archeology
+//    modRuntimeOnly("curse.maven:supermartijn642s-core-lib-454372:6034718") // v1.1.18 | Rechiseled
 //    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct
 //    modRuntimeOnly("curse.maven:blueprint-382216:5292242") // v7.1.0 | The-Outer-End, Caverns-And-Chasms, Atmospheric
 //    modRuntimeOnly("curse.maven:monolib-968432:6123976") // v2.0.0 | More-Beautiful-Torches
@@ -166,18 +166,19 @@ dependencies {
         //- ~/forge/mods LOCAL
 
         //- OTHER MAVENs - can be commented out or enabled
+    modRuntimeOnly("maven.modrinth:fusion-connected-textures:1.2.11a-forge-mc${minecraft_version}") // Dawn-Of-Time, Timber-Frame, Rechiseled
 //    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
-    modRuntimeOnly("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}") // Create
-    modRuntimeOnly("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}") // Create
+//    modRuntimeOnly("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}") // Create
+//    modRuntimeOnly("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}") // Create
 
         //+ REQUIRED - The modules access libaries from below - Only in FORGE
-    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:6034718") // v1.1.18 | Rechiseled
 
             //+ OTHER MAVENS
     modCompileOnly("com.tterrag.registrate:Registrate:${registrate_version}") // Create
 
 //!! =================================================== IMPORTS ==================================================== \\
         //- ONLY FOR TESTING - can be commented out or enabled
+//    modRuntimeOnly("curse.maven:architects-palette-433862:5036133") //TEMP
 //    modRuntimeOnly("curse.maven:better-archeology-835687:5693368") // supermartijn642s' Config-Lib, Yung's API
 //    modRuntimeOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1
 //    modRuntimeOnly("curse.maven:decorative-blocks-362528:5089406")
@@ -191,7 +192,6 @@ dependencies {
 //    modRuntimeOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:6195385") // [Let's-Do]-Farm-&-Charm, Architectury-API
 
             //- OTHER MAVENS
-//    modRuntimeOnly("maven.modrinth:fusion-connected-textures:1.2.11a-forge-mc${minecraft_version}") // Dawn-Of-Time, Timber-Frame, Rechiseled
 //    modRuntimeOnly("earth.terrarium.chipped:chipped-forge-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib, REQUIRE: Bytecodecs
 
         //+ REQUIRED - The modules access libaries from below - ONLY IN FORGE
