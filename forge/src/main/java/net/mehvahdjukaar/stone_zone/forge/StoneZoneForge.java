@@ -9,7 +9,6 @@ import net.mehvahdjukaar.stone_zone.modules.forge.blocks_you_need.BlocksYouNeedM
 import net.mehvahdjukaar.stone_zone.modules.forge.buildersaddition.BuildersAdditionModule;
 import net.mehvahdjukaar.stone_zone.modules.forge.create.CreateModule;
 import net.mehvahdjukaar.stone_zone.modules.forge.macaws.*;
-import net.mehvahdjukaar.stone_zone.modules.forge.rechiseled.RechiseledModule;
 import net.mehvahdjukaar.stone_zone.modules.forge.stone_chest.StoneChestModule;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -66,7 +65,6 @@ public class StoneZoneForge extends StoneZoneCommon {
         addIfLoaded("blocksyouneed_luna", () -> BlocksYouNeedModule::new);
         addIfLoaded("buildersaddition", () -> BuildersAdditionModule::new);
         addIfLoaded("create", () -> CreateModule::new);
-        addIfLoaded("rechiseled", () -> RechiseledModule::new);
         addIfLoaded("stonechest", () -> StoneChestModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\

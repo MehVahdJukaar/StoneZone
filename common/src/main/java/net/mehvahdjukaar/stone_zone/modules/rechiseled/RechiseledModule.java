@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules.forge.rechiseled;
+package net.mehvahdjukaar.stone_zone.modules.rechiseled;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -24,7 +24,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import org.jetbrains.annotations.NotNull;
@@ -425,7 +424,7 @@ public class RechiseledModule extends StoneZoneModule {
     public static class CompatRechiseledBlock extends CompatBaseBlock {
         public final boolean connecting;
 
-        public CompatRechiseledBlock(boolean connecting, BlockBehaviour.Properties properties) {
+        public CompatRechiseledBlock(boolean connecting, Properties properties) {
             super(false, properties);
             this.connecting = connecting;
         }
@@ -439,7 +438,7 @@ public class RechiseledModule extends StoneZoneModule {
     }
 
     public static class CompatRechiseledPillarBlock extends CompatRechiseledBlock {
-        public CompatRechiseledPillarBlock(boolean connecting, BlockBehaviour.Properties properties) {
+        public CompatRechiseledPillarBlock(boolean connecting, Properties properties) {
             super(connecting, properties);
             this.registerDefaultState(this.defaultBlockState().setValue(AXIS_PROPERTY, Direction.Axis.Y));
         }

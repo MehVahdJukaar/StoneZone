@@ -7,7 +7,6 @@ import net.mehvahdjukaar.stone_zone.StoneZoneClient;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
 import net.mehvahdjukaar.stone_zone.modules.fabric.create.CreateModule;
 import net.mehvahdjukaar.stone_zone.modules.fabric.macaws.*;
-import net.mehvahdjukaar.stone_zone.modules.fabric.rechiseled.RechiseledModule;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
 
@@ -38,7 +37,6 @@ public class StoneZoneFabric extends StoneZoneCommon implements ModInitializer {
 
         // General
         addIfLoaded("create", () -> CreateModule::new);
-        addIfLoaded("rechiseled", () -> RechiseledModule::new);
 
 
 //!! ====================================================== OTHERS ================================================== \\

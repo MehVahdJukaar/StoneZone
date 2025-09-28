@@ -1,19 +1,20 @@
 package net.mehvahdjukaar.stone_zone;
 
-import net.mehvahdjukaar.stone_zone.modules.building_but_better.BuildingButBetterModule;
 import net.mehvahdjukaar.stone_zone.modules.better_archeology.BetterArcheologyModule;
 import net.mehvahdjukaar.stone_zone.modules.blockus.BlockusModule;
+import net.mehvahdjukaar.stone_zone.modules.building_but_better.BuildingButBetterModule;
 import net.mehvahdjukaar.stone_zone.modules.chipped.ChippedModule;
 import net.mehvahdjukaar.stone_zone.modules.decorative_blocks.DecorativeBlocksModule;
 import net.mehvahdjukaar.stone_zone.modules.handcrafted.HandcraftedModule;
 import net.mehvahdjukaar.stone_zone.modules.lets_do.CandlelightModule;
-import net.mehvahdjukaar.stone_zone.modules.waystones.WaystonesModule;
-import net.mehvahdjukaar.stone_zone.modules.wraith_waystones.WraithWaystonesModule;
 import net.mehvahdjukaar.stone_zone.modules.more_beautiful_torches.MoreBeautifulTorches;
 import net.mehvahdjukaar.stone_zone.modules.quark.QuarkModule;
 import net.mehvahdjukaar.stone_zone.modules.quark.QuarkMudModule;
+import net.mehvahdjukaar.stone_zone.modules.rechiseled.RechiseledModule;
 import net.mehvahdjukaar.stone_zone.modules.stoneworks.StoneworksModule;
 import net.mehvahdjukaar.stone_zone.modules.twigs.TwigsModule;
+import net.mehvahdjukaar.stone_zone.modules.waystones.WaystonesModule;
+import net.mehvahdjukaar.stone_zone.modules.wraith_waystones.WraithWaystonesModule;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addOtherCompatMod;
 import static net.mehvahdjukaar.stone_zone.StoneZone.addIfLoaded;
@@ -45,10 +46,11 @@ public class StoneZoneCommon {
         addIfLoaded("fwaystones", () -> WraithWaystonesModule::new);
         addIfLoaded("handcrafted", () -> HandcraftedModule::new);
         addIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorches::new);
+        addIfLoaded("rechiseled", () -> RechiseledModule::new);
         addIfLoaded("stoneworks", () -> StoneworksModule::new);
         addIfLoaded("twigs", () -> TwigsModule::new);
-        addMultipleIfLoaded("quark", () -> QuarkModule::new, () -> QuarkMudModule::new);
         addIfLoaded("waystones", () -> WaystonesModule::new);
+        addMultipleIfLoaded("quark", () -> QuarkModule::new, () -> QuarkMudModule::new);
 
 //!! ====================================================== OTHERS ================================================== \\
 
