@@ -8,7 +8,6 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
@@ -33,6 +32,8 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 import static com.supermartijn642.rechiseled.blocks.RechiseledPillarBlock.AXIS_PROPERTY;
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
+import static net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys.STONE;
 
 //SUPPORT: v1.1.6+
 //NOTE: There is a difference between FORGE & FABRIC - the key class is BlockState via RechiseledPillarBlock
@@ -512,11 +513,11 @@ public class RechiseledModule extends StoneZoneModule {
 
                 // Adding vanilla blocks to Array
                 String[] vanillaBlocks = {
-                        "stone",
-                        "bricks",
-                        "mossy_bricks",
-                        "cracked_bricks",
-                        "smooth"
+                        STONE,
+                        BRICKS,
+                        MOSSY_BRICKS,
+                        CRACKED_BRICKS,
+                        SMOOTH
                 };
 
                 for (var key : vanillaBlocks) {
@@ -535,7 +536,7 @@ public class RechiseledModule extends StoneZoneModule {
                 chiseling_recipe.add("entries", entriesArray);
 
                 // Adding to resources
-                ResourceLocation resLoc = StoneZone.res("chiseling_recipes/" + stoneType.getAppendableId());
+                ResourceLocation resLoc = modRes("chiseling_recipes/" + stoneType.getAppendableId());
                 sink.addJson(resLoc, chiseling_recipe, ResType.JSON);
 
             })
