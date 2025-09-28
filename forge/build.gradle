@@ -166,7 +166,7 @@ dependencies {
         //- ~/forge/mods LOCAL
 
         //- OTHER MAVENs - can be commented out or enabled
-    modRuntimeOnly("maven.modrinth:fusion-connected-textures:1.2.11a-forge-mc${minecraft_version}") // Dawn-Of-Time, Timber-Frame, Rechiseled
+//    modRuntimeOnly("maven.modrinth:fusion-connected-textures:1.2.11a-forge-mc${minecraft_version}") // Dawn-Of-Time, Timber-Frame, Rechiseled
 //    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
 //    modRuntimeOnly("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}") // Create
 //    modRuntimeOnly("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}") // Create
