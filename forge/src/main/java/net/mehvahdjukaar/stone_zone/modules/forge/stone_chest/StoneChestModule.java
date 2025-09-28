@@ -1,6 +1,8 @@
 package net.mehvahdjukaar.stone_zone.modules.forge.stone_chest;
 
 import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
+import net.mehvahdjukaar.every_compat.api.PaletteStrategies;
+import net.mehvahdjukaar.every_compat.api.PaletteStrategy;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
@@ -9,6 +11,7 @@ import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.mehvahdjukaar.stone_zone.common_classes.CompatChestBlock;
 import net.mehvahdjukaar.stone_zone.common_classes.CompatChestBlockEntity;
@@ -31,6 +34,7 @@ import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
+import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.registerCached;
 import static net.mehvahdjukaar.stone_zone.common_classes.CompatChestTexture.generateChestTexture;
 
 
@@ -64,10 +68,9 @@ public class StoneChestModule extends StoneZoneModule {
                         stoneType -> new Item(new Item.Properties())
                 )
                 .copyParentTint()
-                .createPaletteFromChild(p -> {
-                    while (p.size() > 4) p.reduceUp();
-                }, "stone")
-                .addTextureM(modRes("item/part_stone"), StoneZone.res("item/sc/part_stone_m"))
+                .addTextureM(modRes("item/part_stone"),
+                        StoneZone.res("item/sc/part_stone_m"),
+                        customPalette)
                 .addModelTransform(m -> m.addModifier(
                         (s, blockId, stoneType) ->
                                 s.replace("\"stonechest:item/part_stone\"",
@@ -79,6 +82,13 @@ public class StoneChestModule extends StoneZoneModule {
         this.addEntry(parts);
 
     }
+
+    public static final PaletteStrategy customPalette = registerCached((blockType, manager) ->
+            PaletteStrategies.makePaletteFromChild(
+                    blockType, manager, VanillaStoneChildKeys.STONE, null,
+                    p -> {
+                        while (p.size() > 4) p.reduceUp();
+                    }));
 
     // GetTiles
     private BlockEntityType<? extends ChestBlockEntity> getTile() {
