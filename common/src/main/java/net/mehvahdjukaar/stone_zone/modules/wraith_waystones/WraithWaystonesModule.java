@@ -1,7 +1,9 @@
 package net.mehvahdjukaar.stone_zone.modules.wraith_waystones;
 
+import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
+import net.mehvahdjukaar.stone_zone.api.StonePaletteStrategies;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
@@ -14,8 +16,6 @@ import net.minecraft.world.level.block.Block;
 import wraith.fwaystones.FabricWaystones;
 import wraith.fwaystones.block.WaystoneBlock;
 import wraith.fwaystones.item.WaystoneItem;
-
-import static net.mehvahdjukaar.stone_zone.StoneZone.res;
 
 
 //SUPPORT: v3.3.3+
@@ -34,21 +34,23 @@ public class WraithWaystonesModule extends StoneZoneModule {
                                 .requiresCorrectToolForDrops()
                         )
                 )
-                .createPaletteFromBricks()
                 .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: recipes
                 .addTile(getModTile("waystone"))
                 .addTextureM(modRes("block/stone_brick_waystone_active"),
-                        res("block/wws/stone_brick_waystone_active_m"))
+                        EveryCompat.res("block/wws/stone_brick_waystone_active_m"),
+                        StonePaletteStrategies.BRICKS_STANDARD)
                 .addTextureM(modRes("block/stone_brick_waystone_inactive"),
-                        res("block/wws/stone_brick_waystone_inactive_m.png"))
-
+                        EveryCompat.res("block/wws/stone_brick_waystone_inactive_m.png"),
+                        StonePaletteStrategies.BRICKS_STANDARD)
                 .addTextureM(modRes("block/mossy_stone_brick_waystone_active"),
-                        res("block/wws/mossy_stone_brick_waystone_active_m"))
+                        EveryCompat.res("block/wws/mossy_stone_brick_waystone_active_m"),
+                        StonePaletteStrategies.BRICKS_STANDARD)
                 .addTextureM(modRes("block/mossy_stone_brick_waystone_inactive"),
-                        res("block/wws/mossy_stone_brick_waystone_inactive_m.png"))
-
+                        EveryCompat.res("block/wws/mossy_stone_brick_waystone_inactive_m.png"),
+                        StonePaletteStrategies.BRICKS_STANDARD)
                 .addTextureM(modRes("item/stone_brick_waystone"),
-                        res("item/wws/stone_brick_waystone_m"))
+                        EveryCompat.res("item/wws/stone_brick_waystone_m"),
+                        StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
                 .addTag(modRes("waystones"), Registries.BLOCK)

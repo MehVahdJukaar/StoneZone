@@ -44,7 +44,6 @@ public class BuildingButBetterModule extends StoneZoneModule {
                         getModBlock("stone_column"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
-                .createPaletteFromStone()
                 .addTexture(modRes("block/column/stone_lower"))
                 .addTexture(modRes("block/column/stone_upper"))
                 .addTexture(modRes("block/column/stone_top"))
@@ -68,7 +67,6 @@ public class BuildingButBetterModule extends StoneZoneModule {
                                 .noOcclusion()
                         )
                 )
-                .createPaletteFromStone()
                 .addTexture(modRes("block/fence/stone_fence"))
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -87,7 +85,6 @@ public class BuildingButBetterModule extends StoneZoneModule {
                                 .noOcclusion()
                                 .pushReaction(PushReaction.DESTROY))
                 )
-                .createPaletteFromStone()
                 //TEXTURES: stones
                 .addTexture(modRes("block/urn/stone"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -104,7 +101,6 @@ public class BuildingButBetterModule extends StoneZoneModule {
                         getModBlock("stone_tiles"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
-                .createPaletteFromStone()
                 .addTexture(modRes("block/stone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_blocks"), Registries.BLOCK)
@@ -210,7 +206,6 @@ public class BuildingButBetterModule extends StoneZoneModule {
                                 Utils.copyPropertySafe(stoneType.bricksOrStone()).noOcclusion()
                         )
                 )
-                .createPaletteFromStone()
                 //TEXTURES: stones
                 .addTexture(modRes("block/moulding/stone"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -230,7 +225,6 @@ public class BuildingButBetterModule extends StoneZoneModule {
 //                        stoneType -> new BlockBlock(BlockBlock.Types.STONE, Utils.copyPropertySafe(stoneType.stone))
 //                )
 //                .addTile(getModTile("block"))
-//                .createPaletteFromStone()
 //                .addTexture(modRes("block/block/stone"))
 //                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
 //                .addTag(modRes("stone_blocks"), Registries.BLOCK)

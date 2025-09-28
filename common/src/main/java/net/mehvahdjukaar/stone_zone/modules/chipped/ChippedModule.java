@@ -11,6 +11,7 @@ import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
+import net.mehvahdjukaar.stone_zone.api.StonePaletteStrategies;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
@@ -107,8 +108,7 @@ public class ChippedModule extends StoneZoneModule {
                         getModBlock("andesite_bricks"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .createPaletteFromBricks()
-                .addTexture(modRes("block/andesite/andesite_bricks"))
+                .addTexture(modRes("block/andesite/andesite_bricks"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -128,8 +128,7 @@ public class ChippedModule extends StoneZoneModule {
                         getModBlock("andesite_pillar"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .createPaletteFromBricks()
-                .addTexture(modRes("block/andesite/andesite_pillar"))
+                .addTexture(modRes("block/andesite/andesite_pillar"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -139,12 +138,15 @@ public class ChippedModule extends StoneZoneModule {
                         getModBlock("andesite_pillar_top"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .createPaletteFromBricks()
-                .addTexture(modRes("block/andesite/andesite_pillar_top"))
-                .addTexture(modRes("block/andesite/ctm/common_textures/0")) //REQUIRED BY: Other Blocks, BlockType-pillar
-                .addTexture(modRes("block/andesite/ctm/common_textures/1")) //REQUIRED BY: Other Blocks, BlockType-pillar
-                .addTexture(modRes("block/andesite/ctm/common_textures/2")) //REQUIRED BY: Other Blocks, BlockType-pillar
-                .addTexture(modRes("block/andesite/ctm/common_textures/3")) //REQUIRED BY: Other Blocks, BlockType-pillar
+                .addTexture(modRes("block/andesite/andesite_pillar_top"), StonePaletteStrategies.BRICKS_STANDARD)
+                //REQUIRED BY: Other Blocks, BlockType-pillar
+                .addTexture(modRes("block/andesite/ctm/common_textures/0"), StonePaletteStrategies.BRICKS_STANDARD)
+                //REQUIRED BY: Other Blocks, BlockType-pillar
+                .addTexture(modRes("block/andesite/ctm/common_textures/1"), StonePaletteStrategies.BRICKS_STANDARD)
+                //REQUIRED BY: Other Blocks, BlockType-pillar
+                .addTexture(modRes("block/andesite/ctm/common_textures/2"), StonePaletteStrategies.BRICKS_STANDARD)
+                //REQUIRED BY: Other Blocks, BlockType-pillar
+                .addTexture(modRes("block/andesite/ctm/common_textures/3"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -378,8 +380,7 @@ public class ChippedModule extends StoneZoneModule {
                         getModBlock("offset_andesite_bricks"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .createPaletteFromBricks()
-                .addTexture(modRes("block/andesite/offset_andesite_bricks"))
+                .addTexture(modRes("block/andesite/offset_andesite_bricks"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -389,8 +390,7 @@ public class ChippedModule extends StoneZoneModule {
                         getModBlock("pillar_andesite_bricks"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .createPaletteFromBricks()
-                .addTexture(modRes("block/andesite/pillar_andesite_bricks"))
+                .addTexture(modRes("block/andesite/pillar_andesite_bricks"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -780,11 +780,10 @@ public class ChippedModule extends StoneZoneModule {
                         getModBlock("curly_andesite_pillar"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .createPaletteFromBricks()
-                .addTexture(modRes("block/andesite/curly_andesite_pillar"))
-                .addTexture(modRes("block/andesite/ctm/curly_andesite_pillar/0"))
-                .addTexture(modRes("block/andesite/ctm/curly_andesite_pillar/1"))
-                .addTexture(modRes("block/andesite/ctm/curly_andesite_pillar/3"))
+                .addTexture(modRes("block/andesite/curly_andesite_pillar"), StonePaletteStrategies.BRICKS_STANDARD)
+                .addTexture(modRes("block/andesite/ctm/curly_andesite_pillar/0"), StonePaletteStrategies.BRICKS_STANDARD)
+                .addTexture(modRes("block/andesite/ctm/curly_andesite_pillar/1"), StonePaletteStrategies.BRICKS_STANDARD)
+                .addTexture(modRes("block/andesite/ctm/curly_andesite_pillar/3"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -794,12 +793,11 @@ public class ChippedModule extends StoneZoneModule {
                         getModBlock("fine_andesite_pillar"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .createPaletteFromBricks()
                 //TEXTURES: polished (generated via scaled), common_textures/3 (generated via pillar_top)
-                .addTexture(modRes("block/andesite/fine_andesite_pillar"))
-                .addTexture(modRes("block/andesite/ctm/fine_andesite_pillar/0"))
-                .addTexture(modRes("block/andesite/ctm/fine_andesite_pillar/1"))
-                .addTexture(modRes("block/andesite/ctm/fine_andesite_pillar/3"))
+                .addTexture(modRes("block/andesite/fine_andesite_pillar"), StonePaletteStrategies.BRICKS_STANDARD)
+                .addTexture(modRes("block/andesite/ctm/fine_andesite_pillar/0"), StonePaletteStrategies.BRICKS_STANDARD)
+                .addTexture(modRes("block/andesite/ctm/fine_andesite_pillar/1"), StonePaletteStrategies.BRICKS_STANDARD)
+                .addTexture(modRes("block/andesite/ctm/fine_andesite_pillar/3"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -809,12 +807,11 @@ public class ChippedModule extends StoneZoneModule {
                         getModBlock("ornate_andesite_pillar"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .createPaletteFromBricks()
                 //TEXTURES: polished (generated via scaled), common_textures/3 (generated via pillar_top)
-                .addTexture(modRes("block/andesite/ornate_andesite_pillar"))
-                .addTexture(modRes("block/andesite/ctm/ornate_andesite_pillar/0"))
-                .addTexture(modRes("block/andesite/ctm/ornate_andesite_pillar/1"))
-                .addTexture(modRes("block/andesite/ctm/ornate_andesite_pillar/3"))
+                .addTexture(modRes("block/andesite/ornate_andesite_pillar"), StonePaletteStrategies.BRICKS_STANDARD)
+                .addTexture(modRes("block/andesite/ctm/ornate_andesite_pillar/0"), StonePaletteStrategies.BRICKS_STANDARD)
+                .addTexture(modRes("block/andesite/ctm/ornate_andesite_pillar/1"), StonePaletteStrategies.BRICKS_STANDARD)
+                .addTexture(modRes("block/andesite/ctm/ornate_andesite_pillar/3"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -824,12 +821,11 @@ public class ChippedModule extends StoneZoneModule {
                         getModBlock("simple_andesite_pillar"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .createPaletteFromBricks()
                 //TEXTURES: polished (generated via scaled), common_textures/2, common_textures/3 (generated via pillar_top)
-                .addTexture(modRes("block/andesite/simple_andesite_pillar"))
-                .addTexture(modRes("block/andesite/ctm/simple_andesite_pillar/0"))
-                .addTexture(modRes("block/andesite/ctm/simple_andesite_pillar/1"))
-                .addTexture(modRes("block/andesite/ctm/simple_andesite_pillar/3"))
+                .addTexture(modRes("block/andesite/simple_andesite_pillar"), StonePaletteStrategies.BRICKS_STANDARD)
+                .addTexture(modRes("block/andesite/ctm/simple_andesite_pillar/0"), StonePaletteStrategies.BRICKS_STANDARD)
+                .addTexture(modRes("block/andesite/ctm/simple_andesite_pillar/1"), StonePaletteStrategies.BRICKS_STANDARD)
+                .addTexture(modRes("block/andesite/ctm/simple_andesite_pillar/3"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -839,12 +835,11 @@ public class ChippedModule extends StoneZoneModule {
                         getModBlock("massive_andesite_bricks"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
-                .createPaletteFromBricks()
-                .addTexture(modRes("block/andesite/massive_andesite_bricks"))
-                .addTexture(modRes("block/andesite/ctm/massive_andesite_bricks/0"))
-                .addTexture(modRes("block/andesite/ctm/massive_andesite_bricks/1"))
-                .addTexture(modRes("block/andesite/ctm/massive_andesite_bricks/2"))
-                .addTexture(modRes("block/andesite/ctm/massive_andesite_bricks/3"))
+                .addTexture(modRes("block/andesite/massive_andesite_bricks"), StonePaletteStrategies.BRICKS_STANDARD)
+                .addTexture(modRes("block/andesite/ctm/massive_andesite_bricks/0"), StonePaletteStrategies.BRICKS_STANDARD)
+                .addTexture(modRes("block/andesite/ctm/massive_andesite_bricks/1"), StonePaletteStrategies.BRICKS_STANDARD)
+                .addTexture(modRes("block/andesite/ctm/massive_andesite_bricks/2"), StonePaletteStrategies.BRICKS_STANDARD)
+                .addTexture(modRes("block/andesite/ctm/massive_andesite_bricks/3"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
