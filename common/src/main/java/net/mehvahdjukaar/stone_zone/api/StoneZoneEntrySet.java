@@ -74,18 +74,18 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                 )
                 // Modifying the model files' content
                 .addModifier((s, blockId, blockType) -> {
-                    s = BlockTypeResTransformer.replaceFullGenericType(s, blockType, blockId, oldTypeName, module.getModId(), "block(?!.*parent)");
+                    s = BlockTypeResTransformer.replaceFullGenericType(s, blockType, blockId, oldTypeName, module.getModId(), "block(?!.*(?:parent|template))");
 
                     if (tintedStoneType.containsKey(blockType.getId())) {
                         String stonePath = tintedStoneType.get(blockType.getId()).getFirst();
                         String bricksPath = tintedStoneType.get(blockType.getId()).getSecond();
                         return s.replace("minecraft:block/" + oldTypeName + "_bricks", StoneZone.MOD_ID + stonePath)
-                                .replace("minecraft:block/" + oldTypeName,StoneZone.MOD_ID + bricksPath);
+                                .replace("minecraft:block/" + oldTypeName, StoneZone.MOD_ID + bricksPath);
                     }
                     return s;
                 });
 
-        CompatSpritesHelper.replaceStoneTextures(modelTransformer, oldTypeName);
+        modelTransformer = CompatSpritesHelper.replaceStoneTextures(modelTransformer, oldTypeName);
 
         return modelTransformer;
     }
@@ -140,13 +140,18 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
             super(type, name, prefix, baseType, baseBlock, blockFactory);
         }
 
-        /// @deprecated new method haven't been implemented yet
+        /**
+         * @deprecated USE .addTexture(ResourceLocation, PaletteStrategy) or .addTextureM(ResourceLocation, ResourceLocation, PaletteStrategy),
+         * the last parameter is PaletteStrategy<br>
+         * Take a look at {@link StonePaletteStrategies} or {@link PaletteStrategies} & Look for the FIELD which can be used as an argument for the last
+         * parameter
+         **/
         @Deprecated(forRemoval = true)
         public StoneZoneEntrySet.Builder<T, B> createPaletteFromStone() {
             return (Builder<T, B>) createPaletteFromChild("stone");
         }
 
-        /// @deprecated new method haven't been implemented yet
+        /// @deprecated Look at javadoc: {@link Builder#createPaletteFromStone()}
         @Deprecated(forRemoval = true)
         public StoneZoneEntrySet.Builder<T, B> createPaletteFromBricks() {
             this.setPalette((blockType, manager) -> {
@@ -160,7 +165,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
             return this;
         }
 
-        /// @deprecated new method haven't been implemented yet
+        /// @deprecated Look at javadoc: {@link Builder#createPaletteFromStone()}
         @Deprecated(forRemoval = true)
         public StoneZoneEntrySet.Builder<T, B> createPaletteFromStoneChild(String childKey) {
             this.setPalette((blockType, manager) -> {
@@ -179,9 +184,6 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
             if (this.tab == null && PlatHelper.isDev()) {
                 throw new IllegalStateException("Tab for module " + this.name + " was null!");
             } else {
-                // all blocks could have tint as stone could be tinted themselves
-                this.copyParentTint();
-
                 StoneZoneEntrySet<T, B> e = new StoneZoneEntrySet<>(this.type, this.name, this.prefix, this.blockFactory, this.baseBlock,
                         this.baseType, this.tab, this.tabMode, this.lootMode, this.itemFactory,
                         this.tileHolder, this.renderType, this.palette, this.extraModelTransform,
