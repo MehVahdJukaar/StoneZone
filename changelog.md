@@ -22,6 +22,16 @@
 </div>
 
 ### UPDATED: 
+- **Rechiseled** (C): 
+  - Fixed the missing recipes
+  - Moved to COMMON
+- **Stone Zone** (C): Updated deprecated methods in Modules (Supported mods) to use the new method (backported from 1.21.1)
+
+---
+
+## v2.9.3
+
+### UPDATED: 
 - **Stone Zone** (C): Fixed the placed blocks' missing texture and its shape
 
 ---
