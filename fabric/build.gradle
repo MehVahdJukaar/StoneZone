@@ -189,6 +189,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:fabric-waystones-410902:6300601") // Owo-Lib
 //    modRuntimeOnly("curse.maven:handcrafted-538214:5118730") // Resourceful-Lib
 //    modRuntimeOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib
+//    modRuntimeOnly("curse.maven:rechiseled-558998:5286340") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ] - MUST BE CompileOnly (idk why but it's same case as EC's Quark)
 //    modRuntimeOnly("curse.maven:stoneworks-852663:4611948") // puzzles-lib, forge-config-api-port
 //    modRuntimeOnly("curse.maven:twigs-496913:4603805")
 //    modRuntimeOnly("curse.maven:waystones-245755:6779064") // Balm
@@ -205,11 +206,10 @@ dependencies {
     modCompileOnly("curse.maven:macaws-windows-363569:5589335") //v2.3.0
     modCompileOnly("curse.maven:macaws-roofs-352039:5554929") //v2.3.1
     modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442191") //v1.1.2
-    modImplementation("curse.maven:macaws-stairs-1119394:6155218") //v1.0.1
+    modCompileOnly("curse.maven:macaws-stairs-1119394:6155218") //v1.0.1
 
             //+ GENERAL
     modCompileOnly("curse.maven:create-fabric-624165:5982726") // Do not use for RunTime
-//    modCompileOnly("curse.maven:rechiseled-558998:5286340") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
 
             // OTHER MAVENS
 //    modCompileOnly("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}:slim") { transitive = false } // Registrate, Flywheel //!! maven is outdated & not available
