@@ -22,6 +22,13 @@
 </div>
 
 ### UPDATED: 
+- **Rechiseled** (C): Fixed the crash with FORGE
+
+---
+
+## v2.9.4
+
+### UPDATED: 
 - **Rechiseled** (C): 
   - Fixed the missing recipes
   - Moved to COMMON
