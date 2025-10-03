@@ -14,6 +14,20 @@
 </div>
 
 ### UPDATED: 
+- **Waystones** (C): Changed the baseBlock to deepslate to improve the generated texture
+- **Stone Zone** (C): 
+  - Fixed the missing textures for **Additional Lights** - [#151](https://github.com/MehVahdJukaar/StoneZone/issues/151)
+  - Updated the deprecated method to use new method from EveryCompat 
+  - Fixed crash - [#156](https://github.com/MehVahdJukaar/StoneZone/issues/156) 
+  
+### ADDED:
+- **Thaumon** (IT): amber
+
+---
+
+## v2.11.3
+
+### UPDATED: 
 - **Additional Lights** (NF): StoneTypes from **Ars Nouveau** is EXCLUDED - see [#149](https://github.com/MehVahdJukaar/StoneZone/issues/149) for reasons
 
 ---
