@@ -1,7 +1,6 @@
 package net.mehvahdjukaar.stone_zone.neoforge;
 
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
-import net.mehvahdjukaar.moonlight.api.platform.neoforge.RegHelperImpl;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.additional_lights.AdditionalLightsModule;
@@ -12,7 +11,7 @@ import net.mehvahdjukaar.stone_zone.modules.neoforge.stone_chest.StoneChestModul
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 
-import static net.mehvahdjukaar.every_compat.EveryCompat.addIfLoaded;
+import static net.mehvahdjukaar.every_compat.api.EveryCompatAPI.addIfLoaded;
 
 /**
  * Author: Xel'Bayria
@@ -32,18 +31,18 @@ public class StoneZoneForge extends StoneZoneCommon {
 //!! =================================================== Add Modules ================================================ \\
 
         // Macaw's
-        addIfLoaded("mcwbridges", () -> MacawBridgesModule::new);
-        addIfLoaded("mcwfences", () -> MacawFencesModule::new);
-        addIfLoaded("mcwwindows", () -> MacawWindowsModule::new);
-        addIfLoaded("mcwroofs", () -> MacawRoofsModule::new);
-        addIfLoaded("mcwstairs", () -> MacawStairsModule::new);
-        addIfLoaded("mcwpaths", () -> MacawPathsModule::new);
+        addIfLoaded("mcwbridges", () -> MacawBridgesModule.class);
+        addIfLoaded("mcwfences", () -> MacawFencesModule.class);
+        addIfLoaded("mcwwindows", () -> MacawWindowsModule.class);
+        addIfLoaded("mcwroofs", () -> MacawRoofsModule.class);
+        addIfLoaded("mcwstairs", () -> MacawStairsModule.class);
+        addIfLoaded("mcwpaths", () -> MacawPathsModule.class);
 
         // General
-        addIfLoaded("additional_lights", () -> AdditionalLightsModule::new);
-        addIfLoaded("create", () -> CreateModule::new);
-        addIfLoaded("rechiseled", () -> RechiseledModule::new);
-        addIfLoaded("stonechest", () -> StoneChestModule::new);
+        addIfLoaded("additional_lights", () -> AdditionalLightsModule.class);
+        addIfLoaded("create", () -> CreateModule.class);
+        addIfLoaded("rechiseled", () -> RechiseledModule.class);
+        addIfLoaded("stonechest", () -> StoneChestModule.class);
 
 //!! ====================================================== OTHERS ================================================== \\
 

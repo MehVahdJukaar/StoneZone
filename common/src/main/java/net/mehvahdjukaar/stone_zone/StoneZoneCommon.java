@@ -14,9 +14,9 @@ import net.mehvahdjukaar.stone_zone.modules.twigs.TwigsModule;
 import net.mehvahdjukaar.stone_zone.modules.waystones.WaystonesModule;
 import net.mehvahdjukaar.stone_zone.modules.wraith_waystones.WraithWaystonesModule;
 
-import static net.mehvahdjukaar.every_compat.EveryCompat.addMultipleIfLoaded;
 import static net.mehvahdjukaar.every_compat.EveryCompat.addOtherCompatMod;
-import static net.mehvahdjukaar.stone_zone.StoneZone.addIfLoaded;
+import static net.mehvahdjukaar.every_compat.api.EveryCompatAPI.addIfLoaded;
+import static net.mehvahdjukaar.every_compat.api.EveryCompatAPI.addMultipleIfLoaded;
 
 public class StoneZoneCommon {
 
@@ -35,19 +35,19 @@ public class StoneZoneCommon {
 
 //!! =================================================== Add Modules ================================================ \\
 
-        addIfLoaded("bbb", () -> BuildingButBetterModule::new);
-        addIfLoaded("betterarcheology", () -> BetterArcheologyModule::new);
-        addIfLoaded("blockus", () -> BlockusModule::new);
-        addIfLoaded("candlelight", () -> CandlelightModule::new); //!! [Let's Do]
-        addIfLoaded("chipped", () -> ChippedModule::new);
-//        addIfLoaded("decorative_blocks", () -> DecorativeBlocksModule::new); // NOT AVAILABLE
-        addIfLoaded("fwaystones", () -> WraithWaystonesModule::new);
-        addIfLoaded("handcrafted", () -> HandcraftedModule::new);
-        addIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorches::new);
-        addIfLoaded("stoneworks", () -> StoneworksModule::new);
-        addIfLoaded("twigs", () -> TwigsModule::new);
-        addMultipleIfLoaded("quark", () -> QuarkModule::new, () -> QuarkMudModule::new);
-        addIfLoaded("waystones", () -> WaystonesModule::new);
+        addIfLoaded("bbb", () -> BuildingButBetterModule.class);
+        addIfLoaded("betterarcheology", () -> BetterArcheologyModule.class);
+        addIfLoaded("blockus", () -> BlockusModule.class);
+        addIfLoaded("candlelight", () -> CandlelightModule.class); //!! [Let's Do]
+        addIfLoaded("chipped", () -> ChippedModule.class);
+//        addIfLoaded("decorative_blocks", () -> DecorativeBlocksModule.class); // NOT AVAILABLE
+        addIfLoaded("fwaystones", () -> WraithWaystonesModule.class);
+        addIfLoaded("handcrafted", () -> HandcraftedModule.class);
+        addIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorches.class);
+        addIfLoaded("stoneworks", () -> StoneworksModule.class);
+        addIfLoaded("twigs", () -> TwigsModule.class);
+        addMultipleIfLoaded("quark", () -> QuarkModule.class, () -> QuarkMudModule.class);
+        addIfLoaded("waystones", () -> WaystonesModule.class);
 
 //!! ====================================================== OTHERS ================================================== \\
 
