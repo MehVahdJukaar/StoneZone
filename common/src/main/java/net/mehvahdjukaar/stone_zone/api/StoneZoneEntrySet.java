@@ -54,7 +54,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
 
     @Override
     public void generateModels(SimpleModule module, ResourceManager manager, ResourceSink sink) {
-        ResourcesUtils.generateStandardBlockModels(manager, sink, blocks, baseType.get(),
+        ResourcesUtils.generateStandardBlockFiles(manager, sink, blocks, baseType.get(),
                 makeModelTransformer(module, manager), makeBlockStateTransformer(module, manager), this.modelConfiguration
         );
         ResourcesUtils.generateStandardItemModels(manager, sink, items, baseType.get(),
