@@ -32,7 +32,11 @@ public class CompatStoneType {
 
         StoneTypeRegistry stoneReg = StoneTypeRegistry.INSTANCE;
 
-        // Ars Nouveau
+        // Abyssal Decor - REASON: 2-Words
+        stoneReg.addSimpleFinder("abyssal_decor", "blood_coral")
+                .stone("rough_blood_coral");
+
+        // Ars Nouveau - REASON: Naming-Convention
         stoneReg.addSimpleFinder("ars_nouveau", "sourcestone")
                 .childBlock(BRICKS, "sourcestone_large_bricks")
                 .childBlock(POLISHED, "polished_sconce");
