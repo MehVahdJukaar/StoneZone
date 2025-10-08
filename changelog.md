@@ -21,6 +21,13 @@
 
 </div>
 
+### ADDED:
+- **Abyssal Decor** (UD): blood_coral, jade - [#154](https://github.com/MehVahdJukaar/StoneZone/issues/154)
+
+---
+
+## v2.9.5
+
 ### UPDATED: 
 - **Rechiseled** (C): Fixed the crash with FORGE
 
