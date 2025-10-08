@@ -50,7 +50,7 @@ public class CompatStoneType {
                 .childBlockAffix(POLISHED_STAIRS, "polished_", "_stairs_kc")
                 .childBlockAffix(POLISHED_WALL, "polished_", "_wall_kc");
 
-        // Pokecube AOI - REASON: 2-Words
+        // Pokecube AIO - REASON: 2-Words
         stoneReg.addSimpleFinder("pokecube_legends", "ultra_darkstone")
                 .childBlock(COBBLESTONE, "ultra_dark_cobblestone");
         stoneReg.addSimpleFinder("pokecube_legends", "dusk_dolerite")
