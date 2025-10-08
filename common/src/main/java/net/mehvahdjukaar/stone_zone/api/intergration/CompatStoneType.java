@@ -32,9 +32,11 @@ public class CompatStoneType {
 
         StoneTypeRegistry stoneReg = StoneTypeRegistry.INSTANCE;
 
-        // Abyssal Decor - REASON: 2-Words
+        // Abyssal Decor - REASON: Id-Stone
         stoneReg.addSimpleFinder("abyssal_decor", "blood_coral")
                 .stone("rough_blood_coral");
+        stoneReg.addSimpleFinder("abyssal_decor", "jade")
+                .stone("rough_jade");
 
         // Ars Nouveau - REASON: Naming-Convention
         stoneReg.addSimpleFinder("ars_nouveau", "sourcestone")
