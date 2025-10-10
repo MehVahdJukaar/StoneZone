@@ -142,7 +142,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:6494827") // v21.1.36 | Stoneworks
 //    modRuntimeOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark //!! 1.20
 //    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | Chipped //!! 1.20
-//    modRuntimeOnly("curse.maven:resourceful-lib-570073:5973188") // v3.0.12 | Chipped
+//    modRuntimeOnly("curse.maven:resourceful-lib-570073:5973188") // v3.0.12 | Chipped, Handcrafted
 //    modRuntimeOnly("curse.maven:resourceful-config-714059:6467772") // v3.0.11 | Better-Archeology
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129294") // v1.1.1 | Rechiseled //!! 1.20
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:5546996") // v1.1.8 | Rechiseled
