@@ -48,7 +48,7 @@ public class CompatStoneType {
                 .stoneSuffix("_kc")
                 .childBlockSuffix(SLAB, "_slab_kc")
                 .childBlockSuffix(STAIRS, "_kc_stairs")
-                .childBlockAffix(POLISHED, "polished_", "_kc")
+                .childBlock(POLISHED, "polished_granite_kc")
                 .childBlockAffix(POLISHED_STAIRS, "polished_", "_stairs_kc")
                 .childBlockAffix(POLISHED_WALL, "polished_", "_wall_kc");
 
