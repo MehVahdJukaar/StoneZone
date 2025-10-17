@@ -18,7 +18,7 @@ import net.minecraft.world.level.material.PushReaction;
 
 import java.util.Objects;
 
-import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.SLAB;
 
 //SUPPORT: v1.0.1+

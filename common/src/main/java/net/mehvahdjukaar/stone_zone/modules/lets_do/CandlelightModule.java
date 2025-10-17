@@ -2,7 +2,7 @@ package net.mehvahdjukaar.stone_zone.modules.lets_do;
 
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.common_classes.TagUtility;
+import net.mehvahdjukaar.every_compat.misc.UtilityTag;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
@@ -78,7 +78,7 @@ public class CandlelightModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stoves"), Registries.BLOCK)
                 .addTag(ResourceLocation.parse("farmersdelight:heat_sources"), Registries.BLOCK)
-                .addTag(TagUtility.fabricTag("allows_cooking"), Registries.BLOCK)
+                .addTag(UtilityTag.fabricTag("allows_cooking"), Registries.BLOCK)
                 .addTag(modRes("allows_cooking"), Registries.BLOCK)
                 .addTag(ResourceLocation.parse("farm_and_charm:allows_cooking"), Registries.BLOCK)
                 .setTabKey(tab)

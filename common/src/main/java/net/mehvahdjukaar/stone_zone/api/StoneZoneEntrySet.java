@@ -21,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.*;
 
-import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.addTagToAllBlocks;
+import static net.mehvahdjukaar.every_compat.misc.UtilityTag.addTagToAllBlocks;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 import static net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys.STONE;
 import static net.mehvahdjukaar.stone_zone.misc.CompatSpritesHelper.tintedStoneType;
@@ -126,7 +126,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
         addTagToAllBlocks(blocks, "scorched_stone", "tconstruct", "scorched_blocks", true, true, sink);
 
         // Caverns And Chasms
-        addTagToAllBlocks(blocks, "sugilite", "caverns_and_chasms", "static_note_blocks", true, true, sink);
+        addTagToAllBlocks(blocks, "sugilite", "caverns_and_chasms", "static_note_blocks", true, false, sink);
         addTagToAllBlocks(blocks, "cassiterite", "caverns_and_chasms", "deflects_projectiles", true, false, sink);
         addTagToAllBlocks(blocks, "cassiterite", "caverns_and_chasms", "weaker_deflect_velocity", true, false, sink);
 

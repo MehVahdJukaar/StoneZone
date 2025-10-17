@@ -25,7 +25,7 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 
 import java.util.function.Consumer;
 
-import static net.mehvahdjukaar.every_compat.common_classes.TagUtility.createAndAddCustomTags;
+import static net.mehvahdjukaar.every_compat.misc.UtilityTag.createAndAddCustomTags;
 
 
 //SUPPORT: v3.0.7+

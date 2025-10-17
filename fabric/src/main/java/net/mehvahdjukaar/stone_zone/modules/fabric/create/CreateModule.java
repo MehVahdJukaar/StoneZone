@@ -9,8 +9,8 @@ import net.fabricmc.api.Environment;
 import net.mehvahdjukaar.every_compat.api.EntrySet;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.common_classes.RecipeUtility;
-import net.mehvahdjukaar.every_compat.common_classes.TagUtility;
+import net.mehvahdjukaar.every_compat.misc.UtilityRecipe;
+import net.mehvahdjukaar.every_compat.misc.UtilityTag;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
@@ -33,7 +33,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
+
 
 //SUPPORT: v0.5.1+
 public class CreateModule extends StoneZoneModule {
@@ -372,7 +373,7 @@ public class CreateModule extends StoneZoneModule {
 
                     // Tags
                     ResourceLocation tagResLoc = StoneZone.res(stoneType.getNamespace() + "/" + stoneType.getTypeName());
-                    boolean isTagCreated = TagUtility.createAndAddCustomTags(tagResLoc, sink, blocks);
+                    boolean isTagCreated = UtilityTag.createAndAddCustomTags(tagResLoc, sink, blocks);
 
                     // Recipes
                     if (isTagCreated) {
@@ -389,7 +390,7 @@ public class CreateModule extends StoneZoneModule {
                                             .replace("_stone_types", ""))
                                     .withPrefix(shortenedId() + "/" + stoneType.getNamespace() + "/stonecutting/");
 
-                            RecipeUtility.stonecuttingWithTagRecipe(output, recipeResLoc, tagResLoc, newRecipeLoc, sink, manager);
+                            UtilityRecipe.stonecuttingWithTagRecipe(output, recipeResLoc, tagResLoc, newRecipeLoc, sink, manager);
                         }
                     }
                 }

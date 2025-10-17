@@ -15,8 +15,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.Objects;
 
-import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyBlockStateSafe;
-import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyBlockStateSafe;
+import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
 
 
 //SUPPORT: v21.1.0+
