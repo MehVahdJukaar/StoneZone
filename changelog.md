@@ -13,6 +13,16 @@
   </div>
 </div>
 
+### REQUIREMENT: 
+- **Every Compat** v2.11.10 or newer
+
+### ADDED:
+- **Abyssal Decor** (UD): blood_coral, jade
+
+---
+
+## v2.11.4
+
 ### UPDATED: 
 - **Waystones** (C): Changed the baseBlock to deepslate to improve the generated texture
 - **Stone Zone** (C): 
