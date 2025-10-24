@@ -133,17 +133,11 @@ dependencies {
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     if (enable_everycomp_test.toBoolean()) {
-        //- Repository LOCAL - Every Compat
+        //- Repository LOCAL
         modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
-    } else if (enable_librarysection_test.toBoolean()) {
-        //- Repository LOCAL - Library Section
-        modImplementation(files(path + "\\WoodGood-Library\\fabric\\build\\libs\\everycomp-LS-${everycomp_testVersion}-fabric.jar"))
     } else {
         //+ MAVEN
-        if (useLibrarySection_maven.toBoolean())
-            modImplementation("maven.modrinth:library-section:${everycomp_mavenVersion}-fabric") // v2.8.14
-        else
-            modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric")
+        modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric")
     }
 
 //!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
