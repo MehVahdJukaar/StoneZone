@@ -17,7 +17,7 @@ import org.violetmoon.quark.content.building.module.MoreStoneVariantsModule;
 import org.violetmoon.quark.content.building.module.VerticalSlabsModule;
 import org.violetmoon.zeta.block.ZetaPillarBlock;
 
-import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 //SUPPORT: v4.0-435+

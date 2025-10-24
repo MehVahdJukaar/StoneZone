@@ -14,8 +14,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 
-import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyBlockStateSafe;
-import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyBlockStateSafe;
+import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BRICKS;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BRICK_SLAB;
 

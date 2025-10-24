@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 
 import java.util.Objects;
 
-import static net.mehvahdjukaar.every_compat.common_classes.Utilities.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 //TODO: Add purpur
