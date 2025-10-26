@@ -21,6 +21,26 @@
 
 </div>
 
+### REQUIRED:
+- **Every Compat** (C): v2.9.9 or newer version
+
+### UPDATED:
+- **Stone Zone** (C): Updated libraries from **Every Compat**
+- **LANG** (en_us): Removed the wetland_whimsy:limestone, so it is no longer using "lemonstone", it's now using "limestone"
+- **Koopa's Critters** (UDS): Fixed `kopje_granite`'s undetected polished 
+
+### DEV:
+- **Every Compat** (C):
+    - Utility Classes have been moved to net.mehvahdjukaar.every_compat.misc
+    - `TextureUtility` are renamed to `UtilityTexture`
+    - `TagUtility` are renamed to `UtilityTag`
+    - `RecipeUtility` are renamed to `UtilityRecipe`
+    - `Utility` are renamed to `UtilityMisc`
+
+---
+
+## v2.9.6
+
 ### ADDED:
 - **Abyssal Decor** (UD): blood_coral, jade - [#154](https://github.com/MehVahdJukaar/StoneZone/issues/154)
 
