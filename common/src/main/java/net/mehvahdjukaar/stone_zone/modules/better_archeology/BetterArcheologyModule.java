@@ -64,7 +64,7 @@ public class BetterArcheologyModule extends StoneZoneModule {
                 //TEXTURES: cracked_bricks (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
-                .addRecipe(modRes("cracked_mud_brick_slabs"))
+                .addRecipe(modRes("cracked_mud_brick_slab"))
                 .addRecipe(ResourceLocation.withDefaultNamespace("cracked_mud_brick_slab_from_cracked_mud_bricks_stonecutting"))
                 .build();
         this.addEntry(cracked_brick_slabs);
