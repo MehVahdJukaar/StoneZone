@@ -117,10 +117,10 @@ dependencies {
         }
 
 //!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
+    modRuntimeOnly("com.blamejared.crafttweaker:CraftTweaker-fabric-$minecraft_version:$crafttweaker_version") // Faux-Custom-Entity-Data
+    modRuntimeOnly("dev.emi:emi-fabric:$emi_version+$minecraft_version")
     modRuntimeOnly("curse.maven:jei-238222:5846878")
-    modRuntimeOnly("curse.maven:emi-580555:5872512") // v1.1.18
     modRuntimeOnly("curse.maven:jade-324717:5884237") // v15.8.3
-    modRuntimeOnly("curse.maven:crafttweaker-239197:6434160") // Faux-Custom-Entity-Data
 //    modRuntimeOnly("curse.maven:worldedit-225608:5830452") // required loom 1.7.410
 
 //!! ================================================= DEPENDENCIES ================================================= \\

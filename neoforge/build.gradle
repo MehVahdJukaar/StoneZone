@@ -120,12 +120,12 @@ dependencies {
 
 
 //!! TOOLS ---------------------------------------------------------------------------------------------------------- \\
+    modRuntimeOnly("dev.emi:emi-neoforge:$emi_version+$minecraft_version")
+    modRuntimeOnly("com.blamejared.crafttweaker:CraftTweaker-neoforge-$minecraft_version:$crafttweaker_version")
     modRuntimeOnly("curse.maven:jei-238222:5846880")
-//    modRuntimeOnly("curse.maven:worldedit-225608:5830452")
     modRuntimeOnly("curse.maven:jade-324717:5884231") // v15.8.3
-    modRuntimeOnly("curse.maven:emi-580555:5872513") // v1.1.18
-    modRuntimeOnly("curse.maven:crafttweaker-239197:6434161")
     modRuntimeOnly("curse.maven:configured-457570:5873783")
+//    modRuntimeOnly("curse.maven:worldedit-225608:5830452")
 
 //!! ================================================= DEPENDENCIES ================================================= \\
     //- ONLY FOR TESTING - can be commented out or enabled

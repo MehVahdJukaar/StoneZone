@@ -196,11 +196,11 @@ allprojects {
         } // Reach Entity Attributes
         maven { url = "https://squiddev.cc/maven" } // CC: Tweaked
         maven { name = 'Ladysnake Mods'; url = 'https://maven.ladysnake.org/releases' }
-        maven { name = "Jared's maven"; url = "https://maven.blamejared.com/" } // JEI
+        maven { name = "Jared's maven"; url = "https://maven.blamejared.com/" } // JEI, CraftTweaker
         maven { name = "ModMaven"; url = "https://modmaven.dev" } // Botania & FALLBACK for JEI
         maven { url = "https://maven.teamresourceful.com/repository/maven-public/" } // Chipped
         maven { url = "https://maven.firstdarkdev.xyz/snapshots" }
-        maven { name = "TerraformersMC"; url = "https://maven.terraformersmc.com/" }
+        maven { name = "TerraformersMC"; url = "https://maven.terraformersmc.com/" } // EMI
         maven { url = "https://raw.githubusercontent.com/moddingplayground/maven/main/" }
         maven { url = 'https://maven.ambertation.de/releases' } // BCLib, BetterEnd, WunderLib
         maven { // GeckoLib
