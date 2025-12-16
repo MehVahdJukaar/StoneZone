@@ -13,6 +13,16 @@
   </div>
 </div>
 
+### UPDATED: 
+- **Better Archeology** (C): Corrected the ResourceLocation for the recipe, cracked_mud_brick_slab
+
+### NOTE: 
+- **Moonlight Lib v2.28.2**: Added SmeltingRecipe to RecipeTemplate, so the smelting-recipe from **Better Archeology** can be generated
+
+---
+
+## v2.11.5
+
 ### REQUIREMENT: 
 - **Every Compat** v2.11.10 or newer
 
