@@ -165,12 +165,13 @@ dependencies {
         //- ~/fabric/mods LOCAL@
 
         //- OTHER MAVENs - can be commented out or enabled
-//    modRuntimeOnly("com.jozufozu.flywheel:flywheel-fabric-$minecraft_version:$flywheel_version") // Create
 //    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
     modRuntimeOnly("me.shedaniel.cloth:cloth-config-fabric:$cloth_version") // Bountiful-Fares
 
         //+ REQUIRED - The modules access libaries from below - Only in FABRIC
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:$registrate_fabric_version") // Create
+    modCompileOnly("dev.engine-room.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_fabric_version}") // Create
+    modCompileOnly("net.createmod.ponder:Ponder-Fabric-$minecraft_version:$ponder_fabric_version") // Create
 
 //!! =================================================== IMPORTS ==================================================== \\
         //- ONLY FOR TESTING - can be commented out or enabled
@@ -201,10 +202,10 @@ dependencies {
     modCompileOnly("curse.maven:macaws-stairs-1119394:6155218") //v1.0.1
 
             //+ GENERAL
-    modCompileOnly("curse.maven:create-fabric-624165:5982726") // Do not use for RunTime
+//    modCompileOnly("curse.maven:create-fabric-624165:5982726") // Do not use for RunTime
 
             // OTHER MAVENS
-//    modCompileOnly("com.simibubi.create:create-fabric-minecraft_version:$create_fabric_version:slim") { transitive = false } // Registrate, Flywheel //!! maven is outdated & not available
+    modCompileOnly("com.simibubi.create:create-fabric:$create_fabric_version") { transitive = false }  // Registrate, Flywheel, Ponder, Forge-Config-Api-Port, Milk-Lib, Porting-Lib
 
 //!! ================================================= FOR TESTING ================================================== \\
 
