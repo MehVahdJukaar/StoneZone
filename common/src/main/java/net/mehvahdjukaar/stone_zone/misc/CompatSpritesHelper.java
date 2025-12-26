@@ -22,6 +22,13 @@ public class CompatSpritesHelper {
 /// NOTE: Used to identify StoneTypes' texture only based off their name
     public static void initHardcodedSprite() {
 
+        // Blast From The Past
+        addOptional("blastfromthepast:permafrost", "all", "blastfromthepast:block/permafrost");
+        addOptional("blastfromthepast:permafrost_bricks", "all", "blastfromthepast:block/permafrost_bricks");
+
+        // Thuamon
+        addOptional("thaumon:amber", "all", "thaumon:block/amber_side");
+
         // Quark
         addOptional("quark:myalite", "all", StoneZone.MOD_ID + ":block/quark/myalite_tinted");
         addOptional("quark:myalite_bricks", "all", StoneZone.MOD_ID + ":block/quark/myalite_bricks_tinted");
