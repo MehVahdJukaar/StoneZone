@@ -7,37 +7,34 @@ loom {
 }
 
 dependencies {
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modApi "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}"
+    modImplementation "net.fabricmc:fabric-loader:$fabric_loader_version"
+    modApi "net.fabricmc.fabric-api:fabric-api:$fabric_api_version"
 
     annotationProcessor 'net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5'
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
     String path = System.getenv('REPOS20_1')
-    boolean usesMavenLocalML =  System.getenv().MY_PC == "1"
-    print "isMyPc: $usesMavenLocalML\n"
 
-        //- Repository LOCAL
+    //- LOCAL
     if (enable_moonlight_test.toBoolean()) {
-        if (usesMavenLocalML) {
-            //- ~/fabric/mods LOCAL
-            modImplementation("net.mehvahdjukaar:moonlight-fabric:${project.moonlight_testVersion}") // LOCAL
-        } else {
-            modImplementation(files(path + "\\Moonlight\\fabric\\build\\libs\\moonlight-${moonlight_testVersion}-fabric.jar"))
+        modImplementation(files(path + "\\Moonlight\\fabric\\build\\libs\\moonlight-$moonlight_testVersion-fabric.jar"))
+    }
+    //+ MAVEN
+    else {
+        modApi("net.mehvahdjukaar:moonlight:$moonlight_mavenVersion"){
+            transitive = false
         }
-    } else {
-        //+ MAVEN
-        modImplementation("maven.modrinth:moonlight:${moonlight_mavenVersion}-fabric") // v2.16.10
     }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     if (enable_everycomp_test.toBoolean()) {
         //- Repository LOCAL
-        modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${everycomp_testVersion}-fabric.jar"))
+        modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-$everycomp_testVersion-fabric.jar"))
     }  else {
         //+ MAVEN
-
-            modImplementation("maven.modrinth:every-compat:${everycomp_mavenVersion}-fabric")
+        modApi("net.mehvahdjukaar:everycomp:$everycomp_mavenVersion") {
+            transitive = false
+        }
     }
 
 //!! ================================================= DEPENDENCIES ================================================= \\
@@ -71,5 +68,5 @@ dependencies {
     modCompileOnly("curse.maven:waystones-245755:6779064") // Balm
 
         //+ OTHER MAVENS
-    modCompileOnly("earth.terrarium.chipped:chipped-fabric-${minecraft_version}:3.0.7") //INCLUDED: Athena, Resourceful-Lib
+    modCompileOnly("earth.terrarium.chipped:chipped-fabric-$minecraft_version:3.0.7") //INCLUDED: Athena, Resourceful-Lib
 }
