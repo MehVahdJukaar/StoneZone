@@ -48,7 +48,7 @@ public class StoneZone extends EveryCompat {
     /// Will be added to DynamicPack if the mod is loaded
     public static void addModToDynamicPack(String modId) {
         if (PlatHelper.isModLoaded(modId)) {
-            ServerDynamicResourcesHandler.INSTANCE.dynamicPack.addNamespaces(modId);
+            ServerDynamicResourcesHandler.getInstance().dynamicPack.addNamespaces(modId);
         }
     }
 
