@@ -45,6 +45,10 @@ dependencies {
     modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:6076732") // v1.1.18a | Rechiseled
     modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
 
+    // OTHER MAVENS
+    modCompileOnly("com.tterrag.registrate_fabric:Registrate:$registrate_fabric_version") // Create
+//    modRuntimeOnly("dev.engine-room.flywheel:flywheel-fabric-$minecraft_version:$flywheel_fabric_version") // Create - not really needed
+
 //!! =================================================== IMPORTS ==================================================== \\
     //- MODULES - don't need library from the mod, so it's fine to ignore
 
@@ -69,4 +73,5 @@ dependencies {
 
         //+ OTHER MAVENS
     modCompileOnly("earth.terrarium.chipped:chipped-fabric-$minecraft_version:3.0.7") //INCLUDED: Athena, Resourceful-Lib
+    modCompileOnly("com.simibubi.create:create-fabric:$create_fabric_version") { transitive = false }  // Registrate, Flywheel, Ponder, Forge-Config-Api-Port, Milk-Lib
 }
