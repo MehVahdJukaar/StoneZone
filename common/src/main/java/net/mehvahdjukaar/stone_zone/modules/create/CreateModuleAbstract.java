@@ -1,9 +1,5 @@
 package net.mehvahdjukaar.stone_zone.modules.create;
 
-import com.simibubi.create.CreateClient;
-import com.simibubi.create.foundation.block.connected.*;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.mehvahdjukaar.every_compat.api.EntrySet;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
@@ -399,40 +395,4 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
         );
     }
 
-    @Override
-    @Environment(EnvType.CLIENT)
-    public void onClientSetup() {
-        super.onClientSetup();
-        CreateClientModule.registerConnectedBlock(this);
-    }
-
-    @Environment(EnvType.CLIENT)
-    private static class CreateClientModule {
-        private static void registerConnectedBlock(CreateModuleAbstract module) {
-            module.layereds.blocks.forEach((stone, block) -> {
-                String capPath = "block/" + module.shortenedId() + "/" + stone.getNamespace() + "/palettes/stone_types/cap/" + stone.getTypeName() + "_cut_cap";
-                String layeredPath = "block/" + module.shortenedId() + "/" + stone.getNamespace() + "/palettes/stone_types/layered/" + stone.getTypeName() + "_cut_layered";
-
-                CTSpriteShiftEntry capShift = CTSpriteShifter.getCT(AllCTTypes.OMNIDIRECTIONAL,
-                        StoneZone.res(capPath), StoneZone.res(capPath + "_connected"));
-                CTSpriteShiftEntry layeredShift = CTSpriteShifter.getCT(AllCTTypes.HORIZONTAL_KRYPPERS,
-                        StoneZone.res(layeredPath), StoneZone.res(layeredPath + "_connected"));
-
-                Block pillarBlock = module.pillars.blocks.get(stone);
-                if (Objects.nonNull(pillarBlock)) {
-                    String pillarPath = "block/" + module.shortenedId() + "/" + stone.getNamespace() + "/palettes/stone_types/pillar/" + stone.getTypeName() + "_cut_pillar";
-
-                    CTSpriteShiftEntry pillarShift = CTSpriteShifter.getCT(AllCTTypes.RECTANGLE,
-                            StoneZone.res(pillarPath), StoneZone.res(pillarPath + "_connected"));
-
-                    CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(pillarBlock),
-                            (model) -> new CTModel(model, new RotatedPillarCTBehaviour(pillarShift, capShift)));
-                }
-
-                CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(block),
-                        (model) -> new CTModel(model, new HorizontalCTBehaviour(layeredShift, capShift)));
-
-            });
-        }
-    }
 }
