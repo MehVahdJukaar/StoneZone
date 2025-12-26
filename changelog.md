@@ -21,6 +21,18 @@
 
 </div>
 
+Merry Christmas - Xel'Bayria
+
+### UPDATED: 
+- **Stone Zone** (C): Updated to use **Every Compat v2.9.13** & Fixed the crash - [#1151](https://github.com/MehVahdJukaar/WoodGood/issues/1151)
+- **Create** (FB): Updated to support Create-Fabric v6.0+
+- **Blast From The Past** (IT): permafrost & permafrost_bricks to correct the texture generation - [#170](https://github.com/MehVahdJukaar/StoneZone/issues/170)
+- **LANG** (la_jp): Updated & Fixed by @Hayakoh-WeldyAlin - [PR#163](https://github.com/MehVahdJukaar/StoneZone/pull/163), [PR#165](https://github.com/MehVahdJukaar/StoneZone/pull/165)
+
+---
+
+## v2.9.7
+
 ### REQUIRED:
 - **Every Compat** (C): v2.9.9 or newer version
 
