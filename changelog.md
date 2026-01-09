@@ -14,6 +14,14 @@
 </div>
 
 ### UPDATED: 
+- **Stone Zone** (C): Fixed the crash with **Every Compat v2.11.24** - There is a changed code in **Every Compat** - [#172](https://github.com/MehVahdJukaar/StoneZone/issues/172)
+- **Stone Chest** (C): Updated to support v1.1.0 & Fixed the crash because `chest_stone` is no longer available, changed to `chest_andesite` - [#171](https://github.com/MehVahdJukaar/StoneZone/issues/171)
+
+---
+
+## v2.11.6
+
+### UPDATED: 
 - **Better Archeology** (C): Corrected the ResourceLocation for the recipe, cracked_mud_brick_slab
 
 ### NOTE: 
