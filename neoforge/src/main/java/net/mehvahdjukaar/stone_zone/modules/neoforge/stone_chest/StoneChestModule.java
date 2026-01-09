@@ -38,7 +38,7 @@ import static net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys.S
 import static net.mehvahdjukaar.stone_zone.common_classes.CompatChestTexture.generateChestTexture;
 
 
-//SUPPORT: v1.0.0+
+//SUPPORT: v1.1.0+
 public class StoneChestModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> chests;
@@ -49,7 +49,7 @@ public class StoneChestModule extends StoneZoneModule {
         ResourceKey<CreativeModeTab> tab = CreativeModeTabs.FUNCTIONAL_BLOCKS;
 
         chests = StoneZoneEntrySet.of(StoneType.class, "","chest",
-                        getModBlock("chest_stone"), () -> VanillaStoneTypes.STONE,
+                        getModBlock("chest_andesite"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new CompatChestBlock(this::getTile, Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addTile(VariantChestBlockEntity::new)
@@ -64,16 +64,16 @@ public class StoneChestModule extends StoneZoneModule {
         this.addEntry(chests);
 
         parts = ItemOnlyEntrySet.builder(StoneType.class, "", "part",
-                        getModItem("part_stone"), () -> VanillaStoneTypes.STONE,
+                        getModItem("part_andesite"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new Item(new Item.Properties())
                 )
-                .addTextureM(modRes("item/part_stone"),
+                .addTextureM(modRes("item/part_andesite"),
                         StoneZone.res("item/sc/part_stone_m"),
                         customPalette)
                 .addModelTransform(m -> m.addModifier(
                         (s, blockId, stoneType) ->
-                                s.replace("\"stonechest:item/part_stone\"",
-                                        "\""+ StoneZone.res("item/"+shortenedId()+"/"+ stoneType.getAppendableIdWith("part", "")) +"\"")
+                                s.replace("\"stonechest:item/part_andesite\"",
+                                        "\"" + stoneType.createFullIdWith(StoneZone.MOD_ID, "item", shortenedId(), "part", "") + "\"")
                 ))
                 .setTabKey(tab)
                 .defaultRecipe()
@@ -120,21 +120,21 @@ public class StoneChestModule extends StoneZoneModule {
 
                 // SINGLE
                 generateChestTexture(sink, manager, shortenedId(), stoneType, block,
-                        modRes("entity/chest/stone"),
+                        modRes("entity/chest/andesite"),
                         StoneZone.res("entity/sc/stone_m"),
                         StoneZone.res("entity/sc/stone_o"),
                         null
                 );
                 // LEFT
                 generateChestTexture(sink, manager, shortenedId(), stoneType, block,
-                        modRes("entity/chest/stone_left"),
+                        modRes("entity/chest/andesite_left"),
                         StoneZone.res("entity/sc/stone_left_m"),
                         StoneZone.res("entity/sc/stone_left_o"),
                         null
                 );
                 // RIGHT
                 generateChestTexture(sink, manager, shortenedId(), stoneType, block,
-                        modRes("entity/chest/stone_right"),
+                        modRes("entity/chest/andesite_right"),
                         StoneZone.res("entity/sc/stone_right_m"),
                         StoneZone.res("entity/sc/stone_right_o"),
                         null

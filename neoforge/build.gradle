@@ -191,7 +191,7 @@ dependencies {
         //+ GENERAL
     modCompileOnly("curse.maven:additional-lights-384991:6841545")
     modCompileOnly("curse.maven:rechiseled-558998:5663514") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
-    modCompileOnly("curse.maven:stone-chest-307052:5931165")
+    modCompileOnly("curse.maven:stone-chest-307052:7432348")
 
         // OTHER MAVENS
     modCompileOnly("com.simibubi.create:create-1.21.1:${create_version}:slim") { transitive = false } // Registrate, Flywheel, Ponder
