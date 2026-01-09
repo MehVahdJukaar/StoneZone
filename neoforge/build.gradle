@@ -104,7 +104,7 @@ dependencies {
         modImplementation(files(path + "\\Moonlight\\neoforge\\build\\libs\\moonlight-$moonlight_testVersion-neoforge.jar"))
     else
         //+ MAVEN
-        modApi("net.mehvahdjukaar:moonlight-neoforge:$moonlight_version") {
+        modApi("net.mehvahdjukaar:moonlight-neoforge:$moonlight_version:neoforge") {
             transitive = false
     }
 
