@@ -21,6 +21,7 @@ import java.util.function.Consumer;
 
 
 public class StoneZoneModule extends SimpleModule {
+
     public StoneZoneModule(String modId, String shortId) {
         super(modId, shortId, StoneZone.MOD_ID);
     }
@@ -36,22 +37,18 @@ public class StoneZoneModule extends SimpleModule {
         return "StoneZone " + LangBuilder.getReadableName(modId) + " Module";
     }
 
-    @Override
-    public ResourceLocation makeMyRes(String name) {
-        return super.makeMyRes(name);
-    }
+    public boolean isEntryAlreadyRegistered(String entrySetId, ResourceLocation blockId, BlockType blockType, Registry<?> registry) {
 
-    @Override
-    public boolean isEntryAlreadyRegistered(String entrySetId, String blockId, BlockType blockType, Registry<?> registry) {
-
-        // blockId: <stonetype>_column from the full Id: stonezone:twigs/strata/<stonetype>_column - it's done in EveryCompat
+        String blockPath = blockId.getPath();
+        //short block name - blockName: <stonetype>_column from the blockId: stonezone:twigs/strata/<stonetype>_column
+        String blockName = blockPath.substring(blockPath.lastIndexOf("/") + 1);
 
         if (blockType instanceof StoneType stoneType) {
-            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(entrySetId, blockId, stoneType, modId);
+            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(entrySetId, blockName, stoneType, modId);
             if (hardcoded != null) return hardcoded;
         }
         else if (blockType instanceof MudType mudType) {
-            Boolean hardcoded = HardcodedBlockType.isMudBlockAlreadyRegistered(entrySetId, blockId, mudType, modId);
+            Boolean hardcoded = HardcodedBlockType.isMudBlockAlreadyRegistered(entrySetId, blockName, mudType, modId);
             if (hardcoded != null) return hardcoded;
         }
 
