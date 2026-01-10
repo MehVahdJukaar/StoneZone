@@ -1,6 +1,5 @@
 package net.mehvahdjukaar.stone_zone.api;
 
-import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
@@ -34,25 +33,22 @@ public class StoneZoneModule extends SimpleModule {
 
     @Override
     public String toString() {
-        return "StoneZone " + LangBuilder.getReadableName(modId) + " Module";
+        return "StoneZone: " + LangBuilder.getReadableName(modId) + " Module";
     }
 
     @Override
-    public ResourceLocation makeMyRes(String name) {
-        return super.makeMyRes(name);
-    }
+    public boolean isEntryAlreadyRegistered(String entrySetId, ResourceLocation blockId, BlockType blockType, Registry<?> registry) {
 
-    @Override
-    public boolean isEntryAlreadyRegistered(String entrySetId, String blockId, BlockType blockType, Registry<?> registry) {
-
-        // blockId: <stonetype>_column from the full Id: stonezone:twigs/strata/<stonetype>_column - it's done in EveryCompat
+        String blockPath = blockId.getPath();
+        //short block name - blockName: <stonetype>_column from the blockId: stonezone:twigs/strata/<stonetype>_column
+        String blockName = blockPath.substring(blockPath.lastIndexOf("/") + 1);
 
         if (blockType instanceof StoneType stoneType) {
-            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(entrySetId, blockId, stoneType, modId);
+            Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(entrySetId, blockName, stoneType, modId);
             if (hardcoded != null) return hardcoded;
         }
         else if (blockType instanceof MudType mudType) {
-            Boolean hardcoded = HardcodedBlockType.isMudBlockAlreadyRegistered(entrySetId, blockId, mudType, modId);
+            Boolean hardcoded = HardcodedBlockType.isMudBlockAlreadyRegistered(entrySetId, blockName, mudType, modId);
             if (hardcoded != null) return hardcoded;
         }
 
@@ -73,7 +69,7 @@ public class StoneZoneModule extends SimpleModule {
                     try {
                         entrySet.generateModels(this, resourceManager, resourceSink);
                     } catch (Exception ex) {
-                        EveryCompat.LOGGER.error("Failed to generate client resources for EntrySet: {} from module {}:", entrySet, this, ex);
+                        StoneZone.LOGGER.error("Failed to generate client resources for EntrySet: {} from module {}:", entrySet, this, ex);
                         if (PlatHelper.isDev()) throw ex;
                     }
                 }
