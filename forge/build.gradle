@@ -112,7 +112,7 @@ dependencies {
     }
     //+ MAVEN
     else {
-        modApi("net.mehvahdjukaar:moonlight-forge:$moonlight_mavenVersion"){
+        modApi("net.mehvahdjukaar:moonlight-forge:$moonlight_mavenVersion:forge"){
             transitive = false
         }
     }
