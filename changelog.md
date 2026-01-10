@@ -21,6 +21,13 @@
 
 </div>
 
+### UPDATED: 
+- **Stone Zone** (C): Fixed the crash with **Every Compat v2.9.15** - There is a changed code in **Every Compat** - [#1161](https://github.com/MehVahdJukaar/WoodGood/issues/1161)
+
+---
+
+## v2.9.8
+
 Merry Christmas - Xel'Bayria
 
 ### UPDATED: 
