@@ -27,16 +27,17 @@ public class StoneZoneModule extends SimpleModule {
     }
 
     @Override
-    @SuppressWarnings("DataFlowIssue")
+    @SuppressWarnings({"DataFlowIssue", "unchecked"})
     public ResourceKey<CreativeModeTab> getDedicatedTab() {
         return (ResourceKey<CreativeModeTab>) SZRegistry.MOD_TAB.getKey();
     }
 
     @Override
     public String toString() {
-        return "StoneZone " + LangBuilder.getReadableName(modId) + " Module";
+        return "StoneZone: " + LangBuilder.getReadableName(modId) + " Module";
     }
 
+    @Override
     public boolean isEntryAlreadyRegistered(String entrySetId, ResourceLocation blockId, BlockType blockType, Registry<?> registry) {
 
         String blockPath = blockId.getPath();
