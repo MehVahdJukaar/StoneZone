@@ -6,7 +6,7 @@ import net.mehvahdjukaar.every_compat.api.PaletteStrategy;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
-import net.mehvahdjukaar.every_compat.misc.ModelConfiguration;
+import net.mehvahdjukaar.every_compat.misc.ExtraModelConfiguration;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
@@ -46,11 +46,11 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
                          @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
                          boolean mergedPalette,
                          boolean copyTint,
-                         Predicate<T> condition, ModelConfiguration modelConfig
+                         Predicate<T> condition, ExtraModelConfiguration extraModelConfig
     ) {
         super(type, name, prefix, blockSupplier, baseBlock, baseType, Objects.requireNonNull(tab), tabMode, tableMode, itemFactory,
                 tileFactory, renderType, paletteSupplier, extraTransform, mergedPalette, copyTint,
-                condition, modelConfig);
+                condition, extraModelConfig);
         var m = Preconditions.checkNotNull(module);
         this.zetaModule = Suppliers.memoize(() -> Quark.ZETA.modules.get(m));
     }
@@ -138,7 +138,7 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
             var e = new QuarkEntrySet<>(this.type, this.name, this.prefix, this.quarkModule,
                     this.baseBlock, this.baseType, this.blockSupplier, this.tab, this.tabMode, this.lootMode,
                     this.itemFactory, this.tileHolder, this.renderType, this.palette, this.extraModelTransform, this.useMergedPalette,
-                    this.copyTint, this.condition, this.modelConfig);
+                    this.copyTint, this.condition, this.extraModelConfig);
 
             e.recipeLocations.addAll(this.recipes);
             e.tags.putAll(this.tags);
