@@ -22,6 +22,14 @@
 </div>
 
 ### UPDATED: 
+- **Stone Zone** (C): Another update to use **Every Compat v2.9.16** 
+- **Macaw's Paths And Pavings** (C): Updated to support **v1.1.1**, NOTE: older than **v1.1.0** won't be supported
+
+---
+
+## v2.9.9
+
+### UPDATED: 
 - **Stone Zone** (C): Fixed the crash with **Every Compat v2.9.15** - There is a changed code in **Every Compat** - [#1161](https://github.com/MehVahdJukaar/WoodGood/issues/1161)
 
 ---
