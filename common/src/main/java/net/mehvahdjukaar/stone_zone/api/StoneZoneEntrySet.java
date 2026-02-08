@@ -2,7 +2,7 @@ package net.mehvahdjukaar.stone_zone.api;
 
 import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.every_compat.api.*;
-import net.mehvahdjukaar.every_compat.misc.ModelConfiguration;
+import net.mehvahdjukaar.every_compat.misc.ExtraModelConfiguration;
 import net.mehvahdjukaar.every_compat.misc.ResourcesUtils;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
@@ -38,10 +38,10 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                                 @Nullable BiFunction<T, ResourceManager, PaletteStrategy.PaletteAndAnimation> paletteSupplier,
                                 @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
                                 boolean mergedPalette, boolean copyTint,
-                                Predicate<T> condition, ModelConfiguration modelConfig
+                                Predicate<T> condition, ExtraModelConfiguration extraModelConfig
     ) {
         super(type, name, prefix, blockSupplier, baseBlock, baseType, tab, tabMode, lootMode, itemFactory, tileFactory,
-                renderType, paletteSupplier, extraTransform, mergedPalette, copyTint, condition, modelConfig);
+                renderType, paletteSupplier, extraTransform, mergedPalette, copyTint, condition, extraModelConfig);
     }
 
     public static <T extends BlockType, B extends Block> Builder<T, B> of(Class<T> type, String name, String prefix, Supplier<B> baseBlock, Supplier<T> baseType, Function<T, B> blockSupplier) {
@@ -188,7 +188,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                         this.baseType, this.tab, this.tabMode, this.lootMode, this.itemFactory,
                         this.tileHolder, this.renderType, this.palette, this.extraModelTransform,
                         this.useMergedPalette, this.copyTint,
-                        this.condition, this.modelConfig);
+                        this.condition, this.extraModelConfig);
                 e.recipeLocations.addAll(this.recipes);
                 e.tags.putAll(this.tags);
                 e.textures.addAll(this.textures);
