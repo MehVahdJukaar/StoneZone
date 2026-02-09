@@ -14,6 +14,13 @@
 </div>
 
 ### UPDATED: 
+- **Macaw's Paths And Pavings** (C): Updated to support `v1.1.1`, NOTE: older than `v1.1.0` won't be supported
+
+---
+
+## v2.11.8
+
+### UPDATED: 
 - **Stone Zone** (C): Updated to work with **Every Compat v2.11.25**
 
 ---
