@@ -1,6 +1,6 @@
 package net.mehvahdjukaar.stone_zone.api;
 
-import net.mehvahdjukaar.every_compat.api.SimpleModule;
+import net.mehvahdjukaar.every_compat.modules.EveryCompatModule;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
@@ -20,7 +20,7 @@ import net.minecraft.world.item.Item;
 import java.util.function.Consumer;
 
 
-public class StoneZoneModule extends SimpleModule {
+public class StoneZoneModule extends EveryCompatModule {
 
     public StoneZoneModule(String modId, String shortId) {
         super(modId, shortId, StoneZone.MOD_ID);
