@@ -6,10 +6,103 @@
   "tooltip.stonezone.mud_type": "泥の種類：%s",
 
 
+  "stone_type.minecraft.stone": "石",
+  "stone_type.minecraft.andesite": "安山岩",
+  "stone_type.minecraft.diorite": "閃緑岩",
+  "stone_type.minecraft.granite": "花崗岩",
+  "stone_type.minecraft.deepslate": "深層岩",
+  "stone_type.minecraft.tuff": "凝灰岩",
+  "stone_type.minecraft.calcite": "方解石",
+  "stone_type.minecraft.dripstone": "鍾乳石",
+  "stone_type.minecraft.sandstone": "砂岩",
+  "stone_type.minecraft.obsidian": "黒曜石",
+  "stone_type.minecraft.red_sandstone": "赤い砂岩",
+  "stone_type.minecraft.prismarine": "プリズマリン",
+  "stone_type.minecraft.netherrack": "ネザーラック",
+  "stone_type.minecraft.basalt": "玄武岩",
+  "stone_type.minecraft.blackstone": "ブラックストーン",
+  "stone_type.minecraft.end_stone": "エンドストーン",
+  "stone_type.minecraft.purpur": "プルプァ",
+  "mud_type.minecraft.mud": "泥",
+
+  "stone_type.ad_astra.conglomerate": "礫岩",
+  "stone_type.ad_astra.glacio_stone": "グラシオ",
+  "stone_type.ad_astra.mars_stone": "火星の石",
+  "stone_type.ad_astra.mercury_stone": "水星の石",
+  "stone_type.ad_astra.moon_stone": "月の石",
+  "stone_type.ad_astra.permafrost": "永久凍土",
+  "stone_type.ad_astra.venus_stone": "金星の石",
+
+  "stone_type.aether.angelic_stone": "神聖石",
+  "stone_type.aether.carved_stone": "刻印石",
+  "stone_type.aether.hellfire_stone": "業火石",
+  "stone_type.aether.holystone": "聖石",
+
+  "stone_type.allthemodium.ancient_stone": "古代の石",
+
+  "stone_type.ars_nouveau.sourcestone": "ソースストーン",
+
+  "stone_type.biomesoplenty.black_sandstone": "黒い砂岩",
+  "stone_type.biomesoplenty.brimstone": "硫黄石",
+  "stone_type.biomesoplenty.orange_sandstone": "橙色の砂岩",
+  "stone_type.biomesoplenty.white_sandstone": "白い砂岩",
+
+  "stone_type.biomeswevegone.black_sandstone": "黒い砂岩",
+  "stone_type.biomeswevegone.blue_sandstone": "青い砂岩",
+  "stone_type.biomeswevegone.dacite": "デイサイト",
+  "stone_type.biomeswevegone.mossy_stone": "苔むした石",
+  "stone_type.biomeswevegone.pink_sandstone": "桃色の砂岩",
+  "stone_type.biomeswevegone.purple_sandstone": "紫色の砂岩",
+  "stone_type.biomeswevegone.red_rock": "赤色岩",
+  "stone_type.biomeswevegone.rocky_stone": "岩",
+  "stone_type.biomeswevegone.white_sandstone": "白い砂岩",
+  "stone_type.biomeswevegone.windswept_sandstone": "吹きさらしの砂岩",
+
   "stone_type.blockus.bluestone": "ブルーストーン",
   "stone_type.blockus.limestone": "石灰岩",
   "stone_type.blockus.marble": "大理石",
   "stone_type.blockus.viridite": "ビリダイト",
+
+  "stone_type.botania.livingrock": "リビングロック",
+  "stone_type.botania.shimmerrock": "きらめく石",
+
+  "stone_type.create.asurine": "瑠璃岩",
+  "stone_type.create.crimsite": "真紅岩",
+  "stone_type.create.limestone": "石灰岩",
+  "stone_type.create.ochrum": "黄土岩",
+  "stone_type.create.scorchia": "スコーチア",
+  "stone_type.create.scoria": "スコリア",
+  "stone_type.create.veridium": "緑青岩",
+
+  "stone_type.deeperdarker.gloomslate": "暗影岩",
+  "stone_type.deeperdarker.sculk_stone": "スカルクストーン",
+  "mud_type.deeperdarker.sculk_grime": "スカルクグライム",
+
+  "stone_type.eternal_starlight.": "深奥石",
+  "stone_type.eternal_starlight.abysslate": "深淵岩",
+  "stone_type.eternal_starlight.cryobysslate": "冷温深奥石",
+  "stone_type.eternal_starlight.eternal_ice": "永久凍土",
+  "stone_type.eternal_starlight.flowglaze": "流璃",
+  "stone_type.eternal_starlight.glowing_grimstone": "輝くグリムストーン",
+  "stone_type.eternal_starlight.glowing_voidstone": "輝くヴォイドストーン",
+  "stone_type.eternal_starlight.grimstone": "グリムストーン",
+  "stone_type.eternal_starlight.molten_stellagmite": "溶融した星泉岩",
+  "stone_type.eternal_starlight.nebulaite": "星雲石",
+  "stone_type.eternal_starlight.radianite": "光曜石",
+  "stone_type.eternal_starlight.springstone": "泉石",
+  "stone_type.eternal_starlight.stellagmite": "星泉岩",
+  "stone_type.eternal_starlight.toxite": "毒石",
+  "stone_type.eternal_starlight.voidstone": "ヴォイドストーン",
+  "mud_type.eternal_starlight.glowing_nightfall_mud": "輝く夕暮れの泥",
+  "mud_type.eternal_starlight.nightfall_mud": "夕暮れの泥",
+
+  "stone_type.forbidden_arcanus.darkstone": "ダークストーン",
+
+  "stone_type.gtceu.marble": "大理石",
+
+  "stone_type.iceandfire.dread_stone": "ドレッドストーン",
+
+  "stone_type.mysticalagriculture.soulstone": "ソウルストーン",
 
   "stone_type.natures_spirit.black_chalk": "黒色の白亜",
   "stone_type.natures_spirit.blue_chalk": "青色の白亜",
@@ -47,6 +140,39 @@
   "stone_type.natures_spirit.yellow_kaolin": "黄色の高陵石",
   "stone_type.natures_spirit.pink_sandstone": "桃色の砂岩",
   "stone_type.natures_spirit.travertine": "トラバーチン",
+
+  "stone_type.occultism.otherrock": "異界岩",
+  "stone_type.occultism.otherstone": "異界石",
+
+  "stone_type.pneumaticcraft.compressed_stone": "圧縮された石",
+  "stone_type.pneumaticcraft.reinforced_stone": "強化された石",
+
+  "stone_type.quark.duskbound": "ダスクバウンド",
+  "stone_type.quark.jasper": "碧玉岩",
+  "stone_type.quark.limestone": "石灰岩",
+  "stone_type.quark.myalite": "マイアライト",
+  "stone_type.quark.permafrost": "永久凍土",
+  "stone_type.quark.shale": "頁岩",
+  "stone_type.quark.shingles": "テラコッタの屋根板",
+  "stone_type.quark.soul_sandstone": "ソウル砂岩",
+
+  "stone_type.railcraft.abyssal_stone": "深淵岩",
+  "stone_type.railcraft.quarried_stone": "切石",
+
+  "stone_type.regions_unexplored.argillite": "珪質粘土岩",
+  "stone_type.regions_unexplored.chalk": "チョーク",
+
+  "stone_type.securitycraft.reinforced_stone": "強化された石",
+
+  "stone_type.tconstruct.scorched_stone": "焦熱石",
+  "stone_type.tconstruct.seared_stone": "焼成石",
+
+  "stone_type.twilightforest.deadrock": "デッドロック",
+  "stone_type.twilightforest.mazestone": "メイズストーン",
+  
+  "stone_type.undergarden.depthrock": "深奥石",
+  "stone_type.undergarden.shiverstone": "冷石",
+  "stone_type.undergarden.tremblecrust": "振動地殻",
 
 
   "block_type.stoneworks.cracked_tiles": "ひび割れた%sタイル",
@@ -218,3 +344,4 @@
 
   "block_type.decorative_blocks.pillar": "%sの柱"
 }
+
