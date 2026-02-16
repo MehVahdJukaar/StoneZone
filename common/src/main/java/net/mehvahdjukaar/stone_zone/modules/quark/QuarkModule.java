@@ -20,7 +20,7 @@ import org.violetmoon.zeta.block.ZetaPillarBlock;
 import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
-//SUPPORT: v4.0-4.6.0+
+//SUPPORT: v4.1-473-SNAPSHOT
 public class QuarkModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> vertical_slabs;

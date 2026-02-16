@@ -127,7 +127,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:yungs-api-421850:6715462") // v5.1.6 | NONE //!! FORGE
 //    modRuntimeOnly("curse.maven:patchouli-306770:4966125") // v84 | TFC //!! 1.20
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:6494827") // v21.1.36 | Stoneworks
-//    modRuntimeOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark //!! 1.20
+//    modRuntimeOnly("org.violetmoon.zeta:Zeta:1.1-39-SNAPSHOT") // Quark
 //    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | Chipped //!! 1.20
 //    modRuntimeOnly("curse.maven:resourceful-lib-570073:5973188") // v3.0.12 | Chipped, Handcrafted
 //    modRuntimeOnly("curse.maven:resourceful-config-714059:6467772") // v3.0.11 | Better-Archeology
@@ -141,6 +141,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:curios-309927:6529130") // v9.5.1 | Ars-Nouveau
 
     //- ~/forge/mods LOCAL
+//    modRuntimeOnly("quark-biolith:biolith-neoforge-3.0.10") // Quark
 
     //- OTHER MAVENs - can be commented out or enabled
 //    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
@@ -162,7 +163,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:6963407") //+[Let's-Do]-Farm-&-Charm
 //    modRuntimeOnly("curse.maven:lets-do-farm-charm-1038103:6962704") // Architectury-API
 //    modRuntimeOnly("curse.maven:more-beautiful-torches-860325:5263631") // Monolib //!! 1.20
-//    modRuntimeOnly("curse.maven:quark-243121:5594847") // Zeta //!! 1.20
+//    modRuntimeOnly("org.violetmoon.quark:Quark:4.1-473-SNAPSHOT") // Zeta, Biolith @  https://maven.blamejared.com/org/violetmoon/quark/Quark/
 //    modRuntimeOnly("curse.maven:stoneworks-852663:5731747") // puzzles-lib
 //    modRuntimeOnly("curse.maven:twigs-496913:4605097") //!! 1.20
 //    modRuntimeOnly("curse.maven:waystones-245755:6856574") // Balm

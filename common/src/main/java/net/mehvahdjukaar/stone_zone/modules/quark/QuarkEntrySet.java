@@ -59,7 +59,7 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
     @Override
     public void generateRecipes(SimpleModule module, ResourceManager manager, ResourceSink sink) {
         ZetaModule mod = zetaModule.get();
-        if (mod == null || mod.enabled) {
+        if (mod == null || mod.isEnabled()) {
             super.generateRecipes(module, manager, sink);
         }
     }
@@ -67,7 +67,7 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
     @Override
     public @Nullable Item getItemOf(T type) {
         ZetaModule mod = zetaModule.get();
-        if (mod == null || mod.enabled) {
+        if (mod == null || mod.isEnabled()) {
             var item = super.getItemOf(type);
             if (item instanceof IDisableable<?> d && !d.doesConditionApply()) {
                 return null;
@@ -111,27 +111,6 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
             this.quarkModule = quarkModule;
             this.blockSupplier = factory;
         }
-
-//        /// @deprecated new method haven't been implemented yet
-//        @Deprecated(forRemoval = true)
-//        public QuarkEntrySet.Builder<T, B> createPaletteFromStone() {
-//            return (QuarkEntrySet.Builder<T, B>) createPaletteFromChild("stone");
-//        }
-//
-//        /// @deprecated new method haven't been implemented yet
-//        @SuppressWarnings("DataFlowIssue")
-//        @Deprecated(forRemoval = true)
-//        public QuarkEntrySet.Builder<T, B> createPaletteFromBricks() {
-//            this.setPalette((blockType, manager) -> {
-//                if (blockType.getChild(BRICKS) != null) {
-//                    var paletteAnimation = PaletteStrategies.makePaletteFromChild(blockType, manager, BRICKS, null, p -> {});
-//                    return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
-//                }
-//                var paletteAnimation = PaletteStrategies.makePaletteFromMainChild(blockType, manager);
-//                return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
-//            });
-//            return this;
-//        }
 
         @Override
         public QuarkEntrySet<T, B> build() {
