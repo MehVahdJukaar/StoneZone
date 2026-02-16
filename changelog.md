@@ -14,6 +14,14 @@
 </div>
 
 ### UPDATED: 
+- **Quark** (NF): Fixed the crash when opening inventory - [#179](https://github.com/MehVahdJukaar/StoneZone/issues/179)
+- **LANG** (ja_jp): Updated & Fixed by @Hayakoh-WeldyAlin -
+
+---
+
+## v2.11.9
+
+### UPDATED: 
 - **Macaw's Paths And Pavings** (C): Updated to support `v1.1.1`, NOTE: older than `v1.1.0` won't be supported
 
 ---
