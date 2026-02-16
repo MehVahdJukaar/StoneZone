@@ -14,6 +14,16 @@
 </div>
 
 ### UPDATED: 
+- **Quark** (IT): Added missing textures for `quark:myalite` - [#1182](https://github.com/MehVahdJukaar/WoodGood/issues/1182)
+- **TEXTURES**: Added missing mask textures for: 
+  - **Macaw's Paths & Pavings**
+  - **Wraith Waystone**
+
+---
+
+## v2.11.10
+
+### UPDATED: 
 - **Quark** (NF): Fixed the crash when opening inventory - [#179](https://github.com/MehVahdJukaar/StoneZone/issues/179)
 - **LANG** (ja_jp): Updated & Fixed by @Hayakoh-WeldyAlin -
 
