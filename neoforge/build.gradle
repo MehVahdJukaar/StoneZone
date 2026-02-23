@@ -44,7 +44,7 @@ remapJar {
     input.set shadowJar.archiveFile
     dependsOn shadowJar
     archiveClassifier = "neoforge"
-    atAccessWideners.add("${rootProject.mod_id}.accesswidener") // this is a path inside the mod jar
+    atAccessWideners.add("${mod_id}.accesswidener") // this is a path inside the mod jar
 }
 
 jar {
@@ -105,9 +105,7 @@ dependencies {
         modImplementation(files(path + "\\WoodGood\\neoforge\\build\\libs\\everycomp-$everycomp_testVersion-neoforge.jar"))
     else
         //+ MAVEN
-        implementation("net.mehvahdjukaar:everycomp-neoforge:$everycomp_version:neoforge") {
-            transitive = false
-        }
+        modApi("net.mehvahdjukaar:everycomp-neoforge:$everycomp_version:neoforge") { transitive = false }
 
 
 //!! TOOLS ---------------------------------------------------------------------------------------------------------- \\

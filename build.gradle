@@ -86,7 +86,7 @@ allprojects {
 
     tasks.withType(JavaCompile).configureEach {
         options.encoding = "UTF-8"
-        options.release = rootProject.java_version.toInteger()
+        options.release = java_version.toInteger()
     }
 
     java {
@@ -104,12 +104,12 @@ subprojects {
     }
 
     dependencies {
-        minecraft "com.minecraft:minecraft:${rootProject.minecraft_version}"
+        minecraft "com.minecraft:minecraft:${minecraft_version}"
         mappings loom.layered() {
             it.officialMojangMappings {
                 setNameSyntheticMembers(false)
             }
-            it.parchment("org.parchmentmc.data:parchment-${rootProject.parchment_version}")
+            it.parchment("org.parchmentmc.data:parchment-${parchment_version}")
         }
     }
 

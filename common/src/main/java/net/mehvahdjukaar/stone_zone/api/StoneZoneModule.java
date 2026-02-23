@@ -34,7 +34,7 @@ public class StoneZoneModule extends EveryCompatModule {
 
     @Override
     public String toString() {
-        return "StoneZone: " + LangBuilder.getReadableName(modId) + " Module";
+        return "[StoneZone - " + LangBuilder.getReadableName(modId) + " Module]";
     }
 
     @Override

@@ -93,9 +93,7 @@ dependencies {
         modImplementation(files(path + "\\Moonlight\\fabric\\build\\libs\\moonlight-$moonlight_testVersion-fabric.jar"))
     else
         //+ MAVEN
-        modApi("net.mehvahdjukaar:moonlight-fabric:$moonlight_version:fabric") {
-            transitive = false
-        }
+        modApi("net.mehvahdjukaar:moonlight-fabric:$moonlight_version:fabric") { transitive = false }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     if (enable_everycomp_test.toBoolean())
@@ -103,9 +101,7 @@ dependencies {
         modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-$everycomp_testVersion-fabric.jar"))
     else
         //+ MAVEN
-        modApi("net.mehvahdjukaar:everycomp-fabric:$everycomp_version:fabric") {
-            transitive = false
-        }
+        modApi("net.mehvahdjukaar:everycomp-fabric:$everycomp_version:fabric") { transitive = false }
 
 //!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
     modRuntimeOnly("com.blamejared.crafttweaker:CraftTweaker-fabric-$minecraft_version:$crafttweaker_version") // Faux-Custom-Entity-Data
