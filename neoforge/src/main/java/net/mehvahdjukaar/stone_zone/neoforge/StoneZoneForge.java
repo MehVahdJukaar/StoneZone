@@ -7,7 +7,6 @@ import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.additional_lights.AdditionalLightsModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.create.CreateModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.macaws.*;
-import net.mehvahdjukaar.stone_zone.modules.neoforge.rechiseled.RechiseledModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.stone_chest.StoneChestModule;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
@@ -45,7 +44,6 @@ public class StoneZoneForge extends StoneZoneCommon {
         // General
         addIfLoaded("additional_lights", () -> AdditionalLightsModule.class);
         addIfLoaded("create", () -> CreateModule.class);
-        addIfLoaded("rechiseled", () -> RechiseledModule.class);
         addIfLoaded("stonechest", () -> StoneChestModule.class);
 
 //!! ====================================================== OTHERS ================================================== \\

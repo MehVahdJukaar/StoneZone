@@ -55,6 +55,7 @@ dependencies {
     //+ REQUIRED - The modules access libaries from below
 //    modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark //!! 1.20
     modCompileOnly("curse.maven:owo-lib-532610:6446006") // v0.12.15.4 | Fabric-Waystones
+    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:7521829") // v1.1.20 | Rechiseled
 
         //+ OTHER MAVENS
     modCompileOnly("org.violetmoon.zeta:Zeta:1.1-39-SNAPSHOT") // Quark - Get correct version @ https://maven.blamejared.com/org/violetmoon/zeta/Zeta/
@@ -75,6 +76,7 @@ dependencies {
     modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:6963399") //MAIN +[Let's-Do]-Farm-&-Charm
     modCompileOnly("curse.maven:lets-do-farm-charm-1038103:6962195") // Architectury-API
     modCompileOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib //!! 1.20
+    modCompileOnly("curse.maven:rechiseled-558998:7687483") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
     modCompileOnly("curse.maven:stoneworks-852663:5731745")
     modCompileOnly("curse.maven:twigs-496913:4603805") //!! 1.20
     modCompileOnly("curse.maven:waystones-245755:6856570") // Balm

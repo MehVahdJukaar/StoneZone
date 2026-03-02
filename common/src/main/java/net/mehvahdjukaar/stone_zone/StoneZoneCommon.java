@@ -9,6 +9,7 @@ import net.mehvahdjukaar.stone_zone.modules.lets_do.CandlelightModule;
 import net.mehvahdjukaar.stone_zone.modules.more_beautiful_torches.MoreBeautifulTorches;
 import net.mehvahdjukaar.stone_zone.modules.quark.QuarkModule;
 import net.mehvahdjukaar.stone_zone.modules.quark.QuarkMudModule;
+import net.mehvahdjukaar.stone_zone.modules.rechiseled.RechiseledModule;
 import net.mehvahdjukaar.stone_zone.modules.stoneworks.StoneworksModule;
 import net.mehvahdjukaar.stone_zone.modules.twigs.TwigsModule;
 import net.mehvahdjukaar.stone_zone.modules.waystones.WaystonesModule;
@@ -44,6 +45,7 @@ public class StoneZoneCommon {
         addIfLoaded("fwaystones", () -> WraithWaystonesModule.class);
         addIfLoaded("handcrafted", () -> HandcraftedModule.class);
         addIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorches.class);
+        addIfLoaded("rechiseled", () -> RechiseledModule.class);
         addIfLoaded("stoneworks", () -> StoneworksModule.class);
         addIfLoaded("twigs", () -> TwigsModule.class);
         addMultipleIfLoaded("quark", () -> QuarkModule.class, () -> QuarkMudModule.class);
