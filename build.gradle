@@ -251,17 +251,18 @@ ext {
             mod_name               : mod_name,
             mod_version            : mod_version,
             mod_license            : mod_license,
-            mod_authors            : mod_authors,
-            mod_description        : mod_description,
-            mod_credits            : mod_credits,
-            mod_homepage           : mod_homepage,
-            mod_github             : mod_github,
+            mod_authors               : mod_authors,
+            mod_description           : mod_description,
+            mod_credits               : mod_credits,
+            mod_homepage              : mod_homepage,
+            mod_github                : mod_github,
 
-            neo_version            : neo_version,
-            neo_version_range      : neo_version_range,
-            loader_version_range   : loader_version_range,
+            neo_version               : neo_version,
+            neo_version_range         : neo_version_range,
+            loader_version_range      : loader_version_range,
 
-            moonlight_version_range: moonlight_version_range,
+            moonlight_required_version: moonlight_required_version,
+            everycomp_required_version: everycomp_required_version
     ]
 }
 
