@@ -50,18 +50,20 @@ public class HardcodedBlockType {
         modId = ModId;
         supportedBlockName = blockName;
 
-        /// ─────────────────────────── Include Vanilla Type ────────────────────────────
-
-        // Include minecraft's PRISMARINE with Waystones
-        if (isStoneFrom("waystones", "", "", "prismarine_waystone")) return false;
-
-        /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ EXCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CONFIG EXCLUSION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
         // Exclude one StoneType from a Stone mod
         if (stoneTypeList.get().stream().anyMatch(stoneIdentify::matches)) return true;
 
         // Exclude one EntrySet from a module
         if (entrySetList.get().stream().anyMatch(entrySetId::matches)) return true;
+
+        /// ─────────────────────────── Include Vanilla Type ────────────────────────────
+
+        // Include minecraft's PRISMARINE with Waystones
+        if (isStoneFrom("waystones", "", "", "prismarine_waystone")) return false;
+
+        /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ EXCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
         // Exclude all of Vanilla Types
         if (isKnownVanillaStone(stoneType)) return true;
