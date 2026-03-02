@@ -2,14 +2,18 @@ package net.mehvahdjukaar.stone_zone.neoforge;
 
 import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
 import net.mehvahdjukaar.stone_zone.StoneZone;
+import net.mehvahdjukaar.stone_zone.StoneZoneClient;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.additional_lights.AdditionalLightsModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.create.CreateModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.macaws.*;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.rechiseled.RechiseledModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.stone_chest.StoneChestModule;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 import static net.mehvahdjukaar.every_compat.api.EveryCompatAPI.addIfLoaded;
 
@@ -46,6 +50,11 @@ public class StoneZoneForge extends StoneZoneCommon {
 
 //!! ====================================================== OTHERS ================================================== \\
 
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public void itemTooltipEvent(ItemTooltipEvent event) {
+        StoneZoneClient.onItemTooltip(event.getItemStack(), event.getFlags(), event.getToolTip());
     }
 
 }
