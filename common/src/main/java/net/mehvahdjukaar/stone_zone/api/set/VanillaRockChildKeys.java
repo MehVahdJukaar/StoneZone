@@ -19,6 +19,10 @@ public class VanillaRockChildKeys {
     public static final String POLISHED_STAIRS = "polished_stairs";
     public static final String POLISHED_SLAB = "polished_slab";
     public static final String POLISHED_WALL = "polished_wall";
+    public static final String TILES = "tiles";
+    public static final String TILE_STAIRS = "tile_stairs";
+    public static final String TILE_SLAB = "tile_slab";
+    public static final String TILE_WALL = "tile_wall";
     public static final String BRICKS = "bricks";
     public static final String BRICK_STAIRS = "brick_stairs";
     public static final String BRICK_SLAB = "brick_slab";

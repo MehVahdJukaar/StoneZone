@@ -1,6 +1,7 @@
 package net.mehvahdjukaar.stone_zone.api.set;
 
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
+import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -71,6 +72,14 @@ public abstract class RockType extends BlockType{
             this.addChild(SMOOTH_STAIRS, findRelatedBlock("smooth", "stairs"));
             this.addChild(SMOOTH_SLAB, findRelatedBlock("smooth", "slab"));
             this.addChild(SMOOTH_WALL, findRelatedBlock("smooth", "wall"));
+        }
+
+        Block tiles = this.findRelatedBlock("", "tiles");
+        if (Objects.nonNull(tiles)) {
+            this.addChild(TILES, tiles);
+            this.addChild(TILE_STAIRS, findRelatedBlock("", "tile_stairs"));
+            this.addChild(TILE_SLAB, findRelatedBlock("", "tile_slab"));
+            this.addChild(TILE_WALL, findRelatedBlock("", "tile_wall"));
         }
 
         Block bricks = this.findBrickEntry("", "");
@@ -185,6 +194,11 @@ public abstract class RockType extends BlockType{
             resources.add(ResourceLocation.fromNamespaceAndPath(namespace, prefix_ + path));
         }
         return resources.toArray(new ResourceLocation[0]);
+    }
+
+    /// Create an Id stonezone:shortenedId/namespace/prefix_ stonetype _suffix
+    public String CreateStandardId(String shortenedId, String prefix, String suffix) {
+        return createFullIdWith(StoneZone.MOD_ID, "", shortenedId, prefix, suffix);
     }
 
 }
