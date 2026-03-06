@@ -75,6 +75,9 @@ public class HardcodedBlockType {
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+        // Ensure Rechiseled's TILES get generated blc one case with Deeper-Darker already having TILES prevent it from being generated (there may be more mods)
+        if (isStoneFrom("rechiseled", "", "", "\\w+_tiles")) return false;
+
         // pillar from Decorative-Blocks, Quark, Create should be always generated
         if (isStoneFrom("quark|create|decorative_blocks", "", "", "pillar")) return false;
 

@@ -173,7 +173,6 @@ dependencies {
 
         //+ GENERAL
     modCompileOnly("curse.maven:create-fabric-624165:5982726") // Do not use for RunTime //!! 1.20
-    modCompileOnly("curse.maven:rechiseled-558998:7687483") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
 
         // OTHER MAVENS
 //    modCompileOnly("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}:slim") { transitive = false } // Registrate, Flywheel //!! maven is outdated & not available

@@ -4,13 +4,13 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.supermartijn642.rechiseled.blocks.RechiseledBlock;
 import com.supermartijn642.rechiseled.blocks.RechiseledPillarBlock;
+import net.mehvahdjukaar.every_compat.api.EntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
@@ -21,9 +21,11 @@ import net.minecraft.world.level.block.Block;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-//SUPPORT: v1.2.4+
-//NOTE: There is a difference between FORGE & FABRIC - the key class is BlockState via RechiseledPillarBlock
-public class RechiseledModule extends StoneZoneModule {
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
+import static net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys.STONE;
+
+// See RechiseledModuleAbstract's Supported Version
+public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
     public final SimpleEntrySet<StoneType, Block> big_tiles, big_tiles_connecting;
     public final SimpleEntrySet<StoneType, Block> bordered, bordered_connecting;
@@ -51,9 +53,8 @@ public class RechiseledModule extends StoneZoneModule {
      * rechiseled:stone_chiseled_bricks_connecting
     */
 
-    public RechiseledModule(String modId) {
-        super(modId, "rcd");
-        ResourceLocation tab = modRes(modId);
+    public RechiseledModuleBlock(String modId) {
+        super(modId);
 
         big_tiles = StoneZoneEntrySet.of(StoneType.class, "big_tiles",
                         getModBlock("stone_big_tiles"), () -> VanillaStoneTypes.STONE,
@@ -70,6 +71,12 @@ public class RechiseledModule extends StoneZoneModule {
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
                 //TEXTURES: big_tiles (above)
+                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_big_tiles_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -89,7 +96,13 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_bordered_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                //TEXTURES: big_tiles (above)
+                //TEXTURES: bordered (above)
+                                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_bordered_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -109,7 +122,13 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_brick_pattern_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                //TEXTURES: big_tiles (above)
+                //TEXTURES: brick_pattern (above)
+                                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_brick_pattern_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -129,7 +148,13 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_brick_paving_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                //TEXTURES: big_tiles (above)
+                //TEXTURES: brick_paving (above)
+                                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_brick_paving_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -149,7 +174,13 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_crushed_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                //TEXTURES: big_tiles (above)
+                //TEXTURES: crushed (above)
+                                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_crushed_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -169,7 +200,13 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_diagonal_bricks_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                //TEXTURES: big_tiles (above)
+                //TEXTURES: diagonal_bricks (above)
+                                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_diagonal_bricks_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -189,7 +226,13 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_path_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                //TEXTURES: big_tiles (above)
+                //TEXTURES: path (above)
+                                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_path_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -209,7 +252,13 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_rotated_bricks_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                //TEXTURES: big_tiles (above)
+                //TEXTURES: rotated_bricks (above)
+                                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_rotated_bricks_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -229,7 +278,13 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_small_bricks_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                //TEXTURES: big_tiles (above)
+                //TEXTURES: small_bricks (above)
+                                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_small_bricks_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -249,7 +304,13 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_small_tiles_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                //TEXTURES: big_tiles (above)
+                //TEXTURES: small_tiles (above)
+                                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_small_tiles_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -269,7 +330,13 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_smooth_brick_paving_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                //TEXTURES: big_tiles (above)
+                //TEXTURES: smooth_brick_paving (above)
+                                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_smooth_brick_paving_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -289,7 +356,13 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_smooth_large_tiles_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                //TEXTURES: big_tiles (above)
+                //TEXTURES: smooth_large_tiles (above)
+                                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_smooth_large_tiles_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -309,7 +382,13 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_smooth_rotated_bricks_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                //TEXTURES: big_tiles (above)
+                //TEXTURES: smooth_rotated_bricks (above)
+                                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_smooth_rotated_bricks_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -329,7 +408,13 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_smooth_tiles_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                //TEXTURES: big_tiles (above)
+                //TEXTURES: smooth_tiles (above)
+                                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_smooth_tiles_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -349,7 +434,13 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_squares_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
-                //TEXTURES: big_tiles (above)
+                //TEXTURES: squares (above)
+                                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_squares_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -369,6 +460,13 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_waves_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
+                //TEXTURES: waves (above)
+                                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_waves_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
                 .build();
@@ -376,7 +474,7 @@ public class RechiseledModule extends StoneZoneModule {
 
         tiles = StoneZoneEntrySet.of(StoneType.class, "tiles",
                         getModBlock("stone_tiles"), () -> VanillaStoneTypes.STONE,
-                        type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
+                        type -> new RechiseledBlock(false, Utils.copyPropertySafe(type.stone))
                 )
                 .addTexture(modRes("block/stone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -388,6 +486,13 @@ public class RechiseledModule extends StoneZoneModule {
                         getModBlock("stone_tiles_connecting"), () -> VanillaStoneTypes.STONE,
                         type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone))
                 )
+                //TEXTURES: tiles (above)
+                                .addModelTransform(m -> m.addModifier((s, blockId, stoneType) ->
+                        s.replace("\"rechiseled:stone_tiles_connecting\"", "\""+ blockId.toString() +"\"")
+                                .replaceAll("\"rechiseled:stone_(\\w+)\"",
+                                        "\""+ stoneType.CreateStandardId(shortenedId(), "",  "") + "_$1\"")
+
+                ))
                 .requiresFromMap(tiles.blocks)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -415,53 +520,28 @@ public class RechiseledModule extends StoneZoneModule {
         executor.accept((manager, sink) ->
 
             big_tiles.blocks.forEach((stoneType, block) -> {
-
-                // Adding all supported-blocks of a StoneType to Array
                 JsonArray entriesArray = new JsonArray();
 
-                for (var entry : this.getEntries()) {
-                    JsonObject entryObj = new JsonObject();
+                // Adding all supported-blocks of a StoneType to Array
 
+                for (EntrySet<?> entry : this.getEntries()) {
                     SimpleEntrySet<?, ?> currentEntry = ((SimpleEntrySet<?, ?>) entry);
-                    String currentName = currentEntry.getName();
+                    String blockId = currentEntry.getName();
 
-                    // Get the other block with "_connecting"
-                    String entryKey = currentName + "_connecting";
-
-                    if (!currentName.contains("_connecting")) { // Skip the blocks with "_connecting"
-                        Block currentBlock = currentEntry.blocks.get(stoneType);
-                        if (Objects.nonNull(currentBlock)) {
-                            entryObj.addProperty("item", Utils.getID(currentBlock).toString());
-
-                            if (!currentName.matches("slated")) { // Skip blc it don't have "_connecting" block
-                                StoneZoneEntrySet<?, ?> otherEntry = (StoneZoneEntrySet<?, ?>) this.getEntry(entryKey);
-                                Block otherBlock = otherEntry.blocks.get(stoneType);
-                                if (Objects.nonNull(otherBlock))
-                                    entryObj.addProperty("connecting_item", Utils.getID(otherBlock).toString());
-                            }
-
-                            entriesArray.add(entryObj);
-                        }
+                    if (!blockId.contains("_connecting")) { // Skip the blocks with "_connecting"
+                        createAndAddEntry(entriesArray, stoneType, modId, blockId, "_slab", "_stairs");
                     }
                 }
 
-                // Adding vanilla blocks to Array
-                String[] vanillaBlocks = {
-                        "stone",
-                        "bricks",
-                        "mossy_bricks",
-                        "cracked_bricks",
-                        "smooth"
-                };
+                // Adding vanilla blocks to entriesArray
+                createAndAddEntry(entriesArray, stoneType, "", STONE, SLAB, STAIRS);
+                createAndAddEntry(entriesArray, stoneType, "", BRICKS, BRICK_SLAB, BRICK_STAIRS);
+                createAndAddEntry(entriesArray, stoneType, "", MOSSY_BRICKS, MOSSY_BRICK_SLAB, MOSSY_BRICK_STAIRS);
+                createAndAddEntry(entriesArray, stoneType, "", SMOOTH, SMOOTH_SLAB, SMOOTH_STAIRS);
+                createAndAddEntry(entriesArray, stoneType, "", TILES, TILE_SLAB, TILE_STAIRS);
 
-                for (var key : vanillaBlocks) {
-                    Block currentBlock = stoneType.getBlockOfThis(key);
-                    if (Objects.nonNull(currentBlock)) {
-                        JsonObject entryObj = new JsonObject();
-                        entryObj.addProperty("item", Utils.getID(currentBlock).toString());
-                        entriesArray.add(entryObj);
-                    }
-                }
+                Block cracked_bricks = stoneType.getBlockOfThis(CRACKED_BRICKS);
+                if (Objects.nonNull(cracked_bricks)) entriesArray.add(Utils.getID(cracked_bricks).toString());
 
                 // Recipes
                 JsonObject chiseling_recipe = new JsonObject();
@@ -471,9 +551,55 @@ public class RechiseledModule extends StoneZoneModule {
 
                 // Adding to resources
                 ResourceLocation resLoc = StoneZone.res("chiseling_recipes/" + stoneType.getAppendableId());
-                sink.addJson(resLoc, chiseling_recipe, ResType.JSON);
+                if (!entriesArray.isEmpty()) sink.addJson(resLoc, chiseling_recipe, ResType.JSON);
 
             })
         );
     }
+
+    public void createAndAddEntry(JsonArray array, StoneType stoneType, String modId, String blockId, String slabSuffix, String stairsSuffix) {
+        JsonObject entry = new JsonObject();
+
+        blockId = (modId.isEmpty()) ? blockId : modId + ":" + blockId;
+        String slabId = (slabSuffix.contains("_")) ? blockId + slabSuffix : slabSuffix;
+        String stairsId = (stairsSuffix.contains("_")) ? blockId + stairsSuffix : stairsSuffix;
+
+        // Get the other block with "_connecting"
+        String blockConnectingId = blockId + "_connecting";
+        String slabConnectingId = slabId + "_connecting";
+        String stairsConnectingId = stairsId  + "_connecting";
+
+        // Blocks
+        Block currentBlock = stoneType.getBlockOfThis(blockId);
+        Block currentSlab = stoneType.getBlockOfThis(slabId);
+        Block currentStairs = stoneType.getBlockOfThis(stairsId);
+
+        // Connecting Blocks
+        Block blockConnecting = stoneType.getBlockOfThis(blockConnectingId);
+        Block slabConnecting = stoneType.getBlockOfThis(slabConnectingId);
+        Block stairsConnecting = stoneType.getBlockOfThis(stairsConnectingId);
+
+        if (Objects.nonNull(currentBlock)) {
+
+            entry.addProperty("block", Utils.getID(currentBlock).toString());
+            if (Objects.nonNull(blockConnecting))
+                entry.addProperty("connecting_block", Utils.getID(blockConnecting).toString());
+            if (Objects.nonNull(currentSlab)) {
+                entry.addProperty("slab", Utils.getID(currentSlab).toString());
+                entry.addProperty("slab_worth", 0.5);
+                if (Objects.nonNull(slabConnecting))
+                    entry.addProperty("connecting_slab", Utils.getID(slabConnecting).toString());
+                entry.addProperty("connecting_slab_worth", 0.5);
+            }
+            if (Objects.nonNull(currentStairs)) {
+                entry.addProperty("stairs", Utils.getID(currentStairs).toString());
+                if (Objects.nonNull(stairsConnecting))
+                    entry.addProperty("connecting_stairs", Utils.getID(stairsConnecting).toString());
+            }
+        }
+
+        if (!entry.isEmpty()) array.add(entry);
+    }
+
+
 }
