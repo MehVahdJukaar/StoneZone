@@ -35,7 +35,7 @@ dependencies {
 
     if (enable_moonlight_test.toBoolean()) {
         //- LOCAL
-        modImplementation(files(path + "\\Moonlight\\fabric\\build\\libs\\moonlight-$moonlight_testVersion-fabric.jar"))
+        modImplementation(files(path + "\\Moonlight\\common\\build\\libs\\moonlight-${moonlight_testVersion}.jar"))
     }
     else {
         //+ MAVEN
@@ -45,7 +45,7 @@ dependencies {
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
     if (enable_everycomp_test.toBoolean())
     //- LOCAL
-        modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-$everycomp_testVersion-fabric.jar"))
+        modImplementation(files(path + "\\WoodGood\\common\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
     else
     //+ MAVEN
         modApi("net.mehvahdjukaar:everycomp:$everycomp_version") { transitive = false }
