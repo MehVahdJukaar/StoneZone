@@ -85,6 +85,10 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
                     return s;
                 });
 
+        if (this.extraModelTransform != null) {
+            this.extraModelTransform.accept(modelTransformer);
+        }
+
         modelTransformer = CompatSpritesHelper.replaceStoneTextures(modelTransformer, oldTypeName);
 
         return modelTransformer;
