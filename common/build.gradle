@@ -33,22 +33,27 @@ dependencies {
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
     String path = System.getenv('REPOS21_1')
 
+    //- LOCAL
     if (enable_moonlight_test.toBoolean()) {
-        //- LOCAL
-        modImplementation(files(path + "\\Moonlight\\common\\build\\libs\\moonlight-${moonlight_testVersion}.jar"))
+        modApi(files(path + "\\Moonlight\\common\\build\\libs\\moonlight-${moonlight_testVersion}.jar"))
     }
+    //+ MAVEN
     else {
-        //+ MAVEN
-        modApi("net.mehvahdjukaar:moonlight:$moonlight_version") { transitive = false }
+        if (maven_backup.toBoolean()) modApi("maven.modrinth:moonlight:$moonlight_version-fabric")
+        else modApi("net.mehvahdjukaar:moonlight:$moonlight_version") { transitive = false }
     }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
-    if (enable_everycomp_test.toBoolean())
-    //- LOCAL
-        modImplementation(files(path + "\\WoodGood\\common\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
-    else
-    //+ MAVEN
-        modApi("net.mehvahdjukaar:everycomp:$everycomp_version") { transitive = false }
+
+    if (enable_everycomp_test.toBoolean()) {
+        //- LOCAL
+        modApi(files(path + "\\WoodGood\\common\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
+    }
+    else {
+        //+ MAVEN
+        if (maven_backup.toBoolean()) modApi("maven.modrinth:every-compat:$everycomp_version-fabric")
+        else modApi("net.mehvahdjukaar:everycomp:$everycomp_version") { transitive = false }
+    }
 
 //!! ================================================= DEPENDENCIES ================================================= \\
 

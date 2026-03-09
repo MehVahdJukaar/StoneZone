@@ -88,20 +88,27 @@ dependencies {
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
     String path = System.getenv('REPOS21_1')
 
-    if (enable_moonlight_test.toBoolean())
-        //- LOCAL
-        modImplementation(files(path + "\\Moonlight\\fabric\\build\\libs\\moonlight-$moonlight_testVersion-fabric.jar"))
-    else
-        //+ MAVEN
-        modApi("net.mehvahdjukaar:moonlight-fabric:$moonlight_version:fabric") { transitive = false }
+    //- LOCAL
+    if (enable_moonlight_test.toBoolean()) {
+        modApi(files(path + "\\Moonlight\\fabric\\build\\libs\\moonlight-$moonlight_testVersion-fabric.jar"))
+    }
+    //+ MAVEN
+    else {
+        if (maven_backup.toBoolean()) modApi("maven.modrinth:moonlight:$moonlight_version-fabric")
+        else modApi("net.mehvahdjukaar:moonlight-fabric:$moonlight_version:fabric") { transitive = false }
+    }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
-    if (enable_everycomp_test.toBoolean())
-        //- LOCAL
-        modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-$everycomp_testVersion-fabric.jar"))
-    else
-        //+ MAVEN
-        modApi("net.mehvahdjukaar:everycomp-fabric:$everycomp_version:fabric") { transitive = false }
+
+    //- LOCAL
+    if (enable_everycomp_test.toBoolean()) {
+        modApi(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-$everycomp_testVersion-fabric.jar"))
+    }
+    //+ MAVEN
+    else {
+        if (maven_backup.toBoolean()) modApi("maven.modrinth:every-compat:$everycomp_version-fabric")
+        else modApi("net.mehvahdjukaar:everycomp-fabric:$everycomp_version:fabric") { transitive = false }
+    }
 
 //!! TOOLS  --------------------------------------------------------------------------------------------------------- \\
     modRuntimeOnly("com.blamejared.crafttweaker:CraftTweaker-fabric-$minecraft_version:$crafttweaker_version") // Faux-Custom-Entity-Data
