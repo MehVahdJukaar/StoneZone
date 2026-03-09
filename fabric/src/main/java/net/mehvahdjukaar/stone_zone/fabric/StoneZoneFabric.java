@@ -17,8 +17,7 @@ public class StoneZoneFabric extends StoneZoneCommon implements ModInitializer {
         this.initialize();
 
         if (PlatHelper.getPhysicalSide().isClient()) {
-            ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipFlag, list) ->
-                    StoneZoneClient.onItemTooltip(itemStack, tooltipFlag, list));
+            ItemTooltipCallback.EVENT.register(StoneZoneClient::onItemTooltip);
         }
     }
 

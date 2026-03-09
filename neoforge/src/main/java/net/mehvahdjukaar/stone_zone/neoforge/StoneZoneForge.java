@@ -52,7 +52,7 @@ public class StoneZoneForge extends StoneZoneCommon {
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public void itemTooltipEvent(ItemTooltipEvent event) {
-        StoneZoneClient.onItemTooltip(event.getItemStack(), event.getFlags(), event.getToolTip());
+        StoneZoneClient.onItemTooltip(event.getItemStack(), event.getContext(), event.getFlags(), event.getToolTip());
     }
 
 }
