@@ -13,6 +13,21 @@
   </div>
 </div>
 
+### CHANGES: 
+- **Stone Zone** (C): 
+  - Added a config to enable/disable item_search or search bar in Creative Inventory via StoneZone's tab
+  - Fixed the incorrect logic responsible for blacklist a prismarine_waystone (it did not get excluded) - [#180](https://github.com/MehVahdJukaar/StoneZone/issues/180)
+- **Rechiseled** (C): - [#181](https://github.com/MehVahdJukaar/StoneZone/issues/181)
+  - Updated to support v1.2.0+ & The module class have been moved to COMMON
+  - Updated the recipe generation
+
+### FIXES:
+- **Stone Zone** (C): Fixed the blacklist config, `stonezone-hazardous.toml` not excluding `prismarine` - [#180](https://github.com/MehVahdJukaar/StoneZone/issues/180)
+
+---
+
+## v2.11.19
+
 ### UPDATED: 
 - **Quark** (IT): Added missing textures for `quark:myalite` - [#1182](https://github.com/MehVahdJukaar/WoodGood/issues/1182)
 - **TEXTURES**: Added missing mask textures for: 
