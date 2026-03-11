@@ -26,7 +26,7 @@ allprojects {
         }
 
         mavenLocal()
-        maven { url = "https://registry.somethingcatchy.net/repository/maven-releases/" } // Moonlight & EveryComp
+        if (!maven_backup.toBoolean()) maven { url = "https://registry.somethingcatchy.net/repository/maven-releases/" } // Moonlight & EveryComp
         maven { url "https://maven.parchmentmc.org" }
         maven {
             url = "https://www.cursemaven.com"

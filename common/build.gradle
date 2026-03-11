@@ -30,24 +30,24 @@ dependencies {
 
     //- LOCAL
     if (enable_moonlight_test.toBoolean()) {
-        modImplementation(files(path + "\\Moonlight\\fabric\\build\\libs\\moonlight-$moonlight_testVersion-fabric.jar"))
+        modApi(files(path + "\\Moonlight\\common\\build\\libs\\moonlight-${moonlight_testVersion}.jar"))
     }
     //+ MAVEN
     else {
-        modApi("net.mehvahdjukaar:moonlight:$moonlight_mavenVersion"){
-            transitive = false
-        }
+        if (maven_backup.toBoolean()) modApi("maven.modrinth:moonlight:$moonlight_version-fabric")
+        else modApi("net.mehvahdjukaar:moonlight:$moonlight_version") { transitive = false }
     }
 
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
+
+    //- LOCAL
     if (enable_everycomp_test.toBoolean()) {
-        //- Repository LOCAL
-        modImplementation(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-$everycomp_testVersion-fabric.jar"))
-    }  else {
-        //+ MAVEN
-        modApi("net.mehvahdjukaar:everycomp:$everycomp_mavenVersion") {
-            transitive = false
-        }
+        modApi(files(path + "\\WoodGood\\common\\build\\libs\\everycomp-${everycomp_testVersion}.jar"))
+    }
+    //+ MAVEN
+    else {
+        if (maven_backup.toBoolean()) modApi("maven.modrinth:every-compat:$everycomp_version-fabric")
+        else modApi("net.mehvahdjukaar:everycomp:$everycomp_version") { transitive = false }
     }
 
 //!! ================================================= DEPENDENCIES ================================================= \\
