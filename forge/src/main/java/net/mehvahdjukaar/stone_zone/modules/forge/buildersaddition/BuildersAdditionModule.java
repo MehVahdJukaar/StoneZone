@@ -7,7 +7,6 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
@@ -17,8 +16,11 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.Objects;
 
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
+
 
 //SUPPORT: v20230928a+
+@SuppressWarnings({"DataFlowIssue", "removal"})
 public class BuildersAdditionModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> vertical_slab;
@@ -54,10 +56,10 @@ public class BuildersAdditionModule extends StoneZoneModule {
         smooth_vertical_slab = StoneZoneEntrySet.of(StoneType.class, "vertical_slab", "smooth",
                         getModBlock("smooth_stone_vertical_slab"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new VerticalSlab(
-                                Utils.getID(stoneType.getBlockOfThis("smooth")).getPath(),
-                                Objects.requireNonNull(stoneType.getBlockOfThis("smooth")))
+                                Utils.getID(stoneType.getBlockOfThis(SMOOTH)).getPath(),
+                                Objects.requireNonNull(stoneType.getBlockOfThis(SMOOTH)))
                 )
-                .requiresChildren(VanillaRockChildKeys.SMOOTH)  //REASON: recipes, textures
+                .requiresChildren(SMOOTH)  //REASON: recipes, textures
                 .addCondition(w -> !(PlatHelper.isModLoaded("v_slab_compat") || PlatHelper.isModLoaded("additionalplacements")) )
                 //TEXTURES: smooth, smooth_slab
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -71,10 +73,10 @@ public class BuildersAdditionModule extends StoneZoneModule {
         bricks_vertical_slab = StoneZoneEntrySet.of(StoneType.class, "bricks_vertical_slab",
                         getModBlock("stone_bricks_vertical_slab"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new VerticalSlab(
-                                Utils.getID(stoneType.getBlockOfThis("bricks")).getPath(),
+                                Utils.getID(stoneType.getBlockOfThis(BRICKS)).getPath(),
                                 stoneType.bricksOrStone())
                 )
-                .requiresChildren(VanillaRockChildKeys.BRICKS) //REASON: recipes, textures
+                .requiresChildren(BRICKS) //REASON: recipes, textures
                 .addCondition(w -> !(PlatHelper.isModLoaded("v_slab_compat") || PlatHelper.isModLoaded("additionalplacements")) )
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -89,10 +91,10 @@ public class BuildersAdditionModule extends StoneZoneModule {
         mossy_bricks_vertical_slab = StoneZoneEntrySet.of(StoneType.class, "bricks_vertical_slab", "mossy",
                         getModBlock("mossy_stone_bricks_vertical_slab"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new VerticalSlab(
-                                Utils.getID(stoneType.getBlockOfThis("mossy_bricks")).getPath(),
-                                Objects.requireNonNull(stoneType.getBlockOfThis("mossy_bricks")))
+                                Utils.getID(stoneType.getBlockOfThis(MOSSY_BRICKS)).getPath(),
+                                Objects.requireNonNull(stoneType.getBlockOfThis(MOSSY_BRICKS)))
                 )
-                .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: recipes, textures
+                .requiresChildren(MOSSY_BRICKS) //REASON: recipes, textures
                 .addCondition(w -> !(PlatHelper.isModLoaded("v_slab_compat") || PlatHelper.isModLoaded("additionalplacements")) )
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -121,8 +123,8 @@ public class BuildersAdditionModule extends StoneZoneModule {
         cut_smooth_pillar = StoneZoneEntrySet.of(StoneType.class, "pillar", "cut_smooth",
                         getModBlock("cut_smooth_stone_pillar"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Pillar(
-                                Utils.getID(stoneType.getBlockOfThis("smooth")).getPath(),
-                                Objects.requireNonNull(stoneType.getBlockOfThis("smooth"))
+                                Utils.getID(stoneType.getBlockOfThis(SMOOTH)).getPath(),
+                                Objects.requireNonNull(stoneType.getBlockOfThis(SMOOTH))
                         )
                 )
                 .requiresChildren("smooth", "smooth_slab") //REASON: recipes, textures
@@ -137,11 +139,11 @@ public class BuildersAdditionModule extends StoneZoneModule {
         cut_bricks_pillar = StoneZoneEntrySet.of(StoneType.class, "bricks_pillar", "cut",
                         getModBlock("cut_stone_bricks_pillar"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Pillar(
-                                Utils.getID(stoneType.getBlockOfThis("bricks")).getPath(),
-                                Objects.requireNonNull(stoneType.getBlockOfThis("bricks"))
+                                Utils.getID(stoneType.getBlockOfThis(BRICKS)).getPath(),
+                                Objects.requireNonNull(stoneType.getBlockOfThis(BRICKS))
                         )
                 )
-                .requiresChildren(VanillaRockChildKeys.BRICKS)
+                .requiresChildren(BRICKS)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
@@ -154,11 +156,11 @@ public class BuildersAdditionModule extends StoneZoneModule {
         cut_mossy_bricks_pillar = StoneZoneEntrySet.of(StoneType.class, "bricks_pillar", "cut_mossy",
                         getModBlock("cut_mossy_stone_bricks_pillar"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Pillar(
-                                Utils.getID(stoneType.getBlockOfThis("mossy_bricks")).getPath(),
-                                Objects.requireNonNull(stoneType.getBlockOfThis("mossy_bricks"))
+                                Utils.getID(stoneType.getBlockOfThis(MOSSY_BRICKS)).getPath(),
+                                Objects.requireNonNull(stoneType.getBlockOfThis(MOSSY_BRICKS))
                         )
                 )
-                .requiresChildren(VanillaRockChildKeys.MOSSY_BRICKS) //REASON: recipes, textures
+                .requiresChildren(MOSSY_BRICKS) //REASON: recipes, textures
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTabKey(tab)
