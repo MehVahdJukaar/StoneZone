@@ -50,7 +50,7 @@ public class StoneType extends RockType {
     }
 
     public Block bricksOrStone() {
-        Block bricks= this.getBlockOfThis("bricks");
+        Block bricks = this.getBlockOfThis("bricks");
         return bricks != null ? bricks : this.stone;
     }
 
@@ -80,9 +80,9 @@ public class StoneType extends RockType {
             );
         }
 
-        /// /// @param stoneName name of Stone Block without modId or namespace
-        public Finder stone(String nameStone) {
-            return this.stone(Utils.idWithOptionalNamespace(nameStone, id.getNamespace()));
+        /// @param nameStoneOrId name of Stone Block with or without namespace/modId
+        public Finder stone(String nameStoneOrId) {
+            return this.stone(Utils.idWithOptionalNamespace(nameStoneOrId, id.getNamespace()));
         }
 
         /**
