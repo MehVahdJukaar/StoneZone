@@ -13,6 +13,16 @@
   </div>
 </div>
 
+### REQUIRED:
+- **Every Compat v2.11.32 or newer** - REASON: the code related to 2 configs are removed
+
+### CHANGES:
+- **Stone Zone** (C): Removed 2 configs due to a misunderstood request
+
+---
+
+## v2.11.13
+
 ### REQUIRED: 
 - **Every Compat v2.11.31** - REASON: 2 new configs and new codes added responsible for Creative Tab stuff.
 
