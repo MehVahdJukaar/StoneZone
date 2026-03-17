@@ -13,6 +13,18 @@
   </div>
 </div>
 
+### REQUIRED: 
+- **Every Compat v2.11.31** - REASON: 2 new configs and new codes added responsible for Creative Tab stuff.
+
+### CHANGES: 
+- **Stone Zone** (C): Added 2 new configs - [Every Compat#1203](https://github.com/MehVahdJukaar/WoodGood/issues/1203)
+  - `DISABLE_CYCLE_ITEM_RENDERER` - disable creative-tab from showing the iteration of every item from Gems Realm
+  - `CREATIVE_TAB_ICON` - Choose one item (can be from Gems Realm or Minecraft) to replace the icon instead of iterating every item from Gems Realm
+
+---
+
+## v2.11.12
+
 ### CHANGES: 
 - **Stone Zone** (C): 
   - Added a config to enable/disable item_search or search bar in Creative Inventory via StoneZone's tab
@@ -26,7 +38,7 @@
 
 ---
 
-## v2.11.19
+## v2.11.11
 
 ### UPDATED: 
 - **Quark** (IT): Added missing textures for `quark:myalite` - [#1182](https://github.com/MehVahdJukaar/WoodGood/issues/1182)
