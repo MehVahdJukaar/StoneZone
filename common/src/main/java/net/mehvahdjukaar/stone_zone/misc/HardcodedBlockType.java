@@ -50,7 +50,7 @@ public class HardcodedBlockType {
         modId = ModId;
         supportedBlockName = blockName;
 
-        /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ CONFIG EXCLUSION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ SPECIAL EXCLUSION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
         // Exclude one StoneType from a Stone mod
         if (stoneTypeList.get().stream().anyMatch(stoneIdentify::matches)) return true;
