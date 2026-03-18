@@ -1,6 +1,5 @@
 package net.mehvahdjukaar.stone_zone.modules.stoneworks;
 
-import fuzs.stoneworks.Stoneworks;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
@@ -47,7 +46,7 @@ public class StoneworksModule extends StoneZoneModule {
 
     public StoneworksModule(String modId) {
         super(modId, "sw");
-        ResourceLocation tab = modRes(Stoneworks.MOD_ID);
+        ResourceLocation tab = modRes("main");
 
         tiles = StoneZoneEntrySet.of(StoneType.class, "tiles",
                         getModBlock("stone_tiles"), () -> VanillaStoneTypes.STONE,
