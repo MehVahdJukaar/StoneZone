@@ -13,6 +13,13 @@
   </div>
 </div>
 
+### CHANGES: 
+- **Stoneworks** (C): Updated the outdated ResourceLocation for tab - [#185](https://github.com/MehVahdJukaar/StoneZone/issues/185)
+
+---
+
+## v2.11.14
+
 ### REQUIRED:
 - **Every Compat v2.11.32 or newer** - REASON: the code related to 2 configs are removed
 
