@@ -519,6 +519,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_up_tip"))
                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_up_tip_merge"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(modRes("pointed_dripstone"), Registries.BLOCK, Registries.ITEM)
                 .setTabKey(tab)
                 .build();
         this.addEntry(pointed_dripstone);
@@ -858,11 +859,7 @@ public class ChippedModule extends StoneZoneModule {
     // RECIPES & TAGS
     public void addDynamicServerResources(Consumer<ResourceGenTask> executor) {
         super.addDynamicServerResources(executor);
-        executor.accept((manager, sink) -> {
-
-            addMasonTableRecipe(sink);
-
-        });
+        executor.accept((manager, sink) -> addMasonTableRecipe(sink));
 
     }
 
@@ -881,6 +878,8 @@ public class ChippedModule extends StoneZoneModule {
             for (EntrySet<?> entry : this.getEntries()) {
 
                 SimpleEntrySet<?, ?> currentEntry = ((SimpleEntrySet<?, ?>) entry);
+
+                if (currentEntry.getName().equals("pointed_dripstone")) continue; //REASON: not needed
 
                 isTagCreated = createAndAddCustomTags(tagResLoc, sink, currentEntry.blocks.get(stoneType));
 
