@@ -53,6 +53,10 @@ sourcesJar {
     from commonSources.archiveFile.map { zipTree(it) }
 }
 
+remapSourcesJar {
+    archiveClassifier = "fabric-sources"
+}
+
 components.java {
     withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
         skip()
