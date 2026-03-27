@@ -13,6 +13,16 @@
   </div>
 </div>
 
+### CHANGES:
+- **Chipped** (C): Excluded `pointed_dripstone` from recipe generation & Added `#chipped:pointed_dripstone` tag so it can be crafted via masonstone table
+
+### FIXES: 
+- **Macaw's Fences & Walls** (FB): Fixes the crash when opening inventory by corrected the incorrect Creative Tab Key for FABRIC side - [EveryCompat#1207](https://github.com/MehVahdJukaar/WoodGood/issues/1207)
+
+---
+
+## v2.11.15
+
 ### CHANGES: 
 - **Stoneworks** (C): Updated the outdated ResourceLocation for tab - [#185](https://github.com/MehVahdJukaar/StoneZone/issues/185)
 
