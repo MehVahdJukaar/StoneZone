@@ -143,6 +143,7 @@ subprojects {
         modrinth {
             projectId = modrinth_id
             uploadFile = tasks.remapJar
+            additionalFiles = [tasks.remapSourcesJar]
             gameVersions = versions
             if (modLoader == "forge") {
                 loaders = ["neoforge"]
