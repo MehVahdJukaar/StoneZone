@@ -27,16 +27,19 @@ public class CompatStoneType {
      * Undetected-Bricks: StoneType's BRICKS has different Id aside an suffix of "_bricks" like "_brick"
      *
      * Undetectable: The StoneType have no BRICKS or POLISHED to be detected
+     *
+     * Vanilla-Children: StoneType's Children is from Minecraft
+     *
+     * ModId-Children: StoneType's Children is from another mod aside its own mod
      */
     public static void init() {
 
         StoneTypeRegistry stoneReg = StoneTypeRegistry.INSTANCE;
 
-        // Abyssal Decor - REASON: Id-Stone
-        stoneReg.addSimpleFinder("abyssal_decor", "blood_coral")
-                .stone("rough_blood_coral");
-        stoneReg.addSimpleFinder("abyssal_decor", "jade")
-                .stone("rough_jade");
+        // Minecraft - REASON: Vanilla-Children
+        if (!PlatHelper.isModLoaded("gemsrealm"))
+            stoneReg.addSimpleFinder("infernalexp", "glowstone")
+                .stone("minecraft:glowstone");
 
         // Ars Nouveau - REASON: Naming-Convention
         stoneReg.addSimpleFinder("ars_nouveau", "sourcestone")
@@ -179,7 +182,7 @@ public class CompatStoneType {
         stoneReg.addSimpleFinder("create", "scoria");
         stoneReg.addSimpleFinder("create", "scorchia");
 
-            // Create Dreams & Desires - REASON: Undetectable
+        // Create Dreams & Desires - REASON: Undetectable
         stoneReg.addSimpleFinder("create_dd", "gabbro");
         stoneReg.addSimpleFinder("create_dd", "aethersite");
         stoneReg.addSimpleFinder("create_dd", "potassic");
