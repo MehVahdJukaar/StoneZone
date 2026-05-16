@@ -154,7 +154,7 @@ dependencies {
 //    modRuntimeOnly("net.createmod.ponder:Ponder-Forge-$minecraft_version:$ponder_version") // Create
 
         //+ REQUIRED - The modules access libaries from below - Only in FORGE
-    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:6034718") // v1.1.18 | Rechiseled - Must be CompileOnly (this case is same as EC's Quark, so idk why)
+    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:7521769") // v1.1.20 | Rechiseled - Must be CompileOnly (this case is same as EC's Quark, so idk why)
 
             //+ OTHER MAVENS
     modCompileOnly("com.tterrag.registrate:Registrate:$registrate_version") // Create
@@ -190,7 +190,7 @@ dependencies {
     modCompileOnly("curse.maven:additional-lights-384991:4596807")
     modCompileOnly("curse.maven:blocks-you-need-925718:6759906")
     modCompileOnly("curse.maven:buildersaddition-389697:4772826")
-    modCompileOnly("curse.maven:rechiseled-558998:5286306") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ] - Must be CompileOnly (this case is same as EC's Quark, so idk why)
+    modCompileOnly("curse.maven:rechiseled-558998:7687383") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ] - Must be CompileOnly (this case is same as EC's Quark, so idk why)
     modCompileOnly("curse.maven:stone-chest-307052:5389562")
 
             // OTHER MAVENS

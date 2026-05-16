@@ -55,7 +55,7 @@ dependencies {
     //+ REQUIRED - The modules access libaries from below
 //    modCompileOnly("curse.maven:balm-fabric-500525:6778750") // v7.3.32 | Waystones
     modCompileOnly("curse.maven:owo-lib-532610:4749199") // v0.11.2 | Fabric-Waystones
-    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:6076732") // v1.1.18a | Rechiseled
+    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:7521819") // v1.1.20 | Rechiseled
     modCompileOnly("curse.maven:zeta-968868:5597406") // v1.0.24 | Quark
 
     // OTHER MAVENS
@@ -79,7 +79,7 @@ dependencies {
     modCompileOnly("curse.maven:lets-do-farm-charm-1038103:6561949") // Architectury-API
     modCompileOnly("curse.maven:more-beautiful-torches-860325:5263631") // MonoLib
     modCompileOnly("curse.maven:quark-243121:5594847")
-    modCompileOnly("curse.maven:rechiseled-558998:5286340") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
+    modCompileOnly("curse.maven:rechiseled-558998:7687472") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
     modCompileOnly("curse.maven:stoneworks-852663:4611947")
     modCompileOnly("curse.maven:twigs-496913:4603805")
     modCompileOnly("curse.maven:waystones-245755:6779064") // Balm
