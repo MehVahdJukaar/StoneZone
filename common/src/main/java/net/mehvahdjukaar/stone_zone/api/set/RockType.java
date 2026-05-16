@@ -1,6 +1,7 @@
 package net.mehvahdjukaar.stone_zone.api.set;
 
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
+import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -73,6 +74,14 @@ public abstract class RockType extends BlockType{
             this.addChild(SMOOTH_WALL, findRelatedBlock("smooth", "wall"));
         }
 
+        Block tiles = this.findRelatedBlock("", "tiles");
+        if (Objects.nonNull(tiles)) {
+            this.addChild(TILES, tiles);
+            this.addChild(TILE_STAIRS, findRelatedBlock("", "tile_stairs"));
+            this.addChild(TILE_SLAB, findRelatedBlock("", "tile_slab"));
+            this.addChild(TILE_WALL, findRelatedBlock("", "tile_wall"));
+        }
+
         Block bricks = this.findBrickEntry("", "");
         Block bricksTFC = this.findRelatedBlock("", "bricks");
         if (Objects.nonNull(bricks) || Objects.nonNull(bricksTFC)) {
@@ -128,20 +137,20 @@ public abstract class RockType extends BlockType{
             return reg.get(new ResourceLocation("cobblestone"));
         }
 
-        String prefixed = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
-        String infixed = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
-        String suffixed = (suffix.isEmpty()) ? "" : "_" + suffix;
+        String prefix_ = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
+        String _infix = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
+        String _suffix = (suffix.isEmpty()) ? "" : "_" + suffix;
 
         ResourceLocation[] targets = {
                 // DEFAULT
-                new ResourceLocation(id.getNamespace(), id.getPath() + infixed + suffixed),
-                new ResourceLocation(id.getNamespace(), prefixed + id.getPath() + suffixed),
+                new ResourceLocation(id.getNamespace(), id.getPath() + _infix + _suffix),
+                new ResourceLocation(id.getNamespace(), prefix_ + id.getPath() + _suffix),
                 // TFC & AFC: Include children of stone_type: stairs, slab...
-                new ResourceLocation(id.getNamespace(), "rock/raw/" + id.getPath() + suffixed),
+                new ResourceLocation(id.getNamespace(), "rock/raw/" + id.getPath() + _suffix),
                 // TFC & AFC: Include children of smooth, cobblestone, button, pressure_plate, bricks, cracked_bricks
-                new ResourceLocation(id.getNamespace(), "rock/" + prefixed + suffix +"/"+ id.getPath()),
+                new ResourceLocation(id.getNamespace(), "rock/" + prefix_ + suffix +"/"+ id.getPath()),
                 // TFC & AFC: Include children of brick_slab, smooth_slab, brick_stairs, smooth_stairs
-                new ResourceLocation(id.getNamespace(), "rock/"+ prefixOrInfix +"/"+ id.getPath() + suffixed)
+                new ResourceLocation(id.getNamespace(), "rock/"+ prefixOrInfix +"/"+ id.getPath() + _suffix)
         };
         V found = null;
         for (var r : targets) {
@@ -172,19 +181,24 @@ public abstract class RockType extends BlockType{
         return bricks != null ? bricks : this.block;
     }
 
-    protected static ResourceLocation[] makeKnownIDConventions(ResourceLocation id, String... suffixKeyword) {
+    protected static ResourceLocation[] makeKnownIDConventions(ResourceLocation id, String... affixKeyword) {
         List<ResourceLocation> resources = new ArrayList<>();
-        for (String keyword : suffixKeyword) {
+        for (String keyword : affixKeyword) {
             String path = id.getPath();
             String namespace = id.getNamespace();
 
-            String suffixed = (keyword.isEmpty()) ? "" : "_" + keyword;
-            String prefixed = (keyword.isEmpty()) ? "" : keyword + "_";
+            String _suffix = (keyword.isEmpty()) ? "" : "_" + keyword;
+            String prefix_ = (keyword.isEmpty()) ? "" : keyword + "_";
 
-            resources.add(new ResourceLocation(namespace, path + suffixed));
-            resources.add(new ResourceLocation(namespace, prefixed + path));
+            resources.add(new ResourceLocation(namespace, path + _suffix));
+            resources.add(new ResourceLocation(namespace, prefix_ + path));
         }
         return resources.toArray(new ResourceLocation[0]);
+    }
+
+    /// Create an Id stonezone:shortenedId/namespace/prefix_ stonetype _suffix
+    public String CreateStandardId(String shortenedId, String prefix, String suffix) {
+        return createFullIdWith(StoneZone.MOD_ID, "", shortenedId, prefix, suffix);
     }
 
 }
