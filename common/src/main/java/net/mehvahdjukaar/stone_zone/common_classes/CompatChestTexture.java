@@ -5,6 +5,7 @@ import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Respriter;
 import net.mehvahdjukaar.moonlight.api.resources.textures.TextureImage;
+import net.mehvahdjukaar.moonlight.api.resources.textures.TextureOps;
 import net.mehvahdjukaar.moonlight.api.util.math.colors.HCLColor;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.StoneZone;
@@ -57,10 +58,10 @@ public class CompatChestTexture {
                     trapped_path += "_right";
                 }
 
-                try (TextureImage plankTexture = TextureImage.open(manager,
+                try (TextureImage stoneTexture = TextureImage.open(manager,
                         RPUtils.findFirstBlockTextureLocation(manager, stoneType.stone))) {
 
-                    List<Palette> plankPalette = Palette.fromAnimatedImage(plankTexture);
+                    List<Palette> plankPalette = Palette.fromAnimatedImage(stoneTexture);
 
                     // Remove the lava color from brimwood_planks
                     if (stoneType.getId().toString().equals("regions_unexplored:brimwood")) {
@@ -72,7 +73,7 @@ public class CompatChestTexture {
                         });
                     }
 
-                    McMetaFile plankMeta = plankTexture.getMcMeta();
+                    McMetaFile stoneMeta = stoneTexture.getMcMeta();
 
                     List<Palette> overlayPalette = new ArrayList<>();
                     for (var p : plankPalette) {
@@ -100,7 +101,7 @@ public class CompatChestTexture {
                     if (!sink.alreadyHasTextureAtLocation(manager, res)) {
                         ResourceLocation trappedRes = StoneZone.res(trapped_path);
 
-                        createChestTextures(sink, respriterNormal, respriterOverlay, plankMeta,
+                        createChestTextures(sink, respriterNormal, respriterOverlay, stoneMeta,
                                 plankPalette, overlayPalette, res, trappedRes, trapOverlay);
                     }
 
@@ -118,17 +119,18 @@ public class CompatChestTexture {
                                             List<Palette> overlayPalette, ResourceLocation normalRLoc,
                                             ResourceLocation trappedRLoc, TextureImage trappedOverlay) {
 
-        TextureImage recoloredBase = respriter.recolorWithAnimation(basePalette, baseMeta);
-        TextureImage recoloredOverlay = respriterO.recolorWithAnimation(overlayPalette, baseMeta);
-        recoloredBase.applyOverlay(recoloredOverlay);
+        try (TextureImage recoloredBase = respriter.recolorWithAnimation(basePalette, baseMeta);
+             TextureImage recoloredOverlay = respriterO.recolorWithAnimation(overlayPalette, baseMeta)) {
+            TextureOps.applyOverlay(recoloredBase, recoloredOverlay);
 
-        if (trappedOverlay != null) {
-            TextureImage trapped = recoloredBase.makeCopy();
-            trapped.applyOverlay(trappedOverlay.makeCopy());
-            sink.addAndCloseTexture(trappedRLoc, trapped);
+            if (trappedOverlay != null) {
+                TextureImage trapped = recoloredBase.makeCopy();
+                TextureOps.applyOverlay(trapped, trappedOverlay);
+                sink.addTexture(trappedRLoc, trapped);
+            }
+
+            sink.addTexture(normalRLoc, recoloredBase);
         }
-
-        sink.addAndCloseTexture(normalRLoc, recoloredBase);
     }
 
 }
