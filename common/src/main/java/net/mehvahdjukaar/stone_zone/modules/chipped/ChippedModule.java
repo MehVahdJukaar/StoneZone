@@ -26,6 +26,7 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import java.util.function.Consumer;
 
 import static net.mehvahdjukaar.every_compat.misc.UtilityTag.createAndAddCustomTags;
+import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.isKnownVanillaStone;
 
 
 //SUPPORT: v3.0.7+
@@ -878,7 +879,7 @@ public class ChippedModule extends StoneZoneModule {
         for (StoneType stoneType : StoneTypeRegistry.INSTANCE.getValues()) {
             boolean isTagCreated = false;
 
-            if (stoneType.isVanilla()) continue;
+            if (isKnownVanillaStone(stoneType)) continue;
 
             ResourceLocation tagResLoc = StoneZone.res(shortenedId() +"/"+ stoneType.getAppendableId());
             createAndAddCustomTags(tagResLoc, sink, stoneType.stone);

@@ -29,6 +29,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
+import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.isKnownVanillaStone;
+
 @Environment(EnvType.CLIENT)
 public class CompatChestBlockRenderer extends ChestRenderer<CompatChestBlockEntity> {
     public static final ResourceLocation CHEST_SHEET = new ResourceLocation("textures/atlas/chest.png");
@@ -42,17 +44,17 @@ public class CompatChestBlockRenderer extends ChestRenderer<CompatChestBlockEnti
     //assumes standard naming here. Generalize if needed
     public CompatChestBlockRenderer(BlockEntityRendererProvider.Context context, String shortenedId) {
         super(context);
-        for (StoneType w : StoneTypeRegistry.INSTANCE.getValues()) {
-            if (w.isVanilla()) continue;
-            String path = "entity/chest/" + shortenedId + "/" + w.getAppendableId() + "_chest";
-            String trapped_path = "entity/chest/" + shortenedId + "/" + w.getAppendableId() + "_trapped_chest";
-            if (!w.isVanilla()) {
-                single.put(w, new Material(CHEST_SHEET, StoneZone.res(path)));
-                left.put(w, new Material(CHEST_SHEET, StoneZone.res(path + "_left")));
-                right.put(w, new Material(CHEST_SHEET, StoneZone.res(path + "_right")));
-                trapped.put(w, new Material(CHEST_SHEET, StoneZone.res(trapped_path)));
-                trapped_left.put(w, new Material(CHEST_SHEET, StoneZone.res(trapped_path + "_left")));
-                trapped_right.put(w, new Material(CHEST_SHEET, StoneZone.res(trapped_path + "_right")));
+        for (StoneType stoneType : StoneTypeRegistry.INSTANCE.getValues()) {
+            if (isKnownVanillaStone(stoneType)) continue;
+            String path = "entity/chest/" + shortenedId + "/" + stoneType.getAppendableId() + "_chest";
+            String trapped_path = "entity/chest/" + shortenedId + "/" + stoneType.getAppendableId() + "_trapped_chest";
+            if (!isKnownVanillaStone(stoneType)) {
+                single.put(stoneType, new Material(CHEST_SHEET, StoneZone.res(path)));
+                left.put(stoneType, new Material(CHEST_SHEET, StoneZone.res(path + "_left")));
+                right.put(stoneType, new Material(CHEST_SHEET, StoneZone.res(path + "_right")));
+                trapped.put(stoneType, new Material(CHEST_SHEET, StoneZone.res(trapped_path)));
+                trapped_left.put(stoneType, new Material(CHEST_SHEET, StoneZone.res(trapped_path + "_left")));
+                trapped_right.put(stoneType, new Material(CHEST_SHEET, StoneZone.res(trapped_path + "_right")));
             }
         }
     }

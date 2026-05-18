@@ -28,6 +28,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.isKnownVanillaStone;
 
 //SUPPORT: v6.0.8+
 public abstract class CreateModuleAbstract extends StoneZoneModule {
@@ -351,7 +352,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
 
                 StoneTypeRegistry.INSTANCE.forEach(stoneType -> {
 
-                if (!stoneType.isVanilla() && !stoneType.getNamespace().equals("create")) {
+                if (!isKnownVanillaStone(stoneType) && !stoneType.getNamespace().equals("create")) {
 
                     // Adding all blocks of a StoneType except "slab" to Array to be tagged
                     ArrayList<Block> BlockMap = new ArrayList<>();
