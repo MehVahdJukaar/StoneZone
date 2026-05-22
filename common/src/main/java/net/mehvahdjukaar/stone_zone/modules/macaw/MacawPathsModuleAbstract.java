@@ -2,6 +2,7 @@ package net.mehvahdjukaar.stone_zone.modules.macaw;
 
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.StonePaletteStrategies;
@@ -9,19 +10,22 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 
-//SUPPORT: v1.1.1+
+///SUPPORT: v1.1.1+
 public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> running_bond_paths;
@@ -62,6 +66,17 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
     public MacawPathsModuleAbstract(String modId) {
         super(modId, "mcp");
 
+        ResourceLocation temp; //TODO: Remove when the fix is applied to MacawPaths, should be v1.1.2 or newer
+        if (BuiltInRegistries.CREATIVE_MODE_TAB.containsKey(modRes("pathgroup")))
+            temp = modRes("pathgroup");
+        else
+            temp = ResourceLocation.parse("mod_id:pathgroup");
+
+        Supplier<CreativeModeTab> tab = (PlatHelper.getPlatform().isFabric())
+                ? getTab(temp)
+                : getTab(modRes("pathsitemgroup"));
+
+
         running_bond_paths = StoneZoneEntrySet.of(StoneType.class, "running_bond_path",
                         getModBlock("stone_running_bond_path"), () -> VanillaStoneTypes.STONE,
                         stoneType -> newPathBlock(copyStandardProperties(stoneType))
@@ -69,7 +84,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: recipes
                 //TEXTURES: running_bonds
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -82,7 +97,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: recipes
                 //TEXTURES: running_bonds
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -96,7 +111,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: recipes
                 .addTexture(modRes("block/stone_running_bond"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -109,7 +124,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(MOSSY_BRICKS) //REASON: recipes
                 //TEXTURES: mossy_running_bonds
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -122,7 +137,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(MOSSY_BRICKS) //REASON: recipes
                 //TEXTURES: mossy_running_bonds
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -137,7 +152,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                         StoneZone.res("block/mcp/mossy_stone_running_bond_m"),
                         StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -150,7 +165,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: recipes
                 //TEXTURES: windmill_weaves
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -163,7 +178,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: recipes
                 //TEXTURES: windmill_weaves
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -176,7 +191,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: recipes
                 .addTexture(modRes("block/stone_windmill_weave"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -189,7 +204,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(MOSSY_BRICKS) //REASON: recipes
                 //TEXTURES: mossy_windmill_weaves
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -202,7 +217,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(MOSSY_BRICKS) //REASON: recipes
                 //TEXTURES: mossy_windmill_weaves
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -220,7 +235,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                         StoneZone.res("block/mcp/mossy_stone_windmill_weave_m"),
                         StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -233,7 +248,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: recipes
                 //TEXTURES: stone_flagstones
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -246,7 +261,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: recipes
                 //TEXTURES: stone_flagstones
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -259,7 +274,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: recipes
                 .addTexture(modRes("block/stone_flagstone"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -272,7 +287,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(MOSSY_BRICKS) //REASON: recipes
                 //TEXTURES: mossy_flagstones
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -285,7 +300,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(MOSSY_BRICKS) //REASON: recipes
                 //TEXTURES: mossy_flagstones
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -300,7 +315,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                         StoneZone.res("block/mcp/mossy_stone_flagstone_m"),
                         StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -313,7 +328,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: recipes
                 //TEXTURES: stone_crystal_floors
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -326,7 +341,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: recipes
                 //TEXTURES: stone_crystal_floors
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -339,7 +354,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: recipes
                 .addTexture(modRes("block/stone_crystal_floor"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -352,7 +367,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(MOSSY_BRICKS) //REASON: recipes
                 //TEXTURES: mossy_stone_crystal_floors
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -365,7 +380,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(MOSSY_BRICKS) //REASON: recipes
                 //TEXTURES: mossy_stone_crystal_floors
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -380,7 +395,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                         StoneZone.res("block/mcp/mossy_stone_crystal_floor_m"),
                         StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -393,7 +408,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: recipes
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -406,7 +421,7 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
                 .requiresChildren(MOSSY_COBBLESTONE, MOSSY_BRICKS) //REASON: textures, recipes
                 //TEXTURES: mossy_cobblestone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(getTab())
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .build();
@@ -430,7 +445,6 @@ public abstract class MacawPathsModuleAbstract extends StoneZoneModule {
 
     public abstract Block newPathBlock(BlockBehaviour.Properties properties);
     public abstract Block newEngravedBlock(BlockBehaviour.Properties properties);
-    public abstract ResourceLocation getTab();
 
 
 }

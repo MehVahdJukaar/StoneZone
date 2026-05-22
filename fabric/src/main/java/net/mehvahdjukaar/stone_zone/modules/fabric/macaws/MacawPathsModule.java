@@ -3,7 +3,6 @@ package net.mehvahdjukaar.stone_zone.modules.fabric.macaws;
 import com.mcwpaths.kikoz.objects.EngravedBlock;
 import com.mcwpaths.kikoz.objects.PathBlock;
 import net.mehvahdjukaar.stone_zone.modules.macaw.MacawPathsModuleAbstract;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
@@ -23,11 +22,6 @@ public class MacawPathsModule extends MacawPathsModuleAbstract {
     @Override
     public Block newEngravedBlock(BlockBehaviour.Properties properties) {
         return new EngravedBlock(properties);
-    }
-
-    @Override
-    public ResourceLocation getTab() {
-        return modRes("pathgroup");
     }
 
 }
