@@ -202,6 +202,7 @@ dependencies {
 //!! ================================================= FOR TESTING ================================================== \\
 
     // STONETYPE ONLY
+//    modRuntimeOnly("curse.maven:architects-palette-433862:5036133")
     modRuntimeOnly("curse.maven:alexs-caves-924854:5848216") // Citadel
 //    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643")
 //    modRuntimeOnly("curse.maven:spelunkery-790530:5727135") // Moonlight-Lib
