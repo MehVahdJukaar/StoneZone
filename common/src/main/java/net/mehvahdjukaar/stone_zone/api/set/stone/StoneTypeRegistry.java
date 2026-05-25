@@ -4,11 +4,11 @@ import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
 import java.util.Collection;
 import java.util.Optional;
 
+import static net.mehvahdjukaar.stone_zone.api.set.RockType.newSubBlockType;
 import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_MODS;
 import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_STONETYPES;
 
@@ -33,79 +33,38 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
     }
 
     @Override
-    public Optional<StoneType> detectTypeFromBlock(Block baseblock, ResourceLocation baseRes) {
-        String blockPath = baseRes.getPath();
+    public Optional<StoneType> detectTypeFromBlock(Block baseblock, ResourceLocation blockId) {
+        String namespace = blockId.getNamespace();
+        String blockPath = blockId.getPath();
+
         /// Support TerraFirmaCraft (TFC) & ArborFirmaCraft (AFC)
-        if (baseRes.getNamespace().matches("tfc|afc")) {
-            if (blockPath.matches("rock/bricks/\\w+") && baseblock.defaultBlockState().instrument() == NoteBlockInstrument.BASEDRUM ) {
-                int index = blockPath.lastIndexOf("/");
-                String stoneName = blockPath.substring(index + 1); // Get granite from tfc:rock/bricks/granite
-                var opt = BuiltInRegistries.BLOCK.getOptional(
-                        new ResourceLocation(baseRes.getNamespace(), blockPath.replace("bricks", "raw"))
-                );
-                if (opt.isPresent()) {
-                    return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));
-                }
-            }
+        if (namespace.matches("tfc|afc")) {
+            newSubBlockType(StoneType::new, blockId, blockPath, "rock/bricks/(?<typename>\\w+)", valuesReg);
         }
 
         /// DEFAULT
-        if (!BLACKLISTED_MODS.contains(baseRes.getNamespace())) {
-            // Check for <type>_bricks | <type>_stone_bricks
-            if (blockPath.matches("[a-z]+_(?:stone_)?bricks?")) {
-                String stoneName = blockPath.substring(0, blockPath.length() - 7); // get stoneName from namespace:stoneName_bricks
-                String stoneAlt = stoneName + "_stone"; // Some mods included "_stone" as the suffix
-                ResourceLocation idBlockType = baseRes.withPath(stoneName);
-                ResourceLocation idBlockTypeAlt = baseRes.withPath(stoneAlt);
+        boolean noDustType = !BuiltInRegistries.ITEM.containsKey(
+                new ResourceLocation(blockId.getNamespace(), blockPath.replaceAll("(?<name>[a-z]+_)\\w+", "${name}dust"))
+        );
+        boolean noOreType = !BuiltInRegistries.BLOCK.containsKey(
+                new ResourceLocation(blockId.getNamespace(), blockPath.replaceAll("(?<name>[a-z]+_)\\w+", "${name}ore"))
+        );
+        boolean noWoodType = !BuiltInRegistries.BLOCK.containsKey(
+                new ResourceLocation(blockId.getNamespace(), blockPath.replaceAll("(?<name>[a-z]+_)[a-z]+", "${name}log"))
+        );
 
-                /// Ensure that detected BlockType is actually StoneType
-                boolean isStoneTypeNotBlacklisted = !(BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneName).toString()) || BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneAlt).toString()));
+        if (blockPath.matches("[a-z]+_(?:stone_)?bricks?"))
+            return newSubBlockType(StoneType::new, blockId, blockPath, "(?<typename>[a-z]+(?:_stone)?)_bricks?",
+                    valuesReg, BLACKLISTED_STONETYPES, BLACKLISTED_MODS,
+                    noDustType, noOreType, noWoodType);
 
-                boolean noDustType = !BuiltInRegistries.ITEM.containsKey(
-                        new ResourceLocation(baseRes.getNamespace(), blockPath.replaceAll("(?<name>[a-z]+_)\\w+", "${name}dust"))
-                );
-                boolean noOreType = !BuiltInRegistries.BLOCK.containsKey(
-                        new ResourceLocation(baseRes.getNamespace(), blockPath.replaceAll("(?<name>[a-z]+_)\\w+", "${name}ore"))
-                );
-                boolean noWoodType = !BuiltInRegistries.BLOCK.containsKey(
-                        new ResourceLocation(baseRes.getNamespace(), blockPath.replaceAll("(?<name>[a-z]+_)[a-z]+", "${name}log"))
-                );
-
-                /// Check if a BlockType is already added
-                if (!valuesReg.containsKey(idBlockType) && !valuesReg.containsKey(idBlockTypeAlt)
-                        && isStoneTypeNotBlacklisted
-                        && noDustType
-                        && noOreType
-                        && noWoodType
-                ) {
-                    var opt = BuiltInRegistries.BLOCK.getOptional(idBlockType);
-                    var alt = BuiltInRegistries.BLOCK.getOptional(idBlockTypeAlt);
-                    if (opt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));
-                    else if (alt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneAlt), alt.get()));
-                }
-
-            }
             // Check for polished_<type> | polished_<type>_stone
-            else if (blockPath.matches("polished_[a-z]+(?:_stone)?")) {
-                String stoneName = blockPath.replace("polished_", ""); // get stoneName from namespace:polished_stoneName
-                String stoneAlt = stoneName + "_stone"; // Some mods included "_stone" as the suffix
-                ResourceLocation idBlockType = baseRes.withPath(stoneName);
-                ResourceLocation idBlockTypeAlt = baseRes.withPath(stoneAlt);
-
-                // Ensure that detected BlockType is actually StoneType
-                boolean isStoneTypeBlacklisted = !(BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneName).toString()) || BLACKLISTED_STONETYPES.contains(baseRes.withPath(stoneAlt).toString()));
-
-                // Check if a BlockType is already added
-                if (!valuesReg.containsKey(idBlockType) && !valuesReg.containsKey(idBlockTypeAlt)
-                        && isStoneTypeBlacklisted
-                ) {
-                    var opt = BuiltInRegistries.BLOCK.getOptional(idBlockType);
-                    var alt = BuiltInRegistries.BLOCK.getOptional(idBlockTypeAlt);
-                    if (opt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneName), opt.get()));
-                    else if (alt.isPresent()) return Optional.of(new StoneType(baseRes.withPath(stoneAlt), alt.get()));
-                }
-            }
+        else if (blockPath.matches("polished_[a-z]+(?:_stone)?")) {
+            return newSubBlockType(StoneType::new, blockId, blockPath, "polished_(?<typename>[a-z]+(?:_stone)?)",
+                    valuesReg, BLACKLISTED_STONETYPES, BLACKLISTED_MODS,
+                    noDustType, noOreType, noWoodType);
         }
+
         return Optional.empty();
     }
 

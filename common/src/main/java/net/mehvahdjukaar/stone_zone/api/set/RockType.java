@@ -1,6 +1,8 @@
 package net.mehvahdjukaar.stone_zone.api.set;
 
+import net.mehvahdjukaar.moonlight.api.misc.MapRegistry;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -10,9 +12,10 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.function.BiFunction;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
@@ -200,5 +203,86 @@ public abstract class RockType extends BlockType{
     public String CreateStandardId(String shortenedId, String prefix, String suffix) {
         return createFullIdWith(StoneZone.MOD_ID, "", shortenedId, prefix, suffix);
     }
+
+    /// Create new BlockType using the subclass: CrystalType, DustType, GemType, Or MetalType
+    /// @param factory use 1 of 4 subclass, example: CrystalType::new
+    /// @param blockPathRegex Must have (?\<typename\>) in RegEx for the name of StoneType
+    public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<ResourceLocation, Block, T> factory,
+                                                                    ResourceLocation blockId,
+                                                                    String blockPath, String blockPathRegex,
+                                                                    MapRegistry<T> valuesReg,
+                                                                    @Nullable Set<String> blockTypeBlacklist,
+                                                                    @Nullable Set<String> modBlacklist,
+                                                                    boolean ... checks
+    ) {
+        Pattern regex = Pattern.compile(blockPathRegex);
+        Matcher matcher = regex.matcher(blockPath);
+
+        if (matcher.find()) {
+
+            String blocktypeName = matcher.group("typename");
+
+            ResourceLocation idBlockType = blockId.withPath(blocktypeName);
+
+            boolean isModNotBlacklisted = !(modBlacklist != null && modBlacklist.contains(blockId.getNamespace()));
+            boolean isBlockTypeNotBlacklisted = !(blockTypeBlacklist != null && blockTypeBlacklist.contains(idBlockType.toString()));
+
+            if (!valuesReg.containsKey(idBlockType) && isModNotBlacklisted && isBlockTypeNotBlacklisted) {
+
+                for (boolean pass : checks) {
+                    if (!pass) return Optional.empty();
+                }
+
+                ResourceLocation[] tests = makeKnownIDConventions(idBlockType, "", "block");
+                Block block = Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
+
+                if (block != null) {
+                    return Optional.of(factory.apply(idBlockType, block));
+                }
+            }
+        }
+        return Optional.empty();
+    }
+
+    public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<ResourceLocation, Block, T> factory,
+                                                                    ResourceLocation blockId,
+                                                                    String blockPath, String blockPathRegex,
+                                                                    MapRegistry<T> valuesReg,
+                                                                    Set<String> blockTypeBlacklist
+    ) {
+        return newSubBlockType(factory, blockId, blockPath, blockPathRegex, valuesReg, blockTypeBlacklist, true);
+    }
+
+    public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<ResourceLocation, Block, T> factory,
+                                                                    ResourceLocation blockId,
+                                                                    String blockPath, String blockPathRegex,
+                                                                    MapRegistry<T> valuesReg,
+                                                                    Set<String> blockTypeBlacklist,
+                                                                    boolean ... checks
+    ) {
+        return newSubBlockType(factory, blockId, blockPath, blockPathRegex, valuesReg, blockTypeBlacklist, null, checks);
+    }
+
+    public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<ResourceLocation, Block, T> factory,
+                                                                    ResourceLocation blockId,
+                                                                    String blockPath, String blockPathRegex,
+                                                                    MapRegistry<T> valuesReg,
+                                                                    boolean ... checks
+    ) {
+        return newSubBlockType(factory, blockId, blockPath, blockPathRegex, valuesReg, null, null, checks);
+    }
+
+    public static boolean isInItemRegistry(String namespace, String prefix, String blockPath, String target, String replacement) {
+        return BuiltInRegistries.ITEM.containsKey(
+                new ResourceLocation(namespace,prefix + blockPath.replace(target, replacement))
+        );
+    }
+    public static boolean isInItemRegistry(String namespace, String blockPath, String target, String replacement) {
+        return BuiltInRegistries.ITEM.containsKey(
+                new ResourceLocation(namespace, blockPath.replace(target, replacement))
+        );
+    }
+
+
 
 }
