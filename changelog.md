@@ -21,6 +21,27 @@
 
 </div>
 
+## v2.9.11
+
+### CHANGES: 
+- **LANG** (JA_JP): Updated by @Hayakoh-WeldyAlin - [PR#176](https://github.com/MehVahdJukaar/StoneZone/pull/176)
+- **Stone Zone** (EXCLUDED): 
+  - Excluded some blocks from supported mods if **Framed Blocks** is installed
+  - Major Improvement in Detection System - Simply reducing the repetitive codes
+
+### FIXED:
+- **Wraith Waystone** (C): Fixed the missing textures for Waystone due to incorrect ResourceLocation for 2 masks - [#186](https://github.com/MehVahdJukaar/StoneZone/issues/186)
+
+### UPDATED:
+- **Rechiseled** (C): supports v1.2.0+
+
+### ADDED: 
+- **Infernal Expansion Redux** (UDS): Added Glowstone as StoneType but won't be added if **Gems Realm** is installed. - [#178](https://github.com/MehVahdJukaar/StoneZone/issues/178)
+
+---
+
+## v2.9.10
+
 ### UPDATED: 
 - **Stone Zone** (C): Another update to use **Every Compat v2.9.16** 
 - **Macaw's Paths And Pavings** (C): Updated to support **v1.1.1**, NOTE: older than **v1.1.0** won't be supported
@@ -42,7 +63,7 @@ Merry Christmas - Xel'Bayria
 - **Stone Zone** (C): Updated to use **Every Compat v2.9.13** & Fixed the crash - [#1151](https://github.com/MehVahdJukaar/WoodGood/issues/1151)
 - **Create** (FB): Updated to support Create-Fabric v6.0+
 - **Blast From The Past** (IT): permafrost & permafrost_bricks to correct the texture generation - [#170](https://github.com/MehVahdJukaar/StoneZone/issues/170)
-- **LANG** (la_jp): Updated & Fixed by @Hayakoh-WeldyAlin - [PR#163](https://github.com/MehVahdJukaar/StoneZone/pull/163), [PR#165](https://github.com/MehVahdJukaar/StoneZone/pull/165)
+- **LANG** (JA_JP): Updated & Fixed by @Hayakoh-WeldyAlin - [PR#163](https://github.com/MehVahdJukaar/StoneZone/pull/163), [PR#165](https://github.com/MehVahdJukaar/StoneZone/pull/165)
 
 ---
 
