@@ -163,7 +163,7 @@ dependencies {
         //- ONLY FOR TESTING - can be commented out or enabled
 //    modRuntimeOnly("curse.maven:architects-palette-433862:5036133") //TEMP
 //    modRuntimeOnly("curse.maven:better-archeology-835687:5693368") // supermartijn642s' Config-Lib, Yung's API
-//    modRuntimeOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1
+//    modRuntimeOnly("curse.maven:building-but-better-989479:7627387")
 //    modRuntimeOnly("curse.maven:decorative-blocks-362528:5089406")
 //    modRuntimeOnly("curse.maven:handcrafted-538214:5118729") // ResourceFul-Lib
 //    modRuntimeOnly("curse.maven:more-beautiful-torches-860325:5263631") // Monolib

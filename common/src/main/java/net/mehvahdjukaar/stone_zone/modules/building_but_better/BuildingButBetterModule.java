@@ -21,7 +21,7 @@ import java.util.Objects;
 
 import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
 
-//SUPPORT: v1.0.1+
+///SUPPORT: v2.opre4+
 public class BuildingButBetterModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> columns;
