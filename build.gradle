@@ -215,3 +215,75 @@ subprojects {
         }
     }
 }
+
+tasks.register('buildAndPublishAll') {
+    dependsOn ':clean'
+    dependsOn ':common:clean'
+    dependsOn ':fabric:clean'
+    dependsOn ':forge:clean'
+    dependsOn ':build'
+    dependsOn ':forge:curseforge'
+    dependsOn ':forge:modrinth'
+    dependsOn ':fabric:curseforge'
+    dependsOn ':fabric:modrinth'
+    dependsOn ':publish'
+    finalizedBy 'gitTag'
+
+    group = 'build'
+    description = 'Runs clean, build, and publish forge and fabric'
+}
+
+tasks.register('gitTag') {
+    group = 'release'
+    description = 'Create and push git tag from project version'
+
+    doLast {
+        def tag = project.version.toString()
+
+        // check if tag already exists
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'tag', '-l', tag
+            standardOutput = stdout
+        }
+
+        if (!stdout.toString().trim().isEmpty()) {
+            logger.warn("Git tag '${tag}' already exists")
+        } else {
+
+            // create annotated tag
+            exec {
+                commandLine 'git', 'tag', '-a', tag, '-m', "Release ${tag}"
+            }
+
+            // push tag
+            exec {
+                commandLine 'git', 'push', 'origin', tag
+            }
+        }
+    }
+}
+
+tasks.register('cleanLogs', Delete) {
+    group "build"
+    description "Delete logs"
+
+    // Logs
+    delete fileTree(dir: "$rootDir/forge/run/logs", include: "**/*.gz")
+    delete fileTree(dir: "$rootDir/fabric/run/logs", include: "**/*.gz")
+}
+
+tasks.register('cleanFolders', Delete) {
+    group "build"
+    description "Clean logs & Delete folders of Debug"
+
+    // Logs
+    delete fileTree(dir: "$rootDir/forge/run/logs", include: "**/*.gz")
+    delete fileTree(dir: "$rootDir/fabric/run/logs", include: "**/*.gz")
+
+    // Debug
+    delete "$rootDir/forge/run/debug"
+    delete "$rootDir/fabric/run/debug"
+}
+
+
