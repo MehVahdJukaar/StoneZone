@@ -128,6 +128,9 @@ public class HardcodedBlockType {
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+        // Architect's-Palette has MOONSHALE_FLAGSTONE that prevent the similar block from Macaw's-Paths-&-Pavings from being generated
+        if (isStoneFrom("mcwpaths", "", "", "moonshale_flagstone")) return false;
+
         // pillar from Decorative-Blocks, Quark, Create should be always generated
         if (isStoneFrom("quark|create|decorative_blocks", "", "", "pillar")) return false;
 
