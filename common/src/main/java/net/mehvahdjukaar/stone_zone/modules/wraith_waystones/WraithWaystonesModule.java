@@ -40,13 +40,13 @@ public class WraithWaystonesModule extends StoneZoneModule {
                         EveryCompat.res("block/wws/stone_brick_waystone_active_m"),
                         StonePaletteStrategies.BRICKS_STANDARD)
                 .addTextureM(modRes("block/stone_brick_waystone_inactive"),
-                        EveryCompat.res("block/wws/stone_brick_waystone_inactive_m.png"),
+                        EveryCompat.res("block/wws/stone_brick_waystone_inactive_m"),
                         StonePaletteStrategies.BRICKS_STANDARD)
                 .addTextureM(modRes("block/mossy_stone_brick_waystone_active"),
                         EveryCompat.res("block/wws/mossy_stone_brick_waystone_active_m"),
                         StonePaletteStrategies.BRICKS_STANDARD)
                 .addTextureM(modRes("block/mossy_stone_brick_waystone_inactive"),
-                        EveryCompat.res("block/wws/mossy_stone_brick_waystone_inactive_m.png"),
+                        EveryCompat.res("block/wws/mossy_stone_brick_waystone_inactive_m"),
                         StonePaletteStrategies.BRICKS_STANDARD)
                 .addTextureM(modRes("item/stone_brick_waystone"),
                         EveryCompat.res("item/wws/stone_brick_waystone_m"),
