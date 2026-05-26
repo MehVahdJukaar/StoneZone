@@ -199,7 +199,7 @@ public class CompatStoneType {
         stoneReg.addSimpleFinder("deep_aether", "clorite"); //REASON: Undetectable
         stoneReg.addSimpleFinder("deep_aether", "raw_clorite"); //REASON: 2-words
 
-        // Alex's Caves - REASON: Undetectable
+        // Alex's Caves - REASON: Undetectable - due to no POLISHED or BRICKS
         stoneReg.addSimpleFinder("alexscave", "limestone");
 
         // Enlightened End - REASON: 2-Words
