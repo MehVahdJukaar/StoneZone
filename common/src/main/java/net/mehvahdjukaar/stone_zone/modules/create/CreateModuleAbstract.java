@@ -63,6 +63,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                         getModBlock("cut_andesite"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
+                //TEXTURES: pillars' andesite_cut_cap & andesite_cut_cap_connected (below)
                 .addTexture(modRes("block/palettes/stone_types/cut/andesite_cut"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 //TAGS: create:stone_types/andesite - manually created
@@ -264,7 +265,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                         stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
                                 copyChildrenPropertySafe("polished_stairs", stoneType))
                 )
-                .addCondition(s -> Objects.nonNull(small_bricks.blocks.get(s))) //REASON: recipes
+                .requiresFromMap(small_bricks.blocks) //REASON: recipes
                 //TEXTURES: small_bricks (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
@@ -280,7 +281,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                         getModBlock("small_andesite_brick_slab"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new SlabBlock(copyChildrenPropertySafe("polished_slab", stoneType))
                 )
-                .addCondition(s -> Objects.nonNull(small_bricks.blocks.get(s))) //REASON: recipes
+                .requiresFromMap(small_bricks.blocks) //REASON: recipes
                 //TEXTURES: small_bricks, cut_slabs (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
@@ -297,7 +298,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                         getModBlock("small_andesite_brick_wall"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new WallBlock(copyChildrenPropertySafe("polished_wall", stoneType))
                 )
-                .addCondition(s -> Objects.nonNull(small_bricks.blocks.get(s))) //REASON: recipes
+                .requiresFromMap(small_bricks.blocks) //REASON: recipes
                 //TEXTURES: small_bricks (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
