@@ -7,7 +7,7 @@ plugins {
 }
 
 architectury {
-    minecraft = rootProject.minecraft_version
+    minecraft = minecraft_version
 }
 
 allprojects {
@@ -15,9 +15,9 @@ allprojects {
     apply plugin: "architectury-plugin"
     apply plugin: "maven-publish"
 
-    archivesBaseName = rootProject.mod_id
-    version = rootProject.mod_version
-    group = rootProject.maven_group
+    base.archivesName = mod_id
+    version = mod_version
+    group = maven_group
 
     repositories {
 
@@ -88,7 +88,6 @@ subprojects {
     apply plugin: "com.modrinth.minotaur"
     apply plugin: "com.gradleup.shadow"
 
-
     loom {
         silentMojangMappingsLicense()
     }
@@ -154,6 +153,9 @@ subprojects {
                 mainArtifact(tasks.remapJar) {
                     if (modLoader == "fabric") {
                         displayName = mod_id +"-"+ mod_version + "-fabric"
+                    }
+                    else {
+                        displayName = mod_id +"-"+ mod_version + "-forge"
                     }
                 }
 
@@ -245,13 +247,15 @@ tasks.register('gitTag') {
     description = 'Create and push git tag from project version'
 
     doLast {
+        def execOps = services.get(ExecOperations)
         def tag = project.version.toString()
-
         // check if tag already exists
         def stdout = new ByteArrayOutputStream()
-        exec {
-            commandLine 'git', 'tag', '-l', tag
+
+        execOps.exec {
+            commandLine('git', 'tag', '-l', tag)
             standardOutput = stdout
+            ignoreExitValue = true
         }
 
         if (!stdout.toString().trim().isEmpty()) {
@@ -259,13 +263,13 @@ tasks.register('gitTag') {
         } else {
 
             // create annotated tag
-            exec {
-                commandLine 'git', 'tag', '-a', tag, '-m', "Release ${tag}"
+            execOps.exec {
+                commandLine('git', 'tag', '-a', tag, '-m', "Release ${tag}")
             }
 
             // push tag
-            exec {
-                commandLine 'git', 'push', 'origin', tag
+            execOps.exec {
+                commandLine('git', 'push', 'origin', tag)
             }
         }
     }
