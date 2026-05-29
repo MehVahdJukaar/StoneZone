@@ -148,7 +148,8 @@ dependencies {
         //- ~/forge/mods LOCAL
 
         //- OTHER MAVENs - can be commented out or enabled
-//    modRuntimeOnly("maven.modrinth:fusion-connected-textures:1.2.11a-forge-mc$minecraft_version") // Dawn-Of-Time, Timber-Frame, Rechiseled
+//    modRuntimeOnly("software.bernie.geckolib:geckolib-forge-$minecraft_version:4.7.3") // Atlantis, Fins-And-Tails
+//    modRuntimeOnly("maven.modrinth:fusion-connected-textures:1.2.12-forge-mc$minecraft_version") // Dawn-Of-Time, Timber-Frame, Rechiseled
 //    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
 //    modRuntimeOnly("dev.engine-room.flywheel:flywheel-forge-$minecraft_version:$flywheel_version") // Create
 //    modRuntimeOnly("net.createmod.ponder:Ponder-Forge-$minecraft_version:$ponder_version") // Create
@@ -202,8 +203,8 @@ dependencies {
 //!! ================================================= FOR TESTING ================================================== \\
 
     // STONETYPE ONLY
-//    modRuntimeOnly("curse.maven:architects-palette-433862:5036133")
     modRuntimeOnly("curse.maven:alexs-caves-924854:5848216") // Citadel
+//    modRuntimeOnly("curse.maven:architects-palette-433862:5036133")
 //    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643")
 //    modRuntimeOnly("curse.maven:spelunkery-790530:5727135") // Moonlight-Lib
 //    modRuntimeOnly("curse.maven:tinkers-construct-74072:6041763") // Mantle
