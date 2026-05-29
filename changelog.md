@@ -1,25 +1,28 @@
-<div style="text-align: center; border: 1px solid yellow; padding: 10px;">
+| **Legends**                                                                                                                       |
+|-----------------------------------------------------------------------------------------------------------------------------------|
+| \- **(C)**: FORGE & FABRIC                                                                                                        |
+| - **(FB)**: FABRIC                                                                                                                |
+| - **(NF)**: NEOFORGE                                                                                                              |
+| - **(IT)**: Included Texture — added the ResourceLocation of the missing textures required for blocks or generating a new texture |
+| - **(TEX)**: hand-made textures to improve the way a block looks                                                                  |
+| - **(COMPAT)**: Create an exception for a compat mod. EveryCompat won't include the Supported Mod and the Wood Mod                |
+| - **(INCLUDED)**: The block is not generated because a Wood Mod already has the same block as the supported mod will be generated |
+| - **(EXCLUDED)**: The block is generated BUT it shouldn't be generated for a reason                                               |
+| - **(UDBT)**: Undetected BlockTypes will be manually added                                                                        |
+|                                                                                                                                   |
 
-<div style="text-align: center; margin-bottom: 10px;">
+---
 
-### LEGEND
+## v2.9.12
 
-</div>
+### CHANGES: 
+- **Macaw's Bridges** (C): Added a required children to BRIDGE_PIER (BRIDGE_SUPPORT) to exclude some StoneType that don't have the required children
+- **Alex's Caves** (UDS): Corrected a typo in mod_id, `alexscave` to `alexscaves`, the Stonetype, limestone is now detected - [#195](https://github.com/MehVahdJukaar/StoneZone/issues/195) 
 
-<div style="text-align: left;">
+### FIXES:
+- **Create** (INCLUDED): All of suported blocks - this mean blocks will be generated with any Stone Mods (new StoneTypes), no exception. - [#193](https://github.com/MehVahdJukaar/StoneZone/issues/193)
 
-* **(C)**: FORGE & FABRIC
-* **(FB)**: FABRIC
-* **(F)**: FORGE
-* **(IT)**: Included Texture: Added the ResourceLocation of the missing textures required for blocks or generating a new texture
-* **(UDS)**: Undetected StoneType have been manually added.
-* **(COMPAT)**: Create an exception for a compat mod. EveryCompat won't included for the Supported Mod and the Wood Mod
-* **(INCLUDED)**: The block is not generated because a Wood Mod already have the same block as the supported mod will be generated
-* **(EXCLUDED)**: The block is generated BUT it shouldn't be generated for a reason
-
-</div>
-
-</div>
+---
 
 ## v2.9.11
 
