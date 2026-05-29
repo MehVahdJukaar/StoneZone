@@ -121,27 +121,23 @@ public class HardcodedBlockType {
         // Exclude all of Vanilla Types
         if (isKnownVanillaStone(stoneType)) return true;
 
-        // Exclude generated blocks that is just one mod that is both Supported Mods and StoneTypeFromMod
-        if (isStoneFrom("quark", "quark", "", "pillar")) return true;
-        if (isStoneFrom("create", "create", "", "pillar")) return true;
-        if (isStoneFrom("decorative_blocks", "decorative_blocks", "", "pillar")) return true;
-
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+        // Ensure all of Create's Supported-Block With any Stone Mod is generated
+        // Create's blocks aren't generated for Quark, Wetland-Whimsy, Geologic-Expansion, TerraFirmaCraft because they both have LIMESTONE & Also fix the tag issue (#64)
+        if (isStoneFrom("create", "", "", "")) return false;
 
         // Architect's-Palette has MOONSHALE_FLAGSTONE that prevent the similar block from Macaw's-Paths-&-Pavings from being generated
         if (isStoneFrom("mcwpaths", "", "", "moonshale_flagstone")) return false;
 
-        // pillar from Decorative-Blocks, Quark, Create should be always generated
-        if (isStoneFrom("quark|create|decorative_blocks", "", "", "pillar")) return false;
+        // pillar from Decorative-Blocks & Quark should be always generated
+        if (isStoneFrom("quark|decorative_blocks", "", "", "pillar")) return false;
 
         // Create's cut wasn't generated due to Quark's cut_soul_sandstone
         if (isStoneFrom("create", "quark", "", "cut_soul_sandstone")) return false;
 
         // The stone_squares block from Blockus is why stone_squares from Rechiseled got skipped
         if (isStoneFrom("rechiseled", "blockus", "", "squares")) return false;
-
-        // Create's blocks aren't generated for Quark, Wetland-Whimsy, Geologic-Expansion, TerraFirmaCraft because they both have LIMESTONE & Also fix the tag issue (#64)
-        if (isStoneFrom("create", "", "quark:limestone|wetland_whimsy:limestone|geologicexpansion:limestone|tfc:limestone", "")) return false;
 
         // Ensure blocks to be generated because TerraFirmaCraft has similar name of Vanilla StoneType (andesite, granite, diorite, so on...)
         if (isStoneFrom("", "tfc", "", "")) return false;
@@ -176,6 +172,8 @@ public class HardcodedBlockType {
     }
 
     public static Boolean isStoneFrom(String supportedModId, String stonetypeFromMod, String stoneTypeId, String supportedBlockId) {
+        // Excluding blocks from a mod that are both supported-Mod and Stone-Mod
+        if (stoneTypeFromMod.matches(modId)) return false;
 
         String[] expressions = {
                 supportedModId,
