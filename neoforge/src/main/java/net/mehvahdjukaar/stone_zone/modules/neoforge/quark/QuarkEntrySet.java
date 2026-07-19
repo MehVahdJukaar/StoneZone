@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules.quark;
+package net.mehvahdjukaar.stone_zone.modules.neoforge.quark;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Suppliers;

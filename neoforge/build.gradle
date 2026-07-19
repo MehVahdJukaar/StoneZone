@@ -81,7 +81,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 
 dependencies {
-    neoForge "net.neoforged:neoforge:${neo_version}"
+    neoForge "net.neoforged:neoforge:$neo_version"
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
@@ -131,7 +131,6 @@ dependencies {
 //    modRuntimeOnly("curse.maven:yungs-api-421850:6715462") // v5.1.6 | NONE //!! FORGE
 //    modRuntimeOnly("curse.maven:patchouli-306770:4966125") // v84 | TFC //!! 1.20
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:6494827") // v21.1.36 | Stoneworks
-//    modRuntimeOnly("org.violetmoon.zeta:Zeta:1.1-39-SNAPSHOT") // Quark
 //    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | Chipped //!! 1.20
 //    modRuntimeOnly("curse.maven:resourceful-lib-570073:5973188") // v3.0.12 | Chipped, Handcrafted
 //    modRuntimeOnly("curse.maven:resourceful-config-714059:6467772") // v3.0.11 | Better-Archeology
@@ -155,6 +154,7 @@ dependencies {
 //    modRuntimeOnly("software.bernie.geckolib:geckolib-neoforge-$minecraft_version:4.7.7") // Oh-The-Biomes-We've-Gone, Ars-Nouveau
 
     //+ REQUIRED - The modules access libaries from below - Only in FORGE
+    modCompileOnly("org.violetmoon.zeta:Zeta:1.1-40-SNAPSHOT") // Quark
 
         //+ OTHER MAVENS
     modCompileOnly("com.tterrag.registrate:Registrate:$registrate_version") // Create
@@ -174,7 +174,6 @@ dependencies {
 
         //- OTHER MAVENS
 //    modRuntimeOnly("earth.terrarium.chipped:chipped-neoforge-${minecraft_version}:4.0.2") //INCLUDED: Athena, Resourceful-Lib, REQUIRE: Bytecodecs
-//    modRuntimeOnly("org.violetmoon.quark:Quark:4.1-473-SNAPSHOT") // Zeta, Biolith @  https://maven.blamejared.com/org/violetmoon/quark/Quark/
 
     //+ REQUIRED - The modules access libaries from below - ONLY IN FORGE
         // MACAW's
@@ -191,6 +190,7 @@ dependencies {
 
         // OTHER MAVENS
     modCompileOnly("com.simibubi.create:create-1.21.1:$create_version:slim") { transitive = false } // Registrate, Flywheel, Ponder
+    modCompileOnly("org.violetmoon.quark:Quark:4.1-481-SNAPSHOT") // Zeta, Biolith @  https://maven.blamejared.com/org/violetmoon/quark/Quark/
 
 //!! ================================================= FOR TESTING ================================================== \\
 

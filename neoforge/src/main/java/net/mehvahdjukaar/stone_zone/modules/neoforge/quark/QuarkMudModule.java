@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules.quark;
+package net.mehvahdjukaar.stone_zone.modules.neoforge.quark;
 
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
