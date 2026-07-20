@@ -52,7 +52,7 @@ dependencies {
     else {
         //+ MAVEN
         if (maven_backup.toBoolean()) modApi("maven.modrinth:every-compat:$everycomp_version-fabric")
-        else modApi("net.mehvahdjukaar:everycomp:$everycomp_version") { transitive = false }
+        else modApi("net.mehvahdjukaar:everycomp-fabric:$everycomp_version:fabric") { transitive = false }
     }
 
 //!! ================================================= DEPENDENCIES ================================================= \\
