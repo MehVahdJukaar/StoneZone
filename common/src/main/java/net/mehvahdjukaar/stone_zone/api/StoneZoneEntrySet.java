@@ -10,7 +10,7 @@ import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.misc.CompatSpritesHelper;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.Holder;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -31,7 +31,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
 
     protected StoneZoneEntrySet(Class<T> type, String name, @Nullable String prefix, Function<T, B> blockSupplier,
                                 Supplier<B> baseBlock, Supplier<T> baseType,
-                                @NotNull Supplier<ResourceKey<CreativeModeTab>> tab,
+                                @NotNull Supplier<Holder<CreativeModeTab>> tab,
                                 TabAddMode tabMode, LootTableMode lootMode,
                                 @Nullable TriFunction<T, B, Item.Properties, Item> itemFactory,
                                 @Nullable ITileHolder tileFactory, @Nullable Object renderType,
@@ -137,7 +137,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
     }
 
     //!! SUB-CLASS
-    @SuppressWarnings("DataFlowIssue") // McMetaFile is nullable
+//    @SuppressWarnings("DataFlowIssue") // McMetaFile is nullable
     public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {
 
         protected Builder(Class<T> type, String name, @Nullable String prefix, Supplier<T> baseType, Supplier<B> baseBlock, Function<T, B> blockFactory) {

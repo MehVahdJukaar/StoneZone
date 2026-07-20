@@ -11,7 +11,7 @@ import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.core.Holder;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -36,7 +36,7 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
                          Supplier<B> baseBlock,
                          Supplier<T> baseType,
                          Function<T, B> blockSupplier,
-                         @Nullable Supplier<ResourceKey<CreativeModeTab>> tab,
+                         @Nullable Supplier<Holder<CreativeModeTab>> tab,
                          TabAddMode tabMode,
                          SimpleEntrySet.LootTableMode tableMode,
                          @Nullable TriFunction<T, B, Item.Properties, Item> itemFactory,
