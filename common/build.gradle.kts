@@ -21,19 +21,17 @@ tasks.named<Jar>("sourcesJar") {
 }
 
 val path = System.getenv("REPOS21_1").toString()
-val enableMoonlightTest: Boolean = findProperty("enable_moonlight_test").toString().toBoolean()
-val enableEveryCompTest: Boolean = findProperty("enable_everycomp_test").toString().toBoolean()
-val mavenBackup: Boolean = findProperty("maven_backup").toString().toBoolean()
 dependencies {
 
-    //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
+//!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
+
     //- LOCAL
-    if (enableMoonlightTest) {
+    if (findProperty("enable_moonlight_test").toString().toBoolean()) {
         modApi(files(path + "\\Moonlight\\neoforge\\build\\libs\\moonlight-${property("moonlight_testVersion")}-neoforge.jar"))
     }
     //+ MAVEN
     else {
-        if (mavenBackup) modApi("maven.modrinth:moonlight:${property("moonlight_version")}-neoforge")
+        if (findProperty("maven_backup").toString().toBoolean()) modApi("maven.modrinth:moonlight:${property("moonlight_version")}-neoforge")
         else modApi("net.mehvahdjukaar:moonlight-common:${property("moonlight_version")}") { isTransitive = false }
     }
     accessTransformers("net.mehvahdjukaar:moonlight-common:${property("moonlight_version")}")
@@ -41,12 +39,12 @@ dependencies {
 //!! EVERY COMPAT (REQUIRED) ---------------------------------------------------------------------------------------- \\
 
     //- LOCAL
-    if (enableEveryCompTest) {
+    if (findProperty("enable_everycomp_test").toString().toBoolean()) {
         modApi(files(path + "\\WoodGood\\neoforge\\build\\libs\\everycomp-${property("everycomp_testVersion")}-neoforge.jar"))
     }
     //+ MAVEN
     else {
-        if (mavenBackup) modApi("maven.modrinth:every-compat:${property("everycomp_version")}-neoforge")
+        if (findProperty("maven_backup").toString().toBoolean()) modApi("maven.modrinth:every-compat:${property("everycomp_version")}-neoforge")
         else modApi("net.mehvahdjukaar:everycomp-common:${property("everycomp_version")}") { isTransitive = false }
     }
 
