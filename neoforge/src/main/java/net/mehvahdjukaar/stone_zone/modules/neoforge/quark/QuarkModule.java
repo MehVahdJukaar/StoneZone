@@ -3,6 +3,7 @@ package net.mehvahdjukaar.stone_zone.modules.neoforge.quark;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
+import net.mehvahdjukaar.stone_zone.api.StonePaletteStrategies;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
@@ -39,6 +40,7 @@ public class QuarkModule extends StoneZoneModule {
                                 copyChildrenPropertySafe("slab", stoneType))
                 )
                 .requiresChildren(SLAB) //REASON: recipes
+                .addCondition(stoneType -> !PlatHelper.isModLoaded("v_slab_compat"))
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
@@ -46,7 +48,6 @@ public class QuarkModule extends StoneZoneModule {
                 .addRecipe(modRes("building/crafting/vertslabs/andesite_vertical_slab"))
                 .addRecipe(modRes("building/crafting/vertslabs/andesite_vertical_slab_revert"))
                 .copyParentDrop()
-                .addCondition(stoneType -> !PlatHelper.isModLoaded("v_slab_compat"))
                 .build();
         this.addEntry(vertical_slabs);
 
@@ -57,6 +58,7 @@ public class QuarkModule extends StoneZoneModule {
                                 copyChildrenPropertySafe(POLISHED_SLAB, stoneType))
                 )
                 .requiresChildren(POLISHED_SLAB, POLISHED) //REASON: recipes, textures
+                .addCondition(stoneType -> !PlatHelper.isModLoaded("v_slab_compat"))
                 //TEXTURES: polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
@@ -64,7 +66,6 @@ public class QuarkModule extends StoneZoneModule {
                 .addRecipe(modRes("building/crafting/vertslabs/polished_andesite_vertical_slab"))
                 .addRecipe(modRes("building/crafting/vertslabs/polished_andesite_vertical_slab_revert"))
                 .copyParentDrop()
-                .addCondition(stoneType -> !PlatHelper.isModLoaded("v_slab_compat"))
                 .build();
         this.addEntry(polished_vertical_slabs);
 
@@ -76,8 +77,8 @@ public class QuarkModule extends StoneZoneModule {
                         }
                 )
                 .requiresChildren(POLISHED_SLAB) //REASON: recipes
-                .addTexture(modRes("block/andesite_pillar"))
-                .addTexture(modRes("block/andesite_pillar_top"))
+                .addTexture(modRes("block/andesite_pillar"), StonePaletteStrategies.POLISHED_STANDARD)
+                .addTexture(modRes("block/andesite_pillar_top"), StonePaletteStrategies.POLISHED_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
                 .addRecipe(modRes("building/crafting/stonevariants/andesite_pillar"))
