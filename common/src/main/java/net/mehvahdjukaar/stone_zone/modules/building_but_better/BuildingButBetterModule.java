@@ -11,17 +11,19 @@ import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.material.PushReaction;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.SLAB;
 
-//SUPPORT: v1.0.1+
+///SUPPORT: v1.0.1+
 public class BuildingButBetterModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> columns;
@@ -38,7 +40,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
 
     public BuildingButBetterModule(String modId) {
         super(modId, "bbb");
-        ResourceLocation tab = modRes("item_group");
+        Supplier<CreativeModeTab> tab = getModTab("item_group");
 
         columns = StoneZoneEntrySet.of(StoneType.class, "column",
                         getModBlock("stone_column"), () -> VanillaStoneTypes.STONE,
@@ -54,7 +56,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(modRes("stone_blocks"), Registries.BLOCK)
                 .addTag(modRes("stone_columns"), Registries.BLOCK)
                 .addTag(modRes("columns"), Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_column_from_stonecutting"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -73,7 +75,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(modRes("stone_fences"), Registries.BLOCK)
                 .addTag(modRes("stone_blocks"), Registries.BLOCK)
                 .addTag(modRes("stone_fences"), Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_fence_from_stonecutting"))
                 .build();
@@ -90,7 +92,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_blocks"), Registries.BLOCK)
                 .addTag(modRes("urns"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_urn_from_stonecutting"))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -105,7 +107,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_blocks"), Registries.BLOCK)
                 .addTag(ResourceLocation.parse("domum_ornamentum:default"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_tiles_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_tiles_from_bricks_stonecutting"))
@@ -123,7 +125,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .addTag(modRes("stone_blocks"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_tile_stairs_from_stonecutting"))
                 .addRecipe(modRes("stone_tile_stairs_from_stone_stonecutting"))
@@ -141,7 +143,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(modRes("stone_blocks"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_tile_slab_from_stonecutting"))
                 .addRecipe(modRes("stone_tile_slab_from_stone_stonecutting"))
@@ -161,7 +163,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(modRes("stone_layers"), Registries.BLOCK)
                 .addTag(modRes("layers"), Registries.BLOCK)
                 .addTag(modRes("layers"), Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_layer_from_stonecutting"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -179,7 +181,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(modRes("stone_layers"), Registries.BLOCK)
                 .addTag(modRes("layers"), Registries.BLOCK)
                 .addTag(modRes("layers"), Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_brick_layer_from_stonecutting"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -192,7 +194,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 )
                 .requiresChildren("smooth_slab", "smooth") //REASON: recipes & textures
                 //TEXTURES: smooth_stones
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("smooth_stone_layer_from_stonecutting"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -212,7 +214,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(modRes("stone_blocks"), Registries.BLOCK)
                 .addTag(modRes("mouldings"), Registries.BLOCK)
                 .addTag(modRes("mouldings"), Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_moulding_from_stonecutting"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -229,7 +231,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
 //                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
 //                .addTag(modRes("stone_blocks"), Registries.BLOCK)
 //                .addTag(modRes("blocks"), Registries.BLOCK)
-//                .setTabKey(tab)
+//                .setTab(tab)
 //                .addRecipe(modRes("stone_block_from_stonecutting"))
 //                .build();
 //        this.addEntry(blocks);

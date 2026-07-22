@@ -7,12 +7,13 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyBlockStateSafe;
 import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
@@ -46,7 +47,7 @@ public class StoneworksModule extends StoneZoneModule {
 
     public StoneworksModule(String modId) {
         super(modId, "sw");
-        ResourceLocation tab = modRes("main");
+        Supplier<CreativeModeTab> tab = getModTab("main");
 
         tiles = StoneZoneEntrySet.of(StoneType.class, "tiles",
                         getModBlock("stone_tiles"), () -> VanillaStoneTypes.STONE,
@@ -55,7 +56,7 @@ public class StoneworksModule extends StoneZoneModule {
                 //RECIPES: stone
                 .addTexture(modRes("block/stone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_tiles_from_stone_stonecutting"))
                 .build();
         this.addEntry(tiles);
@@ -70,7 +71,7 @@ public class StoneworksModule extends StoneZoneModule {
                 //TEXTURES: stone_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_tile_stairs_from_stone_or_stone_tiles_stonecutting"))
                 .build();
         this.addEntry(tile_stairs);
@@ -83,7 +84,7 @@ public class StoneworksModule extends StoneZoneModule {
                 //TEXTURES: stone_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_tile_slab_from_stone_or_stone_tiles_stonecutting"))
                 .build();
         this.addEntry(tile_slabs);
@@ -96,7 +97,7 @@ public class StoneworksModule extends StoneZoneModule {
                 //TEXTURES: stone_tiles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_tile_wall_from_stone_or_stone_tiles_stonecutting"))
                 .build();
         this.addEntry(tile_walls);
@@ -107,7 +108,7 @@ public class StoneworksModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/cracked_stone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("cracked_stone_tiles_from_stone_stonecutting"))
                 .build();
         this.addEntry(cracked_tiles);
@@ -119,7 +120,7 @@ public class StoneworksModule extends StoneZoneModule {
                 .addTexture(modRes("block/stone_pillar_top"))
                 .addTexture(modRes("block/stone_pillar_side"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_pillar_from_stone_stonecutting"))
                 .build();
         this.addEntry(pillars);
@@ -130,7 +131,7 @@ public class StoneworksModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/stone_plates"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_plates_from_stone_stonecutting"))
                 .build();
         this.addEntry(plates);
@@ -145,7 +146,7 @@ public class StoneworksModule extends StoneZoneModule {
                 //TEXTURES: stone_plates (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_plate_stairs_from_stone_or_stone_plates_stonecutting"))
                 .build();
         this.addEntry(plate_stairs);
@@ -158,7 +159,7 @@ public class StoneworksModule extends StoneZoneModule {
                 //TEXTURES: stone_plates (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_plate_slab_from_stone_or_stone_plates_stonecutting"))
                 .build();
         this.addEntry(plate_slabs);
@@ -171,7 +172,7 @@ public class StoneworksModule extends StoneZoneModule {
                 //TEXTURES: stone_plates (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_plate_wall_from_stone_or_stone_plates_stonecutting"))
                 .build();
         this.addEntry(plate_walls);
@@ -182,7 +183,7 @@ public class StoneworksModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/stone_pavers"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_pavers_from_stone_stonecutting"))
                 .build();
         this.addEntry(pavers);
@@ -197,7 +198,7 @@ public class StoneworksModule extends StoneZoneModule {
                 //TEXTURES: stone_pavers (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_paver_stairs_from_stone_or_stone_pavers_stonecutting"))
                 .build();
         this.addEntry(paver_stairs);
@@ -210,7 +211,7 @@ public class StoneworksModule extends StoneZoneModule {
                 //TEXTURES: stone_pavers (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_paver_slab_from_stone_or_stone_pavers_stonecutting"))
                 .build();
         this.addEntry(paver_slabs);
@@ -223,7 +224,7 @@ public class StoneworksModule extends StoneZoneModule {
                 //TEXTURES: stone_pavers (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_paver_wall_from_stone_or_stone_pavers_stonecutting"))
                 .build();
         this.addEntry(paver_walls);
@@ -234,7 +235,7 @@ public class StoneworksModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/stone_shingles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_shingles_from_stone_stonecutting"))
                 .build();
         this.addEntry(shingles);
@@ -248,7 +249,7 @@ public class StoneworksModule extends StoneZoneModule {
                 .requiresFromMap(shingles.blocks) //REASON: recipes & textures
                 //TEXTURES: stone_shingles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_shingle_stairs_from_stone_or_stone_shingles_stonecutting"))
                 .build();
         this.addEntry(shingle_stairs);
@@ -260,7 +261,7 @@ public class StoneworksModule extends StoneZoneModule {
                 .requiresFromMap(shingles.blocks) //REASON: recipes & textures
                 //TEXTURES: stone_shingles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_shingle_slab_from_stone_or_stone_shingles_stonecutting"))
                 .build();
         this.addEntry(shingle_slabs);
@@ -273,7 +274,7 @@ public class StoneworksModule extends StoneZoneModule {
                 //TEXTURES: stone_shingles (above)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_shingle_wall_from_stone_or_stone_shingles_stonecutting"))
                 .build();
         this.addEntry(shingle_walls);

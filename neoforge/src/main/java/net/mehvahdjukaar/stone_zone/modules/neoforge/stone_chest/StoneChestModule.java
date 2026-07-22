@@ -18,7 +18,6 @@ import net.mehvahdjukaar.stone_zone.common_classes.CompatChestBlockRenderer;
 import net.mehvahdjukaar.stone_zone.common_classes.CompatChestItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -32,13 +31,14 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.Tags;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.registerCached;
 import static net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys.STONE;
 import static net.mehvahdjukaar.stone_zone.common_classes.CompatChestTexture.generateChestTexture;
 
 
-//SUPPORT: v1.1.0+
+///SUPPORT: v1.1.0+
 public class StoneChestModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> chests;
@@ -46,7 +46,7 @@ public class StoneChestModule extends StoneZoneModule {
 
     public StoneChestModule(String modId) {
         super(modId, "sc");
-        ResourceKey<CreativeModeTab> tab = CreativeModeTabs.FUNCTIONAL_BLOCKS;
+        Supplier<CreativeModeTab> tab = getTab(CreativeModeTabs.FUNCTIONAL_BLOCKS);
 
         chests = StoneZoneEntrySet.of(StoneType.class, "","chest",
                         getModBlock("chest_andesite"), () -> VanillaStoneTypes.ANDESITE,
@@ -57,7 +57,7 @@ public class StoneChestModule extends StoneZoneModule {
                 .addTag(BlockTags.GUARDED_BY_PIGLINS, Registries.BLOCK)
                 .addTag(Tags.Blocks.CHESTS, Registries.BLOCK)
                 .addTag(Tags.Items.CHESTS, Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((stoneType, block, properties) -> new CompatChestItem(block, properties))
                 .build();
@@ -75,7 +75,7 @@ public class StoneChestModule extends StoneZoneModule {
                                 s.replace("\"stonechest:item/part_andesite\"",
                                         "\"" + stoneType.createFullIdWith(StoneZone.MOD_ID, "item", shortenedId(), "part", "") + "\"")
                 ))
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(parts);

@@ -10,6 +10,7 @@ import net.mehvahdjukaar.stone_zone.modules.neoforge.macaws.*;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.quark.QuarkModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.quark.QuarkMudModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.stone_chest.StoneChestModule;
+import net.mehvahdjukaar.stone_zone.modules.neoforge.waystones.WaystonesCreateModule;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -49,6 +50,7 @@ public class StoneZoneForge extends StoneZoneCommon {
         addIfLoaded("create", () -> CreateModule.class);
         addIfLoaded("stonechest", () -> StoneChestModule.class);
         addMultipleIfLoaded("quark", () -> QuarkModule.class, () -> QuarkMudModule.class);
+        addIfLoaded("waystones", () -> WaystonesCreateModule.class);
 
 //!! ====================================================== OTHERS ================================================== \\
 

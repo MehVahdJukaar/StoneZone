@@ -7,16 +7,17 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 
-//SUPPORT: v2.1.10+
+///SUPPORT: v2.1.10+
 public class AdditionalLightsModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> al_lamp;
@@ -61,14 +62,14 @@ public class AdditionalLightsModule extends StoneZoneModule {
 
     public AdditionalLightsModule(String modId) {
         super(modId, "al");
-        ResourceLocation tab = modRes("creative_tab");
+        Supplier<CreativeModeTab> tab = getModTab("creative_tab");
 
         al_lamp = StoneZoneEntrySet.of(StoneType.class, "","al_lamp",
                         getModBlock("al_lamp_stone"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new ALLamp(stoneType.stone)
                 )
                 //TEXTURES: stone
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -80,7 +81,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         stoneType -> new ALTorch(stoneType.stone)
                 )
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
 .excludeBlockTypes("ars_nouveau:sourcestone)
                 .build();
@@ -90,7 +91,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("al_wall_torch_stone"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new ALTorch_Wall(stoneType.stone, al_torch.blocks.get(stoneType))
                 )
-                .setTabKey(tab)
+                .setTab(tab)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .noItem()
                 .defaultRecipe()
@@ -104,7 +105,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 )
                 .requiresChildren(BRICKS) //REASON: textures, recipes
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
 .excludeBlockTypes("ars_nouveau:sourcestone)
                 .build();
@@ -115,7 +116,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         stoneType -> new ALTorch(stoneType.bricksOrStone())
                 )
                 .requiresChildren(BRICKS) //REASON: textures, recipes
-                .setTabKey(tab)
+                .setTab(tab)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .noItem()
                 .defaultRecipe()
@@ -129,7 +130,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 )
                 .requiresChildren(MOSSY_BRICKS) //REASON: textures, recipes
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
 .excludeBlockTypes("ars_nouveau:sourcestone)
                 .build();
@@ -140,7 +141,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         stoneType -> new ALTorch(Objects.requireNonNull(stoneType.getBlockOfThis("mossy_bricks")))
                 )
                 .requiresChildren(MOSSY_BRICKS) //REASON: textures, recipes
-                .setTabKey(tab)
+                .setTab(tab)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .noItem()
                 .defaultRecipe()
@@ -153,7 +154,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         stoneType -> new Block(stoneType.stone)
                 )
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
 .excludeBlockTypes("ars_nouveau:sourcestone)
                 .build();
@@ -163,7 +164,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                         getModBlock("al_wall_torch_smooth_stone"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new Block(stoneType.stone)
                 )
-                .setTabKey(tab)
+                .setTab(tab)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .noItem()
                 .defaultRecipe()
@@ -179,7 +180,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -192,7 +193,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 .requiresChildren(MOSSY_BRICKS) //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -205,7 +206,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 .requiresChildren(SMOOTH) //REASON: textures, recipes
                 //TEXTURES: smooth
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -217,7 +218,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 )
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -230,7 +231,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -243,7 +244,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 .requiresChildren(MOSSY_BRICKS) //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -256,7 +257,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 .requiresChildren(SMOOTH) //REASON: textures, recipes
                 //TEXTURES: smooth
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -268,7 +269,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 )
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -281,7 +282,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -294,7 +295,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 .requiresChildren(MOSSY_BRICKS) //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -307,7 +308,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 .requiresChildren(SMOOTH) //REASON: textures, recipes
                 //TEXTURES: smooth
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -319,7 +320,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 )
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -332,7 +333,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -345,7 +346,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 .requiresChildren(MOSSY_BRICKS) //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -358,7 +359,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 .requiresChildren(SMOOTH) //REASON: textures, recipes
                 //TEXTURES: smooth
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -370,7 +371,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 )
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -384,7 +385,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 .requiresChildren(POLISHED) //REASON: textures, recipes
                 //TEXTURES: polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -397,7 +398,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 .requiresChildren(POLISHED) //REASON: textures, recipes
                 //TEXTURES: polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -410,7 +411,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 .requiresChildren(POLISHED) //REASON: textures, recipes
                 //TEXTURES: polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();
@@ -423,7 +424,7 @@ public class AdditionalLightsModule extends StoneZoneModule {
                 .requiresChildren(POLISHED) //REASON: textures, recipes
                 //TEXTURES: polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .excludeBlockTypes("ars_nouveau:sourcestone")
                 .build();

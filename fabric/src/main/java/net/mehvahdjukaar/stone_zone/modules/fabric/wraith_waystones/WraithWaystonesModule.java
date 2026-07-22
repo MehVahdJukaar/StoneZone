@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules.wraith_waystones;
+package net.mehvahdjukaar.stone_zone.modules.fabric.wraith_waystones;
 
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
@@ -9,24 +9,26 @@ import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import wraith.fwaystones.FabricWaystones;
 import wraith.fwaystones.block.WaystoneBlock;
 import wraith.fwaystones.item.WaystoneItem;
 
+import java.util.function.Supplier;
+
 import static net.mehvahdjukaar.stone_zone.StoneZone.res;
 
 
-//SUPPORT: v3.3.4+
+///SUPPORT: v3.3.4+
 public class WraithWaystonesModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> brick_waystone;
 
     public WraithWaystonesModule(String modId) {
         super(modId, "wws");
-        ResourceLocation tab = modRes(modId);
+        Supplier<CreativeModeTab> tab = getModTab(modId);
 
         brick_waystone = StoneZoneEntrySet.of(StoneType.class, "brick_waystone",
                         getModBlock("stone_brick_waystone"), () -> VanillaStoneTypes.STONE,
@@ -58,7 +60,7 @@ public class WraithWaystonesModule extends StoneZoneModule {
                 .addTag(BlockTags.NEEDS_STONE_TOOL, Registries.BLOCK)
                 .addTag(modRes("waystones"), Registries.BLOCK)
                 .addTag(modRes("waystones"), Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((stoneType, block, properties) -> new WaystoneItem(block, properties))
                 .copyParentDrop()

@@ -34,7 +34,7 @@ public class TwigsModule extends StoneZoneModule {
                 .addTexture(modRes("block/stone_column_tip"), customPalette)
                 .addTexture(modRes("block/stone_column_top"), customPalette)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(modRes("twig"))
+                .setTab(getModTab("twig"))
                 .defaultRecipe()
                 .addRecipe(modRes("stone_column_stonecutting"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)

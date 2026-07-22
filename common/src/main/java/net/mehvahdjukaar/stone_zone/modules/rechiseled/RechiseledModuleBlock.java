@@ -62,7 +62,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_big_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(big_tiles);
 
@@ -78,7 +78,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(big_tiles_connecting);
 
@@ -88,7 +88,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_bordered"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(bordered);
 
@@ -104,7 +104,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(bordered_connecting);
 
@@ -114,7 +114,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_brick_pattern"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(brick_pattern);
 
@@ -130,7 +130,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(brick_pattern_connecting);
 
@@ -140,7 +140,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_brick_paving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(brick_paving);
 
@@ -156,7 +156,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(brick_paving_connecting);
 
@@ -166,7 +166,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_crushed"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(crushed);
 
@@ -182,7 +182,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(crushed_connecting);
 
@@ -192,7 +192,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_diagonal_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(diagonal_bricks);
 
@@ -208,7 +208,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(diagonal_bricks_connecting);
 
@@ -218,7 +218,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_path"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(path);
 
@@ -234,7 +234,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(path_connecting);
 
@@ -244,7 +244,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_rotated_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(rotated_bricks);
 
@@ -260,7 +260,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(rotated_bricks_connecting);
 
@@ -270,7 +270,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_small_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(small_bricks);
 
@@ -286,7 +286,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(small_bricks_connecting);
 
@@ -296,7 +296,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_small_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(small_tiles);
 
@@ -312,7 +312,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(small_tiles_connecting);
 
@@ -322,7 +322,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_smooth_brick_paving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_brick_paving);
 
@@ -338,7 +338,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_brick_paving_connecting);
 
@@ -348,7 +348,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_smooth_large_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_large_tiles);
 
@@ -364,7 +364,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_large_tiles_connecting);
 
@@ -374,7 +374,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_smooth_rotated_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_rotated_bricks);
 
@@ -390,7 +390,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_rotated_bricks_connecting);
 
@@ -400,7 +400,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_smooth_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_tiles);
 
@@ -416,7 +416,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_tiles_connecting);
 
@@ -426,7 +426,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_squares"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(squares);
 
@@ -442,7 +442,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(squares_connecting);
 
@@ -452,7 +452,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_waves"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(waves);
 
@@ -468,7 +468,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
 
                 ))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(waves_connecting);
 
@@ -478,7 +478,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 )
                 .addTexture(modRes("block/stone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(tiles);
 
@@ -495,7 +495,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 ))
                 .requiresFromMap(tiles.blocks)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(tiles_connecting);
 
@@ -506,7 +506,7 @@ public class RechiseledModuleBlock extends RechiseledModuleAbstract {
                 .addTexture(modRes("block/stone_slated_end"))
                 .addTexture(modRes("block/stone_slated_side"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(slated);
 

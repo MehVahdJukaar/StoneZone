@@ -20,15 +20,17 @@ import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.every_compat.misc.UtilityTag.createAndAddCustomTags;
 
 
-//SUPPORT: v3.0.7+
+///SUPPORT: v4.0.2+
 public class ChippedModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> bricks;
@@ -101,8 +103,7 @@ public class ChippedModule extends StoneZoneModule {
 
     public ChippedModule(String modId) {
         super(modId, "ch");
-        ResourceLocation tab = modRes("main");
-
+        Supplier<CreativeModeTab> tab = getModTab("main");
 
         bricks = StoneZoneEntrySet.of(StoneType.class, "bricks",
                         getModBlock("andesite_bricks"), () -> VanillaStoneTypes.ANDESITE,
@@ -110,7 +111,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/andesite_bricks"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(bricks);
 
@@ -120,7 +121,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/andesite_mini_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(mini_tiles);
 
@@ -130,7 +131,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/andesite_pillar"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(pillars);
 
@@ -144,7 +145,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/common_textures/2"), StonePaletteStrategies.BRICKS_STANDARD) //REQUIRED BY: Other Blocks, BlockType-pillar
                 .addTexture(modRes("block/andesite/ctm/common_textures/3"), StonePaletteStrategies.BRICKS_STANDARD) //REQUIRED BY: Other Blocks, BlockType-pillar
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(pillar_tops);
 
@@ -158,7 +159,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/polished_andesite_ctm/2")) //REQUIRED BY: polished blocks
                 .addTexture(modRes("block/andesite/ctm/polished_andesite_ctm/3")) //REQUIRED BY: polished blocks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(scales);
 
@@ -168,7 +169,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/angry_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(angry);
 
@@ -178,7 +179,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/blank_andesite_carving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(blank_carving);
 
@@ -188,7 +189,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/carved_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(carved);
 
@@ -198,7 +199,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/checkered_andesite_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(checkered_tiles);
 
@@ -208,7 +209,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/cobbled_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(cobbled);
 
@@ -218,7 +219,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/cracked_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(cracked_bricks);
 
@@ -228,7 +229,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/cracked_disordered_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(crackeddisordered__bricks);
 
@@ -238,7 +239,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/cracked_flat_andesite_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(cracked_flat_tiles);
 
@@ -248,7 +249,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/creeper_andesite_carving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(creeper_carving);
 
@@ -258,7 +259,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/crying_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(crying);
 
@@ -268,7 +269,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/cut_blank_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(cut_blank);
 
@@ -278,7 +279,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/glad_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(glad);
 
@@ -288,7 +289,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/duh_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(duh);
 
@@ -298,7 +299,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/engraved_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(engraved);
 
@@ -308,7 +309,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/eroded_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(eroded);
 
@@ -318,7 +319,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/etched_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(etched_bricks);
 
@@ -328,7 +329,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/flat_andesite_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(flat_tiles);
 
@@ -338,7 +339,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/inlayed_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(inlayed);
 
@@ -348,7 +349,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/inscribed_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(inscribed);
 
@@ -358,7 +359,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/layed_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(layed_bricks);
 
@@ -368,7 +369,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/loded_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(loded);
 
@@ -378,7 +379,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/offset_andesite_bricks"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(offset_bricks);
 
@@ -388,7 +389,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/pillar_andesite_bricks"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(pillar_bricks);
 
@@ -398,7 +399,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/prismal_andesite_remnants"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(prismal_remnants);
 
@@ -408,7 +409,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/rough_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(rough);
 
@@ -418,7 +419,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/rounded_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(rounded_bricks);
 
@@ -428,7 +429,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/runic_carved_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(runic_carved);
 
@@ -438,7 +439,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/sad_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(sad);
 
@@ -448,7 +449,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/sanded_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(sanded);
 
@@ -458,7 +459,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/small_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(small_bricks);
 
@@ -468,7 +469,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/smooth_inlayed_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_inlayed);
 
@@ -478,7 +479,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/smooth_ringed_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_ringed);
 
@@ -488,7 +489,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/smoothed_double_inlayed_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smoothed_double_inlayed);
 
@@ -498,7 +499,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/spider_andesite_carving"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(spider_carving);
 
@@ -520,7 +521,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/pointed_dripstone/andesite_pointed_dripstone_up_tip_merge"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("pointed_dripstone"), Registries.BLOCK, Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(pointed_dripstone);
 
@@ -530,7 +531,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/stacked_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(stacked_bricks);
 
@@ -540,7 +541,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/tiled_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(tiled);
 
@@ -550,7 +551,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/tiny_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(tiny_bricks);
 
@@ -560,7 +561,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/tiny_layered_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(tiny_layered_bricks);
 
@@ -570,7 +571,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/tiny_layered_andesite_slabs"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(tiny_layered_slabs);
 
@@ -580,7 +581,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/trodden_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(trodden);
 
@@ -590,7 +591,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/unamused_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(unamused);
 
@@ -600,7 +601,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/vertical_cut_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(vertical_cut);
 
@@ -610,7 +611,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/vertical_disordered_andesite_bricks"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(vertical_disordered_bricks);
 
@@ -620,7 +621,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/weathered_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(weathered);
 
@@ -634,7 +635,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/bordered_andesite_ctm/2"))
                 .addTexture(modRes("block/andesite/ctm/bordered_andesite_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(bordered);
 
@@ -648,7 +649,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/brick_bordered_andesite_ctm/2"))
                 .addTexture(modRes("block/andesite/ctm/brick_bordered_andesite_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(brick_bordered);
 
@@ -662,7 +663,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/cut_andesite_column_ctm/2"))
                 .addTexture(modRes("block/andesite/ctm/cut_andesite_column_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(cut_column);
 
@@ -676,7 +677,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/edged_andesite_bricks_ctm/2"))
                 .addTexture(modRes("block/andesite/ctm/edged_andesite_bricks_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(edged_bricks);
 
@@ -690,7 +691,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/overlapping_andesite_tiles_ctm/2"))
                 .addTexture(modRes("block/andesite/ctm/overlapping_andesite_tiles_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(overlapping_tiles);
 
@@ -701,7 +702,7 @@ public class ChippedModule extends StoneZoneModule {
                 //TEXTURES: common_textures/0 (generated via pillar_top), polished (generated via scaled)
                 //TEXTURES: polished_andesite_ctm/1, polished_andesite_ctm/2, polished_andesite_ctm/3 (generated via scaled)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(polished);
 
@@ -715,7 +716,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/smooth_andesite_column_ctm/2"))
                 .addTexture(modRes("block/andesite/ctm/smooth_andesite_column_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_column);
 
@@ -728,7 +729,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/thick_inlayed_andesite_ctm/1"))
                 .addTexture(modRes("block/andesite/ctm/thick_inlayed_andesite_ctm/2"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(thick_inlayed);
 
@@ -742,7 +743,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/tiled_andesite_column_ctm/2"))
                 .addTexture(modRes("block/andesite/ctm/tiled_andesite_column_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(tiled_column);
 
@@ -756,7 +757,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/tiled_bordered_andesite_ctm/2"))
                 .addTexture(modRes("block/andesite/ctm/tiled_bordered_andesite_ctm/3"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(tiled_bordered);
 
@@ -769,7 +770,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/tiny_brick_bordered_andesite_ctm/1"))
                 .addTexture(modRes("block/andesite/ctm/tiny_brick_bordered_andesite_ctm/2"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(tiny_brick_bordered);
 
@@ -782,7 +783,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/curly_andesite_pillar/1"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTexture(modRes("block/andesite/ctm/curly_andesite_pillar/3"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(curly_pillar);
 
@@ -796,7 +797,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/fine_andesite_pillar/1"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTexture(modRes("block/andesite/ctm/fine_andesite_pillar/3"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(fine_pillar);
 
@@ -810,7 +811,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/ornate_andesite_pillar/1"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTexture(modRes("block/andesite/ctm/ornate_andesite_pillar/3"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(ornate_pillar);
 
@@ -824,7 +825,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/simple_andesite_pillar/1"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTexture(modRes("block/andesite/ctm/simple_andesite_pillar/3"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(simple_pillar);
 
@@ -838,7 +839,7 @@ public class ChippedModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite/ctm/massive_andesite_bricks/2"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTexture(modRes("block/andesite/ctm/massive_andesite_bricks/3"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(massive_bricks);
 
@@ -848,7 +849,7 @@ public class ChippedModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("block/andesite/spiraled_andesite"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(spiraled);
 

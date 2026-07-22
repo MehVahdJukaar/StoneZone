@@ -9,13 +9,15 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
+
+import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
@@ -34,7 +36,7 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
 
     public MacawFencesModuleAbstract(String modId) {
         super(modId, "mcf");
-        ResourceLocation tab = (PlatHelper.getPlatform().isFabric()) ? modRes("fencesgroup") : modRes("fenceitemgroup");
+        Supplier<CreativeModeTab> tab = (PlatHelper.getPlatform().isFabric()) ? getModTab("fencesgroup") : getModTab("fenceitemgroup");
 
         modern_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "modern",
                         getModBlock("modern_stone_brick_wall"), () -> VanillaStoneTypes.STONE,
@@ -44,7 +46,7 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                 //TEXTURES: bricks, cobblestone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("modern_stone_brick_wall_stonecutter"))
                 .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
@@ -62,7 +64,7 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.UNSTABLE_BOTTOM_CENTER, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCE_GATES, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_brick_railing_gate_stonecutter"))
                 .build();
@@ -78,7 +80,7 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(ItemTags.FENCES, Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("railing_stone_brick_wall_stonecutter"))
                 .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
@@ -96,7 +98,7 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(ItemTags.WALLS, Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
@@ -112,7 +114,7 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(ItemTags.FENCES, Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
@@ -129,7 +131,7 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.UNSTABLE_BOTTOM_CENTER, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCE_GATES, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("andesite_railing_gate_stonecutter"))
                 .build();
@@ -145,7 +147,7 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(ItemTags.FENCES, Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("railing_andesite_wall_stonecutter"))
                 .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
@@ -160,7 +162,7 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                 //TEXTURES: stone, polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("modern_andesite_wall_stonecutter"))
                 .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed

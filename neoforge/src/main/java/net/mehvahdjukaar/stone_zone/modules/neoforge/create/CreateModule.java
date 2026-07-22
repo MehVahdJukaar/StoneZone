@@ -22,6 +22,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
@@ -32,11 +33,12 @@ import net.neoforged.api.distmarker.OnlyIn;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
-//SUPPORT: v6.0.2+
+///SUPPORT: v6.0.8+
 public class CreateModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> cuts;
@@ -63,7 +65,7 @@ public class CreateModule extends StoneZoneModule {
 
     public CreateModule(String modId) {
         super(modId, "c");
-        ResourceLocation tab = modRes("palettes");
+        Supplier<CreativeModeTab> tab = getModTab("palettes");
 
         cuts = StoneZoneEntrySet.of(StoneType.class, "", "cut",
                         getModBlock("cut_andesite"), () -> VanillaStoneTypes.ANDESITE,
@@ -72,7 +74,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTexture(modRes("block/palettes/stone_types/cut/andesite_cut"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(cuts);
@@ -88,7 +90,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .addTag(ItemTags.STAIRS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
@@ -105,7 +107,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(ItemTags.SLABS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("cut_andesite_slab_recycling")) //Crafts cut_andesite
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -122,7 +124,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(ItemTags.WALLS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
@@ -135,7 +137,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTexture(modRes("block/palettes/stone_types/brick/andesite_cut_brick"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(cut_bricks);
@@ -151,7 +153,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .addTag(ItemTags.STAIRS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
@@ -167,7 +169,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(ItemTags.SLABS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("cut_andesite_brick_slab_recycling")) //Crafts cut_andesite_bricks
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -184,7 +186,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(ItemTags.WALLS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
@@ -197,7 +199,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTexture(modRes("block/palettes/stone_types/polished/andesite_cut_polished"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(polished_cuts);
@@ -213,7 +215,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .addTag(ItemTags.STAIRS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
@@ -231,7 +233,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(ItemTags.SLABS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("polished_cut_andesite_slab_recycling")) //Crafts polished_cut_andesite
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -248,7 +250,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(ItemTags.WALLS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
@@ -261,7 +263,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTexture(modRes("block/palettes/stone_types/small_brick/andesite_cut_small_brick"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(small_bricks);
@@ -277,7 +279,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .addTag(ItemTags.STAIRS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
@@ -293,7 +295,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(ItemTags.SLABS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("small_andesite_brick_slab_recycling")) //Crafts small_andesite_bricks
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -310,7 +312,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(ItemTags.WALLS, Registries.ITEM)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
@@ -326,7 +328,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTexture(modRes("block/palettes/stone_types/pillar/andesite_cut_pillar_connected"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(pillars);
@@ -340,7 +342,7 @@ public class CreateModule extends StoneZoneModule {
                 .addTexture(modRes("block/palettes/stone_types/layered/andesite_cut_layered_connected"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 //TAGS: create:stone_types/andesite - manually created
-                .setTabKey(tab)
+                .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(layereds);

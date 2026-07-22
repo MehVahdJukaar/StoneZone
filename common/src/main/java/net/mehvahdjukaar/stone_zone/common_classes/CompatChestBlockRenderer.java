@@ -3,8 +3,7 @@ package net.mehvahdjukaar.stone_zone.common_classes;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.mehvahdjukaar.candlelight.api.ClientOnly;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
@@ -29,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
-@Environment(EnvType.CLIENT)
+@ClientOnly
 public class CompatChestBlockRenderer extends ChestRenderer<CompatChestBlockEntity> {
     public static final ResourceLocation CHEST_SHEET = ResourceLocation.parse("textures/atlas/chest.png");
     private final Map<StoneType, Material> single = new HashMap<>();

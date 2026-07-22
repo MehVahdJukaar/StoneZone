@@ -52,7 +52,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "big_tiles")))
                 //TEXTURES: big_tiles @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(big_tiles_slab);
 
@@ -64,7 +64,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "big_tiles_connecting")))
                 //TEXTURES: big_tiles @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(big_tiles_slab_connecting);
 
@@ -76,7 +76,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "bordered")))
                 //TEXTURES: bordered @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(bordered_slab);
 
@@ -88,7 +88,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "bordered_connecting")))
                 //TEXTURES: bordered @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(bordered_slab_connecting);
 
@@ -100,7 +100,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "brick_pattern")))
                 //TEXTURES: brick_pattern @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(brick_pattern_slab);
 
@@ -112,7 +112,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "brick_pattern_connecting")))
                 //TEXTURES: brick_pattern @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(brick_pattern_slab_connecting);
 
@@ -124,7 +124,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "brick_paving")))
                 //TEXTURES: brick_paving @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(brick_paving_slab);
 
@@ -136,7 +136,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "brick_paving_connecting")))
                 //TEXTURES: brick_paving @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(brick_paving_slab_connecting);
 
@@ -148,7 +148,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "crushed")))
                 //TEXTURES: crushed @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(crushed_slab);
 
@@ -160,7 +160,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "crushed_connecting")))
                 //TEXTURES: crushed @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(crushed_slab_connecting);
 
@@ -172,7 +172,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "diagonal_bricks")))
                 //TEXTURES: diagonal_bricks @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(diagonal_bricks_slab);
 
@@ -184,7 +184,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "diagonal_bricks_connecting")))
                 //TEXTURES: diagonal_bricks @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(diagonal_bricks_slab_connecting);
 
@@ -196,7 +196,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "path")))
                 //TEXTURES: path @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(path_slab);
 
@@ -208,7 +208,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "path_connecting")))
                 //TEXTURES: path @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(path_slab_connecting);
 
@@ -220,7 +220,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "rotated_bricks")))
                 //TEXTURES: rotated_bricks @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(rotated_bricks_slab);
 
@@ -232,7 +232,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "rotated_bricks_connecting")))
                 //TEXTURES: rotated_bricks @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(rotated_bricks_slab_connecting);
 
@@ -244,7 +244,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "small_bricks")))
                 //TEXTURES: small_bricks @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(small_bricks_slab);
 
@@ -256,7 +256,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "small_bricks_connecting")))
                 //TEXTURES: small_bricks @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(small_bricks_slab_connecting);
 
@@ -268,7 +268,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "small_tiles")))
                 //TEXTURES: small_tiles @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(small_tiles_slab);
 
@@ -280,7 +280,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "small_tiles_connecting")))
                 //TEXTURES: small_tiles @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(small_tiles_slab_connecting);
 
@@ -292,7 +292,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "smooth_brick_paving")))
                 //TEXTURES: smooth_brick_paving @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_brick_paving_slab);
 
@@ -304,7 +304,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "smooth_brick_paving_connecting")))
                 //TEXTURES: smooth_brick_paving @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_brick_paving_slab_connecting);
 
@@ -316,7 +316,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "smooth_large_tiles")))
                 //TEXTURES: smooth_large_tiles @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_large_tiles_slab);
 
@@ -328,7 +328,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "smooth_large_tiles_connecting")))
                 //TEXTURES: smooth_large_tiles @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_large_tiles_slab_connecting);
 
@@ -340,7 +340,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "smooth_rotated_bricks")))
                 //TEXTURES: smooth_rotated_bricks @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_rotated_bricks_slab);
 
@@ -352,7 +352,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "smooth_rotated_bricks_connecting")))
                 //TEXTURES: smooth_rotated_bricks @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_rotated_bricks_slab_connecting);
 
@@ -364,7 +364,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "smooth_tiles")))
                 //TEXTURES: smooth_tiles @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_tiles_slab);
 
@@ -376,7 +376,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "smooth_tiles_connecting")))
                 //TEXTURES: smooth_tiles @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(smooth_tiles_slab_connecting);
 
@@ -388,7 +388,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "squares")))
                 //TEXTURES: squares @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(squares_slab);
 
@@ -400,7 +400,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "squares_connecting")))
                 //TEXTURES: squares @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(squares_slab_connecting);
 
@@ -412,7 +412,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "waves")))
                 //TEXTURES: waves @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(waves_slab);
 
@@ -424,7 +424,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "waves_connecting")))
                 //TEXTURES: waves @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(waves_slab_connecting);
 
@@ -436,7 +436,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "tiles")))
                 //TEXTURES: tiles @ RechiseledModule
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(tiles_slab);
 
@@ -449,7 +449,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 //TEXTURES: tiles @ RechiseledModule
                 .requiresFromMap(tiles_slab.blocks)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(tiles_slab_connecting);
 
@@ -461,7 +461,7 @@ public class RechiseledModuleSlab extends RechiseledModuleAbstract {
                 .addCondition(type -> Objects.nonNull(getParentBlock(type, "slated")))
                 //TEXTURES: stone_slated_end,
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(slated_slab);
 

@@ -11,11 +11,14 @@ import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.PushReaction;
 import net.satisfy.candlelight.core.block.CStoveBlock;
 import net.satisfy.farm_and_charm.core.block.LineConnectingBlock;
 import net.satisfy.farm_and_charm.core.block.SinkBlock;
+
+import java.util.function.Supplier;
 
 
 //SUPPORT: v1.1.7+
@@ -27,7 +30,7 @@ public class CandlelightModule extends StoneZoneModule {
 
     public CandlelightModule(String modId) {
         super(modId, "ldcl");
-        ResourceLocation tab = modRes(modId);
+        Supplier<CreativeModeTab> tab = getModTab(modId);
 
         counter = StoneZoneEntrySet.of(StoneType.class, "counter",
                         getModBlock("sandstone_counter"), () -> VanillaStoneTypes.SANDSTONE,
@@ -37,7 +40,7 @@ public class CandlelightModule extends StoneZoneModule {
                 )
                 //TEXTURES: sandstone_sink_side, sandstone_sink_bottom, sandstone_stove_top
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(counter);
@@ -53,7 +56,7 @@ public class CandlelightModule extends StoneZoneModule {
                 .addTexture(modRes("block/sandstone_sink_side"))
                 .addTexture(modRes("block/sandstone_sink_bottom"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .copyParentDrop()
                 .build();
@@ -81,7 +84,7 @@ public class CandlelightModule extends StoneZoneModule {
                 .addTag(UtilityTag.fabricTag("allows_cooking"), Registries.BLOCK)
                 .addTag(modRes("allows_cooking"), Registries.BLOCK)
                 .addTag(ResourceLocation.parse("farm_and_charm:allows_cooking"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT)
                 .build();

@@ -14,8 +14,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.*;
+
+import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
@@ -53,9 +56,9 @@ public class MoreBeautifulTorches extends StoneZoneModule {
 
     public MoreBeautifulTorches(String modId) {
         super(modId, "mbt");
-        ResourceLocation tab = (PlatHelper.Platform.FABRIC.isFabric())
-                ? modRes("goldenfoods_tab")
-                : modRes("morebeautifultorches_tab");
+        Supplier<CreativeModeTab> tab = (PlatHelper.Platform.FABRIC.isFabric())
+                ? getModTab("goldenfoods_tab")
+                : getModTab("morebeautifultorches_tab");
 
         wall_torch = StoneZoneEntrySet.of(StoneType.class, "wall_torch",
                         getModBlock("stone_wall_torch"), () -> VanillaStoneTypes.STONE,
@@ -75,7 +78,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                 )
                 //TEXTURES: wall_torch
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, wall_torch.blocks.get(s), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -100,7 +103,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                 )
                 //TEXTURES: soul_wall_torch
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, soul_wall_torch.blocks.get(s), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -124,7 +127,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                         stoneType -> new RedstoneTorchBlock(Utils.copyPropertySafe(Blocks.REDSTONE_TORCH))
                 )
                 //TEXTURES: redstone_wall_torch
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, redstone_wall_torch.blocks.get(s), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -154,7 +157,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                 //TEXTURES: bricks_wall_torch
                 .requiresChildren(BRICKS) //REASON: recipes
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, bricks_wall_torch.blocks.get(s), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -183,7 +186,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                 //TEXTURES: bricks_soul_wall_torch
                 .requiresChildren(BRICKS) //REASON: recipes
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, bricks_soul_wall_torch.blocks.get(s), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -213,7 +216,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                 )
                 //TEXTURES: bricks_redstone_wall_torch
                 .requiresChildren(BRICKS) //REASON: recipes
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((w, b, p) -> new StandingAndWallBlockItem(b, bricks_redstone_wall_torch.blocks.get(w), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -243,7 +246,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                 //TEXTURES: smooth_wall_torch
                 .requiresChildren(SMOOTH) //REASON: recipes
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, smooth_wall_torch.blocks.get(s), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -272,7 +275,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                 //TEXTURES: smooth_soul_wall_torch
                 .requiresChildren(SMOOTH) //REASON: recipes
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, smooth_soul_wall_torch.blocks.get(s), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -302,7 +305,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                 )
                 //TEXTURES: smooth_redstone_wall_torch
                 .requiresChildren(SMOOTH) //REASON: recipes
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((w, b, p) -> new StandingAndWallBlockItem(b, smooth_redstone_wall_torch.blocks.get(w), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -332,7 +335,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                 //TEXTURES: polished_wall_torch
                 .requiresChildren(POLISHED) //REASON: recipes
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, polished_wall_torch.blocks.get(s), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -361,7 +364,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                 //TEXTURES: polished_soul_wall_torch
                 .requiresChildren(POLISHED) //REASON: recipes
                 .addTag(ResourceLocation.parse("dangerclose:torch_burn_danger"), Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((s, b, p) -> new StandingAndWallBlockItem(b, polished_soul_wall_torch.blocks.get(s), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)
@@ -391,7 +394,7 @@ public class MoreBeautifulTorches extends StoneZoneModule {
                 )
                 //TEXTURES: polished_redstone_wall_torch
                 .requiresChildren(POLISHED) //REASON: recipes
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addCustomItem((w, b, p) -> new StandingAndWallBlockItem(b, polished_redstone_wall_torch.blocks.get(w), p, Direction.DOWN))
                 .setRenderType(RenderLayer.CUTOUT)

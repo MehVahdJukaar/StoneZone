@@ -1,7 +1,6 @@
 package net.mehvahdjukaar.stone_zone;
 
 import net.mehvahdjukaar.stone_zone.modules.better_archeology.BetterArcheologyModule;
-import net.mehvahdjukaar.stone_zone.modules.blockus.BlockusModule;
 import net.mehvahdjukaar.stone_zone.modules.building_but_better.BuildingButBetterModule;
 import net.mehvahdjukaar.stone_zone.modules.chipped.ChippedModule;
 import net.mehvahdjukaar.stone_zone.modules.handcrafted.HandcraftedModule;
@@ -13,7 +12,6 @@ import net.mehvahdjukaar.stone_zone.modules.rechiseled.RechiseledModuleStairs;
 import net.mehvahdjukaar.stone_zone.modules.stoneworks.StoneworksModule;
 import net.mehvahdjukaar.stone_zone.modules.twigs.TwigsModule;
 import net.mehvahdjukaar.stone_zone.modules.waystones.WaystonesModule;
-import net.mehvahdjukaar.stone_zone.modules.wraith_waystones.WraithWaystonesModule;
 
 import static net.mehvahdjukaar.every_compat.EveryCompat.addOtherCompatMod;
 import static net.mehvahdjukaar.every_compat.api.EveryCompatAPI.addIfLoaded;
@@ -38,11 +36,9 @@ public class StoneZoneCommon {
 
         addIfLoaded("bbb", () -> BuildingButBetterModule.class);
         addIfLoaded("betterarcheology", () -> BetterArcheologyModule.class);
-        addIfLoaded("blockus", () -> BlockusModule.class);
         addIfLoaded("candlelight", () -> CandlelightModule.class); //!! [Let's Do]
         addIfLoaded("chipped", () -> ChippedModule.class);
 //        addIfLoaded("decorative_blocks", () -> DecorativeBlocksModule.class); // NOT AVAILABLE
-        addIfLoaded("fwaystones", () -> WraithWaystonesModule.class);
         addIfLoaded("handcrafted", () -> HandcraftedModule.class);
         addIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorches.class);
         addMultipleIfLoaded("rechiseled", () -> RechiseledModuleBlock.class, () -> RechiseledModuleSlab.class, () -> RechiseledModuleStairs.class);

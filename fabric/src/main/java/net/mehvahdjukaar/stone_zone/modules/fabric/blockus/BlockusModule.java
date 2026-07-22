@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules.blockus;
+package net.mehvahdjukaar.stone_zone.modules.fabric.blockus;
 
 import com.brand.blockus.blocks.base.OrientableBlockBase;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
@@ -9,21 +9,21 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 //TODO: Add purpur
-//SUPPORT: v2.7.20+
-//NOTE: Can be supported via Sinytra-Connector
+///SUPPORT: v2.9.11+ (FABRIC)
 public class BlockusModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> herringbone_bricks;
@@ -40,7 +40,7 @@ public class BlockusModule extends StoneZoneModule {
 
     public BlockusModule(String modId) {
         super(modId, "bus");
-        ResourceLocation tab = modRes("blockus_building_blocks");
+        Supplier<CreativeModeTab> tab = getModTab("blockus_building_blocks");
 
         herringbone_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "herringbone",
                         getModBlock("herringbone_stone_bricks"), () -> VanillaStoneTypes.STONE,
@@ -49,7 +49,7 @@ public class BlockusModule extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: recipes
                 .addTexture(modRes("block/herringbone_stone_bricks"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("herringbone_stone_bricks_from_stone_stonecutting"))
                 .addRecipe(modRes("herringbone_stone_bricks_from_stone_bricks_stonecutting"))
                 .build();
@@ -66,7 +66,7 @@ public class BlockusModule extends StoneZoneModule {
                 //TEXTURES: smooth_stone, smooth_stone_slab_side
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("smooth_stone_stairs_from_smooth_stone_stonecutting"))
                 .build();
@@ -80,7 +80,7 @@ public class BlockusModule extends StoneZoneModule {
                 .addTexture(modRes("block/stone_brick_pillar_top"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTexture(modRes("block/stone_brick_pillar"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_brick_pillar_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_brick_pillar_from_stone_bricks_stonecutting"))
                 .build();
@@ -93,7 +93,7 @@ public class BlockusModule extends StoneZoneModule {
                 .requiresChildren(BRICKS) //REASON: recipes
                 .addTexture(modRes("block/stone_circular_paving"), StonePaletteStrategies.BRICKS_STANDARD)
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_circular_paving_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_circular_paving_from_stone_bricks_stonecutting"))
                 .build();
@@ -117,7 +117,7 @@ public class BlockusModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.DOORS, Registries.BLOCK)
                 .addTag(ItemTags.DOORS, Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .copyParentDrop()
                 .build();
@@ -131,7 +131,7 @@ public class BlockusModule extends StoneZoneModule {
                 .addTexture(modRes("block/stone_tiles"), StonePaletteStrategies.BRICKS_STANDARD)
                 .defaultRecipe()
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_tiles_from_stone_bricks_stonecutting"))
                 .addRecipe(modRes("stone_tiles_from_stone_stonecutting"))
                 .build();
@@ -147,7 +147,7 @@ public class BlockusModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(ItemTags.SLABS, Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_tile_slab_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_tile_slab_from_stone_bricks_stonecutting"))
                 .addRecipe(modRes("stone_tile_slab_from_stone_tiles_stonecutting"))
@@ -165,7 +165,7 @@ public class BlockusModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .addTag(ItemTags.STAIRS, Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_tile_stairs_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_tile_stairs_from_stone_bricks_stonecutting"))
                 .addRecipe(modRes("stone_tile_stairs_from_stone_tiles_stonecutting"))
@@ -182,7 +182,7 @@ public class BlockusModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(ItemTags.WALLS, Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("stone_tile_wall_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_tile_wall_from_stone_bricks_stonecutting"))
                 .addRecipe(modRes("stone_tile_wall_from_stone_tiles_stonecutting"))
@@ -206,7 +206,7 @@ public class BlockusModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.TRAPDOORS, Registries.BLOCK)
                 .addTag(ItemTags.TRAPDOORS, Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .build();
         this.addEntry(trapdoors);
@@ -218,7 +218,7 @@ public class BlockusModule extends StoneZoneModule {
 //                )
 //                .addTexture(modRes("block/purpur_squares"), StonePaletteStrategies.BRICKS_STANDARD)
 //                .addRecipe(modRes("purpur_squares_from_purpur_block_stonecutting"))
-//                .setTabKey(tab)
+//                .setTab(tab)
 //                .build();
 //        this.addEntry(squares);
 

@@ -10,10 +10,12 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
+
+import java.util.function.Supplier;
 
 
 //SUPPORT: v4.0.3+
@@ -24,7 +26,7 @@ public class HandcraftedModule extends StoneZoneModule {
 
     public HandcraftedModule(String modId) {
         super(modId, "hc");
-        ResourceLocation tab = modRes("main");
+        Supplier<CreativeModeTab> tab = getModTab("main");
 
         pillar_trim = StoneZoneEntrySet.of(StoneType.class, "pillar_trim",
                         getModBlock("stone_pillar_trim"), () -> VanillaStoneTypes.STONE,
@@ -41,7 +43,7 @@ public class HandcraftedModule extends StoneZoneModule {
                 .addTag(modRes("trims"), Registries.BLOCK)
                 .addTag(modRes("pillar_trims"), Registries.ITEM)
                 .addTag(modRes("trims"), Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addCustomItem((s, block, properties) -> new BlockItem(block, properties))
@@ -60,7 +62,7 @@ public class HandcraftedModule extends StoneZoneModule {
                 .addTag(modRes("trims"), Registries.BLOCK)
                 .addTag(modRes("corner_trims"), Registries.ITEM)
                 .addTag(modRes("trims"), Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addCustomItem((s, block, properties) -> new BlockItem(block, properties))

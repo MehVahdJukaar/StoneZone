@@ -1,7 +1,6 @@
 package net.mehvahdjukaar.stone_zone.misc;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.mehvahdjukaar.candlelight.api.ClientOnly;
 import net.mehvahdjukaar.moonlight.api.client.ICustomItemRendererProvider;
 import net.mehvahdjukaar.moonlight.api.client.ItemStackRenderer;
 import net.minecraft.world.item.Item;
@@ -15,7 +14,7 @@ public class AllStonesItem extends Item implements ICustomItemRendererProvider {
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
+    @ClientOnly
     public Supplier<ItemStackRenderer> getRendererFactory() {
         return StoneTypeCycleItemRenderer::new;
     }

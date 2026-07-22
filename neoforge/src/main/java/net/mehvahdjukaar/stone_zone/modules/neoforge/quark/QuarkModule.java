@@ -7,7 +7,6 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -17,10 +16,12 @@ import org.violetmoon.quark.content.building.module.MoreStoneVariantsModule;
 import org.violetmoon.quark.content.building.module.VerticalSlabsModule;
 import org.violetmoon.zeta.block.ZetaPillarBlock;
 
+import java.util.function.Supplier;
+
 import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
-//SUPPORT: v4.1-473-SNAPSHOT
+///SUPPORT: v4.1-481-SNAPSHOT
 public class QuarkModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> vertical_slabs;
@@ -29,7 +30,7 @@ public class QuarkModule extends StoneZoneModule {
 
     public QuarkModule(String modId) {
         super(modId, "q");
-        ResourceKey<CreativeModeTab> tab = CreativeModeTabs.BUILDING_BLOCKS;
+        Supplier<CreativeModeTab> tab = getTab(CreativeModeTabs.BUILDING_BLOCKS);
 
         vertical_slabs = QuarkEntrySet.of(StoneType.class, "vertical_slab",
                         VerticalSlabsModule.class,
@@ -40,7 +41,7 @@ public class QuarkModule extends StoneZoneModule {
                 .requiresChildren(SLAB) //REASON: recipes
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("building/stonecutting/vertslabs/andesite_vertical_slab_stonecutter"))
                 .addRecipe(modRes("building/crafting/vertslabs/andesite_vertical_slab"))
                 .addRecipe(modRes("building/crafting/vertslabs/andesite_vertical_slab_revert"))
@@ -58,7 +59,7 @@ public class QuarkModule extends StoneZoneModule {
                 .requiresChildren(POLISHED_SLAB, POLISHED) //REASON: recipes, textures
                 //TEXTURES: polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("building/stonecutting/vertslabs/polished_andesite_vertical_slab_stonecutter"))
                 .addRecipe(modRes("building/crafting/vertslabs/polished_andesite_vertical_slab"))
                 .addRecipe(modRes("building/crafting/vertslabs/polished_andesite_vertical_slab_revert"))
@@ -78,7 +79,7 @@ public class QuarkModule extends StoneZoneModule {
                 .addTexture(modRes("block/andesite_pillar"))
                 .addTexture(modRes("block/andesite_pillar_top"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTabKey(tab)
+                .setTab(tab)
                 .addRecipe(modRes("building/crafting/stonevariants/andesite_pillar"))
                 .addRecipe(modRes("building/stonecutting/stonevariants/andesite_pillar_stonecutter"))
                 .build();
