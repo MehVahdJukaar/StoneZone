@@ -1,17 +1,28 @@
-<div style="text-align: center; border: 1px solid yellow; padding: 10px;">
-  <div style="text-align: center; margin-bottom: 10px;">
-    <h3>LEGEND</h3>
-  </div>
-  <div style="text-align: left;">
-    <ul style="list-style-type: disc; padding-left: 20px;">
-      <li>(C): FORGE & FABRIC</li>
-      <li>(NF): NEOFORGE</li>
-      <li>(FB): FABRIC</li>
-      <li>(IT): Included Texture: Added the ResourceLocation of the missing textures required for blocks or generating a new texture</li>
-      <li>(UD): Undetected StoneType have been manually added.</li>
-    </ul>
-  </div>
-</div>
+| **Legends**                                                                                                                       |
+|-----------------------------------------------------------------------------------------------------------------------------------|
+| \- **(C)**: FORGE & FABRIC                                                                                                        |
+| - **(FB)**: FABRIC                                                                                                                |
+| - **(NF)**: NEOFORGE                                                                                                              |
+| - **(IT)**: Included Texture — added the ResourceLocation of the missing textures required for blocks or generating a new texture |
+| - **(TEX)**: hand-made textures to improve the way a block looks                                                                  |
+| - **(COMPAT)**: Create an exception for a compat mod. EveryCompat won't include the Supported Mod and the Wood Mod                |
+| - **(INCLUDED)**: The block is not generated because a Wood Mod already has the same block as the supported mod will be generated |
+| - **(EXCLUDED)**: The block is generated BUT it shouldn't be generated for a reason                                               |
+| - **(UDBT)**: Undetected BlockTypes will be manually added                                                                        |
+|                                                                                                                                   |
+
+---
+
+## v2.11.17
+
+### ADDED:
+- **Waystones** (NF): Support the recipe from **Create: Waystones Recipe** only if it's installed
+  - NOTE: the required children is BRICKS for StoneZone's waystones to be registered & recipe to be generated
+- **Quark** (NF): Changed the PILLARS' texture generation to use POLISHED's texture instead of STONE's - [#207](https://github.com/MehVahdJukaar/StoneZone/issues/207) 
+
+---
+
+## v2.11.16
 
 ### CHANGES:
 - **Chipped** (C): Excluded `pointed_dripstone` from recipe generation & Added `#chipped:pointed_dripstone` tag so it can be crafted via masonstone table
