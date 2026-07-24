@@ -1,8 +1,8 @@
 plugins {
-    id("com.possible-triangle.core") version "1.4.213"
-    id("com.possible-triangle.common") version "1.4.213" apply false
-    id("com.possible-triangle.fabric") version "1.4.213" apply false
-    id("com.possible-triangle.neoforge") version "1.4.213" apply false
+    id("com.possible-triangle.core") version "1.4.224"
+    id("com.possible-triangle.common") version "1.4.224" apply false
+    id("com.possible-triangle.fabric") version "1.4.224" apply false
+    id("com.possible-triangle.neoforge") version "1.4.224" apply false
     id("net.mehvahdjukaar.candlelight") version "1.2.1" apply false
 }
 
