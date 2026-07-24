@@ -69,13 +69,14 @@ dependencies {
     modRuntimeOnly("curse.maven:glitchcore-955399:5660740") // v2.1.0.0 | Biomes-O'-Plenty | required: Typetools, Night-Config
 //    modRuntimeOnly("curse.maven:aeroblender-879879:5911923") // v1.0.0 | Aether
 //    modRuntimeOnly("curse.maven:citadel-331936:6002521") // v2.6.1 | Alexs-Caves //!! 1.20
+    modRuntimeOnly("curse.maven:citadel-1-21-1-port-1415723:7982052") // v2.7.6 | Alexs-Caves
 //    modRuntimeOnly("curse.maven:yungs-api-421850:6715462") // v5.1.6 | NONE //!! FORGE
 //    modRuntimeOnly("curse.maven:patchouli-306770:4966125") // v84 | TFC //!! 1.20
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:6494827") // v21.1.36 | Stoneworks
 //    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | Chipped //!! 1.20
 //    modRuntimeOnly("curse.maven:resourceful-lib-570073:5973188") // v3.0.12 | Chipped, Handcrafted
 //    modRuntimeOnly("curse.maven:resourceful-config-714059:6467772") // v3.0.11 | Better-Archeology
-//    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:7471474") // v1.2.12 | Rechiseled
+//    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:8479774") // v1.3.9 | Rechiseled
 //    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct //!! 1.20
 //    modRuntimeOnly("curse.maven:blueprint-382216:5292242") // v7.1.0 | The-Outer-End, Caverns-And-Chasms //!! 1.20
 //    modRuntimeOnly("curse.maven:monolib-968432:6123976") // v2.0.0 | More-Beautiful-Torches //!! 1.20
@@ -94,7 +95,7 @@ dependencies {
 
     //+ REQUIRED - The modules access libaries from below - Only IN NEOFORGE
     modCompileOnly("curse.maven:supermartijn642s-config-lib-438332:5546996") // v1.1.8 | Rechiseled
-    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:7521894") // v1.1.20 | Rechiseled
+    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:7783425") // v1.1.21 | Rechiseled
     modCompileOnly("org.violetmoon.zeta:Zeta:1.1-40-SNAPSHOT") // Quark
 
     //+ OTHER MAVENS
@@ -115,7 +116,7 @@ dependencies {
     modCompileOnly("curse.maven:stone-chest-307052:7432348")
 
     // OTHER MAVENS
-    modImplementation("com.simibubi.create:create-1.21.1:${property("create_version")}:slim") { isTransitive = false } // Registrate, Flywheel, Ponder
+    modCompileOnly("com.simibubi.create:create-1.21.1:${property("create_version")}:slim") { isTransitive = false } // Registrate, Flywheel, Ponder
     modCompileOnly("org.violetmoon.quark:Quark:4.1-481-SNAPSHOT") // Zeta, Biolith @  https://maven.blamejared.com/org/violetmoon/quark/Quark/
     modCompileOnly("earth.terrarium.chipped:chipped-neoforge-${property("minecraft_version")}:4.0.2") //INCLUDED: Athena, Resourceful-Lib, REQUIRE: Bytecodecs
 
@@ -126,7 +127,7 @@ dependencies {
     modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:6963407") //+[Let's-Do]-Farm-&-Charm
     modCompileOnly("curse.maven:lets-do-farm-charm-1038103:6962704") // Architectury-API
 //    modCompileOnly("curse.maven:more-beautiful-torches-860325:5609745") // Monolib //!! MERGED
-    modCompileOnly("curse.maven:rechiseled-558998:7687594") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
+    modCompileOnly("curse.maven:rechiseled-558998:8301793") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
 //    modCompileOnly("curse.maven:stoneworks-852663:5731747") // puzzles-lib
     modCompileOnly("curse.maven:twigs-496913:8191595")
     modCompileOnly("curse.maven:waystones-245755:8450087") // Balm
@@ -136,10 +137,11 @@ dependencies {
 
     // STONETYPE ONLY
 //    modRuntimeOnly("curse.maven:alexs-caves-924854:5848216") // Citadel //!! 1.20
+    modRuntimeOnly("curse.maven:alexs-caves-unofficial-port-1420348:7981977") // Citadel
 //    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643") //!! 1.20
 //    modRuntimeOnly("curse.maven:spelunkery-790530:5727135") // Moonlight-Lib //!! 1.20
 //    modRuntimeOnly("curse.maven:tinkers-construct-74072:6041763") // Mantle //!! 1.20
-    modRuntimeOnly("curse.maven:thaumon-926511:5492714")
+//    modRuntimeOnly("curse.maven:thaumon-926511:5492714")
 //    modRuntimeOnly("curse.maven:ars-nouveau-401955:6954892") // Curios-API, GeckoLib
 //    modRuntimeOnly("curse.maven:gaia-dimension-302529:5773438")
 //    modRuntimeOnly("curse.maven:what-is-stone-colorful-caves-853161:5175855") //!! 1.20

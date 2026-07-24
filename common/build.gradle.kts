@@ -79,7 +79,7 @@ dependencies {
     modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:6963407") //+[Let's-Do]-Farm-&-Charm
     modCompileOnly("curse.maven:lets-do-farm-charm-1038103:6962704") // Architectury-API
     modCompileOnly("curse.maven:more-beautiful-torches-860325:5609745") // Monolib //!! MERGED
-    modCompileOnly("curse.maven:rechiseled-558998:7687594") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
+    modCompileOnly("curse.maven:rechiseled-558998:8301793") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
     modCompileOnly("curse.maven:stone-chest-307052:7432348")
     modCompileOnly("curse.maven:stoneworks-852663:5731747") // puzzles-lib
     modCompileOnly("curse.maven:twigs-496913:8191595")

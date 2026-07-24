@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.function.Supplier;
 
-///SUPPORT: v1.2.4+
+///SUPPORT: v1.2.5+
 public abstract class RechiseledModuleAbstract extends StoneZoneModule {
 
     public final Supplier<CreativeModeTab> tab = getModTab(getModId());

@@ -64,8 +64,9 @@ dependencies {
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:6494828") // v21.1.36 | Stoneworks
 //    modRuntimeOnly("curse.maven:forge-config-api-port-fabric-547434:5982384") // v21.1.3 | Stoneworks
 //    modRuntimeOnly("com.terraformersmc.terraform-api:terraform-wood-api-v1:7.0.3") // Blockus //!! 1.20
-//    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:5129312") // v1.1.1 | Rechiseled //!! 1.20
+//    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:8479707") // v1.3.9 | Rechiseled
 //    modRuntimeOnly("curse.maven:supermartijn642s-config-lib-438332:5546988") // v1.1.8 | Rechiseled
+//    modRuntimeOnly("curse.maven:supermartijn642s-core-lib-454372:7783365") // v1.1.21 | Rechiseled
 //    modRuntimeOnly("curse.maven:bclib-495191:4971470") // v3.0.14 | BetterEnd //!! 1.20
 //    modRuntimeOnly("com.github.quiqueck:BCLib:3.0.14") // BetterEnd //!! 1.20
 //    modRuntimeOnly("com.github.quiqueck:WunderLib:1.1.5") // BetterEnd //!! 1.20
@@ -121,7 +122,7 @@ dependencies {
     modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:6963399") //+[Let's-Do]-Farm-&-Charm
     modCompileOnly("curse.maven:lets-do-farm-charm-1038103:6962195") // Architectury-API, Cloth-Config-API
     modCompileOnly("curse.maven:more-beautiful-torches-860325:5609745") // MonoLib //!! MERGED
-    modCompileOnly("curse.maven:rechiseled-558998:7687483") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
+    modCompileOnly("curse.maven:rechiseled-558998:8301622") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
     modCompileOnly("curse.maven:stoneworks-852663:5731745") // puzzles-lib, forge-config-api-port
     modCompileOnly("curse.maven:twigs-496913:6782788")
     modCompileOnly("curse.maven:waystones-245755:8450086") // Balm
