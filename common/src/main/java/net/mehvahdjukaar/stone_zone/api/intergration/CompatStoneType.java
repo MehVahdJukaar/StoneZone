@@ -163,6 +163,7 @@ public class CompatStoneType {
         stoneReg.addSimpleFinder("biomeswevegone", "pink_sandstone");
         stoneReg.addSimpleFinder("biomeswevegone", "windswept_sandstone");
         stoneReg.addSimpleFinder("biomeswevegone", "red_rock");
+        stoneReg.addSimpleFinder("biomeswevegone", "white_dacite");
 
         // What Is Stone - REASON: 2-Words
         stoneReg.addSimpleFinder("what_is_stone", "white_granite");
