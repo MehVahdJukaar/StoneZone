@@ -41,6 +41,11 @@ public class CompatStoneType {
             stoneReg.addSimpleFinder("infernalexp", "glowstone")
                 .stone("minecraft:glowstone");
 
+        // Gregtech CEu Modern - REASON: 2-Words
+        stoneReg.addSimpleFinder("gtceu", "red_granite");
+        stoneReg.addSimpleFinder("gtceu", "light_concrete");
+        stoneReg.addSimpleFinder("gtceu", "dark_concrete");
+
         // Ars Nouveau - REASON: Naming-Convention
         stoneReg.addSimpleFinder("ars_nouveau", "sourcestone")
                 .childBlock(BRICKS, "sourcestone_large_bricks")
