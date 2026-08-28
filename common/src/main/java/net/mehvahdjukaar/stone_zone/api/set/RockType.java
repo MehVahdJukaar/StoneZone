@@ -1,6 +1,7 @@
 package net.mehvahdjukaar.stone_zone.api.set;
 
 import net.mehvahdjukaar.moonlight.api.misc.MapRegistry;
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
@@ -89,7 +90,7 @@ public abstract class RockType extends BlockType{
         Block bricksTFC = this.findRelatedBlock("", "bricks");
         if (Objects.nonNull(bricks) || Objects.nonNull(bricksTFC)) {
             // Support TFC & AFC
-            if (this.id.getNamespace().matches("tfc|afc")) {
+            if (this.id.getNamespace().matches("tfc|afc|dfc")) {
                 this.addChild(BRICKS, bricksTFC);
                 this.addChild(BRICK_STAIRS, findRelatedBlock("bricks", "stairs"));
                 this.addChild(BRICK_SLAB, findRelatedBlock("bricks", "slab"));
@@ -148,11 +149,12 @@ public abstract class RockType extends BlockType{
                 // DEFAULT
                 new ResourceLocation(id.getNamespace(), id.getPath() + _infix + _suffix),
                 new ResourceLocation(id.getNamespace(), prefix_ + id.getPath() + _suffix),
-                // TFC & AFC: Include children of stone_type: stairs, slab...
+
+                // TFC, AFC, DFC: Include children of stone_type: stairs, slab...
                 new ResourceLocation(id.getNamespace(), "rock/raw/" + id.getPath() + _suffix),
-                // TFC & AFC: Include children of smooth, cobblestone, button, pressure_plate, bricks, cracked_bricks
+                // TFC, AFC, DFC: Include children of smooth, cobblestone, button, pressure_plate, bricks, cracked_bricks
                 new ResourceLocation(id.getNamespace(), "rock/" + prefix_ + suffix +"/"+ id.getPath()),
-                // TFC & AFC: Include children of brick_slab, smooth_slab, brick_stairs, smooth_stairs
+                // TFC, AFC, DFC: Include children of brick_slab, smooth_slab, brick_stairs, smooth_stairs
                 new ResourceLocation(id.getNamespace(), "rock/"+ prefixOrInfix +"/"+ id.getPath() + _suffix)
         };
         V found = null;
@@ -195,6 +197,9 @@ public abstract class RockType extends BlockType{
 
             resources.add(new ResourceLocation(namespace, path + _suffix));
             resources.add(new ResourceLocation(namespace, prefix_ + path));
+            if (PlatHelper.isModLoaded("tfc") | PlatHelper.isModLoaded("afc") | PlatHelper.isModLoaded("dfc")) {
+                resources.add(new ResourceLocation(namespace, "rock/raw/" + path));
+            }
         }
         return resources.toArray(new ResourceLocation[0]);
     }

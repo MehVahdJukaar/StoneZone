@@ -14,6 +14,8 @@ import org.jetbrains.annotations.ApiStatus;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BRICKS;
+
 /**
  * Childkey Availability:
  * <Ul>
@@ -50,7 +52,7 @@ public class StoneType extends RockType {
     }
 
     public Block bricksOrStone() {
-        Block bricks = this.getBlockOfThis("bricks");
+        Block bricks = this.getBlockOfThis(BRICKS);
         return bricks != null ? bricks : this.stone;
     }
 
