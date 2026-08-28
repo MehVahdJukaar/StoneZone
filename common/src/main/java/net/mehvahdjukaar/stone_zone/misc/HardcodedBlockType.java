@@ -1,11 +1,9 @@
 package net.mehvahdjukaar.stone_zone.misc;
 
-import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.stone_zone.api.set.mud.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
 import java.util.Set;
 
 import static net.mehvahdjukaar.stone_zone.configs.UnsafeDisablerConfigs.*;
@@ -123,21 +121,27 @@ public class HardcodedBlockType {
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+        // Ensure Rechiseled's TILES get generated blc one case with Deeper-Darker already having TILES prevent it from being generated (there may be more mods)
+        if (isStoneFrom("rechiseled", "", "", "\\w+_tiles")) return false;
+
         // Ensure all of Create's Supported-Block With any Stone Mod is generated
         // Create's blocks aren't generated for Quark, Wetland-Whimsy, Geologic-Expansion, TerraFirmaCraft because they both have LIMESTONE & Also fix the tag issue (#64)
-        if (isStoneFrom("create", "", "", "")) return false;
+        if (isStoneFrom("create", "", ".*:limestone", "")) return false;
 
         // Architect's-Palette has MOONSHALE_FLAGSTONE that prevent the similar block from Macaw's-Paths-&-Pavings from being generated
         if (isStoneFrom("mcwpaths", "", "", "moonshale_flagstone")) return false;
 
-        // pillar from Decorative-Blocks & Quark should be always generated
-        if (isStoneFrom("quark|decorative_blocks", "", "", "pillar")) return false;
+        // pillar from Decorative-Blocks, Quark, Create should be always generated
+        if (isStoneFrom("quark|create|decorative_blocks", "", "", "pillar")) return false;
 
         // Create's cut wasn't generated due to Quark's cut_soul_sandstone
         if (isStoneFrom("create", "quark", "", "cut_soul_sandstone")) return false;
 
         // The stone_squares block from Blockus is why stone_squares from Rechiseled got skipped
         if (isStoneFrom("rechiseled", "blockus", "", "squares")) return false;
+
+        // Create's blocks aren't generated for Quark, Wetland-Whimsy, Geologic-Expansion, TerraFirmaCraft because they both have LIMESTONE & Also fix the tag issue (#64)
+        if (isStoneFrom("create", "", "quark:limestone|wetland_whimsy:limestone|geologicexpansion:limestone|tfc:limestone", "")) return false;
 
         // Ensure blocks to be generated because TerraFirmaCraft has similar name of Vanilla StoneType (andesite, granite, diorite, so on...)
         if (isStoneFrom("", "tfc", "", "")) return false;
@@ -172,8 +176,6 @@ public class HardcodedBlockType {
     }
 
     public static Boolean isStoneFrom(String supportedModId, String stonetypeFromMod, String stoneTypeId, String supportedBlockId) {
-        // Excluding blocks from a mod that are both supported-Mod and Stone-Mod
-        if (stoneTypeFromMod.matches(modId)) return false;
 
         String[] expressions = {
                 supportedModId,
