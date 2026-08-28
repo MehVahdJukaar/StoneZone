@@ -41,6 +41,44 @@ public class CompatStoneType {
             stoneReg.addSimpleFinder("infernalexp", "glowstone")
                 .stone("minecraft:glowstone");
 
+        // TerraFirmaCraft - REASON: Naming-Convention
+        stoneReg.addSimpleFinder("tfc", "alabaster")
+                .stone("alabaster/raw")
+                .childBlock(BRICKS, "alabaster/bricks")
+                .childBlock(POLISHED, "alabaster/polished");
+
+        String[] colorAlabasters = {
+                "white", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "gray", "light_gray", "cyan",
+                "purple", "blue", "brown", "green", "red", "black"
+        };
+        for (String color : colorAlabasters) {
+            stoneReg.addSimpleFinder("tfc", color + "_alabaster")
+                    .stone("alabaster/raw/" + color)
+                    .childBlock(BRICKS, "alabaster/bricks/" + color)
+                    .childBlock(BRICK_STAIRS, "alabaster/bricks/"+ color +"_stairs")
+                    .childBlock(BRICK_SLAB, "alabaster/bricks/"+ color +"_slab")
+                    .childBlock(BRICK_WALL, "alabaster/bricks/"+ color +"_wall")
+                    .childBlock(POLISHED, "alabaster/polished/" + color)
+                    .childBlock(POLISHED_STAIRS, "alabaster/polished/"+ color +"_stairs")
+                    .childBlock(POLISHED_SLAB, "alabaster/polished/"+ color +"_slab")
+                    .childBlock(POLISHED_WALL, "alabaster/polished/"+ color +"_wall");
+        }
+
+        String[] colorSandstones = {
+                "brown", "white", "black", "red", "yellow", "green", "pink"
+        };
+        for (String color : colorSandstones) {
+            stoneReg.addSimpleFinder("tfc", color + "_alabaster")
+                    .stone("raw_sandstone/" + color)
+                    .childBlock(STAIRS, "raw_sandstone/"+ color +"_stairs")
+                    .childBlock(SLAB, "raw_sandstone/"+ color +"_slab")
+                    .childBlock(WALL, "raw_sandstone/"+ color +"_wall")
+                    .childBlock(SMOOTH, "smooth_sandstone/" + color)
+                    .childBlock(SMOOTH_STAIRS, "smooth_sandstone/"+ color +"_stairs")
+                    .childBlock(SMOOTH_SLAB, "smooth_sandstone/"+ color +"_slab")
+                    .childBlock(SMOOTH_WALL, "smooth_sandstone/"+ color +"_wall");
+        }
+
         // Gregtech CEu Modern - REASON: 2-Words
         stoneReg.addSimpleFinder("gtceu", "red_granite");
         stoneReg.addSimpleFinder("gtceu", "light_concrete");
@@ -249,6 +287,20 @@ public class CompatStoneType {
         //      └──────────────────────────────────────────────────────────┘
 
         MudTypeRegistry mudReg = MudTypeRegistry.INSTANCE;
+
+        String[] tfc_muds = {
+                "silt", "loam", "sandy_loam", "silty_loam"
+        };
+
+        if (PlatHelper.isModLoaded("tfc"))
+            for (String nameMud : tfc_muds) {
+                mudReg.addSimpleFinder("tfc", nameMud)
+                        .mud("mud/" + nameMud)
+                        .childBlock(BRICKS, "mud_bricks/" + nameMud)
+                        .childBlock(BRICK_STAIRS, "mud_bricks/" + nameMud + "_stairs")
+                        .childBlock(BRICK_SLAB, "mud_bricks/" + nameMud + "_slab")
+                        .childBlock(BRICK_WALL, "mud_bricks/" + nameMud + "_wall");
+            }
 
         // Deeper And Darker - REASON: 2-Words
         mudReg.addSimpleFinder("deeperdarker:sculk_grime");
