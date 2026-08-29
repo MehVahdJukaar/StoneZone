@@ -48,7 +48,11 @@ shadowJar {
 remapJar {
     input.set shadowJar.archiveFile
     dependsOn shadowJar
-    archiveClassifier = null
+    archiveClassifier = "forge"
+}
+
+remapSourcesJar {
+    archiveClassifier = "forge-sources"
 }
 
 jar {

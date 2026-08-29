@@ -1,8 +1,7 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id "dev.architectury.loom" version "1.10-SNAPSHOT" apply false
-    id "com.matthewprenger.cursegradle" version "1.4.0"
-    id "com.modrinth.minotaur" version "2.+"
+    id "com.hypherionmc.modutils.modpublisher" version "2.2.3" apply false
     id 'com.gradleup.shadow' version '8.3.6' apply false
 }
 
@@ -84,8 +83,9 @@ allprojects {
 
 subprojects {
     apply plugin: "dev.architectury.loom"
-    apply plugin: "com.matthewprenger.cursegradle"
-    apply plugin: "com.modrinth.minotaur"
+//    apply plugin: "com.matthewprenger.cursegradle"
+//    apply plugin: "com.modrinth.minotaur"
+    apply plugin: "com.hypherionmc.modutils.modpublisher"
     apply plugin: "com.gradleup.shadow"
 
     loom {
@@ -109,117 +109,96 @@ subprojects {
     var changelogFile = rootProject.file("changelog.md")
     var changelogText = changelogFile.exists() ? changelogFile.text : ""
 
-    if (env.MODRINTH_TOKEN) {
-        modrinth {
-            projectId = modrinth_id
-            uploadFile = tasks.remapJar
-            gameVersions = ["${minecraft_version}"] as Iterable<? extends String>
-            loaders = [modLoader]
-            changelog = changelogText
-            versionNumber =  mod_version +"-"+ modLoader
-            versionType = release_type
+    publisher {
+        apiKeys {
+            modrinth env.MODRINTH_TOKEN ?: ""
+            curseforge env.CURSEFORGE_TOKEN ?: ""
+        }
 
-            if (modLoader == "fabric") {
-                dependencies {
-                    required.project "fabric-api"
-                    required.project "moonlight"
-                    required.project "every-compat"
-                    optional.project "library-section"
-                }
+//        setDebug(true)
+
+        setModrinthID(modrinth_id)
+        setCurseID(curseforge_id)
+
+        setGameVersions(minecraft_version)
+        setLoaders(modLoader)
+        setChangelog(changelogText)
+        setProjectVersion("${mod_version}-${modLoader}")
+        setVersionType(release_type)
+        setCurseEnvironment("both")
+
+        setArtifact(tasks.remapJar)
+        addAdditionalFile(tasks.remapSourcesJar)
+
+        if (modLoader == "fabric") {
+            setDisplayName("${mod_id}-${mod_version}-fabric")
+            modrinthDepends {
+                required("fabric-api", "moonlight", "every-compat")
             }
-            //!! FORGE
-            else {
-                versionName = mod_id +"-"+ mod_version
-                dependencies {
-                    required.project "moonlight"
-                    required.project "every-compat"
-                    optional.project "library-section"
-                }
+
+            curseDepends {
+                required("fabric-api", "selene", "every-compat")
+
+                optional("additional-lights")
+                optional("building-but-better")
+                optional("better-archeology")
+                optional("create-fabric")
+                optional("decorative-blocks")
+                optional("fabric-waystones")
+                optional("handcrafted")
+                optional("lets-do-candlelight")
+                optional("macaws-bridges")
+                optional("macaws-fences-and-walls")
+                optional("macaws-paths-and-pavings")
+                optional("macaws-roofs")
+                optional("macaws-windows")
+                optional("macaws-stairs")
+                optional("more-beautiful-torches")
+                optional("stoneworks")
+                optional("twigs")
+                optional("rechiseled")
+                optional("waystones")
+
+//              optional("mighty-mail-fabric")
             }
         }
-    }
+        //!! FORGE
+        else {
+            setDisplayName("${mod_id}-${mod_version}-forge")
+            modrinthDepends {
+                required("moonlight", "every-compat")
+            }
 
-    if (env.CURSEFORGE_TOKEN) {
-        curseforge {
-            apiKey = env.CURSEFORGE_TOKEN
-            project {
-                id = rootProject.project_id
-                changelog = changelogText
-                changelogType = 'markdown'
-                releaseType = 'release'
-                addGameVersion rootProject.minecraft_version
-                addGameVersion modLoader.capitalize()
+            curseDepends {
+                required("selene", "every-compat")
 
-                mainArtifact(tasks.remapJar) {
-                    if (modLoader == "fabric") {
-                        displayName = mod_id +"-"+ mod_version + "-fabric"
-                    }
-                    else {
-                        displayName = mod_id +"-"+ mod_version + "-forge"
-                    }
-                }
+                optional("additional-lights")
+                optional("better-archeology")
+                optional("blocks-you-need")
+                optional("blockus")
+                optional("buildersaddition")
+                optional("building-but-better")
+                optional("create")
+                optional("decorative-blocks")
+                optional("handcrafted")
+                optional("lets-do-candlelight")
+                optional("macaws-bridges")
+                optional("macaws-fences-and-walls")
+                optional("macaws-paths-and-pavings")
+                optional("macaws-roofs")
+                optional("macaws-windows")
+                optional("macaws-stairs")
+                optional("more-beautiful-torches")
+                optional("quark")
+                optional("stone-chest")
+                optional("stoneworks")
+                optional("twigs")
+                optional("rechiseled")
+                optional("waystones")
 
-                if (modLoader == "fabric") {
-                    relations {
-                        requiredDependency("fabric-api")
-                        requiredDependency("selene")
-                        requiredDependency("every-compat")
-                        optionalDependency("library-section")
-                        optionalDependency("additional-lights")
-                        optionalDependency("building-but-better")
-                        optionalDependency("better-archeology")
-                        optionalDependency("create-fabric")
-                        optionalDependency("decorative-blocks")
-                        optionalDependency("fabric-waystones") // Wraith-Waystones
-                        optionalDependency("handcrafted")
-                        optionalDependency("lets-do-candlelight")
-                        optionalDependency("macaws-bridges")
-                        optionalDependency("macaws-fences-and-walls")
-                        optionalDependency("macaws-paths-and-pavings")
-                        optionalDependency("macaws-roofs")
-                        optionalDependency("macaws-windows")
-                        optionalDependency("macaws-stairs")
-//                        optionalDependency("mighty-mail-fabric")
-                        optionalDependency("more-beautiful-torches")
-                        optionalDependency("stoneworks")
-                        optionalDependency("twigs")
-                        optionalDependency("rechiseled")
-                        optionalDependency("waystones")
-                    }
-                }
-                //!! FORGE
-                else {
-                    relations {
-                        requiredDependency("selene")
-                        requiredDependency("every-compat")
-                        optionalDependency("library-section")
-                        optionalDependency("additional-lights")
-                        optionalDependency("better-archeology")
-                        optionalDependency("blocks-you-need")
-                        optionalDependency("blockus")
-                        optionalDependency("buildersaddition")
-                        optionalDependency("building-but-better")
-//                        optionalDependency("corail-pillar")
-                        optionalDependency("create")
-                        optionalDependency("decorative-blocks")
-                        optionalDependency("handcrafted")
-                        optionalDependency("lets-do-candlelight")
-                        optionalDependency("macaws-bridges")
-                        optionalDependency("macaws-fences-and-walls")
-                        optionalDependency("macaws-paths-and-pavings")
-                        optionalDependency("macaws-roofs")
-                        optionalDependency("macaws-windows")
-                        optionalDependency("macaws-stairs")
-//                        optionalDependency("mighty-mail")
-                        optionalDependency("more-beautiful-torches")
-                        optionalDependency("quark")
-                        optionalDependency("stone-chest")
-                        optionalDependency("stoneworks")
-                        optionalDependency("twigs")
-                        optionalDependency("rechiseled")
-                        optionalDependency("waystones")
-                    }
-                }
+//              optional("corail-pillar")
+//              optional("mighty-mail")
+
             }
         }
     }
@@ -231,10 +210,8 @@ tasks.register('buildAndPublishAll') {
     dependsOn ':fabric:clean'
     dependsOn ':forge:clean'
     dependsOn ':build'
-    dependsOn ':forge:curseforge'
-    dependsOn ':forge:modrinth'
-    dependsOn ':fabric:curseforge'
-    dependsOn ':fabric:modrinth'
+    dependsOn ':fabric:publishMod'
+    dependsOn ':forge:publishMod'
     dependsOn ':publish'
     finalizedBy 'gitTag'
 
