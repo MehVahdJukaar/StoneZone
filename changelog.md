@@ -12,6 +12,25 @@
 |                                                                                                                                   |
 
 ---
+## v2.9.13
+
+### FIXES:
+- **Macaw's Bridges** (C): Fixed the incorrect class used for `stone_brick_bridge`, `mossy_stone_brick_bridge`, `andesite_bridge` - [#206](https://github.com/MehVahdJukaar/StoneZone/issues/206)
+- **Create** (INCLUDED): `PILLAR` for some StoneTypes that already have its own `PILLAR` & Fixed the missing textures for `LAYERED_BLOCK` - [#211](https://github.com/MehVahdJukaar/StoneZone/issues/211)
+- **Stone Zone** (C): StoneType Detection did not detect Stones from **TerraFirmaCraft** (TFC)/**ArborFirmaCraft** (AFC) - [#205](https://github.com/MehVahdJukaar/StoneZone/issues/205)
+
+### ADDED:
+- **Gregtech CEu Modern** (UDBT): `red_granite`, `light_concrete`, & `dark_concrete` as StoneType - [#169](https://github.com/MehVahdJukaar/StoneZone/issues/169)
+- **Oh The Biomes We've Gone** (UDBT): `white_dacite` - [#189](https://github.com/MehVahdJukaar/StoneZone/issues/189)
+- **DecoFirmaCraft** (UDBT): Added into StoneType Detection so stones can be detected along with TFC and AFC
+- **TerraFirmaCraft** (UDBT): [#205](https://github.com/MehVahdJukaar/StoneZone/issues/205)
+  - 7 sandstones & 16 alabasters as StoneTypes
+  - 4 mud as MudTypes
+
+### REMOVED:
+- **Stone Zone** (C): ENABLE_FRAMED_BLOCKS_BLACKLIST is no longer needed. Use `stonezone-hazardous.toml` or `everycomp-hazardous.toml` as an alternative
+
+---
 
 ## v2.9.12
 
