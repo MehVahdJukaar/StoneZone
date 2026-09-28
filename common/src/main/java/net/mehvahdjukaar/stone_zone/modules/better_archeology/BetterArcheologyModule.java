@@ -1,6 +1,7 @@
 package net.mehvahdjukaar.stone_zone.modules.better_archeology;
 
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StonePaletteStrategies;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
@@ -33,7 +34,7 @@ public class BetterArcheologyModule extends StoneZoneModule {
 
         cracked_bricks = StoneZoneEntrySet.of(MudType.class, "bricks", "cracked",
                         getModBlock("cracked_mud_bricks"), () -> VanillaMudTypes.MUD,
-                        mudType -> new Block(copyChildrenPropertySafe(BRICKS, mudType))
+                        mudType -> new Block(Utils.copyPropertySafe(mudType.bricksOrStone()))
                 )
                 .requiresChildren(BRICKS) //REASON: Recipes & palettes
                 .addTexture(modRes("block/cracked_mud_bricks"), StonePaletteStrategies.BRICKS_STANDARD)
