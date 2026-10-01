@@ -1,6 +1,6 @@
 package net.mehvahdjukaar.stone_zone.neoforge;
 
-import net.mehvahdjukaar.moonlight.api.platform.RegHelper;
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.StoneZoneClient;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
@@ -15,6 +15,7 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 import static net.mehvahdjukaar.every_compat.api.EveryCompatAPI.addIfLoaded;
@@ -27,8 +28,9 @@ import static net.mehvahdjukaar.every_compat.api.EveryCompatAPI.addMultipleIfLoa
 public class StoneZoneForge extends StoneZoneCommon {
 
     public StoneZoneForge(IEventBus bus) {
-        RegHelper.startRegisteringFor(bus);
         this.initialize();
+
+        NeoForge.EVENT_BUS.register(this); // Ensure that iTemTooltipEvent() get called
     }
 
     @Override
@@ -58,7 +60,8 @@ public class StoneZoneForge extends StoneZoneCommon {
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public void itemTooltipEvent(ItemTooltipEvent event) {
-        StoneZoneClient.onItemTooltip(event.getItemStack(), event.getContext(), event.getFlags(), event.getToolTip());
+        if (PlatHelper.getPhysicalSide().isClient())
+            StoneZoneClient.onItemTooltip(event.getItemStack(), event.getContext(), event.getFlags(), event.getToolTip());
     }
 
 }
