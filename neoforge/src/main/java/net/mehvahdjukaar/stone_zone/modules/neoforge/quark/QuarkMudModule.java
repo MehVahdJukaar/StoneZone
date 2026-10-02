@@ -24,7 +24,7 @@ import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BRICKS;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BRICK_SLAB;
 
 
-//SUPPORT: v4.0-4.6.0+
+///SUPPORT: v4.1-482+
 public class QuarkMudModule extends StoneZoneModule {
 
     public final SimpleEntrySet<MudType, Block> brick_lattices;

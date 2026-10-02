@@ -22,7 +22,7 @@ import java.util.function.Supplier;
 import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
-///SUPPORT: v4.1-481-SNAPSHOT
+///SUPPORT: v4.1-482+
 public class QuarkModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> vertical_slabs;
