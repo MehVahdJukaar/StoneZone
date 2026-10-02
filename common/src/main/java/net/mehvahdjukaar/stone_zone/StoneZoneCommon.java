@@ -3,6 +3,7 @@ package net.mehvahdjukaar.stone_zone;
 import net.mehvahdjukaar.stone_zone.modules.better_archeology.BetterArcheologyModule;
 import net.mehvahdjukaar.stone_zone.modules.building_but_better.BuildingButBetterModule;
 import net.mehvahdjukaar.stone_zone.modules.chipped.ChippedModule;
+import net.mehvahdjukaar.stone_zone.modules.decorative_blocks.DecorativeBlocksModule;
 import net.mehvahdjukaar.stone_zone.modules.handcrafted.HandcraftedModule;
 import net.mehvahdjukaar.stone_zone.modules.lets_do.CandlelightModule;
 import net.mehvahdjukaar.stone_zone.modules.more_beautiful_torches.MoreBeautifulTorches;
@@ -39,7 +40,7 @@ public class StoneZoneCommon {
         addIfLoaded("betterarcheology", () -> BetterArcheologyModule.class);
         addIfLoaded("candlelight", () -> CandlelightModule.class); //!! [Let's Do]
         addIfLoaded("chipped", () -> ChippedModule.class);
-//        addIfLoaded("decorative_blocks", () -> DecorativeBlocksModule.class); // NOT AVAILABLE
+        addIfLoaded("decorative_blocks", () -> DecorativeBlocksModule.class);
         addIfLoaded("handcrafted", () -> HandcraftedModule.class);
         addIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorches.class);
         addMultipleIfLoaded("rechiseled", () -> RechiseledModuleBlock.class, () -> RechiseledModuleSlab.class, () -> RechiseledModuleStairs.class);

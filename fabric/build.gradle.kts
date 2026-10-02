@@ -119,6 +119,7 @@ dependencies {
     modCompileOnly("curse.maven:better-archeology-835687:8447627") // Resourceful-Config, Architectury-API
     modCompileOnly("curse.maven:blockus-312289:7920575") // Terraformersmc's terraform-wood-api
     modCompileOnly("curse.maven:building-but-better-989479:5382599") //!! 1.20
+    modCompileOnly("curse.maven:decorative-blocks-reborn-1327768:7926190")
     modCompileOnly("curse.maven:fabric-waystones-410902:5798771")
     modCompileOnly("curse.maven:handcrafted-538214:6330032") // Resourceful-Lib
     modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:6963399") //+[Let's-Do]-Farm-&-Charm

@@ -128,6 +128,7 @@ dependencies {
     //+ MIRRORED FROM COMMON - Required because dependOn(common) compiles common sources with neoforge classpath
     modCompileOnly("curse.maven:better-archeology-835687:8447628") // Resourceful-Config, Architectury-API
     modCompileOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1 //!! 1.20
+    modCompileOnly("curse.maven:decorative-blocks-reborn-1327768:7926194")
     modCompileOnly("curse.maven:handcrafted-538214:6330030") // Resourceful-Lib
     modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:6963407") //+[Let's-Do]-Farm-&-Charm
     modCompileOnly("curse.maven:lets-do-farm-charm-1038103:6962704") // Architectury-API
