@@ -80,6 +80,7 @@ dependencies {
     //- ~/fabric/mods LOCAL@
 
     //- OTHER MAVENS - can be commented out or enabled
+//    modRuntimeOnly("org.reflections:reflections:0.10.2") // Refurbished-Furniture
 //    modRuntimeOnly("com.jozufozu.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_neoforge_version}") // Create
 //    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
 //    modRuntimeOnly('net.jodah:typetools:0.6.3') // GlitchCore
@@ -87,6 +88,7 @@ dependencies {
 //    modRuntimeOnly('com.electronwill.night-config:toml:3.8.1') // GlitchCore
 
     //+ REQUIRED - The modules access libaries from below - Only in FABRIC
+    modCompileOnly("curse.maven:framework-549225:7530359") // +Refurbished-Furniture, Mighty-Mail, Backpacked
     modCompileOnly("curse.maven:owo-lib-532610:6446006")
 
     // OTHER MAVENS
@@ -123,6 +125,7 @@ dependencies {
     modCompileOnly("curse.maven:lets-do-farm-charm-1038103:6962195") // Architectury-API, Cloth-Config-API
     modCompileOnly("curse.maven:more-beautiful-torches-860325:5609745") // MonoLib //!! MERGED
     modCompileOnly("curse.maven:rechiseled-558998:8301622") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
+    modCompileOnly("curse.maven:refurbished-furniture-897116:7473565") // Framework
     modCompileOnly("curse.maven:stoneworks-852663:5731745") // puzzles-lib, forge-config-api-port
     modCompileOnly("curse.maven:twigs-496913:6782788")
     modCompileOnly("curse.maven:waystones-245755:8450086") // Balm

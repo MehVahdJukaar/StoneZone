@@ -6,6 +6,7 @@ import net.mehvahdjukaar.stone_zone.modules.chipped.ChippedModule;
 import net.mehvahdjukaar.stone_zone.modules.handcrafted.HandcraftedModule;
 import net.mehvahdjukaar.stone_zone.modules.lets_do.CandlelightModule;
 import net.mehvahdjukaar.stone_zone.modules.more_beautiful_torches.MoreBeautifulTorches;
+import net.mehvahdjukaar.stone_zone.modules.mrcrayfish.RefurbishedFurnitureModule;
 import net.mehvahdjukaar.stone_zone.modules.rechiseled.RechiseledModuleBlock;
 import net.mehvahdjukaar.stone_zone.modules.rechiseled.RechiseledModuleSlab;
 import net.mehvahdjukaar.stone_zone.modules.rechiseled.RechiseledModuleStairs;
@@ -42,6 +43,7 @@ public class StoneZoneCommon {
         addIfLoaded("handcrafted", () -> HandcraftedModule.class);
         addIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorches.class);
         addMultipleIfLoaded("rechiseled", () -> RechiseledModuleBlock.class, () -> RechiseledModuleSlab.class, () -> RechiseledModuleStairs.class);
+        addIfLoaded("refurbished_furniture", () -> RefurbishedFurnitureModule.class);
         addIfLoaded("stoneworks", () -> StoneworksModule.class);
         addIfLoaded("twigs", () -> TwigsModule.class);
         addIfLoaded("waystones", () -> WaystonesModule.class);

@@ -94,6 +94,7 @@ dependencies {
 //    modRuntimeOnly("software.bernie.geckolib:geckolib-neoforge-${property("minecraft_version")}:4.7.7") // Oh-The-Biomes-We've-Gone, Ars-Nouveau
 
     //+ REQUIRED - The modules access libaries from below - Only IN NEOFORGE
+    modCompileOnly("curse.maven:framework-549225:7530361") // +Refurbished-Furniture
     modCompileOnly("curse.maven:supermartijn642s-config-lib-438332:5546996") // v1.1.8 | Rechiseled
     modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:7783425") // v1.1.21 | Rechiseled
 
@@ -132,6 +133,7 @@ dependencies {
     modCompileOnly("curse.maven:lets-do-farm-charm-1038103:6962704") // Architectury-API
 //    modCompileOnly("curse.maven:more-beautiful-torches-860325:5609745") // Monolib //!! MERGED
     modCompileOnly("curse.maven:rechiseled-558998:8301793") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
+    modCompileOnly("curse.maven:refurbished-furniture-897116:7473565") // Framework
 //    modCompileOnly("curse.maven:stoneworks-852663:5731747") // puzzles-lib
     modCompileOnly("curse.maven:twigs-496913:8191595")
     modCompileOnly("curse.maven:waystones-245755:8450087") // Balm

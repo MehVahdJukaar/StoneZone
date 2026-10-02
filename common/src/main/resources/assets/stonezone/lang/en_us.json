@@ -441,6 +441,8 @@
 
   "block_type.candlelight.counter": "%s Counter",
   "block_type.candlelight.stove": "%s Stove",
-  "block_type.candlelight.kitchen_sink": "%s Kitchen Sink"
+  "block_type.candlelight.kitchen_sink": "%s Kitchen Sink",
+
+  "block_type.refurbished_furniture.stepping_stones": "%s Stepping Stones"
 
 }

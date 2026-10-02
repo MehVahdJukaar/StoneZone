@@ -53,12 +53,13 @@ dependencies {
     modCompileOnly("dev.engine-room.flywheel:flywheel-neoforge-${property("minecraft_version")}:${property("flywheel_neoforge_version")}") // Create
     modCompileOnly("net.createmod.ponder:Ponder-NeoForge-${property("minecraft_version")}:${property("ponder_version")}") // Create
 
-    //+ REQUIRED - The modules access libaries from below - Only in FORGE
-    modCompileOnly("org.violetmoon.zeta:Zeta:1.1-40-SNAPSHOT") // Quark
+    //+ REQUIRED - The modules access libaries from below - Only in NEOFORGE
+    modCompileOnly("curse.maven:framework-549225:7530361") // +Refurbished-Furniture, Mighty-Mail, Backpacked
     modCompileOnly("curse.maven:supermartijn642s-config-lib-438332:5546996") // v1.1.8 | Rechiseled
     modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:7521894") // v1.1.20 | Rechiseled
 
     //+ OTHER MAVENS
+    modCompileOnly("org.violetmoon.zeta:Zeta:1.1-40-SNAPSHOT") // Quark
     modCompileOnly("com.tterrag.registrate:Registrate:${property("registrate_version")}") // Create
 
 //!! =================================================== IMPORTS ==================================================== \\
@@ -80,6 +81,7 @@ dependencies {
     modCompileOnly("curse.maven:lets-do-farm-charm-1038103:6962704") // Architectury-API
     modCompileOnly("curse.maven:more-beautiful-torches-860325:5609745") // Monolib //!! MERGED
     modCompileOnly("curse.maven:rechiseled-558998:8301793") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
+    modCompileOnly("curse.maven:refurbished-furniture-897116:7473565") // Framework
     modCompileOnly("curse.maven:stone-chest-307052:7432348")
     modCompileOnly("curse.maven:stoneworks-852663:5731747") // puzzles-lib
     modCompileOnly("curse.maven:twigs-496913:8191595")
