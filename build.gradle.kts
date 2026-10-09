@@ -3,7 +3,7 @@ plugins {
     id("com.possible-triangle.common") version "1.4.242" apply false
     id("com.possible-triangle.fabric") version "1.4.242" apply false
     id("com.possible-triangle.neoforge") version "1.4.242" apply false
-    id("net.mehvahdjukaar.candlelight") version "1.2.1" apply false
+    id("net.mehvahdjukaar.candlelight") version "1.2.4" apply false
 }
 
 mod {
@@ -17,7 +17,6 @@ mod {
     additional.add("everycomp_required_version")
 }
 
-
 subprojects {
 
     pluginManager.apply("com.possible-triangle.core")
@@ -25,7 +24,7 @@ subprojects {
     pluginManager.apply("maven-publish")
 
     dependencies {
-        compileOnly("net.mehvahdjukaar:candlelight:1.2.1")
+        compileOnly("net.mehvahdjukaar:candlelight:1.2.4")
     }
 
 
