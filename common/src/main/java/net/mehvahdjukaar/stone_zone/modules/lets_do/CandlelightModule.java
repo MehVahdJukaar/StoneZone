@@ -14,14 +14,14 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.PushReaction;
-import net.satisfy.candlelight.core.block.CStoveBlock;
+import net.satisfy.candlelight.core.block.StoveBlock;
 import net.satisfy.farm_and_charm.core.block.LineConnectingBlock;
 import net.satisfy.farm_and_charm.core.block.SinkBlock;
 
 import java.util.function.Supplier;
 
 
-//SUPPORT: v1.1.7+
+///SUPPORT: v2.1.14
 public class CandlelightModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> counter;
@@ -64,7 +64,7 @@ public class CandlelightModule extends StoneZoneModule {
 
         stove = StoneZoneEntrySet.of(StoneType.class, "stove",
                         getModBlock("sandstone_stove"), () -> VanillaStoneTypes.SANDSTONE,
-                        stoneType -> new CStoveBlock(Utils.copyPropertySafe(stoneType.stone)
+                        stoneType -> new StoveBlock(Utils.copyPropertySafe(stoneType.stone)
                                 .lightLevel(s -> 12)
                         )
                 )

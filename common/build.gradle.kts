@@ -78,7 +78,7 @@ dependencies {
     modCompileOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1 //!! 1.20
     modCompileOnly("curse.maven:decorative-blocks-reborn-1327768:7926194")
     modCompileOnly("curse.maven:handcrafted-538214:6330030") // Resourceful-Lib
-    modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:6963407") //+[Let's-Do]-Farm-&-Charm
+    modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:9098078") //+[Let's-Do]-Farm-&-Charm
     modCompileOnly("curse.maven:lets-do-farm-charm-1038103:6962704") // Architectury-API
     modCompileOnly("curse.maven:more-beautiful-torches-860325:5609745") // Monolib //!! MERGED
     modCompileOnly("curse.maven:rechiseled-558998:8301793") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
