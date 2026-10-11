@@ -3,7 +3,7 @@ plugins {
     id("com.possible-triangle.common") version "1.4.242" apply false
     id("com.possible-triangle.fabric") version "1.4.242" apply false
     id("com.possible-triangle.neoforge") version "1.4.242" apply false
-    id("net.mehvahdjukaar.candlelight") version "1.2.4" apply false
+    id("net.mehvahdjukaar.candlelight") version "1.2.6" apply false
 }
 
 mod {
@@ -24,7 +24,7 @@ subprojects {
     pluginManager.apply("maven-publish")
 
     dependencies {
-        compileOnly("net.mehvahdjukaar:candlelight:1.2.4")
+        compileOnly("net.mehvahdjukaar:candlelight:1.2.6")
     }
 
 
@@ -46,6 +46,7 @@ subprojects {
                 optional("gems-realm")
                 optional("sawmill")
 
+                // Macaw's Mods
                 optional("macaws-bridges")
                 optional("macaws-fences-and-walls")
                 optional("macaws-paths-and-pavings")
