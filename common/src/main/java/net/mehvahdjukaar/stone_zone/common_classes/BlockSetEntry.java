@@ -48,14 +48,14 @@ public final class BlockSetEntry<BT extends BlockType> {
             String getBlockPath, Function<T, Block> propertyBlock,
             String getSlabPath, Function<T, Block> propertySlab,
             String getStairsPath, Function<T, Block> propertyStairs,
-            @Nullable String wallSupplier, @Nullable Function<T, Block> propertyWall,
+            @Nullable String getWallPath, @Nullable Function<T, Block> propertyWall,
             Supplier<CreativeModeTab> tabSupplier)
     {
         return new BlockSetBuilder<>(typeClass, module, baseTypeId,
                 getBlockPath, propertyBlock,
                 getSlabPath, propertySlab,
                 getStairsPath, propertyStairs,
-                wallSupplier, propertyWall,
+                getWallPath, propertyWall,
                 tabSupplier
         );
     }
