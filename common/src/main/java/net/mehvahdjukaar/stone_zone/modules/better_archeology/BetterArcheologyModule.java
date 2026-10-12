@@ -47,9 +47,6 @@ public class BetterArcheologyModule extends StoneZoneModule {
                 .noSlabAndStairsTag()
                 .noWall()
                 .build();
-        this.addEntry(blockSet.block);
-        this.addEntry(blockSet.slab);
-        this.addEntry(blockSet.stairs);
-
+        this.addEntries(blockSet);
     }
 }

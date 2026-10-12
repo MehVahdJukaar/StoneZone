@@ -3,13 +3,13 @@ package net.mehvahdjukaar.stone_zone.api;
 import net.mehvahdjukaar.every_compat.modules.EveryCompatModule;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
-import net.mehvahdjukaar.moonlight.api.resources.assets.LangBuilder;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.SZRegistry;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.mud.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
+import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntry;
 import net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
@@ -27,14 +27,11 @@ public class StoneZoneModule extends EveryCompatModule {
     }
 
     @Override
-    @SuppressWarnings({"DataFlowIssue", "unchecked"})
     public ResourceKey<CreativeModeTab> getDedicatedTab() {
-        return (ResourceKey<CreativeModeTab>) SZRegistry.MOD_TAB.getKey();
-    }
-
-    @Override
-    public String toString() {
-        return "[StoneZone - " + LangBuilder.getReadableName(modId) + " Module]";
+        if (SZRegistry.MOD_TAB != null) {
+            return SZRegistry.MOD_TAB.getKey();
+        }
+        return null;
     }
 
     @Override
@@ -64,7 +61,7 @@ public class StoneZoneModule extends EveryCompatModule {
     @Override
     public void addDynamicClientResources(Consumer<ResourceGenTask> executor) {
         super.addDynamicClientResources(executor);
-        executor.accept((resourceManager, resourceSink) -> {
+        executor.accept((resourceManager, resourceSink) ->
             getEntries().forEach(entrySetParent -> {
                 if (entrySetParent instanceof StoneZoneEntrySet<?,?> entrySet) {
                     try {
@@ -74,8 +71,15 @@ public class StoneZoneModule extends EveryCompatModule {
                         if (PlatHelper.isDev()) throw ex;
                     }
                 }
-            });
-        });
+            })
+        );
+    }
+
+    public  <T extends BlockType> void addEntries(BlockSetEntry<T> blockSet) {
+        this.addEntry(blockSet.block);
+        if (blockSet.slab != null) this.addEntry(blockSet.slab);
+        if (blockSet.stairs != null) this.addEntry(blockSet.stairs);
+        if (blockSet.wall != null) this.addEntry(blockSet.wall);
     }
 
 }
