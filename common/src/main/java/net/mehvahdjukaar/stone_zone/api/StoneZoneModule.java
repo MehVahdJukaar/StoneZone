@@ -41,6 +41,14 @@ public class StoneZoneModule extends EveryCompatModule {
         //short block name - blockName: <stonetype>_column from the blockId: stonezone:twigs/strata/<stonetype>_column
         String blockName = blockPath.substring(blockPath.lastIndexOf("/") + 1);
 
+        String BlockTypeFrom = blockType.getNamespace();
+
+        // Exclude blocks from a mod that are both Supported-Mod & Wood-Mod
+        if (BlockTypeFrom.equals(this.modId)) return true;
+
+        // Exclude blocks when a supported-mod have an internal support for mods that add new BlockTypes
+        if (this.getAlreadySupportedMods().contains(BlockTypeFrom)) return true;
+
         if (blockType instanceof StoneType stoneType) {
             Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(entrySetId, blockName, stoneType, modId);
             if (hardcoded != null) return hardcoded;
