@@ -21,13 +21,15 @@ tasks.remapSourcesJar {
     archiveClassifier.set("fabric-sources")
 }
 
-val path = System.getenv("REPOS21_1").toString()
+val localReposDir: String? = System.getenv("REPOS21_1")
 dependencies {
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
+
     //- LOCAL
     if (findProperty("enable_moonlight_test").toString().toBoolean()) {
-        modApi(files(path + "\\Moonlight\\fabric\\build\\libs\\moonlight-${property("moonlight_testVersion")}-fabric.jar"))
+        val repos = requireNotNull(localReposDir) { "enable_moonlight_test is on but the REPOS21_1 env var is not set" }
+        implementation(files("$repos\\Moonlight\\fabric\\build\\libs\\moonlight-${property("moonlight_testVersion")}-fabric.jar"))
     }
     //+ MAVEN
     else {
@@ -39,7 +41,8 @@ dependencies {
 
     //- LOCAL
     if (findProperty("enable_everycomp_test").toString().toBoolean()) {
-        modApi(files(path + "\\WoodGood\\fabric\\build\\libs\\everycomp-${property("everycomp_testVersion")}-fabric.jar"))
+        val repos = requireNotNull(localReposDir) { "enable_everycomp_test is on but the REPOS21_1 env var is not set" }
+        implementation(files("$repos\\WoodGood\\fabric\\build\\libs\\everycomp-${property("everycomp_testVersion")}-fabric.jar"))
     }
     //+ MAVEN
     else {
@@ -81,7 +84,8 @@ dependencies {
 
     //- OTHER MAVENS - can be commented out or enabled
 //    modRuntimeOnly("org.reflections:reflections:0.10.2") // Refurbished-Furniture
-//    modRuntimeOnly("com.jozufozu.flywheel:flywheel-fabric-${minecraft_version}:${flywheel_neoforge_version}") // Create
+//    modRuntimeOnly("dev.engine-room.flywheel:flywheel-fabric-${property("minecraft_version")}:${property("flywheel_fabric_version")}") // Create
+//    modRuntimeOnly("net.createmod.ponder:Ponder-Fabric-${property("minecraft_version")}:${property("ponder_fabric_version")}") // Create
 //    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
 //    modRuntimeOnly('net.jodah:typetools:0.6.3') // GlitchCore
 //    modRuntimeOnly('com.electronwill.night-config:core:3.8.1') // GlitchCore
@@ -91,7 +95,7 @@ dependencies {
     modCompileOnly("curse.maven:framework-549225:7530359") // +Refurbished-Furniture, Mighty-Mail, Backpacked
     modCompileOnly("curse.maven:owo-lib-532610:6446006")
 
-    // OTHER MAVENS
+    //+ OTHER MAVENS
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:${property("registrate_fabric_version")}") // Create
     modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:7521829") // v1.1.20 | Rechiseled
 
@@ -116,7 +120,7 @@ dependencies {
 //    modCompileOnly("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}:slim") { isTransitive = false } // Registrate, Flywheel //!! maven is outdated & not available
 
     //+ MIRRORED FROM COMMON - Required because dependOn(common) compiles common sources with fabric classpath
-    modCompileOnly("curse.maven:better-archeology-835687:8447627") // Resourceful-Config, Architectury-API
+    modCompileOnly("curse.maven:better-archeology-835687:9099892") // Resourceful-Config, Architectury-API
     modCompileOnly("curse.maven:blockus-312289:7920575") // Terraformersmc's terraform-wood-api
     modCompileOnly("curse.maven:building-but-better-989479:5382599") //!! 1.20
     modCompileOnly("curse.maven:decorative-blocks-reborn-1327768:7926190")
