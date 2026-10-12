@@ -4,7 +4,6 @@ import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.every_compat.api.*;
 import net.mehvahdjukaar.every_compat.misc.ExtraModelConfiguration;
 import net.mehvahdjukaar.every_compat.misc.ResourcesUtils;
-import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
@@ -185,8 +184,8 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
 
         @Override
         public StoneZoneEntrySet<T, B> build() {
-            if (this.tab == null && PlatHelper.isDev()) {
-                throw new IllegalStateException("Tab for module " + this.name + " was null!");
+            if (this.addToTab && this.tab == null) {
+                throw new IllegalStateException("Tab for: " + getEntryName() + " was null!");
             } else {
                 StoneZoneEntrySet<T, B> e = new StoneZoneEntrySet<>(this.type, this.name, this.prefix, this.blockFactory, this.baseBlock,
                         this.baseType, this.tab, this.tabMode, this.lootMode, this.itemFactory,
