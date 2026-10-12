@@ -4,6 +4,7 @@ package net.mehvahdjukaar.stone_zone.api.set;
 public class VanillaRockChildKeys {
 
     // BLOCKS
+    public static final String BLOCK = "block";
     public static final String STAIRS = "stairs";
     public static final String SLAB = "slab";
     public static final String WALL = "wall";
