@@ -295,7 +295,14 @@ public final class BlockSetEntry<BT extends BlockType> {
             Pattern pattern = Pattern.compile("(?<prefix>(?:[a-z]+_)?[a-z]+)?_?"+typeName+"_?(?<suffix>\\w+)?");
             Matcher matcher = pattern.matcher(baseblockPath);
 
-            if (matcher.find()) return Pair.of(matcher.group("prefix"), matcher.group("suffix"));
+            if (matcher.find()) {
+                String prefix = matcher.group("prefix");
+                String suffix = matcher.group("suffix");
+
+                if (prefix == null && suffix != null) return Pair.of("", suffix);
+                else if (prefix != null && suffix == null) return Pair.of(prefix, "");
+                else return Pair.of(prefix, suffix);
+            }
 
             return Pair.of("", "");
         }
