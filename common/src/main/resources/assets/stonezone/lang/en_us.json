@@ -65,6 +65,11 @@
   "block_type.create.scaffolding": "%s Scaffolding",
   "block_type.create.table_cloth": "%s Table Cover",
 
+  "block_type.bits_n_bobs.tiles": "%s Tiles",
+  "block_type.bits_n_bobs.tile_stairs": "%s Tile Stairs",
+  "block_type.bits_n_bobs.tile_slab": "%s Tile Slab",
+  "block_type.bits_n_bobs.tile_wall": "%s Tile Wall",
+
 
   "block_type.stoneworks.cracked_tiles": "Cracked %s Tiles",
   "block_type.stoneworks.pillar": "%s Pillar",

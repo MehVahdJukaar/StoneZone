@@ -5,6 +5,7 @@ import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.StoneZoneClient;
 import net.mehvahdjukaar.stone_zone.StoneZoneCommon;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.additional_lights.AdditionalLightsModule;
+import net.mehvahdjukaar.stone_zone.modules.neoforge.create.BitsNBobsModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.create.CreateModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.macaws.*;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.quark.QuarkModule;
@@ -50,6 +51,7 @@ public class StoneZoneForge extends StoneZoneCommon {
         // General
         addIfLoaded("additional_lights", () -> AdditionalLightsModule.class);
         addIfLoaded("create", () -> CreateModule.class);
+        addIfLoaded("bits_n_bobs", () -> BitsNBobsModule.class);
         addIfLoaded("stonechest", () -> StoneChestModule.class);
         addMultipleIfLoaded("quark", () -> QuarkModule.class, () -> QuarkMudModule.class);
         addIfLoaded("waystones", () -> WaystonesCreateModule.class);
