@@ -24,8 +24,8 @@ public class BitsNBobsModuleAbstract extends StoneZoneModule {
 
         var blockSet = BlockSetEntry.of(StoneType.class, this, VanillaStoneTypes.ANDESITE,
                         "andesite_tiles", stoneType -> stoneType.stone,
-                        "andesite_tile_stairs", stoneType -> getChildrenBlockSafe(SLAB, stoneType),
-                        "andesite_tile_slab", stoneType -> getChildrenBlockSafe(STAIRS, stoneType),
+                        "andesite_tile_slab", stoneType -> getChildrenBlockSafe(SLAB, stoneType),
+                        "andesite_tile_stairs", stoneType -> getChildrenBlockSafe(STAIRS, stoneType),
                         "andesite_tile_wall", stoneType -> getChildrenBlockSafe(WALL, stoneType),
                         palettesTab
                 )
