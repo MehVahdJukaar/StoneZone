@@ -1,441 +1,243 @@
 package net.mehvahdjukaar.stone_zone.modules.neoforge.create;
 
-import com.simibubi.create.CreateClient;
-import com.simibubi.create.content.decoration.palettes.ConnectedPillarBlock;
-import com.simibubi.create.content.decoration.palettes.LayeredBlock;
-import com.simibubi.create.foundation.block.connected.*;
-import net.mehvahdjukaar.every_compat.api.EntrySet;
-import net.mehvahdjukaar.every_compat.api.RenderLayer;
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.api.registry.SimpleRegistry;
+import com.simibubi.create.content.decoration.MetalLadderBlock;
+import com.simibubi.create.content.decoration.MetalScaffoldingBlock;
+import com.simibubi.create.content.decoration.encasing.CasingBlock;
+import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlock;
+import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogwheelBlock;
+import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedShaftBlock;
+import com.simibubi.create.content.logistics.funnel.BeltFunnelBlock;
+import com.simibubi.create.content.logistics.funnel.FunnelBlock;
+import com.simibubi.create.content.logistics.funnel.FunnelMovementBehaviour;
+import com.simibubi.create.content.logistics.tableCloth.TableClothBlock;
+import com.simibubi.create.content.logistics.tableCloth.TableClothBlockItem;
+import com.simibubi.create.foundation.ponder.CreatePonderPlugin;
+import com.simibubi.create.infrastructure.ponder.AllCreatePonderScenes;
+import com.simibubi.create.infrastructure.ponder.AllCreatePonderTags;
+import com.simibubi.create.infrastructure.ponder.scenes.FunnelScenes;
+import com.simibubi.create.infrastructure.ponder.scenes.KineticsScenes;
+import com.simibubi.create.infrastructure.ponder.scenes.highLogistics.TableClothScenes;
+import com.tterrag.registrate.Registrate;
+import com.tterrag.registrate.util.entry.BlockEntry;
+import com.tterrag.registrate.util.entry.ItemProviderEntry;
+import com.tterrag.registrate.util.entry.RegistryEntry;
+import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
+import net.createmod.ponder.api.scene.PonderStoryBoard;
+import net.createmod.ponder.foundation.PonderIndex;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.every_compat.misc.UtilityRecipe;
-import net.mehvahdjukaar.every_compat.misc.UtilityTag;
-import net.mehvahdjukaar.moonlight.api.resources.ResType;
-import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
-import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
-import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
-import net.minecraft.core.registries.Registries;
+import net.mehvahdjukaar.stone_zone.modules.create.CreateModuleAbstract;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.IronBarsBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
-import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
-
-///SUPPORT: v6.0.8+
-public class CreateModule extends StoneZoneModule {
-
-    public final SimpleEntrySet<StoneType, Block> cuts;
-    public final SimpleEntrySet<StoneType, Block> cut_stairs;
-    public final SimpleEntrySet<StoneType, Block> cut_slabs;
-    public final SimpleEntrySet<StoneType, Block> cut_walls;
-
-    public final SimpleEntrySet<StoneType, Block> cut_bricks;
-    public final SimpleEntrySet<StoneType, Block> cut_brick_stairs;
-    public final SimpleEntrySet<StoneType, Block> cut_brick_slabs;
-    public final SimpleEntrySet<StoneType, Block> cut_brick_walls;
-
-    public final SimpleEntrySet<StoneType, Block> polished_cuts;
-    public final SimpleEntrySet<StoneType, Block> polished_cut_stairs;
-    public final SimpleEntrySet<StoneType, Block> polished_cut_slabs;
-    public final SimpleEntrySet<StoneType, Block> polished_cut_walls;
-
-    public final SimpleEntrySet<StoneType, Block> small_bricks;
-    public final SimpleEntrySet<StoneType, Block> small_brick_stairs;
-    public final SimpleEntrySet<StoneType, Block> small_brick_slabs;
-    public final SimpleEntrySet<StoneType, Block> small_brick_walls;
-    public final SimpleEntrySet<StoneType, Block> pillars;
-    public final SimpleEntrySet<StoneType, Block> layereds;
+///SUPPORT: v6.0.10+
+@SuppressWarnings("CommentedOutCode")
+public class CreateModule extends CreateModuleAbstract {
 
     public CreateModule(String modId) {
-        super(modId, "c");
-        Supplier<CreativeModeTab> tab = getModTab("palettes");
+        super(modId);
+    }
 
-        cuts = StoneZoneEntrySet.of(StoneType.class, "", "cut",
-                        getModBlock("cut_andesite"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
-                )
-                .addTexture(modRes("block/palettes/stone_types/cut/andesite_cut"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(cuts);
-
-        cut_stairs = StoneZoneEntrySet.of(StoneType.class, "stairs", "cut",
-                        getModBlock("cut_andesite_stairs"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
-                                Utils.copyPropertySafe(stoneType.stone))
-                )
-                .requiresFromMap(cuts.blocks) //REASON: recipes
-                //TEXTURES: cuts (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .addTag(ItemTags.STAIRS, Registries.ITEM)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .defaultRecipe()
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(cut_stairs);
-
-        cut_slabs = StoneZoneEntrySet.of(StoneType.class, "slab", "cut",
-                        getModBlock("cut_andesite_slab"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
-                )
-                .requiresFromMap(cuts.blocks) //REASON: recipes
-                //TEXTURES: cuts (above), polished_cut_slabs' andesite_cut_slab (below)
-                .addTexture(modRes("block/palettes/stone_types/slab/andesite_cut_slab"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .addTag(ItemTags.SLABS, Registries.ITEM)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("cut_andesite_slab_recycling")) //Crafts cut_andesite
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(cut_slabs);
-
-        cut_walls = StoneZoneEntrySet.of(StoneType.class, "wall", "cut",
-                        getModBlock("cut_andesite_wall"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new WallBlock(Utils.copyPropertySafe(stoneType.stone))
-                )
-                .requiresFromMap(cuts.blocks) //REASON: recipes
-                //TEXTURES: cuts (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.WALLS, Registries.BLOCK)
-                .addTag(ItemTags.WALLS, Registries.ITEM)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .defaultRecipe()
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(cut_walls);
-
-        cut_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "cut",
-                        getModBlock("cut_andesite_bricks"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
-                )
-                .addTexture(modRes("block/palettes/stone_types/brick/andesite_cut_brick"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(cut_bricks);
-
-        cut_brick_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_stairs", "cut",
-                        getModBlock("cut_andesite_brick_stairs"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
-                                copyChildrenPropertySafe(BRICK_STAIRS, stoneType))
-                )
-                .requiresFromMap(cut_bricks.blocks) //REASON: recipes
-                //TEXTURES: cut_bricks (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .addTag(ItemTags.STAIRS, Registries.ITEM)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .defaultRecipe()
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(cut_brick_stairs);
-
-        cut_brick_slabs = StoneZoneEntrySet.of(StoneType.class, "brick_slab", "cut",
-                        getModBlock("cut_andesite_brick_slab"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new SlabBlock(copyChildrenPropertySafe(BRICK_SLAB, stoneType))
-                )
-                .requiresFromMap(cut_bricks.blocks) //REASON: recipes
-                //TEXTURES: cut_bricks (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .addTag(ItemTags.SLABS, Registries.ITEM)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("cut_andesite_brick_slab_recycling")) //Crafts cut_andesite_bricks
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(cut_brick_slabs);
-
-        cut_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "cut",
-                        getModBlock("cut_andesite_brick_wall"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new WallBlock(copyChildrenPropertySafe(BRICK_WALL, stoneType))
-                )
-                .requiresFromMap(cut_bricks.blocks) //REASON: recipes
-                //TEXTURES: cut_bricks (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.WALLS, Registries.BLOCK)
-                .addTag(ItemTags.WALLS, Registries.ITEM)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .defaultRecipe()
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(cut_brick_walls);
-
-        polished_cuts = StoneZoneEntrySet.of(StoneType.class, "", "polished_cut",
-                        getModBlock("polished_cut_andesite"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
-                )
-                .addTexture(modRes("block/palettes/stone_types/polished/andesite_cut_polished"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(polished_cuts);
-
-        polished_cut_stairs = StoneZoneEntrySet.of(StoneType.class, "stairs", "polished_cut",
-                        getModBlock("polished_cut_andesite_stairs"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
-                                copyChildrenPropertySafe(POLISHED_STAIRS, stoneType))
-                )
-                .requiresFromMap(polished_cuts.blocks) //REASON: recipes
-                //TEXTURES: polished_cut (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .addTag(ItemTags.STAIRS, Registries.ITEM)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .defaultRecipe()
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(polished_cut_stairs);
-
-        polished_cut_slabs = StoneZoneEntrySet.of(StoneType.class, "slab", "polished_cut",
-                        getModBlock("polished_cut_andesite_slab"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new SlabBlock(copyChildrenPropertySafe(POLISHED_SLAB, stoneType))
-                )
-                .requiresFromMap(polished_cuts.blocks) //REASON: recipes
-                //REASON: below belong to cut_slabs but if it won't be generated, then the texture won't be, too
-                .addTexture(modRes("block/palettes/stone_types/slab/andesite_cut_slab"))
-                //TEXTURES: polished_cut, cut_slabs (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .addTag(ItemTags.SLABS, Registries.ITEM)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("polished_cut_andesite_slab_recycling")) //Crafts polished_cut_andesite
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(polished_cut_slabs);
-
-        polished_cut_walls = StoneZoneEntrySet.of(StoneType.class, "wall", "polished_cut",
-                        getModBlock("polished_cut_andesite_wall"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new WallBlock(copyChildrenPropertySafe(POLISHED_WALL, stoneType))
-                )
-                .requiresFromMap(polished_cuts.blocks) //REASON: recipes
-                //TEXTURES: polished_cut (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.WALLS, Registries.BLOCK)
-                .addTag(ItemTags.WALLS, Registries.ITEM)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .defaultRecipe()
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(polished_cut_walls);
-
-        small_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "small",
-                        getModBlock("small_andesite_bricks"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
-                )
-                .addTexture(modRes("block/palettes/stone_types/small_brick/andesite_cut_small_brick"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(small_bricks);
-
-        small_brick_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_stairs", "small",
-                        getModBlock("small_andesite_brick_stairs"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new StairBlock(stoneType.stone.defaultBlockState(),
-                                copyChildrenPropertySafe(BRICK_STAIRS, stoneType))
-                )
-                .requiresFromMap(small_bricks.blocks) //REASON: recipes
-                //TEXTURES: small_bricks (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .addTag(ItemTags.STAIRS, Registries.ITEM)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .defaultRecipe()
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(small_brick_stairs);
-
-        small_brick_slabs = StoneZoneEntrySet.of(StoneType.class, "brick_slab", "small",
-                        getModBlock("small_andesite_brick_slab"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new SlabBlock(copyChildrenPropertySafe(BRICK_SLAB, stoneType))
-                )
-                .requiresFromMap(small_bricks.blocks) //REASON: recipes
-                //TEXTURES: small_bricks, cut_slabs (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .addTag(ItemTags.SLABS, Registries.ITEM)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .defaultRecipe()
-                .addRecipe(modRes("small_andesite_brick_slab_recycling")) //Crafts small_andesite_bricks
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(small_brick_slabs);
-
-        small_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "small",
-                        getModBlock("small_andesite_brick_wall"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new WallBlock(copyChildrenPropertySafe(BRICK_WALL, stoneType))
-                )
-                .requiresFromMap(small_bricks.blocks) //REASON: recipes
-                //TEXTURES: small_bricks (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.WALLS, Registries.BLOCK)
-                .addTag(ItemTags.WALLS, Registries.ITEM)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .defaultRecipe()
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(small_brick_walls);
-
-        pillars = StoneZoneEntrySet.of(StoneType.class, "pillar",
-                        getModBlock("andesite_pillar"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new ConnectedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
-                )
-                .addTexture(modRes("block/palettes/stone_types/cap/andesite_cut_cap")) // andesite_cut_cap
-                .addTexture(modRes("block/palettes/stone_types/cap/andesite_cut_cap_connected")) // andesite_cut_cap_connected
-                .addTexture(modRes("block/palettes/stone_types/pillar/andesite_cut_pillar"))
-                .addTexture(modRes("block/palettes/stone_types/pillar/andesite_cut_pillar_connected"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(pillars);
-
-        layereds = StoneZoneEntrySet.of(StoneType.class, "", "layered",
-                        getModBlock("layered_andesite"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new LayeredBlock(Utils.copyPropertySafe(stoneType.stone))
-                )
-                //TEXTURES: pillars' andesite_cut_cap & andesite_cut_cap_connected (above)
-                .addTexture(modRes("block/palettes/stone_types/layered/andesite_cut_layered"))
-                .addTexture(modRes("block/palettes/stone_types/layered/andesite_cut_layered_connected"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                //TAGS: create:stone_types/andesite - manually created
-                .setTab(tab)
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                .build();
-        this.addEntry(layereds);
-
+    protected Block newCasingBlock(StoneType stoneType) {
+        return new CasingBlock(Utils.copyPropertySafe(stoneType.block)
+                .sound(stoneType.getSound()));
     }
 
     @Override
-    // RECIPES, TAGS
-    public void addDynamicServerResources(Consumer<ResourceGenTask> executor) {
-        super.addDynamicServerResources(executor);
+    protected Block newEncasedShaftedBlock(StoneType stoneType, Supplier<Block> casingBlock) {
+        return new EncasedShaftBlock(Utils.copyPropertySafe(stoneType.block).noOcclusion(), casingBlock);
+    }
 
-        executor.accept((manager, sink) ->
+    @Override
+    protected Block newEncasedCogwheelBlock(StoneType stoneType, Supplier<Block> casingBlock) {
+        return new EncasedCogwheelBlock(Utils.copyPropertySafe(stoneType.block).noOcclusion(), false, casingBlock);
+    }
 
-                StoneTypeRegistry.INSTANCE.forEach(stoneType -> {
+    @Override
+    protected Block newEncasedLargeCogwheelBlock(StoneType stoneType, Supplier<Block> casingBlock) {
+        return new EncasedCogwheelBlock(Utils.copyPropertySafe(stoneType.block).noOcclusion(), true, casingBlock);
+    }
 
-                if (!stoneType.isVanilla() && !stoneType.getNamespace().equals("create")) {
+    @Override
+    protected Block newFunnelBlock(StoneType stoneType, Supplier<Block> beltFunnelBlock) {
+        Block block = new CompatFunnelBlock(Utils.copyPropertySafe(stoneType.block), beltFunnelBlock);
 
-                    // Adding all blocks of a StoneType except "slab" to Array to be tagged
-                    ArrayList<Block> BlockMap = new ArrayList<>();
+        SimpleRegistry.create().register(block, FunnelMovementBehaviour.andesite());
 
-                    for (EntrySet<?> entry : this.getEntries()) {
-                        Block currentBlock = stoneType.getBlockOfThis(this.modId + ":" + entry.getName());
-                        if (Objects.nonNull(currentBlock) && !currentBlock.toString().contains("slab")) {
-                            BlockMap.add(currentBlock);
-                        }
-                    }
-                    BlockMap.add(stoneType.stone);
+        return block;
+    }
 
-                    Block[] blocks = new Block[BlockMap.size()];
-                    BlockMap.toArray(blocks);
-
-                    // Tags
-                    ResourceLocation tagResLoc = StoneZone.res(stoneType.getNamespace() + "/" + stoneType.getTypeName());
-                    boolean isTagCreated = UtilityTag.createAndAddCustomTags(tagResLoc, sink, blocks);
-
-                    // Recipes
-                    if (isTagCreated) {
-                        for (EntrySet<?> entry : this.getEntries()) {
-                            ResourceLocation blockId = Utils.getID(((SimpleEntrySet<?, ?>) entry).getBaseBlock());
-                            String prefix = blockId.getPath();
-                            Block output = stoneType.getBlockOfThis(this.modId + ":" + entry.getName());
-
-                            ResourceLocation recipeFileLoc = modRes(prefix + "_from_stone_types_andesite_stonecutting");
-                            ResourceLocation recipeResLoc = ResType.RECIPES.getPath(recipeFileLoc);
-                            ResourceLocation newRecipeLoc = StoneZone.res(recipeFileLoc.getPath()
-                                            .replace("andesite", stoneType.getTypeName())
-                                            .replace("_stonecutting", "")
-                                            .replace("_stone_types", ""))
-                                    .withPrefix(shortenedId() + "/" + stoneType.getNamespace() + "/stonecutting/");
-
-                            UtilityRecipe.stonecuttingWithTagRecipe(output, recipeResLoc, tagResLoc, newRecipeLoc, sink, manager);
-                        }
-                    }
-                }
-            })
-
+    @Override
+    protected Block newBeltFunnelBlock(StoneType stoneType, Block funnelBlock) {
+        BlockEntry<? extends FunnelBlock> blockEntry = new BlockEntry<>(
+                Registrate.create(StoneZone.MOD_ID),
+                DeferredBlock.createBlock(Utils.getID(funnelBlock))
         );
+        return new BeltFunnelBlock(blockEntry, Utils.copyPropertySafe(stoneType.block));
+    }
+
+//    @Override
+//    protected Block newTunnelBlock(StoneType stoneType) {
+//        return new BrassTunnelBlock(Utils.copyPropertySafe(stoneType.block).noOcclusion());
+//    }
+
+    protected Block makeSlidingDoorBlock(StoneType stoneType) {
+        return SlidingDoorBlock.stone(Utils.copyPropertySafe(stoneType.block)
+                        .sound(stoneType.getSound())
+                        .noOcclusion(),
+                true);
+    }
+
+    protected Block makeMetalLadderBlock(StoneType stoneType) {
+        return new MetalLadderBlock(Utils.copyPropertySafe(stoneType.block));
+    }
+
+    @Override
+    protected Block makeMetalBarsBlock(StoneType stoneType) {
+        return new IronBarsBlock(Utils.copyPropertySafe(Blocks.IRON_BARS)
+                .sound(SoundType.COPPER)
+                .mapColor(stoneType.stone.defaultMapColor())
+        );
+    }
+
+    protected Block makeMetalScaffoldingBlock(StoneType stoneType) {
+        return new MetalScaffoldingBlock(Utils.copyPropertySafe(stoneType.block));
+    }
+
+    @Override
+    protected Block newTableClothBlock(StoneType stoneType) {
+        return new TableClothBlock(Utils.copyPropertySafe(stoneType.block), stoneType.getTypeName());
+    }
+
+    @Override
+    protected Item newTableClothBlockItem(Block block, Item.Properties properties) {
+        return new TableClothBlockItem(block, properties);
+    }
+
+    //      ┌──────────────────────────────────────────────────────────┐
+    //      │                          onMod                           │
+    //      └──────────────────────────────────────────────────────────┘
+
+    @Override
+    public void onModSetup() {
+        super.onModSetup();
+        registerEncasedBlock(AllBlocks.SHAFT.get(), encased_shaft);
+        registerEncasedBlock(AllBlocks.COGWHEEL.get(), encased_cogwheel);
+        registerEncasedBlock(AllBlocks.LARGE_COGWHEEL.get(), encased_large_cogwheel);
+    }
+
+    //      ┌──────────────────────────────────────────────────────────┐
+    //      │                         OnClient                         │
+    //      └──────────────────────────────────────────────────────────┘
+
+    @Override
+    public void onClientInit() {
+        super.onClientInit();
+        PonderIndex.addPlugin(new CompatCreatePonderPlugin());
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public void onClientSetup() {
         super.onClientSetup();
-        CreateClientModule.registerConnectedBlock(this);
+        CreateClientModule.registerLayeredCTBehavior(this);
+        CreateClientModule.registerPillarCTBehavior(this);
+
+        CreateClientModule.registerCasingCTBehavior(this, casing, encased_shaft, encased_cogwheel, encased_large_cogwheel);
+        CreateClientModule.registerScaffoldCTBehavior(this, scaffolding);
     }
 
-    @OnlyIn(Dist.CLIENT)
-    private static class CreateClientModule {
-        private static void registerConnectedBlock(CreateModule module) {
-            module.layereds.blocks.forEach((stone, block) -> {
-                String capPath = "block/" + module.shortenedId() + "/" + stone.getNamespace() + "/palettes/stone_types/cap/" + stone.getTypeName() + "_cut_cap";
-                String layeredPath = "block/" + module.shortenedId() + "/" + stone.getNamespace() + "/palettes/stone_types/layered/" + stone.getTypeName() + "_cut_layered";
 
-                CTSpriteShiftEntry capShift = CTSpriteShifter.getCT(AllCTTypes.OMNIDIRECTIONAL,
-                        StoneZone.res(capPath), StoneZone.res(capPath + "_connected"));
-                CTSpriteShiftEntry layeredShift = CTSpriteShifter.getCT(AllCTTypes.HORIZONTAL_KRYPPERS,
-                        StoneZone.res(layeredPath), StoneZone.res(layeredPath + "_connected"));
+//      ┌──────────────────────────────────────────────────────────┐
+//      │                         CLASSES                          │
+//      └──────────────────────────────────────────────────────────┘
 
-                Block pillarBlock = module.pillars.blocks.get(stone);
-                if (Objects.nonNull(pillarBlock)) {
-                    String pillarPath = "block/" + module.shortenedId() + "/" + stone.getNamespace() + "/palettes/stone_types/pillar/" + stone.getTypeName() + "_cut_pillar";
+    public static class CompatFunnelBlock extends FunnelBlock {
 
-                    CTSpriteShiftEntry pillarShift = CTSpriteShifter.getCT(AllCTTypes.RECTANGLE,
-                            StoneZone.res(pillarPath), StoneZone.res(pillarPath + "_connected"));
+        private final Supplier<Block> funnelBlock;
 
-                    CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(pillarBlock),
-                            (model) -> new CTModel(model, new RotatedPillarCTBehaviour(pillarShift, capShift)));
-                }
+        public CompatFunnelBlock(Properties properties, Supplier<Block> funnelBlock) {
+            super(properties);
+            this.funnelBlock = funnelBlock;
+        }
 
-                CreateClient.MODEL_SWAPPER.getCustomBlockModels().register(Utils.getID(block),
-                        (model) -> new CTModel(model, new HorizontalCTBehaviour(layeredShift, capShift)));
+        @Override
+        public BlockState getEquivalentBeltFunnel(BlockGetter world, BlockPos pos, BlockState state) {
+            Direction facing = getFacing(state);
+            BlockEntry<Block> entry = createStandardBlockEntry(Utils.getID(funnelBlock));
 
+            return entry.getDefaultState()
+                    .setValue(BeltFunnelBlock.HORIZONTAL_FACING, facing)
+                    .setValue(POWERED, state.getValue(POWERED));
+        }
+    }
+
+    public class CompatCreatePonderPlugin extends CreatePonderPlugin {
+        @Override
+        public void registerScenes(@NotNull PonderSceneRegistrationHelper<ResourceLocation> helper) {
+            CompatCreatePonderScenes.register(helper, casing, "shaft/encasing", KineticsScenes::shaftsCanBeEncased);
+
+            table_cloth.blocks.values().forEach(block ->
+                    helper.forComponents(Utils.getID(block)).addStoryBoard("high_logistics/table_cloth", TableClothScenes::tableCloth));
+
+            funnel.blocks.values().forEach(block -> {
+                helper.addStoryBoard(Utils.getID(block), "funnels/brass", FunnelScenes::brass);
+                helper.forComponents(Utils.getID(block))
+                        .addStoryBoard("funnels/intro", FunnelScenes::intro, AllCreatePonderTags.LOGISTICS)
+                        .addStoryBoard("funnels/direction", FunnelScenes::directionality)
+                        .addStoryBoard("funnels/compat", FunnelScenes::compat)
+                        .addStoryBoard("funnels/redstone", FunnelScenes::redstone)
+                        .addStoryBoard("funnels/transposer", FunnelScenes::transposer);
             });
         }
+    }
+
+    public static class CompatCreatePonderScenes extends AllCreatePonderScenes {
+
+        public static void register(PonderSceneRegistrationHelper<ResourceLocation> helper,
+                                    SimpleEntrySet<StoneType, ? extends Block> entrySet,
+                                    String schematicPath,
+                                    PonderStoryBoard ponderStoryBoard) {
+
+            PonderSceneRegistrationHelper<ItemProviderEntry<?,?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
+
+            entrySet.blocks.values().forEach(block -> {
+
+                DeferredItem<Item> itemHolder = DeferredItem.createItem(Utils.getID(block));
+
+                ItemProviderEntry<Item, Item> itemEntry = new ItemProviderEntry<>(Registrate.create(StoneZone.MOD_ID), itemHolder);
+
+                HELPER.addStoryBoard(itemEntry, schematicPath, ponderStoryBoard);
+            });
+
+        }
+
+    }
+
+    //      ┌──────────────────────────────────────────────────────────┐
+    //      │                         Utitiles                         │
+    //      └──────────────────────────────────────────────────────────┘
+
+    protected static BlockEntry<Block> createStandardBlockEntry(ResourceLocation blockId) {
+        return new BlockEntry<>(Registrate.create(StoneZone.MOD_ID), DeferredBlock.createBlock(blockId));
     }
 }
