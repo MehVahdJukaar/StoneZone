@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.WallBlock;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
@@ -289,7 +290,7 @@ public final class BlockSetEntry<BT extends BlockType> {
         //      ┌──────────────────────────────────────────────────────────┐
         //      │                        Utilities                         │
         //      └──────────────────────────────────────────────────────────┘
-        public Pair<String, String> getAffix(String baseblockPath) {
+        public Pair<@Nullable String, @NotNull String> getAffix(String baseblockPath) {
             String typeName = baseType.getTypeName();
 
             Pattern pattern = Pattern.compile("(?<prefix>(?:[a-z]+_)?[a-z]+)?_?"+typeName+"_?(?<suffix>\\w+)?");
@@ -299,7 +300,7 @@ public final class BlockSetEntry<BT extends BlockType> {
                 String prefix = matcher.group("prefix");
                 String suffix = matcher.group("suffix");
 
-                if (prefix == null && suffix != null) return Pair.of("", suffix);
+                if (prefix == null && suffix != null) return Pair.of(null, suffix);
                 else if (prefix != null && suffix == null) return Pair.of(prefix, "");
                 else return Pair.of(prefix, suffix);
             }
