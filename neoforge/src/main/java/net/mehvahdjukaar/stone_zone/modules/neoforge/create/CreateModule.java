@@ -49,7 +49,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
-///SUPPORT: v6.0.10+
+//See CreateModuleAbstract's SUPPORTED VERSION
 @SuppressWarnings("CommentedOutCode")
 public class CreateModule extends CreateModuleAbstract {
 

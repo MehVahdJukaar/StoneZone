@@ -1,5 +1,6 @@
 package net.mehvahdjukaar.stone_zone.modules.create;
 
+import com.mojang.datafixers.util.Pair;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlockItem;
 import com.simibubi.create.content.decoration.encasing.EncasableBlock;
 import com.simibubi.create.content.decoration.encasing.EncasedBlock;
@@ -17,6 +18,7 @@ import net.mehvahdjukaar.every_compat.api.*;
 import net.mehvahdjukaar.every_compat.misc.UtilityRecipe;
 import net.mehvahdjukaar.every_compat.misc.UtilityTag;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
@@ -38,7 +40,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -88,27 +89,26 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                         palettesTab
                 )
                 .block(builder -> builder
-                                .addTexture(modRes("block/palettes/stone_types/cut/andesite_cut"))
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .addTexture(modRes("block/palettes/stone_types/cut/andesite_cut"))
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                 )
                 .slab(builder -> builder
                         //TEXTURES: cuts (above), polished_cut_slabs' andesite_cut_slab (below)
-                                .addTexture(modRes("block/palettes/stone_types/slab/andesite_cut_slab"))
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                        //TAGS: create:stone_types/andesite - manually created
-                                .defaultRecipe()
-                                .addRecipe(modRes("cut_andesite_slab_recycling")) //Crafts cut_andesite
+                        .addTexture(modRes("block/palettes/stone_types/slab/andesite_cut_slab"))
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .defaultRecipe()
+                        .addRecipe(modRes("cut_andesite_slab_recycling")) //Crafts cut_andesite
                 )
                 .stairs(builder -> builder
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
-                                .defaultRecipe()
+                        .defaultRecipe()
                 )
                 .wall(builder -> builder
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
-                                .defaultRecipe()
+                        .defaultRecipe()
                 )
                 .build();
         this.addEntries(cutSet);
@@ -122,26 +122,25 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                         palettesTab
                 )
                 .block(builder -> builder
-                                .addTexture(modRes("block/palettes/stone_types/brick/andesite_cut_brick"))
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .addTexture(modRes("block/palettes/stone_types/brick/andesite_cut_brick"))
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                 )
                 .slab(builder -> builder
-                                .addTexture(modRes("block/palettes/stone_types/slab/andesite_cut_slab"))
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                        //TAGS: create:stone_types/andesite - manually created
-                                .defaultRecipe()
-                                .addRecipe(modRes("cut_andesite_brick_slab_recycling")) //Crafts cut_andesite_bricks
+                        .addTexture(modRes("block/palettes/stone_types/slab/andesite_cut_slab"))
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .defaultRecipe()
+                        .addRecipe(modRes("cut_andesite_brick_slab_recycling")) //Crafts cut_andesite_bricks
                 )
                 .stairs(builder -> builder
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
-                                .defaultRecipe()
+                        .defaultRecipe()
                 )
                 .wall(builder -> builder
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
-                                .defaultRecipe()
+                        .defaultRecipe()
                 )
                 .build();
         this.addEntries(cutBricksSet);
@@ -155,27 +154,26 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                         palettesTab
                 )
                 .block(builder -> builder
-                                .addTexture(modRes("block/palettes/stone_types/polished/andesite_cut_polished"))
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .addTexture(modRes("block/palettes/stone_types/polished/andesite_cut_polished"))
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                 )
                 .slab(builder -> builder
+                        .addTexture(modRes("block/palettes/stone_types/slab/andesite_cut_slab")) // Used by CUT_SLAB
                         //REASON: below belong to cut_slabs but if it won't be generated, then the texture won't be, too
-                                .addTexture(modRes("block/palettes/stone_types/slab/andesite_cut_slab")) // Used by CUT_SLAB
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                        //TAGS: create:stone_types/andesite - manually created
-                                .defaultRecipe()
-                                .addRecipe(modRes("polished_cut_andesite_slab_recycling")) //Crafts cut_andesite_bricks
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .defaultRecipe()
+                        .addRecipe(modRes("polished_cut_andesite_slab_recycling")) //Crafts polished_cut_andesite
                 )
                 .stairs(builder -> builder
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
-                                .defaultRecipe()
+                        .defaultRecipe()
                 )
                 .wall(builder -> builder
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
-                                .defaultRecipe()
+                        .defaultRecipe()
                 )
                 .build();
         this.addEntries(polishedCutSet);
@@ -189,26 +187,25 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                         palettesTab
                 )
                 .block(builder -> builder
-                                .addTexture(modRes("block/palettes/stone_types/small_brick/andesite_cut_small_brick"))
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .addTexture(modRes("block/palettes/stone_types/small_brick/andesite_cut_small_brick"))
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                 )
                 .slab(builder -> builder
                         //TEXTURES: cut_slab (above)
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                        //TAGS: create:stone_types/andesite - manually created
-                                .defaultRecipe()
-                                .addRecipe(modRes("small_andesite_brick_slab_recycling")) //Crafts small_andesite_bricks
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .defaultRecipe()
+                        .addRecipe(modRes("small_andesite_brick_slab_recycling")) //Crafts small_andesite_bricks
                 )
                 .stairs(builder -> builder
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
-                                .defaultRecipe()
+                        .defaultRecipe()
                 )
                 .wall(builder -> builder
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
-                                .defaultRecipe()
+                        .defaultRecipe()
                 )
                 .build();
         this.addEntries(smallBricksSet);
@@ -568,39 +565,60 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
             }
         ));
 
+        // Creating Recipes - ???_andesite_from_stone_types_andesite_stonecutting
         executor.accept((manager, sink) -> StoneTypeRegistry.INSTANCE.forEach(stoneType -> {
+            if (!isKnownVanillaStone(stoneType) && !stoneType.getNamespace().matches("create|bits_n_bobs")) {
 
-            if (!isKnownVanillaStone(stoneType) && !stoneType.getNamespace().equals("create")) {
+                String[] blockIds = {
+                        // Create
+                        "cut_andesite", "cut_andesite_slab", "cut_andesite_stairs", "cut_andesite_wall",
+                        "cut_andesite_bricks", "cut_andesite_brick_slab", "cut_andesite_brick_stairs", "cut_andesite_brick_wall",
+                        "polished_cut_andesite", "polished_cut_andesite_slab", "polished_cut_andesite_stairs", "polished_cut_andesite_wall",
+                        "small_andesite_bricks", "small_andesite_brick_slab", "small_andesite_brick_stairs", "small_andesite_brick_wall",
+                        "layered_andesite", "andesite_pillar",
+
+                        // Bits-N-Bobs
+                        "andesite_tiles", "andesite_tile_slab", "andesite_tile_stairs", "andesite_tile_wall"
+                };
 
                 // Adding all blocks of a StoneType except "slab" to Array to be tagged
                 ArrayList<Block> BlockMap = new ArrayList<>();
 
-                for (EntrySet<?> entry : this.getEntries()) {
-                    Block currentBlock = stoneType.getBlockOfThis(this.modId + ":" + entry.getName());
-                    if (Objects.nonNull(currentBlock) && !currentBlock.toString().contains("slab")) {
+                /// ────────────────────────────── Tagging ──────────────────────────────
+                for (String id : blockIds) {
+                    if (id.contains("slab")) continue;
+
+                    Pair<Block, String> pair = getBlockAndEntryId(id, stoneType);
+                    Block currentBlock = pair.getFirst();
+
+                    if (currentBlock != null) {
                         BlockMap.add(currentBlock);
                     }
                 }
+
                 BlockMap.add(stoneType.stone);
 
                 Block[] blocks = new Block[BlockMap.size()];
                 BlockMap.toArray(blocks);
 
                 // Tags
-                ResourceLocation tagResLoc = StoneZone.res(stoneType.getNamespace() + "/" + stoneType.getTypeName());
+                ResourceLocation tagResLoc = StoneZone.res(stoneType.getAppendableId());
                 boolean isTagCreated = UtilityTag.createAndAddCustomTags(tagResLoc, sink, blocks);
 
+                /// ────────────────────────── Creating Recipe ──────────────────────────
                 // Recipes - ???_andesite_from_stone_types_andesite_stonecutting
                 if (isTagCreated) {
-                    for (EntrySet<?> entry : this.getEntries()) {
+                    for (String entry : blockIds) {
+                        Pair<Block, String> pair;
+                        pair = getBlockAndEntryId(entry, stoneType);
+                        Block output = pair.getFirst();
+                        String entryId = pair.getSecond();
 
-                        if (entry.getName().contains("cut") || entry.getName().contains("small")) {
-                            ResourceLocation blockId = Utils.getID(((SimpleEntrySet<?, ?>) entry).getBaseBlock());
-                            String prefix = blockId.getPath();
-                            Block output = stoneType.getBlockOfThis(this.modId + ":" + entry.getName());
-
-                            ResourceLocation recipeFileLoc = modRes(prefix + "_from_stone_types_andesite_stonecutting");
+                        if (output != null) {
+                            ResourceLocation recipeFileLoc = ResourceLocation.parse(entryId + "_from_stone_types_andesite_stonecutting");
                             ResourceLocation recipeResLoc = ResType.RECIPES.getPath(recipeFileLoc);
+
+                            // Changed from "???_from_stone_types_andesite_stonecutting" to "c/namespace/stonecutting/???_from_andesite"
                             ResourceLocation newRecipeLoc = StoneZone.res(recipeFileLoc.getPath()
                                             .replace("andesite", stoneType.getTypeName())
                                             .replace("_stonecutting", "")
@@ -609,9 +627,13 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
 
                             UtilityRecipe.stonecuttingWithTagRecipe(output, recipeResLoc, tagResLoc, newRecipeLoc, sink, manager);
                         }
+                        else {
+                            StoneZone.LOGGER.warn("Stonecutting Recipe - Block is NULL for {} with {} ", entryId, stoneType.getId());
+                        }
                     }
                 }
             }
+
         }));
     }
 
@@ -620,18 +642,38 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
     //      └──────────────────────────────────────────────────────────┘
 
     public static final PaletteStrategy ALLOY_STRATEGY = registerCached((blockType, manager) ->
-            makePaletteFromChild(blockType, manager, BLOCK, null, p -> {
+            makePaletteFromChild(blockType, manager, BLOCK, null, p ->
                 p.forEach(paletteColor -> {
                     HCLColor oldHCL = paletteColor.hcl();
                     HCLColor newHCL = paletteColor.hcl().withLuminance(oldHCL.luminance() * 1.125F);
                     paletteColor.setOccurrence(new PaletteColor(newHCL).getOccurrence());
-                });
-            }));
+                })
+            ));
 
 
     //      ┌──────────────────────────────────────────────────────────┐
     //      │                        UTilities                         │
     //      └──────────────────────────────────────────────────────────┘
+
+    protected Pair<Block, String> getBlockAndEntryId(String entry, StoneType stoneType) {
+        String entryId = "";
+
+        /// Create
+        if (entry.contains("cut") || entry.contains("small") || entry.contains("layered") || entry.contains("pillar")) {
+            entryId = this.modId + ":" + entry;
+            String childkey = (entry.contains("pillar"))
+                    ? entryId.replace("andesite_", "")
+                    : entryId.replace("_andesite", "");
+            return Pair.of(stoneType.getBlockOfThis(childkey), entryId);
+        }
+        /// Bits-N-Bobs
+        else if (PlatHelper.isModLoaded("bits_n_bobs")) {
+            entryId = "bits_n_bobs" + ":" + entry;
+            String childkey = entryId.replace("andesite_", "");
+            return Pair.of(stoneType.getBlockOfThis(childkey), entryId);
+        }
+        return Pair.of(null, "");
+    }
 
     protected void putFoldingDoor(CreateModuleAbstract module) {
         module.door.blocks.forEach((stoneType, block) -> {
