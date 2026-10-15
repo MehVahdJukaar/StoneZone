@@ -44,6 +44,7 @@ public final class BlockSetEntry<BT extends BlockType> {
         this.wall = wall;
     }
 
+    @SuppressWarnings("DataFlowIssue")
     public static <T extends BlockType> BlockSetBuilder<T> of(
             Class<T> typeClass, StoneZoneModule module, T baseTypeId,
             String getBlockPath, Function<T, Block> propertyBlock,
@@ -53,9 +54,33 @@ public final class BlockSetEntry<BT extends BlockType> {
             Supplier<CreativeModeTab> tabSupplier)
     {
         return new BlockSetBuilder<>(typeClass, module, baseTypeId,
-                getBlockPath, propertyBlock,
-                getSlabPath, propertySlab,
-                getStairsPath, propertyStairs,
+                getBlockPath, type -> new Block(Utils.copyPropertySafe(propertyBlock.apply(type))),
+                getSlabPath, type -> new SlabBlock(Utils.copyPropertySafe(propertySlab.apply(type))),
+                getStairsPath, type -> {
+                        Block getBlock = propertyStairs.apply(type);
+
+                        return new StairBlock(
+                                getBlock.defaultBlockState(),
+                                Utils.copyPropertySafe(getBlock)
+                        );
+                },
+                getWallPath, type -> new WallBlock(Utils.copyPropertySafe(propertyWall.apply(type))),
+                tabSupplier
+        );
+    }
+
+    public static <T extends BlockType> BlockSetBuilder<T> withFactory(
+            Class<T> typeClass, StoneZoneModule module, T baseTypeId,
+            String getBlockPath, Function<T, Block> blockFactory,
+            String getSlabPath, Function<T, Block> slabFactory,
+            String getStairsPath, Function<T, Block> stairsFactory,
+            @Nullable String getWallPath, @Nullable Function<T, Block> propertyWall,
+            Supplier<CreativeModeTab> tabSupplier)
+    {
+        return new BlockSetBuilder<>(typeClass, module, baseTypeId,
+                getBlockPath, blockFactory,
+                getSlabPath, slabFactory,
+                getStairsPath, stairsFactory,
                 getWallPath, propertyWall,
                 tabSupplier
         );
@@ -77,6 +102,29 @@ public final class BlockSetEntry<BT extends BlockType> {
         );
     }
 
+    public static <T extends BlockType> BlockSetBuilder<T> withFactory(
+            Class<T> typeClass, StoneZoneModule module, T baseTypeId,
+            String getBlockPath, Function<T, Block> propertyBlock,
+            String getSlabPath, Function<T, Block> propertySlab,
+            String getStairsPath, Function<T, Block> propertyStairs,
+            Supplier<CreativeModeTab> tabSupplier)
+    {
+        return new BlockSetBuilder<>(typeClass, module, baseTypeId,
+                getBlockPath, type -> new Block(Utils.copyPropertySafe(propertyBlock.apply(type))),
+                getSlabPath, type -> new SlabBlock(Utils.copyPropertySafe(propertySlab.apply(type))),
+                getStairsPath, type -> {
+            Block getBlock = propertyStairs.apply(type);
+
+            return new StairBlock(
+                    getBlock.defaultBlockState(),
+                    Utils.copyPropertySafe(getBlock)
+            );
+        },
+                null, null,
+                tabSupplier
+        );
+    }
+
     //      ┌──────────────────────────────────────────────────────────┐
     //      │                         SubClass                         │
     //      └──────────────────────────────────────────────────────────┘
@@ -90,9 +138,9 @@ public final class BlockSetEntry<BT extends BlockType> {
         private final String slabPath;
         private final String stairsPath;
         private final String wallPath;
-        private final Function<T, Block> propertySlab;
-        private final Function<T, Block> propertyStairs;
-        private final Function<T, Block> propertyWall;
+        private final Function<T, Block> slabFunction;
+        private final Function<T, Block> stairsFunction;
+        private final Function<T, Block> wallFunction;
 
         private final Supplier<CreativeModeTab> tabSupplier;
 
@@ -114,11 +162,14 @@ public final class BlockSetEntry<BT extends BlockType> {
         /// Adding the tags like #minecraft;slabs or #minecraft:stairs for slab, or stairs
         private boolean addSlabAndStairsTag = true;
 
+        //      ┌──────────────────────────────────────────────────────────┐
+        //      │                       Constructor                        │
+        //      └──────────────────────────────────────────────────────────┘
         public BlockSetBuilder(Class<T> typeClass, StoneZoneModule module, T baseType,
-                               String blockPath, Function<T, Block> propertyBlock,
-                               String slabPath, Function<T, Block> propertySlab,
-                               String stairsPath, Function<T, Block> propertyStairs,
-                               @Nullable String wallPath, @Nullable Function<T, Block> propertyWall,
+                               String blockPath, Function<T, Block> blockFunction,
+                               String slabPath, Function<T, Block> slabFunction,
+                               String stairsPath, Function<T, Block> stairsFunction,
+                               @Nullable String wallPath, @Nullable Function<T, Block> wallFunction,
                                Supplier<CreativeModeTab> tabSupplier
         ) {
             super(module.getModId(), module.shortenedId());
@@ -128,9 +179,9 @@ public final class BlockSetEntry<BT extends BlockType> {
             this.slabPath = slabPath;
             this.stairsPath = stairsPath;
             this.wallPath = wallPath;
-            this.propertySlab = propertySlab;
-            this.propertyStairs = propertyStairs;
-            this.propertyWall = propertyWall;
+            this.slabFunction = slabFunction;
+            this.stairsFunction = stairsFunction;
+            this.wallFunction = wallFunction;
 
             this.tabSupplier = tabSupplier;
 
@@ -140,7 +191,7 @@ public final class BlockSetEntry<BT extends BlockType> {
 
             this.blockBuilder = StoneZoneEntrySet.of(typeClass, suffix, prefix,
                             getModBlock(blockPath), () -> baseType,
-                            blockType -> new Block(Utils.copyPropertySafe(propertyBlock.apply(blockType)))
+                            blockFunction
                     )
                     .setTab(tabSupplier)
                     .setRenderType(RenderLayer.CUTOUT_MIPPED);
@@ -207,13 +258,13 @@ public final class BlockSetEntry<BT extends BlockType> {
             StoneZoneEntrySet<T, Block> stairs = null;
             StoneZoneEntrySet<T, Block> wall = null;
 
-            if (createSlabs) {
+            if (createSlabs && slabFunction != null) {
                 String prefix = getAffix(slabPath).getFirst();
                 String suffix = getAffix(slabPath).getSecond();
 
                 var builder = StoneZoneEntrySet.of(typeClass, suffix, prefix,
                                 getModBlock(slabPath), () -> baseType,
-                                blockType -> new SlabBlock(Utils.copyPropertySafe(propertySlab.apply(blockType)))
+                                slabFunction
                         )
                         .requiresFromMap(block.blocks) //REASON: Recipes, Textures
                         .setTab(tabSupplier)
@@ -229,20 +280,13 @@ public final class BlockSetEntry<BT extends BlockType> {
             }
 
             /// ──────────────────────────────── Stairs ─────────────────────────────────
-            if (createStairs) {
+            if (createStairs && stairsFunction != null) {
                 String prefix = getAffix(stairsPath).getFirst();
                 String suffix = getAffix(stairsPath).getSecond();
 
                 SimpleEntrySet.Builder<T, Block> builder = StoneZoneEntrySet.of(typeClass, suffix, prefix,
                                 getModBlock(stairsPath), () -> baseType,
-                                blockType -> {
-                                    Block getBlock = propertyStairs.apply(blockType);
-
-                                    return new StairBlock(
-                                            getBlock.defaultBlockState(),
-                                            Utils.copyPropertySafe(getBlock)
-                                    );
-                                }
+                                stairsFunction
                         )
                         .requiresFromMap(block.blocks) //REASON: Recipes, Textures
                         .setTab(tabSupplier)
@@ -258,13 +302,13 @@ public final class BlockSetEntry<BT extends BlockType> {
             }
 
             /// ───────────────────────────────── Wall ──────────────────────────────────
-            if (createWall) {
+            if (createWall && wallFunction != null) {
                 String prefix = getAffix(wallPath).getFirst();
                 String suffix = getAffix(wallPath).getSecond();
 
                 var builder = StoneZoneEntrySet.of(typeClass, suffix, prefix,
                                 getModBlock(wallPath), () -> baseType,
-                                blockType -> new WallBlock(Utils.copyPropertySafe(propertyWall.apply(blockType)))
+                                wallFunction
                         )
                         .requiresFromMap(block.blocks) //REASON: Recipes, Textures
                         .setTab(tabSupplier)
