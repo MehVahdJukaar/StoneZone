@@ -35,12 +35,14 @@ public class BitsNBobsModuleAbstract extends StoneZoneModule {
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                         //RECIPES: andesite_tiles_from_stone_types_andesite_stonecutting - manually created in CreateModuleAbstract
+                        .skipDuplicationCheck()
                 )
                 .slab(builder -> builder
                         //TEXTURES: andesite_tiles, andesite_cut_tiles_flipped
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         .defaultRecipe()
                         .addRecipe(ResourceLocation.parse("create:andesite_tile_slab_recycling")) //Crafts andesite_tiles
+                        .skipDuplicationCheck()
                 )
                 .stairs(builder -> builder
                         //TEXTURES: andesite_tiles, andesite_cut_tiles_flipped
@@ -53,6 +55,7 @@ public class BitsNBobsModuleAbstract extends StoneZoneModule {
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                         .defaultRecipe()
+                        .skipDuplicationCheck()
                 )
                 .build();
         this.addEntries(blockSet);
