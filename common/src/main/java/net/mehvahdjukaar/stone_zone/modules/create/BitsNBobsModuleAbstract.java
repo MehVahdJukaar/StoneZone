@@ -49,6 +49,7 @@ public class BitsNBobsModuleAbstract extends StoneZoneModule {
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                         .defaultRecipe()
+                        .skipDuplicationCheck()
                 )
                 .wall(builder -> builder
                         //TEXTURES: andesite_tiles, andesite_cut_tiles_flipped
