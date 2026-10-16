@@ -32,7 +32,7 @@ public class HardcodedBlockType {
             //REASON: not a stonetype
             "outer_end:himmel", "quark:midori", "twigs:silt", "supplementaries:ash", "blue_skies:brumble",
             "nifty:concrete", "blocksyouneed_luna:bluestone", "blocksyouneed_luna:scorchcobble", "sullysmod:amber",
-            "endergetic:eumus", "minecraft:mud", "enlightened_end:chorloam",
+            "endergetic:eumus", "minecraft:mud", "enlightened_end:chorloam", "alexscaves:gingerbread",
 
             //REASON: shouldn't be detected
             "desire:polished_stone", "desire:chiseled_stone", "create_dd:cut_stone",
@@ -74,8 +74,13 @@ public class HardcodedBlockType {
 
         /// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ INCLUDE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+        // Ensure Supported-Mod's BLOCK to be generated with all StoneType - Same effect as pendingInfo.isSupportedModId("mod_id") && pendingInfo.isBlockName("\\w+_tiles
+//        if (useDuplicationCheck) return false;
+
         // Ensure Rechiseled's TILES get generated blc one case with Deeper-Darker already having TILES prevent it from being generated (there may be more mods)
-        if (pendingInfo.isSupportedModId("rechiseled") && pendingInfo.isBlockName("\\w+_tiles")) return false;
+        // Ensure Bits-N'-Bobs' TILES get generated because some Stone Mods has their own TILES causing the supported-Mod's TILES to be skipped
+        //TODO: Remove this to use useDuplicationCheck above after EC v2.11.54 is uploaded - "_tile\\w+" included tiles, tile_slab, tile_stairs, & tile_wall
+        if ((pendingInfo.isSupportedModId("rechiseled") || pendingInfo.isSupportedModId("bits_n_bobs")) && pendingInfo.isBlockName("\\w+_tile\\w+")) return false;
 
         // pillar from Decorative-Blocks, Quark, Create should be always generated
         if (pendingInfo.isSupportedModId("quark|create|decorative_blocks") && pendingInfo.isBlockName("pillar")) return false;
@@ -153,12 +158,12 @@ public class HardcodedBlockType {
         }
 
         /**
-         * @param BlockNameOrKeyword keyword or Regex or Block Name
+         * @param blockNameOrKeyword keyword or Regex or Block Name
          *                                  <br>Example (keyword): "chair"
          *                                  <br>Example (Blockname): "gold_chair"
          */
-        public boolean isBlockName(String BlockNameOrKeyword) {
-            return this.blockName.matches(BlockNameOrKeyword) || this.blockName.contains(BlockNameOrKeyword);
+        public boolean isBlockName(String blockNameOrKeyword) {
+            return this.blockName.matches(blockNameOrKeyword) || this.blockName.contains(blockNameOrKeyword);
         }
 
     }
