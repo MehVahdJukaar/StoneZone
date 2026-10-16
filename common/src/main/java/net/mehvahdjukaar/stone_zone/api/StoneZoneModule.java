@@ -1,5 +1,6 @@
 package net.mehvahdjukaar.stone_zone.api;
 
+import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.modules.EveryCompatModule;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
@@ -41,13 +42,30 @@ public class StoneZoneModule extends EveryCompatModule {
         //short block name - blockName: <stonetype>_column from the blockId: stonezone:twigs/strata/<stonetype>_column
         String blockName = blockPath.substring(blockPath.lastIndexOf("/") + 1);
 
-        String BlockTypeFrom = blockType.getNamespace();
+        String blockTypeFrom = blockType.getNamespace();
 
         // Exclude blocks from a mod that are both Supported-Mod & Wood-Mod
-        if (BlockTypeFrom.equals(this.modId)) return true;
+        if (blockTypeFrom.equals(this.modId)) return true;
+
+        String slashConvention = blockTypeFrom + "/" + blockName; // quark/blossom_chair
+        String underscoreConvention = blockTypeFrom + "_" + blockName; // quark_blossom_chair
+
+        /// Exclude blocks when a Compat-Mod have a support for Supported-Mod with Mods that add new BlockTypes
+        //noinspection UnstableApiUsage
+        for (var c : EveryCompat.getCompatMods()) { //TODO: add getCompatMods to StoneZone.java to avoid unstableApiUsage
+            String compatModId = c.modId();  //bopcomp : bop->quark, twigs
+            //if the wood is from the mod this adds compat for && it supports this block type
+            if (c.woodsFrom().contains(blockTypeFrom) && c.blocksFrom().contains(modId)) {
+                if (registry.containsKey(ResourceLocation.fromNamespaceAndPath(compatModId, blockName))) return true;
+                if (registry.containsKey(ResourceLocation.fromNamespaceAndPath(compatModId, slashConvention)))
+                    return true;
+                if (registry.containsKey(ResourceLocation.fromNamespaceAndPath(compatModId, underscoreConvention)))
+                    return true;
+            }
+        }
 
         // Exclude blocks when a supported-mod have an internal support for mods that add new BlockTypes
-        if (this.getAlreadySupportedMods().contains(BlockTypeFrom)) return true;
+        if (this.getAlreadySupportedMods().contains(blockTypeFrom)) return true;
 
         if (blockType instanceof StoneType stoneType) {
             Boolean hardcoded = HardcodedBlockType.isStoneBlockAlreadyRegistered(entrySetId, blockName, stoneType, modId);
