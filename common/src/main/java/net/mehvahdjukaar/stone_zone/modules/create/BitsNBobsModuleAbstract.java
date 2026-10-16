@@ -1,5 +1,6 @@
 package net.mehvahdjukaar.stone_zone.modules.create;
 
+import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
@@ -35,29 +36,25 @@ public class BitsNBobsModuleAbstract extends StoneZoneModule {
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                         //RECIPES: andesite_tiles_from_stone_types_andesite_stonecutting - manually created in CreateModuleAbstract
-                        .skipDuplicationCheck()
+//                        .skipDuplicationCheck()
                 )
                 .slab(builder -> builder
                         //TEXTURES: andesite_tiles, andesite_cut_tiles_flipped
-                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         .defaultRecipe()
                         .addRecipe(ResourceLocation.parse("create:andesite_tile_slab_recycling")) //Crafts andesite_tiles
-                        .skipDuplicationCheck()
+//                        .skipDuplicationCheck()
                 )
-                .stairs(builder -> builder
+                .stairs(SimpleEntrySet.Builder::defaultRecipe
                         //TEXTURES: andesite_tiles, andesite_cut_tiles_flipped
-                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
-                        .defaultRecipe()
-                        .skipDuplicationCheck()
+//                        .skipDuplicationCheck()
                 )
-                .wall(builder -> builder
+                .wall(SimpleEntrySet.Builder::defaultRecipe
                         //TEXTURES: andesite_tiles, andesite_cut_tiles_flipped
-                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
-                        .defaultRecipe()
-                        .skipDuplicationCheck()
+//                        .skipDuplicationCheck()
                 )
+                .pickaxeTag()
                 .build();
         this.addEntries(blockSet);
 

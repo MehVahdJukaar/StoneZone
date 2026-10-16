@@ -7,6 +7,7 @@ import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
+import net.mehvahdjukaar.stone_zone.modules.create.BitsNBobsModuleAbstract;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -25,14 +26,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /// A helper to add block, slab, stairs and wall. This reduce the repetitive codes.
-public final class BlockSetEntry<BT extends BlockType> {
+public class BlockSetEntry<BT extends BlockType> {
 
     public final SimpleEntrySet<BT, Block> block;
     public final SimpleEntrySet<BT, Block> stairs;
     public final SimpleEntrySet<BT, Block> slab;
     public final @Nullable SimpleEntrySet<BT, Block> wall;
 
-    private BlockSetEntry(
+    protected BlockSetEntry(
             SimpleEntrySet<BT, Block> block,
             SimpleEntrySet<BT, Block> stairs,
             SimpleEntrySet<BT, Block> slab,
@@ -44,6 +45,18 @@ public final class BlockSetEntry<BT extends BlockType> {
         this.wall = wall;
     }
 
+    /**
+     * Block, Slab, & Stairs are enabled by default, Wall is optional
+     * @param getBlockPath BlockId's path for Block
+     * @param propertyBlock use Block's property to be copied
+     * @param getSlabPath BlockId's path for Slab
+     * @param propertySlab use Slab or Block's property to be copied
+     * @param getStairsPath BlockId's path for Stairs
+     * @param propertyStairs use Stairs or Block's property to be copied
+     * @param getWallPath BlockId's path for Wall
+     * @param propertyWall use Wall or Block's property to be copied
+     * Example: See {@link BitsNBobsModuleAbstract}
+     */
     @SuppressWarnings("DataFlowIssue")
     public static <T extends BlockType> BlockSetBuilder<T> of(
             Class<T> typeClass, StoneZoneModule module, T baseTypeId,
@@ -74,18 +87,27 @@ public final class BlockSetEntry<BT extends BlockType> {
             String getBlockPath, Function<T, Block> blockFactory,
             String getSlabPath, Function<T, Block> slabFactory,
             String getStairsPath, Function<T, Block> stairsFactory,
-            @Nullable String getWallPath, @Nullable Function<T, Block> propertyWall,
+            @Nullable String getWallPath, @Nullable Function<T, Block> wallFactory,
             Supplier<CreativeModeTab> tabSupplier)
     {
         return new BlockSetBuilder<>(typeClass, module, baseTypeId,
                 getBlockPath, blockFactory,
                 getSlabPath, slabFactory,
                 getStairsPath, stairsFactory,
-                getWallPath, propertyWall,
+                getWallPath, wallFactory,
                 tabSupplier
         );
     }
 
+    /**
+     * Block, Slab, & Stairs are enabled by default
+     * @param getBlockPath BlockId's path for Block
+     * @param propertyBlock use Utils.copyPropertySafe(...) or Property.of(...)
+     * @param getSlabPath BlockId's path for Slab
+     * @param propertySlab use Utils.copyPropertySafe(...) or Property.of(...)
+     * @param getStairsPath BlockId's path for Stairs
+     * @param propertyStairs use Utils.copyPropertySafe(...) or Property.of(...)
+     */
     public static <T extends BlockType> BlockSetBuilder<T> of(
             Class<T> typeClass, StoneZoneModule module, T baseTypeId,
             String getBlockPath, Function<T, Block> propertyBlock,
@@ -159,8 +181,10 @@ public final class BlockSetEntry<BT extends BlockType> {
         private boolean createSlabs = true;
         private boolean createWall = false;
 
-        /// Adding the tags like #minecraft;slabs or #minecraft:stairs for slab, or stairs
+        /// Adding the tags like #minecraft:slabs or #minecraft:stairs for slab, or stairs
         private boolean addSlabAndStairsTag = true;
+        private boolean addPickaxeTag = false;
+        private boolean addAxeTag = false;
 
         //      ┌──────────────────────────────────────────────────────────┐
         //      │                       Constructor                        │
@@ -195,11 +219,28 @@ public final class BlockSetEntry<BT extends BlockType> {
                     )
                     .setTab(tabSupplier)
                     .setRenderType(RenderLayer.CUTOUT_MIPPED);
+
+            if (addPickaxeTag) {
+                this.blockBuilder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK);
+            }
+            if (addAxeTag) {
+                this.blockBuilder.addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK);
+            }
         }
 
+        // ───────────────────────────────── Add Tags ──────────────────────────────────
         /// Not adding the tags like #minecraft;slabs or #minecraft:stairs for slab, or stairs
         public BlockSetBuilder<T> noSlabAndStairsTag() {
             this.addSlabAndStairsTag = false;
+            return this;
+        }
+
+        public BlockSetBuilder<T> pickaxeTag() {
+            this.addPickaxeTag = true;
+            return this;
+        }
+        public BlockSetBuilder<T> AxeTag() {
+            this.addPickaxeTag = true;
             return this;
         }
 
@@ -242,6 +283,11 @@ public final class BlockSetEntry<BT extends BlockType> {
             return this;
         }
 
+        public BlockSetBuilder<T> wall() {
+            this.createWall = true;
+            return this;
+        }
+
         public BlockSetBuilder<T> noWall() {
             this.createWall = false;
             return this;
@@ -258,6 +304,7 @@ public final class BlockSetEntry<BT extends BlockType> {
             StoneZoneEntrySet<T, Block> stairs = null;
             StoneZoneEntrySet<T, Block> wall = null;
 
+            /// ───────────────────────────────── Slab ──────────────────────────────────
             if (createSlabs && slabFunction != null) {
                 String prefix = getAffix(slabPath).getFirst();
                 String suffix = getAffix(slabPath).getSecond();
@@ -270,6 +317,12 @@ public final class BlockSetEntry<BT extends BlockType> {
                         .setTab(tabSupplier)
                         .setRenderType(RenderLayer.CUTOUT_MIPPED);
 
+                if (addPickaxeTag) {
+                    builder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK);
+                }
+                if (addAxeTag) {
+                    builder.addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK);
+                }
                 if (addSlabAndStairsTag) {
                     builder.addTag(BlockTags.SLABS, Registries.BLOCK)
                             .addTag(ItemTags.SLABS, Registries.ITEM);
@@ -292,6 +345,12 @@ public final class BlockSetEntry<BT extends BlockType> {
                         .setTab(tabSupplier)
                         .setRenderType(RenderLayer.CUTOUT_MIPPED);
 
+                if (addPickaxeTag) {
+                    builder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK);
+                }
+                if (addAxeTag) {
+                    builder.addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK);
+                }
                 if (addSlabAndStairsTag) {
                     builder.addTag(BlockTags.STAIRS, Registries.BLOCK)
                             .addTag(ItemTags.STAIRS, Registries.ITEM);
@@ -314,6 +373,12 @@ public final class BlockSetEntry<BT extends BlockType> {
                         .setTab(tabSupplier)
                         .setRenderType(RenderLayer.CUTOUT_MIPPED);
 
+                if (addPickaxeTag) {
+                    builder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK);
+                }
+                if (addAxeTag) {
+                    builder.addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK);
+                }
                 if (addSlabAndStairsTag) {
                     builder.addTag(BlockTags.WALLS, Registries.BLOCK)
                             .addTag(ItemTags.WALLS, Registries.ITEM);
