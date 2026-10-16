@@ -86,6 +86,8 @@ dependencies {
 //    modRuntimeOnly("curse.maven:architectury-api-419699:8492726") // v13.0.11 | Better-Archeology
 //    modRuntimeOnly("curse.maven:balm-531761:8424824") // v21.0.63 | Waystones
 //    modRuntimeOnly("curse.maven:curios-309927:6529130") // v9.5.1 | Ars-Nouveau
+//    modRuntimeOnly("curse.maven:azimuth-api-1466331:9058513") // v1.4.10 | Create, Bits-N-Bobs
+//    modRuntimeOnly("curse.maven:strut-your-stuff-1486746:8812965") // v1.4.10 | Create, Bits-N-Bobs
 
     //- ~/neoforge/mods LOCAL
 //    modRuntimeOnly("quark-biolith:biolith-neoforge-3.0.10") // Quark
