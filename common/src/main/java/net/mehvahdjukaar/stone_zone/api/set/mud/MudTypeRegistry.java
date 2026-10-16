@@ -11,6 +11,7 @@ import java.util.Optional;
 import static net.mehvahdjukaar.stone_zone.api.set.RockType.newSubBlockType;
 import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.BLACKLISTED_MODS;
 
+@SuppressWarnings("UnusedReturnValue")
 public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
 
     public static final MudTypeRegistry INSTANCE = new MudTypeRegistry();
@@ -37,15 +38,15 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
         if (!BLACKLISTED_MODS.contains(namespace)) {
             /// check for mudType without "_mud"
             Optional<MudType> detectedBlockType =
-                    newSubBlockType(MudType::new, baseblock, blockId, "(?<typename>[a-z]+)_mud_bricks",
-                            valuesReg);
+                    newSubBlockType(MudType::new, blockId, "(?<typename>[a-z]+)_mud_bricks",
+                            valuesReg
+                    );
 
             /// checking for mudType with "_mud"
             if (detectedBlockType.isEmpty())
-                return newSubBlockType(MudType::new, baseblock, blockId, "(?<typename>[a-z]+_mud)_bricks",
-                        valuesReg);
-            else
-                return detectedBlockType;
+                return newSubBlockType(MudType::new, blockId, "(?<typename>[a-z]+_mud)_bricks",
+                        valuesReg
+                );
 
         }
         return Optional.empty();

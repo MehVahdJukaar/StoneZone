@@ -63,9 +63,9 @@ public class StoneType extends RockType {
 
         private Supplier<Block> stoneFinder;
 
-        public Finder(ResourceLocation id) {
-            super(id, StoneTypeRegistry.INSTANCE);
-            this.stone(() -> findStone(id));
+        public Finder(ResourceLocation stoneTypeId) {
+            super(stoneTypeId, StoneTypeRegistry.INSTANCE);
+            this.stone(() -> findStone(stoneTypeId));
         }
 
         public Finder stone(Supplier<Block> stoneFinder) {

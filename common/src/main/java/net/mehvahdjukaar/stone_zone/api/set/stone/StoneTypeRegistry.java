@@ -43,7 +43,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
         /// Support TerraFirmaCraft (TFC) & ArborFirmaCraft (AFC) & DecoFirmaCraft (DFC)
         if (namespace.matches("tfc|afc|dfc") && blockPath.contains("rock/")) {
-            return newSubBlockType(StoneType::new, baseblock, blockId, "rock/bricks/(?<typename>\\w+)(?<!slab|stairs)", valuesReg);
+            return newSubBlockType(StoneType::new, blockId, "rock/raw/(?<typename>\\w+)(?<!slab|stairs)", valuesReg);
         }
 
         /// ────────────────────────────────── Default ──────────────────────────────────
@@ -56,7 +56,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
             // Check for <type>_bricks | <type>_stone_bricks - cracked, chiseled, mossy are exclued
             if (blockPath.matches("[a-z]+_(?:(?<!(?:cracked|chiseled|mossy)_)stone_)?bricks?")) {
 
-                return newSubBlockType(StoneType::new, baseblock, blockId, "(?<typename>[a-z]+(_stone)?)_bricks?",
+                return newSubBlockType(StoneType::new, blockId, "(?<typename>[a-z]+(_stone)?)_bricks?",
                         valuesReg, BLACKLISTED_STONETYPES,
                         noDustType, noOreType, noWoodType
                 );
@@ -64,7 +64,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
             // Check for polished_<type> | polished_<type>_stone
             else if (blockPath.matches("polished_[a-z]+(?:_stone)?")) {
 
-                return newSubBlockType(StoneType::new, baseblock, blockId, "polished_(?<typename>[a-z]+(_stone)?)",
+                return newSubBlockType(StoneType::new, blockId, "polished_(?<typename>[a-z]+(_stone)?)",
                         valuesReg, BLACKLISTED_STONETYPES, noDustType, noOreType, noWoodType
                 );
             }

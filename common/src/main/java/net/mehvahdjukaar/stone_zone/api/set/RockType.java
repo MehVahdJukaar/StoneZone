@@ -1,7 +1,9 @@
 package net.mehvahdjukaar.stone_zone.api.set;
 
 import net.mehvahdjukaar.moonlight.api.misc.MapRegistry;
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -11,7 +13,10 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -55,13 +60,13 @@ public abstract class RockType extends BlockType{
         this.addChild(PRESSURE_PLATE, this.findRelatedBlock("", "pressure_plate"));
 
         Block cobblestone = this.findCobblestoneEntry("", "");
-        if (Objects.nonNull(cobblestone)) {
+        if (cobblestone != null) {
             this.addChild(COBBLESTONE, cobblestone);
             this.addChild(MOSSY_COBBLESTONE, this.findRelatedBlock("mossy",""));
         }
 
         Block polished = this.findRelatedBlock("polished", "");
-        if (Objects.nonNull(polished)) {
+        if (polished != null) {
             this.addChild(POLISHED, polished);
             this.addChild(POLISHED_STAIRS, findRelatedBlock("polished", "stairs"));
             this.addChild(POLISHED_SLAB, findRelatedBlock("polished", "slab"));
@@ -69,7 +74,7 @@ public abstract class RockType extends BlockType{
         }
 
         Block smooth = this.findRelatedBlock("smooth", "");
-        if (Objects.nonNull(smooth)) {
+        if (smooth != null) {
             this.addChild(SMOOTH, smooth);
             this.addChild(SMOOTH_STAIRS, findRelatedBlock("smooth", "stairs"));
             this.addChild(SMOOTH_SLAB, findRelatedBlock("smooth", "slab"));
@@ -77,7 +82,7 @@ public abstract class RockType extends BlockType{
         }
 
         Block tiles = this.findRelatedBlock("", "tiles");
-        if (Objects.nonNull(tiles)) {
+        if (tiles != null) {
             this.addChild(TILES, tiles);
             this.addChild(TILE_STAIRS, findRelatedBlock("", "tile_stairs"));
             this.addChild(TILE_SLAB, findRelatedBlock("", "tile_slab"));
@@ -86,9 +91,9 @@ public abstract class RockType extends BlockType{
 
         Block bricks = this.findBrickEntry("", "");
         Block bricksTFC = this.findRelatedBlock("", "bricks");
-        if (Objects.nonNull(bricks) || Objects.nonNull(bricksTFC)) {
+        if (bricks != null || bricksTFC != null) {
             // Support TFC & AFC
-            if (this.id.getNamespace().matches("tfc|afc")) {
+            if (this.id.getNamespace().matches("tfc|afc|dfc")) {
                 this.addChild(BRICKS, bricksTFC);
                 this.addChild(BRICK_STAIRS, findRelatedBlock("bricks", "stairs"));
                 this.addChild(BRICK_SLAB, findRelatedBlock("bricks", "slab"));
@@ -147,11 +152,12 @@ public abstract class RockType extends BlockType{
                 // DEFAULT
                 ResourceLocation.fromNamespaceAndPath(id.getNamespace(), id.getPath() + _infix + _suffix),
                 ResourceLocation.fromNamespaceAndPath(id.getNamespace(), prefix_ + id.getPath() + _suffix),
-                // TFC & AFC: Include children of stone_type: stairs, slab...
+
+                // TFC, AFC, DFC: Include children of stone_type: stairs, slab...
                 ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/raw/" + id.getPath() + _suffix),
-                // TFC & AFC: Include children of smooth, cobblestone, button, pressure_plate, bricks, cracked_bricks
+                // TFC, AFC, DFC: Include children of smooth, cobblestone, button, pressure_plate, bricks, cracked_bricks
                 ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/" + prefix_ + suffix +"/"+ id.getPath()),
-                // TFC & AFC: Include children of brick_slab, smooth_slab, brick_stairs, smooth_stairs
+                // TFC, AFC, DFC: Include children of brick_slab, smooth_slab, brick_stairs, smooth_stairs
                 ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/"+ prefixOrInfix +"/"+ id.getPath() + _suffix)
         };
         V found = null;
@@ -183,17 +189,22 @@ public abstract class RockType extends BlockType{
         return bricks != null ? bricks : this.block;
     }
 
-    protected static ResourceLocation[] makeKnownIDConventions(ResourceLocation id, String... affixKeyword) {
+    protected static ResourceLocation[] makeKnownIDConventions(ResourceLocation blockTypeId, String... affixKeyword) {
         List<ResourceLocation> resources = new ArrayList<>();
         for (String keyword : affixKeyword) {
-            String path = id.getPath();
-            String namespace = id.getNamespace();
+            String typename = blockTypeId.getPath();
+            String namespace = blockTypeId.getNamespace();
 
             String _suffix = (keyword.isEmpty()) ? "" : "_" + keyword;
             String prefix_ = (keyword.isEmpty()) ? "" : keyword + "_";
 
-            resources.add(ResourceLocation.fromNamespaceAndPath(namespace, path + _suffix));
-            resources.add(ResourceLocation.fromNamespaceAndPath(namespace, prefix_ + path));
+            /// Default
+            resources.add(ResourceLocation.fromNamespaceAndPath(namespace, typename + _suffix));
+            resources.add(ResourceLocation.fromNamespaceAndPath(namespace, prefix_ + typename));
+            /// TFC, AFC, DFC
+            if (PlatHelper.isModLoaded("tfc") | PlatHelper.isModLoaded("afc") | PlatHelper.isModLoaded("dfc"))
+                resources.add(ResourceLocation.fromNamespaceAndPath(namespace, "rock/raw/" + typename));
+
         }
         return resources.toArray(new ResourceLocation[0]);
     }
@@ -210,7 +221,7 @@ public abstract class RockType extends BlockType{
     /// Create new BlockType using the subclass: CrystalType, DustType, GemType, Or MetalType
     /// @param factory use 1 of 4 subclass, example: CrystalType::new
     public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<ResourceLocation, Block, T> factory,
-                                                                    Block baseBlock, ResourceLocation blockId,
+                                                                    ResourceLocation blockId,
                                                                     String blockPathRegex, MapRegistry<T> valuesReg,
                                                                     Set<String> blockTypeBlacklist,
                                                                     @Nullable Set<String> modBlacklist,
@@ -237,29 +248,32 @@ public abstract class RockType extends BlockType{
                     if (!pass) return Optional.empty();
                 }
 
-                return Optional.of(factory.apply(idBlockType, baseBlock));
+                ResourceLocation[] tests = makeKnownIDConventions(idBlockType, "", "block");
+                Block block = Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
+
+                if (block != null) return Optional.of(factory.apply(idBlockType, block));
             }
         }
         return Optional.empty();
     }
 
     public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<ResourceLocation, Block, T> factory,
-                                                                    Block baseBlock, ResourceLocation blockId,
+                                                                    ResourceLocation blockId,
                                                                     String blockPathRegex,
                                                                     MapRegistry<T> valuesReg,
                                                                     Set<String> blockTypeBlacklist,
                                                                     Boolean ... checks
     ) {
-        return newSubBlockType(factory, baseBlock, blockId, blockPathRegex, valuesReg, blockTypeBlacklist, null, checks);
+        return newSubBlockType(factory, blockId, blockPathRegex, valuesReg, blockTypeBlacklist, null, checks);
     }
 
     public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<ResourceLocation, Block, T> factory,
-                                                                    Block baseBlock, ResourceLocation blockId,
+                                                                    ResourceLocation blockId,
                                                                     String blockPathRegex,
                                                                     MapRegistry<T> valuesReg,
                                                                     Boolean ... checks
     ) {
-        return newSubBlockType(factory, baseBlock, blockId, blockPathRegex, valuesReg, null, null, checks);
+        return newSubBlockType(factory, blockId, blockPathRegex, valuesReg, null, null, checks);
     }
 
     public static boolean isInItemRegistry(String namespace, String prefix, String blockPath, String targetOrRegex, String replacement) {
