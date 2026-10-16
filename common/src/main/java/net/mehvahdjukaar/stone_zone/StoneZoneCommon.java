@@ -31,10 +31,11 @@ public class StoneZoneCommon {
 
 
 //!! =============================================== Add Other Compat Mods ========================================== \\
+        // Rechiseled
         addOtherCompatMod("rechiseledae2", "ae2", "rechiseled");
-
-        // StoneType From Create
         addOtherCompatMod("rechiseledcreate", "create", "rechiseled");
+
+        // Create
         addOtherCompatMod("bits_n_bobs", "create", "bits_n_bobs");
 
 //!! =================================================== Add Modules ================================================ \\
