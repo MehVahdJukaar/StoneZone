@@ -84,8 +84,6 @@ dependencies {
 
     //- OTHER MAVENS - can be commented out or enabled
 //    modRuntimeOnly("org.reflections:reflections:0.10.2") // Refurbished-Furniture
-//    modRuntimeOnly("dev.engine-room.flywheel:flywheel-fabric-${property("minecraft_version")}:${property("flywheel_fabric_version")}") // Create
-//    modRuntimeOnly("net.createmod.ponder:Ponder-Fabric-${property("minecraft_version")}:${property("ponder_fabric_version")}") // Create
 //    forgeRuntimeLibrary("com.teamresourceful:bytecodecs:1.0.2") // Chipped
 //    modRuntimeOnly('net.jodah:typetools:0.6.3') // GlitchCore
 //    modRuntimeOnly('com.electronwill.night-config:core:3.8.1') // GlitchCore
@@ -96,6 +94,8 @@ dependencies {
     modCompileOnly("curse.maven:owo-lib-532610:6446006")
 
     //+ OTHER MAVENS
+    modCompileOnly("dev.engine-room.flywheel:flywheel-fabric-${property("minecraft_version")}:${property("flywheel_fabric_version")}") // Create
+    modCompileOnly("net.createmod.ponder:Ponder-Fabric-${property("minecraft_version")}:${property("ponder_fabric_version")}") // Create
     modCompileOnly("com.tterrag.registrate_fabric:Registrate:${property("registrate_fabric_version")}") // Create
     modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:7521829") // v1.1.20 | Rechiseled
 
@@ -113,7 +113,8 @@ dependencies {
     modCompileOnly("curse.maven:macaws-stairs-1119394:5802484") //v1.0.1
 
     //+ GENERAL
-    modCompileOnly("curse.maven:create-fabric-624165:5982726") // Do not use for RunTime //!! 1.20
+    modCompileOnly("curse.maven:create-fabric-624165:5982726") // Do not use for RunTime //!! 1.20 - It's abandoned and won't be updated to 1.21.1
+//    modCompileOnly("curse.maven:create-deco-fabric-739872:5293979") //!! Create-Fabric is abandoned
 
     // OTHER MAVENS
     modCompileOnly("earth.terrarium.chipped:chipped-fabric-${property("minecraft_version")}:4.0.2") //INCLUDED: Athena, Resourceful-Lib
