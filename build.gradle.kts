@@ -134,6 +134,11 @@ subprojects {
             changelog = rootProject.file("changelog.md").readText()
             versionName = "${mod.id.get()}-${mod.version.get()}-${name}"
         }
+        tasks.withType<net.darkhax.curseforgegradle.TaskPublishCurseForge>().configureEach {
+            doFirst {
+                uploadArtifacts.forEach { it.addEnvironment("Client", "Server") }
+            }
+        }
         maven {
             nexus()
         }
