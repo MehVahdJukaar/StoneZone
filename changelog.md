@@ -12,6 +12,14 @@
 |                                                                                                                                   |
 
 ---
+## v2.11.20
+
+### FIXES: 
+- **\[Let's Do\] Candlelight** (C): Another major change in **\[lets-do\] Farm & CHarm** - [#213](https://github.com/MehVahdJukaar/StoneZone/issues/213)
+- **Create** (C): PILLARS & LAYERED not using connected_texture - [#214](https://github.com/MehVahdJukaar/StoneZone/issues/214)
+
+---
+
 ## v2.11.19
 
 ### FIXES:
