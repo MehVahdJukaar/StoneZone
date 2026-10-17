@@ -34,7 +34,9 @@ public abstract class MacawBridgesModuleAbstract extends StoneZoneModule {
 
     public MacawBridgesModuleAbstract(String modId) {
         super(modId, "mcb");
-        Supplier<CreativeModeTab> tab = getModTab("bridges");
+        Supplier<CreativeModeTab> tab = (PlatHelper.getPlatform().isFabric())
+                ? getModTab("bridges")
+                : getModTab(modId);
 
         brick_bridges = StoneZoneEntrySet.of(StoneType.class, "brick_bridge",
                         getModBlock("stone_brick_bridge"), () -> VanillaStoneTypes.STONE,
