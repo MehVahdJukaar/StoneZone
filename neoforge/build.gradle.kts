@@ -72,7 +72,7 @@ dependencies {
     modRuntimeOnly("curse.maven:glitchcore-955399:5660740") // v2.1.0.0 | Biomes-O'-Plenty | required: Typetools, Night-Config
 //    modRuntimeOnly("curse.maven:aeroblender-879879:5911923") // v1.0.0 | Aether
 //    modRuntimeOnly("curse.maven:citadel-331936:6002521") // v2.6.1 | Alexs-Caves //!! 1.20
-    modRuntimeOnly("curse.maven:citadel-1-21-1-port-1415723:7982052") // v2.7.6 | Alexs-Caves
+//    modRuntimeOnly("curse.maven:citadel-1-21-1-port-1415723:7982052") // v2.7.6 | Alexs-Caves
 //    modRuntimeOnly("curse.maven:yungs-api-421850:6715462") // v5.1.6 | NONE //!! FORGE
 //    modRuntimeOnly("curse.maven:patchouli-306770:4966125") // v84 | TFC //!! 1.20
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:6494827") // v21.1.36 | Stoneworks
@@ -88,6 +88,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:curios-309927:6529130") // v9.5.1 | Ars-Nouveau
 //    modRuntimeOnly("curse.maven:azimuth-api-1466331:9058513") // v1.4.10 | Create, Bits-N-Bobs
 //    modRuntimeOnly("curse.maven:strut-your-stuff-1486746:8812965") // v1.4.10 | Create, Bits-N-Bobs
+//    modRuntimeOnly("curse.maven:platform-997634:8075942") // v1.3.3 | Vanilla-Backport
 
     //- ~/neoforge/mods LOCAL
 //    modRuntimeOnly("quark-biolith:biolith-neoforge-3.0.10") // Quark
@@ -120,6 +121,7 @@ dependencies {
     modCompileOnly("curse.maven:macaws-stairs-1119394:5802422") //v1.0.1
 
     //+ GENERAL
+    modCompileOnly("curse.maven:create-bits-n-bobs-1398383:8886545") // Create, Azimuth-API, Strut-Your-Stuff
     modCompileOnly("curse.maven:additional-lights-384991:6841545")
     modCompileOnly("curse.maven:stone-chest-307052:7432348")
 
@@ -149,17 +151,18 @@ dependencies {
 
     // STONETYPE ONLY
 //    modRuntimeOnly("curse.maven:alexs-caves-924854:5848216") // Citadel //!! 1.20
-    modRuntimeOnly("curse.maven:alexs-caves-unofficial-port-1420348:7981977") // Citadel
+//    modRuntimeOnly("curse.maven:alexs-caves-unofficial-port-1420348:7981977") // Citadel
 //    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643") //!! 1.20
 //    modRuntimeOnly("curse.maven:spelunkery-790530:5727135") // Moonlight-Lib //!! 1.20
 //    modRuntimeOnly("curse.maven:tinkers-construct-74072:6041763") // Mantle //!! 1.20
-//    modRuntimeOnly("curse.maven:thaumon-926511:5492714")
+    modRuntimeOnly("curse.maven:thaumon-926511:5492714")
 //    modRuntimeOnly("curse.maven:ars-nouveau-401955:6954892") // Curios-API, GeckoLib
 //    modRuntimeOnly("curse.maven:gaia-dimension-302529:5773438")
 //    modRuntimeOnly("curse.maven:what-is-stone-colorful-caves-853161:5175855") //!! 1.20
 //    modRuntimeOnly("curse.maven:artsandcrafts-1034791:5992027") //!! 1.20
 //    modRuntimeOnly("curse.maven:the-outer-end-430404:5812948") // Blueprint //!! 1.20
 //    modRuntimeOnly("curse.maven:caverns-and-chasms-438005:6040957") // Blueprint //!! 1.20
+//    modRuntimeOnly("curse.maven:vanillabackport-417430:8229724") // Platform
 
     // MUDTYPE ONLY
     modRuntimeOnly("curse.maven:deeperdarker-659011:5908863")
