@@ -121,8 +121,12 @@ public class CreateClientModule {
 
     public static void registerLayeredCTBehavior(CreateModule module) {
         module.layereds.blocks.forEach((stoneType, block) -> {
-            String capId = stoneType.createFullIdWith(StoneZone.MOD_ID, "block", module.shortenedId(), "/palettes/stone_types/cap/", "cut_cap");
-            String layeredId =  stoneType.createFullIdWith(StoneZone.MOD_ID, "block", module.shortenedId(), "/palettes/stone_types/layered/", "cut_layered");
+            String capId = stoneType.createFullIdWith(StoneZone.MOD_ID, "block",
+                    module.shortenedId(), "palettes/stone_types/cap/", "cut_cap"
+            );
+            String layeredId =  stoneType.createFullIdWith(StoneZone.MOD_ID, "block",
+                    module.shortenedId(), "palettes/stone_types/layered/", "cut_layered"
+            );
 
             CTSpriteShiftEntry capShift = omni(capId);
             CTSpriteShiftEntry layeredShift = horizontalwithKrypper(layeredId);
@@ -133,8 +137,12 @@ public class CreateClientModule {
 
     public static void registerPillarCTBehavior(CreateModule module) {
         module.pillars.blocks.forEach((stoneType, block) -> {
-            String pillarId = stoneType.createFullIdWith(StoneZone.MOD_ID, "block", module.shortenedId(), "/palettes/stone_types/pillar/", "cut_pillar");
-            String capId = stoneType.createFullIdWith(StoneZone.MOD_ID, "block", module.shortenedId(), "/palettes/stone_types/cap/", "cut_cap");
+            String pillarId = stoneType.createFullIdWith(StoneZone.MOD_ID, "block",
+                    module.shortenedId(), "palettes/stone_types/pillar/", "cut_pillar"
+            );
+            String capId = stoneType.createFullIdWith(StoneZone.MOD_ID, "block",
+                    module.shortenedId(), "palettes/stone_types/cap/", "cut_cap"
+            );
 
             CTSpriteShiftEntry capShift = omni(capId);
             CTSpriteShiftEntry pillarShift = horizontalwithRectangle(pillarId);
