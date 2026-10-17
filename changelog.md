@@ -12,6 +12,13 @@
 |                                                                                                                                   |
 
 ---
+## v2.11.19
+
+### FIXES:
+- **Macaw's Bridge** (NF): Updated Neoforge side's outdated Id for CreativeTab  
+
+---
+
 ## v2.11.18
 
 ### CHANGES:
