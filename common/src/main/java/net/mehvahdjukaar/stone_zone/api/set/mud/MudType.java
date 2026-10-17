@@ -5,6 +5,7 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.RockType;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
@@ -14,6 +15,10 @@ import org.jetbrains.annotations.ApiStatus;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+/**
+ * Childkey Availability:
+ * Use {@link VanillaMudChildKeys} or {@link VanillaRockChildKeys}
+ **/
 public class MudType extends RockType {
 
     public final Block mud;

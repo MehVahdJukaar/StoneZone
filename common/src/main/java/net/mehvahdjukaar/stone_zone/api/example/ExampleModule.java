@@ -10,13 +10,14 @@ import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+
+import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.registerCached;
 
@@ -25,7 +26,7 @@ import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.registerCache
  * StoneZoneEntry is subclass of SimpleEntrySet
  * <p>
  * There are 2 BlockTypes that StoneZone can detect: StoneType, MudType
- * You could name the class "StoneModule" for supporting StoneType Blocks and "WoodGoodModule" for WoodType & LeavesType
+ * You could name the class "StoneModule" for supporting StoneType Blocks and "WoodGoodModule" for WoodType &amp; LeavesType
 **/
 @SuppressWarnings("unused")
 public class ExampleModule extends StoneZoneModule {
@@ -40,9 +41,9 @@ public class ExampleModule extends StoneZoneModule {
     public ExampleModule(String modId) {
         super(modId, "tfc"); // If the mod's name is TerraFirmaCraft, then you could use 3 upper letter
 
-        //  your mod's tab or minecraft's tab can be used for setTabKey() - it can use either ResourceKey or ResourceLocation
-        ResourceKey<CreativeModeTab> tab = CreativeModeTabs.BUILDING_BLOCKS;
-        ResourceLocation yourModTab = modRes("twig");
+        //  your mod's tab or minecraft's tab can be used for setTab() - it can use either ResourceKey or ResourceLocation
+        Supplier<CreativeModeTab> tab = getTab(CreativeModeTabs.BUILDING_BLOCKS);
+        Supplier<CreativeModeTab> yourModTab = getModTab("twig");
 
         /// NOTE: it's using StoneZoneEntrySet
         sampleBlock_2 = StoneZoneEntrySet.of(StoneType.class,"suffix", "prefix",
@@ -79,7 +80,7 @@ public class ExampleModule extends StoneZoneModule {
                 .addTag(ResourceLocation.parse("twigs:tables"), Registries.ITEM)
 
                 ///REQUIRED: Add block to your mod's tab or Minecraft's tab
-                .setTabKey(yourModTab)
+                .setTab(yourModTab)
 
                 ///OPTIONAL: Creating recipes for the block
                 .defaultRecipe() // default: new ResourceLocation("twigs:stone_table") via recipes folder
@@ -104,7 +105,7 @@ public class ExampleModule extends StoneZoneModule {
                 )
                 .addTexture(modRes("item/itemTexture"))
                 .addTag(ResourceLocation.parse("twigs:tables"), Registries.ITEM)
-                .setTabKey(tab)
+                .setTab(tab)
                 .build();
         this.addEntry(sampleItem);
     }

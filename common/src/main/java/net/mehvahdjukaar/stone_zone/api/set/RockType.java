@@ -25,15 +25,8 @@ import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 /**
  * Childkey Availability:
- * <Ul>
- * STONE, STAIRS, SLAB, WALL, BUTTON, PRESSURE_PLATE,
- * SMOOTH, SMOOTH_STAIRS, SMOOTH_SLAB, SMOOTH_WALL,
- * COBBLESTONE, MOSSY_COBBLESTONE,
- * POLISHED, POLISHED_STAIRS, POLISHED_SLAB, POLISHED_WALL,
- * BRICKS, BRICK_STAIRS, BRICK_SLAB, BRICK_WALL, CRACKED_BRICKS, BRICK_TILES,
- * MOSSY_BRICKS, MOSSY_BRICK_SLAB, MOSSY_BRICK_STAIRS, MOSSY_BRICK_WALL
- * </Ul>
-**/
+ * Use {@link VanillaRockChildKeys}
+ **/
 public abstract class RockType extends BlockType{
 
     public final Block block;

@@ -5,6 +5,7 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.RockType;
+import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
@@ -16,14 +17,7 @@ import java.util.function.Supplier;
 
 /**
  * Childkey Availability:
- * <Ul>
- * stone, stairs, slab, wall, button, pressure_plate,
- * smooth, smooth_stairs, smooth_slab, smooth_wall,
- * cobblestone, mossy_cobblestone,
- * polished, polished_stairs, polished_slab,
- * bricks, brick_stairs, brick_slab, brick_wall, cracked_bricks, brick_tiles,
- * mossy_bricks, mossy_brick_slab, mossy_brick_stairs, mossy_brick_wall
- * </Ul>
+ * Use {@link VanillaStoneChildKeys} or {@link VanillaRockChildKeys}
 **/
 public class StoneType extends RockType {
 

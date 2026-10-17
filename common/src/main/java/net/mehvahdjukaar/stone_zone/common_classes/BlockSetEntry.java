@@ -46,7 +46,7 @@ public class BlockSetEntry<BT extends BlockType> {
     }
 
     /**
-     * Block, Slab, & Stairs are enabled by default, Wall is optional
+     * Block, Slab, &amp; Stairs are enabled by default, Wall is optional
      * @param getBlockPath BlockId's path for Block
      * @param propertyBlock use Block's property to be copied
      * @param getSlabPath BlockId's path for Slab
@@ -100,7 +100,7 @@ public class BlockSetEntry<BT extends BlockType> {
     }
 
     /**
-     * Block, Slab, & Stairs are enabled by default
+     * Block, Slab, &amp; Stairs are enabled by default
      * @param getBlockPath BlockId's path for Block
      * @param propertyBlock use Utils.copyPropertySafe(...) or Property.of(...)
      * @param getSlabPath BlockId's path for Slab
