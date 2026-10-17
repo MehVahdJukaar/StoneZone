@@ -12,6 +12,51 @@
 |                                                                                                                                   |
 
 ---
+## v2.11.18
+
+### CHANGES:
+- **Macaw's Bridges** (C): ported from 1.20.1 with the updated code for the following: 
+  - Fixed the incorrect class used for `stone_brick_bridge`, `mossy_stone_brick_bridge`, `andesite_bridge` - [#206](https://github.com/MehVahdJukaar/StoneZone/issues/206)
+  - Added a required children to BRIDGE_PIER (BRIDGE_SUPPORT) to exclude some StoneType that don't have the required children
+- **Decorative Blocks Reborn** (C): Aka **Decorative Blocks** is re-enabled and Updated for 1.21.1
+- **\[Let's Do\] Candlelight** (C): Updated for v2.1.14 due to the mod having a major changes - [#212](https://github.com/MehVahdJukaar/StoneZone/issues/212)
+- **Stone Zone** (C): StoneType Detection did not detect Stones from **TerraFirmaCraft** (TFC)/**ArborFirmaCraft** (AFC) - [#205](https://github.com/MehVahdJukaar/StoneZone/issues/205)
+- **Rechiseled** (C): Merged 3 class into 1 class reducing file size from 93.87kB to 30.63kB
+
+### ADDED:
+- **Gregtech CEu Modern** (UDBT): `red_granite`, `light_concrete`, & `dark_concrete` as StoneType - [#169](https://github.com/MehVahdJukaar/StoneZone/issues/169)
+- **Oh The Biomes We've Gone** (UDBT): `white_dacite` - [#189](https://github.com/MehVahdJukaar/StoneZone/issues/189)
+- **DecoFirmaCraft** (UDBT): Added into StoneType Detection so stones can be detected along with TFC and AFC
+- **TerraFirmaCraft** (UDBT): [#205](https://github.com/MehVahdJukaar/StoneZone/issues/205)f
+  - 7 sandstones & 16 alabasters as StoneTypes
+  - 4 mud as MudTypes
+
+### NEW: 
+- **Refurbished Furniture** (C): MrCrayFish's mod - `stepping_stones`
+- **Create bits N' Bobs** (NF)
+
+### CREATE (NF) - Ported codes from Gems Realm 1.21.1 to add new blocks
+- **CHANGES**: Updated the recipe generation to included **Bits N' Bobs**' tiles in stonecutting recipe 
+- **Added** 10 new blocks & 1 item
+  - encased_shaft
+  - encased_cogwheel
+  - encased_large_cogwheel
+  - funnel
+  - belt_funnel
+  - alloy (required for crafting below)
+  - door
+  - ladder
+  - bars
+  - scaffolding
+  - table_cloth
+- **CHANGES**: All of Gems Realm's blocks for valve_handle, casing, table_cloth, funnel will show "W" when you hover the item so you can play StoryBoard
+- **FIXES**: Finally fixed the SHINGLES & TILES' issue with top connected texture where they don't show "X"
+- **NOTES**:
+  - CASING can be not be applied to belt block because there is limitation in the code that prevent compatibility with Gems Realm - I've requested for a small changes in the Create's Source Code. I do not know when the changes will be applied. Too bad Create's github do not have suggestion issue I could create. Discord suggestion tend to get ignored or forgetten.
+  - TUNNEL cannot be added for same reason as casing not being applied to belt block
+
+
+---
 
 ## v2.11.17
 
