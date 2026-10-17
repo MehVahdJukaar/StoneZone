@@ -6,13 +6,17 @@ import com.simibubi.create.content.decoration.MetalLadderBlock;
 import com.simibubi.create.content.decoration.MetalScaffoldingBlock;
 import com.simibubi.create.content.decoration.encasing.CasingBlock;
 import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlock;
+import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
+import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorRenderer;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogwheelBlock;
 import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedShaftBlock;
 import com.simibubi.create.content.logistics.funnel.BeltFunnelBlock;
 import com.simibubi.create.content.logistics.funnel.FunnelBlock;
 import com.simibubi.create.content.logistics.funnel.FunnelMovementBehaviour;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlock;
+import com.simibubi.create.content.logistics.tableCloth.TableClothBlockEntity;
 import com.simibubi.create.content.logistics.tableCloth.TableClothBlockItem;
+import com.simibubi.create.content.logistics.tableCloth.TableClothRenderer;
 import com.simibubi.create.foundation.ponder.CreatePonderPlugin;
 import com.simibubi.create.infrastructure.ponder.AllCreatePonderScenes;
 import com.simibubi.create.infrastructure.ponder.AllCreatePonderTags;
@@ -23,10 +27,13 @@ import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import dev.engine_room.flywheel.lib.model.baked.PartialModel;
+import net.createmod.catnip.data.Couple;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.scene.PonderStoryBoard;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
+import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
@@ -48,6 +55,8 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
+
+import static com.simibubi.create.AllPartialModels.FOLDING_DOORS;
 
 //See CreateModuleAbstract's SUPPORTED VERSION
 @SuppressWarnings("CommentedOutCode")
@@ -133,6 +142,14 @@ public class CreateModule extends CreateModuleAbstract {
         return new TableClothBlockItem(block, properties);
     }
 
+    @Override
+    public void registerBlockEntityRenderers(ClientHelper.BlockEntityRendererEvent event) {
+        super.registerBlockEntityRenderers(event);
+
+        event.register(table_cloth.getTile(TableClothBlockEntity.class), TableClothRenderer::new);
+        event.register(door.getTile(SlidingDoorBlockEntity.class), SlidingDoorRenderer::new);
+    }
+
     //      ┌──────────────────────────────────────────────────────────┐
     //      │                          onMod                           │
     //      └──────────────────────────────────────────────────────────┘
@@ -140,6 +157,7 @@ public class CreateModule extends CreateModuleAbstract {
     @Override
     public void onModSetup() {
         super.onModSetup();
+        putFoldingDoor(this);
         registerEncasedBlock(AllBlocks.SHAFT.get(), encased_shaft);
         registerEncasedBlock(AllBlocks.COGWHEEL.get(), encased_cogwheel);
         registerEncasedBlock(AllBlocks.LARGE_COGWHEEL.get(), encased_large_cogwheel);
@@ -239,5 +257,17 @@ public class CreateModule extends CreateModuleAbstract {
 
     protected static BlockEntry<Block> createStandardBlockEntry(ResourceLocation blockId) {
         return new BlockEntry<>(Registrate.create(StoneZone.MOD_ID), DeferredBlock.createBlock(blockId));
+    }
+
+    protected void putFoldingDoor(CreateModuleAbstract module) {
+        module.door.blocks.forEach((stoneType, block) -> {
+            String path = stoneType.createPathWith(module.shortenedId(), "door");
+            FOLDING_DOORS.put(StoneZone.res(path),
+                    Couple.create(block(path + "/fold_left"), block(path + "/fold_right")));
+        });
+    }
+
+    private static PartialModel block(String path) {
+        return PartialModel.of(StoneZone.res("block/"+ path));
     }
 }

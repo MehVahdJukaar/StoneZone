@@ -7,17 +7,10 @@ import com.simibubi.create.content.decoration.encasing.EncasedBlock;
 import com.simibubi.create.content.decoration.encasing.EncasingRegistry;
 import com.simibubi.create.content.decoration.palettes.ConnectedPillarBlock;
 import com.simibubi.create.content.decoration.palettes.LayeredBlock;
-import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorBlockEntity;
-import com.simibubi.create.content.decoration.slidingDoor.SlidingDoorRenderer;
 import com.simibubi.create.content.logistics.funnel.FunnelItem;
-import com.simibubi.create.content.logistics.tableCloth.TableClothBlockEntity;
-import com.simibubi.create.content.logistics.tableCloth.TableClothRenderer;
-import dev.engine_room.flywheel.lib.model.baked.PartialModel;
-import net.createmod.catnip.data.Couple;
 import net.mehvahdjukaar.every_compat.api.*;
 import net.mehvahdjukaar.every_compat.misc.UtilityRecipe;
 import net.mehvahdjukaar.every_compat.misc.UtilityTag;
-import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.resources.ResType;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
@@ -43,12 +36,16 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import static com.simibubi.create.AllPartialModels.FOLDING_DOORS;
 import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.makePaletteFromChild;
 import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.registerCached;
 import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.getChildrenBlockSafe;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.isKnownVanillaStone;
+
+// Neoforge & Fabric don't have the same Class, this is a good reference to know in the future.
+//import com.simibubi.create.content.logistics.tableCloth.TableClothBlockEntity;
+//import com.simibubi.create.content.logistics.tableCloth.TableClothRenderer;
+//import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 
 ///SUPPORT: v6.0.10+
 public abstract class CreateModuleAbstract extends StoneZoneModule {
@@ -533,23 +530,6 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
     protected abstract Block newTableClothBlock(StoneType stoneType);
     protected abstract Item newTableClothBlockItem(Block block, Item.Properties properties);
 
-    @Override
-    public void registerBlockEntityRenderers(ClientHelper.BlockEntityRendererEvent event) {
-        super.registerBlockEntityRenderers(event);
-
-        event.register(table_cloth.getTile(TableClothBlockEntity.class), TableClothRenderer::new);
-        event.register(door.getTile(SlidingDoorBlockEntity.class), SlidingDoorRenderer::new);
-    }
-
-    //      ┌──────────────────────────────────────────────────────────┐
-    //      │                          onMod                           │
-    //      └──────────────────────────────────────────────────────────┘
-    @Override
-    public void onModSetup() {
-        super.onModSetup();
-        putFoldingDoor(this);
-    }
-
     //      ┌──────────────────────────────────────────────────────────┐
     //      │                    Dynamic Resources                     │
     //      └──────────────────────────────────────────────────────────┘
@@ -673,18 +653,6 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
             return Pair.of(stoneType.getBlockOfThis(childkey), entryId);
         }
         return Pair.of(null, "");
-    }
-
-    protected void putFoldingDoor(CreateModuleAbstract module) {
-        module.door.blocks.forEach((stoneType, block) -> {
-            String path = stoneType.createPathWith(module.shortenedId(), "door");
-            FOLDING_DOORS.put(StoneZone.res(path),
-                    Couple.create(block(path + "/fold_left"), block(path + "/fold_right")));
-        });
-    }
-
-    private static PartialModel block(String path) {
-        return PartialModel.of(StoneZone.res("block/"+ path));
     }
 
     /// Add encased blocks (create:encased_shaft) to ENCASED_VARIANTS so the create:casing can be applied to shaft or others
