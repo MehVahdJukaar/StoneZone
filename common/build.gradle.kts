@@ -64,6 +64,9 @@ dependencies {
     modCompileOnly("net.createmod.ponder:ponder-neoforge:${property("ponder_version")}+mc${property("minecraft_version")}") // Create
     modCompileOnly("dev.engine-room.flywheel:flywheel-neoforge-${property("minecraft_version")}:${property("flywheel_neoforge_version")}") // Create
 
+    // ========== LOCAL (NOTE: JARJAR meant the mod is embedded in the other mod)
+    modCompileOnly("local-mod_foundation:foundation-neoforge-1.0.7") //JARJAR - [Let's Do]-Farm&Charms
+
 //!! =================================================== IMPORTS ==================================================== \\
     //+ REQUIRED - The modules access libaries from below - ONLY IN FORGE
     // MACAW's
@@ -80,8 +83,8 @@ dependencies {
     modCompileOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1 //!! 1.20
     modCompileOnly("curse.maven:decorative-blocks-reborn-1327768:7926194")
     modCompileOnly("curse.maven:handcrafted-538214:6330030") // Resourceful-Lib
-    modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:9098078") //+[Let's-Do]-Farm-&-Charm
-    modCompileOnly("curse.maven:lets-do-farm-charm-1038103:6962704") // Architectury-API
+    modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:9150310") //+[Let's-Do]-Farm-&-Charm
+    modCompileOnly("curse.maven:lets-do-farm-charm-1038103:9203717") // Architectury-API
     modCompileOnly("curse.maven:more-beautiful-torches-860325:5609745") // Monolib //!! MERGED
     modCompileOnly("curse.maven:rechiseled-558998:8301793") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
     modCompileOnly("curse.maven:refurbished-furniture-897116:7473565") // Framework
@@ -90,7 +93,7 @@ dependencies {
     modCompileOnly("curse.maven:twigs-496913:8191595")
     modCompileOnly("curse.maven:waystones-245755:8450087") // Balm
 
-    // OTHER MAVENS
+    //+ OTHER MAVENS
     modCompileOnly("com.simibubi.create:create-1.21.1:${property("create_version")}:slim") { isTransitive = false } // Registrate, Flywheel, Ponder
     modCompileOnly("org.violetmoon.quark:Quark:4.1-481-SNAPSHOT") // Zeta, Biolith @  https://maven.blamejared.com/org/violetmoon/quark/Quark/
     modCompileOnly("earth.terrarium.chipped:chipped-neoforge-${property("minecraft_version")}:4.0.2") //INCLUDED: Athena, Resourceful-Lib, REQUIRE: Bytecodecs

@@ -15,13 +15,13 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.PushReaction;
 import net.satisfy.candlelight.core.block.StoveBlock;
-import net.satisfy.farm_and_charm.core.block.LineConnectingBlock;
-import net.satisfy.farm_and_charm.core.block.SinkBlock;
+import net.satisfy.foundation.block.LineConnectingBlock;
+import net.satisfy.foundation.block.SinkBlock;
 
 import java.util.function.Supplier;
 
 
-///SUPPORT: v2.1.14
+///SUPPORT: v2.1.15
 public class CandlelightModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> counter;

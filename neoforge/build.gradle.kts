@@ -83,7 +83,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct //!! 1.20
 //    modRuntimeOnly("curse.maven:blueprint-382216:5292242") // v7.1.0 | The-Outer-End, Caverns-And-Chasms //!! 1.20
 //    modRuntimeOnly("curse.maven:monolib-968432:6123976") // v2.0.0 | More-Beautiful-Torches //!! 1.20
-//    modRuntimeOnly("curse.maven:architectury-api-419699:8492726") // v13.0.11 | Better-Archeology
+//    modRuntimeOnly("curse.maven:architectury-api-419699:8492726") // v13.0.11 | Better-Archeology, [Let's do] Farm & Charm
 //    modRuntimeOnly("curse.maven:balm-531761:8424824") // v21.0.63 | Waystones
 //    modRuntimeOnly("curse.maven:curios-309927:6529130") // v9.5.1 | Ars-Nouveau
 //    modRuntimeOnly("curse.maven:azimuth-api-1466331:9058513") // v1.4.10 | Create, Bits-N-Bobs
@@ -125,7 +125,7 @@ dependencies {
     modCompileOnly("curse.maven:additional-lights-384991:6841545")
     modCompileOnly("curse.maven:stone-chest-307052:7432348")
 
-    // OTHER MAVENS
+    //+ OTHER MAVENS
     modCompileOnly("com.simibubi.create:create-1.21.1:${property("create_version")}:slim") { isTransitive = false } // Registrate, Flywheel, Ponder
     modCompileOnly("earth.terrarium.chipped:chipped-neoforge-${property("minecraft_version")}:4.0.2") //INCLUDED: Athena, Resourceful-Lib, REQUIRE: Bytecodecs
 
@@ -137,8 +137,8 @@ dependencies {
     modCompileOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1 //!! 1.20
     modCompileOnly("curse.maven:decorative-blocks-reborn-1327768:7926194")
     modCompileOnly("curse.maven:handcrafted-538214:6330030") // Resourceful-Lib
-    modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:9098078") //+[Let's-Do]-Farm-&-Charm
-    modCompileOnly("curse.maven:lets-do-farm-charm-1038103:6962704") // Architectury-API
+    modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:9150310") //+[Let's-Do]-Farm-&-Charm
+    modCompileOnly("curse.maven:lets-do-farm-charm-1038103:9203717") // Architectury-API
 //    modCompileOnly("curse.maven:more-beautiful-torches-860325:5609745") // Monolib //!! MERGED
     modCompileOnly("curse.maven:rechiseled-558998:8301793") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
     modCompileOnly("curse.maven:refurbished-furniture-897116:7473565") // Framework
@@ -146,6 +146,8 @@ dependencies {
     modCompileOnly("curse.maven:twigs-496913:8191595")
     modCompileOnly("curse.maven:waystones-245755:8450087") // Balm
 
+    // ========== LOCAL (NOTE: JARJAR meant the mod is embedded in the other mod)
+    modCompileOnly("local-mod_foundation:foundation-neoforge-1.0.7") //JARJAR - [Let's Do]-Farm&Charms
 
 //!! ================================================= FOR TESTING ================================================== \\
 

@@ -127,14 +127,17 @@ dependencies {
     modCompileOnly("curse.maven:decorative-blocks-reborn-1327768:7926190")
     modCompileOnly("curse.maven:fabric-waystones-410902:5798771")
     modCompileOnly("curse.maven:handcrafted-538214:6330032") // Resourceful-Lib
-    modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:9098088") //+[Let's-Do]-Farm-&-Charm
-    modCompileOnly("curse.maven:lets-do-farm-charm-1038103:6962195") // Architectury-API, Cloth-Config-API
+    modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:9150312") //+[Let's-Do]-Farm-&-Charm
+    modCompileOnly("curse.maven:lets-do-farm-charm-1038103:9203719") // Architectury-API, Cloth-Config-API
     modCompileOnly("curse.maven:more-beautiful-torches-860325:5609745") // MonoLib //!! MERGED
     modCompileOnly("curse.maven:rechiseled-558998:8301622") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
     modCompileOnly("curse.maven:refurbished-furniture-897116:7473565") // Framework
     modCompileOnly("curse.maven:stoneworks-852663:5731745") // puzzles-lib, forge-config-api-port
     modCompileOnly("curse.maven:twigs-496913:6782788")
     modCompileOnly("curse.maven:waystones-245755:8450086") // Balm
+
+    // ========== LOCAL (NOTE: JARJAR meant the mod is embedded in the other mod)
+    modCompileOnly("local-mod_foundation:foundation-fabric-1.0.7") //JARJAR - [Let's Do]-Farm&Charms
 
 //!! ================================================= FOR TESTING ================================================== \\
 
