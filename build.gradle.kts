@@ -199,3 +199,52 @@ subprojects {
 //        maven("https://maven.muon.rip/releases") // Possible-Triangle Plugins
     }
 }
+
+tasks.register<Delete>("cleanFiles") {
+    group = "build"
+    description = "Delete Files"
+
+    // Logs
+    delete(
+        fileTree(rootDir.resolve("neoforge/run/logs"))
+            .matching { include("**/*.gz") },
+        fileTree(rootDir.resolve("fabric/run/logs"))
+            .matching { include("**/*.gz") },
+
+        // *.bak
+        fileTree(rootDir.resolve("neoforge/run/config"))
+            .matching { include("**/*.bak") },
+        fileTree(rootDir.resolve("fabric/run/config"))
+            .matching { include("**/*.bak") },
+    )
+}
+
+tasks.register<Delete>("cleanFolders") {
+    group = "build"
+    description = "Clean logs & Delete folders of Debug"
+
+    delete(
+        // Logs
+        fileTree(rootDir.resolve("neoforge/run/logs"))
+            .matching { include("**/*.gz") },
+        fileTree(rootDir.resolve("fabric/run/logs"))
+            .matching { include("**/*.gz") },
+
+        // *.bak
+        fileTree(rootDir.resolve("neoforge/run/config"))
+            .matching { include("**/*.bak") },
+        fileTree(rootDir.resolve("fabric/run/config"))
+            .matching { include("**/*.bak") },
+
+        // Debug
+        rootDir.resolve("fabric/run/debug"),
+        rootDir.resolve("neoforge/run/debug"),
+        // Datapack Cache
+        rootDir.resolve("fabric/run/dynamic-data-pack-cache"),
+        rootDir.resolve("neoforge/run/dynamic-data-pack-cache"),
+        // Resource Pack Cache
+        rootDir.resolve("fabric/run/dynamic-resource-pack-cache"),
+        rootDir.resolve("neoforge/run/dynamic-resource-pack-cache")
+    )
+
+}
