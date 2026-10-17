@@ -154,32 +154,50 @@ public class CreateClientModule {
 
     ///NOTE: texture filename with _connected is included
     private static CTSpriteShiftEntry omni(String blockTexture) {
-        return getCT(AllCTTypes.OMNIDIRECTIONAL, ResourceLocation.parse(blockTexture), ResourceLocation.parse(blockTexture + "_connected"));
+        return getCT(AllCTTypes.OMNIDIRECTIONAL,
+                ResourceLocation.parse(blockTexture),
+                ResourceLocation.parse(blockTexture + "_connected")
+        );
     }
 
     ///NOTE: texture filename with _connected is included
     private static CTSpriteShiftEntry horizontal(String blockTexture) {
-        return getCT(AllCTTypes.HORIZONTAL, ResourceLocation.parse(blockTexture), ResourceLocation.parse(blockTexture +"_connected"));
+        return getCT(AllCTTypes.HORIZONTAL,
+                ResourceLocation.parse(blockTexture),
+                ResourceLocation.parse(blockTexture +"_connected")
+        );
     }
 
     ///NOTE: texture filename with _connected is included
     private static CTSpriteShiftEntry horizontalwithKrypper(String blockTexture) {
-        return getCT(AllCTTypes.HORIZONTAL_KRYPPERS, ResourceLocation.parse(blockTexture), ResourceLocation.parse(blockTexture +"_connected"));
+        return getCT(AllCTTypes.HORIZONTAL_KRYPPERS,
+                ResourceLocation.parse(blockTexture),
+                ResourceLocation.parse(blockTexture +"_connected")
+        );
     }
 
     ///NOTE: texture filename with _connected is included
     private static CTSpriteShiftEntry horizontalwithRectangle(String blockTexture) {
-        return getCT(AllCTTypes.RECTANGLE, ResourceLocation.parse(blockTexture), ResourceLocation.parse(blockTexture +"_connected"));
+        return getCT(AllCTTypes.RECTANGLE,
+                ResourceLocation.parse(blockTexture),
+                ResourceLocation.parse(blockTexture +"_connected")
+        );
     }
 
     ///NOTE: texture filename with _connected is included
     private static CTSpriteShiftEntry vertical(String blockTexture) {
-        return getCT(AllCTTypes.VERTICAL, ResourceLocation.parse(blockTexture), ResourceLocation.parse(blockTexture + "_connected"));
+        return getCT(AllCTTypes.VERTICAL,
+                ResourceLocation.parse(blockTexture),
+                ResourceLocation.parse(blockTexture + "_connected")
+        );
     }
 
     ///NOTE: texture filename with _connected is included
     private static CTSpriteShiftEntry roof(String blockTexture, String connectedTexture) {
-        return getCT(AllCTTypes.ROOF, ResourceLocation.parse(blockTexture), ResourceLocation.parse(connectedTexture + "_connected"));
+        return getCT(AllCTTypes.ROOF,
+                ResourceLocation.parse(blockTexture),
+                ResourceLocation.parse(connectedTexture + "_connected")
+        );
     }
 
     private static void registerCTBehviour(Block entry, ConnectedTextureBehaviour behavior) {
