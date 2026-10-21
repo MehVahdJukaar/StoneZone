@@ -1,10 +1,11 @@
 package net.mehvahdjukaar.stone_zone.modules.create;
 
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
-import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntry;
+import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -12,7 +13,7 @@ import net.minecraft.world.item.CreativeModeTab;
 
 import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.getChildrenBlockSafe;
+import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 
@@ -23,11 +24,11 @@ public class BitsNBobsModuleAbstract extends StoneZoneModule {
         super(modId, "cbnb");
         Supplier<CreativeModeTab> palettesTab = getModTab("bnb_palettes");
 
-        var blockSet = BlockSetEntry.of(StoneType.class, this, VanillaStoneTypes.ANDESITE,
-                        "andesite_tiles", stoneType -> stoneType.stone,
-                        "andesite_tile_slab", stoneType -> getChildrenBlockSafe(SLAB, stoneType),
-                        "andesite_tile_stairs", stoneType -> getChildrenBlockSafe(STAIRS, stoneType),
-                        "andesite_tile_wall", stoneType -> getChildrenBlockSafe(WALL, stoneType),
+        var blockSet = BlockSetEntries.of4BlocksProperty(StoneType.class, this, VanillaStoneTypes.ANDESITE,
+                        "andesite_tiles", stoneType -> Utils.copyPropertySafe(stoneType.stone),
+                        "andesite_tile_slab", stoneType -> copyChildrenPropertySafe(SLAB, stoneType),
+                        "andesite_tile_stairs", stoneType -> copyChildrenPropertySafe(STAIRS, stoneType),
+                        "andesite_tile_wall", stoneType -> copyChildrenPropertySafe(WALL, stoneType),
                         palettesTab
                 )
                 .block(builder -> builder

@@ -8,9 +8,10 @@ import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.SZRegistry;
 import net.mehvahdjukaar.stone_zone.StoneZone;
+import net.mehvahdjukaar.stone_zone.api.set.RockType;
 import net.mehvahdjukaar.stone_zone.api.set.mud.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
-import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntry;
+import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntries;
 import net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
@@ -101,9 +102,9 @@ public class StoneZoneModule extends EveryCompatModule {
         );
     }
 
-    public  <T extends BlockType> void addEntries(BlockSetEntry<T> blockSet) {
+    public  <T extends RockType> void addEntries(BlockSetEntries<T> blockSet) {
         this.addEntry(blockSet.block);
-        if (blockSet.slab != null) this.addEntry(blockSet.slab);
+        if (blockSet.extra != null) this.addEntry(blockSet.extra);
         if (blockSet.stairs != null) this.addEntry(blockSet.stairs);
         if (blockSet.wall != null) this.addEntry(blockSet.wall);
     }

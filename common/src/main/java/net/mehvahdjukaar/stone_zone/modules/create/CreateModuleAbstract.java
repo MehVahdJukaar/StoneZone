@@ -9,6 +9,7 @@ import com.simibubi.create.content.decoration.palettes.ConnectedPillarBlock;
 import com.simibubi.create.content.decoration.palettes.LayeredBlock;
 import com.simibubi.create.content.logistics.funnel.FunnelItem;
 import net.mehvahdjukaar.every_compat.api.*;
+import net.mehvahdjukaar.every_compat.configs.ModEntriesConfigs;
 import net.mehvahdjukaar.every_compat.misc.UtilityRecipe;
 import net.mehvahdjukaar.every_compat.misc.UtilityTag;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
@@ -24,7 +25,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
-import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntry;
+import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -38,7 +39,7 @@ import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.makePaletteFromChild;
 import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.registerCached;
-import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.getChildrenBlockSafe;
+import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.isKnownVanillaStone;
 
@@ -78,11 +79,11 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
         Supplier<CreativeModeTab> palettesTab = getModTab("palettes");
 
         /// CUT
-        var cutSet = BlockSetEntry.of(StoneType.class,this, VanillaStoneTypes.ANDESITE,
-                        "cut_andesite", stoneType -> stoneType.stone,
-                        "cut_andesite_slab", stoneType -> stoneType.stone,
-                        "cut_andesite_stairs", stoneType -> stoneType.stone,
-                        "cut_andesite_wall", stoneType -> stoneType.stone,
+        var cutSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
+                        "cut_andesite", stoneType -> Utils.copyPropertySafe(stoneType.stone),
+                        "cut_andesite_slab", stoneType -> Utils.copyPropertySafe(stoneType.stone),
+                        "cut_andesite_stairs", stoneType -> Utils.copyPropertySafe(stoneType.stone),
+                        "cut_andesite_wall", stoneType -> Utils.copyPropertySafe(stoneType.stone),
                         palettesTab
                 )
                 .block(builder -> builder
@@ -111,11 +112,11 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
         this.addEntries(cutSet);
 
         /// CUT_BRICKS
-        var cutBricksSet = BlockSetEntry.of(StoneType.class,this, VanillaStoneTypes.ANDESITE,
-                        "cut_andesite_bricks", StoneType::bricksOrStone,
-                        "cut_andesite_brick_slab", stoneType -> getChildrenBlockSafe(BRICK_SLAB, stoneType),
-                        "cut_andesite_brick_stairs", stoneType -> getChildrenBlockSafe(BRICK_STAIRS, stoneType),
-                        "cut_andesite_brick_wall", stoneType -> getChildrenBlockSafe(BRICK_WALL, stoneType),
+        var cutBricksSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
+                        "cut_andesite_bricks", stoneType -> Utils.copyPropertySafe(stoneType.bricksOrStone()),
+                        "cut_andesite_brick_slab", stoneType -> copyChildrenPropertySafe(BRICK_SLAB, stoneType),
+                        "cut_andesite_brick_stairs", stoneType -> copyChildrenPropertySafe(BRICK_STAIRS, stoneType),
+                        "cut_andesite_brick_wall", stoneType -> copyChildrenPropertySafe(BRICK_WALL, stoneType),
                         palettesTab
                 )
                 .block(builder -> builder
@@ -143,11 +144,11 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
         this.addEntries(cutBricksSet);
 
         /// POLISHED_CUT
-        var polishedCutSet = BlockSetEntry.of(StoneType.class,this, VanillaStoneTypes.ANDESITE,
-                        "polished_cut_andesite", stoneType -> getChildrenBlockSafe(POLISHED, stoneType),
-                        "polished_cut_andesite_slab", stoneType -> getChildrenBlockSafe(POLISHED_SLAB, stoneType),
-                        "polished_cut_andesite_stairs", stoneType -> getChildrenBlockSafe(POLISHED_STAIRS, stoneType),
-                        "polished_cut_andesite_wall", stoneType -> getChildrenBlockSafe(POLISHED_WALL, stoneType),
+        var polishedCutSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
+                        "polished_cut_andesite", stoneType -> copyChildrenPropertySafe(POLISHED, stoneType),
+                        "polished_cut_andesite_slab", stoneType -> copyChildrenPropertySafe(POLISHED_SLAB, stoneType),
+                        "polished_cut_andesite_stairs", stoneType -> copyChildrenPropertySafe(POLISHED_STAIRS, stoneType),
+                        "polished_cut_andesite_wall", stoneType -> copyChildrenPropertySafe(POLISHED_WALL, stoneType),
                         palettesTab
                 )
                 .block(builder -> builder
@@ -176,11 +177,11 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
         this.addEntries(polishedCutSet);
 
         /// SMALL_BRICKS
-        var smallBricksSet = BlockSetEntry.of(StoneType.class,this, VanillaStoneTypes.ANDESITE,
-                        "small_andesite_bricks", stoneType -> getChildrenBlockSafe(BRICKS, stoneType),
-                        "small_andesite_brick_slab", stoneType -> getChildrenBlockSafe(BRICK_SLAB, stoneType),
-                        "small_andesite_brick_stairs", stoneType -> getChildrenBlockSafe(BRICK_STAIRS, stoneType),
-                        "small_andesite_brick_wall", stoneType -> getChildrenBlockSafe(BRICK_WALL, stoneType),
+        var smallBricksSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
+                        "small_andesite_bricks", stoneType -> copyChildrenPropertySafe(BRICKS, stoneType),
+                        "small_andesite_brick_slab", stoneType -> copyChildrenPropertySafe(BRICK_SLAB, stoneType),
+                        "small_andesite_brick_stairs", stoneType -> copyChildrenPropertySafe(BRICK_STAIRS, stoneType),
+                        "small_andesite_brick_wall", stoneType -> copyChildrenPropertySafe(BRICK_WALL, stoneType),
                         palettesTab
                 )
                 .block(builder -> builder
@@ -540,8 +541,10 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
 
         executor.accept((manager, sink) ->
             alloy.items.forEach((stoneType, item) -> {
-                createMixingRecipe(stoneType, item, sink);
-                createItemApplicationRecipe(stoneType, item, casing.blocks.get(stoneType), sink);
+                if (ModEntriesConfigs.isEntryEnabled(stoneType, item)) {
+                    createMixingRecipe(stoneType, item, sink);
+                    createItemApplicationRecipe(stoneType, item, casing.blocks.get(stoneType), sink);
+                }
             }
         ));
 
@@ -697,6 +700,11 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
         sink.addBytes(newLocWithZinc, newRecipeWithZinc.getBytes(), ResType.RECIPES);
     }
 
+    /**
+     *
+     * @param alloyItem Ingredient
+     * @param casingBlock Output/Result
+     */
     protected void createItemApplicationRecipe(StoneType stoneType, Item alloyItem, Block casingBlock, ResourceSink sink) {
         String original = """
         {

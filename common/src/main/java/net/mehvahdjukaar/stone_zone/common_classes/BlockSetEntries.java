@@ -3,11 +3,10 @@ package net.mehvahdjukaar.stone_zone.common_classes;
 import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.moonlight.api.util.Utils;
+import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.modules.create.BitsNBobsModuleAbstract;
+import net.mehvahdjukaar.stone_zone.api.set.RockType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -16,6 +15,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,65 +25,43 @@ import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.util.Objects.requireNonNull;
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BLOCK;
+
 /// A helper to add block, slab, stairs and wall. This reduce the repetitive codes.
-public class BlockSetEntry<BT extends BlockType> {
+public class BlockSetEntries<BT extends RockType> {
 
     public final SimpleEntrySet<BT, Block> block;
+    /// extra Block or Slab
+    public final SimpleEntrySet<BT, Block> extra;
     public final SimpleEntrySet<BT, Block> stairs;
-    public final SimpleEntrySet<BT, Block> slab;
     public final @Nullable SimpleEntrySet<BT, Block> wall;
 
-    protected BlockSetEntry(
+    protected BlockSetEntries(
             SimpleEntrySet<BT, Block> block,
             SimpleEntrySet<BT, Block> stairs,
-            SimpleEntrySet<BT, Block> slab,
+            SimpleEntrySet<BT, Block> extra,
             @Nullable SimpleEntrySet<BT, Block> wall)
     {
         this.block = block;
         this.stairs = stairs;
-        this.slab = slab;
+        this.extra = extra;
         this.wall = wall;
     }
 
+    //      ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+    //      │                                            CUSTOM                                            │
+    //      └──────────────────────────────────────────────────────────────────────────────────────────────┘
     /**
-     * Block, Slab, &amp; Stairs are enabled by default, Wall is optional
+     * <p style="color: yellow;">The parameters with "Factory", Custom Block can be used.</p>
+     * Example: new RechiseledBlock(...) can be used for blockFactory
      * @param getBlockPath BlockId's path for Block
-     * @param propertyBlock use Block's property to be copied
      * @param getSlabPath BlockId's path for Slab
-     * @param propertySlab use Slab or Block's property to be copied
      * @param getStairsPath BlockId's path for Stairs
-     * @param propertyStairs use Stairs or Block's property to be copied
-     * @param getWallPath BlockId's path for Wall
-     * @param propertyWall use Wall or Block's property to be copied
-     * Example: See {@link BitsNBobsModuleAbstract}
+     * @param getWallPath  BlockId's path for Wall
      */
-    @SuppressWarnings("DataFlowIssue")
-    public static <T extends BlockType> BlockSetBuilder<T> of(
-            Class<T> typeClass, StoneZoneModule module, T baseTypeId,
-            String getBlockPath, Function<T, Block> propertyBlock,
-            String getSlabPath, Function<T, Block> propertySlab,
-            String getStairsPath, Function<T, Block> propertyStairs,
-            @Nullable String getWallPath, @Nullable Function<T, Block> propertyWall,
-            Supplier<CreativeModeTab> tabSupplier)
-    {
-        return new BlockSetBuilder<>(typeClass, module, baseTypeId,
-                getBlockPath, type -> new Block(Utils.copyPropertySafe(propertyBlock.apply(type))),
-                getSlabPath, type -> new SlabBlock(Utils.copyPropertySafe(propertySlab.apply(type))),
-                getStairsPath, type -> {
-                        Block getBlock = propertyStairs.apply(type);
-
-                        return new StairBlock(
-                                getBlock.defaultBlockState(),
-                                Utils.copyPropertySafe(getBlock)
-                        );
-                },
-                getWallPath, type -> new WallBlock(Utils.copyPropertySafe(propertyWall.apply(type))),
-                tabSupplier
-        );
-    }
-
-    public static <T extends BlockType> BlockSetBuilder<T> withFactory(
-            Class<T> typeClass, StoneZoneModule module, T baseTypeId,
+    public static <T extends RockType> BlockSetBuilder<T> of4BlocksFactory(
+            StoneZoneModule module, Class<T> typeClass, T baseTypeId,
             String getBlockPath, Function<T, Block> blockFactory,
             String getSlabPath, Function<T, Block> slabFactory,
             String getStairsPath, Function<T, Block> stairsFactory,
@@ -100,58 +78,106 @@ public class BlockSetEntry<BT extends BlockType> {
     }
 
     /**
-     * Block, Slab, &amp; Stairs are enabled by default
+     * <p style="color: yellow;">The parameters with "Factory", Custom Block can be used.</p>
+     * Example: new RechiseledBlock(...) can be used for blockFactory
      * @param getBlockPath BlockId's path for Block
-     * @param propertyBlock use Utils.copyPropertySafe(...) or Property.of(...)
      * @param getSlabPath BlockId's path for Slab
-     * @param propertySlab use Utils.copyPropertySafe(...) or Property.of(...)
      * @param getStairsPath BlockId's path for Stairs
-     * @param propertyStairs use Utils.copyPropertySafe(...) or Property.of(...)
      */
-    public static <T extends BlockType> BlockSetBuilder<T> of(
-            Class<T> typeClass, StoneZoneModule module, T baseTypeId,
-            String getBlockPath, Function<T, Block> propertyBlock,
-            String getSlabPath, Function<T, Block> propertySlab,
-            String getStairsPath, Function<T, Block> propertyStairs,
+    public static <T extends RockType> BlockSetBuilder<T> of3BlocksFactory(
+            StoneZoneModule module, Class<T> typeClass, T baseTypeId,
+            String getBlockPath, Function<T, Block> blockFactory,
+            String getSlabPath, Function<T, Block> slabFactory,
+            String getStairsPath, Function<T, Block> stairsFactory,
             Supplier<CreativeModeTab> tabSupplier)
     {
-        return new BlockSetBuilder<>(typeClass, module, baseTypeId,
-                getBlockPath, propertyBlock,
-                getSlabPath, propertySlab,
-                getStairsPath, propertyStairs,
+        return of4BlocksFactory(module, typeClass, baseTypeId,
+                getBlockPath, blockFactory,
+                getSlabPath, slabFactory,
+                getStairsPath, stairsFactory,
                 null, null,
                 tabSupplier
         );
     }
 
-    public static <T extends BlockType> BlockSetBuilder<T> withFactory(
+    public static <T extends RockType> BlockSetBuilder<T> of4BlocksProperty(
             Class<T> typeClass, StoneZoneModule module, T baseTypeId,
-            String getBlockPath, Function<T, Block> propertyBlock,
-            String getSlabPath, Function<T, Block> propertySlab,
-            String getStairsPath, Function<T, Block> propertyStairs,
+            String getBlockPath, Function<T, BlockBehaviour.Properties> blockProperty,
+            String getSlabPath, Function<T, BlockBehaviour.Properties> slabOrExtraProperty,
+            String getStairsPath, Function<T, BlockBehaviour.Properties> stairsProperty,
+            String getWallPath, Function<T, BlockBehaviour.Properties> wallProperty,
             Supplier<CreativeModeTab> tabSupplier)
     {
-        return new BlockSetBuilder<>(typeClass, module, baseTypeId,
-                getBlockPath, type -> new Block(Utils.copyPropertySafe(propertyBlock.apply(type))),
-                getSlabPath, type -> new SlabBlock(Utils.copyPropertySafe(propertySlab.apply(type))),
-                getStairsPath, type -> {
-            Block getBlock = propertyStairs.apply(type);
-
-            return new StairBlock(
-                    getBlock.defaultBlockState(),
-                    Utils.copyPropertySafe(getBlock)
-            );
-        },
-                null, null,
+        return of4BlocksFactory(module, typeClass, baseTypeId,
+                getBlockPath, type -> new Block(blockProperty.apply(type)),
+                getSlabPath, type -> new SlabBlock(slabOrExtraProperty.apply(type)),
+                getStairsPath, type -> new StairBlock(
+                        requireNonNull(type.getBlockOfThis(getChildKey(module.getModId(), getBlockPath, baseTypeId))).defaultBlockState(),
+                        stairsProperty.apply(type)
+                ),
+                getWallPath, type -> new WallBlock(wallProperty.apply(type)),
                 tabSupplier
         );
     }
 
-    //      ┌──────────────────────────────────────────────────────────┐
-    //      │                         SubClass                         │
-    //      └──────────────────────────────────────────────────────────┘
-    @SuppressWarnings("unused") // noSlab() or noStairs() will be used in a rare case
-    public static class BlockSetBuilder<T extends BlockType> extends StoneZoneModule {
+    /**
+     * The first 3 factories by default are: Block, SlabBlock, and StairBlock, BUT wall are excluded
+     * <p style="color: yellow;">The parameters with "Property" is for copying Block's BlockBehaviour.Properties</p>
+     * @param getBlockPath BlockId's path for Block
+     * @param getSlabPath BlockId's path for Slab
+     * @param getStairsPath BlockId's path for Stairs
+     */
+    public static <T extends RockType> BlockSetBuilder<T> of3BlocksProperty(
+            StoneZoneModule module, Class<T> typeClass, T baseTypeId,
+            String getBlockPath, Function<T, BlockBehaviour.Properties> blockProperty,
+            String getSlabPath, Function<T, BlockBehaviour.Properties> slabProperty,
+            String getStairsPath, Function<T, BlockBehaviour.Properties> stairsProperty,
+            Supplier<CreativeModeTab> tabSupplier) {
+        return of3BlocksFactory(module, typeClass, baseTypeId,
+                getBlockPath, type -> new Block(blockProperty.apply(type)),
+                getSlabPath, type -> new SlabBlock(slabProperty.apply(type)),
+                getStairsPath, type -> new StairBlock(
+                        requireNonNull(type.getBlockOfThis(getChildKey(module.getModId(), getBlockPath, baseTypeId))).defaultBlockState(),
+                        stairsProperty.apply(type)
+                ),
+                tabSupplier
+        );
+    }
+
+    //      ┌──────────────────────────────────────────────────────────────────────────┐
+    //      │                                Utilities                                 │
+    //      └──────────────────────────────────────────────────────────────────────────┘
+
+    /**
+     * get Childkey from baseBlockPath so it can be used in type.getBlockOfThis(...)
+     * @return modId:childkey<br>
+     * In Case of failure, defaulting to BLOCK
+    **/
+    public static <T extends RockType> String getChildKey(String modId, String baseblockPath, T baseBlockType) {
+        String typeName = baseBlockType.getTypeName();
+
+        Pattern pattern = Pattern.compile("(?<prefix>(?:[a-z]+_)?[a-z]+)?_?"+typeName+"_?(?<suffix>\\w+)?");
+        Matcher matcher = pattern.matcher(baseblockPath);
+
+        if (matcher.find()) {
+            String prefix = matcher.group("prefix");
+            String suffix = matcher.group("suffix");
+
+            if (prefix == null && suffix != null) return modId +":"+ suffix;
+            else if (prefix != null && suffix == null) return modId +":"+ prefix;
+            else return modId +":"+ prefix +"_"+ suffix;
+        }
+        else {
+            StoneZone.LOGGER.error("BlockSetEntry - Failed to get Childkey for {} via {}", baseblockPath, modId);
+            return BLOCK;
+        }
+    }
+
+    //      ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+    //      │                                           SubClass                                           │
+    //      └──────────────────────────────────────────────────────────────────────────────────────────────┘
+    @SuppressWarnings({"unused", "FieldMayBeFinal"}) // noSlab() or noStairs() will be used in a rare case
+    public static class BlockSetBuilder<T extends RockType> extends StoneZoneModule {
 
         private final T baseType;
 
@@ -177,6 +203,11 @@ public class BlockSetEntry<BT extends BlockType> {
         private Consumer<StoneZoneEntrySet.Builder<T, Block>> wallConfig =
                 builder -> {};
 // ─────────────────────────────────────────────────────────────────────────────────────
+        private boolean includeDefaultRecipe = false;
+
+        private boolean includeBlockTexture = false;
+        private boolean includeBlockTextureTop = false;
+
         private boolean createStairs = true;
         private boolean createSlabs = true;
         private boolean createWall = false;
@@ -200,9 +231,11 @@ public class BlockSetEntry<BT extends BlockType> {
 
             this.typeClass = typeClass;
             this.baseType = baseType;
+
             this.slabPath = slabPath;
             this.stairsPath = stairsPath;
             this.wallPath = wallPath;
+
             this.slabFunction = slabFunction;
             this.stairsFunction = stairsFunction;
             this.wallFunction = wallFunction;
@@ -220,12 +253,20 @@ public class BlockSetEntry<BT extends BlockType> {
                     .setTab(tabSupplier)
                     .setRenderType(RenderLayer.CUTOUT_MIPPED);
 
+            // Add tags
             if (addPickaxeTag) {
                 this.blockBuilder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK);
             }
             if (addAxeTag) {
                 this.blockBuilder.addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK);
             }
+
+            // Add defaultRecipes using
+            if (includeDefaultRecipe) blockBuilder.defaultRecipe();
+
+            // Add Textures
+            if (includeBlockTexture) this.blockBuilder.addTexture(modRes("block/" + blockPath));
+            if (includeBlockTextureTop) this.blockBuilder.addTexture(modRes("block/" + blockPath + "_top"));
         }
 
         // ───────────────────────────────── Add Tags ──────────────────────────────────
@@ -244,11 +285,29 @@ public class BlockSetEntry<BT extends BlockType> {
             return this;
         }
 
+        /// Applying defaultRecipe() to all 4 blocks
+        public BlockSetBuilder<T> defaultRecipe() {
+            this.includeDefaultRecipe = true;
+            return this;
+        }
+
         //!! ─────────────────────────────────── Block ───────────────────────────────────
         public BlockSetBuilder<T> block(
                 Consumer<SimpleEntrySet.Builder<T, Block>> config
         ) {
             config.accept(blockBuilder);
+            return this;
+        }
+
+        /// the default ResourceLocation for texture is "block/getBlockPath"
+        public BlockSetBuilder<T> defaultBlockTexture() {
+            this.includeBlockTexture = true;
+            return this;
+        }
+
+        /// the default ResourceLocation for texture is "block/getBlockPath" + _top
+        public BlockSetBuilder<T> defaultBlockTextureTop() {
+            this.includeBlockTextureTop = true;
             return this;
         }
 
@@ -296,7 +355,7 @@ public class BlockSetEntry<BT extends BlockType> {
         //      ┌──────────────────────────────────────────────────────────┐
         //      │                          Build                           │
         //      └──────────────────────────────────────────────────────────┘
-        public BlockSetEntry<T> build() {
+        public BlockSetEntries<T> build() {
             /// ───────────────────────────────── Block ─────────────────────────────────
             SimpleEntrySet<T, Block> block = blockBuilder.build();
 
@@ -309,7 +368,7 @@ public class BlockSetEntry<BT extends BlockType> {
                 String prefix = getAffix(slabPath).getFirst();
                 String suffix = getAffix(slabPath).getSecond();
 
-                var builder = StoneZoneEntrySet.of(typeClass, suffix, prefix,
+                var slabBuilder = StoneZoneEntrySet.of(typeClass, suffix, prefix,
                                 getModBlock(slabPath), () -> baseType,
                                 slabFunction
                         )
@@ -318,18 +377,20 @@ public class BlockSetEntry<BT extends BlockType> {
                         .setRenderType(RenderLayer.CUTOUT_MIPPED);
 
                 if (addPickaxeTag) {
-                    builder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK);
+                    slabBuilder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK);
                 }
                 if (addAxeTag) {
-                    builder.addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK);
+                    slabBuilder.addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK);
                 }
                 if (addSlabAndStairsTag) {
-                    builder.addTag(BlockTags.SLABS, Registries.BLOCK)
+                    slabBuilder.addTag(BlockTags.SLABS, Registries.BLOCK)
                             .addTag(ItemTags.SLABS, Registries.ITEM);
                 }
 
-                this.slabConfig.accept((StoneZoneEntrySet.Builder<T, Block>) builder);
-                slab = (StoneZoneEntrySet<T, Block>) builder.build();
+                if (includeDefaultRecipe) slabBuilder.defaultRecipe();
+
+                this.slabConfig.accept((StoneZoneEntrySet.Builder<T, Block>) slabBuilder);
+                slab = (StoneZoneEntrySet<T, Block>) slabBuilder.build();
             }
 
             /// ──────────────────────────────── Stairs ─────────────────────────────────
@@ -337,7 +398,7 @@ public class BlockSetEntry<BT extends BlockType> {
                 String prefix = getAffix(stairsPath).getFirst();
                 String suffix = getAffix(stairsPath).getSecond();
 
-                SimpleEntrySet.Builder<T, Block> builder = StoneZoneEntrySet.of(typeClass, suffix, prefix,
+                SimpleEntrySet.Builder<T, Block> stairsBuilder = StoneZoneEntrySet.of(typeClass, suffix, prefix,
                                 getModBlock(stairsPath), () -> baseType,
                                 stairsFunction
                         )
@@ -346,18 +407,20 @@ public class BlockSetEntry<BT extends BlockType> {
                         .setRenderType(RenderLayer.CUTOUT_MIPPED);
 
                 if (addPickaxeTag) {
-                    builder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK);
+                    stairsBuilder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK);
                 }
                 if (addAxeTag) {
-                    builder.addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK);
+                    stairsBuilder.addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK);
                 }
                 if (addSlabAndStairsTag) {
-                    builder.addTag(BlockTags.STAIRS, Registries.BLOCK)
+                    stairsBuilder.addTag(BlockTags.STAIRS, Registries.BLOCK)
                             .addTag(ItemTags.STAIRS, Registries.ITEM);
                 }
 
-                this.stairsConfig.accept((StoneZoneEntrySet.Builder<T, Block>) builder);
-                stairs = (StoneZoneEntrySet<T, Block>) builder.build();
+                if (includeDefaultRecipe) stairsBuilder.defaultRecipe();
+
+                this.stairsConfig.accept((StoneZoneEntrySet.Builder<T, Block>) stairsBuilder);
+                stairs = (StoneZoneEntrySet<T, Block>) stairsBuilder.build();
             }
 
             /// ───────────────────────────────── Wall ──────────────────────────────────
@@ -365,7 +428,7 @@ public class BlockSetEntry<BT extends BlockType> {
                 String prefix = getAffix(wallPath).getFirst();
                 String suffix = getAffix(wallPath).getSecond();
 
-                var builder = StoneZoneEntrySet.of(typeClass, suffix, prefix,
+                SimpleEntrySet.Builder<T, Block> wallBuilder = StoneZoneEntrySet.of(typeClass, suffix, prefix,
                                 getModBlock(wallPath), () -> baseType,
                                 wallFunction
                         )
@@ -374,21 +437,23 @@ public class BlockSetEntry<BT extends BlockType> {
                         .setRenderType(RenderLayer.CUTOUT_MIPPED);
 
                 if (addPickaxeTag) {
-                    builder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK);
+                    wallBuilder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK);
                 }
                 if (addAxeTag) {
-                    builder.addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK);
+                    wallBuilder.addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK);
                 }
                 if (addSlabAndStairsTag) {
-                    builder.addTag(BlockTags.WALLS, Registries.BLOCK)
+                    wallBuilder.addTag(BlockTags.WALLS, Registries.BLOCK)
                             .addTag(ItemTags.WALLS, Registries.ITEM);
                 }
 
-                wallConfig.accept((StoneZoneEntrySet.Builder<T, Block>) builder);
-                wall = (StoneZoneEntrySet<T, Block>) builder.build();
+                if (includeDefaultRecipe) wallBuilder.defaultRecipe();
+
+                wallConfig.accept((StoneZoneEntrySet.Builder<T, Block>) wallBuilder);
+                wall = (StoneZoneEntrySet<T, Block>) wallBuilder.build();
             }
 
-            return new BlockSetEntry<>(
+            return new BlockSetEntries<>(
                     block,
                     stairs,
                     slab,

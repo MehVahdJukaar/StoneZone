@@ -18,7 +18,7 @@ import net.mehvahdjukaar.stone_zone.api.StonePaletteStrategies;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
-import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntry;
+import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
@@ -38,7 +38,7 @@ import static net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys.S
 ///SUPPORT: v1.2.5+
 public class RechiseledModule extends StoneZoneModule {
 
-    public final BlockSetEntry<StoneType> big_tilesSet, big_tiles_connectingSet;
+    public final BlockSetEntries<StoneType> big_tilesSet, big_tiles_connectingSet;
     public final Supplier<CreativeModeTab> tab = getModTab(getModId());
     public static String mod_id = "";
 
@@ -46,7 +46,7 @@ public class RechiseledModule extends StoneZoneModule {
         super(modId, "rcd");
         mod_id = modId;
 
-        big_tilesSet = RechiseledBlockSetEntry.defaultOf(
+        big_tilesSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_big_tiles",
                 "stone_big_tiles_slab",
@@ -56,7 +56,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(big_tilesSet);
 
-        big_tiles_connectingSet = RechiseledBlockSetEntry.withConnected(
+        big_tiles_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_big_tiles_connecting",
                         "stone_big_tiles_slab_connecting",
@@ -67,7 +67,7 @@ public class RechiseledModule extends StoneZoneModule {
         this.addEntries(big_tiles_connectingSet);
 
 
-        var borderedSet = RechiseledBlockSetEntry.defaultOf(
+        var borderedSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_bordered",
                 "stone_bordered_slab",
@@ -77,7 +77,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(borderedSet);
 
-        var bordered_connectingSet = RechiseledBlockSetEntry.withConnected(
+        var bordered_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_bordered_connecting",
                         "stone_bordered_slab_connecting",
@@ -87,7 +87,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(bordered_connectingSet);
 
-        var brick_patternSet = RechiseledBlockSetEntry.defaultOf(
+        var brick_patternSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_brick_pattern",
                 "stone_brick_pattern_slab",
@@ -97,7 +97,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(brick_patternSet);
 
-        var brick_pattern_connectingSet = RechiseledBlockSetEntry.withConnected(
+        var brick_pattern_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_brick_pattern_connecting",
                         "stone_brick_pattern_slab_connecting",
@@ -107,7 +107,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(brick_pattern_connectingSet);
 
-        var brick_pavingSet = RechiseledBlockSetEntry.defaultOf(
+        var brick_pavingSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_brick_paving",
                 "stone_brick_paving_slab",
@@ -117,7 +117,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(brick_pavingSet);
 
-        var brick_paving_connectingSet = RechiseledBlockSetEntry.withConnected(
+        var brick_paving_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_brick_paving_connecting",
                         "stone_brick_paving_slab_connecting",
@@ -127,7 +127,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(brick_paving_connectingSet);
 
-        var crushedSet = RechiseledBlockSetEntry.defaultOf(
+        var crushedSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_crushed",
                 "stone_crushed_slab",
@@ -137,7 +137,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(crushedSet);
 
-        var crushed_connectingSet = RechiseledBlockSetEntry.withConnected(
+        var crushed_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_crushed_connecting",
                         "stone_crushed_slab_connecting",
@@ -147,7 +147,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(crushed_connectingSet);
 
-        var diagonal_bricksSet = RechiseledBlockSetEntry.defaultOf(
+        var diagonal_bricksSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_diagonal_bricks",
                 "stone_diagonal_bricks_slab",
@@ -157,7 +157,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(diagonal_bricksSet);
 
-        var diagonal_bricks_connectingSet = RechiseledBlockSetEntry.withConnected(
+        var diagonal_bricks_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_diagonal_bricks_connecting",
                         "stone_diagonal_bricks_slab_connecting",
@@ -167,7 +167,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(diagonal_bricks_connectingSet);
 
-        var pathSet = RechiseledBlockSetEntry.defaultOf(
+        var pathSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_path",
                 "stone_path_slab",
@@ -177,7 +177,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(pathSet);
 
-        var path_connectingSet = RechiseledBlockSetEntry.withConnected(
+        var path_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_path_connecting",
                         "stone_path_slab_connecting",
@@ -187,7 +187,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(path_connectingSet);
 
-        var rotated_bricksSet = RechiseledBlockSetEntry.defaultOf(
+        var rotated_bricksSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_rotated_bricks",
                 "stone_rotated_bricks_slab",
@@ -197,7 +197,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(rotated_bricksSet);
 
-        var rotated_bricks_connectingSet = RechiseledBlockSetEntry.withConnected(
+        var rotated_bricks_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_rotated_bricks_connecting",
                         "stone_rotated_bricks_slab_connecting",
@@ -207,7 +207,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(rotated_bricks_connectingSet);
 
-        var small_bricksSet = RechiseledBlockSetEntry.defaultOf(
+        var small_bricksSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_small_bricks",
                 "stone_small_bricks_slab",
@@ -217,7 +217,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(small_bricksSet);
 
-        var small_bricks_connectingSet = RechiseledBlockSetEntry.withConnected(
+        var small_bricks_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_small_bricks_connecting",
                         "stone_small_bricks_slab_connecting",
@@ -227,7 +227,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(small_bricks_connectingSet);
 
-        var small_tilesSet = RechiseledBlockSetEntry.defaultOf(
+        var small_tilesSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_small_tiles",
                 "stone_small_tiles_slab",
@@ -237,7 +237,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(small_tilesSet);
 
-        var small_tiles_connectingSet = RechiseledBlockSetEntry.withConnected(
+        var small_tiles_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_small_tiles_connecting",
                         "stone_small_tiles_slab_connecting",
@@ -247,7 +247,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(small_tiles_connectingSet);
 
-        var smooth_brick_pavingSet = RechiseledBlockSetEntry.defaultOf(
+        var smooth_brick_pavingSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_smooth_brick_paving",
                 "stone_smooth_brick_paving_slab",
@@ -257,7 +257,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(smooth_brick_pavingSet);
 
-        var smooth_brick_paving_connectingSet = RechiseledBlockSetEntry.withConnected(
+        var smooth_brick_paving_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_smooth_brick_paving_connecting",
                         "stone_smooth_brick_paving_slab_connecting",
@@ -267,7 +267,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(smooth_brick_paving_connectingSet);
 
-        var smooth_large_tilesSet = RechiseledBlockSetEntry.defaultOf(
+        var smooth_large_tilesSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_smooth_large_tiles",
                 "stone_smooth_large_tiles_slab",
@@ -277,7 +277,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(smooth_large_tilesSet);
 
-        var smooth_large_tiles_connectingSet = RechiseledBlockSetEntry.withConnected(
+        var smooth_large_tiles_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_smooth_large_tiles_connecting",
                         "stone_smooth_large_tiles_slab_connecting",
@@ -287,7 +287,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(smooth_large_tiles_connectingSet);
 
-        var smooth_rotated_bricksSet = RechiseledBlockSetEntry.defaultOf(
+        var smooth_rotated_bricksSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_smooth_rotated_bricks",
                 "stone_smooth_rotated_bricks_slab",
@@ -297,7 +297,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(smooth_rotated_bricksSet);
 
-        var smooth_rotated_bricks_connectingSet = RechiseledBlockSetEntry.withConnected(
+        var smooth_rotated_bricks_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_smooth_rotated_bricks_connecting",
                         "stone_smooth_rotated_bricks_slab_connecting",
@@ -307,7 +307,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(smooth_rotated_bricks_connectingSet);
 
-        var smooth_tilesSet = RechiseledBlockSetEntry.defaultOf(
+        var smooth_tilesSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_smooth_tiles",
                 "stone_smooth_tiles_slab",
@@ -317,7 +317,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(smooth_tilesSet);
 
-        var smooth_tiles_connectingSet = RechiseledBlockSetEntry.withConnected(
+        var smooth_tiles_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_smooth_tiles_connecting",
                         "stone_smooth_tiles_slab_connecting",
@@ -327,7 +327,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(smooth_tiles_connectingSet);
 
-        var squaresSet = RechiseledBlockSetEntry.defaultOf(
+        var squaresSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_squares",
                 "stone_squares_slab",
@@ -337,7 +337,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(squaresSet);
 
-        var squares_connectingSet = RechiseledBlockSetEntry.withConnected(
+        var squares_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_squares_connecting",
                         "stone_squares_slab_connecting",
@@ -347,7 +347,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(squares_connectingSet);
 
-        var wavesSet = RechiseledBlockSetEntry.defaultOf(
+        var wavesSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_waves",
                 "stone_waves_slab",
@@ -357,7 +357,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(wavesSet);
 
-        var waves_connectingSet = RechiseledBlockSetEntry.withConnected(
+        var waves_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_waves_connecting",
                         "stone_waves_slab_connecting",
@@ -367,7 +367,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(waves_connectingSet);
 
-        var tilesSet = RechiseledBlockSetEntry.defaultOf(
+        var tilesSet = RechiseledBlockSetEntries.of3BlocksDefault(
                 this, VanillaStoneTypes.STONE,
                 "stone_tiles",
                 "stone_tiles_slab",
@@ -377,7 +377,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(tilesSet);
 
-        var tiles_connectingSet = RechiseledBlockSetEntry.withConnected(
+        var tiles_connectingSet = RechiseledBlockSetEntries.of3BlocksConnecting(
                 this, VanillaStoneTypes.STONE, shortenedId(),
                         "stone_tiles_connecting",
                         "stone_tiles_slab_connecting",
@@ -387,7 +387,7 @@ public class RechiseledModule extends StoneZoneModule {
                 .build();
         this.addEntries(tiles_connectingSet);
 
-        var slatedSet = RechiseledBlockSetEntry.defaultWithPillarBlock(
+        var slatedSet = RechiseledBlockSetEntries.of3BlocksWithPillar(
                 this, VanillaStoneTypes.STONE,
                 "stone_slated", "_side", "_end",
                 "stone_slated_slab",
@@ -506,13 +506,13 @@ public class RechiseledModule extends StoneZoneModule {
         if (!entry.isEmpty()) array.add(entry);
     }
 
-    //      ┌──────────────────────────────────────────────────────────┐
-    //      │                         CLASSES                          │
-    //      └──────────────────────────────────────────────────────────┘
+    //      ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+    //      │                                           CLASSES                                            │
+    //      └──────────────────────────────────────────────────────────────────────────────────────────────┘
 
-    public static class RechiseledBlockSetEntry extends BlockSetEntry<StoneType> {
+    public static class RechiseledBlockSetEntries extends BlockSetEntries<StoneType> {
 
-        protected RechiseledBlockSetEntry(
+        protected RechiseledBlockSetEntries(
                 SimpleEntrySet<StoneType, Block> block,
                 SimpleEntrySet<StoneType, Block> stairs,
                 SimpleEntrySet<StoneType, Block> slab,
@@ -520,16 +520,26 @@ public class RechiseledModule extends StoneZoneModule {
             super(block, stairs, slab, wall);
         }
 
-        public static BlockSetBuilder<StoneType> standardOf(
+        /**
+         * Default Factory for 2 blocks except blockFactory:<br>
+         * RechiseledSlabBlock()<br>
+         * RechiseledStairBlock()<br>
+         * The connecting is set to false<br>
+         * @param blockFactory Custom BlockFactory or Class
+         * @param getBlockPath Path of block's Id
+         * @param sideSuffix suffix of texture's Id - "_" must be included if the id has one
+         * @param endSuffix suffix of texture's Id - "_" must be included if the id has one
+         */
+        public static BlockSetBuilder<StoneType> basicFactory(
                 StoneZoneModule module, StoneType baseTypeId,
-                String getBlockPath, Function<StoneType, Block> blockFactory, String side, String end,
+                String getBlockPath, Function<StoneType, Block> blockFactory, String sideSuffix, String endSuffix,
                 String getSlabPath,
                 String getStairsPath,
                 Supplier<CreativeModeTab> tabSupplier)
         {
             String childKeyPath = getChildKeyPath(getBlockPath, baseTypeId);
 
-            return BlockSetEntry.of(StoneType.class, module, baseTypeId,
+            return BlockSetEntries.of3BlocksFactory(module, StoneType.class, baseTypeId,
                             getBlockPath, blockFactory,
                             getSlabPath, type -> new RechiseledSlabBlock(false, Utils.copyPropertySafe(type.stone)),
                             getStairsPath, type ->
@@ -541,9 +551,9 @@ public class RechiseledModule extends StoneZoneModule {
                     .block(builder -> {
                                 PaletteStrategy paletteStrategy = (getBlockPath.contains("smooth")) ? StonePaletteStrategies.SMOOTH_STANDARD : PaletteStrategies.MAIN_CHILD;
 
-                                if (!side.isBlank() && !end.isBlank()) {
-                                    builder.addTexture(modLoc(mod_id, "block/" + getBlockPath + side), paletteStrategy);
-                                    builder.addTexture(modLoc(mod_id, "block/" + getBlockPath + end), paletteStrategy);
+                                if (!sideSuffix.isBlank() && !endSuffix.isBlank()) {
+                                    builder.addTexture(modLoc(mod_id, "block/" + getBlockPath + sideSuffix), paletteStrategy);
+                                    builder.addTexture(modLoc(mod_id, "block/" + getBlockPath + endSuffix), paletteStrategy);
                                 }
                                 else
                                     builder.addTexture(modLoc(mod_id, "block/" + getBlockPath), paletteStrategy);
@@ -557,20 +567,20 @@ public class RechiseledModule extends StoneZoneModule {
                     .noWall();
         }
 
-        //      ┌───────────────────────────────┐
-        //      │  RechiseledBlock()            │
-        //      │  RechiseledSlabBlock()        │
-        //      │  RechiseledStairBlock()       │
-        //      └───────────────────────────────┘
-        /// the connecting is set to false
-        public static BlockSetBuilder<StoneType> defaultOf(
+        /** Default Factory for 3 blocks:<br>
+         * RechiseledBlock()<br>
+         * RechiseledSlabBlock()<br>
+         * RechiseledStairBlock()<br>
+         * The connecting is set to false
+         */
+        public static BlockSetBuilder<StoneType> of3BlocksDefault(
                 StoneZoneModule module, StoneType baseTypeId,
                 String getBlockPath,
                 String getSlabPath,
                 String getStairsPath,
                 Supplier<CreativeModeTab> tabSupplier) {
 
-            return standardOf(module, baseTypeId,
+            return basicFactory(module, baseTypeId,
                     getBlockPath, type -> new RechiseledBlock(false, Utils.copyPropertySafe(type.stone)),
                     "", "",
                     getSlabPath,
@@ -578,8 +588,13 @@ public class RechiseledModule extends StoneZoneModule {
                     tabSupplier);
         }
 
-        /// the connecting is set to true
-        public static BlockSetBuilder<StoneType> withConnected(
+        /** Default Factory for 3 blocks:<br>
+         * RechiseledBlock()<br>
+         * RechiseledSlabBlock()<br>
+         * RechiseledStairBlock()<br>
+         * The connecting is set to true
+         */
+        public static BlockSetBuilder<StoneType> of3BlocksConnecting(
                 StoneZoneModule module, StoneType baseTypeId, String shortenedId,
                 String getBlockPath,
                 String getSlabPath,
@@ -588,7 +603,7 @@ public class RechiseledModule extends StoneZoneModule {
         {
             String childKeyPath = getChildKeyPath(getBlockPath, baseTypeId);
 
-            return BlockSetEntry.of(StoneType.class, module, baseTypeId,
+            return BlockSetEntries.of3BlocksFactory(module, StoneType.class,  baseTypeId,
                             getBlockPath, type -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone)),
                             getSlabPath, type -> new RechiseledSlabBlock(true, Utils.copyPropertySafe(type.stone)),
                             getStairsPath, type ->
@@ -614,19 +629,20 @@ public class RechiseledModule extends StoneZoneModule {
                     .noWall();
         }
 
-        //      ┌────────────────────────────────┐
-        //      │  RechiseledPillarBlock()       │
-        //      │  RechiseledSlabBlock()         │
-        //      │  RechiseledStairBlock()        │
-        //      └────────────────────────────────┘
-        public static BlockSetBuilder<StoneType> defaultWithPillarBlock(
+        /** Default Factory for 3 blocks:<br>
+         * RechiseledPillarBlock()<br>
+         * RechiseledSlabBlock()<br>
+         * RechiseledStairBlock()<br>
+         * The connecting is set to false
+         */
+        public static BlockSetBuilder<StoneType> of3BlocksWithPillar(
                 StoneZoneModule module, StoneType baseTypeId,
                 String getBlockPath, String side, String end,
                 String getSlabPath,
                 String getStairsPath,
                 Supplier<CreativeModeTab> tabSupplier) {
 
-            return standardOf(module, baseTypeId,
+            return basicFactory(module, baseTypeId,
                     getBlockPath, type -> new RechiseledPillarBlock(false, Utils.copyPropertySafe(type.stone)),
                     side, end,
                     getSlabPath,
