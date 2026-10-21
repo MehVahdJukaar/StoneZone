@@ -12,6 +12,15 @@
 |                                                                                                                                   |
 
 ---
+## v2.11.21
+
+### FIXES:
+- **Better Archeology** (C): Fix the crash - [#215](https://github.com/MehVahdJukaar/StoneZone/issues/215)
+- **Create** (C): Fixed the 2 recipes still being generated when ALLOY is disabled in `everycomp-entries`
+  - NOTE: ALLOY is used as ingredient to craft CASING or FUNNEL
+
+---
+
 ## v2.11.20
 
 ### FIXES: 
