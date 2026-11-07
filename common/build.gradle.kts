@@ -20,14 +20,14 @@ tasks.named<Jar>("sourcesJar") {
     archiveClassifier.set("common-sources")
 }
 
-val localReposDir: String? = System.getenv("REPOS21_1")
+val localReposDir: String? = System.getenv("REPOS26_1_2")
 dependencies {
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
 
     //- LOCAL
     if (findProperty("enable_moonlight_test").toString().toBoolean()) {
-        val repos = requireNotNull(localReposDir) { "enable_moonlight_test is on but the REPOS21_1 env var is not set" }
+        val repos = requireNotNull(localReposDir) { "enable_moonlight_test is on but the REPOS26_1_2 env var is not set" }
         modApi(files( "$repos\\Moonlight\\neoforge\\build\\libs\\moonlight-${property("moonlight_testVersion")}-neoforge.jar"))
     }
     //+ MAVEN
@@ -41,7 +41,7 @@ dependencies {
 
     //- LOCAL
     if (findProperty("enable_everycomp_test").toString().toBoolean()) {
-        val repos = requireNotNull(localReposDir) { "enable_everycomp_test is on but the REPOS21_1 env var is not set" }
+        val repos = requireNotNull(localReposDir) { "enable_everycomp_test is on but the REPOS26_1_2 env var is not set" }
         compileOnly(files("$repos\\WoodGood\\common\\build\\libs\\everycomp-${property("everycomp_testVersion")}-common.jar"))
     }
     //+ MAVEN
@@ -54,49 +54,49 @@ dependencies {
     //- OTHER MAVENs - can be commented out or enabled
 
     //+ REQUIRED - The modules access libaries from below - Only in NEOFORGE
-    modCompileOnly("curse.maven:framework-549225:7530361") // +Refurbished-Furniture, Mighty-Mail, Backpacked
-    modCompileOnly("curse.maven:supermartijn642s-config-lib-438332:5546996") // v1.1.8 | Rechiseled
-    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:7521894") // v1.1.20 | Rechiseled
+    modCompileOnly("curse.maven:framework-549225:7530361") // +Refurbished-Furniture, Mighty-Mail, Backpacked //!! 1.21.1
+    modCompileOnly("curse.maven:supermartijn642s-config-lib-438332:5546996") // v1.1.8 | Rechiseled //!! 1.21.1
+    modCompileOnly("curse.maven:supermartijn642s-core-lib-454372:7521894") // v1.1.20 | Rechiseled //!! 1.21.1
 
     //+ OTHER MAVENS
-    modCompileOnly("org.violetmoon.zeta:Zeta:1.1-40-SNAPSHOT") // Quark
-    modCompileOnly("com.tterrag.registrate:Registrate:${property("registrate_version")}") // Create
-    modCompileOnly("net.createmod.ponder:ponder-neoforge:${property("ponder_version")}+mc${property("minecraft_version")}") // Create
-    modCompileOnly("dev.engine-room.flywheel:flywheel-neoforge-${property("minecraft_version")}:${property("flywheel_neoforge_version")}") // Create
+    modCompileOnly("org.violetmoon.zeta:Zeta:1.1-40-SNAPSHOT") // Quark //!! 1.21.1
+    modCompileOnly("com.tterrag.registrate:Registrate:${property("registrate_version")}") // Create //!! 1.21.1
+    modCompileOnly("net.createmod.ponder:ponder-neoforge:${property("ponder_version")}+mc1.21.1") // Create //!! 1.21.1
+    modCompileOnly("dev.engine-room.flywheel:flywheel-neoforge-1.21.1:${property("flywheel_neoforge_version")}") // Create //!! 1.21.1
 
     // ========== LOCAL (NOTE: JARJAR meant the mod is embedded in the other mod)
-    modCompileOnly("local-mod_foundation:foundation-neoforge-1.0.7") //JARJAR - [Let's Do]-Farm&Charms
+    modCompileOnly("local-mod_foundation:foundation-neoforge-1.0.7") //JARJAR - [Let's Do]-Farm&Charms //!! 1.21.1
 
 //!! =================================================== IMPORTS ==================================================== \\
     //+ REQUIRED - The modules access libaries from below - ONLY IN FORGE
     // MACAW's
-    modCompileOnly("curse.maven:macaws-bridges-351725:5465228") //v3.0.0
-    modCompileOnly("curse.maven:macaws-paths-and-pavings-629153:7029451") //v1.1.1
-    modCompileOnly("curse.maven:macaws-windows-363569:5592081") //v2.3.0
-    modCompileOnly("curse.maven:macaws-roofs-352039:5554896") //v2.3.1
-    modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442175") //v1.1.2
-    modCompileOnly("curse.maven:macaws-stairs-1119394:5802422") //v1.0.1
+    modCompileOnly("curse.maven:macaws-bridges-351725:5465228") //v3.0.0 //!! 1.21.1
+    modCompileOnly("curse.maven:macaws-paths-and-pavings-629153:7029451") //v1.1.1 //!! 1.21.1
+    modCompileOnly("curse.maven:macaws-windows-363569:5592081") //v2.3.0 //!! 1.21.1
+    modCompileOnly("curse.maven:macaws-roofs-352039:5554896") //v2.3.1 //!! 1.21.1
+    modCompileOnly("curse.maven:macaws-fences-and-walls-453925:5442175") //v1.1.2 //!! 1.21.1
+    modCompileOnly("curse.maven:macaws-stairs-1119394:5802422") //v1.0.1 //!! 1.21.1
 
     //+ GENERAL
-    modCompileOnly("curse.maven:additional-lights-384991:6841545")
-    modCompileOnly("curse.maven:better-archeology-835687:8447628") // Resourceful-Config, Architectury-API
-    modCompileOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1 //!! 1.20
-    modCompileOnly("curse.maven:decorative-blocks-reborn-1327768:7926194")
-    modCompileOnly("curse.maven:handcrafted-538214:6330030") // Resourceful-Lib
-    modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:9150310") //+[Let's-Do]-Farm-&-Charm
-    modCompileOnly("curse.maven:lets-do-farm-charm-1038103:9203717") // Architectury-API
-    modCompileOnly("curse.maven:more-beautiful-torches-860325:5609745") // Monolib //!! MERGED
-    modCompileOnly("curse.maven:rechiseled-558998:8301793") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
-    modCompileOnly("curse.maven:refurbished-furniture-897116:7473565") // Framework
-    modCompileOnly("curse.maven:stone-chest-307052:7432348")
-    modCompileOnly("curse.maven:stoneworks-852663:5731747") // puzzles-lib
-    modCompileOnly("curse.maven:twigs-496913:8191595")
-    modCompileOnly("curse.maven:waystones-245755:8450087") // Balm
+    modCompileOnly("curse.maven:additional-lights-384991:6841545") //!! 1.21.1
+    modCompileOnly("curse.maven:better-archeology-835687:8447628") // Resourceful-Config, Architectury-API //!! 1.21.1
+    modCompileOnly("curse.maven:building-but-better-989479:5362380") // v1.0.1 //!! 1.21.1
+    modCompileOnly("curse.maven:decorative-blocks-reborn-1327768:7926194") //!! 1.21.1
+    modCompileOnly("curse.maven:handcrafted-538214:6330030") // Resourceful-Lib //!! 1.21.1
+    modCompileOnly("curse.maven:lets-do-candlelight-farm-charm-compat-1038117:9150310") //+[Let's-Do]-Farm-&-Charm //!! 1.21.1
+    modCompileOnly("curse.maven:lets-do-farm-charm-1038103:9203717") // Architectury-API //!! 1.21.1
+    modCompileOnly("curse.maven:more-beautiful-torches-860325:5609745") // Monolib //!! MERGED //!! 1.21.1
+    modCompileOnly("curse.maven:rechiseled-558998:8301793") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ] //!! 1.21.1
+    modCompileOnly("curse.maven:refurbished-furniture-897116:7473565") // Framework //!! 1.21.1
+    modCompileOnly("curse.maven:stone-chest-307052:7432348") //!! 1.21.1
+    modCompileOnly("curse.maven:stoneworks-852663:5731747") // puzzles-lib //!! 1.21.1
+    modCompileOnly("curse.maven:twigs-496913:8191595") //!! 1.21.1
+    modCompileOnly("curse.maven:waystones-245755:8450087") // Balm //!! 1.21.1
 
     //+ OTHER MAVENS
-    modCompileOnly("com.simibubi.create:create-1.21.1:${property("create_version")}:slim") { isTransitive = false } // Registrate, Flywheel, Ponder
-    modCompileOnly("org.violetmoon.quark:Quark:4.1-481-SNAPSHOT") // Zeta, Biolith @  https://maven.blamejared.com/org/violetmoon/quark/Quark/
-    modCompileOnly("earth.terrarium.chipped:chipped-neoforge-${property("minecraft_version")}:4.0.2") //INCLUDED: Athena, Resourceful-Lib, REQUIRE: Bytecodecs
+    modCompileOnly("com.simibubi.create:create-1.21.1:${property("create_version")}:slim") { isTransitive = false } // Registrate, Flywheel, Ponder //!! 1.21.1
+    modCompileOnly("org.violetmoon.quark:Quark:4.1-481-SNAPSHOT") // Zeta, Biolith @  https://maven.blamejared.com/org/violetmoon/quark/Quark/ //!! 1.21.1
+    modCompileOnly("earth.terrarium.chipped:chipped-neoforge-1.21.1:4.0.2") //INCLUDED: Athena, Resourceful-Lib, REQUIRE: Bytecodecs //!! 1.21.1
 
 }
 

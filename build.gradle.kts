@@ -27,7 +27,6 @@ subprojects {
         compileOnly("net.mehvahdjukaar:candlelight:1.2.6")
     }
 
-
     tasks.withType<GenerateModuleMetadata> {
         enabled = true
     }
