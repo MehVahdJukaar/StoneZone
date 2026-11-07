@@ -19,7 +19,7 @@ itemIcon = "${mod_id}:all_stones" #catalogue icon
 [[dependencies.${mod_id}]]
 modId = "neoforge"
 type = "required"
-versionRange = "${neoforge_version_range}"
+versionRange = "*"
 ordering = "NONE"
 side = "BOTH"
 
