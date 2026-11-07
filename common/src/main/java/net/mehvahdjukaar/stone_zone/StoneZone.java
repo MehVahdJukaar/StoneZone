@@ -10,7 +10,7 @@ import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.configs.SZConfigs;
 import net.mehvahdjukaar.stone_zone.configs.UnsafeDisablerConfigs;
 import net.mehvahdjukaar.stone_zone.misc.CompatSpritesHelper;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -37,8 +37,8 @@ public class StoneZone extends EveryCompat {
 
     }
 
-    public static ResourceLocation res(String name) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
+    public static Identifier res(String name) {
+        return Identifier.fromNamespaceAndPath(MOD_ID, name);
     }
 
     /// Will be added to DynamicPack if the mod is loaded
