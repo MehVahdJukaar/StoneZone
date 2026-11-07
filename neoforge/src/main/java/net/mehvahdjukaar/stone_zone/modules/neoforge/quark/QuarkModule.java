@@ -17,6 +17,7 @@ import org.violetmoon.quark.content.building.module.MoreStoneVariantsModule;
 import org.violetmoon.quark.content.building.module.VerticalSlabsModule;
 import org.violetmoon.zeta.block.ZetaPillarBlock;
 
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
@@ -29,6 +30,9 @@ public class QuarkModule extends StoneZoneModule {
     public final SimpleEntrySet<StoneType, Block> polished_vertical_slabs;
     public final SimpleEntrySet<StoneType, Block> pillars;
 
+    /// If Vertical-Slab-Compat is installed, then these StoneZone's veritcal_slabs block won't be generated
+    private final Predicate<StoneType> isVSlabCompatNotLoaded = ignored -> !PlatHelper.isModLoaded("v_slab_compat");
+
     public QuarkModule(String modId) {
         super(modId, "q");
         Supplier<CreativeModeTab> tab = getTab(CreativeModeTabs.BUILDING_BLOCKS);
@@ -40,7 +44,7 @@ public class QuarkModule extends StoneZoneModule {
                                 copyChildrenPropertySafe("slab", stoneType))
                 )
                 .requiresChildren(SLAB) //REASON: recipes
-                .addCondition(stoneType -> !PlatHelper.isModLoaded("v_slab_compat"))
+                .addCondition(isVSlabCompatNotLoaded)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
@@ -58,7 +62,7 @@ public class QuarkModule extends StoneZoneModule {
                                 copyChildrenPropertySafe(POLISHED_SLAB, stoneType))
                 )
                 .requiresChildren(POLISHED_SLAB, POLISHED) //REASON: recipes, textures
-                .addCondition(stoneType -> !PlatHelper.isModLoaded("v_slab_compat"))
+                .addCondition(isVSlabCompatNotLoaded)
                 //TEXTURES: polished
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
