@@ -1,6 +1,7 @@
 package net.mehvahdjukaar.stone_zone.common_classes;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -16,7 +17,7 @@ public class CompatChestBlock extends ChestBlock {
 
     public CompatChestBlock(Supplier<BlockEntityType<? extends ChestBlockEntity>> tile,
                             Properties properties) {
-        super(properties, tile);
+        super(tile, SoundEvents.CHEST_OPEN, SoundEvents.CHEST_CLOSE, properties);
         this.tile = tile;
     }
 

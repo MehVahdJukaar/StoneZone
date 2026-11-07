@@ -1,15 +1,6 @@
-accessWidener   v2  named
+accessWidener   v2  official
 
 ## chest renderer stuff
-accessible field net/minecraft/client/renderer/blockentity/ChestRenderer doubleLeftLid Lnet/minecraft/client/model/geom/ModelPart;
-accessible field net/minecraft/client/renderer/blockentity/ChestRenderer doubleRightLid Lnet/minecraft/client/model/geom/ModelPart;
-accessible field net/minecraft/client/renderer/blockentity/ChestRenderer doubleLeftLock Lnet/minecraft/client/model/geom/ModelPart;
-accessible field net/minecraft/client/renderer/blockentity/ChestRenderer doubleRightLock Lnet/minecraft/client/model/geom/ModelPart;
-accessible field net/minecraft/client/renderer/blockentity/ChestRenderer doubleLeftBottom Lnet/minecraft/client/model/geom/ModelPart;
-accessible field net/minecraft/client/renderer/blockentity/ChestRenderer doubleRightBottom Lnet/minecraft/client/model/geom/ModelPart;
-accessible field net/minecraft/client/renderer/blockentity/ChestRenderer lid Lnet/minecraft/client/model/geom/ModelPart;
-accessible field net/minecraft/client/renderer/blockentity/ChestRenderer bottom Lnet/minecraft/client/model/geom/ModelPart;
-accessible field net/minecraft/client/renderer/blockentity/ChestRenderer lock Lnet/minecraft/client/model/geom/ModelPart;
 
 ## For Better Arcehology & Other Supported Mods
 accessible method net/minecraft/world/level/block/StairBlock <init> (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V

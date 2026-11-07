@@ -6,136 +6,145 @@ import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Respriter;
 import net.mehvahdjukaar.moonlight.api.resources.textures.TextureImage;
 import net.mehvahdjukaar.moonlight.api.resources.textures.TextureOps;
-import net.mehvahdjukaar.moonlight.api.util.math.colors.HCLColor;
 import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.world.level.block.Block;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CompatChestTexture {
 
-    public static void generateChestTexture(ResourceSink sink, ResourceManager manager,
-                                            String shortenedID, StoneType stoneType, Block block,
-                                            ResourceLocation normalRLoc, ResourceLocation maskRLoc, ResourceLocation overlayRLoc,
-                                            ResourceLocation trappedORLoc) {
-        generateChestTexture(sink, manager, shortenedID, stoneType, block, normalRLoc, maskRLoc, overlayRLoc, trappedORLoc, 2);
+    public static void generateChestTexture(ResourceSink handler, ResourceManager manager,
+                                            String shortenedID, StoneType stoneType,
+                                            Identifier normalRLoc, Identifier maskRLoc, Identifier overlayRLoc,
+                                            Identifier trappedORLoc,
+                                            int darkControl
+    ) {
+        generateChestTexture(handler, manager, shortenedID, stoneType, normalRLoc, maskRLoc, overlayRLoc, trappedORLoc,
+                darkControl, 0);
+    }
+
+    public static void generateChestTexture(ResourceSink handler, ResourceManager manager,
+                                            String shortenedID, StoneType stoneType,
+                                            Identifier normalRLoc, Identifier maskRLoc, Identifier overlayRLoc,
+                                            Identifier trappedORLoc
+    ) {
+        generateChestTexture(handler, manager, shortenedID, stoneType, normalRLoc, maskRLoc, overlayRLoc, trappedORLoc,
+                0, 0);
     }
 
     /**
-    * Generate a texture for chest and trapped_chest
-    * @param removeDarkest 0: none removed, 1: removed once, 2: removed twice
-    */
-    public static void generateChestTexture(ResourceSink sink, ResourceManager manager,
-                                    String shortenedID, StoneType stoneType, Block block,
-                                ResourceLocation normalRLoc, ResourceLocation maskRLoc, ResourceLocation overlayRLoc,
-                                    ResourceLocation trappedORLoc, int removeDarkest) {
+     * Generate a texture for chest and trapped_chest
+     *
+     * @param darkControl
+     * <Ol>
+     *     <li>1: Darkening 2nd darkest and 3rd darkest by 10% - OPTIONAL: darkestOffset can offset</li>
+     *     <li>2: Modifying Planks' texture to have Average Contrast</li>
+     * </ol>
+     */
+    public static void generateChestTexture(ResourceSink sink, ResourceManager manager, String shortenedID, StoneType stoneType,
+                                            Identifier normalRLoc, Identifier maskRLoc, Identifier overlayRLoc,
+                                            Identifier trappedORLoc, int darkControl, int darkestOffset) {
+        generateChestTexture(sink, manager, shortenedID, stoneType, normalRLoc, maskRLoc, overlayRLoc, trappedORLoc,
+                darkControl, darkestOffset, "_chest", "_trapped_chest");
+    }
 
-        try (TextureImage normalTexture = TextureImage.open(manager, normalRLoc);
-             TextureImage normalMask = TextureImage.open(manager, maskRLoc);
-             TextureImage normalOverlay = TextureImage.open(manager, overlayRLoc)
-            ) {
+    public static void generateChestTexture(ResourceSink sink, ResourceManager manager, String shortenedID, StoneType stoneType,
+                                            Identifier normalRLoc, Identifier maskRLoc, Identifier overlayRLoc,
+                                            Identifier trappedORLoc, int darkControl, int darkestOffset,
+                                            String normalSuffix, String trappedSuffix) {
 
-            TextureImage trapOverlay;
-            if (trappedORLoc != null)  trapOverlay = TextureImage.open(manager, trappedORLoc);
-            else trapOverlay = null;
+        try (TextureImage texture = TextureImage.open(manager, normalRLoc);
+             @Nullable TextureImage mask = (maskRLoc == null) ? null : TextureImage.open(manager, maskRLoc);
+             TextureImage overlay = TextureImage.open(manager, overlayRLoc);
+             @Nullable TextureImage trapOverlay = (trappedORLoc == null) ? null : TextureImage.open(manager, trappedORLoc);
+        ) {
 
-            Respriter respriterNormal = Respriter.masked(normalTexture, normalMask);
-            Respriter respriterOverlay = Respriter.of(normalOverlay);
+            Respriter respriterNormal = (mask == null) ? Respriter.of(texture) : Respriter.masked(texture, mask);
+            Respriter respriterOverlay = Respriter.of(overlay);
 
-                String path = "entity/chest/" + shortenedID + "/" + stoneType.getAppendableId() + "_chest";
-                String trapped_path = "entity/chest/" + shortenedID + "/" + stoneType.getAppendableId() + "_trapped_chest";
-                if (normalRLoc.toString().contains("left")) {
-                    path += "_left";
-                    trapped_path += "_left";
-                }
-                else if (normalRLoc.toString().contains("right")) {
-                    path += "_right";
-                    trapped_path += "_right";
-                }
+            String path = "entity/chest/" + shortenedID + "/" + stoneType.getAppendableId() + normalSuffix;
+            String trapped_path = "entity/chest/" + shortenedID + "/" + stoneType.getAppendableId() + trappedSuffix;
+            if (normalRLoc.toString().contains("left")) {
+                path += "_left";
+                trapped_path += "_left";
+            } else if (normalRLoc.toString().contains("right")) {
+                path += "_right";
+                trapped_path += "_right";
+            }
 
-                try (TextureImage plankTexture = TextureImage.open(manager,
-                        RPUtils.findFirstBlockTextureLocation(manager, stoneType.stone))) {
+            try (TextureImage plankTexture = TextureImage.open(manager,
+                    RPUtils.findFirstBlockTextureLocation(manager, stoneType.stone))) {
 
-                    List<Palette> plankPalette = Palette.fromAnimatedImage(plankTexture);
+                List<Palette> mainPalette = Palette.fromAnimatedImage(plankTexture);
 
-                    // Remove the lava color from brimwood_planks
-                    if (stoneType.getId().toString().equals("regions_unexplored:brimwood")) {
-                        plankPalette.forEach(p -> {
-                            p.reduceUp();
-                            p.reduceUp();
-                            p.reduceUp();
-                            p.reduceUp();
-                        });
+                mainPalette.forEach(palette -> {
+                    int plankSize = mainPalette.size();
+                    Palette texturePalette = Palette.fromAnimatedImage(texture, mask).getFirst();
+                    int amount = texturePalette.size();
+
+                    if (plankSize != amount) {
+                        palette.matchSize(amount);
                     }
 
-                    McMetaFile plankMeta = plankTexture.getMcMeta();
-
-                    List<Palette> overlayPalette = new ArrayList<>();
-                    for (var p : plankPalette) {
-                        var d1 = p.getDarkest();
-                        var d2 = p.getDarkest();
-
-                        // brimwood_chest need to retain their darkness
-                        if (!stoneType.getId().toString().equals("regions_unexplored:brimwood")) {
-                            switch (removeDarkest) {
-                                case 2:
-                                    p.remove(d2);
-                                case 1:
-                                    p.remove(d1);
+                    // brimwood_chest need to retain their darkness
+                    if (!stoneType.getId().toString().equals("regions_unexplored:brimwood")) {
+                        switch (darkControl) {
+                            case 2: {
+                                palette.multiplyContrast(0.5F);
+                                break;
+                            }
+                            case 1: {
+                                palette.getDarkest(1 + darkestOffset).getDarkened();
+                                palette.getDarkest(2 + darkestOffset).getDarkened();
+                                break;
                             }
                         }
-
-                        var n1 = new HCLColor(d1.hcl().hue(), d1.hcl().chroma() * 0.75f, d1.hcl().luminance() * 0.4f, d1.hcl().alpha());
-                        var n2 = new HCLColor(d2.hcl().hue(), d2.hcl().chroma() * 0.75f, d2.hcl().luminance() * 0.6f, d2.hcl().alpha());
-                        var pal = Palette.ofColors(List.of(n1, n2));
-                        overlayPalette.add(pal);
                     }
 
-                    // Generating textures
-                    ResourceLocation res = StoneZone.res(path);
-                    if (!sink.alreadyHasTextureAtLocation(manager, res)) {
-                        ResourceLocation trappedRes = StoneZone.res(trapped_path);
+                });
 
-                        createChestTextures(sink, respriterNormal, respriterOverlay, plankMeta,
-                                plankPalette, overlayPalette, res, trappedRes, trapOverlay);
-                    }
+                List<Palette> overlayPalette = Palette.fromAnimatedImage(overlay);
 
-                    normalTexture.close();
-                    normalMask.close();
-                    normalOverlay.close();
+                // Generating textures
+                Identifier res = StoneZone.res(path);
+                if (!sink.alreadyHasTextureAtLocation(manager, res)) {
+                    Identifier trappedRes = StoneZone.res(trapped_path);
 
-                } catch (Exception ex) {
-                    StoneZone.LOGGER.error("Failed to generate Chest block texture for for: {} - {}", block, ex);
+                    createChestTextures(respriterNormal, respriterOverlay, plankTexture.getMcMeta(),
+                            mainPalette, overlayPalette, res, trappedRes, trapOverlay, sink);
                 }
+
+            } catch (Exception ex) {
+                StoneZone.LOGGER.error("Failed to generate Chest block texture for for: {} - {}", texture, ex);
+            }
         } catch (Exception ex) {
             StoneZone.LOGGER.error("Could not generate any Chest block texture: ", ex);
         }
     }
 
-    private static void createChestTextures(ResourceSink sink,
-                                            Respriter respriter, Respriter respriterO,
-                                            McMetaFile baseMeta, List<Palette> basePalette,
-                                            List<Palette> overlayPalette, ResourceLocation normalRLoc,
-                                            ResourceLocation trappedRLoc, TextureImage trappedOverlay) {
+    private static void createChestTextures(Respriter respriter, Respriter respriterO,
+                                            McMetaFile baseMeta, List<Palette> planksPalette,
+                                            List<Palette> overlayPalette, Identifier normalRLoc,
+                                            Identifier trappedRLoc, TextureImage trappedOverlay,
+                                            ResourceSink sink) {
 
-        TextureImage recoloredBase = respriter.recolorWithAnimation(basePalette, baseMeta);
-        TextureImage recoloredOverlay = respriterO.recolorWithAnimation(overlayPalette, baseMeta);
+        try (TextureImage recoloredBase = respriter.recolorWithAnimation(planksPalette, baseMeta);
+             TextureImage recoloredOverlay = respriterO.recolorWithAnimation(overlayPalette, baseMeta)) {
 
-        if (trappedOverlay != null) {
+            TextureOps.applyOverlayOnExisting(recoloredBase, recoloredOverlay);
+
+            if (trappedOverlay != null) {
                 TextureImage trapped = recoloredBase.makeCopy();
-                TextureOps.applyOverlay(trapped, recoloredOverlay);
-            sink.addTexture(trappedRLoc, trapped);
-        }
+                TextureOps.applyOverlay(trapped, trappedOverlay);
+                sink.addTexture(trappedRLoc, trapped);
+            }
 
-        sink.addAndCloseTexture(normalRLoc, () -> {
-            TextureOps.applyOverlay(recoloredBase, recoloredOverlay);
-            return recoloredBase;
-        });
+            sink.addTexture(normalRLoc, recoloredBase);
+        }
     }
 
 }

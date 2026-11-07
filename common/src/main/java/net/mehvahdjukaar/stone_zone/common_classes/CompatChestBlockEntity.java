@@ -3,38 +3,23 @@ package net.mehvahdjukaar.stone_zone.common_classes;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class CompatChestBlockEntity extends ChestBlockEntity {
     private final StoneType stoneType;
     private final boolean trapped;
-    private float[] tint = null;
 
-    public CompatChestBlockEntity(BlockEntityType<?> arg, BlockPos pos, BlockState state) {
-        super(arg, pos, state);
-        StoneType stone = StoneTypeRegistry.INSTANCE.getBlockTypeOf(state.getBlock());
-        this.stoneType = stone == null ? VanillaStoneTypes.STONE : stone;
+    public CompatChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
+        super(blockEntityType, pos, state);
+        StoneType stoneType = StoneTypeRegistry.INSTANCE.getBlockTypeOf(state.getBlock());
+        this.stoneType = stoneType == null ? VanillaStoneTypes.STONE : stoneType;
         this.trapped = state.getBlock() instanceof CompatTrappedChestBlock;
-    }
-
-    public float[] getTint() {
-        if (this.tint == null) {
-            int color = Minecraft.getInstance().getBlockColors().getColor(stoneType.stone.defaultBlockState(), level, worldPosition, 0);
-            this.tint = new float[]{
-                    (color >> 16 & 255) / 255F,
-                    (color >> 8 & 255) / 255F,
-                    (color & 255) / 255F,
-                    1.0F
-            };
-        }
-        return this.tint;
     }
 
     public StoneType getStoneType() {
@@ -42,7 +27,7 @@ public class CompatChestBlockEntity extends ChestBlockEntity {
     }
 
     @Override
-    protected void signalOpenCount(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, int eventId, int eventParam) {
+    protected void signalOpenCount(@NonNull Level level, @NonNull BlockPos pos, @NonNull BlockState state, int eventId, int eventParam) {
         super.signalOpenCount(level, pos, state, eventId, eventParam);
         if (trapped && eventId != eventParam) {
             Block block = state.getBlock();
