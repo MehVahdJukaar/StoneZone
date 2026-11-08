@@ -2,41 +2,47 @@ package net.mehvahdjukaar.stone_zone.misc;
 
 
 import com.mojang.datafixers.util.Pair;
+import net.mehvahdjukaar.moonlight.api.client.TextureCache;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static net.mehvahdjukaar.every_compat.misc.SpriteExtra.addOptional;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 import static net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys.STONE;
 
 public class CompatSpritesHelper {
 
-    public final static Map<ResourceLocation, String> modelID = new HashMap<>();
+    public final static Map<Identifier, String> modelID = new HashMap<>();
 
-    // TEXTURES \\
+    //      ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+    //      │                                           TEXTURES                                           │
+    //      └──────────────────────────────────────────────────────────────────────────────────────────────┘
+
 /// NOTE: Used to identify StoneTypes' texture only based off their name
     public static void initHardcodedSprite() {
 
         // Thuamon
-        addOptional("thaumon:amber", "all", "thaumon:block/amber_side");
+        addOptional("thaumon","amber", "all", "block/amber_side");
 
         // Quark
-        addOptional("quark:myalite", "all", StoneZone.MOD_ID + ":block/quark/myalite_tinted");
-        addOptional("quark:myalite_bricks", "all", StoneZone.MOD_ID + ":block/quark/myalite_bricks_tinted");
+        addOptional("quark:myalite", "all", StoneZone.res("block/quark/myalite_tinted"));
+        addOptional("quark:myalite_bricks", "all", StoneZone.res("block/quark/myalite_bricks_tinted"));
 
         // BetterEnd
-        addOptional("betterend:umbralith", "all", "betterend:block/umbralith");
+        addOptional("betterend","umbralith", "all", "block/umbralith");
 
         // Eternal Tales
-        addOptional("eternal_tales:purgatorium_stone", "all", "eternal_tales:block/purgstone");
+        addOptional("eternal_tales","purgatorium_stone", "all", "block/purgstone");
     }
 
-    // MODELS \\
+    //      ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+    //      │                                            MODELS                                            │
+    //      └──────────────────────────────────────────────────────────────────────────────────────────────┘
+
 /// NOTE: Used to identify StoneTypes' model only based off their name or path
     public static void addHardcodedModel() {
 
@@ -57,10 +63,32 @@ public class CompatSpritesHelper {
         modelID.put(StoneZone.res(blockid), pathModel);
     }
 
-    public final static Map<ResourceLocation, Pair<String, String>> tintedStoneType = Map.of(
-            ResourceLocation.parse("quark:myalite"), Pair.of(":block/quark/myalite_tinted", ":block/quark/myalite_bricks_tinted")
+    public final static Map<Identifier, Pair<String, String>> tintedStoneType = Map.of(
+            Identifier.parse("quark:myalite"), Pair.of(":block/quark/myalite_tinted", ":block/quark/myalite_bricks_tinted")
     );
 
+    //      ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+    //      │                                        Sprite Methods                                        │
+    //      └──────────────────────────────────────────────────────────────────────────────────────────────┘
+
+    public static void addOptional(String blockId, String keyId, String textureId) {
+        TextureCache.registerSpecialTextureForBlock(Identifier.parse(blockId), keyId,
+                Identifier.parse(textureId)
+        );
+    }
+    public static void addOptional(String blockId, String keyId, Identifier textureId) {
+        TextureCache.registerSpecialTextureForBlock(Identifier.parse(blockId), keyId,
+                textureId
+        );
+    }
+
+    public static void addOptional(String modId, String blockPath, String keyId, String texturePath) {
+        TextureCache.registerSpecialTextureForBlock(
+                Identifier.fromNamespaceAndPath(modId, blockPath),
+                keyId,
+                Identifier.fromNamespaceAndPath(modId, texturePath)
+        );
+    }
 
     //      ┌──────────────────────────────────────────────────────────┐
     //      │                     TEXTURE METHODS                      │
