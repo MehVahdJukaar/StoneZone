@@ -41,7 +41,10 @@ public class HardcodedBlockType {
             "ars_nouveau:sconce",
 
             //REASON: The StoneType's texture is only white and no way for blocks to copy its color behavior
-            "rgbblocks:prismarine"
+            "rgbblocks:prismarine",
+
+            //REASON: minecraft:snow has special property where placing StoneZone's blocks will cause crash (blocks that copied from snow's property)
+            "minecraft:snow"
     );
 
     //      ┌──────────────────────────────────────────────────────────┐
