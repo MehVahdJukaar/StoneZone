@@ -36,8 +36,8 @@ public class QuarkModule extends StoneZoneModule {
         vertical_slabs = QuarkEntrySet.of(StoneType.class, "vertical_slab",
                         VerticalSlabsModule.class,
                         getModBlock("andesite_vertical_slab"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis("slab"),
-                                copyChildrenPropertySafe("slab", stoneType))
+                        stoneType -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis(SLAB),
+                                copyChildrenPropertySafe(SLAB, stoneType))
                 )
                 .requiresChildren(SLAB) //REASON: recipes
                 .addCondition(ignored -> !PlatHelper.isModLoaded("v_slab_compat"))
