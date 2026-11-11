@@ -169,7 +169,7 @@ async def main_async():
     if args.fabric:
         targets.append(("Fabric", "fabric/build.gradle.kts"))
     if args.common:
-        targets.append(("Common", "common/build.gradle.kts"))
+        targets.append(("Neoforge", "common/build.gradle.kts"))
     if args.neoforge:
         targets.append(("NeoForge", "neoforge/build.gradle.kts"))
 
