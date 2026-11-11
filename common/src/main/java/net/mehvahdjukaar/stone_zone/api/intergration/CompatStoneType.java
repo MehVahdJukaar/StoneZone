@@ -303,7 +303,7 @@ public class CompatStoneType {
 
         // TerraFirmaCraft - REASON: Naming-Convention
         String[] tfc_muds = {
-                "silt", "loam", "sandy_loam", "silty_loam"
+                "entisol", "aridisol", "oxisol", "fluvisol", "andisol", "podzol", "alfisol", "mollisol"
         };
 
         if (PlatHelper.isModLoaded("tfc"))
