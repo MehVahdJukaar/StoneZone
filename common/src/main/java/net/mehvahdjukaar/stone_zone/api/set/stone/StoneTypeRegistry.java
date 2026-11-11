@@ -43,7 +43,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
 
         /// Support TerraFirmaCraft (TFC), ArborFirmaCraft (AFC), DecoFirmaCraft (DFC)
         if (namespace.matches("tfc|afc|dfc") && blockPath.contains("rock/")) {
-            return newSubBlockType(StoneType::new, blockId, "rock/raw/(?<typename>\\w+)(?<!slab|stairs)", valuesReg);
+            return newSubBlockType(StoneType::new, blockId, "rock/raw/(?<typename>\\w+)(?<!slab|stairs|wall)", valuesReg);
         }
 
         /// ────────────────────────────────── Default ──────────────────────────────────
