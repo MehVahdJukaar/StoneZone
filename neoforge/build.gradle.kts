@@ -61,28 +61,27 @@ dependencies {
     modRuntimeOnly("com.blamejared.crafttweaker:CraftTweaker-neoforge-${property("minecraft_version")}:${property("crafttweaker_version")}")
 //    modRuntimeOnly("dev.emi:emi-neoforge:${property("emi_version")}+${property("minecraft_version")}")
     modRuntimeOnly("maven.modrinth:emi:${property("emi_version")}+${property("minecraft_version")}+neoforge")
-    modRuntimeOnly("curse.maven:jei-238222:5846880")
-    modRuntimeOnly("curse.maven:jade-324717:5884231") // v15.8.3
-    modRuntimeOnly("curse.maven:configured-457570:5873783")
+    modRuntimeOnly("curse.maven:jei-238222:9393327") // v19.70.0.469
+    modRuntimeOnly("curse.maven:jade-324717:8591319") // v15.10.6
+    modRuntimeOnly("curse.maven:configured-457570:7276577") // v2.6.3
 //    modRuntimeOnly("curse.maven:worldedit-225608:5830452")
 
 //!! ================================================= DEPENDENCIES ================================================= \\
     //- ONLY FOR TESTING - can be commented out or enabled
     modRuntimeOnly("curse.maven:terrablender-neoforge-940057:6054947") // v4.1.0.8 | Biomes-O'-Plenty
-    modRuntimeOnly("curse.maven:glitchcore-955399:5660740") // v2.1.0.0 | Biomes-O'-Plenty | required: Typetools, Night-Config
+    modRuntimeOnly("curse.maven:glitchcore-955399:8109792") // v2.1.0.2 | Biomes-O'-Plenty | required: Typetools, Night-Config
 //    modRuntimeOnly("curse.maven:aeroblender-879879:5911923") // v1.0.0 | Aether
 //    modRuntimeOnly("curse.maven:citadel-331936:6002521") // v2.6.1 | Alexs-Caves //!! 1.20
 //    modRuntimeOnly("curse.maven:citadel-1-21-1-port-1415723:7982052") // v2.7.6 | Alexs-Caves
-//    modRuntimeOnly("curse.maven:yungs-api-421850:6715462") // v5.1.6 | NONE //!! FORGE
-//    modRuntimeOnly("curse.maven:patchouli-306770:4966125") // v84 | TFC //!! 1.20
+    modRuntimeOnly("curse.maven:patchouli-306770:7730942") // v93 | TFC
 //    modRuntimeOnly("curse.maven:puzzles-lib-495476:6494827") // v21.1.36 | Stoneworks
-//    modRuntimeOnly("curse.maven:athena-841890:5176879") // v3.1.2 | Chipped //!! 1.20
+//    modRuntimeOnly("curse.maven:athena-841890:8061947") // v4.0.6 | Chipped
 //    modRuntimeOnly("curse.maven:resourceful-lib-570073:5973188") // v3.0.12 | Chipped, Handcrafted
 //    modRuntimeOnly("curse.maven:resourceful-config-714059:6467772") // v3.0.11 | Better-Archeology
 //    modRuntimeOnly("curse.maven:fusion-connected-textures-854949:8479774") // v1.3.9 | Rechiseled
-//    modRuntimeOnly("curse.maven:mantle-74924:6041712") // v1.11.28 | Tinkers-Construct //!! 1.20
-//    modRuntimeOnly("curse.maven:blueprint-382216:5292242") // v7.1.0 | The-Outer-End, Caverns-And-Chasms //!! 1.20
-//    modRuntimeOnly("curse.maven:monolib-968432:6123976") // v2.0.0 | More-Beautiful-Torches //!! 1.20
+//    modRuntimeOnly("curse.maven:mantle-74924:9446787") // v1.11.28 | Tinkers-Construct
+//    modRuntimeOnly("curse.maven:blueprint-382216:8819375") // v7.1.0 | The-Outer-End, Caverns-And-Chasms
+//    modRuntimeOnly("curse.maven:monolib-968432:9050710") // v4.1.2 | More-Beautiful-Torches
 //    modRuntimeOnly("curse.maven:architectury-api-419699:8492726") // v13.0.11 | Better-Archeology, [Let's do] Farm & Charm
 //    modRuntimeOnly("curse.maven:balm-531761:8424824") // v21.0.63 | Waystones
 //    modRuntimeOnly("curse.maven:curios-309927:6529130") // v9.5.1 | Ars-Nouveau
@@ -175,7 +174,7 @@ dependencies {
 //    modRuntimeOnly("curse.maven:oh-the-trees-youll-grow-962544:6607561") // v5.0.14 | Oh-The-Biomes-We've-Gone
 
     // STONETYPE & WOODTYPE
-//    modRuntimeOnly("curse.maven:terrafirmacraft-302973:5943050") // patchouli //!! 1.20
+//    modRuntimeOnly("curse.maven:terrafirmacraft-302973:9511202") // patchouli
 
 
     //@ Aether & Deep_Aether's dependency mods
