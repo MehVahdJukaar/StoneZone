@@ -13,7 +13,7 @@ import net.minecraft.world.item.CreativeModeTab;
 
 import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.every_compat.api.BlockTypeChildrenHelper.copyChildProperties;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 
@@ -26,9 +26,9 @@ public class BitsNBobsModuleAbstract extends StoneZoneModule {
 
         var blockSet = BlockSetEntries.of4BlocksProperty(StoneType.class, this, VanillaStoneTypes.ANDESITE,
                         "andesite_tiles", stoneType -> Utils.copyPropertySafe(stoneType.stone),
-                        "andesite_tile_slab", stoneType -> copyChildrenPropertySafe(SLAB, stoneType),
-                        "andesite_tile_stairs", stoneType -> copyChildrenPropertySafe(STAIRS, stoneType),
-                        "andesite_tile_wall", stoneType -> copyChildrenPropertySafe(WALL, stoneType),
+                        "andesite_tile_slab", stoneType -> copyChildProperties(stoneType, SLAB),
+                        "andesite_tile_stairs", stoneType -> copyChildProperties(stoneType, STAIRS),
+                        "andesite_tile_wall", stoneType -> copyChildProperties(stoneType, WALL),
                         palettesTab
                 )
                 .block(builder -> builder

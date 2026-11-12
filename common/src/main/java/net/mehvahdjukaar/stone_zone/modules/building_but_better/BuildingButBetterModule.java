@@ -20,7 +20,7 @@ import net.minecraft.world.level.material.PushReaction;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.every_compat.api.BlockTypeChildrenHelper.copyChildProperties;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.SLAB;
 
 ///SUPPORT: v1.0.1+
@@ -190,7 +190,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
 
         smooth_layers = StoneZoneEntrySet.of(StoneType.class, "layer", "smooth",
                         getModBlock("smooth_stone_layer"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new LayerBlock(copyChildrenPropertySafe("smooth", stoneType))
+                        stoneType -> new LayerBlock(copyChildProperties(stoneType, "smooth"))
                 )
                 .requiresChildren("smooth_slab", "smooth") //REASON: recipes & textures
                 //TEXTURES: smooth_stones

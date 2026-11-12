@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.every_compat.api.BlockTypeChildrenHelper.copyChildProperties;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 //TODO: Add purpur
@@ -139,7 +139,7 @@ public class BlockusModule extends StoneZoneModule {
 
         tile_slabs = StoneZoneEntrySet.of(StoneType.class, "tile_slab",
                         getModBlock("stone_tile_slab"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new SlabBlock(copyChildrenPropertySafe("slab", stoneType))
+                        stoneType -> new SlabBlock(copyChildProperties(stoneType, "slab"))
                 )
                 .requiresFromMap(tiles.blocks) //REASON: textures, recipes
                 .requiresChildren(BRICKS) //REASON: recipes
@@ -157,7 +157,7 @@ public class BlockusModule extends StoneZoneModule {
         tile_stairs = StoneZoneEntrySet.of(StoneType.class, "tile_stairs",
                         getModBlock("stone_tile_stairs"), () -> VanillaStoneTypes.STONE,
                         stoneType -> new StairBlock(tiles.blocks.get(stoneType).defaultBlockState(),
-                                copyChildrenPropertySafe("stairs", stoneType))
+                                copyChildProperties(stoneType, "stairs"))
                 )
                 .requiresFromMap(tiles.blocks) //REASON: textures, recipes
                 .requiresChildren(BRICKS) //REASON: recipes

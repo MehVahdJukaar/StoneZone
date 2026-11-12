@@ -19,7 +19,7 @@ import org.violetmoon.zeta.block.ZetaPillarBlock;
 
 import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.every_compat.api.BlockTypeChildrenHelper.copyChildProperties;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BRICKS;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BRICK_SLAB;
 
@@ -37,7 +37,7 @@ public class QuarkMudModule extends StoneZoneModule {
 
         brick_lattices = QuarkEntrySet.of(MudType.class, "brick_lattice", MoreMudBlocksModule.class,
                         getModBlock("mud_brick_lattice"), () -> VanillaMudTypes.MUD,
-                        mudType -> new MudBrickLatticeBlock(null, copyChildrenPropertySafe(BRICKS, mudType))
+                        mudType -> new MudBrickLatticeBlock(null, copyChildProperties(mudType, BRICKS))
                 )
                 .requiresChildren(BRICKS) //REASON: recipes, palettes
                 .addTexture(modRes("block/mud_brick_lattice"), StonePaletteStrategies.BRICKS_STANDARD)
@@ -53,7 +53,7 @@ public class QuarkMudModule extends StoneZoneModule {
                         getModBlock("carved_mud_bricks"), () -> VanillaMudTypes.MUD,
                         mudType -> {
                             String name = shortenedId() + "/" + mudType.getAppendableIdWith("carved", "bricks");
-                            return new ZetaBlock(name, null, copyChildrenPropertySafe(BRICKS, mudType));
+                            return new ZetaBlock(name, null, copyChildProperties(mudType, BRICKS));
                         }
                 )
                 .requiresChildren(BRICK_SLAB, BRICKS) //REASON: recipes, textures, palettes

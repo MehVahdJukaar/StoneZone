@@ -81,7 +81,7 @@ public class CandlelightModule extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stoves"), Registries.BLOCK)
                 .addTag(Identifier.parse("farmersdelight:heat_sources"), Registries.BLOCK)
-                .addTag(UtilityTag.fabricTag("allows_cooking"), Registries.BLOCK)
+                .addTag(UtilityTag.commonTag("allows_cooking"), Registries.BLOCK)
                 .addTag(modRes("allows_cooking"), Registries.BLOCK)
                 .addTag(Identifier.parse("farm_and_charm:allows_cooking"), Registries.BLOCK)
                 .setTab(tab)

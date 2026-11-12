@@ -19,7 +19,7 @@ import org.violetmoon.zeta.block.ZetaPillarBlock;
 
 import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.every_compat.api.BlockTypeChildrenHelper.copyChildProperties;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 ///SUPPORT: v4.1-482+
@@ -37,7 +37,7 @@ public class QuarkModule extends StoneZoneModule {
                         VerticalSlabsModule.class,
                         getModBlock("andesite_vertical_slab"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis("slab"),
-                                copyChildrenPropertySafe("slab", stoneType))
+                                copyChildProperties(stoneType, "slab"))
                 )
                 .requiresChildren(SLAB) //REASON: recipes
                 .addCondition(ignored -> !PlatHelper.isModLoaded("v_slab_compat"))
@@ -55,7 +55,7 @@ public class QuarkModule extends StoneZoneModule {
                         VerticalSlabsModule.class,
                         getModBlock("polished_andesite_vertical_slab"), () -> VanillaStoneTypes.ANDESITE,
                         stoneType -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis(POLISHED_SLAB),
-                                copyChildrenPropertySafe(POLISHED_SLAB, stoneType))
+                                copyChildProperties(stoneType, POLISHED_SLAB))
                 )
                 .requiresChildren(POLISHED_SLAB, POLISHED) //REASON: recipes, textures
                 .addCondition(ignored -> !PlatHelper.isModLoaded("v_slab_compat"))

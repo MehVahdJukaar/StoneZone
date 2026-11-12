@@ -39,7 +39,7 @@ import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.makePaletteFromChild;
 import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.registerCached;
-import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.every_compat.api.BlockTypeChildrenHelper.copyChildProperties;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.isKnownVanillaStone;
 
@@ -114,9 +114,9 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
         /// CUT_BRICKS
         var cutBricksSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
                         "cut_andesite_bricks", stoneType -> Utils.copyPropertySafe(stoneType.bricksOrStone()),
-                        "cut_andesite_brick_slab", stoneType -> copyChildrenPropertySafe(BRICK_SLAB, stoneType),
-                        "cut_andesite_brick_stairs", stoneType -> copyChildrenPropertySafe(BRICK_STAIRS, stoneType),
-                        "cut_andesite_brick_wall", stoneType -> copyChildrenPropertySafe(BRICK_WALL, stoneType),
+                        "cut_andesite_brick_slab", stoneType -> copyChildProperties(stoneType, BRICK_SLAB),
+                        "cut_andesite_brick_stairs", stoneType -> copyChildProperties(stoneType, BRICK_STAIRS),
+                        "cut_andesite_brick_wall", stoneType -> copyChildProperties(stoneType, BRICK_WALL),
                         palettesTab
                 )
                 .block(builder -> builder
@@ -145,10 +145,10 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
 
         /// POLISHED_CUT
         var polishedCutSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
-                        "polished_cut_andesite", stoneType -> copyChildrenPropertySafe(POLISHED, stoneType),
-                        "polished_cut_andesite_slab", stoneType -> copyChildrenPropertySafe(POLISHED_SLAB, stoneType),
-                        "polished_cut_andesite_stairs", stoneType -> copyChildrenPropertySafe(POLISHED_STAIRS, stoneType),
-                        "polished_cut_andesite_wall", stoneType -> copyChildrenPropertySafe(POLISHED_WALL, stoneType),
+                        "polished_cut_andesite", stoneType -> copyChildProperties(stoneType, POLISHED),
+                        "polished_cut_andesite_slab", stoneType -> copyChildProperties(stoneType, POLISHED_SLAB),
+                        "polished_cut_andesite_stairs", stoneType -> copyChildProperties(stoneType, POLISHED_STAIRS),
+                        "polished_cut_andesite_wall", stoneType -> copyChildProperties(stoneType, POLISHED_WALL),
                         palettesTab
                 )
                 .block(builder -> builder
@@ -178,10 +178,10 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
 
         /// SMALL_BRICKS
         var smallBricksSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
-                        "small_andesite_bricks", stoneType -> copyChildrenPropertySafe(BRICKS, stoneType),
-                        "small_andesite_brick_slab", stoneType -> copyChildrenPropertySafe(BRICK_SLAB, stoneType),
-                        "small_andesite_brick_stairs", stoneType -> copyChildrenPropertySafe(BRICK_STAIRS, stoneType),
-                        "small_andesite_brick_wall", stoneType -> copyChildrenPropertySafe(BRICK_WALL, stoneType),
+                        "small_andesite_bricks", stoneType -> copyChildProperties(stoneType, BRICKS),
+                        "small_andesite_brick_slab", stoneType -> copyChildProperties(stoneType, BRICK_SLAB),
+                        "small_andesite_brick_stairs", stoneType -> copyChildProperties(stoneType, BRICK_STAIRS),
+                        "small_andesite_brick_wall", stoneType -> copyChildProperties(stoneType, BRICK_WALL),
                         palettesTab
                 )
                 .block(builder -> builder

@@ -13,7 +13,7 @@ import net.minecraft.world.item.CreativeModeTab;
 
 import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyChildrenPropertySafe;
+import static net.mehvahdjukaar.every_compat.api.BlockTypeChildrenHelper.copyChildProperties;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 ///SUPPORT: v1.3.9
@@ -25,8 +25,8 @@ public class BetterArcheologyModule extends StoneZoneModule {
 
         var blockSet = BlockSetEntries.of3BlocksProperty(this, MudType.class, VanillaMudTypes.MUD,
                 "cracked_mud_bricks",  mudType -> Utils.copyPropertySafe(mudType.bricksOrStone()),
-                "cracked_mud_brick_slab", mudType -> copyChildrenPropertySafe(BRICK_SLAB, mudType),
-                "cracked_mud_brick_stairs", mudType -> copyChildrenPropertySafe(BRICK_STAIRS, mudType),
+                "cracked_mud_brick_slab", mudType -> copyChildProperties(mudType, BRICK_SLAB),
+                "cracked_mud_brick_stairs", mudType -> copyChildProperties(mudType, BRICK_STAIRS),
                 tab
         )
                 .block(builder ->
