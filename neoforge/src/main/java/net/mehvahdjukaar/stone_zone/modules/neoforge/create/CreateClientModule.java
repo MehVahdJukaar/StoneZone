@@ -14,7 +14,7 @@ import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -155,48 +155,48 @@ public class CreateClientModule {
     ///NOTE: texture filename with _connected is included
     private static CTSpriteShiftEntry omni(String blockTexture) {
         return getCT(AllCTTypes.OMNIDIRECTIONAL,
-                ResourceLocation.parse(blockTexture),
-                ResourceLocation.parse(blockTexture + "_connected")
+                Identifier.parse(blockTexture),
+                Identifier.parse(blockTexture + "_connected")
         );
     }
 
     ///NOTE: texture filename with _connected is included
     private static CTSpriteShiftEntry horizontal(String blockTexture) {
         return getCT(AllCTTypes.HORIZONTAL,
-                ResourceLocation.parse(blockTexture),
-                ResourceLocation.parse(blockTexture +"_connected")
+                Identifier.parse(blockTexture),
+                Identifier.parse(blockTexture +"_connected")
         );
     }
 
     ///NOTE: texture filename with _connected is included
     private static CTSpriteShiftEntry horizontalwithKrypper(String blockTexture) {
         return getCT(AllCTTypes.HORIZONTAL_KRYPPERS,
-                ResourceLocation.parse(blockTexture),
-                ResourceLocation.parse(blockTexture +"_connected")
+                Identifier.parse(blockTexture),
+                Identifier.parse(blockTexture +"_connected")
         );
     }
 
     ///NOTE: texture filename with _connected is included
     private static CTSpriteShiftEntry horizontalwithRectangle(String blockTexture) {
         return getCT(AllCTTypes.RECTANGLE,
-                ResourceLocation.parse(blockTexture),
-                ResourceLocation.parse(blockTexture +"_connected")
+                Identifier.parse(blockTexture),
+                Identifier.parse(blockTexture +"_connected")
         );
     }
 
     ///NOTE: texture filename with _connected is included
     private static CTSpriteShiftEntry vertical(String blockTexture) {
         return getCT(AllCTTypes.VERTICAL,
-                ResourceLocation.parse(blockTexture),
-                ResourceLocation.parse(blockTexture + "_connected")
+                Identifier.parse(blockTexture),
+                Identifier.parse(blockTexture + "_connected")
         );
     }
 
     ///NOTE: texture filename with _connected is included
     private static CTSpriteShiftEntry roof(String blockTexture, String connectedTexture) {
         return getCT(AllCTTypes.ROOF,
-                ResourceLocation.parse(blockTexture),
-                ResourceLocation.parse(connectedTexture + "_connected")
+                Identifier.parse(blockTexture),
+                Identifier.parse(connectedTexture + "_connected")
         );
     }
 

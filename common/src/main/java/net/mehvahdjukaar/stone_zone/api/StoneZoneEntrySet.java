@@ -130,7 +130,7 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
         }
 
         /**
-         * @deprecated USE .addTexture(ResourceLocation, PaletteStrategy) or .addTextureM(ResourceLocation, ResourceLocation, PaletteStrategy),
+         * @deprecated USE .addTexture(Identifier, PaletteStrategy) or .addTextureM(Identifier, Identifier, PaletteStrategy),
          * the last parameter is PaletteStrategy<br>
          * Take a look at {@link StonePaletteStrategies} or {@link PaletteStrategies} and Look for the FIELD which can be used as an argument for the last
          * parameter

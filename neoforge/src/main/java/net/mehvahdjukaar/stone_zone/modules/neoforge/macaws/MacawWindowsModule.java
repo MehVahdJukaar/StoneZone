@@ -9,7 +9,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -31,7 +31,7 @@ public class MacawWindowsModule extends StoneZoneModule {
 
     public MacawWindowsModule(String modId) {
         super(modId, "mcw");
-        ResourceLocation tab = modRes(modId);
+        Identifier tab = modRes(modId);
 
         windows = StoneZoneEntrySet.of(StoneType.class, "window",
                         getModBlock("stone_window"), () -> VanillaStoneTypes.STONE,

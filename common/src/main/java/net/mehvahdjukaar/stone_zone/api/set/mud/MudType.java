@@ -7,7 +7,7 @@ import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.RockType;
 import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.ApiStatus;
@@ -23,7 +23,7 @@ public class MudType extends RockType {
 
     public final Block mud;
 
-    protected MudType(ResourceLocation id, Block mud) {
+    protected MudType(Identifier id, Block mud) {
         super(id, mud);
         this.mud = mud;
     }
@@ -44,8 +44,8 @@ public class MudType extends RockType {
         return this.mud;
     }
 
-    public static Block findMud(ResourceLocation id) {
-        ResourceLocation[] tests = makeKnownIDConventions(id,  "", "mud");
+    public static Block findMud(Identifier id) {
+        Identifier[] tests = makeKnownIDConventions(id,  "", "mud");
         return Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
     }
 
@@ -53,7 +53,7 @@ public class MudType extends RockType {
 
         private Supplier<Block> mudFinder;
 
-        public Finder(ResourceLocation id) {
+        public Finder(Identifier id) {
             super(id, MudTypeRegistry.INSTANCE);
             this.mud(() -> findMud(id));
         }
@@ -63,8 +63,8 @@ public class MudType extends RockType {
             return this;
         }
 
-        /// @param id Full Id of MudType as ResourceLocation
-        public MudType.Finder mud(ResourceLocation id) {
+        /// @param id Full Id of MudType as Identifier
+        public MudType.Finder mud(Identifier id) {
             return this.mud(() -> BuiltInRegistries.BLOCK.getOptional(id)
                     .orElseThrow(() -> new IllegalStateException("Failed to find mud block: " + id))
             );

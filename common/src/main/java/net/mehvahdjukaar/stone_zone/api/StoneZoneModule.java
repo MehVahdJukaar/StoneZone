@@ -14,7 +14,7 @@ import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntries;
 import net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 
@@ -36,7 +36,7 @@ public class StoneZoneModule extends EveryCompatModule {
     }
 
     @Override
-    public boolean isEntryAlreadyRegistered(String entrySetId, ResourceLocation blockId, BlockType blockType, Registry<?> registry) {
+    public boolean isEntryAlreadyRegistered(String entrySetId, Identifier blockId, BlockType blockType, Registry<?> registry) {
 
         String blockPath = blockId.getPath();
         //short block name - blockName: <stonetype>_column from the blockId: stonezone:twigs/strata/<stonetype>_column
@@ -55,10 +55,10 @@ public class StoneZoneModule extends EveryCompatModule {
             String compatModId = c.modId();  //bopcomp : bop->quark, twigs
             //if the wood is from the mod this adds compat for && it supports this block type
             if (c.woodsFrom().contains(blockTypeFrom) && c.blocksFrom().contains(modId)) {
-                if (registry.containsKey(ResourceLocation.fromNamespaceAndPath(compatModId, blockName))) return true;
-                if (registry.containsKey(ResourceLocation.fromNamespaceAndPath(compatModId, slashConvention)))
+                if (registry.containsKey(Identifier.fromNamespaceAndPath(compatModId, blockName))) return true;
+                if (registry.containsKey(Identifier.fromNamespaceAndPath(compatModId, slashConvention)))
                     return true;
-                if (registry.containsKey(ResourceLocation.fromNamespaceAndPath(compatModId, underscoreConvention)))
+                if (registry.containsKey(Identifier.fromNamespaceAndPath(compatModId, underscoreConvention)))
                     return true;
             }
         }

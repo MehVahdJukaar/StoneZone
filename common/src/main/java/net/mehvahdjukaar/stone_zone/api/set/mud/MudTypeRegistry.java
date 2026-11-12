@@ -2,7 +2,7 @@ package net.mehvahdjukaar.stone_zone.api.set.mud;
 
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 
 import java.util.Collection;
@@ -31,7 +31,7 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
     }
 
     @Override
-    public Optional<MudType> detectTypeFromBlock(Block baseblock, ResourceLocation blockId) {
+    public Optional<MudType> detectTypeFromBlock(Block baseblock, Identifier blockId) {
         String namespace = blockId.getNamespace();
 //        String blockPath = blockId.getPath();
 
@@ -54,18 +54,18 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
 
 
     //shorthand for add finder. Gives a builder-like object that's meant to be configured inline
-    public MudType.Finder addSimpleFinder(ResourceLocation mudTypeId) {
+    public MudType.Finder addSimpleFinder(Identifier mudTypeId) {
         MudType.Finder finder = new MudType.Finder(mudTypeId);
         this.addFinder(finder);
         return finder;
     }
 
     public MudType.Finder addSimpleFinder(String typeId) {
-        return addSimpleFinder(ResourceLocation.parse(typeId));
+        return addSimpleFinder(Identifier.parse(typeId));
     }
 
     public MudType.Finder addSimpleFinder(String namespace, String nameMudType) {
-        return addSimpleFinder(ResourceLocation.fromNamespaceAndPath(namespace, nameMudType));
+        return addSimpleFinder(Identifier.fromNamespaceAndPath(namespace, nameMudType));
     }
 
     @Override
@@ -83,7 +83,7 @@ public class MudTypeRegistry extends BlockTypeRegistry<MudType> {
     /// USE {@link VanillaMudTypes}
     @Deprecated(forRemoval = true)
     public static MudType getValue(String mudTypeId) {
-        return INSTANCE.get(ResourceLocation.parse(mudTypeId));
+        return INSTANCE.get(Identifier.parse(mudTypeId));
     }
 
     /// USE {@link StoneTypeRegistry#INSTANCE} - can be used in FOR Loop statement

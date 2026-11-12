@@ -27,7 +27,7 @@ import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -430,7 +430,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.DOORS, Registries.BLOCK, Registries.ITEM)
                 .addTag(BlockTags.WOODEN_DOORS, Registries.BLOCK)
                 .addTag(BlockTags.MOB_INTERACTABLE_DOORS, Registries.BLOCK)
-                .addTag(ResourceLocation.parse("quark:non_double_door"), Registries.BLOCK)
+                .addTag(Identifier.parse("quark:non_double_door"), Registries.BLOCK)
                 .addTag(modRes("brittle"), Registries.BLOCK)
                 .addTag(modRes("contraption_controlled"), Registries.ITEM)
                 .setTab(tab)
@@ -585,7 +585,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                 BlockMap.toArray(blocks);
 
                 // Tags
-                ResourceLocation tagResLoc = StoneZone.res(stoneType.getAppendableId());
+                Identifier tagResLoc = StoneZone.res(stoneType.getAppendableId());
                 boolean isTagCreated = UtilityTag.createAndAddCustomTags(tagResLoc, sink, blocks);
 
                 /// ────────────────────────── Creating Recipe ──────────────────────────
@@ -598,11 +598,11 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                         String entryId = pair.getSecond();
 
                         if (output != null) {
-                            ResourceLocation recipeFileLoc = ResourceLocation.parse(entryId + "_from_stone_types_andesite_stonecutting");
-                            ResourceLocation recipeResLoc = ResType.RECIPES.getPath(recipeFileLoc);
+                            Identifier recipeFileLoc = Identifier.parse(entryId + "_from_stone_types_andesite_stonecutting");
+                            Identifier recipeResLoc = ResType.RECIPES.getPath(recipeFileLoc);
 
                             // Changed from "???_from_stone_types_andesite_stonecutting" to "c/namespace/stonecutting/???_from_andesite"
-                            ResourceLocation newRecipeLoc = StoneZone.res(recipeFileLoc.getPath()
+                            Identifier newRecipeLoc = StoneZone.res(recipeFileLoc.getPath()
                                             .replace("andesite", stoneType.getTypeName())
                                             .replace("_stonecutting", "")
                                             .replace("_stone_types", ""))
@@ -693,8 +693,8 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                 .replace("[NUGGET]", "iron")
                 .replace("[ALLOY]", Utils.getID(alloy).toString());
 
-        ResourceLocation newLoc = ResourceLocation.parse(stoneType.createFullIdWith(StoneZone.MOD_ID, "", shortenedId(), "mixing/", "alloy"));
-        ResourceLocation newLocWithZinc = ResourceLocation.parse(stoneType.createFullIdWith(StoneZone.MOD_ID, "", shortenedId(), "mixing/", "alloy_from_zinc"));
+        Identifier newLoc = Identifier.parse(stoneType.createFullIdWith(StoneZone.MOD_ID, "", shortenedId(), "mixing/", "alloy"));
+        Identifier newLocWithZinc = Identifier.parse(stoneType.createFullIdWith(StoneZone.MOD_ID, "", shortenedId(), "mixing/", "alloy_from_zinc"));
 
         sink.addBytes(newLoc, newRecipeWithIron.getBytes(), ResType.RECIPES);
         sink.addBytes(newLocWithZinc, newRecipeWithZinc.getBytes(), ResType.RECIPES);
@@ -735,8 +735,8 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                 .replace("[ALLOY]", Utils.getID(alloyItem).toString())
                 .replace("[CASING]", Utils.getID(casingBlock).toString());
 
-        ResourceLocation newLoc = ResourceLocation.parse(stoneType.createFullIdWith(StoneZone.MOD_ID, "", shortenedId(), "item_application/", "casing_from_log"));
-        ResourceLocation newLocWithWood = ResourceLocation.parse(stoneType.createFullIdWith(StoneZone.MOD_ID, "", shortenedId(), "item_application/", "casing_from_wood"));
+        Identifier newLoc = Identifier.parse(stoneType.createFullIdWith(StoneZone.MOD_ID, "", shortenedId(), "item_application/", "casing_from_log"));
+        Identifier newLocWithWood = Identifier.parse(stoneType.createFullIdWith(StoneZone.MOD_ID, "", shortenedId(), "item_application/", "casing_from_wood"));
 
         sink.addBytes(newLoc, newRecipeWithIron.getBytes(), ResType.RECIPES);
         sink.addBytes(newLocWithWood, newRecipeWithZinc.getBytes(), ResType.RECIPES);

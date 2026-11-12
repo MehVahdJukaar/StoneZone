@@ -299,13 +299,13 @@ public class BlockSetEntries<BT extends RockType> {
             return this;
         }
 
-        /// the default ResourceLocation for texture is "block/getBlockPath"
+        /// the default Identifier for texture is "block/getBlockPath"
         public BlockSetBuilder<T> defaultBlockTexture() {
             this.includeBlockTexture = true;
             return this;
         }
 
-        /// the default ResourceLocation for texture is "block/getBlockPath" + _top
+        /// the default Identifier for texture is "block/getBlockPath" + _top
         public BlockSetBuilder<T> defaultBlockTextureTop() {
             this.includeBlockTextureTop = true;
             return this;

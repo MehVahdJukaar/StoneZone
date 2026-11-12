@@ -10,7 +10,7 @@ import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -41,7 +41,7 @@ public class ExampleModule extends StoneZoneModule {
     public ExampleModule(String modId) {
         super(modId, "tfc"); // If the mod's name is TerraFirmaCraft, then you could use 3 upper letter
 
-        //  your mod's tab or minecraft's tab can be used for setTab() - it can use either ResourceKey or ResourceLocation
+        //  your mod's tab or minecraft's tab can be used for setTab() - it can use either ResourceKey or Identifier
         Supplier<CreativeModeTab> tab = getTab(CreativeModeTabs.BUILDING_BLOCKS);
         Supplier<CreativeModeTab> yourModTab = getModTab("twig");
 
@@ -68,7 +68,7 @@ public class ExampleModule extends StoneZoneModule {
 
                 ///OPTIONAL: Adding block's textures to be generated
                 .addTexture(modRes("block/stone_table"))
-                .addTexture(ResourceLocation.parse("twigs:block/stone_table_bottom"))
+                .addTexture(Identifier.parse("twigs:block/stone_table_bottom"))
                 .addTextureM(modRes("block/stone_table_top"), modRes("block/mask/stone_table_top_m")) // If the texture has parts that shouldn't be recolored, the mask (black color) can be used to exclude them
 
                 ///OPTIONAL: Without this, the default texture is STONE's texture - Below will use BRICKS' texture instead of STONE's
@@ -76,14 +76,14 @@ public class ExampleModule extends StoneZoneModule {
 
                 ///OPTIONAL: Adding tags to the block
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(ResourceLocation.parse("twigs:tables"), Registries.BLOCK)
-                .addTag(ResourceLocation.parse("twigs:tables"), Registries.ITEM)
+                .addTag(Identifier.parse("twigs:tables"), Registries.BLOCK)
+                .addTag(Identifier.parse("twigs:tables"), Registries.ITEM)
 
                 ///REQUIRED: Add block to your mod's tab or Minecraft's tab
                 .setTab(yourModTab)
 
                 ///OPTIONAL: Creating recipes for the block
-                .defaultRecipe() // default: new ResourceLocation("twigs:stone_table") via recipes folder
+                .defaultRecipe() // default: new Identifier("twigs:stone_table") via recipes folder
                 ///OPTIONAL: if the recipe has a different path unlike above
                 .addRecipe(modRes("path/to/recipeFile")) // Do not use "recipes/"
 
@@ -104,7 +104,7 @@ public class ExampleModule extends StoneZoneModule {
                         stoneType -> new Item(new Item.Properties())
                 )
                 .addTexture(modRes("item/itemTexture"))
-                .addTag(ResourceLocation.parse("twigs:tables"), Registries.ITEM)
+                .addTag(Identifier.parse("twigs:tables"), Registries.ITEM)
                 .setTab(tab)
                 .build();
         this.addEntry(sampleItem);

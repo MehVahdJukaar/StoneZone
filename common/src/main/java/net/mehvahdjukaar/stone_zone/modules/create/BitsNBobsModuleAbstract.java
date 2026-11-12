@@ -7,7 +7,7 @@ import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 
@@ -42,7 +42,7 @@ public class BitsNBobsModuleAbstract extends StoneZoneModule {
                 .slab(builder -> builder
                         //TEXTURES: andesite_tiles, andesite_cut_tiles_flipped
                         .defaultRecipe()
-                        .addRecipe(ResourceLocation.parse("create:andesite_tile_slab_recycling")) //Crafts andesite_tiles
+                        .addRecipe(Identifier.parse("create:andesite_tile_slab_recycling")) //Crafts andesite_tiles
 //                        .skipDuplicationCheck()
                 )
                 .stairs(SimpleEntrySet.Builder::defaultRecipe

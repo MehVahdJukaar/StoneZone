@@ -12,7 +12,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -43,7 +43,7 @@ public class MacawStairsModule extends StoneZoneModule {
 
     public MacawStairsModule(String modId) {
         super(modId, "mcs");
-        ResourceLocation tab = modRes(modId);
+        Identifier tab = modRes(modId);
 
         brick_terrace_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_terrace_stairs",
                         getModBlock("stone_brick_terrace_stairs"), () -> VanillaStoneTypes.STONE,

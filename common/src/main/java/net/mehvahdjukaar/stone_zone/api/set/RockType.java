@@ -7,7 +7,7 @@ import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -31,7 +31,7 @@ public abstract class RockType extends BlockType{
 
     public final Block block;
 
-    protected RockType(ResourceLocation id, Block block) {
+    protected RockType(Identifier id, Block block) {
         super(id);
         this.block = block;
     }
@@ -134,24 +134,24 @@ public abstract class RockType extends BlockType{
     @Override
     protected @Nullable <V> V findRelatedEntry(String prefixOrInfix, String suffix, Registry<V> reg) {
         if (id.toString().equals("minecraft:stone") && prefixOrInfix.equals("cobblestone")) {
-            return reg.get(ResourceLocation.withDefaultNamespace("cobblestone"));
+            return reg.getValue(Identifier.withDefaultNamespace("cobblestone"));
         }
 
         String prefix_ = (prefixOrInfix.isEmpty()) ? "" : prefixOrInfix + "_";
         String _infix = (prefixOrInfix.isEmpty()) ? "" : "_" + prefixOrInfix;
         String _suffix = (suffix.isEmpty()) ? "" : "_" + suffix;
 
-        ResourceLocation[] targets = {
+        Identifier[] targets = {
                 // DEFAULT
-                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), id.getPath() + _infix + _suffix),
-                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), prefix_ + id.getPath() + _suffix),
+                Identifier.fromNamespaceAndPath(id.getNamespace(), id.getPath() + _infix + _suffix),
+                Identifier.fromNamespaceAndPath(id.getNamespace(), prefix_ + id.getPath() + _suffix),
 
                 // TFC, AFC, DFC: Include children of stone_type: stairs, slab...
-                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/raw/" + id.getPath() + _suffix),
+                Identifier.fromNamespaceAndPath(id.getNamespace(), "rock/raw/" + id.getPath() + _suffix),
                 // TFC, AFC, DFC: Include children of smooth, cobblestone, button, pressure_plate, bricks, cracked_bricks
-                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/" + prefix_ + suffix +"/"+ id.getPath()),
+                Identifier.fromNamespaceAndPath(id.getNamespace(), "rock/" + prefix_ + suffix +"/"+ id.getPath()),
                 // TFC, AFC, DFC: Include children of brick_slab, smooth_slab, brick_stairs, smooth_stairs
-                ResourceLocation.fromNamespaceAndPath(id.getNamespace(), "rock/"+ prefixOrInfix +"/"+ id.getPath() + _suffix)
+                Identifier.fromNamespaceAndPath(id.getNamespace(), "rock/"+ prefixOrInfix +"/"+ id.getPath() + _suffix)
         };
         V found = null;
         for (var r : targets) {
@@ -182,8 +182,8 @@ public abstract class RockType extends BlockType{
         return bricks != null ? bricks : this.block;
     }
 
-    protected static ResourceLocation[] makeKnownIDConventions(ResourceLocation blockTypeId, String... affixKeyword) {
-        List<ResourceLocation> resources = new ArrayList<>();
+    protected static Identifier[] makeKnownIDConventions(Identifier blockTypeId, String... affixKeyword) {
+        List<Identifier> resources = new ArrayList<>();
         for (String keyword : affixKeyword) {
             String typename = blockTypeId.getPath();
             String namespace = blockTypeId.getNamespace();
@@ -192,14 +192,14 @@ public abstract class RockType extends BlockType{
             String prefix_ = (keyword.isEmpty()) ? "" : keyword + "_";
 
             /// Default
-            resources.add(ResourceLocation.fromNamespaceAndPath(namespace, typename + _suffix));
-            resources.add(ResourceLocation.fromNamespaceAndPath(namespace, prefix_ + typename));
+            resources.add(Identifier.fromNamespaceAndPath(namespace, typename + _suffix));
+            resources.add(Identifier.fromNamespaceAndPath(namespace, prefix_ + typename));
             /// TFC, AFC, DFC
             if (PlatHelper.isModLoaded("tfc") | PlatHelper.isModLoaded("afc") | PlatHelper.isModLoaded("dfc"))
-                resources.add(ResourceLocation.fromNamespaceAndPath(namespace, "rock/raw/" + typename));
+                resources.add(Identifier.fromNamespaceAndPath(namespace, "rock/raw/" + typename));
 
         }
-        return resources.toArray(new ResourceLocation[0]);
+        return resources.toArray(new Identifier[0]);
     }
 
     /// Create an Id stonezone:shortenedId/namespace/prefix_ stonetype _suffix
@@ -213,8 +213,8 @@ public abstract class RockType extends BlockType{
 
     /// Create new BlockType using the subclass: CrystalType, DustType, GemType, Or MetalType
     /// @param factory use 1 of 4 subclass, example: CrystalType::new
-    public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<ResourceLocation, Block, T> factory,
-                                                                    ResourceLocation blockId,
+    public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<Identifier, Block, T> factory,
+                                                                    Identifier blockId,
                                                                     String blockPathRegex, MapRegistry<T> valuesReg,
                                                                     Set<String> blockTypeBlacklist,
                                                                     @Nullable Set<String> modBlacklist,
@@ -229,7 +229,7 @@ public abstract class RockType extends BlockType{
 
             String blocktypeName = matcher.group("typename");
 
-            ResourceLocation idBlockType = blockId.withPath(blocktypeName);
+            Identifier idBlockType = blockId.withPath(blocktypeName);
 
             boolean isModBlacklisted = modBlacklist != null && modBlacklist.contains(blockId.getNamespace());
             boolean isBlockTypeBlacklisted = blockTypeBlacklist != null && blockTypeBlacklist.contains(idBlockType.toString());
@@ -241,7 +241,7 @@ public abstract class RockType extends BlockType{
                     if (!pass) return Optional.empty();
                 }
 
-                ResourceLocation[] tests = makeKnownIDConventions(idBlockType, "", "block");
+                Identifier[] tests = makeKnownIDConventions(idBlockType, "", "block");
                 Block block = Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
 
                 if (block != null) return Optional.of(factory.apply(idBlockType, block));
@@ -250,8 +250,8 @@ public abstract class RockType extends BlockType{
         return Optional.empty();
     }
 
-    public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<ResourceLocation, Block, T> factory,
-                                                                    ResourceLocation blockId,
+    public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<Identifier, Block, T> factory,
+                                                                    Identifier blockId,
                                                                     String blockPathRegex,
                                                                     MapRegistry<T> valuesReg,
                                                                     Set<String> blockTypeBlacklist,
@@ -260,8 +260,8 @@ public abstract class RockType extends BlockType{
         return newSubBlockType(factory, blockId, blockPathRegex, valuesReg, blockTypeBlacklist, null, checks);
     }
 
-    public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<ResourceLocation, Block, T> factory,
-                                                                    ResourceLocation blockId,
+    public static <T extends BlockType> Optional<T> newSubBlockType(BiFunction<Identifier, Block, T> factory,
+                                                                    Identifier blockId,
                                                                     String blockPathRegex,
                                                                     MapRegistry<T> valuesReg,
                                                                     Boolean ... checks
@@ -271,12 +271,12 @@ public abstract class RockType extends BlockType{
 
     public static boolean isInItemRegistry(String namespace, String prefix, String blockPath, String targetOrRegex, String replacement) {
         return BuiltInRegistries.ITEM.containsKey(
-                ResourceLocation.fromNamespaceAndPath(namespace,prefix + blockPath.replaceAll(targetOrRegex, replacement))
+                Identifier.fromNamespaceAndPath(namespace,prefix + blockPath.replaceAll(targetOrRegex, replacement))
         );
     }
     public static boolean isInItemRegistry(String namespace, String blockPath, String targetOrRegex, String replacement) {
         return BuiltInRegistries.ITEM.containsKey(
-                ResourceLocation.fromNamespaceAndPath(namespace, blockPath.replaceAll(targetOrRegex, replacement))
+                Identifier.fromNamespaceAndPath(namespace, blockPath.replaceAll(targetOrRegex, replacement))
         );
     }
 

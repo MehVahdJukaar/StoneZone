@@ -9,7 +9,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
@@ -106,7 +106,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTexture(modRes("block/stone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_blocks"), Registries.BLOCK)
-                .addTag(ResourceLocation.parse("domum_ornamentum:default"), Registries.BLOCK)
+                .addTag(Identifier.parse("domum_ornamentum:default"), Registries.BLOCK)
                 .setTab(tab)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_tiles_from_stone_stonecutting"))

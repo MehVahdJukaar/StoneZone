@@ -1,7 +1,7 @@
 package net.mehvahdjukaar.stone_zone.api.set.stone;
 
 import net.mehvahdjukaar.moonlight.api.set.BlockTypeRegistry;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 
 import java.util.Collection;
@@ -32,12 +32,12 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
         return VanillaStoneTypes.STONE;
     }
 
-    public static StoneType getStoneType(ResourceLocation id) {
+    public static StoneType getStoneType(Identifier id) {
         return INSTANCE.get(id);
     }
 
     @Override
-    public Optional<StoneType> detectTypeFromBlock(Block baseblock, ResourceLocation blockId) {
+    public Optional<StoneType> detectTypeFromBlock(Block baseblock, Identifier blockId) {
         String namespace = blockId.getNamespace();
         String blockPath = blockId.getPath();
 
@@ -74,18 +74,18 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
     }
 
     //shorthand for add finder. Gives a builder-like object that's meant to be configured inline
-    public StoneType.Finder addSimpleFinder(ResourceLocation stoneTypeId) {
+    public StoneType.Finder addSimpleFinder(Identifier stoneTypeId) {
         StoneType.Finder finder = new StoneType.Finder(stoneTypeId);
         this.addFinder(finder);
         return finder;
     }
 
     public StoneType.Finder addSimpleFinder(String typeId) {
-        return addSimpleFinder(ResourceLocation.parse(typeId));
+        return addSimpleFinder(Identifier.parse(typeId));
     }
 
     public StoneType.Finder addSimpleFinder(String namespace, String nameStoneType) {
-        return addSimpleFinder(ResourceLocation.fromNamespaceAndPath(namespace, nameStoneType));
+        return addSimpleFinder(Identifier.fromNamespaceAndPath(namespace, nameStoneType));
     }
 
     @Override
@@ -109,7 +109,7 @@ public class StoneTypeRegistry extends BlockTypeRegistry<StoneType> {
     /// USE {@link VanillaStoneTypes}
     @Deprecated(forRemoval = true)
     public static StoneType getValue(String stoneTypeId) {
-        return INSTANCE.get(ResourceLocation.parse(stoneTypeId));
+        return INSTANCE.get(Identifier.parse(stoneTypeId));
     }
 
     /// USE {@link StoneTypeRegistry#INSTANCE} - can be used in FOR Loop statement

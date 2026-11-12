@@ -40,7 +40,7 @@ import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.modules.create.CreateModuleAbstract;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -211,7 +211,7 @@ public class CreateModule extends CreateModuleAbstract {
 
     public class CompatCreatePonderPlugin extends CreatePonderPlugin {
         @Override
-        public void registerScenes(@NotNull PonderSceneRegistrationHelper<ResourceLocation> helper) {
+        public void registerScenes(@NotNull PonderSceneRegistrationHelper<Identifier> helper) {
             CompatCreatePonderScenes.register(helper, casing, "shaft/encasing", KineticsScenes::shaftsCanBeEncased);
 
             table_cloth.blocks.values().forEach(block ->
@@ -231,7 +231,7 @@ public class CreateModule extends CreateModuleAbstract {
 
     public static class CompatCreatePonderScenes extends AllCreatePonderScenes {
 
-        public static void register(PonderSceneRegistrationHelper<ResourceLocation> helper,
+        public static void register(PonderSceneRegistrationHelper<Identifier> helper,
                                     SimpleEntrySet<StoneType, ? extends Block> entrySet,
                                     String schematicPath,
                                     PonderStoryBoard ponderStoryBoard) {
@@ -255,7 +255,7 @@ public class CreateModule extends CreateModuleAbstract {
     //      │                         Utitiles                         │
     //      └──────────────────────────────────────────────────────────┘
 
-    protected static BlockEntry<Block> createStandardBlockEntry(ResourceLocation blockId) {
+    protected static BlockEntry<Block> createStandardBlockEntry(Identifier blockId) {
         return new BlockEntry<>(Registrate.create(StoneZone.MOD_ID), DeferredBlock.createBlock(blockId));
     }
 

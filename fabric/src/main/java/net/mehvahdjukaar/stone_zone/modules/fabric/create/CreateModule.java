@@ -21,7 +21,7 @@ import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.CreativeModeTab;
@@ -374,19 +374,19 @@ public class CreateModule extends StoneZoneModule {
                     BlockMap.toArray(blocks);
 
                     // Tags
-                    ResourceLocation tagResLoc = StoneZone.res(stoneType.getNamespace() + "/" + stoneType.getTypeName());
+                    Identifier tagResLoc = StoneZone.res(stoneType.getNamespace() + "/" + stoneType.getTypeName());
                     boolean isTagCreated = UtilityTag.createAndAddCustomTags(tagResLoc, sink, blocks);
 
                     // Recipes
                     if (isTagCreated) {
                         for (EntrySet<?> entry : this.getEntries()) {
-                            ResourceLocation blockId = Utils.getID(((SimpleEntrySet<?, ?>) entry).getBaseBlock());
+                            Identifier blockId = Utils.getID(((SimpleEntrySet<?, ?>) entry).getBaseBlock());
                             String prefix = blockId.getPath();
                             Block output = stoneType.getBlockOfThis(this.modId + ":" + entry.getName());
 
-                            ResourceLocation recipeFileLoc = modRes(prefix + "_from_stone_types_andesite_stonecutting");
-                            ResourceLocation recipeResLoc = ResType.RECIPES.getPath(recipeFileLoc);
-                            ResourceLocation newRecipeLoc = StoneZone.res(recipeFileLoc.getPath()
+                            Identifier recipeFileLoc = modRes(prefix + "_from_stone_types_andesite_stonecutting");
+                            Identifier recipeResLoc = ResType.RECIPES.getPath(recipeFileLoc);
+                            Identifier newRecipeLoc = StoneZone.res(recipeFileLoc.getPath()
                                             .replace("andesite", stoneType.getTypeName())
                                             .replace("_stonecutting", "")
                                             .replace("_stone_types", ""))

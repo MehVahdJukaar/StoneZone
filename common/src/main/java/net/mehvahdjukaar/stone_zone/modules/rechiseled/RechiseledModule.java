@@ -19,7 +19,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -442,7 +442,7 @@ public class RechiseledModule extends StoneZoneModule {
                     chiseling_recipe.add("entries", entriesArray);
 
                     // Adding to resources
-                    ResourceLocation resLoc = StoneZone.res("chiseling_recipes/" + stoneType.getAppendableId());
+                    Identifier resLoc = StoneZone.res("chiseling_recipes/" + stoneType.getAppendableId());
                     if (!entriesArray.isEmpty()) sink.addJson(resLoc, chiseling_recipe, ResType.JSON);
 
                 })
@@ -674,8 +674,8 @@ public class RechiseledModule extends StoneZoneModule {
             }
         }
 
-        protected static ResourceLocation modLoc(String mod_id, String path) {
-            return ResourceLocation.fromNamespaceAndPath(mod_id, path);
+        protected static Identifier modLoc(String mod_id, String path) {
+            return Identifier.fromNamespaceAndPath(mod_id, path);
         }
 
         protected static BlockState getParentBlockstate(StoneType stoneType, String path) {

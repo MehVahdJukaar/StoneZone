@@ -7,7 +7,7 @@ import net.mehvahdjukaar.stone_zone.api.set.mud.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.mud.VanillaMudTypes;
 import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 
@@ -36,11 +36,11 @@ public class BetterArcheologyModule extends StoneZoneModule {
                 )
                 .slab(builder ->
                         builder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                                .addRecipe(ResourceLocation.withDefaultNamespace("cracked_mud_brick_slab_from_cracked_mud_bricks_stonecutting"))
+                                .addRecipe(Identifier.withDefaultNamespace("cracked_mud_brick_slab_from_cracked_mud_bricks_stonecutting"))
                 )
                 .stairs(builder ->
                         builder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                                .addRecipe(ResourceLocation.withDefaultNamespace("cracked_mud_brick_stairs_from_cracked_mud_bricks_stonecutting"))
+                                .addRecipe(Identifier.withDefaultNamespace("cracked_mud_brick_stairs_from_cracked_mud_bricks_stonecutting"))
                 )
                 .noWall()
                 .noSlabAndStairsTag()

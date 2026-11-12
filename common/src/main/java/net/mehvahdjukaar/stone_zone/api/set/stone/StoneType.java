@@ -7,7 +7,7 @@ import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.RockType;
 import net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.ApiStatus;
@@ -23,7 +23,7 @@ public class StoneType extends RockType {
 
     public final Block stone;
 
-    protected StoneType(ResourceLocation id, Block stone) {
+    protected StoneType(Identifier id, Block stone) {
         super(id, stone);
         this.stone = stone;
     }
@@ -48,8 +48,8 @@ public class StoneType extends RockType {
         return bricks != null ? bricks : this.stone;
     }
 
-    public static Block findStone(ResourceLocation id) {
-        ResourceLocation[] tests = makeKnownIDConventions(id,  "", "stone");
+    public static Block findStone(Identifier id) {
+        Identifier[] tests = makeKnownIDConventions(id,  "", "stone");
         return Utils.findFirstInRegistry(BuiltInRegistries.BLOCK, tests);
     }
 
@@ -57,7 +57,7 @@ public class StoneType extends RockType {
 
         private Supplier<Block> stoneFinder;
 
-        public Finder(ResourceLocation stoneTypeId) {
+        public Finder(Identifier stoneTypeId) {
             super(stoneTypeId, StoneTypeRegistry.INSTANCE);
             this.stone(() -> findStone(stoneTypeId));
         }
@@ -67,8 +67,8 @@ public class StoneType extends RockType {
             return this;
         }
 
-        /// @param id Full Id of MudType as ResourceLocation
-        public Finder stone(ResourceLocation id) {
+        /// @param id Full Id of MudType as Identifier
+        public Finder stone(Identifier id) {
             return this.stone(() -> BuiltInRegistries.BLOCK.getOptional(id)
                     .orElseThrow(() -> new IllegalStateException("Failed to find stone block: " + id))
             );

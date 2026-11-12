@@ -9,7 +9,7 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
@@ -80,10 +80,10 @@ public class CandlelightModule extends StoneZoneModule {
                 .addTexture(modRes("block/sandstone_stove_connected"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stoves"), Registries.BLOCK)
-                .addTag(ResourceLocation.parse("farmersdelight:heat_sources"), Registries.BLOCK)
+                .addTag(Identifier.parse("farmersdelight:heat_sources"), Registries.BLOCK)
                 .addTag(UtilityTag.fabricTag("allows_cooking"), Registries.BLOCK)
                 .addTag(modRes("allows_cooking"), Registries.BLOCK)
-                .addTag(ResourceLocation.parse("farm_and_charm:allows_cooking"), Registries.BLOCK)
+                .addTag(Identifier.parse("farm_and_charm:allows_cooking"), Registries.BLOCK)
                 .setTab(tab)
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT)
