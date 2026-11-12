@@ -21,6 +21,9 @@
     ],
     "modmenu": [
       "net.mehvahdjukaar.stone_zone.modmenu.ModMenuCompat"
+    ],
+    "everycomp": [
+      "net.mehvahdjukaar.stone_zone.fabric.StoneZoneFabricPlugin"
     ]
   },
   "depends": {
