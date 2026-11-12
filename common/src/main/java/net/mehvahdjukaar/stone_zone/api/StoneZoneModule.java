@@ -1,6 +1,5 @@
 package net.mehvahdjukaar.stone_zone.api;
 
-import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.modules.EveryCompatModule;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
@@ -52,8 +51,7 @@ public class StoneZoneModule extends EveryCompatModule {
         String underscoreConvention = blockTypeFrom + "_" + blockName; // quark_blossom_chair
 
         /// Exclude blocks when a Compat-Mod have a support for Supported-Mod with Mods that add new BlockTypes
-        //noinspection UnstableApiUsage
-        for (var c : EveryCompat.getCompatMods()) { //TODO: add getCompatMods to StoneZone.java to avoid unstableApiUsage
+        for (var c : getOtherCompatMods()) {
             String compatModId = c.modId();  //bopcomp : bop->quark, twigs
             //if the wood is from the mod this adds compat for && it supports this block type
             if (c.woodsFrom().contains(blockTypeFrom) && c.blocksFrom().contains(modId)) {

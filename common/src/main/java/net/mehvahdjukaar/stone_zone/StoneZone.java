@@ -1,6 +1,5 @@
 package net.mehvahdjukaar.stone_zone;
 
-import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.every_compat.dynamicpack.ServerDynamicResourcesHandler;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.moonlight.api.set.BlockSetAPI;
@@ -14,7 +13,7 @@ import net.minecraft.resources.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class StoneZone extends EveryCompat {
+public class StoneZone {
     public static final String MOD_ID = "stonezone";
     public static final Logger LOGGER = LogManager.getLogger("Stone Zone");
 

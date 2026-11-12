@@ -1,6 +1,5 @@
 package net.mehvahdjukaar.stone_zone.configs;
 
-import net.mehvahdjukaar.every_compat.EveryCompat;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigBuilder;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ConfigType;
 import net.mehvahdjukaar.moonlight.api.platform.configs.ModConfigHolder;
@@ -75,7 +74,7 @@ public class UnsafeDisablerConfigs {
 
         // Warning Message
         if (!stoneTypeList.get().isEmpty() || !mudTypeList.get().isEmpty() || !entrySetList.get().isEmpty()) {
-            EveryCompat.LOGGER.warn("""
+            StoneZone.LOGGER.warn("""
                             \n
                             ============================================================
                             |                                                          |
