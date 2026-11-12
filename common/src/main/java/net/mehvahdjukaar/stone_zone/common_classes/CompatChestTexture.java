@@ -6,7 +6,6 @@ import net.mehvahdjukaar.moonlight.api.resources.textures.Palette;
 import net.mehvahdjukaar.moonlight.api.resources.textures.Respriter;
 import net.mehvahdjukaar.moonlight.api.resources.textures.TextureImage;
 import net.mehvahdjukaar.moonlight.api.resources.textures.TextureOps;
-import net.mehvahdjukaar.moonlight.core.misc.McMetaFile;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.minecraft.resources.Identifier;
@@ -114,7 +113,7 @@ public class CompatChestTexture {
                 if (!sink.alreadyHasTextureAtLocation(manager, res)) {
                     Identifier trappedRes = StoneZone.res(trapped_path);
 
-                    createChestTextures(respriterNormal, respriterOverlay, plankTexture.getMcMeta(),
+                    createChestTextures(respriterNormal, respriterOverlay, plankTexture,
                             mainPalette, overlayPalette, res, trappedRes, trapOverlay, sink);
                 }
 
@@ -127,13 +126,13 @@ public class CompatChestTexture {
     }
 
     private static void createChestTextures(Respriter respriter, Respriter respriterO,
-                                            McMetaFile baseMeta, List<Palette> planksPalette,
+                                            TextureImage baseTexture, List<Palette> planksPalette,
                                             List<Palette> overlayPalette, Identifier normalRLoc,
                                             Identifier trappedRLoc, TextureImage trappedOverlay,
                                             ResourceSink sink) {
 
-        try (TextureImage recoloredBase = respriter.recolorWithAnimation(planksPalette, baseMeta);
-             TextureImage recoloredOverlay = respriterO.recolorWithAnimation(overlayPalette, baseMeta)) {
+        try (TextureImage recoloredBase = respriter.recolorWithAnimation(planksPalette, baseTexture.getMcMeta());
+             TextureImage recoloredOverlay = respriterO.recolorWithAnimation(overlayPalette, baseTexture.getMcMeta())) {
 
             TextureOps.applyOverlayOnExisting(recoloredBase, recoloredOverlay);
 
