@@ -12,6 +12,21 @@
 |                                                                                                                                   |
 
 ---
+## v2.11.22
+
+### FIXES:
+- **Stone Zone** (C): Improved Detection System to detect TFC's StoneType & Updated the manually added MudTypes to use new MudTypes
+  - TFC = **TerraFirmaCraft** - [#219](https://github.com/MehVahdJukaar/StoneZone/issues/219)
+
+### CHANGES:
+- **Stone Zone** (C): Replaced the deprecated methods with new methods for adding modules
+- **\[ Let's do \] Candlelight** (C): Updated deprecated method tag to use new method - [#220](https://github.com/MehVahdJukaar/StoneZone/issues/220)
+
+### EXCLUDED:
+- **minecraft:snow** (C): Got detected with **Modern Content Backport** where it contains "bricks". See [#221 for good reason](https://github.com/MehVahdJukaar/StoneZone/issues/221)
+
+---
+
 ## v2.11.21
 
 ### FIXES:
