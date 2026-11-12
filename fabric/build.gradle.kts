@@ -29,7 +29,7 @@ dependencies {
     //- LOCAL
     if (findProperty("enable_moonlight_test").toString().toBoolean()) {
         val repos = requireNotNull(localReposDir) { "enable_moonlight_test is on but the REPOS26_1_2 env var is not set" }
-        implementation(files("$repos\\Moonlight\\fabric\\build\\libs\\moonlight-${property("moonlight_testVersion")}-fabric.jar"))
+        modApi(files("$repos/Moonlight/fabric/build/libs/moonlight-${property("moonlight_testVersion")}-fabric.jar"))
     }
     //+ MAVEN
     else {
@@ -42,7 +42,7 @@ dependencies {
     //- LOCAL
     if (findProperty("enable_everycomp_test").toString().toBoolean()) {
         val repos = requireNotNull(localReposDir) { "enable_everycomp_test is on but the REPOS26_1_2 env var is not set" }
-        implementation(files("$repos\\WoodGood\\fabric\\build\\libs\\everycomp-${property("everycomp_testVersion")}-fabric.jar"))
+        implementation(files("$repos/WoodGood/fabric/build/libs/everycomp-${property("everycomp_testVersion")}-fabric.jar"))
     }
     //+ MAVEN
     else {

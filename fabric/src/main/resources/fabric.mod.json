@@ -21,11 +21,14 @@
     ],
     "modmenu": [
       "net.mehvahdjukaar.stone_zone.modmenu.ModMenuCompat"
+    ],
+    "everycomp": [
+      "net.mehvahdjukaar.stone_zone.fabric.StoneZoneFabricPlugin"
     ]
   },
   "depends": {
     "fabricloader": ">=0.16.7",
-    "fabric-api": ">=0.92.0+1.21.1",
+    "fabric-api": "*",
     "minecraft": "=${minecraft_version}",
     "moonlight": ">=${moonlight_required_version}",
     "everycomp": ">=${everycomp_required_version}"

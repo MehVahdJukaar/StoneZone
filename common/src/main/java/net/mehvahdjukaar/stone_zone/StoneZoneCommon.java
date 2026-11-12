@@ -1,56 +1,8 @@
 package net.mehvahdjukaar.stone_zone;
 
-import net.mehvahdjukaar.stone_zone.modules.better_archeology.BetterArcheologyModule;
-import net.mehvahdjukaar.stone_zone.modules.building_but_better.BuildingButBetterModule;
-import net.mehvahdjukaar.stone_zone.modules.chipped.ChippedModule;
-import net.mehvahdjukaar.stone_zone.modules.decorative_blocks.DecorativeBlocksModule;
-import net.mehvahdjukaar.stone_zone.modules.handcrafted.HandcraftedModule;
-import net.mehvahdjukaar.stone_zone.modules.lets_do.CandlelightModule;
-import net.mehvahdjukaar.stone_zone.modules.more_beautiful_torches.MoreBeautifulTorches;
-import net.mehvahdjukaar.stone_zone.modules.mrcrayfish.RefurbishedFurnitureModule;
-import net.mehvahdjukaar.stone_zone.modules.rechiseled.RechiseledModule;
-import net.mehvahdjukaar.stone_zone.modules.stoneworks.StoneworksModule;
-import net.mehvahdjukaar.stone_zone.modules.twigs.TwigsModule;
-import net.mehvahdjukaar.stone_zone.modules.waystones.WaystonesModule;
-
-import static net.mehvahdjukaar.every_compat.EveryCompat.addOtherCompatMod;
-import static net.mehvahdjukaar.every_compat.api.EveryCompatAPI.addIfLoaded;
-
 public class StoneZoneCommon {
 
     protected void initialize() {
         StoneZone.init();
-
-        this.addModules();
-    }
-
-    protected void addModules() {
-
-
-//!! =============================================== Add Other Compat Mods ========================================== \\
-        // Rechiseled
-        addOtherCompatMod("rechiseledae2", "ae2", "rechiseled");
-        addOtherCompatMod("rechiseledcreate", "create", "rechiseled");
-
-        // Create
-        addOtherCompatMod("bits_n_bobs", "create", "bits_n_bobs");
-
-//!! =================================================== Add Modules ================================================ \\
-
-        addIfLoaded("bbb", () -> BuildingButBetterModule.class);
-        addIfLoaded("betterarcheology", () -> BetterArcheologyModule.class);
-        addIfLoaded("candlelight", () -> CandlelightModule.class); //!! [Let's Do]
-        addIfLoaded("chipped", () -> ChippedModule.class);
-        addIfLoaded("decorative_blocks", () -> DecorativeBlocksModule.class);
-        addIfLoaded("handcrafted", () -> HandcraftedModule.class);
-        addIfLoaded("more_beautiful_torches", () -> MoreBeautifulTorches.class);
-        addIfLoaded("rechiseled", () -> RechiseledModule.class);
-        addIfLoaded("refurbished_furniture", () -> RefurbishedFurnitureModule.class);
-        addIfLoaded("stoneworks", () -> StoneworksModule.class);
-        addIfLoaded("twigs", () -> TwigsModule.class);
-        addIfLoaded("waystones", () -> WaystonesModule.class);
-
-//!! ====================================================== OTHERS ================================================== \\
-
     }
 }

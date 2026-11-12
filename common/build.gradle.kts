@@ -3,6 +3,7 @@ plugins {
 }
 
 common {
+    neoformVersion = "26.1.2-1"
     accessWidener()
 }
 
@@ -28,7 +29,7 @@ dependencies {
     //- LOCAL
     if (findProperty("enable_moonlight_test").toString().toBoolean()) {
         val repos = requireNotNull(localReposDir) { "enable_moonlight_test is on but the REPOS26_1_2 env var is not set" }
-        modApi(files( "$repos\\Moonlight\\neoforge\\build\\libs\\moonlight-${property("moonlight_testVersion")}-neoforge.jar"))
+        modApi(files("$repos/Moonlight/neoforge/build/libs/moonlight-${property("moonlight_testVersion")}-neoforge.jar"))
     }
     //+ MAVEN
     else {
@@ -42,7 +43,7 @@ dependencies {
     //- LOCAL
     if (findProperty("enable_everycomp_test").toString().toBoolean()) {
         val repos = requireNotNull(localReposDir) { "enable_everycomp_test is on but the REPOS26_1_2 env var is not set" }
-        compileOnly(files("$repos\\WoodGood\\common\\build\\libs\\everycomp-${property("everycomp_testVersion")}-common.jar"))
+        compileOnly(files("$repos/WoodGood/common/build/libs/everycomp-${property("everycomp_testVersion")}-common.jar"))
     }
     //+ MAVEN
     else {

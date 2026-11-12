@@ -7,16 +7,6 @@ neoforge {
     accessWidener(project(":common"))
 }
 
-mod {
-    additional.add("mod_description")
-    additional.add("mod_credits")
-    additional.add("mod_license")
-    additional.add("mod_homepage")
-    additional.add("mod_authors")
-    additional.add("mod_github")
-    additional.add("moonlight_required_version")
-    additional.add("everycomp_required_version")
-}
 
 val modId: String = property("mod_id").toString()
 val modVersion: String = property("mod_version").toString()
@@ -32,15 +22,15 @@ tasks.named<Jar>("sourcesJar") {
     archiveClassifier.set("neoforge-sources")
 }
 
-val localReposDir: String? = System.getenv("REPOS21_1")
+val localReposDir: String? = System.getenv("REPOS26_1_2")
 dependencies {
 
 //!! MOONLIGHT LIB (REQUIRED)  -------------------------------------------------------------------------------------- \\
 
     //- LOCAL
     if (findProperty("enable_moonlight_test").toString().toBoolean()) {
-        val repos = requireNotNull(localReposDir) { "enable_moonlight_test is on but the REPOS21_1 env var is not set" }
-        modApi(files("$repos\\Moonlight\\neoforge\\build\\libs\\moonlight-${property("moonlight_testVersion")}-neoforge.jar"))
+        val repos = requireNotNull(localReposDir) { "enable_moonlight_test is on but the REPOS26_1_2 env var is not set" }
+        modApi(files("$repos/Moonlight/neoforge/build/libs/moonlight-${property("moonlight_testVersion")}-neoforge.jar"))
     }
     //+ MAVEN
     else {
@@ -54,8 +44,8 @@ dependencies {
 
     //- LOCAL
     if (findProperty("enable_everycomp_test").toString().toBoolean()) {
-        val repos = requireNotNull(localReposDir) { "enable_everycomp_test is on but the REPOS21_1 env var is not set" }
-        implementation(files("$repos\\WoodGood\\neoforge\\build\\libs\\everycomp-${property("everycomp_testVersion")}-neoforge.jar"))
+        val repos = requireNotNull(localReposDir) { "enable_everycomp_test is on but the REPOS26_1_2 env var is not set" }
+        implementation(files("$repos/WoodGood/neoforge/build/libs/everycomp-${property("everycomp_testVersion")}-neoforge.jar"))
     }
     //+ MAVEN
     else {
@@ -68,7 +58,7 @@ dependencies {
 //    modRuntimeOnly("com.blamejared.crafttweaker:CraftTweaker-neoforge-${property("minecraft_version")}:${property("crafttweaker_version")}")
 //    modRuntimeOnly("dev.emi:emi-neoforge:${property("emi_version")}+${property("minecraft_version")}")
 //    modRuntimeOnly("maven.modrinth:emi:${property("emi_version")}+${property("minecraft_version")}+neoforge")
-    modRuntimeOnly("mezz.jei:jei-${property("minecraft_version")}-fabric:${property("jei_version")}")
+    modRuntimeOnly("mezz.jei:jei-${property("minecraft_version")}-neoforge:${property("jei_version")}")
     modRuntimeOnly("maven.modrinth:jade:${property("jade_version")}+neoforge")
 //    modRuntimeOnly("curse.maven:worldedit-225608:8037379") // v7.4.3
 
