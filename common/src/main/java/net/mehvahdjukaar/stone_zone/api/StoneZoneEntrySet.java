@@ -4,7 +4,6 @@ import com.mojang.datafixers.util.Pair;
 import net.mehvahdjukaar.every_compat.api.*;
 import net.mehvahdjukaar.every_compat.misc.ExtraModelConfiguration;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
-import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.misc.CompatSpritesHelper;
@@ -19,7 +18,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.*;
 
-import static net.mehvahdjukaar.every_compat.misc.UtilityTag.addTagToAllBlocks;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BRICKS;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.SMOOTH;
 import static net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys.STONE;
@@ -99,26 +97,6 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
         transformer = CompatSpritesHelper.replaceStoneTextures(transformer, oldTypeName);
 
         return transformer.andThen(super.makeBlockStateTransformer(module, manager));
-    }
-
-    @Override
-    public void generateTags(SimpleModule module, ResourceManager manager, ResourceSink sink) {
-        super.generateTags(module, manager, sink);
-
-        /// IMPORTANT: modId must be included in StoneZone's addModToDynamicPack() so the tags will be loaded into world first time
-        // Adding tag to a specific StoneType of all generated blocks
-        // Architect's Palette
-        addTagToAllBlocks(blocks, "wardstone", "architects_palette", "wizard_blocks", true, false, sink);
-
-        // Tinker's Construct
-        addTagToAllBlocks(blocks, "seared_stone", "tconstruct", "seared_blocks", true, true, sink);
-        addTagToAllBlocks(blocks, "scorched_stone", "tconstruct", "scorched_blocks", true, true, sink);
-
-        // Caverns And Chasms
-        addTagToAllBlocks(blocks, "sugilite", "caverns_and_chasms", "static_note_blocks", true, false, sink);
-        addTagToAllBlocks(blocks, "cassiterite", "caverns_and_chasms", "deflects_projectiles", true, false, sink);
-        addTagToAllBlocks(blocks, "cassiterite", "caverns_and_chasms", "weaker_deflect_velocity", true, false, sink);
-
     }
 
     //!! SUB-CLASS

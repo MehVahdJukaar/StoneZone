@@ -13,8 +13,10 @@ import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntries;
 import net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 
@@ -25,6 +27,25 @@ public class StoneZoneModule extends EveryCompatModule {
 
     public StoneZoneModule(String modId, String shortId) {
         super(modId, shortId, StoneZone.MOD_ID);
+
+        addCommonSZTags();
+    }
+
+    /// IMPORTANT: modId must be included in StoneZone's addModToDynamicPack() so the tags will be loaded into world first time
+    private void addCommonSZTags() {
+        // Architect's Palette
+        addBlockTypeTag(StoneType.class, "architects_palette:wardstone", TagKey.create(Registries.BLOCK, Identifier.parse("architects_palette:wizard_blocks")));
+
+        // Tinker's Construct
+        addBlockTypeTag(StoneType.class, "tconstruct:seared_stone", TagKey.create(Registries.BLOCK, Identifier.parse("tconstruct:seared_blocks")));
+        addBlockTypeTag(StoneType.class, "tconstruct:seared_stone", TagKey.create(Registries.ITEM, Identifier.parse("tconstruct:seared_blocks")));
+        addBlockTypeTag(StoneType.class, "tconstruct:scorched_stone", TagKey.create(Registries.BLOCK, Identifier.parse("tconstruct:scorched_blocks")));
+        addBlockTypeTag(StoneType.class, "tconstruct:scorched_stone", TagKey.create(Registries.ITEM, Identifier.parse("tconstruct:scorched_blocks")));
+
+        // Caverns And Chasms
+        addBlockTypeTag(StoneType.class, "caverns_and_chasms:sugilite", TagKey.create(Registries.BLOCK, Identifier.parse("caverns_and_chasms:static_note_blocks")));
+        addBlockTypeTag(StoneType.class, "caverns_and_chasms:cassiterite", TagKey.create(Registries.BLOCK, Identifier.parse("caverns_and_chasms:deflects_projectiles")));
+        addBlockTypeTag(StoneType.class, "caverns_and_chasms:cassiterite", TagKey.create(Registries.BLOCK, Identifier.parse("caverns_and_chasms:weaker_deflect_velocity")));
     }
 
     @Override
