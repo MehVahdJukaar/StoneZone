@@ -55,15 +55,15 @@ public abstract class RockType extends BlockType{
         Block cobblestone = this.findCobblestoneEntry("", "");
         if (cobblestone != null) {
             this.addChild(COBBLESTONE, cobblestone);
-            this.addChild(MOSSY_COBBLESTONE, this.findRelatedBlock("mossy",""));
+            this.addChild(MOSSY_COBBLESTONE, this.findCobblestoneEntry("mossy",""));
         }
 
-        Block polished = this.findRelatedBlock("polished", "");
+        Block polished = this.findPolishedEntry("polished", "");
         if (polished != null) {
             this.addChild(POLISHED, polished);
-            this.addChild(POLISHED_STAIRS, findRelatedBlock("polished", "stairs"));
-            this.addChild(POLISHED_SLAB, findRelatedBlock("polished", "slab"));
-            this.addChild(POLISHED_WALL, findRelatedBlock("polished", "wall"));
+            this.addChild(POLISHED_STAIRS, findPolishedEntry("polished", "stairs"));
+            this.addChild(POLISHED_SLAB, findPolishedEntry("polished", "slab"));
+            this.addChild(POLISHED_WALL, findPolishedEntry("polished", "wall"));
         }
 
         Block smooth = this.findRelatedBlock("smooth", "");
@@ -83,28 +83,18 @@ public abstract class RockType extends BlockType{
         }
 
         Block bricks = this.findBrickEntry("", "");
-        Block bricksTFC = this.findRelatedBlock("", "bricks");
-        if (bricks != null || bricksTFC != null) {
-            // Support TFC & AFC
-            if (this.id.getNamespace().matches("tfc|afc|dfc")) {
-                this.addChild(BRICKS, bricksTFC);
-                this.addChild(BRICK_STAIRS, findRelatedBlock("bricks", "stairs"));
-                this.addChild(BRICK_SLAB, findRelatedBlock("bricks", "slab"));
-                this.addChild(BRICK_WALL, findRelatedBlock("bricks", "wall"));
-                this.addChild(CRACKED_BRICKS, findRelatedBlock("cracked_bricks", ""));
-            }
-            else {
-                this.addChild(BRICKS, bricks);
-                this.addChild(BRICK_STAIRS, findBrickEntry("", "stairs"));
-                this.addChild(BRICK_SLAB, findBrickEntry("", "slab"));
-                this.addChild(BRICK_WALL, findBrickEntry("", "wall"));
-                this.addChild(BRICK_TILES, findBrickEntry("", "tiles"));
-                this.addChild(CRACKED_BRICKS, findBrickEntry("cracked", ""));
-                this.addChild(MOSSY_BRICKS, findBrickEntry("mossy", ""));
-                this.addChild(MOSSY_BRICK_SLAB, findBrickEntry("mossy", "slab"));
-                this.addChild(MOSSY_BRICK_STAIRS, findBrickEntry("mossy", "stairs"));
-                this.addChild(MOSSY_BRICK_WALL, findBrickEntry("mossy", "wall"));
-            }
+//        Block bricksTFC = this.findRelatedBlock("", "bricks");
+        if (bricks != null) {
+            this.addChild(BRICKS, bricks);
+            this.addChild(BRICK_STAIRS, findBrickEntry("", "stairs"));
+            this.addChild(BRICK_SLAB, findBrickEntry("", "slab"));
+            this.addChild(BRICK_WALL, findBrickEntry("", "wall"));
+            this.addChild(BRICK_TILES, findBrickEntry("", "tiles"));
+            this.addChild(CRACKED_BRICKS, findBrickEntry("cracked", ""));
+            this.addChild(MOSSY_BRICKS, findBrickEntry("mossy", ""));
+            this.addChild(MOSSY_BRICK_SLAB, findBrickEntry("mossy", "slab"));
+            this.addChild(MOSSY_BRICK_STAIRS, findBrickEntry("mossy", "stairs"));
+            this.addChild(MOSSY_BRICK_WALL, findBrickEntry("mossy", "wall"));
         }
 
     }
@@ -116,22 +106,55 @@ public abstract class RockType extends BlockType{
     /// Checking the id for "cobbled" or "cobblestone"
     private @Nullable Block findCobblestoneEntry(String prefix, String suffix) {
         String suffixed = (suffix.isEmpty()) ? "" : "_" + suffix;
+        String prefix_ = (prefix.isEmpty()) ? "" : prefix + "_";
 
-        Block first = this.findRelatedEntry("cobbled", suffix, BuiltInRegistries.BLOCK);
-        if (first != null) return first;
+        // TerraFirmaCraft & Addons
+        if (id.getNamespace().matches("tfc|afc|dfc")) {
+            Block cobble = this.findRelatedEntry(prefix, "cobble", BuiltInRegistries.BLOCK);
+            if (cobble != null) return cobble;
+        }
+
+        // Some mods use "cobbled" instead of "cobblestone"
+        Block cobbled = this.findRelatedEntry(prefix_ + "cobbled", suffix, BuiltInRegistries.BLOCK);
+        if (cobbled != null) return cobbled;
+
+        // DEFAULT
         return this.findRelatedEntry(prefix, "cobblestone" + suffixed, BuiltInRegistries.BLOCK);
+    }
+
+    /// Checking the id for "polished"
+    @SuppressWarnings("SameParameterValue")
+    private @Nullable Block findPolishedEntry(String prefix, String suffix) {
+        String _suffix = (suffix.isEmpty()) ? "" : "_" + suffix;
+
+        // TerraFirmaCraft & Addons have no POLISHED
+        if (id.getNamespace().matches("tfc|afc|dfc")) return null;
+
+        // DEFAULT
+        return this.findRelatedEntry(prefix, "bricks" + _suffix, BuiltInRegistries.BLOCK);
     }
 
     /// Checking the id for "bricks" or "brick"
     private @Nullable Block findBrickEntry(String prefix, String suffix) {
-        String suffixed = (suffix.isEmpty()) ? "" : "_" + suffix;
+        String _suffix = (suffix.isEmpty()) ? "" : "_" + suffix;
+        String prefix_ = (prefix.isEmpty()) ? "" : prefix + "_";
 
-        Block first = this.findRelatedEntry(prefix, "brick" + suffixed, BuiltInRegistries.BLOCK);
-        if (first != null) return first;
-        return this.findRelatedEntry(prefix, "bricks" + suffixed, BuiltInRegistries.BLOCK);
+        // TerraFirmaCraft & Addons
+        if (id.getNamespace().matches("tfc|afc|dfc")) {
+            Block bricks = this.findRelatedBlock(prefix_ + "bricks", suffix);
+            if (bricks != null) return bricks;
+        }
+
+        // Without the "s"
+        Block brick = this.findRelatedEntry(prefix, "brick" + _suffix, BuiltInRegistries.BLOCK);
+        if (brick != null) return brick;
+
+        // DEFAULT
+        return this.findRelatedEntry(prefix, "bricks" + _suffix, BuiltInRegistries.BLOCK);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected @Nullable <V> V findRelatedEntry(String prefixOrInfix, String suffix, Registry<V> reg) {
         if (id.toString().equals("minecraft:stone") && prefixOrInfix.equals("cobblestone")) {
             return reg.getValue(Identifier.withDefaultNamespace("cobblestone"));
@@ -146,17 +169,19 @@ public abstract class RockType extends BlockType{
                 Identifier.fromNamespaceAndPath(id.getNamespace(), id.getPath() + _infix + _suffix),
                 Identifier.fromNamespaceAndPath(id.getNamespace(), prefix_ + id.getPath() + _suffix),
 
-                // TFC, AFC, DFC: Include children of stone_type: stairs, slab...
-                Identifier.fromNamespaceAndPath(id.getNamespace(), "rock/raw/" + id.getPath() + _suffix),
                 // TFC, AFC, DFC: Include children of smooth, cobblestone, button, pressure_plate, bricks, cracked_bricks
                 Identifier.fromNamespaceAndPath(id.getNamespace(), "rock/" + prefix_ + suffix +"/"+ id.getPath()),
-                // TFC, AFC, DFC: Include children of brick_slab, smooth_slab, brick_stairs, smooth_stairs
-                Identifier.fromNamespaceAndPath(id.getNamespace(), "rock/"+ prefixOrInfix +"/"+ id.getPath() + _suffix)
+                // TFC, AFC, DFC: Include children of smooth_slab, smooth_stairs
+                Identifier.fromNamespaceAndPath(id.getNamespace(), "rock/"+ prefixOrInfix +"/"+ id.getPath() + _suffix),
+                // TFC, AFC, DFC: Include children of brick_slab, brick_stairs
+                Identifier.fromNamespaceAndPath(id.getNamespace(), "rock/"+ prefixOrInfix +"/"+ id.getPath() + _suffix),
+                // TFC, AFC, DFC: Include children of stone_type: stairs, slab... (Must be bottom)
+                Identifier.fromNamespaceAndPath(id.getNamespace(), "rock/raw/" + id.getPath() + _suffix)
         };
         V found = null;
         for (var r : targets) {
             if (reg.containsKey(r)) {
-                found = reg.get(r);
+                found = (V) reg.get(r);
                 break;
             }
         }
