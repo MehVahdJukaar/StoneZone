@@ -65,7 +65,7 @@ async def process_single_mod(mod: dict, loader: str, mc_version: str, executor: 
                 break
 
         if not latest_file:
-            print(f"{BG_RED}{TEXT_BLACK} [UNAVAILABLE] {ANSI_RESET}  {mod['slug']} ({loader}): No files for {mc_version} listed in API.")
+            print(f"{BG_RED}{TEXT_BLACK} [UNAVAILABLE] {ANSI_RESET}  {mod['slug']} ({loader}): No files for {mc_version} listed in API.\n")
             return None
 
         latest_id = int(latest_file["id"])
