@@ -6,105 +6,151 @@ import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
+import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.Objects;
 import java.util.function.Supplier;
 
-import static net.mehvahdjukaar.every_compat.misc.UtilityMisc.copyBlockStateSafe;
 import static net.mehvahdjukaar.every_compat.api.BlockTypeChildrenHelper.copyChildProperties;
-
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.SLAB;
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.STAIRS;
 
 //SUPPORT: v21.1.0+
 public class StoneworksModule extends StoneZoneModule {
 
-    public final SimpleEntrySet<StoneType, Block> tiles;
-    public final SimpleEntrySet<StoneType, Block> tile_stairs;
-    public final SimpleEntrySet<StoneType, Block> tile_slabs;
-    public final SimpleEntrySet<StoneType, Block> tile_walls;
+    public final BlockSetEntries<StoneType> tilesSet,
+            platesSet,
+            paversSet,
+            shinglesSet;
 
     public final SimpleEntrySet<StoneType, Block> cracked_tiles;
     public final SimpleEntrySet<StoneType, Block> pillars;
-
-    public final SimpleEntrySet<StoneType, Block> plates;
-    public final SimpleEntrySet<StoneType, Block> plate_stairs;
-    public final SimpleEntrySet<StoneType, Block> plate_slabs;
-    public final SimpleEntrySet<StoneType, Block> plate_walls;
-
-    public final SimpleEntrySet<StoneType, Block> pavers;
-    public final SimpleEntrySet<StoneType, Block> paver_stairs;
-    public final SimpleEntrySet<StoneType, Block> paver_slabs;
-    public final SimpleEntrySet<StoneType, Block> paver_walls;
-
-    public final SimpleEntrySet<StoneType, Block> shingles;
-    public final SimpleEntrySet<StoneType, Block> shingle_stairs;
-    public final SimpleEntrySet<StoneType, Block> shingle_slabs;
-    public final SimpleEntrySet<StoneType, Block> shingle_walls;
 
     public StoneworksModule(String modId) {
         super(modId, "sw");
         Supplier<CreativeModeTab> tab = getModTab("main");
 
-        tiles = StoneZoneEntrySet.of(StoneType.class, "tiles",
-                        getModBlock("stone_tiles"), () -> VanillaStoneTypes.STONE,
-                        s -> new Block(Utils.copyPropertySafe(s.stone))
+        tilesSet = BlockSetEntries.of4BlocksProperty(StoneType.class, this, VanillaStoneTypes.STONE,
+                        "stone_tiles", stoneType -> Utils.copyPropertySafe(stoneType.stone),
+                        "stone_tile_slab", stoneType -> copyChildProperties(stoneType, SLAB),
+                        "stone_tile_stairs", stoneType -> copyChildProperties(stoneType, STAIRS),
+                        "stone_tile_wall", stoneType -> copyWallSafe("stone_tile_wall", stoneType),
+                        tab
                 )
-                //RECIPES: stone
-                .addTexture(modRes("block/stone_tiles"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTab(tab)
-                .addRecipe(modRes("stone_tiles_from_stone_stonecutting"))
+                .block(config -> config
+                        //addTEXTURES: stone_tiles
+                        //RECIPES: stone
+                        .addRecipe(modRes("stone_tiles_from_stone_stonecutting"))
+                )
+                .slab(config -> config
+                        //TEXTURES: stone_tiles (above)
+                        .addRecipe(modRes("stone_tile_slab_from_stone_or_stone_tiles_stonecutting"))
+                )
+                .stairs(config -> config
+                        //TEXTURES: stone_tiles (above)
+                        .addRecipe(modRes("stone_tile_stairs_from_stone_or_stone_tiles_stonecutting"))
+                )
+                .wall(config -> config
+                        //TEXTURES: stone_tiles (above)
+                        .addRecipe(modRes("stone_tile_wall_from_stone_or_stone_tiles_stonecutting"))
+                )
+                .pickaxeTag()
                 .build();
-        this.addEntry(tiles);
+        this.addEntries(tilesSet);
 
-        tile_stairs = StoneZoneEntrySet.of(StoneType.class, "tile_stairs",
-                        getModBlock("stone_tile_stairs"), () -> VanillaStoneTypes.STONE,
-                        s -> new StairBlock(copyBlockStateSafe(tiles.blocks, s),
-                                copyChildProperties(s, "stairs")
-                        )
+        platesSet = BlockSetEntries.of4BlocksProperty(StoneType.class, this, VanillaStoneTypes.STONE,
+                        "stone_plates", stoneType -> Utils.copyPropertySafe(stoneType.stone),
+                        "stone_plate_slab", stoneType -> copyChildProperties(stoneType, SLAB),
+                        "stone_plate_stairs", stoneType -> copyChildProperties(stoneType, STAIRS),
+                        "stone_plate_wall", stoneType -> copyWallSafe("stone_tile_wall", stoneType),
+                        tab
                 )
-                .requiresFromMap(tiles.blocks) //REASON: recipes & textures
-                //TEXTURES: stone_tiles (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .setTab(tab)
-                .addRecipe(modRes("stone_tile_stairs_from_stone_or_stone_tiles_stonecutting"))
+                .block(config -> config
+                        //addTEXTURES: stone_plates
+                        //RECIPES: stone
+                        .addRecipe(modRes("stone_plates_from_stone_stonecutting"))
+                )
+                .slab(config -> config
+                        //TEXTURES: stone_plates (above)
+                        .addRecipe(modRes("stone_plate_slab_from_stone_or_stone_plates_stonecutting"))
+                )
+                .stairs(config -> config
+                        //TEXTURES: stone_plates (above)
+                        .addRecipe(modRes("stone_plate_stairs_from_stone_or_stone_plates_stonecutting"))
+                )
+                .wall(config -> config
+                        //TEXTURES: stone_plates (above)
+                        .addRecipe(modRes("stone_plate_wall_from_stone_or_stone_plates_stonecutting"))
+                )
+                .pickaxeTag()
                 .build();
-        this.addEntry(tile_stairs);
+        this.addEntries(platesSet);
 
-        tile_slabs = StoneZoneEntrySet.of(StoneType.class, "tile_slab",
-                        getModBlock("stone_tile_slab"), () -> VanillaStoneTypes.STONE,
-                        s -> new SlabBlock(copyChildProperties(s, "slab"))
+        paversSet = BlockSetEntries.of4BlocksProperty(StoneType.class, this, VanillaStoneTypes.STONE,
+                        "stone_pavers", stoneType -> Utils.copyPropertySafe(stoneType.stone),
+                        "stone_paver_slab", stoneType -> copyChildProperties(stoneType, SLAB),
+                        "stone_paver_stairs", stoneType -> copyChildProperties(stoneType, STAIRS),
+                        "stone_paver_wall", stoneType -> copyWallSafe("stone_tile_wall", stoneType),
+                        tab
                 )
-                .requiresFromMap(tiles.blocks) //REASON: recipes & textures
-                //TEXTURES: stone_tiles (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .setTab(tab)
-                .addRecipe(modRes("stone_tile_slab_from_stone_or_stone_tiles_stonecutting"))
+                .block(config -> config
+                        //addTEXTURES: stone_pavers
+                        //RECIPES: stone
+                        .addRecipe(modRes("stone_pavers_from_stone_stonecutting"))
+                )
+                .slab(config -> config
+                        //TEXTURES: stone_pavers (above)
+                        .addRecipe(modRes("stone_paver_slab_from_stone_or_stone_pavers_stonecutting"))
+                )
+                .stairs(config -> config
+                        //TEXTURES: stone_pavers (above)
+                        .addRecipe(modRes("stone_paver_stairs_from_stone_or_stone_pavers_stonecutting"))
+                )
+                .wall(config -> config
+                        //TEXTURES: stone_pavers (above)
+                        .addRecipe(modRes("stone_paver_wall_from_stone_or_stone_pavers_stonecutting"))
+                )
+                .pickaxeTag()
                 .build();
-        this.addEntry(tile_slabs);
+        this.addEntries(paversSet);
 
-        tile_walls = StoneZoneEntrySet.of(StoneType.class, "tile_wall",
-                        getModBlock("stone_tile_wall"), () -> VanillaStoneTypes.STONE,
-                        s -> new WallBlock(copyWallSafe("stone_tile_wall", s))
+        shinglesSet = BlockSetEntries.of4BlocksProperty(StoneType.class, this, VanillaStoneTypes.STONE,
+                        "stone_shingles", stoneType -> Utils.copyPropertySafe(stoneType.stone),
+                        "stone_shingle_slab", stoneType -> copyChildProperties(stoneType, SLAB),
+                        "stone_shingle_stairs", stoneType -> copyChildProperties(stoneType, STAIRS),
+                        "stone_shingle_wall", stoneType -> copyWallSafe("stone_tile_wall", stoneType),
+                        tab
                 )
-                .requiresFromMap(tiles.blocks) //REASON: recipes & textures
-                //TEXTURES: stone_tiles (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.WALLS, Registries.BLOCK)
-                .setTab(tab)
-                .addRecipe(modRes("stone_tile_wall_from_stone_or_stone_tiles_stonecutting"))
+                .block(config -> config
+                        //addTEXTURES: stone_shingles
+                        //RECIPES: stone
+                        .addRecipe(modRes("stone_shingles_from_stone_stonecutting"))
+                )
+                .slab(config -> config
+                        //TEXTURES: stone_shingles (above)
+                        .addRecipe(modRes("stone_shingle_slab_from_stone_or_stone_shingles_stonecutting"))
+                )
+                .stairs(config -> config
+                        //TEXTURES: stone_shingles (above)
+                        .addRecipe(modRes("stone_shingle_stairs_from_stone_or_stone_shingles_stonecutting"))
+                )
+                .wall(config -> config
+                        //TEXTURES: stone_shingles (above)
+                        .addRecipe(modRes("stone_shingle_wall_from_stone_or_stone_shingles_stonecutting"))
+                )
+                .pickaxeTag()
                 .build();
-        this.addEntry(tile_walls);
+        this.addEntries(shinglesSet);
 
         cracked_tiles = StoneZoneEntrySet.of(StoneType.class, "tiles", "cracked",
                         getModBlock("cracked_stone_tiles"), () -> VanillaStoneTypes.STONE,
-                        s -> new Block(Utils.copyPropertySafe(s.stone))
+                        (stoneType, properties) -> new Block(properties)
                 )
                 .addTexture(modRes("block/cracked_stone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -115,7 +161,7 @@ public class StoneworksModule extends StoneZoneModule {
 
         pillars = StoneZoneEntrySet.of(StoneType.class, "pillar",
                         getModBlock("stone_pillar"), () -> VanillaStoneTypes.STONE,
-                        s -> new RotatedPillarBlock(Utils.copyPropertySafe(s.stone))
+                        (stoneType, properties) -> new RotatedPillarBlock(properties)
                 )
                 .addTexture(modRes("block/stone_pillar_top"))
                 .addTexture(modRes("block/stone_pillar_side"))
@@ -124,160 +170,6 @@ public class StoneworksModule extends StoneZoneModule {
                 .addRecipe(modRes("stone_pillar_from_stone_stonecutting"))
                 .build();
         this.addEntry(pillars);
-
-        plates = StoneZoneEntrySet.of(StoneType.class, "plates",
-                        getModBlock("stone_plates"), () -> VanillaStoneTypes.STONE,
-                        s -> new Block(Utils.copyPropertySafe(s.stone))
-                )
-                .addTexture(modRes("block/stone_plates"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTab(tab)
-                .addRecipe(modRes("stone_plates_from_stone_stonecutting"))
-                .build();
-        this.addEntry(plates);
-
-        plate_stairs = StoneZoneEntrySet.of(StoneType.class, "plate_stairs",
-                        getModBlock("stone_plate_stairs"), () -> VanillaStoneTypes.STONE,
-                        s -> new StairBlock(s.stone.defaultBlockState(),
-                                copyChildProperties(s, "stairs")
-                        )
-                )
-                .requiresFromMap(plates.blocks) //REASON: recipes & textures
-                //TEXTURES: stone_plates (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .setTab(tab)
-                .addRecipe(modRes("stone_plate_stairs_from_stone_or_stone_plates_stonecutting"))
-                .build();
-        this.addEntry(plate_stairs);
-
-        plate_slabs = StoneZoneEntrySet.of(StoneType.class, "plate_slab",
-                        getModBlock("stone_plate_slab"), () -> VanillaStoneTypes.STONE,
-                        s -> new SlabBlock(copyChildProperties(s, "slab"))
-                )
-                .requiresFromMap(plates.blocks) //REASON: recipes & textures
-                //TEXTURES: stone_plates (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .setTab(tab)
-                .addRecipe(modRes("stone_plate_slab_from_stone_or_stone_plates_stonecutting"))
-                .build();
-        this.addEntry(plate_slabs);
-
-        plate_walls = StoneZoneEntrySet.of(StoneType.class, "plate_wall",
-                        getModBlock("stone_plate_wall"), () -> VanillaStoneTypes.STONE,
-                        s -> new WallBlock(copyWallSafe("stone_plate_wall", s))
-                )
-                .requiresFromMap(plates.blocks) //REASON: recipes & textures
-                //TEXTURES: stone_plates (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.WALLS, Registries.BLOCK)
-                .setTab(tab)
-                .addRecipe(modRes("stone_plate_wall_from_stone_or_stone_plates_stonecutting"))
-                .build();
-        this.addEntry(plate_walls);
-
-        pavers = StoneZoneEntrySet.of(StoneType.class, "pavers",
-                        getModBlock("stone_pavers"), () -> VanillaStoneTypes.STONE,
-                        s -> new Block(Utils.copyPropertySafe(s.stone))
-                )
-                .addTexture(modRes("block/stone_pavers"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTab(tab)
-                .addRecipe(modRes("stone_pavers_from_stone_stonecutting"))
-                .build();
-        this.addEntry(pavers);
-
-        paver_stairs = StoneZoneEntrySet.of(StoneType.class, "paver_stairs",
-                        getModBlock("stone_paver_stairs"), () -> VanillaStoneTypes.STONE,
-                        s -> new StairBlock(s.stone.defaultBlockState(),
-                                copyChildProperties(s, "stairs")
-                        )
-                )
-                .requiresFromMap(pavers.blocks) //REASON: recipes & textures
-                //TEXTURES: stone_pavers (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.STAIRS, Registries.BLOCK)
-                .setTab(tab)
-                .addRecipe(modRes("stone_paver_stairs_from_stone_or_stone_pavers_stonecutting"))
-                .build();
-        this.addEntry(paver_stairs);
-
-        paver_slabs = StoneZoneEntrySet.of(StoneType.class, "paver_slab",
-                        getModBlock("stone_paver_slab"), () -> VanillaStoneTypes.STONE,
-                        s -> new SlabBlock(copyChildProperties(s, "slab"))
-                )
-                .requiresFromMap(pavers.blocks) //REASON: recipes & textures
-                //TEXTURES: stone_pavers (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.SLABS, Registries.BLOCK)
-                .setTab(tab)
-                .addRecipe(modRes("stone_paver_slab_from_stone_or_stone_pavers_stonecutting"))
-                .build();
-        this.addEntry(paver_slabs);
-
-        paver_walls = StoneZoneEntrySet.of(StoneType.class, "paver_wall",
-                        getModBlock("stone_paver_wall"), () -> VanillaStoneTypes.STONE,
-                        s -> new WallBlock(copyWallSafe("stone_paver_wall", s))
-                )
-                .requiresFromMap(pavers.blocks) //REASON: recipes & textures
-                //TEXTURES: stone_pavers (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.WALLS, Registries.BLOCK)
-                .setTab(tab)
-                .addRecipe(modRes("stone_paver_wall_from_stone_or_stone_pavers_stonecutting"))
-                .build();
-        this.addEntry(paver_walls);
-
-        shingles = StoneZoneEntrySet.of(StoneType.class, "shingles",
-                        getModBlock("stone_shingles"), () -> VanillaStoneTypes.STONE,
-                        s -> new Block(Utils.copyPropertySafe(s.stone))
-                )
-                .addTexture(modRes("block/stone_shingles"))
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTab(tab)
-                .addRecipe(modRes("stone_shingles_from_stone_stonecutting"))
-                .build();
-        this.addEntry(shingles);
-
-        shingle_stairs = StoneZoneEntrySet.of(StoneType.class, "shingle_stairs",
-                        getModBlock("stone_shingle_stairs"), () -> VanillaStoneTypes.STONE,
-                        s -> new StairBlock(s.stone.defaultBlockState(),
-                                copyChildProperties(s, "stairs")
-                        )
-                )
-                .requiresFromMap(shingles.blocks) //REASON: recipes & textures
-                //TEXTURES: stone_shingles (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTab(tab)
-                .addRecipe(modRes("stone_shingle_stairs_from_stone_or_stone_shingles_stonecutting"))
-                .build();
-        this.addEntry(shingle_stairs);
-
-        shingle_slabs = StoneZoneEntrySet.of(StoneType.class, "shingle_slab",
-                        getModBlock("stone_shingle_slab"), () -> VanillaStoneTypes.STONE,
-                        s -> new SlabBlock(copyChildProperties(s, "slab"))
-                )
-                .requiresFromMap(shingles.blocks) //REASON: recipes & textures
-                //TEXTURES: stone_shingles (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .setTab(tab)
-                .addRecipe(modRes("stone_shingle_slab_from_stone_or_stone_shingles_stonecutting"))
-                .build();
-        this.addEntry(shingle_slabs);
-
-        shingle_walls = StoneZoneEntrySet.of(StoneType.class, "shingle_wall",
-                        getModBlock("stone_shingle_wall"), () -> VanillaStoneTypes.STONE,
-                        s -> new WallBlock(copyWallSafe("stone_shingle_wall", s)
-                ))
-                .requiresFromMap(shingles.blocks) //REASON: recipes & textures
-                //TEXTURES: stone_shingles (above)
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.WALLS, Registries.BLOCK)
-                .setTab(tab)
-                .addRecipe(modRes("stone_shingle_wall_from_stone_or_stone_shingles_stonecutting"))
-                .build();
-        this.addEntry(shingle_walls);
 
     }
 

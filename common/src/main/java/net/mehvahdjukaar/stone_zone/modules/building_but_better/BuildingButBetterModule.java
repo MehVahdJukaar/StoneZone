@@ -22,6 +22,7 @@ import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.every_compat.api.BlockTypeChildrenHelper.copyChildProperties;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.SLAB;
+import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.SMOOTH;
 
 ///SUPPORT: v1.0.1+
 public class BuildingButBetterModule extends StoneZoneModule {
@@ -44,7 +45,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
 
         columns = StoneZoneEntrySet.of(StoneType.class, "column",
                         getModBlock("stone_column"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
+                        (stoneType, _) -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
                 .addTexture(modRes("block/column/stone_lower"))
                 .addTexture(modRes("block/column/stone_upper"))
@@ -65,7 +66,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
 
         fences = StoneZoneEntrySet.of(StoneType.class, "fence",
                         getModBlock("stone_fence"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new StoneFenceBlock(Utils.copyPropertySafe(stoneType.bricksOrStone())
+                        (stoneType, _) -> new StoneFenceBlock(Utils.copyPropertySafe(stoneType.bricksOrStone())
                                 .noOcclusion()
                         )
                 )
@@ -83,7 +84,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
 
         urns = StoneZoneEntrySet.of(StoneType.class, "urn",
                         getModBlock("stone_urn"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new UrnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone())
+                        (stoneType, _) -> new UrnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone())
                                 .noOcclusion()
                                 .pushReaction(PushReaction.DESTROY))
                 )
@@ -101,7 +102,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
 
         tiles = StoneZoneEntrySet.of(StoneType.class, "tiles",
                         getModBlock("stone_tiles"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.bricksOrStone()))
+                        (stoneType, _) -> new Block(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
                 .addTexture(modRes("block/stone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
@@ -117,7 +118,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
 
         tile_stairs = StoneZoneEntrySet.of(StoneType.class, "tile_stairs",
                         getModBlock("stone_tile_stairs"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new StairBlock(stoneType.bricksOrStone().defaultBlockState(),
+                        (stoneType, _) -> new StairBlock(stoneType.bricksOrStone().defaultBlockState(),
                                 Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
                 .addCondition(s -> Objects.nonNull(tiles.blocks.get(s))) //REASON: recipes & textures
@@ -136,7 +137,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
 
         tile_slabs = StoneZoneEntrySet.of(StoneType.class, "tile_slab",
                         getModBlock("stone_tile_slab"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
+                        (stoneType, _) -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .addCondition(s -> Objects.nonNull(tiles.blocks.get(s))) //REASON: recipes & textures
                 //TEXTURES: tiles (above)
@@ -154,7 +155,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
 
         layers = StoneZoneEntrySet.of(StoneType.class, "layer",
                         getModBlock("stone_layer"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new LayerBlock(Utils.copyPropertySafe(stoneType.stone))
+                        (stoneType, _) -> new LayerBlock(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .requiresChildren(SLAB) //REASON: recipes
                 //TEXTURES: stones
@@ -172,7 +173,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
 
         brick_layers = StoneZoneEntrySet.of(StoneType.class, "brick_layer",
                         getModBlock("stone_brick_layer"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new LayerBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
+                        (stoneType, _) -> new LayerBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
                 .requiresChildren("brick_slab", "bricks") //REASON: recipes & textures
                 //TEXTURES: brick_stones
@@ -190,7 +191,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
 
         smooth_layers = StoneZoneEntrySet.of(StoneType.class, "layer", "smooth",
                         getModBlock("smooth_stone_layer"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new LayerBlock(copyChildProperties(stoneType, "smooth"))
+                        (stoneType, _) -> new LayerBlock(copyChildProperties(stoneType, SMOOTH))
                 )
                 .requiresChildren("smooth_slab", "smooth") //REASON: recipes & textures
                 //TEXTURES: smooth_stones
@@ -203,7 +204,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
 
         mouldings = StoneZoneEntrySet.of(StoneType.class, "moulding",
                         getModBlock("stone_moulding"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new MouldingBlock(
+                        (stoneType, _) -> new MouldingBlock(
                                 stoneType.bricksOrStone().defaultBlockState(),
                                 Utils.copyPropertySafe(stoneType.bricksOrStone()).noOcclusion()
                         )
@@ -224,7 +225,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
         //!! The ENUM via BlockBlock.Types is not useful but it has an interface, idk a way to solve it.
 //        blocks = StonezoneEntrySet.of(StoneType.class, "block",
 //                        getModBlock("stone_block"), StoneTypeRegistry::STONE_TYPE,
-//                        stoneType -> new BlockBlock(BlockBlock.Types.STONE, Utils.copyPropertySafe(stoneType.stone))
+//                        (stoneType, _) -> new BlockBlock(BlockBlock.Types.STONE, Utils.copyPropertySafe(stoneType.stone))
 //                )
 //                .addTile(getModTile("block"))
 //                .addTexture(modRes("block/block/stone"))

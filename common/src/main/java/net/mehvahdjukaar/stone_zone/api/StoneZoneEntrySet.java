@@ -1,7 +1,9 @@
 package net.mehvahdjukaar.stone_zone.api;
 
-import com.mojang.datafixers.util.Pair;
-import net.mehvahdjukaar.every_compat.api.*;
+import net.mehvahdjukaar.every_compat.api.PaletteStrategy;
+import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
+import net.mehvahdjukaar.every_compat.api.SimpleModule;
+import net.mehvahdjukaar.every_compat.api.TabAddMode;
 import net.mehvahdjukaar.every_compat.misc.ExtraModelConfiguration;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
@@ -12,6 +14,7 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -26,27 +29,35 @@ import static net.mehvahdjukaar.stone_zone.misc.ResourcesUtils.getChildModelId;
 
 public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends SimpleEntrySet<T, B> {
 
-    protected StoneZoneEntrySet(Class<T> type, String name, @Nullable String prefix, Function<T, B> blockSupplier,
-                                Supplier<B> baseBlock, Supplier<T> baseType,
+    protected StoneZoneEntrySet(Class<T> type,
+                                String name, @Nullable String prefix,
+                                BiFunction<T, BlockBehaviour.Properties, B> blockSupplier,
+                                Function<T, BlockBehaviour.Properties> propertiesFactory,
+                                Supplier<@Nullable B> baseBlock,
+                                Supplier<T> baseType,
                                 @NotNull Supplier<Holder<CreativeModeTab>> tab,
-                                TabAddMode tabMode, LootTableMode lootMode,
+                                TabAddMode tabMode,
+                                LootTableMode lootMode,
                                 @Nullable TriFunction<T, B, Item.Properties, Item> itemFactory,
-                                @Nullable ITileHolder tileFactory, @Nullable Object renderType,
-                                @Nullable BiFunction<T, ResourceManager, PaletteStrategy.PaletteAndAnimation> paletteSupplier,
+                                @Nullable SimpleEntrySet.ITileHolder<?> tileFactory,
+                                @Nullable Object renderType,
+                                @Nullable
+                                BiFunction<T, ResourceManager, PaletteStrategy.PaletteAndAnimation> paletteSupplier,
                                 @Nullable Consumer<BlockTypeResTransformer<T>> extraTransform,
                                 boolean mergedPalette, boolean copyTint,
-                                Predicate<T> condition, ExtraModelConfiguration extraModelConfig
+                                Predicate<T> condition,
+                                ExtraModelConfiguration extraModelConfig
     ) {
-        super(type, name, prefix, blockSupplier, baseBlock, baseType, tab, tabMode, lootMode, itemFactory, tileFactory,
+        super(type, name, prefix, blockSupplier, propertiesFactory, baseBlock, baseType, tab, tabMode, lootMode, itemFactory, tileFactory,
                 renderType, paletteSupplier, extraTransform, mergedPalette, copyTint, condition, extraModelConfig);
     }
 
-    public static <T extends BlockType, B extends Block> Builder<T, B> of(Class<T> type, String name, String prefix, Supplier<B> baseBlock, Supplier<T> baseType, Function<T, B> blockSupplier) {
-        return new Builder<>(type, name, prefix, baseType, baseBlock, blockSupplier);
+    public static <T extends BlockType, B extends Block> Builder<T, B> of(Class<T> type, String name, String prefix, Supplier<B> baseBlock, Supplier<T> baseType, BiFunction<T, BlockBehaviour.Properties, B> blockFactory) {
+        return new Builder<>(type, name, prefix, baseType, baseBlock, blockFactory);
     }
 
-    public static <T extends BlockType, B extends Block> Builder<T, B> of(Class<T> type, String name, Supplier<B> baseBlock, Supplier<T> baseType, Function<T, B> blockSupplier) {
-        return new Builder<>(type, name, null, baseType, baseBlock, blockSupplier);
+    public static <T extends BlockType, B extends Block> Builder<T, B> of(Class<T> type, String name, Supplier<B> baseBlock, Supplier<T> baseType, BiFunction<T, BlockBehaviour.Properties, B> blockFactory) {
+        return new Builder<>(type, name, null, baseType, baseBlock, blockFactory);
     }
 
     @Override
@@ -103,47 +114,12 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
 //    @SuppressWarnings("DataFlowIssue") // McMetaFile is nullable
     public static class Builder<T extends BlockType, B extends Block> extends SimpleEntrySet.Builder<T, B> {
 
-        protected Builder(Class<T> type, String name, @Nullable String prefix, Supplier<T> baseType, Supplier<B> baseBlock, Function<T, B> blockFactory) {
+        protected Builder(Class<T> type, String name, @Nullable String prefix,
+                          Supplier<T> baseType, Supplier<B> baseBlock,
+                          BiFunction<T, BlockBehaviour.Properties, B> blockFactory)
+        {
+
             super(type, name, prefix, baseType, baseBlock, blockFactory);
-        }
-
-        /**
-         * @deprecated USE .addTexture(Identifier, PaletteStrategy) or .addTextureM(Identifier, Identifier, PaletteStrategy),
-         * the last parameter is PaletteStrategy<br>
-         * Take a look at {@link StonePaletteStrategies} or {@link PaletteStrategies} and Look for the FIELD which can be used as an argument for the last
-         * parameter
-         **/
-        @Deprecated(forRemoval = true)
-        public StoneZoneEntrySet.Builder<T, B> createPaletteFromStone() {
-            return (Builder<T, B>) createPaletteFromChild("stone");
-        }
-
-        /// @deprecated Look at javadoc: {@link Builder#createPaletteFromStone()}
-        @Deprecated(forRemoval = true)
-        public StoneZoneEntrySet.Builder<T, B> createPaletteFromBricks() {
-            this.setPalette((blockType, manager) -> {
-                if (blockType.getChild(BRICKS) != null) {
-                    var paletteAnimation = PaletteStrategies.makePaletteFromChild(blockType, manager, BRICKS, null, p -> {});
-                    return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
-                }
-                var paletteAnimation = PaletteStrategies.makePaletteFromMainChild(blockType, manager);
-                return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
-            });
-            return this;
-        }
-
-        /// @deprecated Look at javadoc: {@link Builder#createPaletteFromStone()}
-        @Deprecated(forRemoval = true)
-        public StoneZoneEntrySet.Builder<T, B> createPaletteFromStoneChild(String childKey) {
-            this.setPalette((blockType, manager) -> {
-                if (blockType.getChild(BRICKS) != null) {
-                    var paletteAnimation = PaletteStrategies.makePaletteFromChild(blockType, manager, childKey, null, p -> {});
-                    return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
-                }
-                var paletteAnimation = PaletteStrategies.makePaletteFromMainChild(blockType, manager);
-                return Pair.of(paletteAnimation.palette(), paletteAnimation.animation());
-            });
-            return this;
         }
 
         @Override
@@ -151,11 +127,15 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
             if (this.addToTab && this.tab == null) {
                 throw new IllegalStateException("Tab for: " + getEntryName() + " was null!");
             } else {
-                StoneZoneEntrySet<T, B> e = new StoneZoneEntrySet<>(this.type, this.name, this.prefix, this.blockFactory, this.baseBlock,
+                StoneZoneEntrySet<T, B> e = new StoneZoneEntrySet<>(this.type, this.name, this.prefix,
+                        this.blockFactory,
+                        this.propertiesFactory,
+                        this.baseBlock,
                         this.baseType, this.tab, this.tabMode, this.lootMode, this.itemFactory,
-                        this.tileHolder, this.renderType, this.palette, this.extraModelTransform,
+                        this.tileHolder, this.renderType, null, this.extraModelTransform,
                         this.useMergedPalette, this.copyTint,
-                        this.condition, this.extraModelConfig);
+                        this.condition, this.extraModelConfig
+                );
                 e.recipeLocations.addAll(this.recipes);
                 e.tags.putAll(this.tags);
                 e.textures.addAll(this.textures);

@@ -32,14 +32,17 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import static net.mehvahdjukaar.every_compat.api.BlockTypeChildrenHelper.copyChildProperties;
 import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.makePaletteFromChild;
 import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.registerCached;
-import static net.mehvahdjukaar.every_compat.api.BlockTypeChildrenHelper.copyChildProperties;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.isKnownVanillaStone;
 
@@ -49,6 +52,7 @@ import static net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType.isKnownVanill
 //import dev.engine_room.flywheel.lib.model.baked.PartialModel;
 
 ///SUPPORT: v6.0.10+
+@SuppressWarnings({"DanglingJavadoc", "CommentedOutCode"})
 public abstract class CreateModuleAbstract extends StoneZoneModule {
 
     public final ItemOnlyEntrySet<StoneType, Item> alloy;
@@ -61,6 +65,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
 //    public final SimpleEntrySet<MetalType, Block> tunnel/*, belt_funnel*/;
 //    public final static ArrayList<Block> tunnelList = new ArrayList<>();
 
+    public final BlockSetEntries<StoneType> cutSet, cutBricksSet, polishedCutSet, smallBricksSet;
     public final SimpleEntrySet<StoneType, Block>
             pillars,
             layereds,
@@ -79,7 +84,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
         Supplier<CreativeModeTab> palettesTab = getModTab("palettes");
 
         /// CUT
-        var cutSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
+        cutSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
                         "cut_andesite", stoneType -> Utils.copyPropertySafe(stoneType.stone),
                         "cut_andesite_slab", stoneType -> Utils.copyPropertySafe(stoneType.stone),
                         "cut_andesite_stairs", stoneType -> Utils.copyPropertySafe(stoneType.stone),
@@ -112,7 +117,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
         this.addEntries(cutSet);
 
         /// CUT_BRICKS
-        var cutBricksSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
+        cutBricksSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
                         "cut_andesite_bricks", stoneType -> Utils.copyPropertySafe(stoneType.bricksOrStone()),
                         "cut_andesite_brick_slab", stoneType -> copyChildProperties(stoneType, BRICK_SLAB),
                         "cut_andesite_brick_stairs", stoneType -> copyChildProperties(stoneType, BRICK_STAIRS),
@@ -144,7 +149,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
         this.addEntries(cutBricksSet);
 
         /// POLISHED_CUT
-        var polishedCutSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
+        polishedCutSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
                         "polished_cut_andesite", stoneType -> copyChildProperties(stoneType, POLISHED),
                         "polished_cut_andesite_slab", stoneType -> copyChildProperties(stoneType, POLISHED_SLAB),
                         "polished_cut_andesite_stairs", stoneType -> copyChildProperties(stoneType, POLISHED_STAIRS),
@@ -177,7 +182,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
         this.addEntries(polishedCutSet);
 
         /// SMALL_BRICKS
-        var smallBricksSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
+        smallBricksSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
                         "small_andesite_bricks", stoneType -> copyChildProperties(stoneType, BRICKS),
                         "small_andesite_brick_slab", stoneType -> copyChildProperties(stoneType, BRICK_SLAB),
                         "small_andesite_brick_stairs", stoneType -> copyChildProperties(stoneType, BRICK_STAIRS),
@@ -212,7 +217,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
 
         alloy = ItemOnlyEntrySet.builder(StoneType.class, "alloy",
                         getModItem("andesite_alloy"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new Item(new Item.Properties())
+                        (_, properties) -> new Item(properties)
                 )
                 .addTexture(modRes("item/andesite_alloy"), ALLOY_STRATEGY)
                 //TAG: forge:plates/<type>
@@ -226,7 +231,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
 
         casing = StoneZoneEntrySet.of(StoneType.class, "casing",
                         getModBlock("andesite_casing"), () -> VanillaStoneTypes.ANDESITE,
-                        this::newCasingBlock
+                        (stoneType, properties) -> newCasingBlock(stoneType, properties.sound(stoneType.getSound()))
                 )
 //                .requiresFromMap(alloy.blocks) //REASON: recipes
                 .addTextureM(modRes("block/andesite_casing"), StoneZone.res("block/c/andesite_casing_m"))
@@ -243,7 +248,10 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
 
         encased_shaft = StoneZoneEntrySet.of(StoneType.class, "encased_shaft",
                         getModBlock("andesite_encased_shaft"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> newEncasedShaftedBlock(stoneType, () -> casing.blocks.get(stoneType))
+                        (stoneType, properties) ->
+                                newEncasedShaftedBlock(stoneType, properties.noOcclusion(),
+                                        () -> casing.blocks.get(stoneType)
+                        )
                 )
                 .requiresFromMap(casing.blocks) //REASON: It's one of the main block's blockstate
                 .addTile(getModTile("encased_shaft"))
@@ -265,7 +273,10 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
 
         encased_cogwheel = StoneZoneEntrySet.of(StoneType.class, "encased_cogwheel",
                         getModBlock("andesite_encased_cogwheel"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> newEncasedCogwheelBlock(stoneType, () -> casing.blocks.get(stoneType))
+                        (stoneType, properties) ->
+                                newEncasedCogwheelBlock(stoneType, properties.noOcclusion(),
+                                        () -> casing.blocks.get(stoneType)
+                        )
                 )
                 .requiresFromMap(casing.blocks) //REASON: It's one of the main block's blockstate
                 .addTile(getModTile("encased_cogwheel"))
@@ -288,7 +299,10 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
 
         encased_large_cogwheel = StoneZoneEntrySet.of(StoneType.class, "encased_large_cogwheel",
                         getModBlock("andesite_encased_large_cogwheel"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> newEncasedLargeCogwheelBlock(stoneType, () -> casing.blocks.get(stoneType))
+                        (stoneType, properties) ->
+                                newEncasedLargeCogwheelBlock(stoneType, properties.noOcclusion(),
+                                        () -> casing.blocks.get(stoneType)
+                                )
                 )
                 .requiresFromMap(casing.blocks) //REASON: It's one of the main block's blockstate
                 .addTile(getModTile("encased_large_cogwheel"))
@@ -311,7 +325,10 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
 
         funnel = StoneZoneEntrySet.of(StoneType.class, "funnel",
                         getModBlock("andesite_funnel"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> newFunnelBlock(stoneType, beltFunnelSupplier(stoneType))
+                        (stoneType, properties) ->
+                                newFunnelBlock(stoneType, properties,
+                                        beltFunnelSupplier(stoneType)
+                                )
                 )
 //                .requiresFromMap(alloy.blocks) //REASON: recipes
                 .addTile(getModTile("funnel"))
@@ -338,7 +355,10 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
 
         belt_funnel = StoneZoneEntrySet.of(StoneType.class, "belt_funnel",
                         getModBlock("andesite_belt_funnel"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> newBeltFunnelBlock(stoneType, funnel.blocks.get(stoneType))
+                        (stoneType, properties) ->
+                                newBeltFunnelBlock(stoneType, properties,
+                                        funnel.blocks.get(stoneType)
+                                )
                 )
                 .requiresFromMap(funnel.blocks) //REASON: textures & It's one of the main block's blockstate
                 .addTile(getModTile("funnel"))
@@ -385,7 +405,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
 
         pillars = StoneZoneEntrySet.of(StoneType.class, "pillar",
                         getModBlock("andesite_pillar"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new ConnectedPillarBlock(Utils.copyPropertySafe(stoneType.stone))
+                        (_, properties) -> new ConnectedPillarBlock(properties)
                 )
                 .addTexture(modRes("block/palettes/stone_types/cap/andesite_cut_cap")) // andesite_cut_cap
                 .addTexture(modRes("block/palettes/stone_types/cap/andesite_cut_cap_connected")) // andesite_cut_cap_connected
@@ -401,7 +421,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
 
         layereds = StoneZoneEntrySet.of(StoneType.class, "", "layered",
                         getModBlock("layered_andesite"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new LayeredBlock(Utils.copyPropertySafe(stoneType.stone))
+                        (_, properties) -> new LayeredBlock(properties)
                 )
                 //TEXTURES: pillars' andesite_cut_cap & andesite_cut_cap_connected (above)
                 .addTexture(modRes("block/palettes/stone_types/layered/andesite_cut_layered"))
@@ -434,6 +454,12 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                 .addTag(modRes("brittle"), Registries.BLOCK)
                 .addTag(modRes("contraption_controlled"), Registries.ITEM)
                 .setTab(tab)
+                .setProperties(stoneType -> Utils.copyPropertySafe(Blocks.IRON_DOOR)
+                        .mapColor(stoneType.stone.defaultMapColor())
+                        .noOcclusion()
+                        .requiresCorrectToolForDrops()
+                        .strength(3.0F, 6.0F)
+                )
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addRecipe(modRes("crafting/kinetics/andesite_door"))
                 .copyParentDrop()
@@ -453,6 +479,10 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.FALL_DAMAGE_RESETTING, Registries.BLOCK)
                 .addTag(modRes("copycat_deny"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(stoneType -> Utils.copyPropertySafe(Blocks.LADDER)
+                        .sound(SoundType.COPPER)
+                        .mapColor(stoneType.stone.defaultMapColor())
+                )
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addRecipe(modRes("andesite_ladder_from_andesite_alloy_stonecutting"))
                 .build();
@@ -469,9 +499,13 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                 .addTag(modRes("wrench_pickup"), Registries.BLOCK)
                 .addTag(modRes("fan_transparent"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(stoneType -> Utils.copyPropertySafe(Blocks.IRON_BARS)
+                        .sound(SoundType.COPPER)
+                        .mapColor(stoneType.stone.defaultMapColor())
+                )
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addRecipe(modRes("andesite_bars_from_andesite_alloy_stonecutting"))
-                .addCustomItem((stoneType, block, properties) -> new MetalScaffoldingBlockItem(block, properties))
+                .addCustomItem((_, block, properties) -> new MetalScaffoldingBlockItem(block, properties))
                 .build();
         this.addEntry(bar);
 
@@ -491,9 +525,13 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.FALL_DAMAGE_RESETTING, Registries.BLOCK)
                 .addTag(modRes("copycat_deny"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(stoneType -> Utils.copyPropertySafe(Blocks.SCAFFOLDING)
+                        .sound(SoundType.COPPER)
+                        .mapColor(stoneType.stone.defaultMapColor())
+                )
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addRecipe(modRes("andesite_scaffolding_from_andesite_alloy_stonecutting"))
-                .addCustomItem((stoneType, block, properties) -> new MetalScaffoldingBlockItem(block, properties))
+                .addCustomItem((_, block, properties) -> new MetalScaffoldingBlockItem(block, properties))
                 .build();
         this.addEntry(scaffolding);
 
@@ -510,25 +548,25 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                 .setTab(tab)
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addRecipe(modRes("andesite_table_cloth_from_andesite_alloy_stonecutting"))
-                .addCustomItem((stoneType, block, properties) -> newTableClothBlockItem(block, properties))
+                .addCustomItem((_, block, properties) -> newTableClothBlockItem(block, properties))
                 .build();
         this.addEntry(table_cloth);
 
     }
 
-    protected abstract Block newCasingBlock(StoneType stoneType);
-    protected abstract Block newEncasedShaftedBlock(StoneType stoneType, Supplier<Block> casingBlock);
-    protected abstract Block newEncasedCogwheelBlock(StoneType stoneType, Supplier<Block> casingBlock);
-    protected abstract Block newEncasedLargeCogwheelBlock(StoneType stoneType, Supplier<Block> casingBlock);
-    protected abstract Block newFunnelBlock(StoneType stoneType, Supplier<Block> beltFunnelBlock);
-    protected abstract Block newBeltFunnelBlock(StoneType stoneType, Block funnelBlock);
+    protected abstract Block newCasingBlock(StoneType stoneType, BlockBehaviour.Properties properties);
+    protected abstract Block newEncasedShaftedBlock(StoneType stoneType, BlockBehaviour.Properties properties, Supplier<Block> casingBlock);
+    protected abstract Block newEncasedCogwheelBlock(StoneType stoneType, BlockBehaviour.Properties properties, Supplier<Block> casingBlock);
+    protected abstract Block newEncasedLargeCogwheelBlock(StoneType stoneType, BlockBehaviour.Properties properties, Supplier<Block> casingBlock);
+    protected abstract Block newFunnelBlock(StoneType stoneType, BlockBehaviour.Properties properties, Supplier<Block> beltFunnelBlock);
+    protected abstract Block newBeltFunnelBlock(StoneType stoneType, BlockBehaviour.Properties properties, Block funnelBlock);
 //    protected abstract Block newTunnelBlock(StoneType stoneType);
 
-    protected abstract Block makeSlidingDoorBlock(StoneType stoneType);
-    protected abstract Block makeMetalLadderBlock(StoneType stoneType);
-    protected abstract Block makeMetalBarsBlock(StoneType stoneType);
-    protected abstract Block makeMetalScaffoldingBlock(StoneType stoneType);
-    protected abstract Block newTableClothBlock(StoneType stoneType);
+    protected abstract Block makeSlidingDoorBlock(StoneType stoneType, BlockBehaviour.Properties properties);
+    protected abstract Block makeMetalLadderBlock(StoneType stoneType, BlockBehaviour.Properties properties);
+    protected abstract Block makeMetalBarsBlock(StoneType stoneType, BlockBehaviour.Properties properties);
+    protected abstract Block makeMetalScaffoldingBlock(StoneType stoneType, BlockBehaviour.Properties properties);
+    protected abstract Block newTableClothBlock(StoneType stoneType, BlockBehaviour.Properties properties);
     protected abstract Item newTableClothBlockItem(Block block, Item.Properties properties);
 
     //      ┌──────────────────────────────────────────────────────────┐
@@ -539,7 +577,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
     public void addDynamicServerResources(Consumer<ResourceGenTask> executor) {
         super.addDynamicServerResources(executor);
 
-        executor.accept((manager, sink) ->
+        executor.accept((_, sink) ->
             alloy.items.forEach((stoneType, item) -> {
                 if (ModEntriesConfigs.isEntryEnabled(stoneType, item)) {
                     createMixingRecipe(stoneType, item, sink);
@@ -639,7 +677,7 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
     //      └──────────────────────────────────────────────────────────┘
 
     protected Pair<Block, String> getBlockAndEntryId(String entry, StoneType stoneType) {
-        String entryId = "";
+        String entryId;
 
         /// Create
         if (entry.contains("cut") || entry.contains("small") || entry.contains("layered") || entry.contains("pillar")) {

@@ -20,7 +20,7 @@ public class StoneZone {
     public static void init() {
         SZConfigs.init();
         UnsafeDisablerConfigs.init();
-        SZRegistry.init();
+        SZCreativeModeTab.init();
         CompatSpritesHelper.initHardcodedSprite();
 
         BlockSetAPI.registerBlockSetDefinition(StoneTypeRegistry.INSTANCE);

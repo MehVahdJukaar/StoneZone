@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -62,10 +63,10 @@ public class BlockSetEntries<BT extends RockType> {
      */
     public static <T extends RockType> BlockSetBuilder<T> of4BlocksFactory(
             StoneZoneModule module, Class<T> typeClass, T baseTypeId,
-            String getBlockPath, Function<T, Block> blockFactory,
-            String getSlabPath, Function<T, Block> slabFactory,
-            String getStairsPath, Function<T, Block> stairsFactory,
-            @Nullable String getWallPath, @Nullable Function<T, Block> wallFactory,
+            String getBlockPath, BiFunction<T, BlockBehaviour.Properties, Block> blockFactory,
+            String getSlabPath, BiFunction<T, BlockBehaviour.Properties, Block> slabFactory,
+            String getStairsPath, BiFunction<T, BlockBehaviour.Properties, Block> stairsFactory,
+            @Nullable String getWallPath, @Nullable BiFunction<T, BlockBehaviour.Properties, Block> wallFactory,
             Supplier<CreativeModeTab> tabSupplier)
     {
         return new BlockSetBuilder<>(typeClass, module, baseTypeId,
@@ -86,9 +87,9 @@ public class BlockSetEntries<BT extends RockType> {
      */
     public static <T extends RockType> BlockSetBuilder<T> of3BlocksFactory(
             StoneZoneModule module, Class<T> typeClass, T baseTypeId,
-            String getBlockPath, Function<T, Block> blockFactory,
-            String getSlabPath, Function<T, Block> slabFactory,
-            String getStairsPath, Function<T, Block> stairsFactory,
+            String getBlockPath, BiFunction<T, BlockBehaviour.Properties, Block> blockFactory,
+            String getSlabPath, BiFunction<T, BlockBehaviour.Properties, Block> slabFactory,
+            String getStairsPath, BiFunction<T, BlockBehaviour.Properties, Block> stairsFactory,
             Supplier<CreativeModeTab> tabSupplier)
     {
         return of4BlocksFactory(module, typeClass, baseTypeId,
@@ -109,13 +110,13 @@ public class BlockSetEntries<BT extends RockType> {
             Supplier<CreativeModeTab> tabSupplier)
     {
         return of4BlocksFactory(module, typeClass, baseTypeId,
-                getBlockPath, type -> new Block(blockProperty.apply(type)),
-                getSlabPath, type -> new SlabBlock(slabOrExtraProperty.apply(type)),
-                getStairsPath, type -> new StairBlock(
+                getBlockPath, (type, _) -> new Block(blockProperty.apply(type)),
+                getSlabPath, (type, _) -> new SlabBlock(slabOrExtraProperty.apply(type)),
+                getStairsPath, (type, _) -> new StairBlock(
                         requireNonNull(type.getBlockOfThis(getChildKey(module.getModId(), getBlockPath, baseTypeId))).defaultBlockState(),
                         stairsProperty.apply(type)
                 ),
-                getWallPath, type -> new WallBlock(wallProperty.apply(type)),
+                getWallPath, (type, _) -> new WallBlock(wallProperty.apply(type)),
                 tabSupplier
         );
     }
@@ -134,9 +135,9 @@ public class BlockSetEntries<BT extends RockType> {
             String getStairsPath, Function<T, BlockBehaviour.Properties> stairsProperty,
             Supplier<CreativeModeTab> tabSupplier) {
         return of3BlocksFactory(module, typeClass, baseTypeId,
-                getBlockPath, type -> new Block(blockProperty.apply(type)),
-                getSlabPath, type -> new SlabBlock(slabProperty.apply(type)),
-                getStairsPath, type -> new StairBlock(
+                getBlockPath, (type, _) -> new Block(blockProperty.apply(type)),
+                getSlabPath, (type, _) -> new SlabBlock(slabProperty.apply(type)),
+                getStairsPath, (type, _) -> new StairBlock(
                         requireNonNull(type.getBlockOfThis(getChildKey(module.getModId(), getBlockPath, baseTypeId))).defaultBlockState(),
                         stairsProperty.apply(type)
                 ),
@@ -176,7 +177,8 @@ public class BlockSetEntries<BT extends RockType> {
     //      ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
     //      │                                           SubClass                                           │
     //      └──────────────────────────────────────────────────────────────────────────────────────────────┘
-    @SuppressWarnings({"unused", "FieldMayBeFinal"}) // noSlab() or noStairs() will be used in a rare case
+    @SuppressWarnings({"unused", "FieldMayBeFinal", "DanglingJavadoc"})
+    // noSlab() or noStairs() will be used in a rare case
     public static class BlockSetBuilder<T extends RockType> extends StoneZoneModule {
 
         private final T baseType;
@@ -186,9 +188,9 @@ public class BlockSetEntries<BT extends RockType> {
         private final String slabPath;
         private final String stairsPath;
         private final String wallPath;
-        private final Function<T, Block> slabFunction;
-        private final Function<T, Block> stairsFunction;
-        private final Function<T, Block> wallFunction;
+        private final BiFunction<T, BlockBehaviour.Properties, Block> slabFunction;
+        private final BiFunction<T, BlockBehaviour.Properties, Block> stairsFunction;
+        private final BiFunction<T, BlockBehaviour.Properties, Block> wallFunction;
 
         private final Supplier<CreativeModeTab> tabSupplier;
 
@@ -221,10 +223,10 @@ public class BlockSetEntries<BT extends RockType> {
         //      │                       Constructor                        │
         //      └──────────────────────────────────────────────────────────┘
         public BlockSetBuilder(Class<T> typeClass, StoneZoneModule module, T baseType,
-                               String blockPath, Function<T, Block> blockFunction,
-                               String slabPath, Function<T, Block> slabFunction,
-                               String stairsPath, Function<T, Block> stairsFunction,
-                               @Nullable String wallPath, @Nullable Function<T, Block> wallFunction,
+                               String blockPath, BiFunction<T, BlockBehaviour.Properties, Block> blockFunction,
+                               String slabPath, BiFunction<T, BlockBehaviour.Properties, Block> slabFunction,
+                               String stairsPath, BiFunction<T, BlockBehaviour.Properties, Block> stairsFunction,
+                               @Nullable String wallPath, @Nullable BiFunction<T, BlockBehaviour.Properties, Block> wallFunction,
                                Supplier<CreativeModeTab> tabSupplier
         ) {
             super(module.getModId(), module.shortenedId());

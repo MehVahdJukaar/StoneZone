@@ -12,11 +12,9 @@ import java.util.function.Supplier;
 
 import static net.mehvahdjukaar.stone_zone.configs.SZConfigs.TAB_ITEM_SEARCH_ENABLED;
 
-public class SZRegistry {
+public class SZCreativeModeTab {
 
-    public static void init() {
-
-    }
+    public static void init() {}
 
     public static final Supplier<AllStonesItem> ALL_STONES = RegHelper.registerItem(StoneZone.res("all_stones"), AllStonesItem::new);
 

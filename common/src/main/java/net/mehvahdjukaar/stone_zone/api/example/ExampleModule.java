@@ -30,7 +30,7 @@ import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.registerCache
 **/
 @SuppressWarnings("unused")
 public class ExampleModule extends StoneZoneModule {
-/// Make sure it's StoneZoneSimpleModule, not SimpleModule
+/// Make sure it's StoneZoneModule, not SimpleModule
 
     /// For Blocks - NOTE: it's using SimpleEntrySet
     public final SimpleEntrySet<StoneType, Block> sampleBlock, sampleBlock_2;
@@ -48,7 +48,7 @@ public class ExampleModule extends StoneZoneModule {
         /// NOTE: it's using StoneZoneEntrySet
         sampleBlock_2 = StoneZoneEntrySet.of(StoneType.class,"suffix", "prefix",
                         getModBlock("stone_table"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
+                        (stoneType, properties) -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 .build();
         this.addEntry(sampleBlock_2);
@@ -56,7 +56,7 @@ public class ExampleModule extends StoneZoneModule {
         /// NOTE: it's using StoneZoneEntrySet
         sampleBlock = StoneZoneEntrySet.of(StoneType.class,"table",
                         getModBlock("stone_table"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.stone))
+                        (stoneType, properties) -> new Block(Utils.copyPropertySafe(stoneType.stone))
                 )
                 ///OPTIONAL: Check if a StoneType has the children required, then block will be generated
                 .requiresChildren(VanillaRockChildKeys.SLAB) //REASON: can be for recipes or textures
@@ -101,7 +101,7 @@ public class ExampleModule extends StoneZoneModule {
 
         sampleItem = ItemOnlyEntrySet.builder(StoneType.class,"table",
                         getModItem("stone_table"), ()-> VanillaStoneTypes.STONE,
-                        stoneType -> new Item(new Item.Properties())
+                        (stoneType, properties) -> new Item(new Item.Properties())
                 )
                 .addTexture(modRes("item/itemTexture"))
                 .addTag(Identifier.parse("twigs:tables"), Registries.ITEM)

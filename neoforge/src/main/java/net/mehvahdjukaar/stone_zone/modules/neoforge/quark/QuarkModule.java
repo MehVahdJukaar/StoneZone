@@ -2,7 +2,6 @@ package net.mehvahdjukaar.stone_zone.modules.neoforge.quark;
 
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
-import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StonePaletteStrategies;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
@@ -36,7 +35,7 @@ public class QuarkModule extends StoneZoneModule {
         vertical_slabs = QuarkEntrySet.of(StoneType.class, "vertical_slab",
                         VerticalSlabsModule.class,
                         getModBlock("andesite_vertical_slab"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis("slab"),
+                        (stoneType, _) -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis("slab"),
                                 copyChildProperties(stoneType, "slab"))
                 )
                 .requiresChildren(SLAB) //REASON: recipes
@@ -54,7 +53,7 @@ public class QuarkModule extends StoneZoneModule {
         polished_vertical_slabs = QuarkEntrySet.of(StoneType.class, "vertical_slab", "polished",
                         VerticalSlabsModule.class,
                         getModBlock("polished_andesite_vertical_slab"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis(POLISHED_SLAB),
+                        (stoneType, _) -> new VerticalSlabBlock(() -> stoneType.getBlockOfThis(POLISHED_SLAB),
                                 copyChildProperties(stoneType, POLISHED_SLAB))
                 )
                 .requiresChildren(POLISHED_SLAB, POLISHED) //REASON: recipes, textures
@@ -71,9 +70,9 @@ public class QuarkModule extends StoneZoneModule {
 
         pillars = QuarkEntrySet.of(StoneType.class, "pillar", MoreStoneVariantsModule.class,
                         getModBlock("andesite_pillar"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> {
+                        (stoneType, properties) -> {
                             String name = shortenedId() + "/" + stoneType.getAppendableIdWith("pillar");
-                            return new ZetaPillarBlock(name, null, Utils.copyPropertySafe(stoneType.stone));
+                            return new ZetaPillarBlock(name, null, properties);
                         }
                 )
                 .requiresChildren(POLISHED_SLAB) //REASON: recipes

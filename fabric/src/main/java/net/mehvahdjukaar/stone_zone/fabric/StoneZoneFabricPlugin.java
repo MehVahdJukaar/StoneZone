@@ -3,7 +3,7 @@ package net.mehvahdjukaar.stone_zone.fabric;
 import net.mehvahdjukaar.every_compat.api.PluginEvent;
 import net.mehvahdjukaar.stone_zone.StoneZonePlugin;
 import net.mehvahdjukaar.stone_zone.modules.fabric.blockus.BlockusModule;
-import net.mehvahdjukaar.stone_zone.modules.fabric.create.CreateModule;
+import net.mehvahdjukaar.stone_zone.modules.fabric.create.CreateFlyModule;
 import net.mehvahdjukaar.stone_zone.modules.fabric.macaws.*;
 import net.mehvahdjukaar.stone_zone.modules.fabric.wraith_waystones.WraithWaystonesModule;
 
@@ -25,7 +25,7 @@ public class StoneZoneFabricPlugin extends StoneZonePlugin {
 
         // General
         event.addModule("blockus", () -> BlockusModule.class);
-        event.addModule("create", () -> CreateModule.class);
+        event.addModule("create", () -> CreateFlyModule.class);
         event.addModule("fwaystones", () -> WraithWaystonesModule.class);
 
 

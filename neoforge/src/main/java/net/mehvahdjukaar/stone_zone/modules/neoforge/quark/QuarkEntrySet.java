@@ -17,6 +17,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.Nullable;
 import org.violetmoon.quark.base.Quark;
@@ -35,7 +36,8 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
                          Class<? extends ZetaModule> module,
                          Supplier<B> baseBlock,
                          Supplier<T> baseType,
-                         Function<T, B> blockSupplier,
+                         BiFunction<T, BlockBehaviour.Properties, B> blockSupplier,
+                         Function<T, BlockBehaviour.Properties> propertiesFactory,
                          @Nullable Supplier<Holder<CreativeModeTab>> tab,
                          TabAddMode tabMode,
                          SimpleEntrySet.LootTableMode tableMode,
@@ -48,7 +50,7 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
                          boolean copyTint,
                          Predicate<T> condition, ExtraModelConfiguration extraModelConfig
     ) {
-        super(type, name, prefix, blockSupplier, baseBlock, baseType, Objects.requireNonNull(tab), tabMode, tableMode, itemFactory,
+        super(type, name, prefix, blockSupplier, propertiesFactory, baseBlock, baseType, Objects.requireNonNull(tab), tabMode, tableMode, itemFactory,
                 tileFactory, renderType, paletteSupplier, extraTransform, mergedPalette, copyTint,
                 condition, extraModelConfig);
         var m = Preconditions.checkNotNull(module);
@@ -58,6 +60,7 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
 
     @Override
     public void generateRecipes(SimpleModule module, ResourceManager manager, ResourceSink sink) {
+
         ZetaModule mod = zetaModule.get();
         if (mod == null || mod.isEnabled()) {
             super.generateRecipes(module, manager, sink);
@@ -66,6 +69,7 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
 
     @Override
     public @Nullable Item getItemOf(T type) {
+
         ZetaModule mod = zetaModule.get();
         if (mod == null || mod.isEnabled()) {
             var item = super.getItemOf(type);
@@ -85,7 +89,8 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
             String name,
             Class<? extends ZetaModule> quarkModule,
             Supplier<B> baseBlock, Supplier<T> baseType,
-            Function<T, B> factory) {
+            BiFunction<T, BlockBehaviour.Properties, B> factory) {
+
         return new Builder<>(type, name, null, quarkModule, baseType, baseBlock, factory);
     }
 
@@ -94,30 +99,45 @@ public class QuarkEntrySet<T extends BlockType, B extends Block> extends StoneZo
             String name, String prefix,
             Class<? extends ZetaModule> quarkModule,
             Supplier<B> baseBlock, Supplier<T> baseType,
-            Function<T, B> factory) {
+            BiFunction<T, BlockBehaviour.Properties, B> factory) {
+
         return new Builder<>(type, name, prefix, quarkModule, baseType, baseBlock, factory);
     }
 
     //!! SUBCLASS
     public static class Builder<T extends BlockType, B extends Block> extends StoneZoneEntrySet.Builder<T, B> {
 
-        private final Function<T, B> blockSupplier;
+        private final BiFunction<T, BlockBehaviour.Properties, B> blockSupplier;
         private final Class<? extends ZetaModule> quarkModule;
 
         protected Builder(Class<T> type, String name, @Nullable String prefix,
                           Class<? extends ZetaModule> quarkModule,
-                          Supplier<T> baseType, Supplier<B> baseBlock, Function<T, B> factory) {
+                          Supplier<T> baseType, Supplier<B> baseBlock,
+                          BiFunction<T, BlockBehaviour.Properties, B> blockFactory) {
+
             super(type, name, prefix, baseType, baseBlock, null);
             this.quarkModule = quarkModule;
-            this.blockSupplier = factory;
+            this.blockSupplier = blockFactory;
         }
 
         @Override
         public QuarkEntrySet<T, B> build() {
             var e = new QuarkEntrySet<>(this.type, this.name, this.prefix, this.quarkModule,
-                    this.baseBlock, this.baseType, this.blockSupplier, this.tab, this.tabMode, this.lootMode,
-                    this.itemFactory, this.tileHolder, this.renderType, this.palette, this.extraModelTransform, this.useMergedPalette,
-                    this.copyTint, this.condition, this.extraModelConfig);
+                    this.baseBlock, this.baseType,
+                    this.blockSupplier,
+                    this.propertiesFactory,
+                    this.tab,
+                    this.tabMode,
+                    this.lootMode,
+                    this.itemFactory,
+                    this.tileHolder,
+                    this.renderType,
+                    null,
+                    this.extraModelTransform,
+                    this.useMergedPalette,
+                    this.copyTint,
+                    this.condition,
+                    this.extraModelConfig);
 
             e.recipeLocations.addAll(this.recipes);
             e.tags.putAll(this.tags);

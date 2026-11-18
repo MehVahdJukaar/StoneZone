@@ -20,11 +20,13 @@ import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 ///SUPPORT: v2.3.5+
 public class BitsNBobsModuleAbstract extends StoneZoneModule {
 
+    public final BlockSetEntries<StoneType> blockSet;
+
     public BitsNBobsModuleAbstract(String modId) {
         super(modId, "cbnb");
         Supplier<CreativeModeTab> palettesTab = getModTab("bnb_palettes");
 
-        var blockSet = BlockSetEntries.of4BlocksProperty(StoneType.class, this, VanillaStoneTypes.ANDESITE,
+        blockSet = BlockSetEntries.of4BlocksProperty(StoneType.class, this, VanillaStoneTypes.ANDESITE,
                         "andesite_tiles", stoneType -> Utils.copyPropertySafe(stoneType.stone),
                         "andesite_tile_slab", stoneType -> copyChildProperties(stoneType, SLAB),
                         "andesite_tile_stairs", stoneType -> copyChildProperties(stoneType, STAIRS),

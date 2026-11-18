@@ -1,7 +1,6 @@
 package net.mehvahdjukaar.stone_zone.modules.fabric.wraith_waystones;
 
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StonePaletteStrategies;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
@@ -32,7 +31,7 @@ public class WraithWaystonesModule extends StoneZoneModule {
 
         brick_waystone = StoneZoneEntrySet.of(StoneType.class, "brick_waystone",
                         getModBlock("stone_brick_waystone"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new WaystoneBlock(Utils.copyPropertySafe(stoneType.stone)
+                        (_, properties) -> new WaystoneBlock(properties
                                 .strength(FabricWaystones.CONFIG.waystone_block_hardness(), 3600000.0F)
                                 .requiresCorrectToolForDrops()
                         )
@@ -62,7 +61,7 @@ public class WraithWaystonesModule extends StoneZoneModule {
                 .addTag(modRes("waystones"), Registries.ITEM)
                 .setTab(tab)
                 .defaultRecipe()
-                .addCustomItem((stoneType, block, properties) -> new WaystoneItem(block, properties))
+                .addCustomItem((_, block, properties) -> new WaystoneItem(block, properties))
                 .copyParentDrop()
                 .build();
         this.addEntry(brick_waystone);

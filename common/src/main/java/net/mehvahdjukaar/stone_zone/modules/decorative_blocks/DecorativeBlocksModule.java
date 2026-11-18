@@ -2,7 +2,6 @@ package net.mehvahdjukaar.stone_zone.modules.decorative_blocks;
 
 import lilypuree.decorative_blocks.blocks.PillarBlock;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
@@ -26,7 +25,7 @@ public class DecorativeBlocksModule extends StoneZoneModule {
 
         pillar = StoneZoneEntrySet.of(StoneType.class, "pillar",
                         getModBlock("stone_pillar"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new PillarBlock(Utils.copyPropertySafe(stoneType.stone)
+                        (stoneType, properties) -> new PillarBlock(properties
                                 .strength(1.5F, 6.5F)
                                 .sound(stoneType.getSound())
                         )

@@ -2,10 +2,8 @@ package net.mehvahdjukaar.stone_zone.api;
 
 import net.mehvahdjukaar.every_compat.modules.EveryCompatModule;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
-import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
-import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
-import net.mehvahdjukaar.stone_zone.SZRegistry;
+import net.mehvahdjukaar.stone_zone.SZCreativeModeTab;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.set.RockType;
 import net.mehvahdjukaar.stone_zone.api.set.mud.MudType;
@@ -14,13 +12,11 @@ import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntries;
 import net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-
-import java.util.function.Consumer;
 
 
 public class StoneZoneModule extends EveryCompatModule {
@@ -50,8 +46,8 @@ public class StoneZoneModule extends EveryCompatModule {
 
     @Override
     public ResourceKey<CreativeModeTab> getDedicatedTab() {
-        if (SZRegistry.MOD_TAB != null) {
-            return SZRegistry.MOD_TAB.getKey();
+        if (SZCreativeModeTab.MOD_TAB != null) {
+            return SZCreativeModeTab.MOD_TAB.getKey();
         }
         return null;
     }
@@ -102,23 +98,6 @@ public class StoneZoneModule extends EveryCompatModule {
     @Override
     public void registerItems(Registrator<Item> registry) {
         super.registerItems(registry);
-    }
-
-    @Override
-    public void addDynamicClientResources(Consumer<ResourceGenTask> executor) {
-        super.addDynamicClientResources(executor);
-        executor.accept((resourceManager, resourceSink) ->
-            getEntries().forEach(entrySetParent -> {
-                if (entrySetParent instanceof StoneZoneEntrySet<?,?> entrySet) {
-                    try {
-                        entrySet.generateModels(this, resourceManager, resourceSink);
-                    } catch (Exception ex) {
-                        StoneZone.LOGGER.error("Failed to generate client resources for EntrySet: {} from module {}:", entrySet, this, ex);
-                        if (PlatHelper.isDev()) throw ex;
-                    }
-                }
-            })
-        );
     }
 
     public  <T extends RockType> void addEntries(BlockSetEntries<T> blockSet) {

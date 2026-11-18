@@ -1,12 +1,8 @@
 package net.mehvahdjukaar.stone_zone.modules.neoforge.stone_chest;
 
-import net.mehvahdjukaar.every_compat.api.ItemOnlyEntrySet;
-import net.mehvahdjukaar.every_compat.api.PaletteStrategies;
-import net.mehvahdjukaar.every_compat.api.PaletteStrategy;
-import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
+import net.mehvahdjukaar.every_compat.api.*;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
-import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
@@ -15,7 +11,6 @@ import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
 import net.mehvahdjukaar.stone_zone.common_classes.CompatChestBlock;
 import net.mehvahdjukaar.stone_zone.common_classes.CompatChestBlockEntity;
 import net.mehvahdjukaar.stone_zone.common_classes.CompatChestBlockRenderer;
-import net.mehvahdjukaar.stone_zone.common_classes.CompatChestItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
@@ -50,22 +45,21 @@ public class StoneChestModule extends StoneZoneModule {
 
         chests = StoneZoneEntrySet.of(StoneType.class, "","chest",
                         getModBlock("chest_andesite"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new CompatChestBlock(this::getTile, Utils.copyPropertySafe(stoneType.stone))
+                        (_, properties) -> new CompatChestBlock(this::getTile, properties)
                 )
-                .addTile(VariantChestBlockEntity::new)
+                .addTile(getModTile("chest_tile"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.GUARDED_BY_PIGLINS, Registries.BLOCK)
                 .addTag(Tags.Blocks.CHESTS, Registries.BLOCK)
                 .addTag(Tags.Items.CHESTS, Registries.ITEM)
                 .setTab(tab)
                 .defaultRecipe()
-                .addCustomItem((stoneType, block, properties) -> new CompatChestItem(block, properties))
                 .build();
         this.addEntry(chests);
 
         parts = ItemOnlyEntrySet.builder(StoneType.class, "", "part",
                         getModItem("part_andesite"), () -> VanillaStoneTypes.ANDESITE,
-                        stoneType -> new Item(new Item.Properties())
+                        (_, properties) -> new Item(properties)
                 )
                 .addTextureM(modRes("item/part_andesite"),
                         StoneZone.res("item/sc/part_stone_m"),
@@ -101,46 +95,61 @@ public class StoneChestModule extends StoneZoneModule {
         }
     }
 
-    // Registry
+    //      ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
+    //      │                                            CLIENT                                            │
+    //      └──────────────────────────────────────────────────────────────────────────────────────────────┘
+
     @Override
-    @OnlyIn(Dist.CLIENT)
-    public void registerBlockEntityRenderers(ClientHelper.BlockEntityRendererEvent event) {
-        super.registerBlockEntityRenderers(event);
-        CompatChestBlockRenderer.register(event, chests.getTile(CompatChestBlockEntity.class), shortenedId());
+    public CompatModuleClient<?> createClient() {
+        return new Client();
     }
 
-    @Override
-    // Textures
-    public void addDynamicClientResources(Consumer<ResourceGenTask> executor) {
-        super.addDynamicClientResources(executor);
+    private class Client extends SimpleModuleClient<StoneChestModule> {
 
-        executor.accept((manager, sink) ->
+        private Client() {
+            super(StoneChestModule.this);
+        }
 
-            chests.blocks.forEach((stoneType, block) -> {
+        // Registry
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public void registerBlockEntityRenderers(ClientHelper.BlockEntityRendererEvent event) {
+            CompatChestBlockRenderer.register(event, chests.getTile(CompatChestBlockEntity.class), shortenedId());
+        }
 
-                // SINGLE
-                generateChestTexture(sink, manager, shortenedId(), stoneType, block,
-                        modRes("entity/chest/andesite"),
-                        StoneZone.res("entity/sc/stone_m"),
-                        StoneZone.res("entity/sc/stone_o"),
-                        null
-                );
-                // LEFT
-                generateChestTexture(sink, manager, shortenedId(), stoneType, block,
-                        modRes("entity/chest/andesite_left"),
-                        StoneZone.res("entity/sc/stone_left_m"),
-                        StoneZone.res("entity/sc/stone_left_o"),
-                        null
-                );
-                // RIGHT
-                generateChestTexture(sink, manager, shortenedId(), stoneType, block,
-                        modRes("entity/chest/andesite_right"),
-                        StoneZone.res("entity/sc/stone_right_m"),
-                        StoneZone.res("entity/sc/stone_right_o"),
-                        null
-                );
+        @Override
+        // Textures
+        public void addDynamicClientResources(Consumer<ResourceGenTask> executor) {
+            super.addDynamicClientResources(executor);
 
-            })
-        );
+            executor.accept((manager, sink) ->
+
+                    chests.blocks.forEach((stoneType, block) -> {
+
+                        // SINGLE
+                        generateChestTexture(sink, manager, shortenedId(), stoneType,
+                                modRes("entity/chest/andesite"),
+                                StoneZone.res("entity/sc/stone_m"),
+                                StoneZone.res("entity/sc/stone_o"),
+                                null
+                        );
+                        // LEFT
+                        generateChestTexture(sink, manager, shortenedId(), stoneType,
+                                modRes("entity/chest/andesite_left"),
+                                StoneZone.res("entity/sc/stone_left_m"),
+                                StoneZone.res("entity/sc/stone_left_o"),
+                                null
+                        );
+                        // RIGHT
+                        generateChestTexture(sink, manager, shortenedId(), stoneType,
+                                modRes("entity/chest/andesite_right"),
+                                StoneZone.res("entity/sc/stone_right_m"),
+                                StoneZone.res("entity/sc/stone_right_o"),
+                                null
+                        );
+
+                    })
+            );
+        }
     }
 }

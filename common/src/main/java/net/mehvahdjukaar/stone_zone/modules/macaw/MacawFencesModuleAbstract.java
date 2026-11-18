@@ -47,6 +47,7 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .addRecipe(modRes("modern_stone_brick_wall_stonecutter"))
                 .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
@@ -58,13 +59,14 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                         this::newFenceGateBlock
                 )
                 .requiresChildren(BRICKS) //REASON: textures, recipes
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.UNSTABLE_BOTTOM_CENTER, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCE_GATES, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_brick_railing_gate_stonecutter"))
                 .build();
@@ -75,12 +77,13 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                         this::newFenceBlock
                 )
                 .requiresChildren(BRICKS) //REASON: textures, recipes
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(ItemTags.FENCES, Registries.ITEM)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .addRecipe(modRes("railing_stone_brick_wall_stonecutter"))
                 .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
@@ -99,6 +102,7 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(ItemTags.WALLS, Registries.ITEM)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
@@ -115,6 +119,7 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(ItemTags.FENCES, Registries.ITEM)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
                 .build();
@@ -125,13 +130,14 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                         this::newFenceGateBlock
                 )
                 .requiresChildren(POLISHED) //REASON: textures, recipes
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.UNSTABLE_BOTTOM_CENTER, Registries.BLOCK)
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCE_GATES, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .addRecipe(modRes("andesite_railing_gate_stonecutter"))
                 .build();
@@ -142,12 +148,13 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                         this::newFenceBlock
                 )
                 .requiresChildren(POLISHED) //REASON: textures, recipes
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .addTag(ItemTags.FENCES, Registries.ITEM)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .addRecipe(modRes("railing_andesite_wall_stonecutter"))
                 .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
@@ -163,6 +170,7 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(BlockTags.FENCES, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .addRecipe(modRes("modern_andesite_wall_stonecutter"))
                 .copyParentDrop() //REASON: ensure blocks's dropping when Diagonal Fences is installed
@@ -172,7 +180,7 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
 
     }
 
-    protected BlockBehaviour.Properties standardCopyProperties(StoneType stoneType) {
+    protected BlockBehaviour.Properties standardProperties(StoneType stoneType) {
         return Utils.copyPropertySafe(stoneType.bricksOrStone())
                 .mapColor(MapColor.STONE)
                 .sound(SoundType.STONE)
@@ -181,8 +189,8 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
                 .requiresCorrectToolForDrops();
     }
 
-    public abstract Block newFenceBlock(StoneType stoneType);
-    public abstract Block newFenceGateBlock(StoneType stoneType);
-    public abstract Block newFenceHitbox(StoneType stoneType);
+    public abstract Block newFenceBlock(StoneType stoneType, BlockBehaviour.Properties properties);
+    public abstract Block newFenceGateBlock(StoneType stoneType, BlockBehaviour.Properties properties);
+    public abstract Block newFenceHitbox(StoneType stoneType, BlockBehaviour.Properties properties);
 
 }

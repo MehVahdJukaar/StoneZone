@@ -3,7 +3,6 @@ package net.mehvahdjukaar.stone_zone.modules.lets_do;
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.misc.UtilityTag;
-import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
@@ -34,7 +33,7 @@ public class CandlelightModule extends StoneZoneModule {
 
         counter = StoneZoneEntrySet.of(StoneType.class, "counter",
                         getModBlock("sandstone_counter"), () -> VanillaStoneTypes.SANDSTONE,
-                        stoneType -> new LineConnectingBlock(Utils.copyPropertySafe(stoneType.stone)
+                        (_, properties) -> new LineConnectingBlock(properties
                                 .noOcclusion()
                         )
                 )
@@ -47,7 +46,7 @@ public class CandlelightModule extends StoneZoneModule {
 
         kitchen_sink = StoneZoneEntrySet.of(StoneType.class, "kitchen_sink",
                         getModBlock("sandstone_kitchen_sink"), () -> VanillaStoneTypes.SANDSTONE,
-                        stoneType -> new SinkBlock(Utils.copyPropertySafe(stoneType.stone)
+                        (_, properties) -> new SinkBlock(properties
                                 .noOcclusion()
                                 .pushReaction(PushReaction.IGNORE)
                         )
@@ -64,8 +63,8 @@ public class CandlelightModule extends StoneZoneModule {
 
         stove = StoneZoneEntrySet.of(StoneType.class, "stove",
                         getModBlock("sandstone_stove"), () -> VanillaStoneTypes.SANDSTONE,
-                        stoneType -> new StoveBlock(Utils.copyPropertySafe(stoneType.stone)
-                                .lightLevel(s -> 12)
+                        (_, properties) -> new StoveBlock(properties
+                                .lightLevel(_ -> 12)
                         )
                 )
                 .addTile(getModTile("stove_block"))

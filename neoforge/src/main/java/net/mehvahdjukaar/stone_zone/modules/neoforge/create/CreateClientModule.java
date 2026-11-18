@@ -1,25 +1,7 @@
 package net.mehvahdjukaar.stone_zone.modules.neoforge.create;
 
-import com.simibubi.create.CreateClient;
-import com.simibubi.create.content.decoration.MetalScaffoldingCTBehaviour;
-import com.simibubi.create.content.decoration.encasing.EncasedCTBehaviour;
-import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogCTBehaviour;
-import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedCogwheelBlock;
-import com.simibubi.create.content.kinetics.simpleRelays.encased.EncasedShaftBlock;
-import com.simibubi.create.foundation.block.connected.*;
-import net.createmod.catnip.data.Couple;
-import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.moonlight.api.util.Utils;
-import net.mehvahdjukaar.stone_zone.StoneZone;
-import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
-import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
-import net.minecraft.core.Direction;
-import net.minecraft.resources.Identifier;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-
-import static com.simibubi.create.foundation.block.connected.CTSpriteShifter.getCT;
 
 @SuppressWarnings("CommentedOutCode")
 @OnlyIn(Dist.CLIENT)
@@ -36,6 +18,7 @@ public class CreateClientModule {
 //        });
 //    }
 
+/*
     public static void registerCasingCTBehavior(StoneZoneModule module,
                                                 SimpleEntrySet<StoneType, Block> casing_entry,
                                                 SimpleEntrySet<StoneType, Block> encasedShaft_entry,
@@ -101,6 +84,7 @@ public class CreateClientModule {
     }
 */
 
+/*
     public static void registerScaffoldCTBehavior(StoneZoneModule module, SimpleEntrySet<StoneType, Block> scaffold) {
         scaffold.blocks.forEach((stoneType, block) -> {
             // Scaffold
@@ -150,7 +134,6 @@ public class CreateClientModule {
             registerCTBehviour(block, new RotatedPillarCTBehaviour(pillarShift, capShift));
         });
     }
-
 
     ///NOTE: texture filename with _connected is included
     private static CTSpriteShiftEntry omni(String blockTexture) {
@@ -204,4 +187,5 @@ public class CreateClientModule {
         CreateClient.MODEL_SWAPPER.getCustomBlockModels()
                 .register(Utils.getID(entry), model -> new CTModel(model, behavior));
     }
+*/
 }

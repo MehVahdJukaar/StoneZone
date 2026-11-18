@@ -97,9 +97,9 @@ dependencies {
     modCompileOnly("curse.maven:owo-lib-532610:8589921") // v0.13.1 | ???
 
     //+ OTHER MAVENS
-    modCompileOnly("dev.engine-room.flywheel:flywheel-fabric-1.21.1:${property("flywheel_fabric_version")}") // Create //!! 1.21.1
-    modCompileOnly("net.createmod.ponder:Ponder-Fabric-1.21.1:${property("ponder_fabric_version")}") // Create //!! 1.21.1
-    modCompileOnly("com.tterrag.registrate_fabric:Registrate:${property("registrate_fabric_version")}") // Create //!! 1.21.1
+//    modCompileOnly("dev.engine-room.flywheel:flywheel-fabric-1.21.1:${property("flywheel_fabric_version")}") // Create //!! 1.21.1
+//    modCompileOnly("net.createmod.ponder:Ponder-Fabric-1.21.1:${property("ponder_fabric_version")}") // Create //!! 1.21.1
+//    modCompileOnly("com.tterrag.registrate_fabric:Registrate:${property("registrate_fabric_version")}") // Create //!! 1.21.1
 
 //!! =================================================== IMPORTS ==================================================== \\
 
@@ -115,10 +115,10 @@ dependencies {
     modCompileOnly("curse.maven:macaws-stairs-1119394:7810438")
 
     //+ GENERAL
-    modCompileOnly("curse.maven:create-fabric-624165:5982726") // Do not use for RunTime //@ 1.20 - It's abandoned and won't be updated to 1.21.1
 //    modCompileOnly("curse.maven:create-deco-fabric-739872:5293979") //@ Create-Fabric is abandoned
 
     // OTHER MAVENS
+    modCompileOnly("maven.modrinth:create-fly:26.1.2-6.0.9-4")
     modCompileOnly("earth.terrarium.chipped:chipped-fabric-1.21.1:4.0.2") //INCLUDED: Athena, Resourceful-Lib //!! 1.21.1
 //    modCompileOnly("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}:slim") { isTransitive = false } // Registrate, Flywheel //!! maven is outdated & not available
 

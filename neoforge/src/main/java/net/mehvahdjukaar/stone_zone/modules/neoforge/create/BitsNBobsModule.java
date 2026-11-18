@@ -7,6 +7,5 @@ public class BitsNBobsModule extends BitsNBobsModuleAbstract {
 
     public BitsNBobsModule(String modId) {
         super(modId);
-
     }
 }

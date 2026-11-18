@@ -44,7 +44,7 @@ public class BlockusModule extends StoneZoneModule {
 
         herringbone_bricks = StoneZoneEntrySet.of(StoneType.class, "bricks", "herringbone",
                         getModBlock("herringbone_stone_bricks"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.bricksOrStone()))
+                        (stoneType, _) -> new Block(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
                 .requiresChildren(BRICKS) //REASON: recipes
                 .addTexture(modRes("block/herringbone_stone_bricks"), StonePaletteStrategies.BRICKS_STANDARD)
@@ -57,9 +57,9 @@ public class BlockusModule extends StoneZoneModule {
 
         smooth_stairs = StoneZoneEntrySet.of(StoneType.class, "stairs", "smooth",
                         getModBlock("smooth_stone_stairs"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new StairBlock(
+                        (stoneType, properties) -> new StairBlock(
                                 Objects.requireNonNull(stoneType.getBlockOfThis("smooth")).defaultBlockState(),
-                                Utils.copyPropertySafe(stoneType.stone)
+                                properties
                         )
                 )
                 .requiresChildren(SMOOTH) //REASON: textures, recipes
@@ -74,7 +74,8 @@ public class BlockusModule extends StoneZoneModule {
 
         brick_pillars = StoneZoneEntrySet.of(StoneType.class, "brick_pillar",
                         getModBlock("stone_brick_pillar"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
+                        (stoneType, _) ->
+                                new RotatedPillarBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
                 .requiresChildren(BRICKS) //REASON: recipes
                 .addTexture(modRes("block/stone_brick_pillar_top"), StonePaletteStrategies.BRICKS_STANDARD)
@@ -88,7 +89,8 @@ public class BlockusModule extends StoneZoneModule {
 
         circular_pavings = StoneZoneEntrySet.of(StoneType.class, "circular_paving",
                         getModBlock("stone_circular_paving"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new OrientableBlockBase(Utils.copyPropertySafe(stoneType.bricksOrStone()))
+                        (stoneType, _) ->
+                                new OrientableBlockBase(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
                 .requiresChildren(BRICKS) //REASON: recipes
                 .addTexture(modRes("block/stone_circular_paving"), StonePaletteStrategies.BRICKS_STANDARD)
@@ -101,7 +103,7 @@ public class BlockusModule extends StoneZoneModule {
 
         doors = StoneZoneEntrySet.of(StoneType.class, "door",
                         getModBlock("stone_door"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new DoorBlock(
+                        (stoneType, _) -> new DoorBlock(
                                 BlockSetType.STONE,
                                 BlockBehaviour.Properties.of()
                                         .mapColor(stoneType.bricksOrStone().defaultMapColor())
@@ -125,7 +127,8 @@ public class BlockusModule extends StoneZoneModule {
 
         tiles = StoneZoneEntrySet.of(StoneType.class, "tiles",
                         getModBlock("stone_tiles"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new Block(Utils.copyPropertySafe(stoneType.bricksOrStone()))
+                        (stoneType, _) ->
+                                new Block(Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
                 .requiresChildren(BRICKS) //REASON: recipes
                 .addTexture(modRes("block/stone_tiles"), StonePaletteStrategies.BRICKS_STANDARD)
@@ -139,7 +142,8 @@ public class BlockusModule extends StoneZoneModule {
 
         tile_slabs = StoneZoneEntrySet.of(StoneType.class, "tile_slab",
                         getModBlock("stone_tile_slab"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new SlabBlock(copyChildProperties(stoneType, "slab"))
+                        (stoneType, _) ->
+                                new SlabBlock(copyChildProperties(stoneType, SLAB))
                 )
                 .requiresFromMap(tiles.blocks) //REASON: textures, recipes
                 .requiresChildren(BRICKS) //REASON: recipes
@@ -156,8 +160,9 @@ public class BlockusModule extends StoneZoneModule {
 
         tile_stairs = StoneZoneEntrySet.of(StoneType.class, "tile_stairs",
                         getModBlock("stone_tile_stairs"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new StairBlock(tiles.blocks.get(stoneType).defaultBlockState(),
-                                copyChildProperties(stoneType, "stairs"))
+                        (stoneType, _) ->
+                                new StairBlock(tiles.blocks.get(stoneType).defaultBlockState(),
+                                copyChildProperties(stoneType, STAIRS))
                 )
                 .requiresFromMap(tiles.blocks) //REASON: textures, recipes
                 .requiresChildren(BRICKS) //REASON: recipes
@@ -174,7 +179,8 @@ public class BlockusModule extends StoneZoneModule {
 
         tile_walls = StoneZoneEntrySet.of(StoneType.class, "tile_wall",
                         getModBlock("stone_tile_wall"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new WallBlock(copyWallSafe("stone_tile_wall", stoneType))
+                        (stoneType, _) ->
+                                new WallBlock(copyWallSafe("stone_tile_wall", stoneType))
                 )
                 .requiresFromMap(tiles.blocks) //REASON: textures, recipes
                 .requiresChildren(BRICKS) //REASON: recipes
@@ -191,7 +197,7 @@ public class BlockusModule extends StoneZoneModule {
 
         trapdoors = StoneZoneEntrySet.of(StoneType.class, "trapdoor",
                         getModBlock("stone_trapdoor"), () -> VanillaStoneTypes.STONE,
-                        stoneType -> new TrapDoorBlock(
+                        (stoneType, _) -> new TrapDoorBlock(
                                 BlockSetType.STONE,
                                 BlockBehaviour.Properties.of()
                                         .mapColor(stoneType.bricksOrStone().defaultMapColor())
