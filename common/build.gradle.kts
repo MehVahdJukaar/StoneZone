@@ -90,7 +90,7 @@ dependencies {
     modCompileOnly("curse.maven:more-beautiful-torches-860325:8988924") // Monolib //!! MERGED
     modCompileOnly("curse.maven:rechiseled-558998:8875922") // v1.2.6 | Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
     modCompileOnly("curse.maven:refurbished-furniture-897116:7943178") // Framework
-    modCompileOnly("curse.maven:stone-chest-307052:8145831")
+    modCompileOnly("curse.maven:stone-chest-307052:8145831") // v1.0.0
     modCompileOnly("curse.maven:stoneworks-852663:7995178") // v26.1.0 | puzzles-lib
     modCompileOnly("curse.maven:twigs-496913:8191595") //!! 1.21.1
     modCompileOnly("curse.maven:waystones-245755:9406314") // Shogi

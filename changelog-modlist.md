@@ -34,6 +34,7 @@
 | More Beautiful Torches (860325)            |   🟩   |
 | MrCrayFish's Refurbished Furniture (897116) |   🟩   |
 | Rechiseled (558998)                         |   🟩   |
+| Stone Chest (307052)      |   🟩   |
 | Stoneworks (852663)                        |   🟩   |
 | Twigs (496913)                             |   ❔   |
 | Waystones (245755)                         |   🟩   |
@@ -45,7 +46,6 @@
 |-------------------|:------:|
 | Create (328085)           |   ❔   |
 | Quark (243121)            |   ❔   |
-| Stone Chest (307052)      |   🟩   |
 |                   |        |
 
 </td></tr> </table>

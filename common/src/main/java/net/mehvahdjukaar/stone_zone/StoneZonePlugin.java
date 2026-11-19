@@ -12,6 +12,7 @@ import net.mehvahdjukaar.stone_zone.modules.lets_do.CandlelightModule;
 import net.mehvahdjukaar.stone_zone.modules.more_beautiful_torches.MoreBeautifulTorches;
 import net.mehvahdjukaar.stone_zone.modules.mrcrayfish.RefurbishedFurnitureModule;
 import net.mehvahdjukaar.stone_zone.modules.rechiseled.RechiseledModule;
+import net.mehvahdjukaar.stone_zone.modules.stone_chest.StoneChestModule;
 import net.mehvahdjukaar.stone_zone.modules.stoneworks.StoneworksModule;
 import net.mehvahdjukaar.stone_zone.modules.twigs.TwigsModule;
 import net.mehvahdjukaar.stone_zone.modules.waystones.WaystonesModule;
@@ -41,6 +42,7 @@ public class StoneZonePlugin implements EveryCompatPlugin {
         event.addModule("more_beautiful_torches", () -> MoreBeautifulTorches.class);
         event.addModule("rechiseled", () -> RechiseledModule.class);
         event.addModule("refurbished_furniture", () -> RefurbishedFurnitureModule.class);
+        event.addModule("stonechest", () -> StoneChestModule.class);
         event.addModule("stoneworks", () -> StoneworksModule.class);
         event.addModule("twigs", () -> TwigsModule.class);
         event.addModule("waystones", () -> WaystonesModule.class);

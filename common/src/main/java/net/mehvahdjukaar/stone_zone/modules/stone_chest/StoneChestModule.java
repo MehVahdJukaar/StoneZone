@@ -1,6 +1,7 @@
-package net.mehvahdjukaar.stone_zone.modules.neoforge.stone_chest;
+package net.mehvahdjukaar.stone_zone.modules.stone_chest;
 
 import net.mehvahdjukaar.every_compat.api.*;
+import net.mehvahdjukaar.every_compat.misc.UtilityTag;
 import net.mehvahdjukaar.moonlight.api.platform.ClientHelper;
 import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceGenTask;
 import net.mehvahdjukaar.stone_zone.StoneZone;
@@ -23,7 +24,6 @@ import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.Tags;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -33,7 +33,7 @@ import static net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys.S
 import static net.mehvahdjukaar.stone_zone.common_classes.CompatChestTexture.generateChestTexture;
 
 
-///SUPPORT: v1.1.0+
+///SUPPORT: v1.0.0+
 public class StoneChestModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> chests;
@@ -50,8 +50,7 @@ public class StoneChestModule extends StoneZoneModule {
                 .addTile(getModTile("chest_tile"))
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(BlockTags.GUARDED_BY_PIGLINS, Registries.BLOCK)
-                .addTag(Tags.Blocks.CHESTS, Registries.BLOCK)
-                .addTag(Tags.Items.CHESTS, Registries.ITEM)
+                .addTag(UtilityTag.commonTag("chests"), Registries.BLOCK, Registries.ITEM)
                 .setTab(tab)
                 .defaultRecipe()
                 .build();

@@ -8,7 +8,6 @@ import net.mehvahdjukaar.stone_zone.modules.neoforge.create.CreateModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.macaws.*;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.quark.QuarkModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.quark.QuarkMudModule;
-import net.mehvahdjukaar.stone_zone.modules.neoforge.stone_chest.StoneChestModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.waystones.WaystonesCreateModule;
 
 @ECPlugin
@@ -31,7 +30,6 @@ public class StoneZoneForgePlugin extends StoneZonePlugin {
         // General
         event.addModule("create", () -> CreateModule.class);
         event.addModule("bits_n_bobs", () -> BitsNBobsModule.class);
-        event.addModule("stonechest", () -> StoneChestModule.class);
         event.addModules("quark", () -> QuarkModule.class, () -> QuarkMudModule.class);
         event.addModule("waystones", () -> WaystonesCreateModule.class);
 

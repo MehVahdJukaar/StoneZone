@@ -124,7 +124,6 @@ dependencies {
     //+ GENERAL
     modCompileOnly("curse.maven:create-bits-n-bobs-1398383:8886545") // Create, Azimuth-API, Strut-Your-Stuff //!! 1.21.1
     modCompileOnly("curse.maven:additional-lights-384991:9128435")
-    modCompileOnly("curse.maven:stone-chest-307052:8145831")
 
     //+ OTHER MAVENS
     modCompileOnly("com.simibubi.create:create-1.21.1:${property("create_version")}:slim") { isTransitive = false } // Registrate, Flywheel, Ponder
@@ -143,6 +142,7 @@ dependencies {
 //    modCompileOnly("curse.maven:more-beautiful-torches-860325:8988924") // Monolib //!! MERGED
     modCompileOnly("curse.maven:rechiseled-558998:8875922") // Fusion, supermartijn642s-[ Config-Lib, Core-Lib ]
     modCompileOnly("curse.maven:refurbished-furniture-897116:7943178") // Framework
+    modCompileOnly("curse.maven:stone-chest-307052:8145831")
 //    modCompileOnly("curse.maven:stoneworks-852663:7995178") // puzzles-lib
     modCompileOnly("curse.maven:twigs-496913:8191595") //!! 1.21.1
     modCompileOnly("curse.maven:waystones-245755:9406314") // Shogi
