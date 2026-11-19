@@ -29,7 +29,7 @@ public class HandcraftedModule extends StoneZoneModule {
 
         pillar_trim = StoneZoneEntrySet.of(StoneType.class, "pillar_trim",
                         getModBlock("stone_pillar_trim"), () -> VanillaStoneTypes.STONE,
-                        (_, properties) -> new PillarTrimBlock(false, properties)
+                        (_, properties) -> new PillarTrimBlock(false, properties.noOcclusion())
                 )
                 .addTexture(modRes("block/trim/pillar/stone_pillar_trim_normal"))
                 .addTexture(modRes("block/trim/pillar/stone_pillar_trim_thicc"))
@@ -43,7 +43,6 @@ public class HandcraftedModule extends StoneZoneModule {
                 .addTag(modRes("pillar_trims"), Registries.ITEM)
                 .addTag(modRes("trims"), Registries.ITEM)
                 .setTab(tab)
-                .withProperties((stoneType, properties) -> properties.noOcclusion())
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addCustomItem((_, block, properties) -> new BlockItem(block, properties))
@@ -52,7 +51,7 @@ public class HandcraftedModule extends StoneZoneModule {
 
         corner_trim = StoneZoneEntrySet.of(StoneType.class, "corner_trim",
                         getModBlock("stone_corner_trim"), () -> VanillaStoneTypes.STONE,
-                        (_, properties) -> new CornerTrimBlock(false, properties)
+                        (_, properties) -> new CornerTrimBlock(false, properties.noOcclusion())
                 )
                 .addTexture(modRes("block/trim/corner/stone_corner_trim_normal"))
                 .addTexture(modRes("block/trim/corner/stone_corner_trim_thicc"))
@@ -63,7 +62,6 @@ public class HandcraftedModule extends StoneZoneModule {
                 .addTag(modRes("corner_trims"), Registries.ITEM)
                 .addTag(modRes("trims"), Registries.ITEM)
                 .setTab(tab)
-                .withProperties((stoneType, properties) -> properties.noOcclusion())
                 .defaultRecipe()
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .addCustomItem((_, block, properties) -> new BlockItem(block, properties))

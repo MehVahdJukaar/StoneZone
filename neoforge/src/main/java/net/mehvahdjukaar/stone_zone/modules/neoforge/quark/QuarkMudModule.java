@@ -37,7 +37,7 @@ public class QuarkMudModule extends StoneZoneModule {
 
         brick_lattices = QuarkEntrySet.of(MudType.class, "brick_lattice", MoreMudBlocksModule.class,
                         getModBlock("mud_brick_lattice"), () -> VanillaMudTypes.MUD,
-                        mudType -> new MudBrickLatticeBlock(null, copyChildProperties(mudType, BRICKS))
+                        (mudType, _) -> new MudBrickLatticeBlock(null, copyChildProperties(mudType, BRICKS))
                 )
                 .requiresChildren(BRICKS) //REASON: recipes, palettes
                 .addTexture(modRes("block/mud_brick_lattice"), StonePaletteStrategies.BRICKS_STANDARD)
@@ -51,7 +51,7 @@ public class QuarkMudModule extends StoneZoneModule {
 
         carved_bricks = QuarkEntrySet.of(MudType.class, "bricks", "carved", MoreMudBlocksModule.class,
                         getModBlock("carved_mud_bricks"), () -> VanillaMudTypes.MUD,
-                        mudType -> {
+                        (mudType, _) -> {
                             String name = shortenedId() + "/" + mudType.getAppendableIdWith("carved", "bricks");
                             return new ZetaBlock(name, null, copyChildProperties(mudType, BRICKS));
                         }
@@ -68,7 +68,7 @@ public class QuarkMudModule extends StoneZoneModule {
 
         pillars = QuarkEntrySet.of(MudType.class, "pillar", MoreMudBlocksModule.class,
                         getModBlock("mud_pillar"), () -> VanillaMudTypes.MUD,
-                        mudType -> {
+                        (mudType, _) -> {
                             String name = shortenedId() + "/" + mudType.getAppendableIdWith("pillar");
                             return new ZetaPillarBlock(name, null, Utils.copyPropertySafe(mudType.mud));
                         }
