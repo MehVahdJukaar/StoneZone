@@ -9,8 +9,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class AllStonesItem extends Item {
 
-    public AllStonesItem() {
-        super(new Item.Properties());
+    public AllStonesItem(Properties properties) {
+        super(properties);
     }
 
     @Override
@@ -20,9 +20,4 @@ public class AllStonesItem extends Item {
 
     }
 
-//    @Override
-//    @ClientOnly
-//    public Supplier<ItemStackRenderer> getRendererFactory() {
-//        return StoneTypeCycleItemModel::new;
-//    }
 }

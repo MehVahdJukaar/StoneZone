@@ -1,5 +1,6 @@
 package net.mehvahdjukaar.stone_zone;
 
+import net.mehvahdjukaar.every_compat.api.CompatModule;
 import net.mehvahdjukaar.every_compat.configs.ECConfigs;
 import net.mehvahdjukaar.stone_zone.api.set.mud.MudType;
 import net.mehvahdjukaar.stone_zone.api.set.mud.MudTypeRegistry;
@@ -21,7 +22,7 @@ public class StoneZoneClient {
 
         if (modTooltip || blockTooltip && (tooltipFlag.isAdvanced() || !ECConfigs.TOOLTIPS_ADVANCED.get())) {
             Item item = stack.getItem();
-            var compatModule = StoneZone.getModuleOfItem(item);
+            var compatModule = CompatModule.getModuleOfItem(item);
             if (compatModule != null) {
                 if (blockTooltip) {
                     StoneType stoneType = StoneTypeRegistry.INSTANCE.getBlockTypeOf(item);
