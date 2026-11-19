@@ -15,8 +15,6 @@ import com.simibubi.create.foundation.ponder.CreatePonderPlugin;
 import com.simibubi.create.infrastructure.ponder.AllCreatePonderScenes;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import com.tterrag.registrate.util.entry.ItemProviderEntry;
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.scene.PonderStoryBoard;
 import net.createmod.ponder.foundation.PonderIndex;
@@ -36,7 +34,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.function.Supplier;
 
@@ -228,16 +225,16 @@ public class CreateModule extends CreateModuleAbstract {
                                     String schematicPath,
                                     PonderStoryBoard ponderStoryBoard) {
 
-            PonderSceneRegistrationHelper<ItemProviderEntry<?,?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
-
-            entrySet.blocks.values().forEach(block -> {
-
-                DeferredItem<Item> itemHolder = DeferredItem.createItem(Utils.getID(block));
-
-                ItemProviderEntry<Item, Item> itemEntry = new ItemProviderEntry<>(Registrate.create(StoneZone.MOD_ID), itemHolder);
-
-                HELPER.addStoryBoard(itemEntry, schematicPath, ponderStoryBoard);
-            });
+//            PonderSceneRegistrationHelper<ItemProviderEntry<?,?>> HELPER = helper.withKeyFunction(RegistryEntry::getId);
+//
+//            entrySet.blocks.values().forEach(block -> {
+//
+//                DeferredItem<Item> itemHolder = DeferredItem.createItem(Utils.getID(block));
+//
+//                ItemProviderEntry<Item, Item> itemEntry = new ItemProviderEntry<>(Registrate.create(StoneZone.MOD_ID), itemHolder);
+//
+//                HELPER.addStoryBoard(itemEntry, schematicPath, ponderStoryBoard);
+//            });
 
         }
 
