@@ -123,6 +123,7 @@ dependencies {
 //    modCompileOnly("com.simibubi.create:create-fabric-${minecraft_version}:${create_fabric_version}:slim") { isTransitive = false } // Registrate, Flywheel //!! maven is outdated & not available
 
     //+ MIRRORED FROM COMMON - Required because dependOn(common) compiles common sources with fabric classpath
+    modCompileOnly("curse.maven:additional-lights-384991:9128451") // v3.1.4
     modCompileOnly("curse.maven:better-archeology-835687:9099958") // v1.3.9 | Resourceful-Config, Architectury-API
     modCompileOnly("curse.maven:blockus-312289:9560390") // v2.16.9 | Terraformersmc's terraform-wood-api
     modCompileOnly("curse.maven:building-but-better-989479:5382599") //!! 1.21.1

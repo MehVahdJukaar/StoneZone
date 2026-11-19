@@ -2,6 +2,7 @@ package net.mehvahdjukaar.stone_zone;
 
 import net.mehvahdjukaar.every_compat.api.EveryCompatPlugin;
 import net.mehvahdjukaar.every_compat.api.PluginEvent;
+import net.mehvahdjukaar.stone_zone.modules.additional_lights.AdditionalLightsModule;
 import net.mehvahdjukaar.stone_zone.modules.better_archeology.BetterArcheologyModule;
 import net.mehvahdjukaar.stone_zone.modules.building_but_better.BuildingButBetterModule;
 import net.mehvahdjukaar.stone_zone.modules.chipped.ChippedModule;
@@ -15,6 +16,7 @@ import net.mehvahdjukaar.stone_zone.modules.stoneworks.StoneworksModule;
 import net.mehvahdjukaar.stone_zone.modules.twigs.TwigsModule;
 import net.mehvahdjukaar.stone_zone.modules.waystones.WaystonesModule;
 
+/// Common Plugin
 public class StoneZonePlugin implements EveryCompatPlugin {
 
     @Override
@@ -29,6 +31,7 @@ public class StoneZonePlugin implements EveryCompatPlugin {
 
 //!! =================================================== Add Modules ================================================ \\
 
+        event.addModule("additional_lights", () -> AdditionalLightsModule.class);
         event.addModule("bbb", () -> BuildingButBetterModule.class);
         event.addModule("betterarcheology", () -> BetterArcheologyModule.class);
         event.addModule("candlelight", () -> CandlelightModule.class); //!! [Let's Do]

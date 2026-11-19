@@ -1,3 +1,10 @@
+## LEGENDS:
+- 🟩 - AVAILABLE
+- 🟥 - NOT AVAILABLE
+- 🟡 - Built-in Module within the mod, not Every Compat's
+- ❔ - Don't know when it will be update to 26.1.2
+- 🔧 - Will be added later
+
 <h1><div style="text-align: center; margin-bottom: 10px; color: yellow">SUPPORTED MODLIST</div></h1>
 
 <table>
@@ -15,13 +22,14 @@
 
 | MODS (project_id)                              | STATUS |
 |------------------------------------|:------:|
+| Additional Lights (384991) |   🟩   |
 | Better Archeology (835687)                 |   🟩   |
 | Building But Better (989479)               |   ❔   |
 | Chipped (456956)                           |   ❔   |
 | Decorative Blocks Reborn (1327768)                 |   🟩   |
 | Handcrafted (538214)                       |   ❔   |
 | \[Let's Do\] Candlelight (1038117)          |   ❔   |
-| Macaw's Mods                       |   🟩   |
+| [Macaw's Mods](#macaws-mods)                       |   🟩   |
 | Marioverse (1096570)                                  |   🟡   |
 | More Beautiful Torches (860325)            |   🟩   |
 | MrCrayFish's Refurbished Furniture (897116) |   🟩   |
@@ -35,7 +43,6 @@
 
 | MODS (project_id)              | STATUS |
 |-------------------|:------:|
-| Additional Lights (384991) |   🟩   |
 | Create (328085)           |   ❔   |
 | Quark (243121)            |   ❔   |
 | Stone Chest (307052)      |   🟩   |
@@ -43,20 +50,16 @@
 
 </td></tr> </table>
 
-## LEGENDS:
-- 🟩 - AVAILABLE
-- 🟥 - NOT AVAILABLE
-- 🟡 - Built-in Module within the mod, not Every Compat's
-- 🟠 - Older version will only supported & Will be removed in the future (Use "Find" to search "LIMITED" via Changelog for details)
-- ❔ - Don't know when it will be update to 26.1.2
-- 🔧 - Will be added later
+<br>
+
+---
 
 <br>
 
-**Macaw's Mods:**
-- Bridges (351725)
-- Fences & Walls (453925)
-- Paths & Pavings (629153)
-- Roofs (352039)
-- Stairs (1119394)
-- Windows (363569)
+### **Macaw's Mods**
+  - Macaw's Bridges (351725)
+  - Macaw's Fences & Walls (453925)
+  - Macaw's Paths & Pavings (629153)
+  - Macaw's Roofs (352039)
+  - Macaw's Stairs (1119394)
+  - Macaw's Windows (363569)

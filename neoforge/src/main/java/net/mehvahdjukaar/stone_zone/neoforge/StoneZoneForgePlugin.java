@@ -3,7 +3,6 @@ package net.mehvahdjukaar.stone_zone.neoforge;
 import net.mehvahdjukaar.every_compat.api.ECPlugin;
 import net.mehvahdjukaar.every_compat.api.PluginEvent;
 import net.mehvahdjukaar.stone_zone.StoneZonePlugin;
-import net.mehvahdjukaar.stone_zone.modules.neoforge.additional_lights.AdditionalLightsModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.create.BitsNBobsModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.create.CreateModule;
 import net.mehvahdjukaar.stone_zone.modules.neoforge.macaws.*;
@@ -30,7 +29,6 @@ public class StoneZoneForgePlugin extends StoneZonePlugin {
         event.addModule("mcwpaths", () -> MacawPathsModule.class);
 
         // General
-        event.addModule("additional_lights", () -> AdditionalLightsModule.class);
         event.addModule("create", () -> CreateModule.class);
         event.addModule("bits_n_bobs", () -> BitsNBobsModule.class);
         event.addModule("stonechest", () -> StoneChestModule.class);

@@ -1,4 +1,4 @@
-package net.mehvahdjukaar.stone_zone.modules.neoforge.additional_lights;
+package net.mehvahdjukaar.stone_zone.modules.additional_lights;
 
 import com.mgen256.al.blocks.*;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 
-///SUPPORT: v2.1.10+
+///SUPPORT: v3.1.4+
 public class AdditionalLightsModule extends StoneZoneModule {
 
     public final SimpleEntrySet<StoneType, Block> al_lamp;
