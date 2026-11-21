@@ -1,6 +1,7 @@
 package net.mehvahdjukaar.stone_zone.api;
 
-import net.mehvahdjukaar.every_compat.modules.EveryCompatModule;
+import com.google.common.base.Suppliers;
+import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.moonlight.api.misc.Registrator;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.SZCreativeModeTab;
@@ -11,15 +12,21 @@ import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.common_classes.BlockSetEntries;
 import net.mehvahdjukaar.stone_zone.misc.HardcodedBlockType;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+
+import java.util.function.Supplier;
 
 
-public class StoneZoneModule extends EveryCompatModule {
+public class StoneZoneModule extends SimpleModule {
 
     public StoneZoneModule(String modId, String shortId) {
         super(modId, shortId, StoneZone.MOD_ID);
@@ -42,6 +49,52 @@ public class StoneZoneModule extends EveryCompatModule {
         addBlockTypeTag(StoneType.class, "caverns_and_chasms:sugilite", TagKey.create(Registries.BLOCK, Identifier.parse("caverns_and_chasms:static_note_blocks")));
         addBlockTypeTag(StoneType.class, "caverns_and_chasms:cassiterite", TagKey.create(Registries.BLOCK, Identifier.parse("caverns_and_chasms:deflects_projectiles")));
         addBlockTypeTag(StoneType.class, "caverns_and_chasms:cassiterite", TagKey.create(Registries.BLOCK, Identifier.parse("caverns_and_chasms:weaker_deflect_velocity")));
+    }
+
+    protected final <T extends Block> Supplier<T> getModBlock(String id, Class<T> blockClass) {
+        return memor(id, BuiltInRegistries.BLOCK);
+    }
+
+    protected final Supplier<CreativeModeTab> getModTab(String id) {
+        return memor(id, BuiltInRegistries.CREATIVE_MODE_TAB);
+    }
+
+    protected final Supplier<CreativeModeTab> getTab(Identifier id) {
+        return Suppliers.memoize(() -> BuiltInRegistries.CREATIVE_MODE_TAB.getValue(id));
+    }
+
+    protected final Supplier<CreativeModeTab> getTab(ResourceKey<CreativeModeTab> id) {
+        return Suppliers.memoize(() -> BuiltInRegistries.CREATIVE_MODE_TAB.getValue(id));
+    }
+
+    protected final Supplier<Block> getModBlock(String id) {
+        return getModBlock(id, Block.class);
+    }
+
+    protected final Supplier<Item> getModItem(String id) {
+        return memor(id, BuiltInRegistries.ITEM);
+    }
+
+    protected final <B extends BlockEntity> Supplier<BlockEntityType<B>> getModTile(String id, Class<B> tileEntityClass) {
+        return memor(id, BuiltInRegistries.BLOCK_ENTITY_TYPE);
+    }
+
+    protected final Supplier<BlockEntityType<BlockEntity>> getModTile(String id) {
+        return getModTile(id, BlockEntity.class);
+    }
+
+    @SuppressWarnings("unchecked")
+    private <T> Supplier<T> memor(String id, Registry<?> reg) {
+        return Suppliers.memoize(() -> {
+            try {
+                return (id.contains(":"))
+                        ? (T) reg.getOptional(Identifier.parse(id)).orElseThrow()
+                        : (T) reg.getOptional(modRes(id)).orElseThrow();
+            } catch (Throwable e) {
+                throw new IllegalStateException("Could not find \"" + id + "\" in " + reg + ". This likely means that the reigstry entry was renamed in the original mod and EC needs updating. " +
+                        "Is the mod, " + this.getModName().toUpperCase() + " up to date, if yes, then downgrade to the previous version & wait for an Every Compat update. Otherwise, update the mod to the latest version.");
+            }
+        });
     }
 
     @Override
