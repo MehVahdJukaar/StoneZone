@@ -12,6 +12,14 @@
 |                                                                                                                                   |
 
 ---
+## v2.11.23
+
+### CHANGES:
+- **Stone Zone** (C): Tweaked the models generation to fix the missing models files for **Macaw's Bridges**
+- **Arts & Crafts** (UDBT): Added color chalk variants as StoneType - [#223](https://github.com/MehVahdJukaar/StoneZone/issues/223)
+
+---
+
 ## v2.11.22
 
 ### FIXES:
