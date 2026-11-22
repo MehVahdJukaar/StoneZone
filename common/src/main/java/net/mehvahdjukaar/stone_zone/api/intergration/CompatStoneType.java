@@ -4,6 +4,8 @@ import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
 import net.mehvahdjukaar.stone_zone.api.set.mud.MudTypeRegistry;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneTypeRegistry;
 
+import java.util.List;
+
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 
 /// StoneType Detection detect a StoneType that doesn't met 3 requirements:
@@ -267,25 +269,29 @@ public class CompatStoneType {
 
         // Nature's Spirit - REASON: 2-Words
         stoneReg.addSimpleFinder("natures_spirit", "pink_sandstone");
-        stoneReg.addSimpleFinder("natures_spirit", "white_chalk");
-        stoneReg.addSimpleFinder("natures_spirit", "light_gray_chalk");
-        stoneReg.addSimpleFinder("natures_spirit", "gray_chalk");
-        stoneReg.addSimpleFinder("natures_spirit", "black_chalk");
-        stoneReg.addSimpleFinder("natures_spirit", "brown_chalk");
-        stoneReg.addSimpleFinder("natures_spirit", "red_chalk");
-        stoneReg.addSimpleFinder("natures_spirit", "orange_chalk");
-        stoneReg.addSimpleFinder("natures_spirit", "yellow_chalk");
-        stoneReg.addSimpleFinder("natures_spirit", "lime_chalk");
-        stoneReg.addSimpleFinder("natures_spirit", "green_chalk");
-        stoneReg.addSimpleFinder("natures_spirit", "cyan_chalk");
-        stoneReg.addSimpleFinder("natures_spirit", "light_blue_chalk");
-        stoneReg.addSimpleFinder("natures_spirit", "blue_chalk");
-        stoneReg.addSimpleFinder("natures_spirit", "purple_chalk");
-        stoneReg.addSimpleFinder("natures_spirit", "magenta_chalk");
-        stoneReg.addSimpleFinder("natures_spirit", "pink_chalk");
+
+        var ns_colors = List.of(
+                "white", "light_gray", "gray",
+                "black", "brown", "red",
+                "orange", "yellow", "lime",
+                "green", "cyan", "light_blue",
+                "blue", "purple", "magenta",
+                "pink"
+        );
+        for (String color : ns_colors) {
+            stoneReg.addSimpleFinder("natures_spirit", color + "_chalk");
+        }
 
         // Added by Nature's Spirit with Arts and Crafts Compatibility - REASON: 2-Words
         if (PlatHelper.isModLoaded("arts_and_crafts")) stoneReg.addSimpleFinder("natures_spirit", "bleached_chalk");
+
+        // Arts & Crafts - REASON: 2-Words
+        var aNc_colors = List.of(
+                "bleached", "white", "gray", "black", "brown", "red", "orange", "yellow", "lime", "green", "cyan", "blue", "purple", "magenta", "pink"
+        );
+        for (String color: aNc_colors) {
+            stoneReg.addSimpleFinder("arts_and_crafts", color + "_chalk");
+        }
 
         // Regions unexplored - REASON: Undetectable
         stoneReg.addSimpleFinder("regions_unexplored", "argillite");
