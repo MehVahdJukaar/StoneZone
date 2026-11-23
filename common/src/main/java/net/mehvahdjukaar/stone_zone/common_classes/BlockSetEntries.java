@@ -185,6 +185,7 @@ public class BlockSetEntries<BT extends RockType> {
 
         private final Class<T> typeClass;
 
+        private final String blockPath;
         private final String slabPath;
         private final String stairsPath;
         private final String wallPath;
@@ -234,6 +235,7 @@ public class BlockSetEntries<BT extends RockType> {
             this.typeClass = typeClass;
             this.baseType = baseType;
 
+            this.blockPath = blockPath;
             this.slabPath = slabPath;
             this.stairsPath = stairsPath;
             this.wallPath = wallPath;
@@ -255,20 +257,6 @@ public class BlockSetEntries<BT extends RockType> {
                     .setTab(tabSupplier)
                     .setRenderType(RenderLayer.CUTOUT_MIPPED);
 
-            // Add tags
-            if (addPickaxeTag) {
-                this.blockBuilder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK);
-            }
-            if (addAxeTag) {
-                this.blockBuilder.addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK);
-            }
-
-            // Add defaultRecipes using
-            if (includeDefaultRecipe) blockBuilder.defaultRecipe();
-
-            // Add Textures
-            if (includeBlockTexture) this.blockBuilder.addTexture(modRes("block/" + blockPath));
-            if (includeBlockTextureTop) this.blockBuilder.addTexture(modRes("block/" + blockPath + "_top"));
         }
 
         // ───────────────────────────────── Add Tags ──────────────────────────────────
@@ -283,7 +271,7 @@ public class BlockSetEntries<BT extends RockType> {
             return this;
         }
         public BlockSetBuilder<T> AxeTag() {
-            this.addPickaxeTag = true;
+            this.addAxeTag = true;
             return this;
         }
 
@@ -359,7 +347,25 @@ public class BlockSetEntries<BT extends RockType> {
         //      └──────────────────────────────────────────────────────────┘
         public BlockSetEntries<T> build() {
             /// ───────────────────────────────── Block ─────────────────────────────────
+
+            // Add tags
+            if (addPickaxeTag) {
+                this.blockBuilder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK);
+            }
+            if (addAxeTag) {
+                this.blockBuilder.addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK);
+            }
+
+            // Add defaultRecipes using
+            if (includeDefaultRecipe) blockBuilder.defaultRecipe();
+
+            // Add Textures
+            if (includeBlockTexture) this.blockBuilder.addTexture(modRes("block/" + blockPath));
+            if (includeBlockTextureTop) this.blockBuilder.addTexture(modRes("block/" + blockPath + "_top"));
+
             SimpleEntrySet<T, Block> block = blockBuilder.build();
+
+            // ─────────────────────────────────────────────────────────────────────────-
 
             StoneZoneEntrySet<T, Block> slab = null;
             StoneZoneEntrySet<T, Block> stairs = null;
