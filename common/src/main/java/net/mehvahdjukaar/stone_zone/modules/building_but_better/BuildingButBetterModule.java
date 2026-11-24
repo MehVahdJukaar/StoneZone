@@ -45,7 +45,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
 
         columns = StoneZoneEntrySet.of(StoneType.class, "column",
                         getModBlock("stone_column"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> new ColumnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
+                        (_, properties) -> new ColumnBlock(properties)
                 )
                 .addTexture(modRes("block/column/stone_lower"))
                 .addTexture(modRes("block/column/stone_upper"))
@@ -58,6 +58,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(modRes("stone_columns"), Registries.BLOCK)
                 .addTag(modRes("columns"), Registries.ITEM)
                 .setTab(tab)
+                .setProperties(stoneType -> Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 .defaultRecipe()
                 .addRecipe(modRes("stone_column_from_stonecutting"))
                 .setRenderType(RenderLayer.CUTOUT_MIPPED)
@@ -66,9 +67,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
 
         fences = StoneZoneEntrySet.of(StoneType.class, "fence",
                         getModBlock("stone_fence"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> new StoneFenceBlock(Utils.copyPropertySafe(stoneType.bricksOrStone())
-                                .noOcclusion()
-                        )
+                        (_, properties) -> new StoneFenceBlock(properties.noOcclusion())
                 )
                 .addTexture(modRes("block/fence/stone_fence"))
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
@@ -77,6 +76,7 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(modRes("stone_blocks"), Registries.BLOCK)
                 .addTag(modRes("stone_fences"), Registries.ITEM)
                 .setTab(tab)
+                .setProperties(stoneType -> Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 .defaultRecipe()
                 .addRecipe(modRes("stone_fence_from_stonecutting"))
                 .build();
@@ -84,9 +84,11 @@ public class BuildingButBetterModule extends StoneZoneModule {
 
         urns = StoneZoneEntrySet.of(StoneType.class, "urn",
                         getModBlock("stone_urn"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> new UrnBlock(Utils.copyPropertySafe(stoneType.bricksOrStone())
-                                .noOcclusion()
-                                .pushReaction(PushReaction.DESTROY))
+                        (_, properties) ->
+                                new UrnBlock(properties
+                                        .noOcclusion()
+                                        .pushReaction(PushReaction.DESTROY)
+                                )
                 )
                 //TEXTURES: stones
                 .addTexture(modRes("block/urn/stone"))
@@ -94,32 +96,34 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(modRes("stone_blocks"), Registries.BLOCK)
                 .addTag(modRes("urns"), Registries.BLOCK)
                 .setTab(tab)
+                .setRenderType(RenderLayer.CUTOUT)
+                .setProperties(stoneType -> Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 .defaultRecipe()
                 .addRecipe(modRes("stone_urn_from_stonecutting"))
-                .setRenderType(RenderLayer.CUTOUT)
                 .build();
         this.addEntry(urns);
 
         tiles = StoneZoneEntrySet.of(StoneType.class, "tiles",
                         getModBlock("stone_tiles"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> new Block(Utils.copyPropertySafe(stoneType.bricksOrStone()))
+                        (_, properties) -> new Block(properties)
                 )
                 .addTexture(modRes("block/stone_tiles"))
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_blocks"), Registries.BLOCK)
                 .addTag(Identifier.parse("domum_ornamentum:default"), Registries.BLOCK)
                 .setTab(tab)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .setProperties(stoneType -> Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 .defaultRecipe()
                 .addRecipe(modRes("stone_tiles_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_tiles_from_bricks_stonecutting"))
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(tiles);
 
         tile_stairs = StoneZoneEntrySet.of(StoneType.class, "tile_stairs",
                         getModBlock("stone_tile_stairs"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> new StairBlock(stoneType.bricksOrStone().defaultBlockState(),
-                                Utils.copyPropertySafe(stoneType.bricksOrStone()))
+                        (stoneType, properties) ->
+                                new StairBlock(stoneType.bricksOrStone().defaultBlockState(), properties)
                 )
                 .addCondition(s -> Objects.nonNull(tiles.blocks.get(s))) //REASON: recipes & textures
                 //TEXTURES: tiles (above)
@@ -127,17 +131,18 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(BlockTags.STAIRS, Registries.BLOCK)
                 .addTag(modRes("stone_blocks"), Registries.BLOCK)
                 .setTab(tab)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .setProperties(stoneType -> Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 .defaultRecipe()
                 .addRecipe(modRes("stone_tile_stairs_from_stonecutting"))
                 .addRecipe(modRes("stone_tile_stairs_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_tile_stairs_from_bricks_stonecutting"))
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(tile_stairs);
 
         tile_slabs = StoneZoneEntrySet.of(StoneType.class, "tile_slab",
                         getModBlock("stone_tile_slab"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> new SlabBlock(Utils.copyPropertySafe(stoneType.stone))
+                        (_, properties) -> new SlabBlock(properties)
                 )
                 .addCondition(s -> Objects.nonNull(tiles.blocks.get(s))) //REASON: recipes & textures
                 //TEXTURES: tiles (above)
@@ -145,17 +150,17 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(BlockTags.SLABS, Registries.BLOCK)
                 .addTag(modRes("stone_blocks"), Registries.BLOCK)
                 .setTab(tab)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_tile_slab_from_stonecutting"))
                 .addRecipe(modRes("stone_tile_slab_from_stone_stonecutting"))
                 .addRecipe(modRes("stone_tile_slab_from_bricks_stonecutting"))
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(tile_slabs);
 
         layers = StoneZoneEntrySet.of(StoneType.class, "layer",
                         getModBlock("stone_layer"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> new LayerBlock(Utils.copyPropertySafe(stoneType.stone))
+                        (_, properties) -> new LayerBlock(properties)
                 )
                 .requiresChildren(SLAB) //REASON: recipes
                 //TEXTURES: stones
@@ -165,15 +170,15 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(modRes("layers"), Registries.BLOCK)
                 .addTag(modRes("layers"), Registries.ITEM)
                 .setTab(tab)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .defaultRecipe()
                 .addRecipe(modRes("stone_layer_from_stonecutting"))
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(layers);
 
         brick_layers = StoneZoneEntrySet.of(StoneType.class, "brick_layer",
                         getModBlock("stone_brick_layer"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> new LayerBlock(Utils.copyPropertySafe(stoneType.bricksOrStone()))
+                        (_, properties) -> new LayerBlock(properties)
                 )
                 .requiresChildren("brick_slab", "bricks") //REASON: recipes & textures
                 //TEXTURES: brick_stones
@@ -183,30 +188,32 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(modRes("layers"), Registries.BLOCK)
                 .addTag(modRes("layers"), Registries.ITEM)
                 .setTab(tab)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .setProperties(stoneType -> Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 .defaultRecipe()
                 .addRecipe(modRes("stone_brick_layer_from_stonecutting"))
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(brick_layers);
 
         smooth_layers = StoneZoneEntrySet.of(StoneType.class, "layer", "smooth",
                         getModBlock("smooth_stone_layer"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> new LayerBlock(copyChildProperties(stoneType, SMOOTH))
+                        (_, properties) -> new LayerBlock(properties)
                 )
                 .requiresChildren("smooth_slab", "smooth") //REASON: recipes & textures
                 //TEXTURES: smooth_stones
                 .setTab(tab)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .setProperties(stoneType -> copyChildProperties(stoneType, SMOOTH))
                 .defaultRecipe()
                 .addRecipe(modRes("smooth_stone_layer_from_stonecutting"))
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(smooth_layers);
 
         mouldings = StoneZoneEntrySet.of(StoneType.class, "moulding",
                         getModBlock("stone_moulding"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> new MouldingBlock(
+                        (stoneType, properties) -> new MouldingBlock(
                                 stoneType.bricksOrStone().defaultBlockState(),
-                                Utils.copyPropertySafe(stoneType.bricksOrStone()).noOcclusion()
+                                properties.noOcclusion()
                         )
                 )
                 //TEXTURES: stones
@@ -216,16 +223,17 @@ public class BuildingButBetterModule extends StoneZoneModule {
                 .addTag(modRes("mouldings"), Registries.BLOCK)
                 .addTag(modRes("mouldings"), Registries.ITEM)
                 .setTab(tab)
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                .setProperties(stoneType -> Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 .defaultRecipe()
                 .addRecipe(modRes("stone_moulding_from_stonecutting"))
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
                 .build();
         this.addEntry(mouldings);
 
         //!! The ENUM via BlockBlock.Types is not useful but it has an interface, idk a way to solve it.
 //        blocks = StonezoneEntrySet.of(StoneType.class, "block",
 //                        getModBlock("stone_block"), StoneTypeRegistry::STONE_TYPE,
-//                        (stoneType, _) -> new BlockBlock(BlockBlock.Types.STONE, Utils.copyPropertySafe(stoneType.stone))
+//                        (stoneType, properties) -> new BlockBlock(BlockBlock.Types.STONE, properties)
 //                )
 //                .addTile(getModTile("block"))
 //                .addTexture(modRes("block/block/stone"))

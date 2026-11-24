@@ -27,8 +27,6 @@ public class StoneZone {
         BlockSetAPI.registerBlockSetDefinition(MudTypeRegistry.INSTANCE);
         CompatStoneType.init();
 
-        PlatHelper.addCommonSetup(CompatSpritesHelper::addHardcodedModel);
-
         // Add ModId to DynamicPack so the tags can be loaded into the world first time
         addModToDynamicPack("caverns_and_chasms");
         addModToDynamicPack("architects_palette");

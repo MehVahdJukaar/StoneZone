@@ -16,32 +16,32 @@ public class MacawRoofsModule extends MacawRoofsModuleAbstract {
 
     @Override
     public Block newBaseRoof(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new BaseRoof(stoneType.stone.defaultBlockState(), standardProperties(stoneType));
+        return new BaseRoof(stoneType.stone.defaultBlockState(), properties);
     }
 
     @Override
     public Block newRoofGlass(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new RoofGlass(standardProperties(stoneType));
+        return new RoofGlass(properties);
     }
 
     @Override
     public Block newRoofTopNew(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new RoofTopNew(standardProperties(stoneType));
+        return new RoofTopNew(properties);
     }
 
     @Override
     public Block newSteepRoof(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new SteepRoof(stoneType.stone.defaultBlockState(), standardProperties(stoneType));
+        return new SteepRoof(stoneType.stone.defaultBlockState(), properties);
     }
 
     @Override
     public Block newLower(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new Lower(stoneType.stone.defaultBlockState(), standardProperties(stoneType));
+        return new Lower(stoneType.stone.defaultBlockState(), properties);
     }
 
     @Override
     public Block newSteep(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new Steep(stoneType.stone.defaultBlockState(), standardProperties(stoneType));
+        return new Steep(stoneType.stone.defaultBlockState(), properties);
     }
 
 }

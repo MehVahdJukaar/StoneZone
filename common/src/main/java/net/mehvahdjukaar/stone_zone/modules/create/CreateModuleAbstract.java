@@ -84,17 +84,18 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
         Supplier<CreativeModeTab> palettesTab = getModTab("palettes");
 
         /// CUT
-        cutSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
-                        "cut_andesite", stoneType -> Utils.copyPropertySafe(stoneType.stone),
-                        "cut_andesite_slab", stoneType -> Utils.copyPropertySafe(stoneType.stone),
-                        "cut_andesite_stairs", stoneType -> Utils.copyPropertySafe(stoneType.stone),
-                        "cut_andesite_wall", stoneType -> Utils.copyPropertySafe(stoneType.stone),
+        cutSet = BlockSetEntries.of4Blocks(StoneType.class,this, VanillaStoneTypes.ANDESITE,
+                        "cut_andesite",
+                        "cut_andesite_slab",
+                        "cut_andesite_stairs",
+                        "cut_andesite_wall",
                         palettesTab
                 )
                 .block(builder -> builder
                         .addTexture(modRes("block/palettes/stone_types/cut/andesite_cut"))
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
+                        // copyProperties: stoneType.stone
                 )
                 .slab(builder -> builder
                         //TEXTURES: cuts (above), polished_cut_slabs' andesite_cut_slab (below)
@@ -102,64 +103,72 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         .defaultRecipe()
                         .addRecipe(modRes("cut_andesite_slab_recycling")) //Crafts cut_andesite
+                        // copyProperties: stoneType.stone
                 )
                 .stairs(builder -> builder
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                         .defaultRecipe()
+                        // copyProperties: stoneType.stone
                 )
                 .wall(builder -> builder
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                         .defaultRecipe()
+                        // copyProperties: stoneType.stone
                 )
                 .build();
         this.addEntries(cutSet);
 
         /// CUT_BRICKS
-        cutBricksSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
-                        "cut_andesite_bricks", stoneType -> Utils.copyPropertySafe(stoneType.bricksOrStone()),
-                        "cut_andesite_brick_slab", stoneType -> copyChildProperties(stoneType, BRICK_SLAB),
-                        "cut_andesite_brick_stairs", stoneType -> copyChildProperties(stoneType, BRICK_STAIRS),
-                        "cut_andesite_brick_wall", stoneType -> copyChildProperties(stoneType, BRICK_WALL),
+        cutBricksSet = BlockSetEntries.of4Blocks(StoneType.class,this, VanillaStoneTypes.ANDESITE,
+                        "cut_andesite_bricks",
+                        "cut_andesite_brick_slab",
+                        "cut_andesite_brick_stairs",
+                        "cut_andesite_brick_wall",
                         palettesTab
                 )
                 .block(builder -> builder
                         .addTexture(modRes("block/palettes/stone_types/brick/andesite_cut_brick"))
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
+                        .setProperties(stoneType -> Utils.copyPropertySafe(stoneType.bricksOrStone()))
                 )
                 .slab(builder -> builder
                         .addTexture(modRes("block/palettes/stone_types/slab/andesite_cut_slab"))
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         .defaultRecipe()
                         .addRecipe(modRes("cut_andesite_brick_slab_recycling")) //Crafts cut_andesite_bricks
+                        .setProperties(stoneType -> copyChildProperties(stoneType, BRICK_SLAB))
                 )
                 .stairs(builder -> builder
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                         .defaultRecipe()
+                        .setProperties(stoneType -> copyChildProperties(stoneType, BRICK_STAIRS))
                 )
                 .wall(builder -> builder
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                         .defaultRecipe()
+                        .setProperties(stoneType -> copyChildProperties(stoneType, BRICK_WALL))
                 )
                 .build();
         this.addEntries(cutBricksSet);
 
         /// POLISHED_CUT
-        polishedCutSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
-                        "polished_cut_andesite", stoneType -> copyChildProperties(stoneType, POLISHED),
-                        "polished_cut_andesite_slab", stoneType -> copyChildProperties(stoneType, POLISHED_SLAB),
-                        "polished_cut_andesite_stairs", stoneType -> copyChildProperties(stoneType, POLISHED_STAIRS),
-                        "polished_cut_andesite_wall", stoneType -> copyChildProperties(stoneType, POLISHED_WALL),
+        polishedCutSet = BlockSetEntries.of4Blocks(StoneType.class,this, VanillaStoneTypes.ANDESITE,
+                        "polished_cut_andesite",
+                        "polished_cut_andesite_slab",
+                        "polished_cut_andesite_stairs",
+                        "polished_cut_andesite_wall",
                         palettesTab
                 )
                 .block(builder -> builder
                         .addTexture(modRes("block/palettes/stone_types/polished/andesite_cut_polished"))
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
+                        .setProperties(stoneType -> copyChildProperties(stoneType, POLISHED))
                 )
                 .slab(builder -> builder
                         .addTexture(modRes("block/palettes/stone_types/slab/andesite_cut_slab")) // Used by CUT_SLAB
@@ -167,48 +176,55 @@ public abstract class CreateModuleAbstract extends StoneZoneModule {
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         .defaultRecipe()
                         .addRecipe(modRes("polished_cut_andesite_slab_recycling")) //Crafts polished_cut_andesite
+                        .setProperties(stoneType -> copyChildProperties(stoneType, POLISHED_SLAB))
                 )
                 .stairs(builder -> builder
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                         .defaultRecipe()
+                        .setProperties(stoneType -> copyChildProperties(stoneType, POLISHED_STAIRS))
                 )
                 .wall(builder -> builder
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                         .defaultRecipe()
+                        .setProperties(stoneType -> copyChildProperties(stoneType, POLISHED_WALL))
                 )
                 .build();
         this.addEntries(polishedCutSet);
 
         /// SMALL_BRICKS
-        smallBricksSet = BlockSetEntries.of4BlocksProperty(StoneType.class,this, VanillaStoneTypes.ANDESITE,
-                        "small_andesite_bricks", stoneType -> copyChildProperties(stoneType, BRICKS),
-                        "small_andesite_brick_slab", stoneType -> copyChildProperties(stoneType, BRICK_SLAB),
-                        "small_andesite_brick_stairs", stoneType -> copyChildProperties(stoneType, BRICK_STAIRS),
-                        "small_andesite_brick_wall", stoneType -> copyChildProperties(stoneType, BRICK_WALL),
+        smallBricksSet = BlockSetEntries.of4Blocks(StoneType.class,this, VanillaStoneTypes.ANDESITE,
+                        "small_andesite_bricks",
+                        "small_andesite_brick_slab",
+                        "small_andesite_brick_stairs",
+                        "small_andesite_brick_wall",
                         palettesTab
                 )
                 .block(builder -> builder
                         .addTexture(modRes("block/palettes/stone_types/small_brick/andesite_cut_small_brick"))
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
+                        .setProperties(stoneType -> copyChildProperties(stoneType, BRICKS))
                 )
                 .slab(builder -> builder
                         //TEXTURES: cut_slab (above)
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         .defaultRecipe()
                         .addRecipe(modRes("small_andesite_brick_slab_recycling")) //Crafts small_andesite_bricks
+                        .setProperties(stoneType -> copyChildProperties(stoneType, BRICK_SLAB))
                 )
                 .stairs(builder -> builder
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                         .defaultRecipe()
+                        .setProperties(stoneType -> copyChildProperties(stoneType, BRICK_STAIRS))
                 )
                 .wall(builder -> builder
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                         .defaultRecipe()
+                        .setProperties(stoneType -> copyChildProperties(stoneType, BRICK_WALL))
                 )
                 .build();
         this.addEntries(smallBricksSet);

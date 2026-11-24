@@ -2,6 +2,8 @@ package net.mehvahdjukaar.stone_zone.modules.macaw;
 
 import net.mehvahdjukaar.every_compat.api.RenderLayer;
 import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
+import net.mehvahdjukaar.moonlight.api.platform.PlatHelper;
+import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneEntrySet;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
@@ -26,13 +28,15 @@ public abstract class MacawWindowsModuleAbstract extends StoneZoneModule {
     public final SimpleEntrySet<StoneType, Block> windows;
     public final SimpleEntrySet<StoneType, Block> window2s;
     public final SimpleEntrySet<StoneType, Block> four_windows;
+    public final SimpleEntrySet<StoneType, Block> pane_windows;
     public final SimpleEntrySet<StoneType, Block> brick_gothics;
     public final SimpleEntrySet<StoneType, Block> brick_arrow_slits;
-    public final SimpleEntrySet<StoneType, Block> pane_windows;
 
     public MacawWindowsModuleAbstract(String modId) {
         super(modId, "mcw");
-        Supplier<CreativeModeTab> tab = getModTab(modId);
+        Supplier<CreativeModeTab> tab = (PlatHelper.getPlatform().isFabric())
+                ? getModTab("windows")
+                : getModTab(modId);
 
         windows = StoneZoneEntrySet.of(StoneType.class, "window",
                         getModBlock("stone_window"), () -> VanillaStoneTypes.STONE,
@@ -44,6 +48,7 @@ public abstract class MacawWindowsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(modRes("windows"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardWindowsProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(windows);
@@ -58,6 +63,7 @@ public abstract class MacawWindowsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(modRes("windows_two"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardWindowsProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(window2s);
@@ -72,9 +78,24 @@ public abstract class MacawWindowsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(modRes("windows_four"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardWindowsProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(four_windows);
+
+        pane_windows = StoneZoneEntrySet.of(StoneType.class, "pane_window",
+                        getModBlock("stone_pane_window"), () -> VanillaStoneTypes.STONE,
+                        this::newWindow
+                )
+                .setRenderType(RenderLayer.CUTOUT_MIPPED)
+                //TEXTURES: stone
+                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .addTag(BlockTags.WALLS, Registries.BLOCK)
+                .setTab(tab)
+                .setProperties(this::standardWindowsProperties)
+                .defaultRecipe()
+                .build();
+        this.addEntry(pane_windows);
 
         brick_gothics = StoneZoneEntrySet.of(StoneType.class, "brick_gothic",
                         getModBlock("stone_brick_gothic"), () -> VanillaStoneTypes.STONE,
@@ -86,6 +107,7 @@ public abstract class MacawWindowsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(modRes("gothic"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardBricksProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(brick_gothics);
@@ -102,36 +124,32 @@ public abstract class MacawWindowsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.WALLS, Registries.BLOCK)
                 .addTag(modRes("arrow_slit"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardBricksProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(brick_arrow_slits);
 
-        pane_windows = StoneZoneEntrySet.of(StoneType.class, "pane_window",
-                        getModBlock("stone_pane_window"), () -> VanillaStoneTypes.STONE,
-                        this::newWindow
-                )
-                .setRenderType(RenderLayer.CUTOUT_MIPPED)
-                //TEXTURES: stone
-                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                .addTag(BlockTags.WALLS, Registries.BLOCK)
-                .setTab(tab)
-                .defaultRecipe()
-                .build();
-        this.addEntry(pane_windows);
-
     }
 
+    public abstract Block newWindow(StoneType stoneType, BlockBehaviour.Properties properties);
     public abstract Block newConnectedWindow(StoneType stoneType, BlockBehaviour.Properties properties);
     public abstract Block newWindowBarred(StoneType stoneType, BlockBehaviour.Properties properties);
     public abstract Block newGothicWindow(StoneType stoneType, BlockBehaviour.Properties properties);
     public abstract Block newArrowSill(StoneType stoneType, BlockBehaviour.Properties properties);
-    public abstract Block newWindow(StoneType stoneType, BlockBehaviour.Properties properties);
 
-    public BlockBehaviour.Properties standardProperties(BlockBehaviour.Properties properties, float time, float resistence) {
-        return properties
+    public BlockBehaviour.Properties standardWindowsProperties(StoneType stoneType) {
+        return Utils.copyPropertySafe(stoneType.stone)
                 .mapColor(MapColor.COLOR_GRAY)
                 .sound(SoundType.STONE)
-                .strength(time, resistence)
+                .strength(0.6F, 1.2F)
+                .requiresCorrectToolForDrops();
+    }
+
+    public BlockBehaviour.Properties standardBricksProperties(StoneType stoneType) {
+        return Utils.copyPropertySafe(stoneType.bricksOrStone())
+                .mapColor(MapColor.COLOR_GRAY)
+                .sound(SoundType.STONE)
+                .strength(0.5F, 2.0F)
                 .requiresCorrectToolForDrops();
     }
 }

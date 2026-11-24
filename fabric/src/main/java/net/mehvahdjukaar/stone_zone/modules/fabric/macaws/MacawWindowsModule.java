@@ -15,29 +15,28 @@ public class MacawWindowsModule extends MacawWindowsModuleAbstract {
     }
 
     @Override
+    public Block newWindow(StoneType stoneType, BlockBehaviour.Properties properties) {
+        return new Window(properties);
+    }
+
+    @Override
     public Block newConnectedWindow(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new ConnectedWindow(standardProperties(properties, 0.6F, 1.2F)
-        );
+        return new ConnectedWindow(properties);
     }
 
     @Override
     public Block newWindowBarred(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new WindowBarred(standardProperties(properties, 0.6F, 1.2F));
+        return new WindowBarred(properties);
     }
 
     @Override
     public Block newGothicWindow(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new GothicWindow(standardProperties(properties, 0.5F, 2.0F));
+        return new GothicWindow(properties);
     }
 
     @Override
     public Block newArrowSill(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new ArrowSill(standardProperties(properties, 0.5F, 2.0F));
-    }
-
-    @Override
-    public Block newWindow(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new Window(standardProperties(properties, 0.6F, 1.2F));
+        return new ArrowSill(properties);
     }
 
 }

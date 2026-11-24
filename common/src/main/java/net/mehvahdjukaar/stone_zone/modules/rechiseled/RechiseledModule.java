@@ -541,10 +541,10 @@ public class RechiseledModule extends StoneZoneModule {
 
             return BlockSetEntries.of3BlocksFactory(module, StoneType.class, baseTypeId,
                             getBlockPath, blockFactory,
-                            getSlabPath, (type, _) -> new RechiseledSlabBlock(false, Utils.copyPropertySafe(type.stone)),
-                            getStairsPath, (type, _) ->
+                            getSlabPath, (type, properties) -> new RechiseledSlabBlock(false, properties),
+                            getStairsPath, (type, properties) ->
                                     new RechiseledStairBlock(false, getParentBlockstate(type, module.getModId(), childKeyPath),
-                                            Utils.copyPropertySafe(type.stone)
+                                            properties
                                     ),
                             tabSupplier
                     )
@@ -581,7 +581,7 @@ public class RechiseledModule extends StoneZoneModule {
                 Supplier<CreativeModeTab> tabSupplier) {
 
             return basicFactory(module, baseTypeId,
-                    getBlockPath, (type, _) -> new RechiseledBlock(false, Utils.copyPropertySafe(type.stone)),
+                    getBlockPath, (_, properties) -> new RechiseledBlock(false, properties),
                     "", "",
                     getSlabPath,
                     getStairsPath,
@@ -604,11 +604,11 @@ public class RechiseledModule extends StoneZoneModule {
             String childKeyPath = getChildKeyPath(getBlockPath, baseTypeId);
 
             return BlockSetEntries.of3BlocksFactory(module, StoneType.class,  baseTypeId,
-                            getBlockPath, (type, _) -> new RechiseledBlock(true, Utils.copyPropertySafe(type.stone)),
-                            getSlabPath, (type, _) -> new RechiseledSlabBlock(true, Utils.copyPropertySafe(type.stone)),
-                            getStairsPath, (type, _) ->
+                            getBlockPath, (_, properties) -> new RechiseledBlock(true, properties),
+                            getSlabPath, (_, properties) -> new RechiseledSlabBlock(true, properties),
+                            getStairsPath, (type, properties) ->
                                     new RechiseledStairBlock(true, getParentBlockstate(type, module.getModId(), childKeyPath),
-                                            Utils.copyPropertySafe(type.stone)
+                                            properties
                                     ),
                             tabSupplier
                     )
@@ -643,7 +643,7 @@ public class RechiseledModule extends StoneZoneModule {
                 Supplier<CreativeModeTab> tabSupplier) {
 
             return basicFactory(module, baseTypeId,
-                    getBlockPath, (type, _) -> new RechiseledPillarBlock(false, Utils.copyPropertySafe(type.stone)),
+                    getBlockPath, (_, properties) -> new RechiseledPillarBlock(false, properties),
                     side, end,
                     getSlabPath,
                     getStairsPath,

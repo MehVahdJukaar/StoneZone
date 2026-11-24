@@ -28,7 +28,7 @@ import static net.mehvahdjukaar.every_compat.api.PaletteStrategies.registerCache
  * There are 2 BlockTypes that StoneZone can detect: StoneType, MudType
  * You could name the class "StoneModule" for supporting StoneType Blocks and "WoodGoodModule" for WoodType &amp; LeavesType
 **/
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "DanglingJavadoc"})
 public class ExampleModule extends StoneZoneModule {
 /// Make sure it's StoneZoneModule, not SimpleModule
 
@@ -48,16 +48,25 @@ public class ExampleModule extends StoneZoneModule {
         /// NOTE: it's using StoneZoneEntrySet
         sampleBlock_2 = StoneZoneEntrySet.of(StoneType.class,"suffix", "prefix",
                         getModBlock("stone_table"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, properties) -> new Block(Utils.copyPropertySafe(stoneType.stone))
+                        (stoneType, properties) -> new Block(properties)
                 )
+                //NOTE: properties by default is using Utils.copyPropertySafe(mainChild) where mainChild is the stoneType.stone
+                // if you want to change the mainBlock to different block.
+
                 .build();
         this.addEntry(sampleBlock_2);
 
         /// NOTE: it's using StoneZoneEntrySet
         sampleBlock = StoneZoneEntrySet.of(StoneType.class,"table",
                         getModBlock("stone_table"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, properties) -> new Block(Utils.copyPropertySafe(stoneType.stone))
+                        (stoneType, properties) -> new Block(properties)
                 )
+                // This change the mainChild to Bricks' properties to be copied. It can be extended with other properties
+                .setProperties(stoneType -> Utils.copyPropertySafe(stoneType.bricksOrStone())
+                        .strength(1.0F, 3.0F)
+                        .sound(stoneType.getSound())
+                )
+
                 ///OPTIONAL: Check if a StoneType has the children required, then block will be generated
                 .requiresChildren(VanillaRockChildKeys.SLAB) //REASON: can be for recipes or textures
                 .requiresFromMap(sampleBlock_2.blocks) // If your block required another block for crafting or texturing
@@ -101,7 +110,7 @@ public class ExampleModule extends StoneZoneModule {
 
         sampleItem = ItemOnlyEntrySet.builder(StoneType.class,"table",
                         getModItem("stone_table"), ()-> VanillaStoneTypes.STONE,
-                        (stoneType, properties) -> new Item(new Item.Properties())
+                        (stoneType, properties) -> new Item(properties)
                 )
                 .addTexture(modRes("item/itemTexture"))
                 .addTag(Identifier.parse("twigs:tables"), Registries.ITEM)

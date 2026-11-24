@@ -8,7 +8,7 @@ public class ResourcesUtils {
 
     @SuppressWarnings("DataFlowIssue")
     public static <T extends BlockType> String getChildModelId(String childkey, T stoneType, Identifier blockId) {
-        if (CompatSpritesHelper.modelID.containsKey(blockId)) return CompatSpritesHelper.modelID.get(blockId);
+        if (CompatSpritesHelper.CUSTOM_MODEL_ID.containsKey(blockId)) return CompatSpritesHelper.CUSTOM_MODEL_ID.get(blockId);
 
         return Utils.getID(stoneType.getBlockOfThis(childkey)).withPrefix("block/").toString();
     }

@@ -152,13 +152,16 @@ dependencies {
 
 //!! ================================================= FOR TESTING ================================================== \\
 
+    // ==== DEPENDENCIES ====
+    modRuntimeOnly("maven.modrinth:lithostitched:1.8.1-neoforge-26.1") // Nature's-Spirit
+
     // STONETYPE ONLY
 //    modRuntimeOnly("curse.maven:alexs-caves-924854:5848216") // Citadel //!! 1.21.1
 //    modRuntimeOnly("curse.maven:alexs-caves-unofficial-port-1420348:7981977") // Citadel //!! 1.21.1
 //    modRuntimeOnly("curse.maven:strata-forge-edition-387296:4989643") //!! 1.21.1
 //    modRuntimeOnly("curse.maven:spelunkery-790530:5727135") // Moonlight-Lib //!! 1.21.1
 //    modRuntimeOnly("curse.maven:tinkers-construct-74072:6041763") // Mantle //!! 1.21.1
-    modRuntimeOnly("curse.maven:thaumon-926511:5492714") //!! 1.21.1
+//    modRuntimeOnly("curse.maven:thaumon-926511:5492714") //!! 1.21.1
 //    modRuntimeOnly("curse.maven:ars-nouveau-401955:6954892") // Curios-API, GeckoLib //!! 1.21.1
 //    modRuntimeOnly("curse.maven:gaia-dimension-302529:8918019")
 //    modRuntimeOnly("curse.maven:what-is-stone-colorful-caves-853161:5175855") //!! 1.21.1
@@ -166,9 +169,10 @@ dependencies {
 //    modRuntimeOnly("curse.maven:the-outer-end-430404:5812948") // Blueprint //!! 1.21.1
 //    modRuntimeOnly("curse.maven:caverns-and-chasms-438005:6040957") // Blueprint //!! 1.21.1
 //    modRuntimeOnly("curse.maven:vanillabackport-417430:8229724") // Platform //!! 1.21.1
+    modRuntimeOnly("maven.modrinth:natures-spirit:2.3.0-26.1.2-neoforge") // Lithostitched
 
     // MUDTYPE ONLY
-    modRuntimeOnly("curse.maven:deeperdarker-659011:5908863") //!! 1.21.1
+//    modRuntimeOnly("curse.maven:deeperdarker-659011:5908863") //!! 1.21.1
 //    modRuntimeOnly("curse.maven:oh-the-biomes-weve-gone-1070751:6808771") // CorgiLib, GeckoLib, Oh-The-Trees-You'll-Grow, Terrablender //!! 1.21.1
 
     // Oh-The_Biomes-We've-Gone's Dependency

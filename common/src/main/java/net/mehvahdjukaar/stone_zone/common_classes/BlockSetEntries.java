@@ -21,7 +21,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -101,45 +100,54 @@ public class BlockSetEntries<BT extends RockType> {
         );
     }
 
-    public static <T extends RockType> BlockSetBuilder<T> of4BlocksProperty(
+    /**
+     * The first 4 factories by default are: Block, SlabBlock, StairBlock, and WallBlock
+     * <p style="color: yellow;">BlockBehaviour.Properties by default is using Utils.copyPropertySafe(mainChild)</p>
+     * @param getBlockPath BlockId's path for Block
+     * @param getSlabPath BlockId's path for Slab
+     * @param getStairsPath BlockId's path for Stairs
+     * @param getWallPath BlockId's path for Wall
+     */
+    public static <T extends RockType> BlockSetBuilder<T> of4Blocks(
             Class<T> typeClass, StoneZoneModule module, T baseTypeId,
-            String getBlockPath, Function<T, BlockBehaviour.Properties> blockProperty,
-            String getSlabPath, Function<T, BlockBehaviour.Properties> slabOrExtraProperty,
-            String getStairsPath, Function<T, BlockBehaviour.Properties> stairsProperty,
-            String getWallPath, Function<T, BlockBehaviour.Properties> wallProperty,
+            String getBlockPath,
+            String getSlabPath,
+            String getStairsPath,
+            String getWallPath,
             Supplier<CreativeModeTab> tabSupplier)
     {
         return of4BlocksFactory(module, typeClass, baseTypeId,
-                getBlockPath, (type, _) -> new Block(blockProperty.apply(type)),
-                getSlabPath, (type, _) -> new SlabBlock(slabOrExtraProperty.apply(type)),
-                getStairsPath, (type, _) -> new StairBlock(
+                getBlockPath, (_, properties) -> new Block(properties),
+                getSlabPath, (_, properties) -> new SlabBlock(properties),
+                getStairsPath, (type, properties) -> new StairBlock(
                         requireNonNull(type.getBlockOfThis(getChildKey(module.getModId(), getBlockPath, baseTypeId))).defaultBlockState(),
-                        stairsProperty.apply(type)
+                        properties
                 ),
-                getWallPath, (type, _) -> new WallBlock(wallProperty.apply(type)),
+                getWallPath, (_, properties) -> new WallBlock(properties),
                 tabSupplier
         );
     }
 
     /**
      * The first 3 factories by default are: Block, SlabBlock, and StairBlock, BUT wall are excluded
-     * <p style="color: yellow;">The parameters with "Property" is for copying Block's BlockBehaviour.Properties</p>
+     * <p style="color: yellow;">BlockBehaviour.Properties by default is using Utils.copyPropertySafe(mainChild)</p>
      * @param getBlockPath BlockId's path for Block
      * @param getSlabPath BlockId's path for Slab
      * @param getStairsPath BlockId's path for Stairs
      */
-    public static <T extends RockType> BlockSetBuilder<T> of3BlocksProperty(
+    public static <T extends RockType> BlockSetBuilder<T> of3Blocks(
             StoneZoneModule module, Class<T> typeClass, T baseTypeId,
-            String getBlockPath, Function<T, BlockBehaviour.Properties> blockProperty,
-            String getSlabPath, Function<T, BlockBehaviour.Properties> slabProperty,
-            String getStairsPath, Function<T, BlockBehaviour.Properties> stairsProperty,
+            String getBlockPath,
+            String getSlabPath,
+            String getStairsPath,
             Supplier<CreativeModeTab> tabSupplier) {
+
         return of3BlocksFactory(module, typeClass, baseTypeId,
-                getBlockPath, (type, _) -> new Block(blockProperty.apply(type)),
-                getSlabPath, (type, _) -> new SlabBlock(slabProperty.apply(type)),
-                getStairsPath, (type, _) -> new StairBlock(
+                getBlockPath, (_, properties) -> new Block(properties),
+                getSlabPath, (_, properties) -> new SlabBlock(properties),
+                getStairsPath, (type, properties) -> new StairBlock(
                         requireNonNull(type.getBlockOfThis(getChildKey(module.getModId(), getBlockPath, baseTypeId))).defaultBlockState(),
-                        stairsProperty.apply(type)
+                        properties
                 ),
                 tabSupplier
         );

@@ -18,41 +18,41 @@ public class MacawStairsModule extends MacawStairsModuleAbstract {
 
     @Override
     public Block newTerraceStairs(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new TerraceStairs(standardProperties(stoneType));
+        return new TerraceStairs(properties);
     }
 
     @Override
     public Block newSkylineStairs(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new SkylineStairs(standardProperties(stoneType));
+        return new SkylineStairs(properties);
     }
 
     @Override
     public Block newCompactStairs(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new CompactStairs(standardProperties(stoneType));
+        return new CompactStairs(properties);
     }
 
     @Override
     public Block newBulkStairs(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new BulkStairs(standardProperties(stoneType));
+        return new BulkStairs(properties);
     }
 
     @Override
     public Block newLoftStairs(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new LoftStairs(standardProperties(stoneType));
+        return new LoftStairs(properties);
     }
 
     @Override
     public Block newBalconyRailing(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new BalconyRailing(standardProperties(stoneType));
+        return new BalconyRailing(properties);
     }
 
     @Override
     public Block newStairRailing(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new StairRailing(standardProperties(stoneType));
+        return new StairRailing(properties);
     }
 
     @Override
     public Block newStairPlatform(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new StairPlatform(standardProperties(stoneType));
+        return new StairPlatform(properties);
     }
 }

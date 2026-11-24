@@ -1,7 +1,5 @@
 package net.mehvahdjukaar.stone_zone.modules.create;
 
-import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
-import net.mehvahdjukaar.moonlight.api.util.Utils;
 import net.mehvahdjukaar.stone_zone.api.StoneZoneModule;
 import net.mehvahdjukaar.stone_zone.api.set.stone.StoneType;
 import net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneTypes;
@@ -26,11 +24,11 @@ public class BitsNBobsModuleAbstract extends StoneZoneModule {
         super(modId, "cbnb");
         Supplier<CreativeModeTab> palettesTab = getModTab("bnb_palettes");
 
-        blockSet = BlockSetEntries.of4BlocksProperty(StoneType.class, this, VanillaStoneTypes.ANDESITE,
-                        "andesite_tiles", stoneType -> Utils.copyPropertySafe(stoneType.stone),
-                        "andesite_tile_slab", stoneType -> copyChildProperties(stoneType, SLAB),
-                        "andesite_tile_stairs", stoneType -> copyChildProperties(stoneType, STAIRS),
-                        "andesite_tile_wall", stoneType -> copyChildProperties(stoneType, WALL),
+        blockSet = BlockSetEntries.of4Blocks(StoneType.class, this, VanillaStoneTypes.ANDESITE,
+                        "andesite_tiles",
+                        "andesite_tile_slab",
+                        "andesite_tile_stairs",
+                        "andesite_tile_wall",
                         palettesTab
                 )
                 .block(builder -> builder
@@ -39,23 +37,26 @@ public class BitsNBobsModuleAbstract extends StoneZoneModule {
                         .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                         //TAGS: create:stone_types/andesite - manually created
                         //RECIPES: andesite_tiles_from_stone_types_andesite_stonecutting - manually created in CreateModuleAbstract
-//                        .skipDuplicationCheck()
+                        // copyProperties: stoneType.stone
                 )
                 .slab(builder -> builder
                         //TEXTURES: andesite_tiles, andesite_cut_tiles_flipped
                         .defaultRecipe()
                         .addRecipe(Identifier.parse("create:andesite_tile_slab_recycling")) //Crafts andesite_tiles
-//                        .skipDuplicationCheck()
+                        .setProperties(stoneType -> copyChildProperties(stoneType, SLAB))
                 )
-                .stairs(SimpleEntrySet.Builder::defaultRecipe
+                .stairs(builder -> builder
                         //TEXTURES: andesite_tiles, andesite_cut_tiles_flipped
                         //TAGS: create:stone_types/andesite - manually created
-//                        .skipDuplicationCheck()
+                        .defaultRecipe()
+                        .setProperties(stoneType -> copyChildProperties(stoneType, STAIRS))
+
                 )
-                .wall(SimpleEntrySet.Builder::defaultRecipe
+                .wall(builder -> builder
                         //TEXTURES: andesite_tiles, andesite_cut_tiles_flipped
                         //TAGS: create:stone_types/andesite - manually created
-//                        .skipDuplicationCheck()
+                        .defaultRecipe()
+                        .setProperties(stoneType -> copyChildProperties(stoneType, WALL))
                 )
                 .pickaxeTag()
                 .build();

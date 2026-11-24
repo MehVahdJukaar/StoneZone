@@ -36,7 +36,9 @@ public abstract class MacawFencesModuleAbstract extends StoneZoneModule {
 
     public MacawFencesModuleAbstract(String modId) {
         super(modId, "mcf");
-        Supplier<CreativeModeTab> tab = (PlatHelper.getPlatform().isFabric()) ? getModTab("fencesgroup") : getModTab("fenceitemgroup");
+        Supplier<CreativeModeTab> tab = (PlatHelper.getPlatform().isFabric())
+                ? getModTab("fencesgroup")
+                : getModTab("fenceitemgroup");
 
         modern_brick_walls = StoneZoneEntrySet.of(StoneType.class, "brick_wall", "modern",
                         getModBlock("modern_stone_brick_wall"), () -> VanillaStoneTypes.STONE,

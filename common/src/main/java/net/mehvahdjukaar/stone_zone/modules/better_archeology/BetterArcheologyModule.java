@@ -19,33 +19,39 @@ import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
 ///SUPPORT: v1.3.9
 public class BetterArcheologyModule extends StoneZoneModule {
 
+    public final BlockSetEntries<MudType> cracked_bricksSet;
+
     public BetterArcheologyModule(String modId) {
         super(modId, "ba");
         Supplier<CreativeModeTab> tab = getModTab(modId);
 
-        var blockSet = BlockSetEntries.of3BlocksProperty(this, MudType.class, VanillaMudTypes.MUD,
-                "cracked_mud_bricks",  mudType -> Utils.copyPropertySafe(mudType.bricksOrStone()),
-                "cracked_mud_brick_slab", mudType -> copyChildProperties(mudType, BRICK_SLAB),
-                "cracked_mud_brick_stairs", mudType -> copyChildProperties(mudType, BRICK_STAIRS),
+        cracked_bricksSet = BlockSetEntries.of3Blocks(this, MudType.class, VanillaMudTypes.MUD,
+                "cracked_mud_bricks",
+                "cracked_mud_brick_slab",
+                "cracked_mud_brick_stairs",
                 tab
         )
-                .block(builder ->
-                        builder.requiresChildren(BRICKS) //REASON: Recipes & Palettes
-                                .addTexture(modRes("block/cracked_mud_bricks"), StonePaletteStrategies.BRICKS_STANDARD)
-                                .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                .block(builder -> builder
+                        .requiresChildren(BRICKS) //REASON: Recipes & Palettes
+                        .addTexture(modRes("block/cracked_mud_bricks"), StonePaletteStrategies.BRICKS_STANDARD)
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .setProperties(mudType -> Utils.copyPropertySafe(mudType.bricksOrStone()))
                 )
-                .slab(builder ->
-                        builder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                                .addRecipe(Identifier.withDefaultNamespace("cracked_mud_brick_slab_from_cracked_mud_bricks_stonecutting"))
+                .slab(builder -> builder
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .addRecipe(Identifier.withDefaultNamespace("cracked_mud_brick_slab_from_cracked_mud_bricks_stonecutting"))
+                        .setProperties(mudType -> copyChildProperties(mudType, BRICK_SLAB))
                 )
-                .stairs(builder ->
-                        builder.addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
-                                .addRecipe(Identifier.withDefaultNamespace("cracked_mud_brick_stairs_from_cracked_mud_bricks_stonecutting"))
+                .stairs(builder -> builder
+                        .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
+                        .addRecipe(Identifier.withDefaultNamespace("cracked_mud_brick_stairs_from_cracked_mud_bricks_stonecutting"))
+                        .setProperties(mudType -> copyChildProperties(mudType, BRICK_STAIRS))
                 )
                 .noWall()
                 .noSlabAndStairsTag()
                 .defaultRecipe()
                 .build();
-        this.addEntries(blockSet);
+        this.addEntries(cracked_bricksSet);
+
     }
 }

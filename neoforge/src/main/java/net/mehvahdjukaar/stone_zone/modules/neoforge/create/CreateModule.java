@@ -46,8 +46,7 @@ public class CreateModule extends CreateModuleAbstract {
     }
 
     protected Block newCasingBlock(StoneType stoneType, BlockBehaviour.Properties properties) {
-        return new CasingBlock(Utils.copyPropertySafe(stoneType.block)
-                .sound(stoneType.getSound()));
+        return new CasingBlock(properties.sound(stoneType.getSound()));
     }
 
     @Override
@@ -68,7 +67,7 @@ public class CreateModule extends CreateModuleAbstract {
     @Override
     //TODO: Waiting for v26.1.2
     protected Block newFunnelBlock(StoneType stoneType, BlockBehaviour.Properties properties, Supplier<Block> beltFunnelBlock) {
-//        Block block = new CompatFunnelBlock(Utils.copyPropertySafe(stoneType.block), beltFunnelBlock);
+//        Block block = new CompatFunnelBlock(properties, beltFunnelBlock);
 
 //        SimpleRegistry.create().register(block, FunnelMovementBehaviour.andesite());
 

@@ -8,7 +8,6 @@ import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.minecraft.resources.Identifier;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.*;
@@ -16,7 +15,20 @@ import static net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys.S
 
 public class CompatSpritesHelper {
 
-    public final static Map<Identifier, String> modelID = new HashMap<>();
+    /// NOTE: Used to identify StoneTypes' model only based off their name or path
+    public final static Map<Identifier, String> CUSTOM_MODEL_ID = Map.of(
+                // Naturalist
+            StoneZone.res("bbb/naturalist/shellstone_layer"), "naturalist:block/shellstone/shellstone",
+            StoneZone.res("bbb/naturalist/shellstone_brick_layer"), "naturalist:block/shellstone/shellstone_bricks",
+            StoneZone.res("bbb/naturalist/smooth_shellstone_layer"), "naturalist:block/shellstone/smooth_shellstone",
+
+                // BetterEnd
+            StoneZone.res("bbb/betterend/umbralith_layer"), "betterend:block/umbralith_1",
+
+                // Eternal Tales
+            StoneZone.res("bbb/eternal_tales/smooth_purgatorium_stone_layer"), "eternal_tales:block/purgatorium_stone_smooth",
+            StoneZone.res("bbb/eternal_tales/smooth_rajiit_layer"), "eternal_tales:block/rajiit_smooth"
+    );
 
     //      ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
     //      │                                           TEXTURES                                           │
@@ -37,30 +49,6 @@ public class CompatSpritesHelper {
 
         // Eternal Tales
         addOptional("eternal_tales","purgatorium_stone", "all", "block/purgstone");
-    }
-
-    //      ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
-    //      │                                            MODELS                                            │
-    //      └──────────────────────────────────────────────────────────────────────────────────────────────┘
-
-/// NOTE: Used to identify StoneTypes' model only based off their name or path
-    public static void addHardcodedModel() {
-
-        // Naturalist
-        addToModelId("bbb/naturalist/shellstone_layer", "naturalist:block/shellstone/shellstone");
-        addToModelId("bbb/naturalist/shellstone_brick_layer", "naturalist:block/shellstone/shellstone_bricks");
-        addToModelId("bbb/naturalist/smooth_shellstone_layer", "naturalist:block/shellstone/smooth_shellstone");
-
-        // BetterEnd
-        addToModelId("bbb/betterend/umbralith_layer", "betterend:block/umbralith_1");
-
-        // Eternal Tales
-        addToModelId("bbb/eternal_tales/smooth_purgatorium_stone_layer", "eternal_tales:block/purgatorium_stone_smooth");
-        addToModelId("bbb/eternal_tales/smooth_rajiit_layer", "eternal_tales:block/rajiit_smooth");
-    }
-
-    private static void addToModelId(String blockid, String pathModel) {
-        modelID.put(StoneZone.res(blockid), pathModel);
     }
 
     public final static Map<Identifier, Pair<String, String>> tintedStoneType = Map.of(

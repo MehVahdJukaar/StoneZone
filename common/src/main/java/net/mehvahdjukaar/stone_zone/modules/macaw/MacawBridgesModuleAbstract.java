@@ -44,13 +44,14 @@ public abstract class MacawBridgesModuleAbstract extends StoneZoneModule {
 
         brick_bridges = StoneZoneEntrySet.of(StoneType.class, "brick_bridge",
                         getModBlock("stone_brick_bridge"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> newBridge_Block(stoneType, standardProperties(stoneType, BRICKS))
+                        this::newBridge_Block
                 )
                 .requiresChildren(BRICKS, BRICK_SLAB, BRICK_WALL) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(stoneType -> standardProperties(stoneType, BRICKS))
                 .defaultRecipe()
                 .addRecipe(modRes("stonecutter_stone_brick_bridge"))
                 .build();
@@ -58,13 +59,14 @@ public abstract class MacawBridgesModuleAbstract extends StoneZoneModule {
 
         mossy_brick_bridges = StoneZoneEntrySet.of(StoneType.class, "brick_bridge", "mossy",
                         getModBlock("mossy_stone_brick_bridge"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> newBridge_Block(stoneType, standardProperties(stoneType, MOSSY_BRICKS))
+                        this::newBridge_Block
                 )
                 .requiresChildren(MOSSY_BRICKS, MOSSY_BRICK_SLAB, MOSSY_BRICK_WALL) //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(stoneType -> standardProperties(stoneType, MOSSY_BRICKS))
                 .defaultRecipe()
                 .addRecipe(modRes("stonecutter_mossy_stone_brick_bridge"))
                 .build();
@@ -72,13 +74,14 @@ public abstract class MacawBridgesModuleAbstract extends StoneZoneModule {
 
         balustrade_bricks_bridges = StoneZoneEntrySet.of(StoneType.class, "bricks_bridge", "balustrade",
                         getModBlock("balustrade_stone_bricks_bridge"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> newBridge_Block(stoneType, balustradeProperties(stoneType, BRICKS))
+                        this::newBridge_Block
                 )
                 .requiresChildren(BRICKS, BRICK_SLAB, BRICK_WALL) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(stoneType -> balustradeProperties(stoneType, BRICKS))
                 .defaultRecipe()
                 .addRecipe(modRes("stonecutter_balustrade_stone_bricks_bridge"))
                 .build();
@@ -86,13 +89,14 @@ public abstract class MacawBridgesModuleAbstract extends StoneZoneModule {
 
         balustrade_mossy_bricks_bridges = StoneZoneEntrySet.of(StoneType.class, "bricks_bridge", "balustrade_mossy",
                         getModBlock("balustrade_mossy_stone_bricks_bridge"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> newBridge_Block(stoneType, balustradeProperties(stoneType, MOSSY_BRICKS))
+                        this::newBridge_Block
                 )
                 .requiresChildren(MOSSY_BRICKS, MOSSY_BRICK_SLAB, MOSSY_BRICK_WALL) //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(stoneType -> balustradeProperties(stoneType, MOSSY_BRICKS))
                 .defaultRecipe()
                 .addRecipe(modRes("stonecutter_balustrade_mossy_stone_bricks_bridge"))
                 .build();
@@ -100,13 +104,14 @@ public abstract class MacawBridgesModuleAbstract extends StoneZoneModule {
 
         bridge_piers = StoneZoneEntrySet.of(StoneType.class, "bridge_pier",
                         getModBlock("stone_bridge_pier"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> newBridge_Support(stoneType, standardProperties(stoneType, BRICKS))
+                        this::newBridge_Support
                 )
                 .requiresChildren(BRICKS, BRICK_WALL) //REASON: textures, recipes
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_piers"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(stoneType -> standardProperties(stoneType, BRICKS))
                 .defaultRecipe()
                 .addRecipe(modRes("stonecutter_stone_bridge_pier"))
                 .build();
@@ -114,13 +119,14 @@ public abstract class MacawBridgesModuleAbstract extends StoneZoneModule {
 
         mossy_bridge_piers = StoneZoneEntrySet.of(StoneType.class, "bridge_pier", "mossy",
                         getModBlock("mossy_stone_bridge_pier"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> newBridge_Support(stoneType, standardProperties(stoneType, MOSSY_BRICKS))
+                        this::newBridge_Support
                 )
                 .requiresChildren(MOSSY_BRICKS) //REASON: textures, recipes
                 //TEXTURES: mossy_bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_piers"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(stoneType -> standardProperties(stoneType, MOSSY_BRICKS))
                 .defaultRecipe()
                 .addRecipe(modRes("stonecutter_mossy_stone_bridge_pier"))
                 .build();
@@ -128,7 +134,7 @@ public abstract class MacawBridgesModuleAbstract extends StoneZoneModule {
 
         brick_bridge_stairs = StoneZoneEntrySet.of(StoneType.class, "brick_bridge_stair",
                         getModBlock("stone_brick_bridge_stair"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> newBridge_Stairs(stoneType, standardProperties(stoneType, BRICKS))
+                        this::newBridge_Stairs
                 )
                 .requiresChildren(BRICKS) //REASON: textures, recipes
                 .requiresFromMap(brick_bridges.blocks) //REASON: recipes
@@ -136,6 +142,7 @@ public abstract class MacawBridgesModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_stairs"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(stoneType -> standardProperties(stoneType, BRICKS))
                 .defaultRecipe()
                 .addRecipe(modRes("stone_brick_bridge_stair_recycle"))
                 .addRecipe(modRes("stonecutter_stone_brick_bridge_stair"))
@@ -144,7 +151,7 @@ public abstract class MacawBridgesModuleAbstract extends StoneZoneModule {
 
         mossy_bridge_stairs = StoneZoneEntrySet.of(StoneType.class, "bridge_stair", "mossy",
                         getModBlock("mossy_stone_bridge_stair"), () -> VanillaStoneTypes.STONE,
-                        (stoneType, _) -> newBridge_Stairs(stoneType, standardProperties(stoneType, MOSSY_BRICKS))
+                        this::newBridge_Stairs
                 )
                 .requiresChildren(MOSSY_BRICKS) //REASON: textures, recipes
                 .requiresFromMap(mossy_brick_bridges.blocks) //REASON: recipes
@@ -152,6 +159,7 @@ public abstract class MacawBridgesModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_stairs"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(stoneType -> standardProperties(stoneType, MOSSY_BRICKS))
                 .defaultRecipe()
                 .addRecipe(modRes("mossy_stone_bridge_stair_recycle"))
                 .addRecipe(modRes("stonecutter_mossy_stone_bridge_stair"))
@@ -161,13 +169,14 @@ public abstract class MacawBridgesModuleAbstract extends StoneZoneModule {
 //!! ANDESITE
         bridges = StoneZoneEntrySet.of(StoneType.class, "bridge",
                         getModBlock("andesite_bridge"), () -> VanillaStoneTypes.ANDESITE,
-                        (stoneType, _) -> newBridge_Block(stoneType, standardProperties(stoneType, POLISHED))
+                        this::newBridge_Block
                 )
                 .requiresChildren(POLISHED, SLAB, WALL) //REASON: textures, recipes
                 //TEXTURES: stone, polished_stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .addTag(modRes("stone_bridges"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(stoneType -> standardProperties(stoneType, POLISHED))
                 .defaultRecipe()
                 .addRecipe(modRes("stonecutter_andesite_bridge"))
                 .build();

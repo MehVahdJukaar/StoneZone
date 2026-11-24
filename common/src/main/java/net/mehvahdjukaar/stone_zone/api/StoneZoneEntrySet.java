@@ -5,7 +5,9 @@ import net.mehvahdjukaar.every_compat.api.SimpleEntrySet;
 import net.mehvahdjukaar.every_compat.api.SimpleModule;
 import net.mehvahdjukaar.every_compat.api.TabAddMode;
 import net.mehvahdjukaar.every_compat.misc.ExtraModelConfiguration;
+import net.mehvahdjukaar.every_compat.misc.ResourcesUtils;
 import net.mehvahdjukaar.moonlight.api.resources.BlockTypeResTransformer;
+import net.mehvahdjukaar.moonlight.api.resources.pack.ResourceSink;
 import net.mehvahdjukaar.moonlight.api.set.BlockType;
 import net.mehvahdjukaar.stone_zone.StoneZone;
 import net.mehvahdjukaar.stone_zone.misc.CompatSpritesHelper;
@@ -24,6 +26,7 @@ import java.util.function.*;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.BRICKS;
 import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.SMOOTH;
 import static net.mehvahdjukaar.stone_zone.api.set.stone.VanillaStoneChildKeys.STONE;
+import static net.mehvahdjukaar.stone_zone.misc.CompatSpritesHelper.CUSTOM_MODEL_ID;
 import static net.mehvahdjukaar.stone_zone.misc.CompatSpritesHelper.tintedStoneType;
 import static net.mehvahdjukaar.stone_zone.misc.ResourcesUtils.getChildModelId;
 
@@ -61,11 +64,26 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
     }
 
     @Override
+    public void generateModels(SimpleModule module, ResourceManager manager, ResourceSink sink) {
+        ResourcesUtils.generateStandardBlockFiles(manager, sink, blocks, baseType.get(),
+                makeModelTransformer(module, manager), makeBlockStateTransformer(module, manager), this.modelConfiguration
+        );
+        ResourcesUtils.generateStandardItemModels(manager, sink, items, baseType.get(), this.getBaseBlock().asItem(),
+                makeModelTransformer(module, manager), this.modelConfiguration
+        );
+    }
+
+    @Override
     protected BlockTypeResTransformer<T> makeModelTransformer(SimpleModule module, ResourceManager manager) {
         String oldTypeName = baseType.get().getTypeName();
         BlockTypeResTransformer<T> modelTransformer = BlockTypeResTransformer.create(module.getModId(), manager);
 
         if (this.extraModelTransform != null) this.extraModelTransform.accept(modelTransformer);
+
+        // Modifying models' filename & ResourceLocation
+        modelTransformer.setIDModifier((s, blockId, blockType) ->
+            BlockTypeResTransformer.replaceFullGenericType(s, blockType, blockId, oldTypeName, null, 2)
+        );
 
         // Modifying the model files' content
         modelTransformer.addModifier((s, blockId, blockType) -> {
@@ -82,32 +100,36 @@ public class StoneZoneEntrySet<T extends BlockType, B extends Block> extends Sim
 
         modelTransformer = CompatSpritesHelper.replaceStoneTextures(modelTransformer, oldTypeName);
 
-        return modelTransformer.andThen(super.makeModelTransformer(module, manager));
+        //NOTE: do not use super.makeModelTransformer(module, manager) because it will screw up the model files from Macaw's Bridges
+        // Stone Zone is better off not using EveryCompat's ModelTransformer
+        return modelTransformer;
     }
-
 
     @Override
     protected BlockTypeResTransformer<T> makeBlockStateTransformer(SimpleModule module, ResourceManager manager) {
         String oldTypeName = baseType.get().getTypeName();
         BlockTypeResTransformer<T> transformer = BlockTypeResTransformer.create(module.getModId(), manager);
 
-        transformer.addModifier((s, blockId, blockType) -> { // TEMP fix for MacawFences
+        transformer.addModifier((s, blockId, blockType) -> {
                     s = s.replace("stonebrick", "stone_brick");
                     BlockTypeResTransformer.replaceFullGenericType(s, blockType, blockId, oldTypeName, module.getModId(), "block");
                     return s;
                 })
-                .addModifier((s, blockId, stoneType) ->
-                        s.replace("minecraft:block/" + oldTypeName, getChildModelId(STONE, stoneType, blockId)))
-                .addModifier((s, blockId, stoneType) ->
-                        s.replace("minecraft:block/" + oldTypeName + "_bricks", getChildModelId(BRICKS, stoneType, blockId)))
-                .addModifier((s, blockId, stoneType) ->
-                        s.replace("minecraft:block/smooth_" + oldTypeName, getChildModelId(SMOOTH, stoneType, blockId)))
+                .addModifier((json, blockId, stoneType) -> {
+                    if (CUSTOM_MODEL_ID.containsKey(blockId)) {
+                        return json
+                                .replace("minecraft:block/" + oldTypeName, getChildModelId(STONE, stoneType, blockId))
+                                .replace("minecraft:block/" + oldTypeName + "_bricks", getChildModelId(BRICKS, stoneType, blockId))
+                                .replace("minecraft:block/smooth_" + oldTypeName, getChildModelId(SMOOTH, stoneType, blockId));
+                    }
+                    return json;
+                })
                 .replaceBlockType(oldTypeName)
                 .IDReplaceType(oldTypeName);
 
         transformer = CompatSpritesHelper.replaceStoneTextures(transformer, oldTypeName);
 
-        return transformer.andThen(super.makeBlockStateTransformer(module, manager));
+        return transformer;
     }
 
     //!! SUB-CLASS

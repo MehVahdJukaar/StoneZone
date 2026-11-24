@@ -21,23 +21,25 @@ import static net.mehvahdjukaar.stone_zone.api.set.VanillaRockChildKeys.MOSSY_BR
 ///SUPPORT: v1.0.0+
 public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
 
-    public final SimpleEntrySet<StoneType, Block> brick_terrace_stairs;
-    public final SimpleEntrySet<StoneType, Block> brick_skyline_stairs;
-    public final SimpleEntrySet<StoneType, Block> brick_compact_stairs;
-    public final SimpleEntrySet<StoneType, Block> brick_bulk_stairs;
-    public final SimpleEntrySet<StoneType, Block> brick_loft_stairs;
-    public final SimpleEntrySet<StoneType, Block> brick_balconies;
-    public final SimpleEntrySet<StoneType, Block> brick_railings;
-    public final SimpleEntrySet<StoneType, Block> brick_platforms;
+    public final SimpleEntrySet<StoneType, Block> brick_terrace_stairs,
+            brick_skyline_stairs,
+            brick_compact_stairs,
+            brick_bulk_stairs,
+            brick_loft_stairs,
 
-    public final SimpleEntrySet<StoneType, Block> mossy_brick_terrace_stairs;
-    public final SimpleEntrySet<StoneType, Block> mossy_brick_skyline_stairs;
-    public final SimpleEntrySet<StoneType, Block> mossy_brick_compact_stairs;
-    public final SimpleEntrySet<StoneType, Block> mossy_brick_bulk_stairs;
-    public final SimpleEntrySet<StoneType, Block> mossy_brick_loft_stairs;
-    public final SimpleEntrySet<StoneType, Block> mossy_brick_balconies;
-    public final SimpleEntrySet<StoneType, Block> mossy_brick_railings;
-    public final SimpleEntrySet<StoneType, Block> mossy_brick_platforms;
+            brick_balconies,
+            brick_railings,
+            brick_platforms;
+
+    public final SimpleEntrySet<StoneType, Block> mossy_brick_terrace_stairs,
+            mossy_brick_skyline_stairs,
+            mossy_brick_compact_stairs,
+            mossy_brick_bulk_stairs,
+            mossy_brick_loft_stairs,
+
+            mossy_brick_balconies,
+            mossy_brick_railings,
+            mossy_brick_platforms;
 
     public MacawStairsModuleAbstract(String modId) {
         super(modId, "mcs");
@@ -53,6 +55,7 @@ public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("terrace_stairs"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(brick_terrace_stairs);
@@ -67,6 +70,7 @@ public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("skyline_stairs"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(brick_skyline_stairs);
@@ -81,6 +85,7 @@ public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("compact_stairs"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(brick_compact_stairs);
@@ -95,6 +100,7 @@ public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("bulk_stairs"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(brick_bulk_stairs);
@@ -109,6 +115,7 @@ public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("loft_stairs"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(brick_loft_stairs);
@@ -123,6 +130,7 @@ public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
                 .addTag(modRes("balconies"), Registries.BLOCK)
                 //TEXTURES: bricks
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(brick_balconies);
@@ -137,6 +145,7 @@ public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("railings"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(brick_railings);
@@ -151,6 +160,7 @@ public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("platforms"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(brick_platforms);
@@ -166,6 +176,7 @@ public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("terrace_stairs"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(mossy_brick_terrace_stairs);
@@ -180,6 +191,7 @@ public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("skyline_stairs"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(mossy_brick_skyline_stairs);
@@ -194,6 +206,7 @@ public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("compact_stairs"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(mossy_brick_compact_stairs);
@@ -208,6 +221,7 @@ public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("bulk_stairs"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(mossy_brick_bulk_stairs);
@@ -222,6 +236,7 @@ public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("loft_stairs"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(mossy_brick_loft_stairs);
@@ -236,6 +251,7 @@ public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("balconies"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(mossy_brick_balconies);
@@ -250,6 +266,7 @@ public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("railings"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(mossy_brick_railings);
@@ -264,6 +281,7 @@ public abstract class MacawStairsModuleAbstract extends StoneZoneModule {
                 .addTag(BlockTags.MINEABLE_WITH_AXE, Registries.BLOCK)
                 .addTag(modRes("platforms"), Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(mossy_brick_platforms);

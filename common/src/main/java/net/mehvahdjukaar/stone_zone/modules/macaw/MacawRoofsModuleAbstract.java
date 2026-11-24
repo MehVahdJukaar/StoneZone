@@ -39,7 +39,7 @@ public abstract class MacawRoofsModuleAbstract extends StoneZoneModule {
 
     public MacawRoofsModuleAbstract(String modId) {
         super(modId, "mcr");
-        Supplier<CreativeModeTab> tab = getModTab("roofs");
+        Supplier<CreativeModeTab> tab = getModTab(modId);
 
         roofs = StoneZoneEntrySet.of(StoneType.class, "roof",
                         getModBlock("stone_roof"), () -> VanillaStoneTypes.STONE,
@@ -48,6 +48,7 @@ public abstract class MacawRoofsModuleAbstract extends StoneZoneModule {
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(roofs);
@@ -59,6 +60,7 @@ public abstract class MacawRoofsModuleAbstract extends StoneZoneModule {
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(attic_roofs);
@@ -70,6 +72,7 @@ public abstract class MacawRoofsModuleAbstract extends StoneZoneModule {
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(top_roofs);
@@ -81,6 +84,7 @@ public abstract class MacawRoofsModuleAbstract extends StoneZoneModule {
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(lower_roofs);
@@ -92,6 +96,7 @@ public abstract class MacawRoofsModuleAbstract extends StoneZoneModule {
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(steep_roofs);
@@ -103,6 +108,7 @@ public abstract class MacawRoofsModuleAbstract extends StoneZoneModule {
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(upper_lower_roofs);
@@ -114,6 +120,7 @@ public abstract class MacawRoofsModuleAbstract extends StoneZoneModule {
                 //TEXTURES: stone
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(upper_steep_roofs);
@@ -126,6 +133,7 @@ public abstract class MacawRoofsModuleAbstract extends StoneZoneModule {
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(bricks_roofs);
@@ -138,6 +146,7 @@ public abstract class MacawRoofsModuleAbstract extends StoneZoneModule {
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(bricks_attic_roofs);
@@ -150,6 +159,7 @@ public abstract class MacawRoofsModuleAbstract extends StoneZoneModule {
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(bricks_top_roofs);
@@ -162,6 +172,7 @@ public abstract class MacawRoofsModuleAbstract extends StoneZoneModule {
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(bricks_lower_roofs);
@@ -174,6 +185,7 @@ public abstract class MacawRoofsModuleAbstract extends StoneZoneModule {
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(bricks_steep_roofs);
@@ -186,6 +198,7 @@ public abstract class MacawRoofsModuleAbstract extends StoneZoneModule {
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(bricks_upper_lower_roofs);
@@ -198,6 +211,7 @@ public abstract class MacawRoofsModuleAbstract extends StoneZoneModule {
                 //TEXTURES: bricks
                 .addTag(BlockTags.MINEABLE_WITH_PICKAXE, Registries.BLOCK)
                 .setTab(tab)
+                .setProperties(this::standardProperties)
                 .defaultRecipe()
                 .build();
         this.addEntry(bricks_upper_steep_roofs);

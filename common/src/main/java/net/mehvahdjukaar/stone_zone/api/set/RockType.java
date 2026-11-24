@@ -103,7 +103,7 @@ public abstract class RockType extends BlockType{
     protected void initializeChildrenItems() {}
 
     @SuppressWarnings("SameParameterValue")
-    /// Checking the id for "cobbled" or "cobblestone"
+    // Checking the id for "cobbled" or "cobblestone"
     private @Nullable Block findCobblestoneEntry(String prefix, String suffix) {
         String suffixed = (suffix.isEmpty()) ? "" : "_" + suffix;
         String prefix_ = (prefix.isEmpty()) ? "" : prefix + "_";
@@ -154,7 +154,6 @@ public abstract class RockType extends BlockType{
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     protected @Nullable <V> V findRelatedEntry(String prefixOrInfix, String suffix, Registry<V> reg) {
         if (id.toString().equals("minecraft:stone") && prefixOrInfix.equals("cobblestone")) {
             return reg.getValue(Identifier.withDefaultNamespace("cobblestone"));
@@ -178,14 +177,7 @@ public abstract class RockType extends BlockType{
                 // TFC, AFC, DFC: Include children of stone_type: stairs, slab... (Must be bottom)
                 Identifier.fromNamespaceAndPath(id.getNamespace(), "rock/raw/" + id.getPath() + _suffix)
         };
-        V found = null;
-        for (var r : targets) {
-            if (reg.containsKey(r)) {
-                found = (V) reg.get(r);
-                break;
-            }
-        }
-        return found;
+        return Utils.findFirstInRegistry(reg, targets);
     }
 
     private @Nullable Block findRelatedBlock(String prefixOrInfix, String suffix) {
@@ -216,10 +208,10 @@ public abstract class RockType extends BlockType{
             String _suffix = (keyword.isEmpty()) ? "" : "_" + keyword;
             String prefix_ = (keyword.isEmpty()) ? "" : keyword + "_";
 
-            /// Default
+            // Default
             resources.add(Identifier.fromNamespaceAndPath(namespace, typename + _suffix));
             resources.add(Identifier.fromNamespaceAndPath(namespace, prefix_ + typename));
-            /// TFC, AFC, DFC
+            // TFC, AFC, DFC
             if (PlatHelper.isModLoaded("tfc") | PlatHelper.isModLoaded("afc") | PlatHelper.isModLoaded("dfc"))
                 resources.add(Identifier.fromNamespaceAndPath(namespace, "rock/raw/" + typename));
 
