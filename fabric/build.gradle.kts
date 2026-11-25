@@ -97,6 +97,7 @@ dependencies {
     modCompileOnly("curse.maven:owo-lib-532610:8589921") // v0.13.1 | ???
 
     //+ OTHER MAVENS
+    modImplementation("com.terraformersmc:modmenu:${property("modmenu_version")}")
 //    modCompileOnly("dev.engine-room.flywheel:flywheel-fabric-1.21.1:${property("flywheel_fabric_version")}") // Create //!! 1.21.1
 //    modCompileOnly("net.createmod.ponder:Ponder-Fabric-1.21.1:${property("ponder_fabric_version")}") // Create //!! 1.21.1
 //    modCompileOnly("com.tterrag.registrate_fabric:Registrate:${property("registrate_fabric_version")}") // Create //!! 1.21.1
